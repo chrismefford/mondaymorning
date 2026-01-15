@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { ShoppingBag } from "lucide-react";
 import type { Product } from "@/data/products";
 
 interface ProductCardProps {
@@ -16,9 +17,9 @@ const ProductCard = ({ product, variant = "default" }: ProductCardProps) => {
     >
       {/* Image Container */}
       <div 
-        className={`relative overflow-hidden rounded-lg bg-muted ${
+        className={`relative overflow-hidden rounded-2xl bg-sand ${
           isFeatured ? "lg:w-1/2 aspect-[4/5]" : "aspect-[3/4]"
-        }`}
+        } shadow-card group-hover:shadow-elevated transition-shadow duration-300`}
       >
         <img
           src={product.image}
@@ -29,7 +30,7 @@ const ProductCard = ({ product, variant = "default" }: ProductCardProps) => {
         {/* Badge */}
         {product.badge && (
           <Badge 
-            className="absolute top-4 left-4 bg-primary text-primary-foreground font-sans text-xs font-medium"
+            className="absolute top-4 left-4 bg-sunset text-primary-foreground font-sans text-xs font-medium border-0"
           >
             {product.badge}
           </Badge>
@@ -38,9 +39,10 @@ const ProductCard = ({ product, variant = "default" }: ProductCardProps) => {
         {/* Quick Add Overlay */}
         <div className="absolute inset-x-0 bottom-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
           <Button 
-            className="w-full font-sans text-sm font-medium"
+            className="w-full font-sans text-sm font-medium bg-foreground hover:bg-driftwood gap-2"
             size="lg"
           >
+            <ShoppingBag className="h-4 w-4" />
             Add to Cart — ${product.price}
           </Button>
         </div>
@@ -48,7 +50,7 @@ const ProductCard = ({ product, variant = "default" }: ProductCardProps) => {
 
       {/* Product Info */}
       <div className={`${isFeatured ? "lg:w-1/2 lg:py-8" : "mt-4"}`}>
-        <span className="font-sans text-xs font-medium uppercase tracking-wider text-muted-foreground">
+        <span className="font-sans text-xs font-medium uppercase tracking-wider text-ocean">
           {product.category}
         </span>
         
@@ -65,19 +67,23 @@ const ProductCard = ({ product, variant = "default" }: ProductCardProps) => {
               {product.description}
             </p>
             
-            {/* Flavor & Mood */}
-            <div className="mt-6 space-y-2">
+            {/* Flavor & Mood with coastal styling */}
+            <div className="mt-6 space-y-3">
               {product.flavor && (
-                <p className="font-sans text-sm">
-                  <span className="text-muted-foreground">Flavor: </span>
-                  <span className="text-foreground">{product.flavor}</span>
-                </p>
+                <div className="flex items-center gap-3">
+                  <span className="w-8 h-8 rounded-full bg-ocean-light flex items-center justify-center text-ocean text-xs font-medium">
+                    🍊
+                  </span>
+                  <span className="font-sans text-sm text-foreground">{product.flavor}</span>
+                </div>
               )}
               {product.mood && (
-                <p className="font-sans text-sm">
-                  <span className="text-muted-foreground">Mood: </span>
-                  <span className="text-foreground">{product.mood}</span>
-                </p>
+                <div className="flex items-center gap-3">
+                  <span className="w-8 h-8 rounded-full bg-sunset/20 flex items-center justify-center text-sunset text-xs font-medium">
+                    ✨
+                  </span>
+                  <span className="font-sans text-sm text-foreground">{product.mood}</span>
+                </div>
               )}
             </div>
 
@@ -86,7 +92,7 @@ const ProductCard = ({ product, variant = "default" }: ProductCardProps) => {
               <ul className="mt-6 space-y-2">
                 {product.benefits.map((benefit, index) => (
                   <li key={index} className="font-sans text-sm text-muted-foreground flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-primary shrink-0" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-seafoam shrink-0" />
                     {benefit}
                   </li>
                 ))}
@@ -94,7 +100,8 @@ const ProductCard = ({ product, variant = "default" }: ProductCardProps) => {
             )}
 
             <div className="mt-8 flex items-center gap-4">
-              <Button size="lg" className="font-sans text-sm font-medium px-8">
+              <Button size="lg" className="font-sans text-sm font-medium px-8 gap-2 bg-primary hover:bg-coral-dark">
+                <ShoppingBag className="h-4 w-4" />
                 Add to Cart — ${product.price}
               </Button>
               {product.compareAtPrice && (

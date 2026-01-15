@@ -61,21 +61,25 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
-        // Brand colors
-        terracotta: {
-          DEFAULT: "hsl(var(--terracotta))",
-          light: "hsl(var(--terracotta-light))",
+        // San Diego Coastal Brand Colors
+        coral: {
+          DEFAULT: "hsl(var(--coral))",
+          light: "hsl(var(--coral-light))",
+          dark: "hsl(var(--coral-dark))",
         },
-        sage: {
-          DEFAULT: "hsl(var(--sage))",
-          light: "hsl(var(--sage-light))",
+        ocean: {
+          DEFAULT: "hsl(var(--ocean))",
+          light: "hsl(var(--ocean-light))",
+          deep: "hsl(var(--ocean-deep))",
         },
-        cream: {
-          DEFAULT: "hsl(var(--cream))",
-          dark: "hsl(var(--cream-dark))",
+        sand: {
+          DEFAULT: "hsl(var(--sand))",
+          warm: "hsl(var(--sand-warm))",
         },
-        espresso: "hsl(var(--espresso))",
-        warmth: "hsl(var(--warmth))",
+        driftwood: "hsl(var(--driftwood))",
+        seafoam: "hsl(var(--seafoam))",
+        sunset: "hsl(var(--sunset))",
+        "golden-hour": "hsl(var(--golden-hour))",
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -86,6 +90,7 @@ export default {
         soft: "var(--shadow-soft)",
         elevated: "var(--shadow-elevated)",
         card: "var(--shadow-card)",
+        glow: "var(--shadow-glow)",
       },
       keyframes: {
         "accordion-down": {
@@ -104,12 +109,24 @@ export default {
           from: { opacity: "0" },
           to: { opacity: "1" },
         },
+        wave: {
+          "0%, 100%": { transform: "translateX(0) translateY(0)" },
+          "25%": { transform: "translateX(-5px) translateY(-3px)" },
+          "50%": { transform: "translateX(0) translateY(-5px)" },
+          "75%": { transform: "translateX(5px) translateY(-3px)" },
+        },
+        float: {
+          "0%, 100%": { transform: "translateY(0)" },
+          "50%": { transform: "translateY(-10px)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         "fade-up": "fade-up 0.6s ease-out forwards",
         "fade-in": "fade-in 0.8s ease-out forwards",
+        wave: "wave 8s ease-in-out infinite",
+        float: "float 6s ease-in-out infinite",
       },
     },
   },
