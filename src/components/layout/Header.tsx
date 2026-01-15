@@ -1,9 +1,18 @@
-import { useState } from "react";
-import { Menu, X, ShoppingBag } from "lucide-react";
+import { useState, useEffect } from "react";
+import { Menu, X, ShoppingBag, Waves } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const navLinks = [
     { name: "Shop", href: "#shop" },
@@ -13,12 +22,21 @@ const Header = () => {
   ];
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border">
+    <header 
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        isScrolled 
+          ? "bg-background/95 backdrop-blur-md border-b border-border shadow-soft" 
+          : "bg-transparent"
+      }`}
+    >
       <div className="container mx-auto px-4 lg:px-8">
         <div className="flex items-center justify-between h-16 lg:h-20">
           {/* Logo */}
-          <a href="/" className="flex items-center">
-            <span className="font-serif text-2xl lg:text-3xl font-semibold tracking-tight text-foreground">
+          <a href="/" className="flex items-center gap-2 group">
+            <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
+              <Waves className="h-4 w-4 text-primary" />
+            </div>
+            <span className="font-serif text-xl lg:text-2xl font-semibold tracking-tight text-foreground">
               Monday Morning
             </span>
           </a>
@@ -29,7 +47,7 @@ const Header = () => {
               <a
                 key={link.name}
                 href={link.href}
-                className="font-sans text-sm font-medium text-muted-foreground hover:text-foreground transition-colors duration-200"
+                className="font-sans text-sm font-medium text-muted-foreground hover:text-foreground transition-colors duration-200 story-link"
               >
                 {link.name}
               </a>
@@ -51,7 +69,7 @@ const Header = () => {
               className="relative"
             >
               <ShoppingBag className="h-5 w-5" />
-              <span className="absolute -top-1 -right-1 h-4 w-4 rounded-full bg-primary text-primary-foreground text-xs flex items-center justify-center">
+              <span className="absolute -top-1 -right-1 h-4 w-4 rounded-full bg-sunset text-primary-foreground text-xs flex items-center justify-center">
                 0
               </span>
             </Button>
@@ -92,7 +110,7 @@ const Header = () => {
               </Button>
               <Button variant="ghost" size="icon" className="relative">
                 <ShoppingBag className="h-5 w-5" />
-                <span className="absolute -top-1 -right-1 h-4 w-4 rounded-full bg-primary text-primary-foreground text-xs flex items-center justify-center">
+                <span className="absolute -top-1 -right-1 h-4 w-4 rounded-full bg-sunset text-primary-foreground text-xs flex items-center justify-center">
                   0
                 </span>
               </Button>
