@@ -11,12 +11,12 @@ const Collections = () => {
         {/* Section Header */}
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-16 lg:mb-24">
           <div>
-            <span className="font-sans text-xs font-semibold uppercase tracking-[0.3em] text-seafoam mb-4 block">
-              ( Collections )
+            <span className="font-sans text-xs font-medium uppercase tracking-[0.2em] text-seafoam mb-4 block">
+              Collections
             </span>
-            <h2 className="font-serif text-5xl lg:text-7xl xl:text-8xl font-bold leading-[0.9] text-background">
+            <h2 className="font-serif text-4xl lg:text-5xl xl:text-6xl leading-[1] text-background">
               Shop by
-              <span className="block text-outline-primary italic">vibe</span>
+              <span className="italic text-primary"> vibe</span>
             </h2>
           </div>
           <p className="font-sans text-lg text-background/70 max-w-md">

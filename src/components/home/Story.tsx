@@ -20,11 +20,11 @@ const Story = () => {
         <div className="grid lg:grid-cols-12 gap-8 lg:gap-16 items-start">
           {/* Content Column */}
           <div className="lg:col-span-5 lg:sticky lg:top-32">
-            <span className="font-sans text-xs font-semibold uppercase tracking-[0.3em] text-secondary mb-6 block">
-              ( Our Story )
+            <span className="font-sans text-xs font-medium uppercase tracking-[0.2em] text-secondary mb-6 block">
+              Our Story
             </span>
             
-            <h2 className="font-serif text-5xl lg:text-6xl xl:text-7xl font-bold leading-[0.9] mb-8">
+            <h2 className="font-serif text-4xl lg:text-5xl xl:text-6xl leading-[1.1] mb-8">
               Born on
               <span className="block italic text-primary">the coast</span>
             </h2>
