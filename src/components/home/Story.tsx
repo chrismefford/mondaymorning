@@ -25,8 +25,7 @@ const Story = () => {
             </span>
             
             <h2 className="font-serif text-4xl lg:text-5xl xl:text-6xl leading-[1.1] mb-8">
-              Born on
-              <span className="block italic text-primary">the coast</span>
+              Born on <span className="italic text-primary">the coast</span>
             </h2>
             
             <div className="space-y-6 font-sans text-lg text-muted-foreground leading-relaxed mb-10">

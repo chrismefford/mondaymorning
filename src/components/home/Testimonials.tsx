@@ -54,8 +54,7 @@ const Testimonials = () => {
               Testimonials
             </span>
             <h2 className="font-serif text-4xl lg:text-5xl leading-[1.1]">
-              From the
-              <span className="italic text-primary"> SD fam</span>
+              From the <span className="italic text-primary">SD fam</span>
             </h2>
           </div>
 

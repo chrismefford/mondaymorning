@@ -23,8 +23,7 @@ const FeaturedProducts = () => {
                 ( Featured )
               </span>
             <h2 className="font-serif text-4xl lg:text-5xl xl:text-6xl leading-[1]">
-              Shop our
-              <span className="italic text-primary"> favorites</span>
+              Shop our <span className="italic text-primary">favorites</span>
             </h2>
             </div>
             <Button 
