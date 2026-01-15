@@ -12,14 +12,13 @@ const Newsletter = () => {
           <div className="grain absolute inset-0 pointer-events-none opacity-50" />
           
           <div className="relative z-10 max-w-lg">
-            <span className="font-sans text-xs font-semibold uppercase tracking-[0.3em] text-seafoam mb-6 block">
-              ( Newsletter )
+            <span className="font-sans text-xs font-medium uppercase tracking-[0.2em] text-seafoam mb-6 block">
+              Newsletter
             </span>
             
-            <h2 className="font-serif text-5xl lg:text-6xl xl:text-7xl font-bold leading-[0.9] mb-6">
+            <h2 className="font-serif text-4xl lg:text-5xl xl:text-6xl leading-[1.1] mb-6">
               Join the
-              <span className="block text-outline-primary italic">sunrise</span>
-              <span className="block">crew</span>
+              <span className="italic text-primary"> sunrise crew</span>
             </h2>
             
             <p className="font-sans text-lg text-background/70 mb-10">

@@ -22,10 +22,10 @@ const FeaturedProducts = () => {
               <span className="font-sans text-xs font-semibold uppercase tracking-[0.3em] text-primary mb-4 block">
                 ( Featured )
               </span>
-              <h2 className="font-serif text-5xl lg:text-7xl xl:text-8xl font-bold leading-[0.9]">
-                Shop
-                <span className="block text-outline">our picks</span>
-              </h2>
+            <h2 className="font-serif text-4xl lg:text-5xl xl:text-6xl leading-[1]">
+              Shop our
+              <span className="italic text-primary"> favorites</span>
+            </h2>
             </div>
             <Button 
               variant="ghost" 

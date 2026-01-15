@@ -18,21 +18,18 @@ const Hero = () => {
             </span>
           </div>
 
-          {/* Main headline - Kinetic typography */}
+          {/* Main headline - Refined typography */}
           <h1 className="mb-6">
-            <span className="block font-serif text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold leading-[0.85] tracking-tight animate-fade-up">
-              WAKE
+            <span className="block font-serif text-5xl md:text-6xl lg:text-7xl xl:text-8xl leading-[0.95] tracking-tight animate-fade-up">
+              Wake up to
             </span>
-            <span className="block font-serif text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold leading-[0.85] text-outline animate-fade-up delay-100">
-              UP TO
-            </span>
-            <span className="block font-serif text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold italic leading-[0.85] text-primary animate-fade-up delay-200">
-              BETTER
+            <span className="block font-serif text-5xl md:text-6xl lg:text-7xl xl:text-8xl italic leading-[0.95] text-primary animate-fade-up delay-100">
+              better mornings
             </span>
           </h1>
 
           {/* Subtext */}
-          <p className="font-sans text-lg md:text-xl text-muted-foreground max-w-md mb-10 animate-fade-up delay-300">
+          <p className="font-sans text-base md:text-lg text-muted-foreground max-w-md mb-10 animate-fade-up delay-200">
             Premium non-alcoholic drinks for those who choose sunrise over hangover. 
             Crafted on the coast.
           </p>
