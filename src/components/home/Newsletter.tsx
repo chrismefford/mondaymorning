@@ -1,61 +1,87 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Sun, Waves } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 const Newsletter = () => {
   return (
-    <section className="py-20 lg:py-32 relative overflow-hidden">
-      {/* Sunset gradient background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-golden-hour via-primary to-coral-dark" />
-      
-      {/* Wave overlay */}
-      <div className="absolute inset-0 opacity-10">
-        <svg className="absolute bottom-0 w-full" viewBox="0 0 1440 320" preserveAspectRatio="none">
-          <path 
-            fill="currentColor" 
-            className="text-background"
-            d="M0,160L48,170.7C96,181,192,203,288,192C384,181,480,139,576,138.7C672,139,768,181,864,197.3C960,213,1056,203,1152,181.3C1248,160,1344,128,1392,112L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
-          />
-        </svg>
-      </div>
+    <section className="relative overflow-hidden">
+      {/* Split background */}
+      <div className="grid lg:grid-cols-2">
+        {/* Left side - Dark */}
+        <div className="bg-foreground text-background py-24 lg:py-40 px-6 lg:px-16 relative">
+          <div className="grain absolute inset-0 pointer-events-none opacity-50" />
+          
+          <div className="relative z-10 max-w-lg">
+            <span className="font-sans text-xs font-semibold uppercase tracking-[0.3em] text-seafoam mb-6 block">
+              ( Newsletter )
+            </span>
+            
+            <h2 className="font-serif text-5xl lg:text-6xl xl:text-7xl font-bold leading-[0.9] mb-6">
+              Join the
+              <span className="block text-outline-primary italic">sunrise</span>
+              <span className="block">crew</span>
+            </h2>
+            
+            <p className="font-sans text-lg text-background/70 mb-10">
+              Be the first to know about new flavors, local events, 
+              and get 10% off your first order.
+            </p>
 
-      <div className="container mx-auto px-4 lg:px-8 relative">
-        <div className="max-w-2xl mx-auto text-center text-primary-foreground">
-          {/* Icon */}
-          <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-background/20 backdrop-blur-sm mb-6">
-            <Sun className="w-8 h-8 animate-pulse" />
+            <form 
+              className="space-y-4"
+              onSubmit={(e) => e.preventDefault()}
+            >
+              <div className="flex flex-col sm:flex-row gap-3">
+                <Input
+                  type="email"
+                  placeholder="your@email.com"
+                  className="bg-transparent border-2 border-background/30 text-background placeholder:text-background/50 focus:border-primary focus:ring-0 h-14 font-sans"
+                />
+                <Button 
+                  type="submit"
+                  size="lg"
+                  className="font-sans text-sm font-semibold uppercase tracking-wider shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 h-14 px-8"
+                >
+                  Join
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Button>
+              </div>
+              <p className="font-sans text-xs text-background/50">
+                No spam, just good vibes. Unsubscribe anytime.
+              </p>
+            </form>
           </div>
 
-          <h2 className="font-serif text-4xl lg:text-5xl font-medium mb-4">
-            Join the sunrise crew
-          </h2>
-          <p className="font-sans text-lg opacity-90 mb-8">
-            Be the first to know about new flavors, local events, 
-            and get 10% off your first order.
-          </p>
+          {/* Decorative text */}
+          <div className="absolute bottom-8 left-6 lg:left-16 font-serif text-6xl lg:text-8xl font-bold text-background/5">
+            MMAF
+          </div>
+        </div>
 
-          <form 
-            className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto"
-            onSubmit={(e) => e.preventDefault()}
-          >
-            <Input
-              type="email"
-              placeholder="your@email.com"
-              className="bg-background/20 backdrop-blur-sm border-background/30 text-primary-foreground placeholder:text-primary-foreground/60 focus:border-background/50 focus:ring-background/30"
-            />
-            <Button 
-              type="submit"
-              size="lg"
-              className="font-sans text-sm font-medium shrink-0 bg-background text-foreground hover:bg-background/90"
-            >
-              Join the Crew
-            </Button>
-          </form>
+        {/* Right side - Image */}
+        <div className="relative h-[50vh] lg:h-auto">
+          <img
+            src="https://images.unsplash.com/photo-1509914398892-963f53e6e2f1?w=1000&q=80"
+            alt="Sunrise over ocean"
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-foreground/20 to-transparent lg:bg-gradient-to-l lg:from-transparent lg:to-foreground/30" />
+          
+          {/* Floating element */}
+          <div className="absolute bottom-8 right-8 lg:bottom-16 lg:right-16 bg-background border-2 border-foreground p-6 max-w-xs shadow-brutal hidden lg:block">
+            <p className="font-sans text-sm uppercase tracking-wider mb-2 font-semibold">Early Access</p>
+            <p className="font-serif text-2xl">Get 10% off your first order</p>
+          </div>
+        </div>
+      </div>
 
-          <p className="font-sans text-xs opacity-60 mt-4 flex items-center justify-center gap-2">
-            <Waves className="h-3 w-3" />
-            No spam, just good vibes. Unsubscribe anytime.
-          </p>
+      {/* Bottom marquee */}
+      <div className="bg-primary text-primary-foreground py-4 overflow-hidden">
+        <div className="marquee-reverse whitespace-nowrap">
+          <span className="inline-block font-sans text-sm uppercase tracking-[0.2em] mx-8">
+            ✦ Join 10,000+ Happy Customers ✦ San Diego Born ✦ Zero Proof ✦ Maximum Flavor ✦ 
+            ✦ Join 10,000+ Happy Customers ✦ San Diego Born ✦ Zero Proof ✦ Maximum Flavor ✦
+          </span>
         </div>
       </div>
     </section>

@@ -14,8 +14,8 @@ export default {
     },
     extend: {
       fontFamily: {
-        serif: ['"Cormorant Garamond"', 'Georgia', 'serif'],
-        sans: ['"Inter"', 'system-ui', 'sans-serif'],
+        serif: ['"Playfair Display"', 'Georgia', 'serif'],
+        sans: ['"Space Grotesk"', 'system-ui', 'sans-serif'],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -61,7 +61,7 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
-        // San Diego Coastal Brand Colors
+        // Bold Coastal Palette
         coral: {
           DEFAULT: "hsl(var(--coral))",
           light: "hsl(var(--coral-light))",
@@ -80,16 +80,19 @@ export default {
         seafoam: "hsl(var(--seafoam))",
         sunset: "hsl(var(--sunset))",
         "golden-hour": "hsl(var(--golden-hour))",
+        midnight: "hsl(var(--midnight))",
       },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
+        none: "0",
       },
       boxShadow: {
         soft: "var(--shadow-soft)",
         elevated: "var(--shadow-elevated)",
         card: "var(--shadow-card)",
+        brutal: "var(--shadow-brutal)",
         glow: "var(--shadow-glow)",
       },
       keyframes: {
@@ -102,31 +105,39 @@ export default {
           to: { height: "0" },
         },
         "fade-up": {
-          from: { opacity: "0", transform: "translateY(20px)" },
+          from: { opacity: "0", transform: "translateY(40px)" },
           to: { opacity: "1", transform: "translateY(0)" },
         },
         "fade-in": {
           from: { opacity: "0" },
           to: { opacity: "1" },
         },
-        wave: {
-          "0%, 100%": { transform: "translateX(0) translateY(0)" },
-          "25%": { transform: "translateX(-5px) translateY(-3px)" },
-          "50%": { transform: "translateX(0) translateY(-5px)" },
-          "75%": { transform: "translateX(5px) translateY(-3px)" },
+        "slide-up": {
+          from: { opacity: "0", transform: "translateY(100px)" },
+          to: { opacity: "1", transform: "translateY(0)" },
         },
         float: {
-          "0%, 100%": { transform: "translateY(0)" },
-          "50%": { transform: "translateY(-10px)" },
+          "0%, 100%": { transform: "translateY(0) rotate(0deg)" },
+          "50%": { transform: "translateY(-20px) rotate(2deg)" },
+        },
+        marquee: {
+          "0%": { transform: "translateX(0)" },
+          "100%": { transform: "translateX(-50%)" },
+        },
+        "marquee-reverse": {
+          "0%": { transform: "translateX(-50%)" },
+          "100%": { transform: "translateX(0)" },
         },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
-        "fade-up": "fade-up 0.6s ease-out forwards",
-        "fade-in": "fade-in 0.8s ease-out forwards",
-        wave: "wave 8s ease-in-out infinite",
+        "fade-up": "fade-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards",
+        "fade-in": "fade-in 1s ease-out forwards",
+        "slide-up": "slide-up 1s cubic-bezier(0.16, 1, 0.3, 1) forwards",
         float: "float 6s ease-in-out infinite",
+        marquee: "marquee 25s linear infinite",
+        "marquee-reverse": "marquee-reverse 30s linear infinite",
       },
     },
   },
