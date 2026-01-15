@@ -15,8 +15,7 @@ const Collections = () => {
               Collections
             </span>
             <h2 className="font-serif text-4xl lg:text-5xl xl:text-6xl leading-[1] text-background">
-              Shop by
-              <span className="italic text-primary"> vibe</span>
+              Shop by <span className="italic text-primary">vibe</span>
             </h2>
           </div>
           <p className="font-sans text-lg text-background/70 max-w-md">

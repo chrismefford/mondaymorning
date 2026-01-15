@@ -18,7 +18,7 @@ const Hero = () => {
             </span>
           </div>
 
-          {/* Main headline - Refined typography */}
+          {/* Main headline */}
           <h1 className="mb-6">
             <span className="block font-serif text-5xl md:text-6xl lg:text-7xl xl:text-8xl leading-[0.95] tracking-tight animate-fade-up">
               Wake up to

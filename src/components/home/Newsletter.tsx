@@ -17,8 +17,7 @@ const Newsletter = () => {
             </span>
             
             <h2 className="font-serif text-4xl lg:text-5xl xl:text-6xl leading-[1.1] mb-6">
-              Join the
-              <span className="italic text-primary"> sunrise crew</span>
+              Join the <span className="italic text-primary">sunrise crew</span>
             </h2>
             
             <p className="font-sans text-lg text-background/70 mb-10">
