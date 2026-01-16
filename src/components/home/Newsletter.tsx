@@ -14,20 +14,20 @@ const Newsletter = () => {
             alt="Sunrise over ocean"
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-foreground/85" />
+          <div className="absolute inset-0 bg-forest-deep/90" />
         </div>
 
         {/* Content */}
-        <div className="relative z-10 px-6 py-16 text-background">
-          <span className="font-sans text-[10px] font-medium uppercase tracking-[0.3em] text-seafoam mb-4 block">
+        <div className="relative z-10 px-6 py-16 text-cream">
+          <span className="font-sans text-[10px] font-medium uppercase tracking-[0.3em] text-gold mb-4 block">
             Newsletter
           </span>
           
           <h2 className="font-serif text-3xl leading-[1.1] mb-4">
-            Join the <span className="italic text-primary">sunrise crew</span>
+            Join the <span className="italic text-gold">sunrise crew</span>
           </h2>
           
-          <p className="font-sans text-sm text-background/70 mb-8">
+          <p className="font-sans text-sm text-cream/70 mb-8">
             Be the first to know about new flavors, local events, 
             and get 10% off your first order.
           </p>
@@ -39,25 +39,25 @@ const Newsletter = () => {
             <Input
               type="email"
               placeholder="your@email.com"
-              className="bg-transparent border-2 border-background/30 text-background placeholder:text-background/50 focus:border-primary focus:ring-0 h-14 font-sans"
+              className="bg-transparent border-2 border-cream/30 text-cream placeholder:text-cream/50 focus:border-gold focus:ring-0 h-14 font-sans"
             />
             <Button 
               type="submit"
               size="lg"
-              className="w-full font-sans text-sm font-bold uppercase tracking-widest bg-primary text-primary-foreground hover:bg-primary/90 h-14"
+              className="w-full font-sans text-sm font-bold uppercase tracking-widest bg-gold text-forest-deep hover:bg-gold/90 h-14"
             >
               Join
               <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
-            <p className="font-sans text-[10px] text-background/50 text-center">
+            <p className="font-sans text-[10px] text-cream/50 text-center">
               No spam, just good vibes. Unsubscribe anytime.
             </p>
           </form>
 
           {/* Discount badge */}
           <div className="mt-8 text-center">
-            <div className="inline-block bg-primary/20 border border-primary px-4 py-2">
-              <span className="font-sans text-xs uppercase tracking-wider text-primary font-semibold">
+            <div className="inline-block bg-gold/20 border border-gold px-4 py-2">
+              <span className="font-sans text-xs uppercase tracking-wider text-gold font-semibold">
                 Get 10% off your first order
               </span>
             </div>
@@ -67,20 +67,20 @@ const Newsletter = () => {
 
       {/* DESKTOP LAYOUT - Split background */}
       <div className="hidden lg:grid lg:grid-cols-2">
-        {/* Left side - Dark */}
-        <div className="bg-foreground text-background py-24 lg:py-40 px-6 lg:px-16 relative">
+        {/* Left side - Forest Green */}
+        <div className="bg-forest text-cream py-24 lg:py-40 px-6 lg:px-16 relative">
           <div className="grain absolute inset-0 pointer-events-none opacity-50" />
           
           <div className="relative z-10 max-w-lg">
-            <span className="font-sans text-xs font-medium uppercase tracking-[0.2em] text-seafoam mb-6 block">
+            <span className="font-sans text-xs font-medium uppercase tracking-[0.2em] text-gold mb-6 block">
               Newsletter
             </span>
             
             <h2 className="font-serif text-4xl lg:text-5xl xl:text-6xl leading-[1.1] mb-6">
-              Join the <span className="italic text-primary">sunrise crew</span>
+              Join the <span className="italic text-gold">sunrise crew</span>
             </h2>
             
-            <p className="font-sans text-lg text-background/70 mb-10">
+            <p className="font-sans text-lg text-cream/70 mb-10">
               Be the first to know about new flavors, local events, 
               and get 10% off your first order.
             </p>
@@ -93,25 +93,25 @@ const Newsletter = () => {
                 <Input
                   type="email"
                   placeholder="your@email.com"
-                  className="bg-transparent border-2 border-background/30 text-background placeholder:text-background/50 focus:border-primary focus:ring-0 h-14 font-sans"
+                  className="bg-transparent border-2 border-cream/30 text-cream placeholder:text-cream/50 focus:border-gold focus:ring-0 h-14 font-sans"
                 />
                 <Button 
                   type="submit"
                   size="lg"
-                  className="font-sans text-sm font-semibold uppercase tracking-wider shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 h-14 px-8"
+                  className="font-sans text-sm font-semibold uppercase tracking-wider shrink-0 bg-gold text-forest-deep hover:bg-gold/90 h-14 px-8"
                 >
                   Join
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
               </div>
-              <p className="font-sans text-xs text-background/50">
+              <p className="font-sans text-xs text-cream/50">
                 No spam, just good vibes. Unsubscribe anytime.
               </p>
             </form>
           </div>
 
           {/* Decorative text */}
-          <div className="absolute bottom-8 left-6 lg:left-16 font-serif text-6xl lg:text-8xl font-bold text-background/5">
+          <div className="absolute bottom-8 left-6 lg:left-16 font-serif text-6xl lg:text-8xl font-bold text-cream/5">
             MMAF
           </div>
         </div>
@@ -123,18 +123,18 @@ const Newsletter = () => {
             alt="Sunrise over ocean"
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-foreground/20 to-transparent lg:bg-gradient-to-l lg:from-transparent lg:to-foreground/30" />
+          <div className="absolute inset-0 bg-gradient-to-l from-transparent to-forest/30" />
           
           {/* Floating element */}
-          <div className="absolute bottom-8 right-8 lg:bottom-16 lg:right-16 bg-background border-2 border-foreground p-6 max-w-xs shadow-brutal hidden lg:block">
-            <p className="font-sans text-sm uppercase tracking-wider mb-2 font-semibold">Early Access</p>
-            <p className="font-serif text-2xl">Get 10% off your first order</p>
+          <div className="absolute bottom-8 right-8 lg:bottom-16 lg:right-16 bg-cream border-2 border-forest p-6 max-w-xs shadow-brutal hidden lg:block">
+            <p className="font-sans text-sm uppercase tracking-wider mb-2 font-semibold text-forest">Early Access</p>
+            <p className="font-serif text-2xl text-forest">Get 10% off your first order</p>
           </div>
         </div>
       </div>
 
       {/* Bottom marquee */}
-      <div className="bg-primary text-primary-foreground py-3 lg:py-4 overflow-hidden">
+      <div className="bg-gold text-forest-deep py-3 lg:py-4 overflow-hidden">
         <div className="marquee-reverse whitespace-nowrap">
           <span className="inline-block font-sans text-xs lg:text-sm uppercase tracking-[0.2em] mx-6 lg:mx-8">
             ✦ Join 10,000+ Happy Customers ✦ San Diego Born ✦ Zero Proof ✦ Maximum Flavor ✦ 
