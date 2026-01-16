@@ -1,5 +1,8 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, ArrowDown } from "lucide-react";
+import naBeer from "@/assets/na-beer.jpg";
+import naWine from "@/assets/na-wine.jpg";
+import naOldFashioned from "@/assets/na-old-fashioned.jpg";
 
 const Hero = () => {
   return (
@@ -64,14 +67,20 @@ const Hero = () => {
           </div>
         </div>
 
-        {/* Floating product card - positioned uniquely */}
-        <div className="absolute top-24 right-4 z-30 animate-float">
-          <div className="w-20 h-28 bg-cream border-2 border-forest shadow-brutal overflow-hidden rotate-6">
-            <img
-              src="https://images.unsplash.com/photo-1558642452-9d2a7deb7f62?w=400&q=80"
-              alt="Featured drink"
-              className="w-full h-full object-cover"
-            />
+        {/* Floating polaroid cards - Mobile */}
+        <div className="absolute top-20 right-2 z-30 animate-float">
+          <div className="w-16 h-20 bg-cream p-1 pb-4 border-2 border-forest shadow-brutal rotate-6">
+            <img src={naBeer} alt="NA Beer" className="w-full h-full object-cover" />
+          </div>
+        </div>
+        <div className="absolute top-32 right-20 z-30 animate-float" style={{ animationDelay: '0.3s' }}>
+          <div className="w-14 h-18 bg-cream p-1 pb-3 border-2 border-forest shadow-brutal -rotate-3">
+            <img src={naWine} alt="NA Wine" className="w-full h-full object-cover" />
+          </div>
+        </div>
+        <div className="absolute top-16 right-36 z-30 animate-float" style={{ animationDelay: '0.6s' }}>
+          <div className="w-12 h-16 bg-cream p-1 pb-3 border-2 border-forest shadow-brutal rotate-12">
+            <img src={naOldFashioned} alt="Old Fashioned" className="w-full h-full object-cover" />
           </div>
         </div>
 
@@ -140,14 +149,23 @@ const Hero = () => {
             <div className="absolute inset-0 bg-gradient-to-l from-transparent via-background/30 to-background" />
           </div>
 
-          {/* Floating product image */}
-          <div className="absolute top-1/2 -left-20 -translate-y-1/2 z-30 animate-float">
-            <div className="w-48 h-72 bg-cream border-2 border-forest shadow-brutal overflow-hidden">
-              <img
-                src="https://images.unsplash.com/photo-1558642452-9d2a7deb7f62?w=400&q=80"
-                alt="Featured drink"
-                className="w-full h-full object-cover"
-              />
+          {/* Floating polaroid cards - Desktop */}
+          <div className="absolute top-1/4 -left-16 z-30 animate-float">
+            <div className="w-40 h-52 bg-cream p-2 pb-8 border-2 border-forest shadow-brutal -rotate-6">
+              <img src={naBeer} alt="NA Beer" className="w-full h-full object-cover" />
+              <span className="absolute bottom-2 left-0 right-0 text-center font-serif text-sm italic text-forest">NA Beer</span>
+            </div>
+          </div>
+          <div className="absolute top-[45%] -left-8 z-40 animate-float" style={{ animationDelay: '0.3s' }}>
+            <div className="w-44 h-56 bg-cream p-2 pb-8 border-2 border-forest shadow-brutal rotate-3">
+              <img src={naWine} alt="NA Wine" className="w-full h-full object-cover" />
+              <span className="absolute bottom-2 left-0 right-0 text-center font-serif text-sm italic text-forest">NA Wine</span>
+            </div>
+          </div>
+          <div className="absolute bottom-1/4 -left-12 z-30 animate-float" style={{ animationDelay: '0.6s' }}>
+            <div className="w-36 h-48 bg-cream p-2 pb-8 border-2 border-forest shadow-brutal rotate-6">
+              <img src={naOldFashioned} alt="Old Fashioned" className="w-full h-full object-cover" />
+              <span className="absolute bottom-2 left-0 right-0 text-center font-serif text-sm italic text-forest">Old Fashioned</span>
             </div>
           </div>
 
