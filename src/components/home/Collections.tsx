@@ -27,14 +27,14 @@ const Collections = () => {
           <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-4 lg:gap-8 mb-8 lg:mb-24">
             <div>
               <span className="font-sans text-[10px] lg:text-xs font-medium uppercase tracking-[0.2em] text-gold mb-2 lg:mb-4 block">
-                Collections
+                400+ Options
               </span>
               <h2 className="font-serif text-3xl lg:text-5xl xl:text-6xl leading-[1] text-cream">
-                Shop by <span className="italic text-gold">vibe</span>
+                Find your <span className="italic text-gold">flavor</span>
               </h2>
             </div>
             <p className="font-sans text-sm lg:text-lg text-cream/70 max-w-md">
-              From sunrise sessions to sunset socials—find your moment
+              Wines, beers, spirits, aperitifs—we've got it all. No guessing, just tasting.
             </p>
           </div>
         </div>

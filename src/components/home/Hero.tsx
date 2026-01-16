@@ -30,24 +30,40 @@ const Hero = () => {
           <div className="mb-6 animate-fade-up">
             <span className="inline-flex items-center gap-2 font-sans text-[10px] font-bold uppercase tracking-[0.4em] text-cream/80">
               <span className="w-8 h-px bg-gold" />
-              San Diego's First NA Bottle Shop
+              America's #1 NA Bottle Shop
             </span>
           </div>
 
           {/* Large stacked headline - brand messaging */}
-          <h1 className="mb-6 animate-fade-up">
-            <span className="block font-serif text-[2.75rem] leading-[1] tracking-tight text-cream">
-              The Party
+          <h1 className="mb-4 animate-fade-up">
+            <span className="block font-serif text-[2.5rem] leading-[1] tracking-tight text-cream">
+              400+ Flavors.
             </span>
-            <span className="block font-serif text-[2.75rem] leading-[1] tracking-tight text-cream">
-              Without the <span className="italic text-gold">Proof</span>
+            <span className="block font-serif text-[2.5rem] leading-[1] tracking-tight text-cream">
+              Zero <span className="italic text-gold">Proof.</span>
             </span>
           </h1>
 
-          {/* Subtext - the "why" */}
-          <p className="font-sans text-sm text-cream/80 max-w-[300px] mb-8 animate-fade-up delay-200">
-            We curate the best non-alcoholic wines, brews, and spirits—so you never have to sacrifice flavor or fun.
+          {/* Subtext - the challenge */}
+          <p className="font-sans text-sm text-cream/80 max-w-[300px] mb-6 animate-fade-up delay-200">
+            Think NA drinks can't taste good? Come in. We love proving skeptics wrong.
           </p>
+
+          {/* Stats row */}
+          <div className="flex gap-6 mb-6 animate-fade-up delay-300">
+            <div className="text-center">
+              <span className="block font-serif text-2xl font-bold text-gold">400+</span>
+              <span className="font-sans text-[9px] uppercase tracking-wider text-cream/60">Flavors</span>
+            </div>
+            <div className="text-center">
+              <span className="block font-serif text-2xl font-bold text-gold">2</span>
+              <span className="font-sans text-[9px] uppercase tracking-wider text-cream/60">Locations</span>
+            </div>
+            <div className="text-center">
+              <span className="block font-serif text-2xl font-bold text-gold">#1</span>
+              <span className="font-sans text-[9px] uppercase tracking-wider text-cream/60">In America</span>
+            </div>
+          </div>
 
           {/* Full-width stacked buttons */}
           <div className="space-y-3 animate-fade-up delay-400">
@@ -55,7 +71,7 @@ const Hero = () => {
               size="lg" 
               className="w-full font-sans text-sm font-bold uppercase tracking-widest py-6 bg-gold text-forest-deep hover:bg-gold/90"
             >
-              Shop Now
+              Come Try Something
               <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
             <Button 
@@ -63,7 +79,7 @@ const Hero = () => {
               size="lg"
               className="w-full font-sans text-sm font-bold uppercase tracking-widest py-6 border-2 border-cream/30 text-cream bg-transparent hover:bg-cream/10"
             >
-              Visit the Shop
+              Find a Store
             </Button>
           </div>
         </div>
@@ -99,24 +115,40 @@ const Hero = () => {
           {/* Small badge */}
           <div className="mb-8 animate-fade-up">
             <span className="inline-block font-sans text-xs font-semibold uppercase tracking-[0.3em] text-forest border-2 border-forest px-4 py-2">
-              San Diego's First NA Bottle Shop
+              America's #1 NA Bottle Shop
             </span>
           </div>
 
           {/* Main headline */}
           <h1 className="mb-6">
-            <span className="block font-serif text-6xl xl:text-7xl leading-[0.95] tracking-tight animate-fade-up">
-              The Party Without
+            <span className="block font-serif text-5xl xl:text-6xl leading-[0.95] tracking-tight animate-fade-up">
+              400+ Flavors.
             </span>
-            <span className="block font-serif text-6xl xl:text-7xl italic leading-[0.95] text-gold animate-fade-up delay-100">
-              the Proof
+            <span className="block font-serif text-5xl xl:text-6xl leading-[0.95] tracking-tight animate-fade-up delay-100">
+              Zero <span className="italic text-gold">Proof.</span>
             </span>
           </h1>
 
-          {/* Subtext - the "why" */}
-          <p className="font-sans text-lg text-muted-foreground max-w-md mb-10 animate-fade-up delay-200">
-            We curate the best non-alcoholic wines, brews, and spirits from around the world—so you never have to sacrifice flavor or fun. Sample, sip, and discover your new favorites.
+          {/* Subtext - the challenge */}
+          <p className="font-sans text-lg text-muted-foreground max-w-md mb-8 animate-fade-up delay-200">
+            Think NA can't taste good? We love skeptics. Come in, try something, and we'll make you a believer. More flavors than any shop in America.
           </p>
+
+          {/* Stats row */}
+          <div className="flex gap-10 mb-10 py-6 border-y-2 border-forest/20 animate-fade-up delay-300">
+            <div>
+              <span className="block font-serif text-4xl font-bold text-gold">400+</span>
+              <span className="font-sans text-xs uppercase tracking-wider text-muted-foreground">Flavors & Styles</span>
+            </div>
+            <div>
+              <span className="block font-serif text-4xl font-bold text-gold">2</span>
+              <span className="font-sans text-xs uppercase tracking-wider text-muted-foreground">SD Locations</span>
+            </div>
+            <div>
+              <span className="block font-serif text-4xl font-bold text-gold">#1</span>
+              <span className="font-sans text-xs uppercase tracking-wider text-muted-foreground">In America</span>
+            </div>
+          </div>
 
           {/* CTA Buttons */}
           <div className="flex flex-wrap gap-4 animate-fade-up delay-400">
@@ -124,7 +156,7 @@ const Hero = () => {
               size="lg" 
               className="font-sans text-sm font-semibold uppercase tracking-wider px-8 py-6 bg-forest text-cream hover:bg-forest-light hover-brutal"
             >
-              Shop Now
+              Come Try Something
               <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
             <Button 
@@ -132,7 +164,7 @@ const Hero = () => {
               size="lg"
               className="font-sans text-sm font-semibold uppercase tracking-wider px-8 py-6 border-2 border-forest hover:bg-forest hover:text-cream transition-all"
             >
-              Visit the Shop
+              Find a Store
             </Button>
           </div>
         </div>
@@ -187,8 +219,8 @@ const Hero = () => {
       <div className="bg-forest text-cream py-3 lg:py-4 overflow-hidden relative z-20">
         <div className="marquee whitespace-nowrap">
           <span className="inline-block font-sans text-xs lg:text-sm uppercase tracking-[0.2em] mx-6 lg:mx-8">
-            Delicious AF ✦ Healthy AF ✦ Fun AF ✦ Flavorful AF ✦ Mindful AF ✦ Connected AF ✦ 
-            Delicious AF ✦ Healthy AF ✦ Fun AF ✦ Flavorful AF ✦ Mindful AF ✦ Connected AF ✦
+            400+ Flavors ✦ Ocean Beach ✦ Pacific Beach ✦ Try Before You Buy ✦ America's #1 NA Shop ✦ 
+            400+ Flavors ✦ Ocean Beach ✦ Pacific Beach ✦ Try Before You Buy ✦ America's #1 NA Shop ✦
           </span>
         </div>
       </div>

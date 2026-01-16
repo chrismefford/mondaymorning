@@ -6,9 +6,9 @@ import textureCream from "@/assets/texture-cream.svg";
 
 const Story = () => {
   const steps = [
-    { number: "01", title: "Sample", description: "Try before you buy at our tasting room" },
-    { number: "02", title: "Sip", description: "Discover your new favorites with expert guidance" },
-    { number: "03", title: "Shop", description: "Take home what you love, zero judgment" },
+    { number: "01", title: "Sample", description: "Walk in and try anything—free tastings, no pressure" },
+    { number: "02", title: "Discover", description: "400+ options means there's something for everyone" },
+    { number: "03", title: "Believe", description: "Leave knowing NA can actually taste incredible" },
   ];
 
   return (
@@ -30,10 +30,10 @@ const Story = () => {
           {/* Header */}
           <div className="mb-8">
             <span className="font-sans text-[10px] font-medium uppercase tracking-[0.2em] text-forest mb-2 block">
-              Our Story
+              Why We Exist
             </span>
             <h2 className="font-serif text-3xl leading-[1.1]">
-              Why we <span className="italic text-gold">started</span>
+              We love <span className="italic text-gold">skeptics</span>
             </h2>
           </div>
 
@@ -49,7 +49,7 @@ const Story = () => {
             {/* Floating quote card */}
             <div className="absolute -bottom-6 left-4 right-4 bg-gold border-2 border-forest p-5 shadow-brutal">
               <p className="font-serif text-lg italic leading-relaxed text-forest-deep">
-                "Choosing you means choosing connection."
+                "We'll make you a believer."
               </p>
             </div>
           </div>
@@ -57,13 +57,13 @@ const Story = () => {
           {/* Content below image - The WHY */}
           <div className="mt-12 space-y-5">
             <p className="font-sans text-base text-muted-foreground leading-relaxed">
-              When our founder Zane began exploring alcohol-free beverages, he was frustrated by the lack of quality options. The sugary mocktails and limited selections weren't satisfying.
+              "NA drinks can't taste good." We hear it all the time. That's exactly why we opened—to prove it wrong.
             </p>
             <p className="font-sans text-base text-muted-foreground leading-relaxed">
-              Understanding the importance of <strong className="text-forest">community</strong> for those who choose to drink differently, we knew a physical space was essential.
+              Forget sugary mocktails with Sprite and juice. We've got <strong className="text-forest">400+ flavors</strong>—wines, beers, spirits, aperitifs—that rival the real thing. This isn't guesswork. Come in. Try something. Taste the difference.
             </p>
             <p className="font-sans text-lg font-medium text-forest">
-              Whatever your reason—you're welcome here.
+              Our favorite customers? The ones who don't believe us yet.
             </p>
           </div>
 
@@ -87,7 +87,7 @@ const Story = () => {
             size="lg"
             className="w-full mt-8 font-sans text-sm font-bold uppercase tracking-widest py-5 border-2 border-forest text-forest hover:bg-forest hover:text-cream"
           >
-            Meet Zane
+            Visit Ocean Beach or Pacific Beach
             <ArrowRight className="ml-2 h-4 w-4" />
           </Button>
         </div>
@@ -97,22 +97,22 @@ const Story = () => {
           {/* Content Column */}
           <div className="lg:col-span-5 lg:sticky lg:top-32">
             <span className="font-sans text-xs font-medium uppercase tracking-[0.2em] text-forest mb-6 block">
-              Our Story
+              Why We Exist
             </span>
             
             <h2 className="font-serif text-4xl lg:text-5xl xl:text-6xl leading-[1.1] mb-8">
-              Why we <span className="italic text-gold">started</span>
+              We love <span className="italic text-gold">skeptics</span>
             </h2>
             
             <div className="space-y-6 font-sans text-lg text-muted-foreground leading-relaxed mb-10">
               <p>
-                When our founder Zane began exploring alcohol-free beverages, he was frustrated by the lack of quality options. The sugary mocktails and limited selections just weren't satisfying.
+                "NA drinks can't taste good." We hear it all the time. <strong className="text-forest">That's exactly why we opened.</strong>
               </p>
               <p>
-                Understanding the importance of <strong className="text-forest">community</strong> for those who choose to drink differently, we knew a physical space was essential to fostering genuine connections.
+                Forget sugary mocktails with Sprite and juice. We stock <strong className="text-forest">400+ flavors</strong>—wines, beers, spirits, aperitifs—more than any shop in America. This isn't guesswork. Come in. Try something. We'll make you a believer.
               </p>
               <p className="text-xl font-medium text-forest">
-                Whatever your reason—cutting back, going dry, or simply sober curious—you're welcome here.
+                Our favorite customers? The ones who don't believe us yet.
               </p>
             </div>
 
@@ -138,7 +138,7 @@ const Story = () => {
               size="lg"
               className="font-sans text-sm font-semibold uppercase tracking-wider group border-2 border-forest text-forest px-8 py-6 hover:bg-forest hover:text-cream"
             >
-              Meet Zane
+              Visit Our Stores
               <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
             </Button>
           </div>
@@ -180,7 +180,7 @@ const Story = () => {
             <div className="absolute -left-8 top-1/2 -translate-y-1/2 hidden xl:block">
               <div className="bg-gold border-2 border-forest p-6 max-w-xs shadow-brutal">
                 <p className="font-serif text-lg italic leading-relaxed text-forest-deep">
-                  "Choosing a non-alcoholic beverage is about choosing you."
+                  "We took on the alcohol industry to prove NA doesn't have to mean boring."
                 </p>
               </div>
             </div>
