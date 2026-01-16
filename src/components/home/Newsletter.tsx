@@ -1,6 +1,8 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ArrowRight } from "lucide-react";
+import stampGold from "@/assets/stamp-gold.svg";
+import textureGreen from "@/assets/texture-green.svg";
 
 const Newsletter = () => {
   return (
@@ -69,7 +71,17 @@ const Newsletter = () => {
       <div className="hidden lg:grid lg:grid-cols-2">
         {/* Left side - Forest Green */}
         <div className="bg-forest text-cream py-24 lg:py-40 px-6 lg:px-16 relative">
+          {/* Organic texture */}
+          <div 
+            className="absolute inset-0 opacity-10 pointer-events-none mix-blend-overlay"
+            style={{ backgroundImage: `url(${textureGreen})`, backgroundSize: 'cover', backgroundPosition: 'center' }}
+          />
           <div className="grain absolute inset-0 pointer-events-none opacity-50" />
+          
+          {/* Decorative stamp */}
+          <div className="absolute -top-20 -left-20 w-64 opacity-[0.05] pointer-events-none rotate-12">
+            <img src={stampGold} alt="" className="w-full h-full" />
+          </div>
           
           <div className="relative z-10 max-w-lg">
             <span className="font-sans text-xs font-medium uppercase tracking-[0.2em] text-gold mb-6 block">

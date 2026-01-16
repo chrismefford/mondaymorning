@@ -2,12 +2,25 @@ import { Instagram, Mail, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import logoSecondaryWhite from "@/assets/logo-secondary-white.svg";
+import stampWhite from "@/assets/stamp-white.svg";
+import textureGreen from "@/assets/texture-green.svg";
 
 const Footer = () => {
   return (
     <footer className="bg-forest text-cream py-16 lg:py-24 relative overflow-hidden">
+      {/* Organic texture background */}
+      <div 
+        className="absolute inset-0 opacity-5 pointer-events-none"
+        style={{ backgroundImage: `url(${textureGreen})`, backgroundSize: 'cover', backgroundPosition: 'center' }}
+      />
+      
       {/* Grain texture */}
       <div className="grain absolute inset-0 pointer-events-none opacity-30" />
+      
+      {/* Decorative stamp */}
+      <div className="absolute -bottom-32 -right-32 w-80 lg:w-[28rem] opacity-[0.03] pointer-events-none">
+        <img src={stampWhite} alt="" className="w-full h-full" />
+      </div>
 
       <div className="container mx-auto px-4 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-12 lg:gap-8">
