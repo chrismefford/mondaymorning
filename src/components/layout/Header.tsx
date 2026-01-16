@@ -46,9 +46,9 @@ const Header = () => {
           <div className="flex items-center justify-between h-16 lg:h-20">
             {/* Logo */}
             <a href="/" className="group flex items-center relative z-50">
-              <span className={`font-serif text-xl lg:text-2xl font-bold tracking-tight transition-colors ${isMenuOpen ? 'text-background' : 'text-foreground'}`}>
+              <span className={`font-serif text-xl lg:text-2xl font-bold tracking-tight transition-colors ${isMenuOpen ? 'text-cream' : 'text-forest'}`}>
                 MONDAY
-                <span className="text-primary">.</span>
+                <span className="text-gold">.</span>
               </span>
             </a>
 

@@ -37,12 +37,12 @@ const Testimonials = () => {
   };
 
   return (
-    <section className="py-16 lg:py-40 bg-sand-warm relative overflow-hidden">
+    <section className="py-16 lg:py-40 bg-sand relative overflow-hidden">
       {/* Grain texture */}
       <div className="grain absolute inset-0 pointer-events-none" />
 
       {/* Large quote mark */}
-      <div className="absolute top-8 left-4 lg:top-12 lg:left-16 font-serif text-[8rem] lg:text-[25rem] text-foreground/5 leading-none pointer-events-none select-none">
+      <div className="absolute top-8 left-4 lg:top-12 lg:left-16 font-serif text-[8rem] lg:text-[25rem] text-forest/5 leading-none pointer-events-none select-none">
         "
       </div>
 
@@ -50,11 +50,11 @@ const Testimonials = () => {
         {/* Header */}
         <div className="flex items-end justify-between gap-4 mb-8 lg:mb-24">
           <div>
-            <span className="font-sans text-[10px] lg:text-xs font-medium uppercase tracking-[0.2em] text-secondary mb-2 lg:mb-4 block">
+            <span className="font-sans text-[10px] lg:text-xs font-medium uppercase tracking-[0.2em] text-forest mb-2 lg:mb-4 block">
               Testimonials
             </span>
-            <h2 className="font-serif text-3xl lg:text-5xl leading-[1.1]">
-              From the <span className="italic text-primary">SD fam</span>
+            <h2 className="font-serif text-3xl lg:text-5xl leading-[1.1] text-forest">
+              From the <span className="italic text-gold">SD fam</span>
             </h2>
           </div>
 
@@ -62,13 +62,13 @@ const Testimonials = () => {
           <div className="hidden lg:flex gap-3">
             <button 
               onClick={prevTestimonial}
-              className="w-12 h-12 border-2 border-foreground flex items-center justify-center hover:bg-foreground hover:text-background transition-colors"
+              className="w-12 h-12 border-2 border-forest flex items-center justify-center hover:bg-forest hover:text-cream transition-colors"
             >
               <ArrowLeft className="h-5 w-5" />
             </button>
             <button 
               onClick={nextTestimonial}
-              className="w-12 h-12 border-2 border-foreground flex items-center justify-center hover:bg-foreground hover:text-background transition-colors"
+              className="w-12 h-12 border-2 border-forest flex items-center justify-center hover:bg-forest hover:text-cream transition-colors"
             >
               <ArrowRight className="h-5 w-5" />
             </button>
@@ -77,19 +77,19 @@ const Testimonials = () => {
 
         {/* MOBILE: Card-based testimonial */}
         <div className="lg:hidden">
-          <div className="bg-background border-2 border-foreground p-6 shadow-brutal">
+          <div className="bg-cream border-2 border-forest p-6 shadow-brutal">
             <div className="flex gap-1 mb-4">
               {Array.from({ length: testimonials[activeIndex].rating }).map((_, i) => (
-                <Star key={i} className="h-4 w-4 fill-sunset text-sunset" />
+                <Star key={i} className="h-4 w-4 fill-gold text-gold" />
               ))}
             </div>
             
-            <blockquote className="font-serif text-xl leading-snug mb-6">
+            <blockquote className="font-serif text-xl leading-snug mb-6 text-forest">
               "{testimonials[activeIndex].quote}"
             </blockquote>
             
-            <div className="flex items-center gap-3 pt-4 border-t border-border">
-              <div className="w-10 h-10 border-2 border-foreground overflow-hidden">
+            <div className="flex items-center gap-3 pt-4 border-t border-forest/20">
+              <div className="w-10 h-10 border-2 border-forest overflow-hidden">
                 <img 
                   src={testimonials[activeIndex].image}
                   alt={testimonials[activeIndex].author}
@@ -97,7 +97,7 @@ const Testimonials = () => {
                 />
               </div>
               <div>
-                <div className="font-sans text-sm font-semibold">
+                <div className="font-sans text-sm font-semibold text-forest">
                   {testimonials[activeIndex].author}
                 </div>
                 <div className="font-sans text-xs text-muted-foreground">
@@ -115,7 +115,7 @@ const Testimonials = () => {
                   key={i}
                   onClick={() => setActiveIndex(i)}
                   className={`h-2 rounded-full transition-all ${
-                    i === activeIndex ? 'w-6 bg-primary' : 'w-2 bg-foreground/20'
+                    i === activeIndex ? 'w-6 bg-gold' : 'w-2 bg-forest/20'
                   }`}
                 />
               ))}
@@ -123,13 +123,13 @@ const Testimonials = () => {
             <div className="flex gap-2">
               <button 
                 onClick={prevTestimonial}
-                className="w-10 h-10 border-2 border-foreground flex items-center justify-center"
+                className="w-10 h-10 border-2 border-forest flex items-center justify-center"
               >
                 <ArrowLeft className="h-4 w-4" />
               </button>
               <button 
                 onClick={nextTestimonial}
-                className="w-10 h-10 border-2 border-foreground flex items-center justify-center"
+                className="w-10 h-10 border-2 border-forest flex items-center justify-center"
               >
                 <ArrowRight className="h-4 w-4" />
               </button>
@@ -143,14 +143,14 @@ const Testimonials = () => {
           <div className="lg:col-span-8">
             <div className="flex gap-1 mb-6">
               {Array.from({ length: testimonials[activeIndex].rating }).map((_, i) => (
-                <Star key={i} className="h-5 w-5 fill-sunset text-sunset" />
+                <Star key={i} className="h-5 w-5 fill-gold text-gold" />
               ))}
             </div>
-            <blockquote className="font-serif text-3xl lg:text-5xl xl:text-6xl leading-tight mb-8">
+            <blockquote className="font-serif text-3xl lg:text-5xl xl:text-6xl leading-tight mb-8 text-forest">
               "{testimonials[activeIndex].quote}"
             </blockquote>
             <div className="flex items-center gap-4">
-              <div className="w-14 h-14 border-2 border-foreground overflow-hidden">
+              <div className="w-14 h-14 border-2 border-forest overflow-hidden">
                 <img 
                   src={testimonials[activeIndex].image}
                   alt={testimonials[activeIndex].author}
@@ -158,7 +158,7 @@ const Testimonials = () => {
                 />
               </div>
               <div>
-                <div className="font-sans text-sm font-semibold uppercase tracking-wider">
+                <div className="font-sans text-sm font-semibold uppercase tracking-wider text-forest">
                   {testimonials[activeIndex].author}
                 </div>
                 <div className="font-sans text-sm text-muted-foreground">
@@ -171,7 +171,7 @@ const Testimonials = () => {
           {/* Counter */}
           <div className="lg:col-span-4 flex lg:justify-end">
             <div className="flex items-baseline gap-2">
-              <span className="font-serif text-8xl lg:text-9xl font-bold text-primary">
+              <span className="font-serif text-8xl lg:text-9xl font-bold text-gold">
                 {String(activeIndex + 1).padStart(2, '0')}
               </span>
               <span className="font-sans text-2xl text-muted-foreground">
@@ -182,7 +182,7 @@ const Testimonials = () => {
         </div>
 
         {/* Social Proof Bar */}
-        <div className="border-t-2 border-foreground pt-8 lg:pt-12 mt-8 lg:mt-0">
+        <div className="border-t-2 border-forest pt-8 lg:pt-12 mt-8 lg:mt-0">
           <div className="grid grid-cols-3 gap-4 lg:gap-16">
             {[
               { value: "10K+", label: "Happy customers" },
@@ -190,7 +190,7 @@ const Testimonials = () => {
               { value: "50+", label: "SoCal retailers" },
             ].map((stat) => (
               <div key={stat.label} className="text-center group">
-                <div className="font-serif text-2xl lg:text-6xl font-bold group-hover:text-primary transition-colors">
+                <div className="font-serif text-2xl lg:text-6xl font-bold text-forest group-hover:text-gold transition-colors">
                   {stat.value}
                 </div>
                 <div className="font-sans text-[9px] lg:text-xs uppercase tracking-[0.15em] lg:tracking-[0.2em] text-muted-foreground mt-1 lg:mt-2">

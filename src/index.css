@@ -6,67 +6,69 @@
 
 @layer base {
   :root {
-    /* Cutting-edge coastal palette - bolder, more contrast */
-    --background: 45 25% 97%;
-    --foreground: 220 25% 10%;
+    /* Monday Morning AF Brand Palette */
+    --background: 45 30% 96%;
+    --foreground: 150 35% 18%;
 
-    --card: 45 20% 95%;
-    --card-foreground: 220 25% 10%;
+    --card: 45 25% 94%;
+    --card-foreground: 150 35% 18%;
 
-    --popover: 45 25% 97%;
-    --popover-foreground: 220 25% 10%;
+    --popover: 45 30% 96%;
+    --popover-foreground: 150 35% 18%;
 
-    /* Electric coral */
-    --primary: 12 85% 55%;
-    --primary-foreground: 45 25% 97%;
+    /* Sun-faded Gold - Primary action */
+    --primary: 42 75% 50%;
+    --primary-foreground: 150 35% 15%;
 
-    /* Deep ocean */
-    --secondary: 200 60% 35%;
-    --secondary-foreground: 45 25% 97%;
+    /* Deep Forest Green - Brand color */
+    --secondary: 150 35% 25%;
+    --secondary-foreground: 45 30% 96%;
 
-    /* Sandy warm */
+    /* Warm Sand */
     --muted: 38 30% 90%;
-    --muted-foreground: 220 15% 45%;
+    --muted-foreground: 150 20% 40%;
 
-    /* Seafoam accent */
-    --accent: 170 50% 70%;
-    --accent-foreground: 170 60% 15%;
+    /* Terracotta accent */
+    --accent: 18 65% 55%;
+    --accent-foreground: 45 30% 96%;
 
     --destructive: 0 72% 51%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 40 15% 85%;
-    --input: 40 15% 85%;
-    --ring: 12 85% 55%;
+    --border: 40 20% 85%;
+    --input: 40 20% 85%;
+    --ring: 42 75% 50%;
 
     --radius: 0rem;
 
-    /* Extended bold palette */
-    --coral: 12 85% 55%;
-    --coral-light: 12 75% 75%;
-    --coral-dark: 8 80% 40%;
-    --ocean: 200 60% 35%;
-    --ocean-light: 195 50% 85%;
-    --ocean-deep: 205 70% 18%;
+    /* Extended Monday Morning Palette */
+    --forest: 150 35% 25%;
+    --forest-light: 150 25% 35%;
+    --forest-deep: 150 40% 15%;
+    --gold: 42 75% 50%;
+    --gold-light: 45 65% 70%;
+    --gold-muted: 42 40% 65%;
+    --terracotta: 18 65% 55%;
+    --terracotta-light: 20 55% 70%;
+    --cream: 45 30% 96%;
+    --cream-warm: 40 35% 92%;
     --sand: 38 35% 88%;
     --sand-warm: 32 40% 82%;
-    --driftwood: 25 20% 25%;
-    --seafoam: 170 50% 70%;
-    --sunset: 25 95% 58%;
-    --golden-hour: 38 90% 65%;
-    --midnight: 220 30% 8%;
+    --ocean: 195 50% 40%;
+    --ocean-light: 195 40% 75%;
+    --midnight: 150 40% 10%;
 
     /* Gradients */
-    --gradient-sunset: linear-gradient(135deg, hsl(38 90% 65%) 0%, hsl(12 85% 55%) 50%, hsl(350 70% 50%) 100%);
-    --gradient-ocean: linear-gradient(180deg, hsl(195 50% 92%) 0%, hsl(200 60% 35%) 100%);
-    --gradient-editorial: linear-gradient(135deg, hsl(220 30% 8%) 0%, hsl(200 60% 35%) 100%);
+    --gradient-forest: linear-gradient(135deg, hsl(150 35% 25%) 0%, hsl(150 40% 15%) 100%);
+    --gradient-sunset: linear-gradient(135deg, hsl(42 75% 50%) 0%, hsl(18 65% 55%) 100%);
+    --gradient-warm: linear-gradient(180deg, hsl(45 30% 96%) 0%, hsl(38 35% 88%) 100%);
 
-    /* Dramatic shadows */
-    --shadow-soft: 0 4px 20px -4px hsl(220 25% 10% / 0.1);
-    --shadow-elevated: 0 20px 60px -15px hsl(220 25% 10% / 0.2);
-    --shadow-card: 0 2px 12px -2px hsl(220 25% 10% / 0.08);
-    --shadow-brutal: 8px 8px 0px hsl(220 25% 10%);
-    --shadow-glow: 0 0 60px -15px hsl(12 85% 55% / 0.4);
+    /* Shadows */
+    --shadow-soft: 0 4px 20px -4px hsl(150 35% 18% / 0.1);
+    --shadow-elevated: 0 20px 60px -15px hsl(150 35% 18% / 0.2);
+    --shadow-card: 0 2px 12px -2px hsl(150 35% 18% / 0.08);
+    --shadow-brutal: 6px 6px 0px hsl(150 35% 18%);
+    --shadow-glow: 0 0 60px -15px hsl(42 75% 50% / 0.4);
 
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;

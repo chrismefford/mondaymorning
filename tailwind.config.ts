@@ -61,25 +61,33 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
-        // Bold Coastal Palette
-        coral: {
-          DEFAULT: "hsl(var(--coral))",
-          light: "hsl(var(--coral-light))",
-          dark: "hsl(var(--coral-dark))",
+        // Monday Morning AF Brand Palette
+        forest: {
+          DEFAULT: "hsl(var(--forest))",
+          light: "hsl(var(--forest-light))",
+          deep: "hsl(var(--forest-deep))",
         },
-        ocean: {
-          DEFAULT: "hsl(var(--ocean))",
-          light: "hsl(var(--ocean-light))",
-          deep: "hsl(var(--ocean-deep))",
+        gold: {
+          DEFAULT: "hsl(var(--gold))",
+          light: "hsl(var(--gold-light))",
+          muted: "hsl(var(--gold-muted))",
+        },
+        terracotta: {
+          DEFAULT: "hsl(var(--terracotta))",
+          light: "hsl(var(--terracotta-light))",
+        },
+        cream: {
+          DEFAULT: "hsl(var(--cream))",
+          warm: "hsl(var(--cream-warm))",
         },
         sand: {
           DEFAULT: "hsl(var(--sand))",
           warm: "hsl(var(--sand-warm))",
         },
-        driftwood: "hsl(var(--driftwood))",
-        seafoam: "hsl(var(--seafoam))",
-        sunset: "hsl(var(--sunset))",
-        "golden-hour": "hsl(var(--golden-hour))",
+        ocean: {
+          DEFAULT: "hsl(var(--ocean))",
+          light: "hsl(var(--ocean-light))",
+        },
         midnight: "hsl(var(--midnight))",
       },
       borderRadius: {
