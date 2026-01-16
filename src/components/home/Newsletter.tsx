@@ -22,16 +22,16 @@ const Newsletter = () => {
         {/* Content */}
         <div className="relative z-10 px-6 py-16 text-cream">
           <span className="font-sans text-[10px] font-medium uppercase tracking-[0.3em] text-gold mb-4 block">
-            Newsletter
+            Become a Believer
           </span>
           
           <h2 className="font-serif text-3xl leading-[1.1] mb-4">
-            Join the <span className="italic text-gold">sunrise crew</span>
+            Join the <span className="italic text-gold">movement</span>
           </h2>
           
           <p className="font-sans text-sm text-cream/70 mb-8">
-            Be the first to know about new flavors, local events, 
-            and get 10% off your first order.
+            Be the first to know about new flavors hitting our 400+ selection, 
+            tastings at OB & PB, and get 10% off your first order.
           </p>
 
           <form 
@@ -85,16 +85,15 @@ const Newsletter = () => {
           
           <div className="relative z-10 max-w-lg">
             <span className="font-sans text-xs font-medium uppercase tracking-[0.2em] text-gold mb-6 block">
-              Newsletter
+              Become a Believer
             </span>
             
             <h2 className="font-serif text-4xl lg:text-5xl xl:text-6xl leading-[1.1] mb-6">
-              Join the <span className="italic text-gold">sunrise crew</span>
+              Join the <span className="italic text-gold">movement</span>
             </h2>
             
             <p className="font-sans text-lg text-cream/70 mb-10">
-              Be the first to know about new flavors, local events, 
-              and get 10% off your first order.
+              New flavors drop weekly across our 400+ selection. Get first dibs on tastings at Ocean Beach & Pacific Beach, plus 10% off your first order.
             </p>
 
             <form 
@@ -149,8 +148,8 @@ const Newsletter = () => {
       <div className="bg-gold text-forest-deep py-3 lg:py-4 overflow-hidden">
         <div className="marquee-reverse whitespace-nowrap">
           <span className="inline-block font-sans text-xs lg:text-sm uppercase tracking-[0.2em] mx-6 lg:mx-8">
-            ✦ Join 10,000+ Happy Customers ✦ San Diego Born ✦ Zero Proof ✦ Maximum Flavor ✦ 
-            ✦ Join 10,000+ Happy Customers ✦ San Diego Born ✦ Zero Proof ✦ Maximum Flavor ✦
+            ✦ Ocean Beach ✦ Pacific Beach ✦ 400+ Flavors ✦ Try Before You Buy ✦ America's #1 NA Shop ✦ 
+            ✦ Ocean Beach ✦ Pacific Beach ✦ 400+ Flavors ✦ Try Before You Buy ✦ America's #1 NA Shop ✦
           </span>
         </div>
       </div>
