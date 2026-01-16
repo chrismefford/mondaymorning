@@ -3,6 +3,7 @@ import { ArrowRight, ArrowDown } from "lucide-react";
 import naBeer from "@/assets/na-beer.jpg";
 import naWine from "@/assets/na-wine.jpg";
 import naOldFashioned from "@/assets/na-old-fashioned.jpg";
+import stampGold from "@/assets/stamp-gold.svg";
 
 const Hero = () => {
   return (
@@ -169,22 +170,14 @@ const Hero = () => {
             </div>
           </div>
 
-          {/* Circular rotating text */}
+          {/* Brand stamp - rotating */}
           <div className="absolute top-16 right-16 z-20">
-            <div className="relative w-36 h-36">
-              <svg className="w-full h-full rotate-text" viewBox="0 0 100 100">
-                <defs>
-                  <path id="circle" d="M 50,50 m -40,0 a 40,40 0 1,1 80,0 a 40,40 0 1,1 -80,0" />
-                </defs>
-                <text className="fill-forest font-sans text-[8px] uppercase tracking-[0.4em]">
-                  <textPath href="#circle">
-                    • SAN DIEGO • ZERO PROOF •
-                  </textPath>
-                </text>
-              </svg>
-              <div className="absolute inset-0 flex items-center justify-center">
-                <span className="font-serif text-2xl font-bold text-forest">MM</span>
-              </div>
+            <div className="w-32 h-32 rotate-text">
+              <img 
+                src={stampGold} 
+                alt="Monday Morning stamp" 
+                className="w-full h-full"
+              />
             </div>
           </div>
         </div>

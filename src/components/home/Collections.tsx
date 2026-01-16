@@ -1,12 +1,18 @@
 import { collections } from "@/data/products";
 import { ArrowUpRight, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import stampGold from "@/assets/stamp-gold.svg";
 
 const Collections = () => {
   return (
     <section id="collections" className="py-16 lg:py-40 bg-forest text-cream relative overflow-hidden">
       {/* Grain overlay */}
       <div className="grain absolute inset-0 pointer-events-none" />
+      
+      {/* Decorative stamp */}
+      <div className="absolute -top-20 -right-20 w-64 lg:w-96 opacity-10 pointer-events-none">
+        <img src={stampGold} alt="" className="w-full h-full" />
+      </div>
 
       <div className="relative z-10">
         {/* Section Header */}
