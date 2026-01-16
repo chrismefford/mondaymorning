@@ -133,10 +133,10 @@ export const collections = [
     image: "https://images.unsplash.com/photo-1470337458703-46ad1756a187?w=800&q=80"
   },
   {
-    id: "dry-january",
-    name: "Dry January",
-    description: "Start the year intentionally",
-    image: "https://images.unsplash.com/photo-1544145945-f90425340c7e?w=800&q=80"
+    id: "beach-bonfire",
+    name: "Beach Bonfire Vibes",
+    description: "Sip under the stars",
+    image: "https://images.unsplash.com/photo-1507608869274-d3177c8bb4c7?w=800&q=80"
   },
   {
     id: "functional",
