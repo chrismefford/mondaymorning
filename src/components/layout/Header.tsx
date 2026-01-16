@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { Menu, X, ShoppingBag, ArrowUpRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import logoGold from "@/assets/logo-primary-gold.svg";
+import logoWhite from "@/assets/logo-primary-white.svg";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -46,10 +48,11 @@ const Header = () => {
           <div className="flex items-center justify-between h-16 lg:h-20">
             {/* Logo */}
             <a href="/" className="group flex items-center relative z-50">
-              <span className={`font-serif text-xl lg:text-2xl font-bold tracking-tight transition-colors ${isMenuOpen ? 'text-cream' : 'text-forest'}`}>
-                MONDAY
-                <span className="text-gold">.</span>
-              </span>
+              <img 
+                src={isMenuOpen ? logoWhite : logoGold} 
+                alt="Monday Morning" 
+                className="h-8 lg:h-10 w-auto transition-all"
+              />
             </a>
 
             {/* Desktop Navigation - Center */}
