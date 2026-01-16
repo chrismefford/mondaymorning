@@ -29,33 +29,55 @@ const instagramImages = [
 
 const Instagram = () => {
   return (
-    <section className="py-20 lg:py-32 bg-background">
-      <div className="container mx-auto px-4 lg:px-8">
+    <section className="py-12 lg:py-32 bg-background">
+      <div className="lg:container lg:mx-auto lg:px-8">
         {/* Section Header */}
-        <div className="text-center mb-12">
-          <div className="inline-flex items-center gap-2 text-muted-foreground mb-4">
-            <MapPin className="h-4 w-4 text-primary" />
-            <span className="font-sans text-sm">San Diego, California</span>
+        <div className="text-center mb-8 lg:mb-12 px-4 lg:px-0">
+          <div className="inline-flex items-center gap-2 text-muted-foreground mb-3 lg:mb-4">
+            <MapPin className="h-3 w-3 lg:h-4 lg:w-4 text-primary" />
+            <span className="font-sans text-xs lg:text-sm">San Diego, California</span>
           </div>
           
           <a 
             href="#" 
             className="inline-flex items-center gap-2 font-sans text-sm font-medium text-foreground hover:text-primary transition-colors story-link"
           >
-            <InstagramIcon className="h-5 w-5" />
+            <InstagramIcon className="h-4 w-4 lg:h-5 lg:w-5" />
             @mondaymorningaf
           </a>
           
-          <h2 className="font-serif text-4xl lg:text-5xl font-medium mt-4">
+          <h2 className="font-serif text-3xl lg:text-5xl font-medium mt-3 lg:mt-4">
             Follow the sunrise
           </h2>
-          <p className="font-sans text-muted-foreground mt-2">
+          <p className="font-sans text-sm text-muted-foreground mt-2">
             Tag us for a chance to be featured
           </p>
         </div>
 
-        {/* Instagram Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-2 lg:gap-4">
+        {/* MOBILE: Horizontal scroll strip - edge to edge */}
+        <div className="lg:hidden overflow-x-auto scrollbar-hide" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+          <div className="flex gap-2 px-4 pb-4">
+            {instagramImages.map((image, index) => (
+              <a
+                key={index}
+                href="#"
+                className="flex-shrink-0 w-32 aspect-square overflow-hidden group relative"
+              >
+                <img
+                  src={image.src}
+                  alt={image.alt}
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-primary/0 group-active:bg-primary/30 transition-colors flex items-center justify-center">
+                  <InstagramIcon className="h-6 w-6 text-background opacity-0 group-active:opacity-100 transition-opacity" />
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
+
+        {/* DESKTOP: Grid layout */}
+        <div className="hidden lg:grid grid-cols-6 gap-4">
           {instagramImages.map((image, index) => (
             <a
               key={index}

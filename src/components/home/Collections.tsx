@@ -1,37 +1,38 @@
 import { collections } from "@/data/products";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, ArrowRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 const Collections = () => {
   return (
-    <section id="collections" className="py-24 lg:py-40 bg-ocean-deep text-background relative overflow-hidden">
+    <section id="collections" className="py-16 lg:py-40 bg-ocean-deep text-background relative overflow-hidden">
       {/* Grain overlay */}
       <div className="grain absolute inset-0 pointer-events-none" />
 
-      <div className="container mx-auto px-4 lg:px-8 relative z-10">
+      <div className="relative z-10">
         {/* Section Header */}
-        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-16 lg:mb-24">
-          <div>
-            <span className="font-sans text-xs font-medium uppercase tracking-[0.2em] text-seafoam mb-4 block">
-              Collections
-            </span>
-            <h2 className="font-serif text-4xl lg:text-5xl xl:text-6xl leading-[1] text-background">
-              Shop by <span className="italic text-primary">vibe</span>
-            </h2>
+        <div className="container mx-auto px-4 lg:px-8">
+          <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-4 lg:gap-8 mb-8 lg:mb-24">
+            <div>
+              <span className="font-sans text-[10px] lg:text-xs font-medium uppercase tracking-[0.2em] text-seafoam mb-2 lg:mb-4 block">
+                Collections
+              </span>
+              <h2 className="font-serif text-3xl lg:text-5xl xl:text-6xl leading-[1] text-background">
+                Shop by <span className="italic text-primary">vibe</span>
+              </h2>
+            </div>
+            <p className="font-sans text-sm lg:text-lg text-background/70 max-w-md">
+              From sunrise sessions to sunset socials—find your moment
+            </p>
           </div>
-          <p className="font-sans text-lg text-background/70 max-w-md">
-            From sunrise sessions to sunset socials—find your moment
-          </p>
         </div>
 
-        {/* Horizontal scroll collections on mobile, grid on desktop */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-6">
+        {/* MOBILE: Stacked cards with overlap effect */}
+        <div className="lg:hidden px-4 space-y-4">
           {collections.map((collection, index) => (
             <a
               key={collection.id}
               href={`#${collection.id}`}
-              className={`group relative overflow-hidden border-2 border-background/20 hover:border-background transition-colors duration-300 ${
-                index === 0 ? 'md:row-span-2 aspect-square md:aspect-auto' : 'aspect-[16/9]'
-              }`}
+              className="group block relative overflow-hidden border-2 border-background/20 aspect-[16/10]"
             >
               <img
                 src={collection.image}
@@ -40,33 +41,90 @@ const Collections = () => {
               />
               
               {/* Gradient overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-midnight/90 via-midnight/40 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-midnight/90 via-midnight/30 to-transparent" />
               
-              {/* Index number - Large */}
-              <div className="absolute top-4 left-4 lg:top-6 lg:left-6">
-                <span className="font-serif text-4xl lg:text-6xl font-bold text-background/30 group-hover:text-background/50 transition-colors">
+              {/* Large number watermark */}
+              <div className="absolute top-2 right-4">
+                <span className="font-serif text-6xl font-bold text-background/10">
                   0{index + 1}
                 </span>
               </div>
               
               {/* Content */}
-              <div className="absolute bottom-0 left-0 right-0 p-6 lg:p-8">
+              <div className="absolute bottom-0 left-0 right-0 p-5">
                 <div className="flex items-end justify-between">
                   <div>
-                    <h3 className="font-serif text-2xl lg:text-4xl font-bold text-background mb-2">
+                    <span className="font-sans text-[10px] uppercase tracking-[0.3em] text-primary mb-1 block">
+                      {collection.description}
+                    </span>
+                    <h3 className="font-serif text-2xl font-bold text-background">
                       {collection.name}
                     </h3>
-                    <p className="font-sans text-sm text-background/70">
-                      {collection.description}
-                    </p>
                   </div>
-                  <div className="w-12 h-12 border-2 border-background flex items-center justify-center shrink-0 group-hover:bg-background group-hover:text-foreground transition-all duration-300">
-                    <ArrowUpRight className="h-5 w-5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                  <div className="w-10 h-10 border-2 border-background/30 flex items-center justify-center shrink-0 group-hover:bg-primary group-hover:border-primary transition-all duration-300">
+                    <ArrowUpRight className="h-4 w-4 text-background" />
                   </div>
                 </div>
               </div>
             </a>
           ))}
+
+          {/* View all button */}
+          <Button 
+            variant="outline"
+            className="w-full font-sans text-sm font-bold uppercase tracking-widest py-5 border-2 border-background/30 text-background bg-transparent hover:bg-background/10 mt-6"
+          >
+            Browse All Collections
+            <ArrowRight className="ml-2 h-4 w-4" />
+          </Button>
+        </div>
+
+        {/* DESKTOP: Grid layout */}
+        <div className="hidden lg:block container mx-auto px-4 lg:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-6">
+            {collections.map((collection, index) => (
+              <a
+                key={collection.id}
+                href={`#${collection.id}`}
+                className={`group relative overflow-hidden border-2 border-background/20 hover:border-background transition-colors duration-300 ${
+                  index === 0 ? 'md:row-span-2 aspect-square md:aspect-auto' : 'aspect-[16/9]'
+                }`}
+              >
+                <img
+                  src={collection.image}
+                  alt={collection.name}
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                />
+                
+                {/* Gradient overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-midnight/90 via-midnight/40 to-transparent" />
+                
+                {/* Index number - Large */}
+                <div className="absolute top-4 left-4 lg:top-6 lg:left-6">
+                  <span className="font-serif text-4xl lg:text-6xl font-bold text-background/30 group-hover:text-background/50 transition-colors">
+                    0{index + 1}
+                  </span>
+                </div>
+                
+                {/* Content */}
+                <div className="absolute bottom-0 left-0 right-0 p-6 lg:p-8">
+                  <div className="flex items-end justify-between">
+                    <div>
+                      <h3 className="font-serif text-2xl lg:text-4xl font-bold text-background mb-2">
+                        {collection.name}
+                      </h3>
+                      <p className="font-sans text-sm text-background/70">
+                        {collection.description}
+                      </p>
+                    </div>
+                    <div className="w-12 h-12 border-2 border-background flex items-center justify-center shrink-0 group-hover:bg-background group-hover:text-foreground transition-all duration-300">
+                      <ArrowUpRight className="h-5 w-5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                    </div>
+                  </div>
+                </div>
+              </a>
+            ))}
+          </div>
         </div>
       </div>
 

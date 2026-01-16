@@ -9,15 +9,83 @@ const Story = () => {
   ];
 
   return (
-    <section id="story" className="py-24 lg:py-40 bg-background relative overflow-hidden">
+    <section id="story" className="py-16 lg:py-40 bg-background relative overflow-hidden">
       {/* Background number */}
-      <div className="absolute top-0 left-0 font-serif text-[20rem] lg:text-[40rem] font-bold text-muted/30 leading-none pointer-events-none select-none -translate-x-1/4 -translate-y-1/4">
+      <div className="absolute top-0 left-0 font-serif text-[10rem] lg:text-[40rem] font-bold text-muted/20 leading-none pointer-events-none select-none -translate-x-1/4 -translate-y-1/4">
         02
       </div>
 
       <div className="container mx-auto px-4 lg:px-8 relative z-10">
-        {/* Two column asymmetric layout */}
-        <div className="grid lg:grid-cols-12 gap-8 lg:gap-16 items-start">
+        {/* MOBILE LAYOUT */}
+        <div className="lg:hidden">
+          {/* Header */}
+          <div className="mb-8">
+            <span className="font-sans text-[10px] font-medium uppercase tracking-[0.2em] text-secondary mb-2 block">
+              Our Story
+            </span>
+            <h2 className="font-serif text-3xl leading-[1.1]">
+              Born on <span className="italic text-primary">the coast</span>
+            </h2>
+          </div>
+
+          {/* Single hero image with overlay content */}
+          <div className="relative mb-8">
+            <div className="aspect-[4/5] overflow-hidden border-2 border-foreground">
+              <img
+                src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=1000&q=80"
+                alt="Friends sharing drinks at sunset"
+                className="w-full h-full object-cover"
+              />
+            </div>
+            {/* Floating quote card */}
+            <div className="absolute -bottom-6 left-4 right-4 bg-sand-warm border-2 border-foreground p-5 shadow-brutal">
+              <p className="font-serif text-lg italic leading-relaxed">
+                "Life's better with sand between your toes and clarity in your glass."
+              </p>
+            </div>
+          </div>
+
+          {/* Content below image */}
+          <div className="mt-12 space-y-5">
+            <p className="font-sans text-base text-muted-foreground leading-relaxed">
+              It started with early morning surf sessions and the realization that the best 
+              moments don't need alcohol—they need presence.
+            </p>
+            <p className="font-sans text-base text-muted-foreground leading-relaxed">
+              From our home in San Diego, we craft beverages that capture that golden hour 
+              feeling. Functional ingredients, bold flavors, and that laid-back coastal energy.
+            </p>
+          </div>
+
+          {/* Stats - Horizontal scroll */}
+          <div className="mt-8 py-6 border-y-2 border-border">
+            <div className="flex justify-between">
+              {stats.map((stat) => (
+                <div key={stat.label} className="text-center">
+                  <div className="font-serif text-3xl font-bold text-primary">
+                    {stat.number}
+                    <span className="text-lg">{stat.suffix}</span>
+                  </div>
+                  <div className="font-sans text-[9px] uppercase tracking-[0.2em] text-muted-foreground mt-1">
+                    {stat.label}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <Button 
+            variant="outline" 
+            size="lg"
+            className="w-full mt-8 font-sans text-sm font-bold uppercase tracking-widest py-5 border-2 border-foreground"
+          >
+            Read more
+            <ArrowRight className="ml-2 h-4 w-4" />
+          </Button>
+        </div>
+
+        {/* DESKTOP LAYOUT - Keep existing */}
+        <div className="hidden lg:grid lg:grid-cols-12 gap-8 lg:gap-16 items-start">
           {/* Content Column */}
           <div className="lg:col-span-5 lg:sticky lg:top-32">
             <span className="font-sans text-xs font-medium uppercase tracking-[0.2em] text-secondary mb-6 block">
