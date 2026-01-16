@@ -1,6 +1,7 @@
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import Hero from "@/components/home/Hero";
+import PolaroidGallery from "@/components/home/PolaroidGallery";
 import FeaturedProducts from "@/components/home/FeaturedProducts";
 import Collections from "@/components/home/Collections";
 import Story from "@/components/home/Story";
@@ -14,6 +15,7 @@ const Index = () => {
       <Header />
       <main>
         <Hero />
+        <PolaroidGallery />
         <FeaturedProducts />
         <Collections />
         <Story />
