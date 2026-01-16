@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import friendsDrinking from "@/assets/friends-drinking.jpg";
 import stampGreen from "@/assets/stamp-green.svg";
+import textureCream from "@/assets/texture-cream.svg";
 
 const Story = () => {
   const steps = [
@@ -12,6 +13,12 @@ const Story = () => {
 
   return (
     <section id="story" className="py-16 lg:py-40 bg-cream relative overflow-hidden">
+      {/* Organic texture background */}
+      <div 
+        className="absolute inset-0 opacity-30 pointer-events-none"
+        style={{ backgroundImage: `url(${textureCream})`, backgroundSize: 'cover', backgroundPosition: 'center' }}
+      />
+      
       {/* Background stamp watermark */}
       <div className="absolute top-0 left-0 w-[30rem] lg:w-[60rem] opacity-[0.03] pointer-events-none select-none -translate-x-1/4 -translate-y-1/4">
         <img src={stampGreen} alt="" className="w-full h-full" />

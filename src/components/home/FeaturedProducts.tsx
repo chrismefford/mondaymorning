@@ -3,6 +3,8 @@ import { products } from "@/data/products";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { useRef } from "react";
+import textureCream from "@/assets/texture-cream.svg";
+import stampGold from "@/assets/stamp-gold.svg";
 
 const FeaturedProducts = () => {
   const featuredProduct = products[0];
@@ -11,9 +13,15 @@ const FeaturedProducts = () => {
 
   return (
     <section id="shop" className="py-16 lg:py-40 bg-cream relative overflow-hidden">
-      {/* Background number */}
-      <div className="absolute top-0 right-0 font-serif text-[12rem] lg:text-[40rem] font-bold text-forest/5 leading-none pointer-events-none select-none -translate-y-1/4 translate-x-1/4">
-        01
+      {/* Organic texture background */}
+      <div 
+        className="absolute inset-0 opacity-40 pointer-events-none"
+        style={{ backgroundImage: `url(${textureCream})`, backgroundSize: 'cover', backgroundPosition: 'center' }}
+      />
+      
+      {/* Background stamp watermark */}
+      <div className="absolute top-1/4 right-0 w-[20rem] lg:w-[40rem] opacity-[0.02] pointer-events-none select-none translate-x-1/4">
+        <img src={stampGold} alt="" className="w-full h-full" />
       </div>
 
       <div className="relative z-10">

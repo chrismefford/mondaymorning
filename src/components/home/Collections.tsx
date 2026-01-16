@@ -2,10 +2,17 @@ import { collections } from "@/data/products";
 import { ArrowUpRight, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import stampGold from "@/assets/stamp-gold.svg";
+import textureGreen from "@/assets/texture-green.svg";
 
 const Collections = () => {
   return (
     <section id="collections" className="py-16 lg:py-40 bg-forest text-cream relative overflow-hidden">
+      {/* Organic texture background */}
+      <div 
+        className="absolute inset-0 opacity-10 pointer-events-none mix-blend-overlay"
+        style={{ backgroundImage: `url(${textureGreen})`, backgroundSize: 'cover', backgroundPosition: 'center' }}
+      />
+      
       {/* Grain overlay */}
       <div className="grain absolute inset-0 pointer-events-none" />
       
