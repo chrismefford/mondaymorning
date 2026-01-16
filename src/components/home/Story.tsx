@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
+import friendsDrinking from "@/assets/friends-drinking.jpg";
 
 const Story = () => {
   const steps = [
@@ -32,7 +33,7 @@ const Story = () => {
           <div className="relative mb-8">
             <div className="aspect-[4/5] overflow-hidden border-2 border-forest">
               <img
-                src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=1000&q=80"
+                src={friendsDrinking}
                 alt="Friends sharing drinks at sunset"
                 className="w-full h-full object-cover"
               />
@@ -138,9 +139,9 @@ const Story = () => {
           <div className="lg:col-span-7 relative">
             {/* Main image */}
             <div className="relative mb-6">
-              <div className="aspect-[4/3] overflow-hidden border-2 border-forest">
+            <div className="aspect-[4/3] overflow-hidden border-2 border-forest">
                 <img
-                  src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=1000&q=80"
+                  src={friendsDrinking}
                   alt="Friends sharing drinks at sunset"
                   className="w-full h-full object-cover"
                 />
