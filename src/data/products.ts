@@ -149,5 +149,17 @@ export const collections = [
     name: "Wine Alternatives",
     description: "All the ritual, reimagined",
     image: "https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=800&q=80"
+  },
+  {
+    id: "na-beer",
+    name: "NA Beer",
+    description: "Craft taste, zero proof",
+    image: "https://images.unsplash.com/photo-1535958636474-b021ee887b13?w=800&q=80"
+  },
+  {
+    id: "weddings",
+    name: "Weddings & Events",
+    description: "Toast-worthy moments",
+    image: "https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=800&q=80"
   }
 ];
