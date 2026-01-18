@@ -6,73 +6,61 @@ const reasons = [
     id: 1,
     text: "Hangovers were stealing my weekends.",
     author: "Mike, 34",
-    emoji: "😴",
   },
   {
     id: 2,
     text: "I wanted to actually remember the concert.",
     author: "Jess, 28",
-    emoji: "🎸",
   },
   {
     id: 3,
     text: "My skin has never looked better.",
     author: "Taylor, 31",
-    emoji: "✨",
   },
   {
     id: 4,
     text: "Training for a marathon. Still want to be social.",
     author: "Carlos, 29",
-    emoji: "🏃",
   },
   {
     id: 5,
     text: "Pregnant, not boring.",
     author: "Sarah, 32",
-    emoji: "🤰",
   },
   {
     id: 6,
     text: "Realized I was only drinking because everyone else was.",
     author: "Alex, 26",
-    emoji: "🤔",
   },
   {
     id: 7,
     text: "5am gym sessions hit different when you're not hungover.",
     author: "Jordan, 30",
-    emoji: "💪",
   },
   {
     id: 8,
     text: "I like who I am sober. Turns out, so does everyone else.",
     author: "Nina, 27",
-    emoji: "🥰",
   },
   {
     id: 9,
     text: "My wallet thanked me. Then my liver did too.",
     author: "Chris, 35",
-    emoji: "💸",
   },
   {
     id: 10,
     text: "Sober driver = free tacos. Always.",
     author: "Priya, 24",
-    emoji: "🌮",
   },
   {
     id: 11,
     text: "Anxiety said 'bye bye' when alcohol did.",
     author: "Marcus, 33",
-    emoji: "🧘",
   },
   {
     id: 12,
     text: "I'm the designated driver. Might as well enjoy something good.",
     author: "Elena, 29",
-    emoji: "🚗",
   },
 ];
 
@@ -133,7 +121,6 @@ const WhyWeDontDrink = () => {
               isAnimating ? "opacity-0 scale-95" : "opacity-100 scale-100"
             }`}
           >
-            <div className="text-5xl mb-4">{reasons[activeIndex].emoji}</div>
             <p className="font-serif text-xl italic text-forest leading-relaxed mb-4">
               "{reasons[activeIndex].text}"
             </p>
@@ -184,7 +171,6 @@ const WhyWeDontDrink = () => {
                   transform: `rotate(${pos.rotate}) scale(${pos.scale})`,
                 }}
               >
-                <div className="text-4xl mb-3">{reason.emoji}</div>
                 <p className="font-serif text-lg italic text-forest leading-relaxed mb-3">
                   "{reason.text}"
                 </p>
