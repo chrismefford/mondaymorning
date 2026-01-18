@@ -1,14 +1,19 @@
-import { recipes } from "@/data/recipes";
+import { useState, useRef } from "react";
+import { recipes, occasionLabels, Occasion } from "@/data/recipes";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, ArrowUpRight, Clock, Users, ChefHat } from "lucide-react";
-import { useRef } from "react";
 import stampGold from "@/assets/stamp-gold.svg";
 import textureBlue from "@/assets/texture-blue.svg";
 
+const occasions: Occasion[] = ["breakfast", "dinner", "relaxing", "beach", "celebration"];
+
 const Recipes = () => {
-  const featuredRecipe = recipes.find((r) => r.featured) || recipes[0];
-  const carouselRecipes = recipes.filter((r) => r.id !== featuredRecipe.id);
+  const [activeOccasion, setActiveOccasion] = useState<Occasion>("breakfast");
   const scrollRef = useRef<HTMLDivElement>(null);
+
+  const filteredRecipes = recipes.filter((r) => r.occasion === activeOccasion);
+  const featuredRecipe = filteredRecipes.find((r) => r.featured) || filteredRecipes[0];
+  const carouselRecipes = filteredRecipes.filter((r) => r.id !== featuredRecipe?.id);
 
   const scrollLeft = () => {
     if (scrollRef.current) {
@@ -44,240 +49,264 @@ const Recipes = () => {
 
       <div className="container mx-auto px-4 lg:px-8 relative z-10">
         {/* Section Header */}
-        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-4 lg:gap-8 mb-8 lg:mb-16">
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-4 lg:gap-8 mb-8 lg:mb-12">
           <div>
             <span className="font-sans text-[10px] lg:text-xs font-semibold uppercase tracking-[0.3em] text-gold mb-2 lg:mb-4 block">
-              Drinks & Pairings
+              Mocktail Recipes
             </span>
             <h2 className="font-serif text-3xl lg:text-5xl xl:text-6xl leading-[1]">
-              Recipes to <span className="italic text-gold">inspire</span>
+              Drinks for every <span className="italic text-gold">moment</span>
             </h2>
           </div>
           <p className="font-sans text-sm lg:text-base text-muted-foreground max-w-sm hidden lg:block">
-            From NA cocktails to dishes cooked with our favorites—get creative with what's in your cart.
+            From sunrise sips to celebration toasts—find the perfect mocktail for any occasion.
           </p>
         </div>
 
-        {/* MOBILE LAYOUT */}
-        <div className="lg:hidden">
-          {/* Featured Recipe Card */}
-          <div className="relative mb-8">
-            <div className="aspect-[4/5] overflow-hidden border-2 border-forest">
-              <img
-                src={featuredRecipe.image}
-                alt={featuredRecipe.title}
-                className="w-full h-full object-cover"
-              />
-            </div>
-            {/* Overlay content */}
-            <div className="absolute inset-0 bg-gradient-to-t from-forest-deep/90 via-forest-deep/40 to-transparent flex flex-col justify-end p-5">
-              <span className="inline-flex items-center gap-2 font-sans text-[10px] uppercase tracking-[0.3em] text-gold mb-2">
-                <ChefHat className="h-3 w-3" />
-                Featured Recipe
-              </span>
-              <h3 className="font-serif text-2xl font-bold text-cream mb-2">
-                {featuredRecipe.title}
-              </h3>
-              <p className="font-sans text-sm text-cream/80 mb-4 line-clamp-2">
-                {featuredRecipe.description}
-              </p>
-              <div className="flex items-center gap-4 text-cream/70 mb-4">
-                <span className="flex items-center gap-1 font-sans text-xs">
-                  <Clock className="h-3 w-3" />
-                  {featuredRecipe.prepTime}
-                </span>
-                <span className="flex items-center gap-1 font-sans text-xs">
-                  <Users className="h-3 w-3" />
-                  Serves {featuredRecipe.servings}
-                </span>
-                <span className="font-sans text-xs px-2 py-0.5 bg-cream/20 rounded">
-                  {featuredRecipe.difficulty}
-                </span>
-              </div>
-              <Button
-                size="sm"
-                className="w-full bg-gold text-forest-deep font-sans text-xs uppercase tracking-wider hover:bg-gold/90"
+        {/* Occasion Tabs */}
+        <div className="mb-8 lg:mb-12">
+          <div className="flex gap-2 lg:gap-4 overflow-x-auto pb-2 scrollbar-hide" style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}>
+            {occasions.map((occasion) => (
+              <button
+                key={occasion}
+                onClick={() => setActiveOccasion(occasion)}
+                className={`flex items-center gap-2 px-4 lg:px-6 py-2 lg:py-3 font-sans text-xs lg:text-sm font-semibold uppercase tracking-wider whitespace-nowrap transition-all border-2 ${
+                  activeOccasion === occasion
+                    ? "bg-forest text-cream border-forest"
+                    : "bg-transparent text-forest border-forest/30 hover:border-forest hover:bg-forest/5"
+                }`}
               >
-                View Recipe
-                <ArrowRight className="ml-2 h-3 w-3" />
-              </Button>
-            </div>
-          </div>
-
-          {/* Carousel */}
-          <div
-            ref={scrollRef}
-            className="flex gap-4 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-hide"
-            style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
-          >
-            {carouselRecipes.map((recipe) => (
-              <div
-                key={recipe.id}
-                className="flex-shrink-0 w-[70vw] snap-center"
-              >
-                <RecipeCard recipe={recipe} />
-              </div>
+                <span>{occasionLabels[occasion].emoji}</span>
+                {occasionLabels[occasion].label}
+              </button>
             ))}
-          </div>
-
-          {/* View all button - mobile */}
-          <div className="mt-6">
-            <Button
-              variant="outline"
-              className="w-full font-sans text-sm font-bold uppercase tracking-widest py-5 border-2 border-forest text-forest hover:bg-forest hover:text-cream"
-            >
-              Browse All Recipes
-              <ArrowRight className="ml-2 h-4 w-4" />
-            </Button>
           </div>
         </div>
 
-        {/* DESKTOP LAYOUT */}
-        <div className="hidden lg:block">
-          <div className="grid lg:grid-cols-12 gap-8 items-start">
-            {/* Featured Recipe - Takes 7 columns */}
-            <div className="lg:col-span-7 relative group">
-              <div className="aspect-[4/3] overflow-hidden border-2 border-forest">
-                <img
-                  src={featuredRecipe.image}
-                  alt={featuredRecipe.title}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                />
-              </div>
-              {/* Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-forest-deep/90 via-forest-deep/30 to-transparent flex flex-col justify-end p-8">
-                <span className="inline-flex items-center gap-2 font-sans text-xs uppercase tracking-[0.3em] text-gold mb-3">
-                  <ChefHat className="h-4 w-4" />
-                  Featured Recipe
-                </span>
-                <h3 className="font-serif text-3xl lg:text-4xl font-bold text-cream mb-3">
-                  {featuredRecipe.title}
-                </h3>
-                <p className="font-serif text-lg italic text-cream/80 mb-4">
-                  "{featuredRecipe.tagline}"
-                </p>
-                <div className="flex items-center gap-6 text-cream/70 mb-6">
-                  <span className="flex items-center gap-2 font-sans text-sm">
-                    <Clock className="h-4 w-4" />
-                    {featuredRecipe.prepTime}
-                  </span>
-                  <span className="flex items-center gap-2 font-sans text-sm">
-                    <Users className="h-4 w-4" />
-                    Serves {featuredRecipe.servings}
-                  </span>
-                  <span className="font-sans text-sm px-3 py-1 bg-cream/20 rounded">
-                    {featuredRecipe.difficulty}
-                  </span>
+        {featuredRecipe && (
+          <>
+            {/* MOBILE LAYOUT */}
+            <div className="lg:hidden">
+              {/* Featured Recipe Card */}
+              <div className="relative mb-8">
+                <div className="aspect-[4/5] overflow-hidden border-2 border-forest">
+                  <img
+                    src={featuredRecipe.image}
+                    alt={featuredRecipe.title}
+                    className="w-full h-full object-cover"
+                  />
                 </div>
-                <Button
-                  size="lg"
-                  className="w-fit bg-gold text-forest-deep font-sans text-sm uppercase tracking-wider hover:bg-gold/90 px-8"
+                {/* Overlay content */}
+                <div className="absolute inset-0 bg-gradient-to-t from-forest-deep/90 via-forest-deep/40 to-transparent flex flex-col justify-end p-5">
+                  <span className="inline-flex items-center gap-2 font-sans text-[10px] uppercase tracking-[0.3em] text-gold mb-2">
+                    <ChefHat className="h-3 w-3" />
+                    {occasionLabels[activeOccasion].emoji} {occasionLabels[activeOccasion].label}
+                  </span>
+                  <h3 className="font-serif text-2xl font-bold text-cream mb-2">
+                    {featuredRecipe.title}
+                  </h3>
+                  <p className="font-sans text-sm text-cream/80 mb-4 line-clamp-2">
+                    {featuredRecipe.description}
+                  </p>
+                  <div className="flex items-center gap-4 text-cream/70 mb-4">
+                    <span className="flex items-center gap-1 font-sans text-xs">
+                      <Clock className="h-3 w-3" />
+                      {featuredRecipe.prepTime}
+                    </span>
+                    <span className="flex items-center gap-1 font-sans text-xs">
+                      <Users className="h-3 w-3" />
+                      Serves {featuredRecipe.servings}
+                    </span>
+                    <span className="font-sans text-xs px-2 py-0.5 bg-cream/20 rounded">
+                      {featuredRecipe.difficulty}
+                    </span>
+                  </div>
+                  <Button
+                    size="sm"
+                    className="w-full bg-gold text-forest-deep font-sans text-xs uppercase tracking-wider hover:bg-gold/90"
+                  >
+                    View Recipe
+                    <ArrowRight className="ml-2 h-3 w-3" />
+                  </Button>
+                </div>
+              </div>
+
+              {/* Carousel */}
+              {carouselRecipes.length > 0 && (
+                <div
+                  ref={scrollRef}
+                  className="flex gap-4 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-hide"
+                  style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
                 >
-                  View Full Recipe
+                  {carouselRecipes.map((recipe) => (
+                    <div
+                      key={recipe.id}
+                      className="flex-shrink-0 w-[70vw] snap-center"
+                    >
+                      <RecipeCard recipe={recipe} />
+                    </div>
+                  ))}
+                </div>
+              )}
+
+              {/* View all button - mobile */}
+              <div className="mt-6">
+                <Button
+                  variant="outline"
+                  className="w-full font-sans text-sm font-bold uppercase tracking-widest py-5 border-2 border-forest text-forest hover:bg-forest hover:text-cream"
+                >
+                  Browse All Recipes
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
               </div>
-              {/* Offset accent box */}
-              <div className="absolute -bottom-4 -right-4 w-32 h-32 bg-gold z-[-1]" />
             </div>
 
-            {/* Recipe Info + Ingredients - Takes 5 columns */}
-            <div className="lg:col-span-5 lg:pl-4">
-              <div className="mb-8">
-                <h4 className="font-serif text-2xl font-bold text-forest mb-4">
-                  {featuredRecipe.title}
-                </h4>
-                <p className="font-sans text-muted-foreground leading-relaxed mb-6">
-                  {featuredRecipe.description}
-                </p>
+            {/* DESKTOP LAYOUT */}
+            <div className="hidden lg:block">
+              <div className="grid lg:grid-cols-12 gap-8 items-start">
+                {/* Featured Recipe - Takes 7 columns */}
+                <div className="lg:col-span-7 relative group">
+                  <div className="aspect-[4/3] overflow-hidden border-2 border-forest">
+                    <img
+                      src={featuredRecipe.image}
+                      alt={featuredRecipe.title}
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+                  </div>
+                  {/* Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-forest-deep/90 via-forest-deep/30 to-transparent flex flex-col justify-end p-8">
+                    <span className="inline-flex items-center gap-2 font-sans text-xs uppercase tracking-[0.3em] text-gold mb-3">
+                      <ChefHat className="h-4 w-4" />
+                      {occasionLabels[activeOccasion].emoji} {occasionLabels[activeOccasion].label} Mocktail
+                    </span>
+                    <h3 className="font-serif text-3xl lg:text-4xl font-bold text-cream mb-3">
+                      {featuredRecipe.title}
+                    </h3>
+                    <p className="font-serif text-lg italic text-cream/80 mb-4">
+                      "{featuredRecipe.tagline}"
+                    </p>
+                    <div className="flex items-center gap-6 text-cream/70 mb-6">
+                      <span className="flex items-center gap-2 font-sans text-sm">
+                        <Clock className="h-4 w-4" />
+                        {featuredRecipe.prepTime}
+                      </span>
+                      <span className="flex items-center gap-2 font-sans text-sm">
+                        <Users className="h-4 w-4" />
+                        Serves {featuredRecipe.servings}
+                      </span>
+                      <span className="font-sans text-sm px-3 py-1 bg-cream/20 rounded">
+                        {featuredRecipe.difficulty}
+                      </span>
+                    </div>
+                    <Button
+                      size="lg"
+                      className="w-fit bg-gold text-forest-deep font-sans text-sm uppercase tracking-wider hover:bg-gold/90 px-8"
+                    >
+                      View Full Recipe
+                      <ArrowRight className="ml-2 h-4 w-4" />
+                    </Button>
+                  </div>
+                  {/* Offset accent box */}
+                  <div className="absolute -bottom-4 -right-4 w-32 h-32 bg-gold z-[-1]" />
+                </div>
 
-                <div className="border-t-2 border-forest/20 pt-6">
-                  <h5 className="font-sans text-xs uppercase tracking-[0.2em] text-gold mb-4">
-                    Ingredients
-                  </h5>
-                  <ul className="space-y-2">
-                    {featuredRecipe.ingredients.map((ingredient, index) => (
-                      <li
-                        key={index}
-                        className="font-sans text-sm text-muted-foreground flex items-center gap-2"
+                {/* Recipe Info + Ingredients - Takes 5 columns */}
+                <div className="lg:col-span-5 lg:pl-4">
+                  <div className="mb-8">
+                    <h4 className="font-serif text-2xl font-bold text-forest mb-4">
+                      {featuredRecipe.title}
+                    </h4>
+                    <p className="font-sans text-muted-foreground leading-relaxed mb-6">
+                      {featuredRecipe.description}
+                    </p>
+
+                    <div className="border-t-2 border-forest/20 pt-6">
+                      <h5 className="font-sans text-xs uppercase tracking-[0.2em] text-gold mb-4">
+                        Ingredients
+                      </h5>
+                      <ul className="space-y-2">
+                        {featuredRecipe.ingredients.map((ingredient, index) => (
+                          <li
+                            key={index}
+                            className="font-sans text-sm text-muted-foreground flex items-center gap-2"
+                          >
+                            <span className="w-1.5 h-1.5 rounded-full bg-gold shrink-0" />
+                            {ingredient}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+
+                  {/* Occasion indicator */}
+                  <div className="flex items-center gap-3 p-4 bg-forest/5 border-2 border-forest/10">
+                    <span className="text-2xl">
+                      {occasionLabels[activeOccasion].emoji}
+                    </span>
+                    <div>
+                      <span className="font-sans text-xs uppercase tracking-wider text-gold">
+                        {occasionLabels[activeOccasion].label} Mocktail
+                      </span>
+                      <p className="font-sans text-sm text-muted-foreground">
+                        Perfect for your {occasionLabels[activeOccasion].label.toLowerCase()} moments
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Carousel Section */}
+              {carouselRecipes.length > 0 && (
+                <div className="mt-16 lg:mt-24">
+                  <div className="flex items-center justify-between mb-8">
+                    <h3 className="font-serif text-2xl lg:text-3xl text-forest">
+                      More {occasionLabels[activeOccasion].label.toLowerCase()} drinks
+                    </h3>
+                    <div className="flex items-center gap-4">
+                      <button
+                        onClick={scrollLeft}
+                        className="w-10 h-10 border-2 border-forest/30 flex items-center justify-center hover:bg-forest hover:text-cream hover:border-forest transition-all"
+                        aria-label="Scroll left"
                       >
-                        <span className="w-1.5 h-1.5 rounded-full bg-gold shrink-0" />
-                        {ingredient}
-                      </li>
+                        <ArrowRight className="h-4 w-4 rotate-180" />
+                      </button>
+                      <button
+                        onClick={scrollRight}
+                        className="w-10 h-10 border-2 border-forest/30 flex items-center justify-center hover:bg-forest hover:text-cream hover:border-forest transition-all"
+                        aria-label="Scroll right"
+                      >
+                        <ArrowRight className="h-4 w-4" />
+                      </button>
+                    </div>
+                  </div>
+
+                  <div
+                    ref={scrollRef}
+                    className="flex gap-6 overflow-x-auto pb-4 scrollbar-hide"
+                    style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+                  >
+                    {carouselRecipes.map((recipe) => (
+                      <div key={recipe.id} className="flex-shrink-0 w-80">
+                        <RecipeCard recipe={recipe} />
+                      </div>
                     ))}
-                  </ul>
+                  </div>
                 </div>
-              </div>
+              )}
 
-              {/* Type indicator */}
-              <div className="flex items-center gap-3 p-4 bg-forest/5 border-2 border-forest/10">
-                <span className="text-2xl">
-                  {featuredRecipe.type === "drink" ? "🍹" : "🍽️"}
-                </span>
-                <div>
-                  <span className="font-sans text-xs uppercase tracking-wider text-gold">
-                    {featuredRecipe.type === "drink"
-                      ? "NA Cocktail"
-                      : "Food Pairing"}
-                  </span>
-                  <p className="font-sans text-sm text-muted-foreground">
-                    {featuredRecipe.type === "drink"
-                      ? "Mix it up at home"
-                      : "Pairs perfectly with our collection"}
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Carousel Section */}
-          <div className="mt-16 lg:mt-24">
-            <div className="flex items-center justify-between mb-8">
-              <h3 className="font-serif text-2xl lg:text-3xl text-forest">
-                More to explore
-              </h3>
-              <div className="flex items-center gap-4">
-                <button
-                  onClick={scrollLeft}
-                  className="w-10 h-10 border-2 border-forest/30 flex items-center justify-center hover:bg-forest hover:text-cream hover:border-forest transition-all"
-                  aria-label="Scroll left"
+              {/* View all link */}
+              <div className="mt-8 text-center">
+                <Button
+                  variant="ghost"
+                  className="font-sans text-sm font-semibold uppercase tracking-wider group border-2 border-transparent hover:border-forest text-forest px-6 py-3"
                 >
-                  <ArrowRight className="h-4 w-4 rotate-180" />
-                </button>
-                <button
-                  onClick={scrollRight}
-                  className="w-10 h-10 border-2 border-forest/30 flex items-center justify-center hover:bg-forest hover:text-cream hover:border-forest transition-all"
-                  aria-label="Scroll right"
-                >
-                  <ArrowRight className="h-4 w-4" />
-                </button>
+                  View All Recipes
+                  <ArrowUpRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
+                </Button>
               </div>
             </div>
-
-            <div
-              ref={scrollRef}
-              className="flex gap-6 overflow-x-auto pb-4 scrollbar-hide"
-              style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
-            >
-              {carouselRecipes.map((recipe) => (
-                <div key={recipe.id} className="flex-shrink-0 w-80">
-                  <RecipeCard recipe={recipe} />
-                </div>
-              ))}
-            </div>
-
-            {/* View all link */}
-            <div className="mt-8 text-center">
-              <Button
-                variant="ghost"
-                className="font-sans text-sm font-semibold uppercase tracking-wider group border-2 border-transparent hover:border-forest text-forest px-6 py-3"
-              >
-                View All Recipes
-                <ArrowUpRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
-              </Button>
-            </div>
-          </div>
-        </div>
+          </>
+        )}
       </div>
     </section>
   );
@@ -296,10 +325,10 @@ const RecipeCard = ({ recipe }: RecipeCardProps) => {
           alt={recipe.title}
           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
         />
-        {/* Type badge */}
+        {/* Occasion badge */}
         <div className="absolute top-3 left-3 z-10">
           <span className="inline-flex items-center gap-1 font-sans text-[10px] uppercase tracking-wider bg-cream/90 text-forest px-2 py-1 border border-forest/20">
-            {recipe.type === "drink" ? "🍹 Drink" : "🍽️ Food"}
+            🍹 Mocktail
           </span>
         </div>
         {/* Hover overlay */}
