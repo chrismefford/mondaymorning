@@ -24,7 +24,7 @@ const Collections = () => {
       <div className="relative z-10">
         {/* Section Header */}
         <div className="container mx-auto px-4 lg:px-8">
-          <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-4 lg:gap-8 mb-8 lg:mb-24">
+          <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-4 lg:gap-8 mb-8 lg:mb-16">
             <div>
               <span className="font-sans text-[10px] lg:text-xs font-medium uppercase tracking-[0.2em] text-gold mb-2 lg:mb-4 block">
                 400+ Options
@@ -32,6 +32,9 @@ const Collections = () => {
               <h2 className="font-serif text-3xl lg:text-5xl xl:text-6xl leading-[1] text-cream">
                 Find your <span className="italic text-gold">flavor</span>
               </h2>
+              <p className="font-serif text-xl lg:text-2xl italic text-cream/70 mt-2 lg:mt-4">
+                Pick your vibe
+              </p>
             </div>
             <p className="font-sans text-sm lg:text-lg text-cream/70 max-w-md">
               Wines, beers, spirits, aperitifs—we've got it all. No guessing, just tasting.
