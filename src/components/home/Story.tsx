@@ -162,8 +162,11 @@ const Story = () => {
             <div className="grid grid-cols-2 gap-6">
               <div className="aspect-square overflow-hidden border-2 border-forest">
                 <img
-                  src="https://images.unsplash.com/photo-1473116763249-2fce8e5c4e4e?w=600&q=80"
+                  src="/images/beach-lifestyle.jpg"
                   alt="Beach lifestyle"
+                  onError={(e) => {
+                    e.currentTarget.src = "/placeholder.svg";
+                  }}
                   className="w-full h-full object-cover"
                 />
               </div>
@@ -171,6 +174,9 @@ const Story = () => {
                 <img
                   src="https://images.unsplash.com/photo-1519046904884-53103b34b206?w=600&q=80"
                   alt="San Diego beach"
+                  onError={(e) => {
+                    e.currentTarget.src = "/placeholder.svg";
+                  }}
                   className="w-full h-full object-cover"
                 />
               </div>
