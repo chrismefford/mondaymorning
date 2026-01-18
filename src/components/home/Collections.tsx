@@ -50,6 +50,9 @@ const Collections = () => {
               <img
                 src={collection.image}
                 alt={collection.name}
+                onError={(e) => {
+                  e.currentTarget.src = "/placeholder.svg";
+                }}
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
               />
               
@@ -106,6 +109,9 @@ const Collections = () => {
                 <img
                   src={collection.image}
                   alt={collection.name}
+                  onError={(e) => {
+                    e.currentTarget.src = "/placeholder.svg";
+                  }}
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                 />
                 
