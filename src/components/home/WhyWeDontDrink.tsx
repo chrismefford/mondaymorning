@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import stampGold from "@/assets/stamp-gold.svg";
+import StorySubmissionForm from "./StorySubmissionForm";
 
 const reasons = [
   {
@@ -67,6 +68,7 @@ const reasons = [
 const WhyWeDontDrink = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
+  const [isFormOpen, setIsFormOpen] = useState(false);
 
   // Auto-rotate through reasons
   useEffect(() => {
@@ -187,15 +189,21 @@ const WhyWeDontDrink = () => {
           <p className="font-sans text-sm text-cream/50 mb-4">
             Got your own reason? We'd love to hear it.
           </p>
-          <a
-            href="#"
+          <button
+            onClick={() => setIsFormOpen(true)}
             className="inline-flex items-center gap-2 font-sans text-sm font-bold uppercase tracking-wider text-gold border-b-2 border-gold pb-1 hover:text-cream hover:border-cream transition-colors"
           >
             Share Your Story
             <span className="text-lg">→</span>
-          </a>
+          </button>
         </div>
       </div>
+
+      {/* Story Submission Form Modal */}
+      <StorySubmissionForm
+        isOpen={isFormOpen}
+        onClose={() => setIsFormOpen(false)}
+      />
 
       {/* Decorative blurs */}
       <div className="absolute top-1/4 left-0 w-64 h-64 bg-gold/10 blur-3xl pointer-events-none" />
