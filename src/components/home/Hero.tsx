@@ -203,7 +203,7 @@ const Hero = () => {
           </div>
 
           {/* Brand stamp - rotating */}
-          <div className="absolute top-12 right-12 z-20">
+          <div className="absolute top-24 right-12 z-20">
             <div className="w-48 h-48 xl:w-56 xl:h-56 rotate-text">
               <img 
                 src={stampGold} 
