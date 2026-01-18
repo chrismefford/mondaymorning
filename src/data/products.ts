@@ -136,7 +136,7 @@ export const collections = [
     id: "beach-bonfire",
     name: "Beach Bonfire Vibes",
     description: "Sip under the stars",
-    image: "https://images.unsplash.com/photo-1507608869274-d3177c8bb4c7?w=800&q=80"
+    image: "/images/beach-bonfire.jpg"
   },
   {
     id: "functional",
