@@ -145,15 +145,15 @@ const WhyWeDontDrink = () => {
         </div>
 
         {/* DESKTOP: Scattered rotating cards */}
-        <div className="hidden lg:block relative h-[500px]">
+        <div className="hidden lg:block relative h-[500px] max-w-6xl mx-auto">
           {getVisibleReasons().map((reason, index) => {
-            // Position cards in a scattered pattern
+            // Position cards in a centered scattered pattern
             const positions = [
-              { left: "5%", top: "10%", rotate: "-6deg", scale: 1 },
-              { left: "25%", top: "50%", rotate: "3deg", scale: 0.95 },
-              { left: "45%", top: "5%", rotate: "-2deg", scale: 1.05 },
-              { left: "65%", top: "45%", rotate: "5deg", scale: 0.9 },
-              { left: "80%", top: "15%", rotate: "-4deg", scale: 1 },
+              { left: "2%", top: "15%", rotate: "-6deg", scale: 1 },
+              { left: "18%", top: "55%", rotate: "3deg", scale: 0.95 },
+              { left: "38%", top: "8%", rotate: "-2deg", scale: 1.05 },
+              { left: "55%", top: "50%", rotate: "5deg", scale: 0.9 },
+              { left: "72%", top: "18%", rotate: "-4deg", scale: 1 },
             ];
 
             const pos = positions[index];
@@ -162,7 +162,7 @@ const WhyWeDontDrink = () => {
             return (
               <div
                 key={reason.id}
-                className={`absolute w-72 bg-cream border-2 border-forest-deep p-6 shadow-brutal transition-all duration-700 hover:scale-105 hover:z-20 ${
+                className={`absolute w-64 bg-cream border-2 border-forest-deep p-6 shadow-brutal transition-all duration-700 hover:scale-105 hover:z-20 ${
                   isCenter ? "z-10" : "z-0"
                 }`}
                 style={{
