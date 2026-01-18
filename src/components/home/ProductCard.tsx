@@ -27,19 +27,19 @@ const ProductCard = ({ product, variant = "default" }: ProductCardProps) => {
           className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
         />
         
-        {/* Badge */}
+        {/* Badge - high z-index to stay above overlay */}
         {product.badge && (
           <Badge 
-            className="absolute top-4 left-4 bg-sunset text-primary-foreground font-sans text-xs font-medium border-0"
+            className="absolute top-4 left-4 z-20 bg-gold text-forest-deep font-sans text-xs font-bold border-0 shadow-md"
           >
             {product.badge}
           </Badge>
         )}
 
-        {/* Quick Add Overlay */}
-        <div className="absolute inset-x-0 bottom-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+        {/* Quick Add Overlay - stops below badge area */}
+        <div className="absolute inset-x-0 bottom-0 top-16 flex items-end p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gradient-to-t from-forest-deep/80 via-forest-deep/40 to-transparent">
           <Button 
-            className="w-full font-sans text-sm font-medium bg-foreground hover:bg-driftwood gap-2"
+            className="w-full font-sans text-sm font-medium bg-forest text-cream hover:bg-forest-light gap-2"
             size="lg"
           >
             <ShoppingBag className="h-4 w-4" />
