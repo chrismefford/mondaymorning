@@ -103,7 +103,7 @@ const Collections = () => {
                 key={collection.id}
                 href={`#${collection.id}`}
                 className={`group relative overflow-hidden border-2 border-cream/20 hover:border-gold transition-colors duration-300 ${
-                  index === 0 ? 'md:row-span-2 aspect-square md:aspect-auto' : 'aspect-[16/9]'
+                  index === 0 || collection.id === 'na-beer' ? 'md:row-span-2 aspect-square md:aspect-auto' : 'aspect-[16/9]'
                 }`}
               >
                 <img
