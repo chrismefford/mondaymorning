@@ -1,4 +1,5 @@
-import { Instagram, Mail, MapPin } from "lucide-react";
+import { Instagram, Mail, MapPin, Settings } from "lucide-react";
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import logoSecondaryWhite from "@/assets/logo-secondary-white.svg";
@@ -129,6 +130,13 @@ const Footer = () => {
                 {item}
               </a>
             ))}
+            <Link 
+              to="/admin"
+              className="font-sans text-xs text-cream/50 hover:text-gold transition-colors flex items-center gap-1"
+            >
+              <Settings className="w-3 h-3" />
+              Admin
+            </Link>
           </div>
         </div>
       </div>
