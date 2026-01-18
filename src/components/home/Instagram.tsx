@@ -10,7 +10,7 @@ const instagramImages = [
     alt: "Cocktail at golden hour",
   },
   {
-    src: "https://images.unsplash.com/photo-1473116763249-2fce8e5c4e4e?w=400&q=80",
+    src: "/images/beach-bonfire.jpg",
     alt: "Beach bonfire vibes",
   },
   {
@@ -66,6 +66,9 @@ const Instagram = () => {
                 <img
                   src={image.src}
                   alt={image.alt}
+                  onError={(e) => {
+                    e.currentTarget.src = "/placeholder.svg";
+                  }}
                   className="w-full h-full object-cover"
                 />
                 <div className="absolute inset-0 bg-primary/0 group-active:bg-primary/30 transition-colors flex items-center justify-center">
@@ -87,6 +90,9 @@ const Instagram = () => {
               <img
                 src={image.src}
                 alt={image.alt}
+                onError={(e) => {
+                  e.currentTarget.src = "/placeholder.svg";
+                }}
                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
               />
               {/* Hover overlay */}
