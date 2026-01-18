@@ -85,10 +85,10 @@ const Story = () => {
           <Button 
             variant="outline" 
             size="lg"
-            className="w-full mt-8 font-sans text-sm font-bold uppercase tracking-widest py-5 border-2 border-forest text-forest hover:bg-forest hover:text-cream"
+            className="w-full mt-8 font-sans text-xs sm:text-sm font-bold uppercase tracking-wider sm:tracking-widest py-5 border-2 border-forest text-forest hover:bg-forest hover:text-cream"
           >
-            Visit Ocean Beach or Pacific Beach
-            <ArrowRight className="ml-2 h-4 w-4" />
+            <span className="truncate">Visit Ocean Beach or Pacific Beach</span>
+            <ArrowRight className="ml-2 h-4 w-4 flex-shrink-0" />
           </Button>
         </div>
 
