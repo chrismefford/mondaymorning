@@ -23,6 +23,7 @@ const categoryItems = [
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isCollectionsOpen, setIsCollectionsOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -179,23 +180,62 @@ const Header = () => {
           {/* Navigation links */}
           <div className="space-y-2">
             {navLinks.map((link, index) => (
-              <a
-                key={link.name}
-                href={link.href}
-                className={`group flex items-center justify-between py-4 border-b border-background/10 transition-all duration-500 ${
-                  isMenuOpen ? 'translate-x-0 opacity-100' : 'translate-x-8 opacity-0'
-                }`}
-                style={{ transitionDelay: `${index * 100 + 200}ms` }}
-                onClick={() => setIsMenuOpen(false)}
-              >
-                <div className="flex items-baseline gap-4">
-                  <span className="font-sans text-xs text-primary tracking-widest">{link.number}</span>
-                  <span className="font-serif text-4xl text-background group-hover:text-primary transition-colors">
-                    {link.name}
-                  </span>
+              link.hasDropdown ? (
+                <div key={link.name}>
+                  <button
+                    className={`group w-full flex items-center justify-between py-4 border-b border-background/10 transition-all duration-500 ${
+                      isMenuOpen ? 'translate-x-0 opacity-100' : 'translate-x-8 opacity-0'
+                    }`}
+                    style={{ transitionDelay: `${index * 100 + 200}ms` }}
+                    onClick={() => setIsCollectionsOpen(!isCollectionsOpen)}
+                  >
+                    <div className="flex items-baseline gap-4">
+                      <span className="font-sans text-xs text-primary tracking-widest">{link.number}</span>
+                      <span className="font-serif text-4xl text-background group-hover:text-primary transition-colors">
+                        {link.name}
+                      </span>
+                    </div>
+                    <ChevronDown className={`h-5 w-5 text-background/40 transition-transform duration-300 ${isCollectionsOpen ? 'rotate-180' : ''}`} />
+                  </button>
+                  {/* Submenu */}
+                  <div className={`overflow-hidden transition-all duration-300 ${isCollectionsOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'}`}>
+                    <div className="pl-8 py-2 space-y-1">
+                      {categoryItems.map((item) => {
+                        const IconComponent = item.icon;
+                        return (
+                          <a
+                            key={item.name}
+                            href="#collections"
+                            className="flex items-center gap-3 py-3 text-background/70 hover:text-primary transition-colors"
+                            onClick={() => setIsMenuOpen(false)}
+                          >
+                            <IconComponent className="h-4 w-4 text-primary" />
+                            <span className="font-sans text-sm tracking-wide">{item.name}</span>
+                          </a>
+                        );
+                      })}
+                    </div>
+                  </div>
                 </div>
-                <ArrowUpRight className="h-5 w-5 text-background/40 group-hover:text-primary group-hover:translate-x-1 group-hover:-translate-y-1 transition-all" />
-              </a>
+              ) : (
+                <a
+                  key={link.name}
+                  href={link.href}
+                  className={`group flex items-center justify-between py-4 border-b border-background/10 transition-all duration-500 ${
+                    isMenuOpen ? 'translate-x-0 opacity-100' : 'translate-x-8 opacity-0'
+                  }`}
+                  style={{ transitionDelay: `${index * 100 + 200}ms` }}
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  <div className="flex items-baseline gap-4">
+                    <span className="font-sans text-xs text-primary tracking-widest">{link.number}</span>
+                    <span className="font-serif text-4xl text-background group-hover:text-primary transition-colors">
+                      {link.name}
+                    </span>
+                  </div>
+                  <ArrowUpRight className="h-5 w-5 text-background/40 group-hover:text-primary group-hover:translate-x-1 group-hover:-translate-y-1 transition-all" />
+                </a>
+              )
             ))}
           </div>
 
