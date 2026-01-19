@@ -3,6 +3,7 @@ import { Input } from "@/components/ui/input";
 import { ArrowRight } from "lucide-react";
 import stampGold from "@/assets/stamp-gold.svg";
 import textureGreen from "@/assets/texture-green.svg";
+import friendsCocktails from "@/assets/friends-cocktails.jpg";
 
 const Newsletter = () => {
   return (
@@ -12,8 +13,8 @@ const Newsletter = () => {
         {/* Background image */}
         <div className="absolute inset-0">
           <img
-            src="https://images.unsplash.com/photo-1509914398892-963f53e6e2f1?w=1000&q=80"
-            alt="Sunrise over ocean"
+            src={friendsCocktails}
+            alt="Friends enjoying drinks together"
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-forest-deep/90" />
@@ -130,8 +131,8 @@ const Newsletter = () => {
         {/* Right side - Image */}
         <div className="relative h-[50vh] lg:h-auto">
           <img
-            src="https://images.unsplash.com/photo-1509914398892-963f53e6e2f1?w=1000&q=80"
-            alt="Sunrise over ocean"
+            src={friendsCocktails}
+            alt="Friends enjoying drinks together"
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-l from-transparent to-forest/30" />
