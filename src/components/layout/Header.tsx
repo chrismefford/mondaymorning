@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Menu, X, ShoppingBag, ArrowUpRight, Sparkles, Beer, Wine, Martini, Star, Leaf, Package, ChevronDown } from "lucide-react";
+import { Menu, X, ShoppingBag, ArrowUpRight, Sparkles, Beer, Wine, Martini, Star, Leaf, Package, ChevronDown, Sunrise, UtensilsCrossed, Sofa, Umbrella, PartyPopper } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import logoGold from "@/assets/logo-primary-gold.svg";
 import logoWhite from "@/assets/logo-primary-white.svg";
@@ -20,10 +20,19 @@ const categoryItems = [
   { name: "Other", icon: Package },
 ];
 
+const recipeItems = [
+  { name: "Breakfast", icon: Sunrise, href: "/recipes?occasion=breakfast" },
+  { name: "Dinner", icon: UtensilsCrossed, href: "/recipes?occasion=dinner" },
+  { name: "Relaxing", icon: Sofa, href: "/recipes?occasion=relaxing" },
+  { name: "Beach", icon: Umbrella, href: "/recipes?occasion=beach" },
+  { name: "Celebration", icon: PartyPopper, href: "/recipes?occasion=celebration" },
+];
+
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isCollectionsOpen, setIsCollectionsOpen] = useState(false);
+  const [isRecipesOpen, setIsRecipesOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -47,9 +56,9 @@ const Header = () => {
 
   const navLinks = [
     { name: "Shop", href: "#shop", number: "01" },
-    { name: "Collections", href: "#collections", number: "02", hasDropdown: true },
+    { name: "Collections", href: "#collections", number: "02", hasDropdown: true, dropdownType: "collections" },
     { name: "Story", href: "/about", number: "03" },
-    { name: "Recipes", href: "/recipes", number: "04" },
+    { name: "Recipes", href: "/recipes", number: "04", hasDropdown: true, dropdownType: "recipes" },
   ];
 
   return (
@@ -74,8 +83,9 @@ const Header = () => {
 
             {/* Desktop Navigation - Center */}
             <nav className="hidden lg:flex items-center gap-1">
-              {navLinks.map((link) => (
-                link.hasDropdown ? (
+              {navLinks.map((link) => {
+                const dropdownItems = link.dropdownType === "recipes" ? recipeItems : categoryItems;
+                return link.hasDropdown ? (
                   <DropdownMenu key={link.name} modal={false}>
                     <DropdownMenuTrigger asChild>
                       <button
@@ -91,15 +101,26 @@ const Header = () => {
                       sideOffset={8}
                       align="center"
                     >
-                      {categoryItems.map((item) => {
+                      {dropdownItems.map((item) => {
                         const IconComponent = item.icon;
+                        const itemHref = 'href' in item ? (item as { href: string }).href : undefined;
                         return (
                           <DropdownMenuItem 
                             key={item.name}
                             className="flex items-center gap-3 px-4 py-3 cursor-pointer text-cream hover:text-forest hover:bg-gold focus:bg-gold focus:text-forest rounded-none border-b border-cream/10 last:border-b-0 transition-all duration-200"
+                            asChild={!!itemHref}
                           >
-                            <IconComponent className="h-5 w-5 text-gold" />
-                            <span className="font-sans text-sm font-medium tracking-wide">{item.name}</span>
+                            {itemHref ? (
+                              <a href={itemHref}>
+                                <IconComponent className="h-5 w-5 text-gold" />
+                                <span className="font-sans text-sm font-medium tracking-wide">{item.name}</span>
+                              </a>
+                            ) : (
+                              <>
+                                <IconComponent className="h-5 w-5 text-gold" />
+                                <span className="font-sans text-sm font-medium tracking-wide">{item.name}</span>
+                              </>
+                            )}
                           </DropdownMenuItem>
                         );
                       })}
@@ -114,8 +135,8 @@ const Header = () => {
                     {link.name}
                     <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1 h-1 bg-primary scale-0 group-hover:scale-100 transition-transform duration-200" />
                   </a>
-                )
-              ))}
+                );
+              })}
             </nav>
 
             {/* Desktop Actions */}
@@ -179,15 +200,19 @@ const Header = () => {
         <nav className="relative z-10 h-full flex flex-col justify-center px-6">
           {/* Navigation links */}
           <div className="space-y-2">
-            {navLinks.map((link, index) => (
-              link.hasDropdown ? (
+            {navLinks.map((link, index) => {
+              const isOpen = link.dropdownType === "collections" ? isCollectionsOpen : isRecipesOpen;
+              const setIsOpen = link.dropdownType === "collections" ? setIsCollectionsOpen : setIsRecipesOpen;
+              const dropdownItems = link.dropdownType === "recipes" ? recipeItems : categoryItems;
+              
+              return link.hasDropdown ? (
                 <div key={link.name}>
                   <button
                     className={`group w-full flex items-center justify-between py-4 border-b border-background/10 transition-all duration-500 ${
                       isMenuOpen ? 'translate-x-0 opacity-100' : 'translate-x-8 opacity-0'
                     }`}
                     style={{ transitionDelay: `${index * 100 + 200}ms` }}
-                    onClick={() => setIsCollectionsOpen(!isCollectionsOpen)}
+                    onClick={() => setIsOpen(!isOpen)}
                   >
                     <div className="flex items-baseline gap-4">
                       <span className="font-sans text-xs text-primary tracking-widest">{link.number}</span>
@@ -195,17 +220,18 @@ const Header = () => {
                         {link.name}
                       </span>
                     </div>
-                    <ChevronDown className={`h-5 w-5 text-background/40 transition-transform duration-300 ${isCollectionsOpen ? 'rotate-180' : ''}`} />
+                    <ChevronDown className={`h-5 w-5 text-background/40 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`} />
                   </button>
                   {/* Submenu */}
-                  <div className={`overflow-hidden transition-all duration-300 ${isCollectionsOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'}`}>
+                  <div className={`overflow-hidden transition-all duration-300 ${isOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'}`}>
                     <div className="pl-8 py-2 space-y-1">
-                      {categoryItems.map((item) => {
+                      {dropdownItems.map((item) => {
                         const IconComponent = item.icon;
+                        const itemHref = 'href' in item ? (item as { href: string }).href : link.href;
                         return (
                           <a
                             key={item.name}
-                            href="#collections"
+                            href={itemHref}
                             className="flex items-center gap-3 py-3 text-background/70 hover:text-primary transition-colors"
                             onClick={() => setIsMenuOpen(false)}
                           >
@@ -235,8 +261,8 @@ const Header = () => {
                   </div>
                   <ArrowUpRight className="h-5 w-5 text-background/40 group-hover:text-primary group-hover:translate-x-1 group-hover:-translate-y-1 transition-all" />
                 </a>
-              )
-            ))}
+              );
+            })}
           </div>
 
           {/* Bottom section */}
