@@ -1,8 +1,24 @@
 import { collections } from "@/data/products";
-import { ArrowUpRight, ArrowRight } from "lucide-react";
+import { ArrowUpRight, ArrowRight, Sparkles, Beer, Wine, Martini, Star, Leaf, Package, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import stampGold from "@/assets/stamp-gold.svg";
 import textureGreen from "@/assets/texture-green.svg";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+
+const categoryItems = [
+  { name: "Best Sellers", icon: Sparkles, emoji: "🔥" },
+  { name: "NA Beer", icon: Beer, emoji: "🍺" },
+  { name: "NA Wine", icon: Wine, emoji: "🍷" },
+  { name: "NA Spirits", icon: Martini, emoji: "🍸" },
+  { name: "Staff Favorites", icon: Star, emoji: "⭐" },
+  { name: "Functionals", icon: Leaf, emoji: "🌿" },
+  { name: "Other", icon: Package, emoji: "📦" },
+];
 
 const Collections = () => {
   return (
@@ -29,9 +45,38 @@ const Collections = () => {
               <span className="font-sans text-[10px] lg:text-xs font-medium uppercase tracking-[0.2em] text-gold mb-2 lg:mb-4 block">
                 400+ Options
               </span>
-              <h2 className="font-serif text-3xl lg:text-5xl xl:text-6xl leading-[1] text-cream">
-                Find your <span className="italic text-gold">vibe</span>
-              </h2>
+              <div className="flex items-center gap-4">
+                <h2 className="font-serif text-3xl lg:text-5xl xl:text-6xl leading-[1] text-cream">
+                  Find your <span className="italic text-gold">vibe</span>
+                </h2>
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <Button 
+                      variant="outline" 
+                      className="border-2 border-gold/50 bg-transparent text-gold hover:bg-gold hover:text-forest hover:border-gold transition-all duration-300 font-sans text-xs uppercase tracking-wider group"
+                    >
+                      <span>Shop by Category</span>
+                      <ChevronDown className="ml-2 h-4 w-4 transition-transform duration-300 group-data-[state=open]:rotate-180" />
+                    </Button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent 
+                    className="w-64 bg-forest-deep border-2 border-gold/30 p-2 z-50"
+                    sideOffset={8}
+                  >
+                    {categoryItems.map((item, index) => (
+                      <DropdownMenuItem 
+                        key={item.name}
+                        className="flex items-center gap-3 px-4 py-3 cursor-pointer text-cream hover:text-forest hover:bg-gold focus:bg-gold focus:text-forest rounded-none border-b border-cream/10 last:border-b-0 transition-all duration-200 group"
+                        style={{ animationDelay: `${index * 50}ms` }}
+                      >
+                        <span className="text-xl group-hover:scale-125 transition-transform duration-200">{item.emoji}</span>
+                        <item.icon className="h-4 w-4 text-gold group-hover:text-forest" />
+                        <span className="font-sans text-sm font-medium tracking-wide">{item.name}</span>
+                      </DropdownMenuItem>
+                    ))}
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              </div>
             </div>
             <p className="font-sans text-sm lg:text-lg text-cream/70 max-w-md">
               Wines, beers, spirits, aperitifs—we've got it all. No guessing, just tasting.
