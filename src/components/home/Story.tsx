@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, MapPin, Users, Sparkles } from "lucide-react";
+import { Link } from "react-router-dom";
 import friendsDrinking from "@/assets/friends-drinking.jpg";
 import stampGreen from "@/assets/stamp-green.svg";
 import textureCream from "@/assets/texture-cream.svg";
@@ -200,13 +201,15 @@ const Story = () => {
           </div>
 
           <div className="text-center mt-12 lg:mt-16">
-            <Button 
-              size="lg"
-              className="font-sans text-sm font-bold uppercase tracking-widest bg-forest text-cream hover:bg-forest-deep px-8 py-6 group"
-            >
-              Find a Location
-              <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-            </Button>
+            <Link to="/locations">
+              <Button 
+                size="lg"
+                className="font-sans text-sm font-bold uppercase tracking-widest bg-forest text-cream hover:bg-forest-deep px-8 py-6 group"
+              >
+                Find a Location
+                <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+              </Button>
+            </Link>
           </div>
         </div>
       </div>
