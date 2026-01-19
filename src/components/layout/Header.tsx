@@ -1,8 +1,24 @@
 import { useState, useEffect } from "react";
-import { Menu, X, ShoppingBag, ArrowUpRight } from "lucide-react";
+import { Menu, X, ShoppingBag, ArrowUpRight, Sparkles, Beer, Wine, Martini, Star, Leaf, Package, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import logoGold from "@/assets/logo-primary-gold.svg";
 import logoWhite from "@/assets/logo-primary-white.svg";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+
+const categoryItems = [
+  { name: "Best Sellers", icon: Sparkles, emoji: "🔥" },
+  { name: "NA Beer", icon: Beer, emoji: "🍺" },
+  { name: "NA Wine", icon: Wine, emoji: "🍷" },
+  { name: "NA Spirits", icon: Martini, emoji: "🍸" },
+  { name: "Staff Favorites", icon: Star, emoji: "⭐" },
+  { name: "Functionals", icon: Leaf, emoji: "🌿" },
+  { name: "Other", icon: Package, emoji: "📦" },
+];
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -30,7 +46,7 @@ const Header = () => {
 
   const navLinks = [
     { name: "Shop", href: "#shop", number: "01" },
-    { name: "Collections", href: "#collections", number: "02" },
+    { name: "Collections", href: "#collections", number: "02", hasDropdown: true },
     { name: "Story", href: "#story", number: "03" },
     { name: "Journal", href: "#journal", number: "04" },
   ];
@@ -58,14 +74,47 @@ const Header = () => {
             {/* Desktop Navigation - Center */}
             <nav className="hidden lg:flex items-center gap-1">
               {navLinks.map((link) => (
-                <a
-                  key={link.name}
-                  href={link.href}
-                  className="font-sans text-xs font-semibold uppercase tracking-[0.15em] text-foreground px-5 py-2 hover:text-primary transition-colors duration-200 relative group"
-                >
-                  {link.name}
-                  <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1 h-1 bg-primary scale-0 group-hover:scale-100 transition-transform duration-200" />
-                </a>
+                link.hasDropdown ? (
+                  <DropdownMenu key={link.name} modal={false}>
+                    <DropdownMenuTrigger asChild>
+                      <button
+                        className="font-sans text-xs font-semibold uppercase tracking-[0.15em] text-foreground px-5 py-2 hover:text-primary transition-colors duration-200 relative group flex items-center gap-1"
+                      >
+                        {link.name}
+                        <ChevronDown className="h-3 w-3 transition-transform duration-200 group-data-[state=open]:rotate-180" />
+                        <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1 h-1 bg-primary scale-0 group-hover:scale-100 transition-transform duration-200" />
+                      </button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent 
+                      className="w-64 bg-forest border-2 border-gold/30 p-2 mt-2"
+                      sideOffset={8}
+                      align="center"
+                    >
+                      {categoryItems.map((item) => {
+                        const IconComponent = item.icon;
+                        return (
+                          <DropdownMenuItem 
+                            key={item.name}
+                            className="flex items-center gap-3 px-4 py-3 cursor-pointer text-cream hover:text-forest hover:bg-gold focus:bg-gold focus:text-forest rounded-none border-b border-cream/10 last:border-b-0 transition-all duration-200"
+                          >
+                            <span className="text-xl">{item.emoji}</span>
+                            <IconComponent className="h-4 w-4 text-gold" />
+                            <span className="font-sans text-sm font-medium tracking-wide">{item.name}</span>
+                          </DropdownMenuItem>
+                        );
+                      })}
+                    </DropdownMenuContent>
+                  </DropdownMenu>
+                ) : (
+                  <a
+                    key={link.name}
+                    href={link.href}
+                    className="font-sans text-xs font-semibold uppercase tracking-[0.15em] text-foreground px-5 py-2 hover:text-primary transition-colors duration-200 relative group"
+                  >
+                    {link.name}
+                    <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1 h-1 bg-primary scale-0 group-hover:scale-100 transition-transform duration-200" />
+                  </a>
+                )
               ))}
             </nav>
 
