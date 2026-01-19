@@ -11,13 +11,13 @@ import {
 } from "@/components/ui/dropdown-menu";
 
 const categoryItems = [
-  { name: "Best Sellers", icon: Sparkles, emoji: "🔥" },
-  { name: "NA Beer", icon: Beer, emoji: "🍺" },
-  { name: "NA Wine", icon: Wine, emoji: "🍷" },
-  { name: "NA Spirits", icon: Martini, emoji: "🍸" },
-  { name: "Staff Favorites", icon: Star, emoji: "⭐" },
-  { name: "Functionals", icon: Leaf, emoji: "🌿" },
-  { name: "Other", icon: Package, emoji: "📦" },
+  { name: "Best Sellers", icon: Sparkles },
+  { name: "NA Beer", icon: Beer },
+  { name: "NA Wine", icon: Wine },
+  { name: "NA Spirits", icon: Martini },
+  { name: "Staff Favorites", icon: Star },
+  { name: "Functionals", icon: Leaf },
+  { name: "Other", icon: Package },
 ];
 
 const Header = () => {
@@ -97,8 +97,7 @@ const Header = () => {
                             key={item.name}
                             className="flex items-center gap-3 px-4 py-3 cursor-pointer text-cream hover:text-forest hover:bg-gold focus:bg-gold focus:text-forest rounded-none border-b border-cream/10 last:border-b-0 transition-all duration-200"
                           >
-                            <span className="text-xl">{item.emoji}</span>
-                            <IconComponent className="h-4 w-4 text-gold" />
+                            <IconComponent className="h-5 w-5 text-gold" />
                             <span className="font-sans text-sm font-medium tracking-wide">{item.name}</span>
                           </DropdownMenuItem>
                         );
