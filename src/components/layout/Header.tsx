@@ -47,7 +47,7 @@ const Header = () => {
   const navLinks = [
     { name: "Shop", href: "#shop", number: "01" },
     { name: "Collections", href: "#collections", number: "02", hasDropdown: true },
-    { name: "Story", href: "#story", number: "03" },
+    { name: "Story", href: "/about", number: "03" },
     { name: "Recipes", href: "#recipes", number: "04" },
   ];
 
