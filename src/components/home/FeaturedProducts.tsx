@@ -12,7 +12,7 @@ const FeaturedProducts = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
 
   return (
-    <section id="shop" className="py-16 lg:py-40 bg-cream relative overflow-hidden">
+    <section id="shop" className="py-10 lg:py-24 bg-cream relative overflow-hidden">
       {/* Organic texture background */}
       <div 
         className="absolute inset-0 opacity-40 pointer-events-none"
