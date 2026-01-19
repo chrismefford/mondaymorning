@@ -59,36 +59,48 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Shop Column */}
+          {/* Pacific Beach Location */}
           <div>
-            <h4 className="font-sans text-xs font-semibold uppercase tracking-wider mb-4 text-gold">
-              Shop
+            <h4 className="font-serif text-xl italic text-cream mb-2 relative inline-block">
+              Pacific Beach
+              <span className="absolute bottom-0 left-0 w-full h-0.5 bg-gold"></span>
             </h4>
-            <ul className="space-y-3">
-              {["All Products", "Best Sellers", "New Arrivals", "Collections", "Gift Sets"].map((item) => (
-                <li key={item}>
-                  <a href="#" className="font-sans text-sm text-cream/70 hover:text-gold transition-colors">
-                    {item}
-                  </a>
-                </li>
-              ))}
-            </ul>
+            <div className="mt-4 space-y-3">
+              <p className="font-sans text-sm text-cream/90 uppercase tracking-wide">
+                1854 Garnet Ave.<br />
+                San Diego, CA 92109
+              </p>
+              <div className="space-y-1">
+                <p className="font-sans text-sm text-cream/70 uppercase tracking-wide">
+                  Mon - Sat  11 AM - 8 PM
+                </p>
+                <p className="font-sans text-sm text-gold uppercase tracking-wide">
+                  *Sunday 11 AM - 4 PM
+                </p>
+              </div>
+            </div>
           </div>
 
-          {/* Company Column */}
+          {/* Ocean Beach Location */}
           <div>
-            <h4 className="font-sans text-xs font-semibold uppercase tracking-wider mb-4 text-gold">
-              Company
+            <h4 className="font-serif text-xl italic text-cream mb-2 relative inline-block">
+              Ocean Beach
+              <span className="absolute bottom-0 left-0 w-full h-0.5 bg-gold"></span>
             </h4>
-            <ul className="space-y-3">
-              {["Our Story", "Journal", "San Diego Stockists", "Wholesale", "Contact"].map((item) => (
-                <li key={item}>
-                  <a href="#" className="font-sans text-sm text-cream/70 hover:text-gold transition-colors">
-                    {item}
-                  </a>
-                </li>
-              ))}
-            </ul>
+            <div className="mt-4 space-y-3">
+              <p className="font-sans text-sm text-cream/90 uppercase tracking-wide">
+                4967 Newport Ave<br />
+                San Diego, CA 92107
+              </p>
+              <div className="space-y-1">
+                <p className="font-sans text-sm text-cream/70 uppercase tracking-wide">
+                  Mon - Sunday 9 AM - 6 PM
+                </p>
+                <p className="font-sans text-sm text-gold uppercase tracking-wide">
+                  *Wednesday Open 8 PM
+                </p>
+              </div>
+            </div>
           </div>
 
           {/* Newsletter Column */}
