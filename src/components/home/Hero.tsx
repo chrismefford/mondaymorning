@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, ArrowDown } from "lucide-react";
+import { Link } from "react-router-dom";
 import naBeer from "@/assets/na-beer.jpg";
 import naWine from "@/assets/na-wine.jpg";
 import naOldFashioned from "@/assets/na-old-fashioned.jpg";
@@ -74,13 +75,15 @@ const Hero = () => {
               Come Try Something
               <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
-            <Button 
-              variant="outline" 
-              size="lg"
-              className="w-full font-sans text-sm font-bold uppercase tracking-widest py-6 border-2 border-cream/30 text-cream bg-transparent hover:bg-cream/10"
-            >
-              Find a Store
-            </Button>
+            <Link to="/locations">
+              <Button 
+                variant="outline" 
+                size="lg"
+                className="w-full font-sans text-sm font-bold uppercase tracking-widest py-6 border-2 border-cream/30 text-cream bg-transparent hover:bg-cream/10"
+              >
+                Find a Store
+              </Button>
+            </Link>
           </div>
         </div>
 
@@ -159,13 +162,15 @@ const Hero = () => {
               Come Try Something
               <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
-            <Button 
-              variant="outline" 
-              size="lg"
-              className="font-sans text-sm font-semibold uppercase tracking-wider px-8 py-6 border-2 border-forest hover:bg-forest hover:text-cream transition-all"
-            >
-              Find a Store
-            </Button>
+            <Link to="/locations">
+              <Button 
+                variant="outline" 
+                size="lg"
+                className="font-sans text-sm font-semibold uppercase tracking-wider px-8 py-6 border-2 border-forest hover:bg-forest hover:text-cream transition-all"
+              >
+                Find a Store
+              </Button>
+            </Link>
           </div>
         </div>
 
