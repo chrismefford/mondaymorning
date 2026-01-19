@@ -6,6 +6,7 @@ import stampGold from "@/assets/stamp-gold.svg";
 import textureCream from "@/assets/texture-cream.svg";
 import textureGreen from "@/assets/texture-green.svg";
 import zaneFounder from "@/assets/zane-founder.png";
+import cheersDrinks from "@/assets/cheers-drinks.jpg";
 
 const About = () => {
   const brands = [
@@ -78,8 +79,8 @@ const About = () => {
           <div className="container mx-auto px-4 lg:px-8">
             <div className="relative aspect-[16/9] lg:aspect-[21/9] overflow-hidden border-2 border-forest">
               <img
-                src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1600&q=80"
-                alt="Monday Morning bottle shop interior"
+                src={cheersDrinks}
+                alt="Friends toasting with drinks"
                 className="w-full h-full object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-forest/40 to-transparent" />
