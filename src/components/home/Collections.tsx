@@ -22,18 +22,18 @@ const categoryItems = [
 
 const Collections = () => {
   return (
-    <section id="collections" className="py-16 lg:py-40 bg-forest text-cream relative overflow-hidden">
+    <section id="collections" className="py-16 lg:py-40 bg-forest text-cream relative">
       {/* Organic texture background */}
       <div 
-        className="absolute inset-0 opacity-10 pointer-events-none mix-blend-overlay"
+        className="absolute inset-0 opacity-10 pointer-events-none mix-blend-overlay overflow-hidden"
         style={{ backgroundImage: `url(${textureGreen})`, backgroundSize: 'cover', backgroundPosition: 'center' }}
       />
       
       {/* Grain overlay */}
-      <div className="grain absolute inset-0 pointer-events-none" />
+      <div className="grain absolute inset-0 pointer-events-none overflow-hidden" />
       
       {/* Decorative stamp */}
-      <div className="absolute -top-20 -right-20 w-64 lg:w-96 opacity-10 pointer-events-none">
+      <div className="absolute -top-20 -right-20 w-64 lg:w-96 opacity-10 pointer-events-none overflow-hidden">
         <img src={stampGold} alt="" className="w-full h-full" />
       </div>
 
@@ -45,35 +45,38 @@ const Collections = () => {
               <span className="font-sans text-[10px] lg:text-xs font-medium uppercase tracking-[0.2em] text-gold mb-2 lg:mb-4 block">
                 400+ Options
               </span>
-              <div className="flex items-center gap-4">
+              <div className="flex flex-col sm:flex-row sm:items-center gap-4">
                 <h2 className="font-serif text-3xl lg:text-5xl xl:text-6xl leading-[1] text-cream">
                   Find your <span className="italic text-gold">vibe</span>
                 </h2>
-                <DropdownMenu>
+                <DropdownMenu modal={false}>
                   <DropdownMenuTrigger asChild>
                     <Button 
                       variant="outline" 
-                      className="border-2 border-gold/50 bg-transparent text-gold hover:bg-gold hover:text-forest hover:border-gold transition-all duration-300 font-sans text-xs uppercase tracking-wider group"
+                      className="w-fit border-2 border-gold/50 bg-transparent text-gold hover:bg-gold hover:text-forest hover:border-gold transition-all duration-300 font-sans text-xs uppercase tracking-wider"
                     >
                       <span>Shop by Category</span>
                       <ChevronDown className="ml-2 h-4 w-4 transition-transform duration-300 group-data-[state=open]:rotate-180" />
                     </Button>
                   </DropdownMenuTrigger>
                   <DropdownMenuContent 
-                    className="w-64 bg-forest-deep border-2 border-gold/30 p-2 z-50"
+                    className="w-64 bg-forest-deep border-2 border-gold/30 p-2"
                     sideOffset={8}
+                    align="start"
                   >
-                    {categoryItems.map((item, index) => (
-                      <DropdownMenuItem 
-                        key={item.name}
-                        className="flex items-center gap-3 px-4 py-3 cursor-pointer text-cream hover:text-forest hover:bg-gold focus:bg-gold focus:text-forest rounded-none border-b border-cream/10 last:border-b-0 transition-all duration-200 group"
-                        style={{ animationDelay: `${index * 50}ms` }}
-                      >
-                        <span className="text-xl group-hover:scale-125 transition-transform duration-200">{item.emoji}</span>
-                        <item.icon className="h-4 w-4 text-gold group-hover:text-forest" />
-                        <span className="font-sans text-sm font-medium tracking-wide">{item.name}</span>
-                      </DropdownMenuItem>
-                    ))}
+                    {categoryItems.map((item) => {
+                      const IconComponent = item.icon;
+                      return (
+                        <DropdownMenuItem 
+                          key={item.name}
+                          className="flex items-center gap-3 px-4 py-3 cursor-pointer text-cream hover:text-forest hover:bg-gold focus:bg-gold focus:text-forest rounded-none border-b border-cream/10 last:border-b-0 transition-all duration-200"
+                        >
+                          <span className="text-xl">{item.emoji}</span>
+                          <IconComponent className="h-4 w-4 text-gold" />
+                          <span className="font-sans text-sm font-medium tracking-wide">{item.name}</span>
+                        </DropdownMenuItem>
+                      );
+                    })}
                   </DropdownMenuContent>
                 </DropdownMenu>
               </div>
