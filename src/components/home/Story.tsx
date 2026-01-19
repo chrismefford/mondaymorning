@@ -1,18 +1,39 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, MapPin, Users, Sparkles } from "lucide-react";
 import friendsDrinking from "@/assets/friends-drinking.jpg";
 import stampGreen from "@/assets/stamp-green.svg";
 import textureCream from "@/assets/texture-cream.svg";
 
 const Story = () => {
-  const steps = [
-    { number: "01", title: "Sample", description: "Walk in and try anything—free tastings, no pressure" },
-    { number: "02", title: "Discover", description: "400+ options means there's something for everyone" },
-    { number: "03", title: "Believe", description: "Leave knowing NA can actually taste incredible" },
+  const pillars = [
+    { 
+      icon: Sparkles,
+      title: "Sip", 
+      subtitle: "Free Tastings",
+      description: "Walk in and try anything. We'll find what you love—no pressure, no judgment." 
+    },
+    { 
+      icon: Users,
+      title: "Sit", 
+      subtitle: "Tasting Room",
+      description: "Stay a while. Our bar serves craft NA cocktails in a space built for community." 
+    },
+    { 
+      icon: MapPin,
+      title: "Shop", 
+      subtitle: "400+ Options",
+      description: "Take your favorites home. The largest AF selection in America, curated for you." 
+    },
+  ];
+
+  const stats = [
+    { value: "61%", label: "of Gen Z are drinking less" },
+    { value: "49%", label: "of Millennials are cutting back" },
+    { value: "400+", label: "flavors to discover" },
   ];
 
   return (
-    <section id="story" className="py-16 lg:py-40 bg-cream relative overflow-hidden">
+    <section id="story" className="bg-cream relative overflow-hidden">
       {/* Organic texture background */}
       <div 
         className="absolute inset-0 opacity-30 pointer-events-none"
@@ -20,176 +41,172 @@ const Story = () => {
       />
       
       {/* Background stamp watermark */}
-      <div className="absolute top-0 left-0 w-[30rem] lg:w-[60rem] opacity-[0.03] pointer-events-none select-none -translate-x-1/4 -translate-y-1/4">
+      <div className="absolute top-0 right-0 w-[30rem] lg:w-[50rem] opacity-[0.03] pointer-events-none select-none translate-x-1/4 -translate-y-1/4">
         <img src={stampGreen} alt="" className="w-full h-full" />
       </div>
 
-      <div className="container mx-auto px-4 lg:px-8 relative z-10">
-        {/* MOBILE LAYOUT */}
-        <div className="lg:hidden">
-          {/* Header */}
-          <div className="mb-8">
-            <span className="font-sans text-[10px] font-medium uppercase tracking-[0.2em] text-forest mb-2 block">
-              Why We Exist
+      {/* HERO SECTION */}
+      <div className="relative py-16 lg:py-32">
+        <div className="container mx-auto px-4 lg:px-8 relative z-10">
+          {/* MOBILE LAYOUT */}
+          <div className="lg:hidden">
+            <span className="font-sans text-[10px] font-medium uppercase tracking-[0.3em] text-gold mb-4 block">
+              About Our Bottle Shop + Tasting Room
             </span>
-            <h2 className="font-serif text-3xl leading-[1.1]">
-              We love <span className="italic text-gold">skeptics</span>
+            <h2 className="font-serif text-4xl leading-[1.05] mb-6">
+              Drink <span className="italic text-gold">differently</span>
             </h2>
-          </div>
-
-          {/* Single hero image with overlay content */}
-          <div className="relative mb-8">
-            <div className="aspect-[4/5] overflow-hidden border-2 border-forest">
-              <img
-                src={friendsDrinking}
-                alt="Friends sharing drinks at sunset"
-                className="w-full h-full object-cover"
-              />
-            </div>
-            {/* Floating quote card */}
-            <div className="absolute -bottom-6 left-4 right-4 bg-gold border-2 border-forest p-5 shadow-brutal">
-              <p className="font-serif text-lg italic leading-relaxed text-forest-deep">
-                "We'll make you a believer."
-              </p>
-            </div>
-          </div>
-
-          {/* Content below image - The WHY */}
-          <div className="mt-12 space-y-5">
-            <p className="font-sans text-base text-muted-foreground leading-relaxed">
-              "NA drinks can't taste good." We hear it all the time. That's exactly why we opened—to prove it wrong.
-            </p>
-            <p className="font-sans text-base text-muted-foreground leading-relaxed">
-              Forget sugary mocktails with Sprite and juice. We've got <strong className="text-forest">400+ flavors</strong>—wines, beers, spirits, aperitifs—that rival the real thing. This isn't guesswork. Come in. Try something. Taste the difference.
-            </p>
-            <p className="font-sans text-lg font-medium text-forest">
-              Our favorite customers? The ones who don't believe us yet.
+            <p className="font-sans text-base text-muted-foreground leading-relaxed mb-8">
+              We're on a mission to prove that alcohol-free doesn't mean boring. Welcome to America's #1 NA shop.
             </p>
           </div>
 
-          {/* Sample, Sip, Shop */}
-          <div className="mt-8 py-6 border-y-2 border-forest/20">
-            <div className="space-y-4">
-              {steps.map((step) => (
-                <div key={step.title} className="flex items-start gap-4">
-                  <span className="font-serif text-2xl font-bold text-gold">{step.number}</span>
-                  <div>
-                    <h4 className="font-serif text-lg font-bold text-forest">{step.title}</h4>
-                    <p className="font-sans text-sm text-muted-foreground">{step.description}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
+          {/* DESKTOP LAYOUT */}
+          <div className="hidden lg:block max-w-4xl">
+            <span className="font-sans text-xs font-medium uppercase tracking-[0.3em] text-gold mb-6 block">
+              About Our Bottle Shop + Tasting Room
+            </span>
+            <h2 className="font-serif text-5xl xl:text-7xl leading-[1.05] mb-8">
+              Drink <span className="italic text-gold">differently</span>
+            </h2>
+            <p className="font-sans text-xl text-muted-foreground leading-relaxed max-w-2xl">
+              We're on a mission to prove that alcohol-free doesn't mean boring. Welcome to San Diego's home for the curious, the sober, and everyone in between.
+            </p>
           </div>
-
-          <Button 
-            variant="outline" 
-            size="lg"
-            className="w-full mt-8 font-sans text-xs sm:text-sm font-bold uppercase tracking-wider sm:tracking-widest py-5 border-2 border-forest text-forest hover:bg-forest hover:text-cream"
-          >
-            <span className="truncate">Visit Ocean Beach or Pacific Beach</span>
-            <ArrowRight className="ml-2 h-4 w-4 flex-shrink-0" />
-          </Button>
         </div>
+      </div>
 
-        {/* DESKTOP LAYOUT */}
-        <div className="hidden lg:grid lg:grid-cols-12 gap-8 lg:gap-16 items-start">
-          {/* Content Column */}
-          <div className="lg:col-span-5 lg:sticky lg:top-32">
-            <span className="font-sans text-xs font-medium uppercase tracking-[0.2em] text-forest mb-6 block">
-              Why We Exist
-            </span>
-            
-            <h2 className="font-serif text-4xl lg:text-5xl xl:text-6xl leading-[1.1] mb-8">
-              We love <span className="italic text-gold">skeptics</span>
-            </h2>
-            
-            <div className="space-y-6 font-sans text-lg text-muted-foreground leading-relaxed mb-10">
-              <p>
-                "NA drinks can't taste good." We hear it all the time. <strong className="text-forest">That's exactly why we opened.</strong>
-              </p>
-              <p>
-                Forget sugary mocktails with Sprite and juice. We stock <strong className="text-forest">400+ flavors</strong>—wines, beers, spirits, aperitifs—more than any shop in America. This isn't guesswork. Come in. Try something. We'll make you a believer.
-              </p>
-              <p className="text-xl font-medium text-forest">
-                Our favorite customers? The ones who don't believe us yet.
-              </p>
-            </div>
-
-            {/* Sample, Sip, Shop - Horizontal */}
-            <div className="flex gap-8 lg:gap-10 mb-10 py-8 border-y-2 border-forest/20">
-              {steps.map((step) => (
-                <div key={step.title} className="group">
-                  <div className="font-serif text-3xl lg:text-4xl font-bold text-gold group-hover:text-terracotta transition-colors">
-                    {step.number}
-                  </div>
-                  <div className="font-serif text-lg font-bold text-forest mt-1">
-                    {step.title}
-                  </div>
-                  <div className="font-sans text-xs text-muted-foreground mt-1 max-w-[120px]">
-                    {step.description}
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            <Button 
-              variant="outline" 
-              size="lg"
-              className="font-sans text-sm font-semibold uppercase tracking-wider group border-2 border-forest text-forest px-8 py-6 hover:bg-forest hover:text-cream"
-            >
-              Visit Our Stores
-              <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-            </Button>
-          </div>
-
-          {/* Image Column - Stacked images */}
-          <div className="lg:col-span-7 relative">
-            {/* Main image */}
-            <div className="relative mb-6">
-            <div className="aspect-[4/3] overflow-hidden border-2 border-forest">
+      {/* FOUNDER STORY SECTION */}
+      <div className="relative">
+        <div className="container mx-auto px-4 lg:px-8">
+          <div className="lg:grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
+            {/* Image */}
+            <div className="relative mb-8 lg:mb-0">
+              <div className="aspect-[4/5] lg:aspect-[3/4] overflow-hidden border-2 border-forest">
                 <img
                   src={friendsDrinking}
-                  alt="Friends sharing drinks at sunset"
+                  alt="Friends enjoying NA drinks together"
                   className="w-full h-full object-cover"
                 />
               </div>
-              {/* Offset accent box - Gold */}
-              <div className="absolute -bottom-4 -right-4 w-1/3 h-24 bg-gold z-[-1]" />
-            </div>
-
-            {/* Secondary images grid */}
-            <div className="grid grid-cols-2 gap-6">
-              <div className="aspect-square overflow-hidden border-2 border-forest">
-                <img
-                  src="/images/beach-lifestyle.jpg"
-                  alt="Beach lifestyle"
-                  onError={(e) => {
-                    e.currentTarget.src = "/placeholder.svg";
-                  }}
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <div className="aspect-square overflow-hidden border-2 border-forest translate-y-8">
-                <img
-                  src="https://images.unsplash.com/photo-1519046904884-53103b34b206?w=600&q=80"
-                  alt="San Diego beach"
-                  onError={(e) => {
-                    e.currentTarget.src = "/placeholder.svg";
-                  }}
-                  className="w-full h-full object-cover"
-                />
-              </div>
-            </div>
-
-            {/* Quote overlay */}
-            <div className="absolute -left-8 top-1/2 -translate-y-1/2 hidden xl:block">
-              <div className="bg-gold border-2 border-forest p-6 max-w-xs shadow-brutal">
+              {/* Floating quote card - Mobile */}
+              <div className="lg:hidden absolute -bottom-6 left-4 right-4 bg-gold border-2 border-forest p-5 shadow-brutal">
                 <p className="font-serif text-lg italic leading-relaxed text-forest-deep">
-                  "We took on the alcohol industry to prove NA doesn't have to mean boring."
+                  "Monday mornings don't suck anymore."
                 </p>
               </div>
+              {/* Offset accent - Desktop */}
+              <div className="hidden lg:block absolute -bottom-4 -left-4 w-1/3 h-32 bg-gold z-[-1]" />
             </div>
+
+            {/* Content */}
+            <div className="mt-12 lg:mt-0 lg:py-16">
+              <span className="font-sans text-[10px] lg:text-xs font-medium uppercase tracking-[0.2em] text-forest mb-4 lg:mb-6 block">
+                Our Story
+              </span>
+              
+              <h3 className="font-serif text-2xl lg:text-4xl leading-[1.1] mb-6">
+                We love <span className="italic text-gold">skeptics</span>
+              </h3>
+              
+              <div className="space-y-4 lg:space-y-6 font-sans text-base lg:text-lg text-muted-foreground leading-relaxed">
+                <p>
+                  "NA drinks can't taste good." We hear it all the time. <strong className="text-forest">That's exactly why we opened.</strong>
+                </p>
+                <p>
+                  Forget sugary mocktails with Sprite and juice. We stock <strong className="text-forest">400+ flavors</strong>—wines, beers, spirits, aperitifs—more than any shop in America.
+                </p>
+                <p className="text-lg lg:text-xl font-medium text-forest">
+                  Our favorite customers? The ones who don't believe us yet.
+                </p>
+              </div>
+
+              {/* Desktop quote */}
+              <div className="hidden lg:block mt-10 p-6 bg-gold border-2 border-forest max-w-md">
+                <p className="font-serif text-xl italic leading-relaxed text-forest-deep">
+                  "Monday mornings don't suck anymore."
+                </p>
+                <p className="font-sans text-sm text-forest/70 mt-2">— Our founder, on going AF</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* STATS SECTION */}
+      <div className="py-16 lg:py-24 mt-16 lg:mt-24 bg-forest text-cream relative">
+        <div className="grain absolute inset-0 pointer-events-none opacity-50" />
+        <div className="container mx-auto px-4 lg:px-8 relative z-10">
+          <div className="text-center mb-10 lg:mb-16">
+            <span className="font-sans text-[10px] lg:text-xs font-medium uppercase tracking-[0.3em] text-gold mb-4 block">
+              The Movement
+            </span>
+            <h3 className="font-serif text-2xl lg:text-4xl">
+              You're not alone in <span className="italic text-gold">drinking less</span>
+            </h3>
+          </div>
+
+          <div className="grid grid-cols-3 gap-4 lg:gap-8 max-w-3xl mx-auto">
+            {stats.map((stat) => (
+              <div key={stat.label} className="text-center">
+                <div className="font-serif text-3xl lg:text-6xl font-bold text-gold mb-2">
+                  {stat.value}
+                </div>
+                <p className="font-sans text-[10px] lg:text-sm text-cream/70 uppercase tracking-wider">
+                  {stat.label}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* SIP, SIT, SHOP SECTION */}
+      <div className="py-16 lg:py-32 relative z-10">
+        <div className="container mx-auto px-4 lg:px-8">
+          <div className="text-center mb-12 lg:mb-20">
+            <span className="font-sans text-[10px] lg:text-xs font-medium uppercase tracking-[0.3em] text-forest mb-4 block">
+              How It Works
+            </span>
+            <h3 className="font-serif text-3xl lg:text-5xl leading-[1.1]">
+              We make it easy to <br className="hidden lg:block" />
+              <span className="italic text-gold">drink differently</span>
+            </h3>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8 lg:gap-12">
+            {pillars.map((pillar, index) => {
+              const IconComponent = pillar.icon;
+              return (
+                <div 
+                  key={pillar.title} 
+                  className="group text-center lg:text-left p-6 lg:p-8 border-2 border-forest/20 hover:border-gold hover:bg-gold/5 transition-all duration-300"
+                >
+                  <div className="inline-flex items-center justify-center w-12 h-12 lg:w-16 lg:h-16 bg-gold/20 border-2 border-gold mb-6 group-hover:bg-gold group-hover:scale-105 transition-all">
+                    <IconComponent className="w-6 h-6 lg:w-8 lg:h-8 text-forest" />
+                  </div>
+                  <div className="font-sans text-[10px] lg:text-xs font-medium uppercase tracking-[0.2em] text-gold mb-2">
+                    0{index + 1} — {pillar.subtitle}
+                  </div>
+                  <h4 className="font-serif text-2xl lg:text-3xl font-bold text-forest mb-3">
+                    {pillar.title}
+                  </h4>
+                  <p className="font-sans text-sm lg:text-base text-muted-foreground leading-relaxed">
+                    {pillar.description}
+                  </p>
+                </div>
+              );
+            })}
+          </div>
+
+          <div className="text-center mt-12 lg:mt-16">
+            <Button 
+              size="lg"
+              className="font-sans text-sm font-bold uppercase tracking-widest bg-forest text-cream hover:bg-forest-deep px-8 py-6 group"
+            >
+              Find a Location
+              <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+            </Button>
           </div>
         </div>
       </div>
