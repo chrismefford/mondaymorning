@@ -5,7 +5,7 @@ import Footer from "@/components/layout/Footer";
 import stampGold from "@/assets/stamp-gold.svg";
 import textureCream from "@/assets/texture-cream.svg";
 import textureGreen from "@/assets/texture-green.svg";
-import friendsDrinking from "@/assets/friends-drinking.jpg";
+import zaneFounder from "@/assets/zane-founder.png";
 
 const About = () => {
   const brands = [
@@ -126,12 +126,11 @@ const About = () => {
                 </div>
               </div>
 
-              {/* Image */}
               <div className="relative order-1 lg:order-2">
                 <div className="aspect-[4/5] overflow-hidden border-2 border-forest">
                   <img
-                    src={friendsDrinking}
-                    alt="Founder Zane at Monday Morning"
+                    src={zaneFounder}
+                    alt="Founder Zane at the beach"
                     className="w-full h-full object-cover"
                   />
                 </div>
