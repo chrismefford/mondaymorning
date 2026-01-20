@@ -1,3 +1,4 @@
+import React from "react";
 import { useParams, Link } from "react-router-dom";
 import { ArrowLeft, Loader2 } from "lucide-react";
 import Header from "@/components/layout/Header";
@@ -66,8 +67,27 @@ const CollectionPage = () => {
   // Get local collection meta for fallback
   const collectionMeta = collections.find(c => c.id === slug);
   
-  // Convert Shopify products to local format
-  const displayProducts = data?.products?.map(shopifyToLocalProduct) || [];
+  // Convert Shopify products to local format and randomly assign staff picks
+  const displayProducts = React.useMemo(() => {
+    const products = data?.products?.map(shopifyToLocalProduct) || [];
+    
+    // Randomly pick ~20% of products to be staff picks (seeded by product count for consistency)
+    const staffPickIndices = new Set<number>();
+    const numStaffPicks = Math.max(1, Math.floor(products.length * 0.2));
+    
+    // Use product IDs to create deterministic "random" picks
+    products.forEach((product, index) => {
+      const hash = product.id.split('').reduce((a, b) => ((a << 5) - a) + b.charCodeAt(0), 0);
+      if (Math.abs(hash) % 5 === 0 && staffPickIndices.size < numStaffPicks) {
+        staffPickIndices.add(index);
+      }
+    });
+    
+    return products.map((product, index) => ({
+      ...product,
+      badge: staffPickIndices.has(index) ? "Staff Pick" : product.badge
+    }));
+  }, [data?.products]);
 
   return (
     <div className="min-h-screen bg-cream">
