@@ -1,5 +1,12 @@
 // Lifestyle image imports for product cards - organized by category
 
+// NEW: People having fun drinking - social lifestyle shots
+import friendsBeachToast from "@/assets/lifestyle/friends-beach-toast.jpg";
+import rooftopCheers from "@/assets/lifestyle/rooftop-cheers.jpg";
+import patioCoupleBeers from "@/assets/lifestyle/patio-couple-beers.jpg";
+import poolsideFriendsDrinks from "@/assets/lifestyle/poolside-friends-drinks.jpg";
+import dinnerPartyToast from "@/assets/lifestyle/dinner-party-toast.jpg";
+
 // Spirit alternatives - cocktails and bar scenes
 import spiritBarCraft from "@/assets/lifestyle/spirit-bar-craft.jpg";
 import spiritCoupeElegant from "@/assets/lifestyle/spirit-coupe-elegant.jpg";
@@ -50,50 +57,50 @@ import yacht10 from "@/assets/lifestyle/yacht-10.jpg";
 
 // Category-specific image pools
 export const categoryImagePools: Record<string, string[]> = {
-  // Spirits get cocktail/bar scenes
-  "Spirit Alternative": [spiritBarCraft, spiritCoupeElegant, lifestyleSpirit, botanicalBar2],
-  "Spirit": [spiritBarCraft, spiritCoupeElegant, lifestyleSpirit, botanicalBar2],
-  "Spirits": [spiritBarCraft, spiritCoupeElegant, lifestyleSpirit, botanicalBar2],
+  // Spirits get cocktail/bar scenes with people
+  "Spirit Alternative": [friendsBeachToast, rooftopCheers, spiritBarCraft, spiritCoupeElegant],
+  "Spirit": [friendsBeachToast, rooftopCheers, spiritBarCraft, spiritCoupeElegant],
+  "Spirits": [friendsBeachToast, rooftopCheers, spiritBarCraft, spiritCoupeElegant],
   
-  // Wine gets wine glasses and dinner settings
-  "Wine Alternative": [wineDinnerToast, wineVineyardPour, lifestyleWine, dinnerParty3, vineyard9],
-  "Wine": [wineDinnerToast, wineVineyardPour, lifestyleWine, dinnerParty3, vineyard9],
-  "Red Wine": [wineDinnerToast, lifestyleWine, dinnerParty3],
-  "White Wine": [wineVineyardPour, lifestyleWine, vineyard9],
+  // Wine gets dinner party and celebration scenes with people
+  "Wine Alternative": [dinnerPartyToast, rooftopCheers, wineDinnerToast, dinnerParty3],
+  "Wine": [dinnerPartyToast, rooftopCheers, wineDinnerToast, dinnerParty3],
+  "Red Wine": [dinnerPartyToast, wineDinnerToast, dinnerParty3],
+  "White Wine": [dinnerPartyToast, rooftopCheers, wineVineyardPour],
   
-  // Beer gets casual outdoor scenes
-  "NA Beer": [beerPatioFriends, beerBeachBonfire, lifestyleBeer, patioBeer6],
-  "Beer": [beerPatioFriends, beerBeachBonfire, lifestyleBeer, patioBeer6],
+  // Beer gets casual outdoor scenes with people
+  "NA Beer": [patioCoupleBeers, friendsBeachToast, beerPatioFriends, beerBeachBonfire],
+  "Beer": [patioCoupleBeers, friendsBeachToast, beerPatioFriends, beerBeachBonfire],
   
-  // Functional gets wellness/morning scenes
-  "Functional Elixir": [functionalWellnessMorning, functionalZenTonic, lifestyleFunctional, wellness12],
-  "Functional": [functionalWellnessMorning, functionalZenTonic, lifestyleFunctional, wellness12],
-  "Adaptogens": [functionalWellnessMorning, functionalZenTonic, wellness12],
+  // Functional gets wellness/social scenes
+  "Functional Elixir": [poolsideFriendsDrinks, patioCoupleBeers, functionalWellnessMorning, wellness12],
+  "Functional": [poolsideFriendsDrinks, patioCoupleBeers, functionalWellnessMorning, wellness12],
+  "Adaptogens": [poolsideFriendsDrinks, patioCoupleBeers, wellness12],
   
-  // Sparkling gets celebration scenes
-  "Sparkling": [sparklingCelebration, celebration5, lifestyleWine],
-  "Champagne Alternative": [sparklingCelebration, celebration5],
+  // Sparkling gets celebration scenes with people
+  "Sparkling": [rooftopCheers, dinnerPartyToast, sparklingCelebration, celebration5],
+  "Champagne Alternative": [rooftopCheers, dinnerPartyToast, sparklingCelebration],
   
-  // Aperitifs get golden hour social scenes
-  "Aperitif": [aperitifGoldenHour, rooftop11, beachSunset1, lifestyleTropical],
-  "Aperitivo": [aperitifGoldenHour, rooftop11, beachSunset1],
+  // Aperitifs get golden hour social scenes with people
+  "Aperitif": [friendsBeachToast, rooftopCheers, aperitifGoldenHour, beachSunset1],
+  "Aperitivo": [friendsBeachToast, rooftopCheers, aperitifGoldenHour],
   
-  // Ready to drink gets casual beach/poolside
-  "Ready to Drink": [rtdBeachPicnic, tropicalPoolside, lifestyleTropical, poolside4],
-  "RTD": [rtdBeachPicnic, tropicalPoolside, lifestyleTropical, poolside4],
-  "Beverages": [rtdBeachPicnic, tropicalPoolside, lifestyleTropical, poolside4],
-  "Mixers": [tropicalPoolside, lifestyleTropical, poolside4],
+  // Ready to drink gets casual beach/poolside with people
+  "Ready to Drink": [poolsideFriendsDrinks, friendsBeachToast, rtdBeachPicnic, tropicalPoolside],
+  "RTD": [poolsideFriendsDrinks, friendsBeachToast, rtdBeachPicnic, tropicalPoolside],
+  "Beverages": [poolsideFriendsDrinks, friendsBeachToast, patioCoupleBeers, tropicalPoolside],
+  "Mixers": [poolsideFriendsDrinks, friendsBeachToast, tropicalPoolside],
   
-  // Botanical gets dark moody scenes
-  "Botanical": [lifestyleBotanical, library8, tikiBar7, spiritCoupeElegant],
+  // Botanical gets moody scenes
+  "Botanical": [rooftopCheers, dinnerPartyToast, lifestyleBotanical, library8],
   
-  // Tiki/tropical
-  "Tiki": [tikiBar7, tropicalPoolside, lifestyleTropical],
+  // Tiki/tropical with people
+  "Tiki": [poolsideFriendsDrinks, friendsBeachToast, tikiBar7, tropicalPoolside],
   
-  // Default fallback pool
+  // Default fallback pool - prioritize people shots
   "default": [
-    beachSunset1, poolside4, rooftop11, yacht10,
-    aperitifGoldenHour, tropicalPoolside, lifestyleTropical
+    friendsBeachToast, poolsideFriendsDrinks, rooftopCheers, patioCoupleBeers,
+    dinnerPartyToast, beachSunset1, aperitifGoldenHour
   ],
 };
 
