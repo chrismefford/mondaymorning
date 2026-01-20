@@ -8,33 +8,41 @@ import stampGold from "@/assets/stamp-gold.svg";
 import { useShopifyProducts, shopifyToLocalProduct } from "@/hooks/useShopifyProducts";
 
 const FeaturedProducts = () => {
-  const { data: shopifyProducts, isLoading, error } = useShopifyProducts(10);
+  // Fetch products - we'll curate the best mix ourselves
+  const { data: shopifyProducts, isLoading, error } = useShopifyProducts(50);
   const scrollRef = useRef<HTMLDivElement>(null);
 
   // Convert Shopify products to local format, or use fallback
   const allProducts = shopifyProducts?.map(shopifyToLocalProduct) || fallbackProducts;
   
-  // Sort to prioritize best sellers first
-  const sortedProducts = [...allProducts].sort((a, b) => {
-    // Best sellers and staff picks come first
-    const aIsBestSeller = a.badge === "Best Seller" || a.badge === "Staff Pick";
-    const bIsBestSeller = b.badge === "Best Seller" || b.badge === "Staff Pick";
-    
-    if (aIsBestSeller && !bIsBestSeller) return -1;
-    if (!aIsBestSeller && bIsBestSeller) return 1;
-    
-    // Then "New" items
-    const aIsNew = a.badge === "New";
-    const bIsNew = b.badge === "New";
-    
-    if (aIsNew && !bIsNew) return -1;
-    if (!aIsNew && bIsNew) return 1;
-    
-    return 0;
+  // Create a diverse selection: prioritize different categories for variety
+  // Filter out memberships, gift cards, and non-beverage items
+  const beverageProducts = allProducts.filter(p => 
+    !p.category?.toLowerCase().includes('membership') &&
+    !p.name?.toLowerCase().includes('gift card') &&
+    !p.name?.toLowerCase().includes('subscription')
+  );
+  
+  // Get one product from each unique category for variety
+  const categoryMap = new Map<string, typeof beverageProducts[0]>();
+  beverageProducts.forEach(product => {
+    if (!categoryMap.has(product.category)) {
+      categoryMap.set(product.category, product);
+    }
   });
   
-  const featuredProduct = sortedProducts[0];
-  const gridProducts = sortedProducts.slice(1, 5);
+  // Convert to array and take first 5 for display
+  const diverseProducts = Array.from(categoryMap.values()).slice(0, 5);
+  
+  // If we don't have 5 different categories, fill with remaining products
+  if (diverseProducts.length < 5) {
+    const usedIds = new Set(diverseProducts.map(p => p.id));
+    const remaining = beverageProducts.filter(p => !usedIds.has(p.id));
+    diverseProducts.push(...remaining.slice(0, 5 - diverseProducts.length));
+  }
+  
+  const featuredProduct = diverseProducts[0];
+  const gridProducts = diverseProducts.slice(1, 5);
 
   return (
     <section id="shop" className="py-10 lg:py-24 bg-cream relative overflow-hidden">
