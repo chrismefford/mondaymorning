@@ -191,7 +191,7 @@ const CollectionPage = () => {
 
             {/* Products grid */}
             {!isLoading && displayProducts.length > 0 && (
-              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 lg:gap-6">
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 gap-y-16 lg:gap-8 lg:gap-y-24">
                 {displayProducts.map((product, index) => (
                   <div 
                     key={product.id}
