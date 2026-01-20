@@ -14,9 +14,10 @@ interface ProductCardProps {
   product: ExtendedProduct;
   variant?: "default" | "featured";
   useLifestyleImage?: boolean;
+  showProductOnly?: boolean;
 }
 
-const ProductCard = ({ product, variant = "default", useLifestyleImage = true }: ProductCardProps) => {
+const ProductCard = ({ product, variant = "default", useLifestyleImage = true, showProductOnly = false }: ProductCardProps) => {
   const isFeatured = variant === "featured";
   const { addToCart, isLoading } = useCart();
   
@@ -51,23 +52,34 @@ const ProductCard = ({ product, variant = "default", useLifestyleImage = true }:
       >
         {/* Image Container with Hover Reveal */}
         <div 
-          className={`relative overflow-hidden rounded-2xl bg-sand ${
+          className={`relative overflow-hidden rounded-2xl bg-cream ${
             isFeatured ? "lg:w-1/2 aspect-[4/5]" : "aspect-[3/4]"
           } shadow-card group-hover:shadow-elevated transition-shadow duration-300`}
         >
-          {/* Lifestyle Image (default) */}
-          <img
-            src={lifestyleImage}
-            alt={product.name}
-            className="absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ease-out group-hover:opacity-0"
-          />
-          
-          {/* Product Image (revealed on hover) */}
-          <img
-            src={productImage}
-            alt={`${product.name} bottle`}
-            className="absolute inset-0 w-full h-full object-contain p-6 bg-cream transition-opacity duration-500 ease-out opacity-0 group-hover:opacity-100"
-          />
+          {showProductOnly ? (
+            /* Product Only Mode - no hover effect */
+            <img
+              src={productImage}
+              alt={product.name}
+              className="absolute inset-0 w-full h-full object-contain p-6"
+            />
+          ) : (
+            <>
+              {/* Lifestyle Image (default) */}
+              <img
+                src={lifestyleImage}
+                alt={product.name}
+                className="absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ease-out group-hover:opacity-0"
+              />
+              
+              {/* Product Image (revealed on hover) */}
+              <img
+                src={productImage}
+                alt={`${product.name} bottle`}
+                className="absolute inset-0 w-full h-full object-contain p-6 bg-cream transition-opacity duration-500 ease-out opacity-0 group-hover:opacity-100"
+              />
+            </>
+          )}
           
           {/* Badge */}
           {product.badge && (

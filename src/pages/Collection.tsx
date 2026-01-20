@@ -167,7 +167,7 @@ const CollectionPage = () => {
                     key={product.id}
                     className={`${index % 3 === 1 ? 'lg:translate-y-8' : ''}`}
                   >
-                    <ProductCard product={product} />
+                    <ProductCard product={product} showProductOnly />
                   </div>
                 ))}
               </div>
