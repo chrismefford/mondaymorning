@@ -97,7 +97,11 @@ const ProductCard = ({ product, variant = "default", useLifestyleImage = true, s
           {/* Badge */}
           {product.badge && (
             <Badge 
-              className="absolute top-4 left-4 z-20 bg-gold text-forest-deep font-sans text-xs font-bold border-0 shadow-md"
+              className={`absolute top-4 left-4 z-20 font-sans text-xs font-bold border-0 shadow-md ${
+                product.badge.toLowerCase().includes("staff") 
+                  ? "bg-forest text-cream" 
+                  : "bg-gold text-forest-deep"
+              }`}
             >
               {product.badge}
             </Badge>
