@@ -6,6 +6,14 @@ import lifestyleFunctional from "@/assets/lifestyle/na-functional-elixir.jpg";
 import lifestyleTropical from "@/assets/lifestyle/na-tropical-mocktails.jpg";
 import lifestyleBotanical from "@/assets/lifestyle/na-botanical-dark.jpg";
 
+// Additional lifestyle imports for collections
+import aperitifGoldenHour from "@/assets/lifestyle/aperitif-golden-hour.jpg";
+import beerPatioFriends from "@/assets/lifestyle/beer-patio-friends.jpg";
+import sparklingCelebration from "@/assets/lifestyle/sparkling-celebration.jpg";
+import beachSunset1 from "@/assets/lifestyle/beach-sunset-1.jpg";
+import wineDinnerToast from "@/assets/lifestyle/wine-dinner-toast.jpg";
+import functionalWellnessMorning from "@/assets/lifestyle/functional-wellness-morning.jpg";
+
 export interface Product {
   id: string;
   name: string;
@@ -168,36 +176,36 @@ export const collections = [
     id: "best-sellers",
     name: "Best Sellers",
     description: "Our community favorites",
-    image: "https://images.unsplash.com/photo-1470337458703-46ad1756a187?w=800&q=80"
+    image: aperitifGoldenHour
   },
   {
     id: "beach-bonfire",
     name: "Beach Bonfire Vibes",
     description: "Sip under the stars",
-    image: "/images/beach-bonfire.jpg"
+    image: beachSunset1
   },
   {
     id: "functional",
     name: "Functional Drinks",
     description: "Beverages with benefits",
-    image: "https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=800&q=80"
+    image: functionalWellnessMorning
   },
   {
     id: "wine-alternatives",
     name: "Wine Alternatives",
     description: "All the ritual, reimagined",
-    image: "https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=800&q=80"
+    image: wineDinnerToast
   },
   {
     id: "na-beer",
     name: "NA Beer",
     description: "Craft taste, zero proof",
-    image: "https://images.unsplash.com/photo-1535958636474-b021ee887b13?w=800&q=80"
+    image: beerPatioFriends
   },
   {
     id: "weddings",
     name: "Weddings & Events",
     description: "Toast-worthy moments",
-    image: "https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=800&q=80"
+    image: sparklingCelebration
   }
 ];
