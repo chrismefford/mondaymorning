@@ -84,7 +84,7 @@ serve(async (req) => {
             content: [
               {
                 type: "text",
-                text: "Remove the background from this product image. Keep only the product (bottle/can/container) and make the background completely transparent or pure white. Return just the product cutout."
+                text: "CRITICAL: Create a PNG image with a completely TRANSPARENT background (alpha channel = 0). Extract ONLY the product (bottle, can, or container) from this image. The output MUST have: 1) A fully transparent background with NO color, NO white, NO gray - just pure transparency. 2) Clean, precise edges around the product with no artifacts. 3) Only the product itself visible. Do NOT add any background color whatsoever - the background pixels must be fully transparent."
               },
               {
                 type: "image_url",
