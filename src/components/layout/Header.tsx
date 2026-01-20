@@ -12,13 +12,13 @@ import {
 } from "@/components/ui/dropdown-menu";
 
 const categoryItems = [
-  { name: "Best Sellers", icon: Sparkles },
-  { name: "NA Beer", icon: Beer },
-  { name: "NA Wine", icon: Wine },
-  { name: "NA Spirits", icon: Martini },
-  { name: "Staff Favorites", icon: Star },
-  { name: "Functionals", icon: Leaf },
-  { name: "Other", icon: Package },
+  { name: "Best Sellers", icon: Sparkles, href: "/collections/best-sellers" },
+  { name: "NA Beer", icon: Beer, href: "/collections/na-beer" },
+  { name: "NA Wine", icon: Wine, href: "/collections/wine-alternatives" },
+  { name: "NA Spirits", icon: Martini, href: "/collections/spirit-alternatives" },
+  { name: "Functionals", icon: Leaf, href: "/collections/functional" },
+  { name: "Beach Vibes", icon: Umbrella, href: "/collections/beach-bonfire" },
+  { name: "Weddings & Events", icon: PartyPopper, href: "/collections/weddings" },
 ];
 
 const recipeItems = [
