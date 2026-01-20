@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import ProductCard from "./ProductCard";
 import { products as fallbackProducts, getLifestyleImage } from "@/data/products";
 import { Button } from "@/components/ui/button";
@@ -108,7 +109,10 @@ const FeaturedProducts = () => {
               style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
             >
               {/* Featured product as first card */}
-              <div className="flex-shrink-0 w-[85vw] snap-center">
+              <Link 
+                to={featuredProduct.handle ? `/product/${featuredProduct.handle}` : `/product/${featuredProduct.name.toLowerCase().replace(/\s+/g, '-')}`}
+                className="flex-shrink-0 w-[85vw] snap-center block"
+              >
                 <div className="relative bg-cream border-2 border-forest overflow-hidden">
                   <div className="aspect-[3/4]">
                     <img
@@ -125,12 +129,12 @@ const FeaturedProducts = () => {
                     <div className="flex items-center justify-between mt-4">
                       <span className="font-sans text-xl font-bold">${featuredProduct.price}</span>
                       <Button size="sm" className="bg-gold text-forest font-sans text-xs uppercase tracking-wider">
-                        Add to Cart
+                        View Product
                       </Button>
                     </div>
                   </div>
                 </div>
-              </div>
+              </Link>
 
               {/* Other products */}
               {gridProducts.map((product) => (
@@ -167,10 +171,13 @@ const FeaturedProducts = () => {
         {!isLoading && (
           <div className="hidden lg:block container mx-auto px-4 lg:px-8">
             {/* Featured Product */}
-            <div className="mb-20 lg:mb-32">
+            <Link 
+              to={featuredProduct.handle ? `/product/${featuredProduct.handle}` : `/product/${featuredProduct.name.toLowerCase().replace(/\s+/g, '-')}`}
+              className="block mb-20 lg:mb-32 group"
+            >
               <div className="grid lg:grid-cols-12 gap-8 items-center">
                 {/* Image - Takes 7 columns */}
-                <div className="lg:col-span-7 relative group">
+                <div className="lg:col-span-7 relative">
                   <div className="aspect-[4/3] overflow-hidden border-2 border-forest">
                     <img
                       src={featuredProduct.lifestyleImage || getLifestyleImage(featuredProduct.category)}
@@ -187,7 +194,7 @@ const FeaturedProducts = () => {
                   <span className="font-sans text-xs uppercase tracking-[0.3em] text-gold mb-4 block">
                     Bestseller
                   </span>
-                  <h3 className="font-serif text-3xl lg:text-5xl font-bold mb-4 text-forest">
+                  <h3 className="font-serif text-3xl lg:text-5xl font-bold mb-4 text-forest group-hover:text-forest-light transition-colors">
                     {featuredProduct.name}
                   </h3>
                   <p className="font-sans text-muted-foreground leading-relaxed mb-6">
@@ -205,12 +212,12 @@ const FeaturedProducts = () => {
                     size="lg"
                     className="font-sans text-sm font-semibold uppercase tracking-wider w-full lg:w-auto px-10 py-6 bg-forest text-cream hover:bg-forest-light hover-brutal"
                   >
-                    Add to Cart
+                    View Product
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </Button>
                 </div>
               </div>
-            </div>
+            </Link>
 
             {/* Product Grid - Staggered */}
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">

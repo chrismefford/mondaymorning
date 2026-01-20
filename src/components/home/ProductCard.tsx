@@ -1,10 +1,15 @@
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ShoppingBag } from "lucide-react";
 import type { Product } from "@/data/products";
 
+interface ExtendedProduct extends Product {
+  handle?: string;
+}
+
 interface ProductCardProps {
-  product: Product;
+  product: ExtendedProduct;
   variant?: "default" | "featured";
   useLifestyleImage?: boolean; // Whether to use lifestyle image (for homepage)
 }
@@ -16,7 +21,14 @@ const ProductCard = ({ product, variant = "default", useLifestyleImage = true }:
   const displayImage = useLifestyleImage && product.lifestyleImage 
     ? product.lifestyleImage 
     : product.image;
+
+  // Generate product link using handle if available, fallback to slugified name
+  const productLink = product.handle 
+    ? `/product/${product.handle}` 
+    : `/product/${product.name.toLowerCase().replace(/\s+/g, '-')}`;
+
   return (
+    <Link to={productLink} className="block">
     <article 
       className={`group relative ${isFeatured ? "lg:flex lg:items-center lg:gap-12" : ""}`}
     >
@@ -130,6 +142,7 @@ const ProductCard = ({ product, variant = "default", useLifestyleImage = true }:
         )}
       </div>
     </article>
+    </Link>
   );
 };
 
