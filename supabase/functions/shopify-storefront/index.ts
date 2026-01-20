@@ -177,6 +177,49 @@ const COLLECTION_PRODUCTS_QUERY = `
   }
 `;
 
+const PRODUCT_BY_HANDLE_QUERY = `
+  query GetProductByHandle($handle: String!) {
+    productByHandle(handle: $handle) {
+      id
+      title
+      description
+      handle
+      featuredImage {
+        url
+        altText
+      }
+      priceRange {
+        minVariantPrice {
+          amount
+          currencyCode
+        }
+      }
+      compareAtPriceRange {
+        minVariantPrice {
+          amount
+          currencyCode
+        }
+      }
+      tags
+      productType
+      vendor
+      variants(first: 10) {
+        edges {
+          node {
+            id
+            title
+            availableForSale
+            price {
+              amount
+              currencyCode
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
 async function shopifyFetch(query: string, variables: Record<string, unknown> = {}) {
   const storefrontToken = Deno.env.get("SHOPIFY_STOREFRONT_TOKEN");
   const storeDomain = Deno.env.get("SHOPIFY_STORE_DOMAIN");
@@ -222,6 +265,7 @@ serve(async (req) => {
     const url = new URL(req.url);
     const action = url.searchParams.get("action") || "products";
     const collectionHandle = url.searchParams.get("collection");
+    const productHandle = url.searchParams.get("handle");
     const first = parseInt(url.searchParams.get("first") || "50");
 
     let data;
@@ -255,6 +299,18 @@ serve(async (req) => {
           JSON.stringify({
             collection: data.collection,
             products: data.collection?.products.edges.map((edge: { node: ShopifyProduct }) => edge.node) || [],
+          }),
+          { headers: { ...corsHeaders, "Content-Type": "application/json" } }
+        );
+
+      case "product":
+        if (!productHandle) {
+          throw new Error("Product handle required");
+        }
+        data = await shopifyFetch(PRODUCT_BY_HANDLE_QUERY, { handle: productHandle });
+        return new Response(
+          JSON.stringify({
+            product: data.productByHandle,
           }),
           { headers: { ...corsHeaders, "Content-Type": "application/json" } }
         );

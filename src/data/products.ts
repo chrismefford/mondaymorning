@@ -21,6 +21,7 @@ export interface Product {
   mood?: string;
   benefits?: string[];
   collection?: string[];
+  handle?: string; // Shopify product handle for URL
 }
 
 // Map categories to lifestyle images
