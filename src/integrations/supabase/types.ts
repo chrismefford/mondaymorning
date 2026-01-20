@@ -14,6 +14,33 @@ export type Database = {
   }
   public: {
     Tables: {
+      processed_image_cache: {
+        Row: {
+          created_at: string
+          id: string
+          original_url: string
+          processed_url: string | null
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          original_url: string
+          processed_url?: string | null
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          original_url?: string
+          processed_url?: string | null
+          status?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       story_submissions: {
         Row: {
           author_location: string | null
