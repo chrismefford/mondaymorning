@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
-import { getUniqueLifestyleImage } from "@/data/lifestyleImages";
+import { getCategoryLifestyleImage } from "@/data/lifestyleImages";
 
 export interface ShopifyProduct {
   id: string;
@@ -138,7 +138,7 @@ export function shopifyToLocalProduct(product: ShopifyProduct) {
     price,
     compareAtPrice: compareAtPrice > price ? compareAtPrice : undefined,
     image: product.featuredImage?.url || "/placeholder.svg",
-    lifestyleImage: getUniqueLifestyleImage(product.id, product.title), // Unique image per product
+    lifestyleImage: getCategoryLifestyleImage(product.id, product.title, category), // Category-appropriate image
     description: product.description,
     category,
     badge: product.tags.includes("new") ? "New" : product.tags.includes("bestseller") ? "Best Seller" : undefined,
