@@ -52,17 +52,22 @@ const ProductCard = ({ product, variant = "default", useLifestyleImage = true, s
       >
         {/* Image Container with Hover Reveal */}
         <div 
-          className={`relative overflow-hidden rounded-2xl bg-cream ${
+          className={`relative overflow-hidden rounded-2xl ${
+            showProductOnly ? "bg-sand border-2 border-forest/10" : "bg-cream"
+          } ${
             isFeatured ? "lg:w-1/2 aspect-[4/5]" : "aspect-[3/4]"
           } shadow-card group-hover:shadow-elevated transition-shadow duration-300`}
         >
           {showProductOnly ? (
-            /* Product Only Mode - no hover effect */
-            <img
-              src={productImage}
-              alt={product.name}
-              className="absolute inset-0 w-full h-full object-contain p-6"
-            />
+            /* Product Only Mode - no hover effect, with subtle texture */
+            <>
+              <div className="absolute inset-0 bg-gradient-to-br from-sand via-cream to-sand/80 opacity-50" />
+              <img
+                src={productImage}
+                alt={product.name}
+                className="absolute inset-0 w-full h-full object-contain p-6 relative z-10"
+              />
+            </>
           ) : (
             <>
               {/* Lifestyle Image (default) */}
