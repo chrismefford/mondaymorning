@@ -220,7 +220,7 @@ const FeaturedProducts = () => {
             </Link>
 
             {/* Product Grid - Staggered */}
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 gap-y-10 lg:gap-8 lg:gap-y-16">
               {gridProducts.map((product, index) => (
                 <div 
                   key={product.id} 
