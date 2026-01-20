@@ -5,89 +5,69 @@ import Footer from "@/components/layout/Footer";
 import ProductCard from "@/components/home/ProductCard";
 import { Button } from "@/components/ui/button";
 import { collections } from "@/data/products";
-import { useShopifyProducts, shopifyToLocalProduct } from "@/hooks/useShopifyProducts";
+import { useShopifyCollectionProducts, shopifyToLocalProduct } from "@/hooks/useShopifyProducts";
 import textureCream from "@/assets/texture-cream.svg";
 import stampGold from "@/assets/stamp-gold.svg";
 
-// Map collection slugs to Shopify product types for filtering
-const collectionFilters: Record<string, { types: string[]; title: string; description: string }> = {
+// Map our collection slugs to Shopify collection handles
+const collectionMapping: Record<string, { shopifyHandle: string; title: string; description: string }> = {
   "na-beer": {
-    types: ["NA Beer", "Beer", "Craft Beer", "Lager", "IPA", "Pilsner", "Ale"],
+    shopifyHandle: "non-alcoholic-beer",
     title: "NA Beer",
     description: "Craft taste, zero proof. The best non-alcoholic beers from around the world."
   },
   "wine-alternatives": {
-    types: ["Wine Alternative", "Wine", "Red Wine", "White Wine", "Rosé", "Sparkling Wine"],
+    shopifyHandle: "non-alcoholic-wine",
     title: "Wine Alternatives",
     description: "All the ritual, reimagined. Dealcoholized wines that don't compromise on flavor."
   },
-  "best-sellers": {
-    types: [], // Empty means show bestsellers tag instead
-    title: "Best Sellers",
-    description: "Our community favorites. The drinks that keep people coming back."
+  "spirit-alternatives": {
+    shopifyHandle: "non-alcoholic-spirits",
+    title: "Spirit Alternatives",
+    description: "Complex and bold. Alcohol-free spirits for craft cocktails."
   },
   "functional": {
-    types: ["Functional Elixir", "Functional", "Adaptogens", "Wellness"],
+    shopifyHandle: "non-alcoholic-functional-spirits",
     title: "Functional Drinks",
     description: "Beverages with benefits. Adaptogens, nootropics, and feel-good ingredients."
   },
   "beach-bonfire": {
-    types: ["Ready to Drink", "RTD", "Beverages", "Mixers"],
+    shopifyHandle: "non-alcoholic-ready-to-drinks",
     title: "Beach Bonfire Vibes",
     description: "Sip under the stars. Easy-drinking options for outdoor moments."
   },
   "weddings": {
-    types: ["Sparkling", "Champagne Alternative", "Wine Alternative"],
+    shopifyHandle: "non-alcoholic-wine",
     title: "Weddings & Events",
     description: "Toast-worthy moments. Elegant options for celebrations."
   },
-  "spirit-alternatives": {
-    types: ["Spirit Alternative", "Spirit", "Spirits", "Botanical"],
-    title: "Spirit Alternatives",
-    description: "Complex and bold. Alcohol-free spirits for craft cocktails."
+  "best-sellers": {
+    shopifyHandle: "frontpage",
+    title: "Best Sellers",
+    description: "Our community favorites. The drinks that keep people coming back."
   },
   "aperitifs": {
-    types: ["Aperitif", "Aperitivo"],
-    title: "Aperitifs",
+    shopifyHandle: "non-alcoholic-aperitifs-digestifs-liqueurs",
+    title: "Aperitifs & Digestifs",
     description: "Golden hour essentials. Light, bitter, and perfect for pre-dinner sipping."
   }
 };
 
 const CollectionPage = () => {
   const { slug } = useParams<{ slug: string }>();
-  const { data: shopifyProducts, isLoading, error } = useShopifyProducts(100);
   
-  // Get collection info
-  const collectionInfo = slug ? collectionFilters[slug] : null;
+  // Get Shopify collection handle from our slug
+  const collectionInfo = slug ? collectionMapping[slug] : null;
+  const shopifyHandle = collectionInfo?.shopifyHandle || slug || "";
+  
+  // Fetch products directly from Shopify collection
+  const { data, isLoading, error } = useShopifyCollectionProducts(shopifyHandle, 100);
+  
+  // Get local collection meta for fallback
   const collectionMeta = collections.find(c => c.id === slug);
   
-  // Convert and filter products
-  const allProducts = shopifyProducts?.map(shopifyToLocalProduct) || [];
-  
-  const filteredProducts = allProducts.filter(product => {
-    if (!collectionInfo) return false;
-    
-    // For best sellers, check for bestseller tag/badge
-    if (slug === "best-sellers") {
-      return product.badge?.toLowerCase().includes("best") || 
-             product.badge?.toLowerCase().includes("seller") ||
-             product.badge?.toLowerCase().includes("popular");
-    }
-    
-    // Filter by product type/category
-    return collectionInfo.types.some(type => 
-      product.category?.toLowerCase().includes(type.toLowerCase()) ||
-      type.toLowerCase().includes(product.category?.toLowerCase() || "")
-    );
-  });
-
-  // If no specific filter matches, show products that match the collection name
-  const displayProducts = filteredProducts.length > 0 
-    ? filteredProducts 
-    : allProducts.filter(p => 
-        p.name?.toLowerCase().includes(slug?.replace("-", " ") || "") ||
-        p.category?.toLowerCase().includes(slug?.replace("-", " ") || "")
-      );
+  // Convert Shopify products to local format
+  const displayProducts = data?.products?.map(shopifyToLocalProduct) || [];
 
   return (
     <div className="min-h-screen bg-cream">
