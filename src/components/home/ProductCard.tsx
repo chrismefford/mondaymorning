@@ -94,6 +94,16 @@ const ProductCard = ({ product, variant = "default", useLifestyleImage = true, s
             </Badge>
           )}
 
+          {/* Price Tag - positioned on image */}
+          <div className="absolute top-4 right-4 z-20 bg-cream/95 backdrop-blur-sm px-3 py-1.5 rounded-full shadow-md">
+            <span className="font-sans text-sm font-bold text-forest">${product.price}</span>
+            {product.compareAtPrice && (
+              <span className="font-sans text-xs text-muted-foreground line-through ml-1.5">
+                ${product.compareAtPrice}
+              </span>
+            )}
+          </div>
+
           {/* Quick Add Overlay */}
           <div className="absolute inset-x-0 bottom-0 p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100 bg-gradient-to-t from-forest-deep/90 via-forest-deep/60 to-transparent z-10">
             <Button 
@@ -186,16 +196,6 @@ const ProductCard = ({ product, variant = "default", useLifestyleImage = true, s
             </>
           )}
 
-          {!isFeatured && (
-            <div className="flex items-center gap-2 mt-2">
-              <span className="font-sans text-base font-medium">${product.price}</span>
-              {product.compareAtPrice && (
-                <span className="font-sans text-sm text-muted-foreground line-through">
-                  ${product.compareAtPrice}
-                </span>
-              )}
-            </div>
-          )}
         </div>
       </article>
     </Link>
