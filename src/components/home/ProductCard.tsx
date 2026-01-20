@@ -52,7 +52,7 @@ const ProductCard = ({ product, variant = "default", useLifestyleImage = true, s
       >
         {/* Image Container with Hover Reveal */}
         <div 
-          className={`relative overflow-hidden rounded-2xl bg-transparent ${
+          className={`relative overflow-hidden rounded-2xl bg-sand border-2 border-forest/20 ${
             isFeatured ? "lg:w-1/2 aspect-[4/5]" : "aspect-[3/4]"
           } shadow-card group-hover:shadow-elevated transition-shadow duration-300`}
         >
