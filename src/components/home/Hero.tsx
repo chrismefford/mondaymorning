@@ -38,7 +38,7 @@ const Hero = () => {
           {/* Large stacked headline - brand messaging */}
           <h1 className="mb-4 animate-fade-up">
             <span className="block font-serif text-[2.5rem] leading-[1] tracking-tight text-cream">
-              400+ Flavors.
+              425+ Flavors.
             </span>
             <span className="block font-serif text-[2.5rem] leading-[1] tracking-tight text-cream">
               Zero <span className="italic text-gold">Proof.</span>
@@ -53,7 +53,7 @@ const Hero = () => {
           {/* Stats row */}
           <div className="flex gap-6 mb-6 animate-fade-up delay-300">
             <div className="text-center">
-              <span className="block font-serif text-2xl font-bold text-gold">400+</span>
+              <span className="block font-serif text-2xl font-bold text-gold">425+</span>
               <span className="font-sans text-[9px] uppercase tracking-wider text-cream/60">Flavors</span>
             </div>
             <div className="text-center">
@@ -125,7 +125,7 @@ const Hero = () => {
           {/* Main headline */}
           <h1 className="mb-6">
             <span className="block font-serif text-5xl xl:text-6xl leading-[0.95] tracking-tight animate-fade-up">
-              400+ Flavors.
+              425+ Flavors.
             </span>
             <span className="block font-serif text-5xl xl:text-6xl leading-[0.95] tracking-tight animate-fade-up delay-100">
               Zero <span className="italic text-gold">Proof.</span>
@@ -140,7 +140,7 @@ const Hero = () => {
           {/* Stats row */}
           <div className="flex gap-10 mb-10 py-6 border-y-2 border-forest/20 animate-fade-up delay-300">
             <div>
-              <span className="block font-serif text-4xl font-bold text-gold">400+</span>
+              <span className="block font-serif text-4xl font-bold text-gold">425+</span>
               <span className="font-sans text-xs uppercase tracking-wider text-muted-foreground">Flavors & Styles</span>
             </div>
             <div>
@@ -226,7 +226,7 @@ const Hero = () => {
           <span className="inline-block font-sans text-xs lg:text-sm uppercase tracking-[0.2em]">
             <span className="mx-8 lg:mx-12">America's #1 NA Shop</span>
             <span className="text-gold">✦</span>
-            <span className="mx-8 lg:mx-12">400+ Flavors</span>
+            <span className="mx-8 lg:mx-12">425+ Flavors</span>
             <span className="text-gold">✦</span>
             <span className="mx-8 lg:mx-12">Ocean Beach</span>
             <span className="text-gold">✦</span>
@@ -236,7 +236,7 @@ const Hero = () => {
             <span className="text-gold">✦</span>
             <span className="mx-8 lg:mx-12">America's #1 NA Shop</span>
             <span className="text-gold">✦</span>
-            <span className="mx-8 lg:mx-12">400+ Flavors</span>
+            <span className="mx-8 lg:mx-12">425+ Flavors</span>
             <span className="text-gold">✦</span>
             <span className="mx-8 lg:mx-12">Ocean Beach</span>
             <span className="text-gold">✦</span>
