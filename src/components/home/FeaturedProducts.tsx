@@ -1,5 +1,5 @@
 import ProductCard from "./ProductCard";
-import { products as fallbackProducts } from "@/data/products";
+import { products as fallbackProducts, getLifestyleImage } from "@/data/products";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, ArrowUpRight, Loader2 } from "lucide-react";
 import { useRef } from "react";
@@ -85,7 +85,7 @@ const FeaturedProducts = () => {
                 <div className="relative bg-cream border-2 border-forest overflow-hidden">
                   <div className="aspect-[3/4]">
                     <img
-                      src={featuredProduct.image}
+                      src={featuredProduct.lifestyleImage || getLifestyleImage(featuredProduct.category)}
                       alt={featuredProduct.name}
                       className="w-full h-full object-cover"
                     />
@@ -146,7 +146,7 @@ const FeaturedProducts = () => {
                 <div className="lg:col-span-7 relative group">
                   <div className="aspect-[4/3] overflow-hidden border-2 border-forest">
                     <img
-                      src={featuredProduct.image}
+                      src={featuredProduct.lifestyleImage || getLifestyleImage(featuredProduct.category)}
                       alt={featuredProduct.name}
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                     />
