@@ -12,6 +12,8 @@ export interface Recipe {
   difficulty: "Easy" | "Medium" | "Advanced";
   ingredients: string[];
   featured?: boolean;
+  /** Keywords to match against product names/categories from the store */
+  productKeywords?: string[];
 }
 
 export const occasionLabels: Record<Occasion, { label: string; emoji: string }> = {
@@ -29,25 +31,27 @@ export const recipes: Recipe[] = [
     title: "Sunrise Mimosa",
     occasion: "breakfast",
     tagline: "Golden hour in a glass",
-    description: "A bright, bubbly mocktail combining fresh-pressed orange juice with our Sparkling Elderflower for the perfect Sunday brunch companion.",
+    description: "A bright, bubbly mocktail combining fresh-pressed orange juice with sparkling wine alternative for the perfect Sunday brunch companion.",
     image: "https://images.unsplash.com/photo-1560508179-b2c9a3f8e92b?w=800&q=80",
     prepTime: "3 min",
     servings: 1,
     difficulty: "Easy",
-    ingredients: ["3 oz fresh orange juice", "3 oz Sparkling Elderflower", "Orange twist", "Fresh mint sprig"],
-    featured: true
+    ingredients: ["3 oz fresh orange juice", "3 oz sparkling wine alternative", "Orange twist", "Fresh mint sprig"],
+    featured: true,
+    productKeywords: ["sparkling", "wine", "bubbly", "prosecco", "champagne"]
   },
   {
     id: "2",
     title: "Morning Clarity Fizz",
     occasion: "breakfast",
     tagline: "Start your day intentionally",
-    description: "A refreshing blend of ginger, lemon, and our Morning Clarity elixir topped with sparkling water.",
+    description: "A refreshing blend of ginger, lemon, and functional elixir topped with sparkling water.",
     image: "https://images.unsplash.com/photo-1544145945-f90425340c7e?w=800&q=80",
     prepTime: "5 min",
     servings: 1,
     difficulty: "Easy",
-    ingredients: ["4 oz Morning Clarity", "1 oz fresh lemon juice", "Sparkling water", "Candied ginger"]
+    ingredients: ["4 oz functional elixir", "1 oz fresh lemon juice", "Sparkling water", "Candied ginger"],
+    productKeywords: ["functional", "elixir", "wellness", "tonic", "adaptogen"]
   },
   {
     id: "3",
@@ -59,7 +63,8 @@ export const recipes: Recipe[] = [
     prepTime: "7 min",
     servings: 1,
     difficulty: "Easy",
-    ingredients: ["Fresh blueberries", "Lavender simple syrup", "Fresh lemon juice", "Sparkling water", "Lavender sprig"]
+    ingredients: ["Fresh blueberries", "Lavender simple syrup", "Fresh lemon juice", "Sparkling water", "Lavender sprig"],
+    productKeywords: ["botanical", "floral", "lavender", "berry"]
   },
   {
     id: "b4",
@@ -71,19 +76,21 @@ export const recipes: Recipe[] = [
     prepTime: "5 min",
     servings: 1,
     difficulty: "Easy",
-    ingredients: ["4 oz fresh grapefruit juice", "Rosemary simple syrup", "Sparkling water", "Rosemary sprig", "Grapefruit slice"]
+    ingredients: ["4 oz fresh grapefruit juice", "Rosemary simple syrup", "Sparkling water", "Rosemary sprig", "Grapefruit slice"],
+    productKeywords: ["citrus", "grapefruit", "spritz", "aperitif"]
   },
   {
     id: "b5",
     title: "Peach Bellini",
     occasion: "breakfast",
     tagline: "Classic brunch elegance",
-    description: "Velvety peach purée meets our sparkling elderflower for a timeless brunch favorite.",
+    description: "Velvety peach purée meets sparkling wine alternative for a timeless brunch favorite.",
     image: "https://images.unsplash.com/photo-1587223962930-cb7f31384c19?w=800&q=80",
     prepTime: "5 min",
     servings: 1,
     difficulty: "Easy",
-    ingredients: ["Fresh peach purée", "4 oz Sparkling Elderflower", "Peach slice", "Fresh mint"]
+    ingredients: ["Fresh peach purée", "4 oz sparkling wine alternative", "Peach slice", "Fresh mint"],
+    productKeywords: ["sparkling", "wine", "prosecco", "bubbly"]
   },
   {
     id: "b6",
@@ -95,46 +102,50 @@ export const recipes: Recipe[] = [
     prepTime: "8 min",
     servings: 1,
     difficulty: "Easy",
-    ingredients: ["Acai purée", "Pineapple juice", "Coconut water", "Fresh berries", "Chia seeds"]
+    ingredients: ["Acai purée", "Pineapple juice", "Coconut water", "Fresh berries", "Chia seeds"],
+    productKeywords: ["tropical", "fruit", "wellness", "functional"]
   },
 
   // DINNER
   {
     id: "4",
-    title: "Velvet Rouge Sangria",
+    title: "NA Red Wine Sangria",
     occasion: "dinner",
     tagline: "Elegant & complex",
-    description: "Our Velvet Rouge NA wine shines in this sophisticated sangria with fresh citrus and seasonal fruits.",
+    description: "NA red wine shines in this sophisticated sangria with fresh citrus and seasonal fruits.",
     image: "https://images.unsplash.com/photo-1527281400683-1aae777175f8?w=800&q=80",
     prepTime: "10 min",
     servings: 4,
     difficulty: "Easy",
-    ingredients: ["1 bottle Velvet Rouge", "Sliced oranges", "Fresh berries", "Cinnamon stick", "Sparkling water"],
-    featured: true
+    ingredients: ["1 bottle NA red wine", "Sliced oranges", "Fresh berries", "Cinnamon stick", "Sparkling water"],
+    featured: true,
+    productKeywords: ["wine", "red", "cabernet", "merlot", "pinot"]
   },
   {
     id: "5",
     title: "Rosemary Citrus Spritz",
     occasion: "dinner",
     tagline: "Herbaceous & refreshing",
-    description: "A sophisticated dinner companion featuring our Golden Hour Spritz with fresh rosemary and grapefruit.",
+    description: "A sophisticated dinner companion featuring aperitif with fresh rosemary and grapefruit.",
     image: "https://images.unsplash.com/photo-1551538827-9c037cb4f32a?w=800&q=80",
     prepTime: "5 min",
     servings: 1,
     difficulty: "Easy",
-    ingredients: ["4 oz Golden Hour Spritz", "Fresh rosemary sprig", "Grapefruit wedge", "Sparkling water"]
+    ingredients: ["4 oz aperitif", "Fresh rosemary sprig", "Grapefruit wedge", "Sparkling water"],
+    productKeywords: ["aperitif", "spritz", "bitter", "orange", "citrus"]
   },
   {
     id: "6",
-    title: "Midnight Botanical Tonic",
+    title: "Botanical Gin & Tonic",
     occasion: "dinner",
     tagline: "Dark and mysterious",
-    description: "Our Midnight Botanical paired with premium tonic and a twist of orange for an elegant aperitif.",
+    description: "NA gin spirit paired with premium tonic and a twist of orange for an elegant aperitif.",
     image: "https://images.unsplash.com/photo-1536935338788-846bb9981813?w=800&q=80",
     prepTime: "3 min",
     servings: 1,
     difficulty: "Easy",
-    ingredients: ["2 oz Midnight Botanical", "4 oz premium tonic", "Orange peel", "Fresh thyme"]
+    ingredients: ["2 oz NA gin spirit", "4 oz premium tonic", "Orange peel", "Fresh thyme"],
+    productKeywords: ["gin", "botanical", "spirit", "juniper"]
   },
   {
     id: "d4",
@@ -146,19 +157,21 @@ export const recipes: Recipe[] = [
     prepTime: "5 min",
     servings: 1,
     difficulty: "Medium",
-    ingredients: ["3 oz Midnight Botanical", "Smoked maple syrup", "Aromatic bitters", "Orange peel", "Luxardo cherry"]
+    ingredients: ["3 oz NA whiskey spirit", "Smoked maple syrup", "Aromatic bitters", "Orange peel", "Luxardo cherry"],
+    productKeywords: ["whiskey", "bourbon", "spirit", "dark", "oak"]
   },
   {
     id: "d5",
     title: "Herb Garden Gimlet",
     occasion: "dinner",
     tagline: "Fresh from the garden",
-    description: "A vibrant blend of fresh herbs, lime, and our botanical waters for a crisp dinner starter.",
+    description: "A vibrant blend of fresh herbs, lime, and botanical spirit for a crisp dinner starter.",
     image: "https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?w=800&q=80",
     prepTime: "5 min",
     servings: 1,
     difficulty: "Easy",
-    ingredients: ["Fresh basil", "Fresh mint", "Lime juice", "Simple syrup", "Sparkling water", "Cucumber slice"]
+    ingredients: ["Fresh basil", "Fresh mint", "Lime juice", "Simple syrup", "NA gin spirit", "Cucumber slice"],
+    productKeywords: ["gin", "botanical", "herb", "cucumber"]
   },
   {
     id: "d6",
@@ -170,7 +183,8 @@ export const recipes: Recipe[] = [
     prepTime: "7 min",
     servings: 1,
     difficulty: "Easy",
-    ingredients: ["Fresh pear juice", "Cinnamon stick", "Star anise", "Ginger syrup", "Sparkling water"]
+    ingredients: ["Fresh pear juice", "Cinnamon stick", "Star anise", "Ginger syrup", "Sparkling wine alternative"],
+    productKeywords: ["sparkling", "cider", "pear", "fruit"]
   },
 
   // RELAXING
@@ -185,31 +199,34 @@ export const recipes: Recipe[] = [
     servings: 1,
     difficulty: "Easy",
     ingredients: ["Chamomile tea", "Local honey", "Fresh lemon juice", "Cinnamon stick", "Star anise"],
-    featured: true
+    featured: true,
+    productKeywords: ["tea", "herbal", "wellness", "functional"]
   },
   {
     id: "8",
     title: "Lavender Dreams",
     occasion: "relaxing",
     tagline: "Serenity in a glass",
-    description: "A soothing blend of lavender, vanilla, and our Calm botanical waters for the ultimate relaxation ritual.",
+    description: "A soothing blend of lavender, vanilla, and botanical water for the ultimate relaxation ritual.",
     image: "https://images.unsplash.com/photo-1497534446932-c925b458314e?w=800&q=80",
     prepTime: "5 min",
     servings: 1,
     difficulty: "Easy",
-    ingredients: ["4 oz Calm botanical water", "Lavender syrup", "Vanilla extract", "Dried lavender buds"]
+    ingredients: ["4 oz botanical water", "Lavender syrup", "Vanilla extract", "Dried lavender buds"],
+    productKeywords: ["botanical", "floral", "lavender", "calm", "wellness"]
   },
   {
     id: "9",
     title: "Cucumber Mint Cooler",
     occasion: "relaxing",
     tagline: "Cool & composed",
-    description: "Fresh cucumber and mint create a refreshingly zen experience, perfect for quiet evenings on the patio.",
+    description: "Fresh cucumber and mint create a refreshingly zen experience with NA gin spirit.",
     image: "https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?w=800&q=80",
     prepTime: "5 min",
     servings: 1,
     difficulty: "Easy",
-    ingredients: ["Fresh cucumber slices", "Fresh mint leaves", "Lime juice", "Simple syrup", "Sparkling water"]
+    ingredients: ["Fresh cucumber slices", "Fresh mint leaves", "Lime juice", "NA gin spirit", "Sparkling water"],
+    productKeywords: ["gin", "cucumber", "botanical", "herb"]
   },
   {
     id: "r4",
@@ -221,19 +238,21 @@ export const recipes: Recipe[] = [
     prepTime: "6 min",
     servings: 1,
     difficulty: "Easy",
-    ingredients: ["Rose water", "Cardamom pods", "Honey", "Lemon juice", "Sparkling water", "Dried rose petals"]
+    ingredients: ["Rose water", "Cardamom pods", "Honey", "Lemon juice", "Sparkling water", "Dried rose petals"],
+    productKeywords: ["rose", "floral", "botanical", "exotic"]
   },
   {
     id: "r5",
     title: "Sleepy Time Toddy",
     occasion: "relaxing",
     tagline: "Drift off peacefully",
-    description: "A warming blend of apple cider, cinnamon, and chamomile to help you wind down.",
+    description: "A warming blend of apple cider, cinnamon, and NA whiskey for a cozy nightcap.",
     image: "https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=800&q=80",
     prepTime: "10 min",
     servings: 1,
     difficulty: "Easy",
-    ingredients: ["Warm apple cider", "Chamomile tea", "Cinnamon stick", "Cloves", "Local honey"]
+    ingredients: ["Warm apple cider", "NA whiskey spirit", "Cinnamon stick", "Cloves", "Local honey"],
+    productKeywords: ["whiskey", "bourbon", "cider", "warm", "spirit"]
   },
   {
     id: "r6",
@@ -245,7 +264,8 @@ export const recipes: Recipe[] = [
     prepTime: "5 min",
     servings: 1,
     difficulty: "Easy",
-    ingredients: ["Almond milk", "Vanilla bean", "Maple syrup", "Ground nutmeg", "Cinnamon"]
+    ingredients: ["Almond milk", "Vanilla bean", "Maple syrup", "Ground nutmeg", "Cinnamon"],
+    productKeywords: ["cream", "vanilla", "dessert", "sweet"]
   },
 
   // BEACH
@@ -254,73 +274,79 @@ export const recipes: Recipe[] = [
     title: "Tropical Sunset",
     occasion: "beach",
     tagline: "Paradise found",
-    description: "Pineapple, coconut, and a splash of grenadine create the ultimate beach day sipper—no umbrella required.",
+    description: "Pineapple, coconut, and NA rum create the ultimate beach day sipper—no umbrella required.",
     image: "https://images.unsplash.com/photo-1536935338788-846bb9981813?w=800&q=80",
     prepTime: "5 min",
     servings: 1,
     difficulty: "Easy",
-    ingredients: ["4 oz pineapple juice", "2 oz coconut cream", "Splash of grenadine", "Pineapple wedge", "Maraschino cherry"],
-    featured: true
+    ingredients: ["4 oz pineapple juice", "2 oz NA rum spirit", "Coconut cream", "Pineapple wedge", "Maraschino cherry"],
+    featured: true,
+    productKeywords: ["rum", "tropical", "coconut", "pineapple", "caribbean"]
   },
   {
     id: "11",
     title: "Watermelon Wave",
     occasion: "beach",
     tagline: "Summer in a cup",
-    description: "Fresh watermelon juice meets lime and mint for the most refreshing beach companion imaginable.",
+    description: "Fresh watermelon juice meets lime, mint, and NA tequila for the most refreshing beach companion.",
     image: "https://images.unsplash.com/photo-1570831739435-6601aa3fa4fb?w=800&q=80",
     prepTime: "7 min",
     servings: 1,
     difficulty: "Easy",
-    ingredients: ["Fresh watermelon juice", "Lime juice", "Fresh mint", "Tajín rim", "Watermelon wedge"]
+    ingredients: ["Fresh watermelon juice", "NA tequila spirit", "Lime juice", "Fresh mint", "Tajín rim"],
+    productKeywords: ["tequila", "agave", "margarita", "lime", "mexican"]
   },
   {
     id: "12",
     title: "Coconut Lime Refresher",
     occasion: "beach",
     tagline: "Coastal vibes only",
-    description: "Creamy coconut water, zesty lime, and a hint of vanilla transport you straight to the shoreline.",
+    description: "Creamy coconut water, zesty lime, and NA rum transport you straight to the shoreline.",
     image: "https://images.unsplash.com/photo-1534353473418-4cfa6c56fd38?w=800&q=80",
     prepTime: "3 min",
     servings: 1,
     difficulty: "Easy",
-    ingredients: ["6 oz coconut water", "Fresh lime juice", "Vanilla syrup", "Lime wheel", "Toasted coconut flakes"]
+    ingredients: ["6 oz coconut water", "2 oz NA rum spirit", "Fresh lime juice", "Lime wheel", "Toasted coconut flakes"],
+    productKeywords: ["rum", "coconut", "tropical", "caribbean"]
   },
   {
     id: "be4",
-    title: "Mango Tango",
+    title: "Mango Tango Margarita",
     occasion: "beach",
     tagline: "Tropical bliss",
-    description: "Ripe mango blended with passion fruit and lime for an instant vacation in a glass.",
+    description: "Ripe mango blended with NA tequila and lime for an instant vacation in a glass.",
     image: "https://images.unsplash.com/photo-1560508179-b2c9a3f8e92b?w=800&q=80",
     prepTime: "5 min",
     servings: 1,
     difficulty: "Easy",
-    ingredients: ["Fresh mango", "Passion fruit juice", "Lime juice", "Agave nectar", "Chili-lime rim"]
+    ingredients: ["Fresh mango", "2 oz NA tequila spirit", "Lime juice", "Agave nectar", "Chili-lime rim"],
+    productKeywords: ["tequila", "agave", "margarita", "mango", "mexican"]
   },
   {
     id: "be5",
     title: "Piña Colada Dream",
     occasion: "beach",
     tagline: "Classic island escape",
-    description: "Creamy coconut and sweet pineapple blended to perfection—the beach essential.",
+    description: "Creamy coconut, sweet pineapple, and NA rum blended to perfection—the beach essential.",
     image: "https://images.unsplash.com/photo-1527281400683-1aae777175f8?w=800&q=80",
     prepTime: "5 min",
     servings: 1,
     difficulty: "Easy",
-    ingredients: ["4 oz pineapple juice", "2 oz coconut cream", "Crushed ice", "Pineapple wedge", "Maraschino cherry"]
+    ingredients: ["4 oz pineapple juice", "2 oz NA rum spirit", "Coconut cream", "Pineapple wedge", "Maraschino cherry"],
+    productKeywords: ["rum", "coconut", "pineapple", "tropical"]
   },
   {
     id: "be6",
     title: "Sea Breeze Cooler",
     occasion: "beach",
     tagline: "Ocean-fresh vibes",
-    description: "Cranberry and grapefruit combine for a tart, refreshing beach day essential.",
+    description: "Cranberry and grapefruit combine with NA vodka for a tart, refreshing beach day essential.",
     image: "https://images.unsplash.com/photo-1551538827-9c037cb4f32a?w=800&q=80",
     prepTime: "3 min",
     servings: 1,
     difficulty: "Easy",
-    ingredients: ["3 oz cranberry juice", "3 oz grapefruit juice", "Lime wedge", "Sparkling water", "Fresh mint"]
+    ingredients: ["2 oz NA vodka spirit", "3 oz cranberry juice", "3 oz grapefruit juice", "Lime wedge", "Fresh mint"],
+    productKeywords: ["vodka", "cranberry", "citrus", "clean"]
   },
 
   // CELEBRATION
@@ -329,84 +355,91 @@ export const recipes: Recipe[] = [
     title: "Sparkling Elderflower Royale",
     occasion: "celebration",
     tagline: "Effervescent & elegant",
-    description: "Our Sparkling Elderflower takes center stage in this sophisticated celebration-worthy mocktail.",
+    description: "Sparkling wine alternative takes center stage in this sophisticated celebration-worthy mocktail.",
     image: "https://images.unsplash.com/photo-1470337458703-46ad1756a187?w=800&q=80",
     prepTime: "3 min",
     servings: 1,
     difficulty: "Easy",
-    ingredients: ["5 oz Sparkling Elderflower", "Dash of elderflower cordial", "Lemon twist", "Edible flowers"],
-    featured: true
+    ingredients: ["5 oz sparkling wine alternative", "Dash of elderflower cordial", "Lemon twist", "Edible flowers"],
+    featured: true,
+    productKeywords: ["sparkling", "champagne", "prosecco", "bubbly", "wine"]
   },
   {
     id: "14",
     title: "Midnight Toast",
     occasion: "celebration",
     tagline: "Ring in the moment",
-    description: "Dark berries, sparkling water, and our Midnight Botanical create a dramatic celebration sipper.",
+    description: "Dark berries, sparkling water, and NA gin spirit create a dramatic celebration sipper.",
     image: "https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?w=800&q=80",
     prepTime: "5 min",
     servings: 1,
     difficulty: "Easy",
-    ingredients: ["2 oz Midnight Botanical", "Muddled blackberries", "Sparkling water", "Lemon peel", "Fresh blackberries"]
+    ingredients: ["2 oz NA gin spirit", "Muddled blackberries", "Sparkling water", "Lemon peel", "Fresh blackberries"],
+    productKeywords: ["gin", "botanical", "berry", "dark"]
   },
   {
     id: "15",
-    title: "Golden Hour Celebration",
+    title: "Aperitif Spritz Celebration",
     occasion: "celebration",
     tagline: "Cheers to clarity",
-    description: "Our signature Golden Hour Spritz elevated with fresh peach and basil for those special moments.",
+    description: "Classic aperitif elevated with fresh peach and basil for those special moments.",
     image: "https://images.unsplash.com/photo-1551538827-9c037cb4f32a?w=800&q=80",
     prepTime: "5 min",
     servings: 1,
     difficulty: "Easy",
-    ingredients: ["4 oz Golden Hour Spritz", "Fresh peach slices", "Basil leaves", "Honey", "Sparkling water"]
+    ingredients: ["4 oz NA aperitif", "Fresh peach slices", "Basil leaves", "Honey", "Sparkling water"],
+    productKeywords: ["aperitif", "spritz", "bitter", "orange", "italian"]
   },
   {
     id: "c4",
     title: "Rose Gold Fizz",
     occasion: "celebration",
     tagline: "Blushing elegance",
-    description: "A stunning pink mocktail with rose, raspberry, and sparkling bubbles for special toasts.",
+    description: "A stunning pink mocktail with rosé wine alternative and raspberry for special toasts.",
     image: "https://images.unsplash.com/photo-1587223962930-cb7f31384c19?w=800&q=80",
     prepTime: "5 min",
     servings: 1,
     difficulty: "Easy",
-    ingredients: ["Rose water", "Fresh raspberry purée", "Sparkling water", "Edible rose petals", "Gold sugar rim"]
+    ingredients: ["4 oz NA rosé wine", "Fresh raspberry purée", "Sparkling water", "Edible rose petals", "Gold sugar rim"],
+    productKeywords: ["rose", "rosé", "pink", "wine", "floral"]
   },
   {
     id: "c5",
     title: "Champagne Dreams",
     occasion: "celebration",
     tagline: "Pop the bubbles",
-    description: "Our finest sparkling base with white grape and elderflower—as luxurious as the real thing.",
+    description: "Sparkling wine alternative with white grape and elderflower—as luxurious as the real thing.",
     image: "https://images.unsplash.com/photo-1544145945-f90425340c7e?w=800&q=80",
     prepTime: "3 min",
     servings: 1,
     difficulty: "Easy",
-    ingredients: ["White grape juice", "Sparkling Elderflower", "Lemon twist", "Fresh thyme sprig"]
+    ingredients: ["White grape juice", "5 oz sparkling wine alternative", "Lemon twist", "Fresh thyme sprig"],
+    productKeywords: ["sparkling", "champagne", "prosecco", "bubbly", "white"]
   },
   {
     id: "c6",
     title: "Berry Jubilee",
     occasion: "celebration",
     tagline: "Festive & fruity",
-    description: "A vibrant mix of seasonal berries with sparkling bubbles and a hint of vanilla.",
+    description: "A vibrant mix of seasonal berries with NA vodka and sparkling bubbles.",
     image: "https://images.unsplash.com/photo-1497534446932-c925b458314e?w=800&q=80",
     prepTime: "7 min",
     servings: 1,
     difficulty: "Easy",
-    ingredients: ["Mixed berry purée", "Vanilla syrup", "Sparkling water", "Fresh berries", "Mint sprig"]
+    ingredients: ["Mixed berry purée", "2 oz NA vodka spirit", "Vanilla syrup", "Sparkling water", "Fresh berries"],
+    productKeywords: ["vodka", "berry", "fruit", "clean"]
   },
   {
     id: "c7",
     title: "Ginger Spice Sparkler",
     occasion: "celebration",
     tagline: "Warm & festive",
-    description: "Spicy ginger meets honey and citrus for a warming celebration drink perfect for any season.",
+    description: "Spicy ginger meets NA whiskey and citrus for a warming celebration drink.",
     image: "https://images.unsplash.com/photo-1536935338788-846bb9981813?w=800&q=80",
     prepTime: "5 min",
     servings: 1,
     difficulty: "Easy",
-    ingredients: ["Fresh ginger juice", "Local honey", "Lemon juice", "Sparkling water", "Candied ginger"]
+    ingredients: ["Fresh ginger juice", "2 oz NA whiskey spirit", "Local honey", "Lemon juice", "Sparkling water"],
+    productKeywords: ["whiskey", "bourbon", "ginger", "spice", "warm"]
   }
 ];
