@@ -220,6 +220,261 @@ const PRODUCT_BY_HANDLE_QUERY = `
   }
 `;
 
+// Cart mutations
+const CREATE_CART_MUTATION = `
+  mutation cartCreate($input: CartInput!) {
+    cartCreate(input: $input) {
+      cart {
+        id
+        checkoutUrl
+        totalQuantity
+        cost {
+          totalAmount {
+            amount
+            currencyCode
+          }
+          subtotalAmount {
+            amount
+            currencyCode
+          }
+        }
+        lines(first: 100) {
+          edges {
+            node {
+              id
+              quantity
+              merchandise {
+                ... on ProductVariant {
+                  id
+                  title
+                  price {
+                    amount
+                    currencyCode
+                  }
+                  product {
+                    title
+                    handle
+                    featuredImage {
+                      url
+                      altText
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+      userErrors {
+        field
+        message
+      }
+    }
+  }
+`;
+
+const ADD_TO_CART_MUTATION = `
+  mutation cartLinesAdd($cartId: ID!, $lines: [CartLineInput!]!) {
+    cartLinesAdd(cartId: $cartId, lines: $lines) {
+      cart {
+        id
+        checkoutUrl
+        totalQuantity
+        cost {
+          totalAmount {
+            amount
+            currencyCode
+          }
+          subtotalAmount {
+            amount
+            currencyCode
+          }
+        }
+        lines(first: 100) {
+          edges {
+            node {
+              id
+              quantity
+              merchandise {
+                ... on ProductVariant {
+                  id
+                  title
+                  price {
+                    amount
+                    currencyCode
+                  }
+                  product {
+                    title
+                    handle
+                    featuredImage {
+                      url
+                      altText
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+      userErrors {
+        field
+        message
+      }
+    }
+  }
+`;
+
+const UPDATE_CART_MUTATION = `
+  mutation cartLinesUpdate($cartId: ID!, $lines: [CartLineUpdateInput!]!) {
+    cartLinesUpdate(cartId: $cartId, lines: $lines) {
+      cart {
+        id
+        checkoutUrl
+        totalQuantity
+        cost {
+          totalAmount {
+            amount
+            currencyCode
+          }
+          subtotalAmount {
+            amount
+            currencyCode
+          }
+        }
+        lines(first: 100) {
+          edges {
+            node {
+              id
+              quantity
+              merchandise {
+                ... on ProductVariant {
+                  id
+                  title
+                  price {
+                    amount
+                    currencyCode
+                  }
+                  product {
+                    title
+                    handle
+                    featuredImage {
+                      url
+                      altText
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+      userErrors {
+        field
+        message
+      }
+    }
+  }
+`;
+
+const REMOVE_FROM_CART_MUTATION = `
+  mutation cartLinesRemove($cartId: ID!, $lineIds: [ID!]!) {
+    cartLinesRemove(cartId: $cartId, lineIds: $lineIds) {
+      cart {
+        id
+        checkoutUrl
+        totalQuantity
+        cost {
+          totalAmount {
+            amount
+            currencyCode
+          }
+          subtotalAmount {
+            amount
+            currencyCode
+          }
+        }
+        lines(first: 100) {
+          edges {
+            node {
+              id
+              quantity
+              merchandise {
+                ... on ProductVariant {
+                  id
+                  title
+                  price {
+                    amount
+                    currencyCode
+                  }
+                  product {
+                    title
+                    handle
+                    featuredImage {
+                      url
+                      altText
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+      userErrors {
+        field
+        message
+      }
+    }
+  }
+`;
+
+const GET_CART_QUERY = `
+  query getCart($cartId: ID!) {
+    cart(id: $cartId) {
+      id
+      checkoutUrl
+      totalQuantity
+      cost {
+        totalAmount {
+          amount
+          currencyCode
+        }
+        subtotalAmount {
+          amount
+          currencyCode
+        }
+      }
+      lines(first: 100) {
+        edges {
+          node {
+            id
+            quantity
+            merchandise {
+              ... on ProductVariant {
+                id
+                title
+                price {
+                  amount
+                  currencyCode
+                }
+                product {
+                  title
+                  handle
+                  featuredImage {
+                    url
+                    altText
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
 async function shopifyFetch(query: string, variables: Record<string, unknown> = {}) {
   const storefrontToken = Deno.env.get("SHOPIFY_STOREFRONT_TOKEN");
   const storeDomain = Deno.env.get("SHOPIFY_STORE_DOMAIN");
@@ -228,8 +483,11 @@ async function shopifyFetch(query: string, variables: Record<string, unknown> = 
     throw new Error("Shopify credentials not configured");
   }
 
-  // Clean up domain - remove protocol if present
   const cleanDomain = storeDomain.replace(/^https?:\/\//, "").replace(/\/$/, "");
+
+  console.log(`Making Shopify request to ${cleanDomain}`);
+  console.log("Query:", query.slice(0, 100) + "...");
+  console.log("Variables:", JSON.stringify(variables));
 
   const response = await fetch(`https://${cleanDomain}/api/2024-01/graphql.json`, {
     method: "POST",
@@ -269,6 +527,16 @@ serve(async (req) => {
     const first = parseInt(url.searchParams.get("first") || "50");
 
     let data;
+    let body: Record<string, unknown> = {};
+
+    // Parse body for POST requests
+    if (req.method === "POST") {
+      try {
+        body = await req.json();
+      } catch {
+        body = {};
+      }
+    }
 
     switch (action) {
       case "products":
@@ -314,6 +582,86 @@ serve(async (req) => {
           }),
           { headers: { ...corsHeaders, "Content-Type": "application/json" } }
         );
+
+      // Cart operations
+      case "cart-create": {
+        const lines = body.lines as Array<{ merchandiseId: string; quantity: number }> || [];
+        console.log("Creating cart with lines:", lines);
+        data = await shopifyFetch(CREATE_CART_MUTATION, { 
+          input: { lines } 
+        });
+        if (data.cartCreate.userErrors?.length > 0) {
+          throw new Error(data.cartCreate.userErrors[0].message);
+        }
+        return new Response(
+          JSON.stringify({ cart: data.cartCreate.cart }),
+          { headers: { ...corsHeaders, "Content-Type": "application/json" } }
+        );
+      }
+
+      case "cart-add": {
+        const cartId = body.cartId as string;
+        const lines = body.lines as Array<{ merchandiseId: string; quantity: number }>;
+        if (!cartId || !lines) {
+          throw new Error("cartId and lines required");
+        }
+        console.log("Adding to cart:", cartId, lines);
+        data = await shopifyFetch(ADD_TO_CART_MUTATION, { cartId, lines });
+        if (data.cartLinesAdd.userErrors?.length > 0) {
+          throw new Error(data.cartLinesAdd.userErrors[0].message);
+        }
+        return new Response(
+          JSON.stringify({ cart: data.cartLinesAdd.cart }),
+          { headers: { ...corsHeaders, "Content-Type": "application/json" } }
+        );
+      }
+
+      case "cart-update": {
+        const cartId = body.cartId as string;
+        const lines = body.lines as Array<{ id: string; quantity: number }>;
+        if (!cartId || !lines) {
+          throw new Error("cartId and lines required");
+        }
+        console.log("Updating cart:", cartId, lines);
+        data = await shopifyFetch(UPDATE_CART_MUTATION, { cartId, lines });
+        if (data.cartLinesUpdate.userErrors?.length > 0) {
+          throw new Error(data.cartLinesUpdate.userErrors[0].message);
+        }
+        return new Response(
+          JSON.stringify({ cart: data.cartLinesUpdate.cart }),
+          { headers: { ...corsHeaders, "Content-Type": "application/json" } }
+        );
+      }
+
+      case "cart-remove": {
+        const cartId = body.cartId as string;
+        const lineIds = body.lineIds as string[];
+        if (!cartId || !lineIds) {
+          throw new Error("cartId and lineIds required");
+        }
+        console.log("Removing from cart:", cartId, lineIds);
+        data = await shopifyFetch(REMOVE_FROM_CART_MUTATION, { cartId, lineIds });
+        if (data.cartLinesRemove.userErrors?.length > 0) {
+          throw new Error(data.cartLinesRemove.userErrors[0].message);
+        }
+        return new Response(
+          JSON.stringify({ cart: data.cartLinesRemove.cart }),
+          { headers: { ...corsHeaders, "Content-Type": "application/json" } }
+        );
+      }
+
+      case "cart-get": {
+        const cartId = url.searchParams.get("cartId");
+        if (!cartId) {
+          throw new Error("cartId required");
+        }
+        console.log("Getting cart:", cartId);
+        data = await shopifyFetch(GET_CART_QUERY, { cartId });
+        return new Response(
+          JSON.stringify({ cart: data.cart }),
+          { headers: { ...corsHeaders, "Content-Type": "application/json" } }
+        );
+      }
 
       default:
         throw new Error("Invalid action");

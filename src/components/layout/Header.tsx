@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Menu, X, ShoppingBag, ArrowUpRight, Sparkles, Beer, Wine, Martini, Star, Leaf, Package, ChevronDown, Sunrise, UtensilsCrossed, Sofa, Umbrella, PartyPopper } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useCart } from "@/hooks/useCart";
 import logoGold from "@/assets/logo-primary-gold.svg";
 import logoWhite from "@/assets/logo-primary-white.svg";
 import {
@@ -33,6 +34,7 @@ const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isCollectionsOpen, setIsCollectionsOpen] = useState(false);
   const [isRecipesOpen, setIsRecipesOpen] = useState(false);
+  const { cartCount, openCart } = useCart();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -149,20 +151,25 @@ const Header = () => {
               >
                 Account
               </Button>
-              <button className="relative w-10 h-10 border-2 border-foreground flex items-center justify-center hover:bg-foreground hover:text-background transition-colors group">
+              <button 
+                onClick={openCart}
+                className="relative w-10 h-10 border-2 border-foreground flex items-center justify-center hover:bg-foreground hover:text-background transition-colors group"
+              >
                 <ShoppingBag className="h-4 w-4" />
                 <span className="absolute -top-2 -right-2 w-5 h-5 bg-primary text-primary-foreground text-[10px] font-bold flex items-center justify-center">
-                  0
+                  {cartCount}
                 </span>
               </button>
             </div>
 
-            {/* Mobile: Cart + Menu */}
             <div className="lg:hidden flex items-center gap-3 relative z-50">
-              <button className={`relative w-10 h-10 border-2 flex items-center justify-center transition-colors ${isMenuOpen ? 'border-background/30 text-background' : 'border-foreground'}`}>
+              <button 
+                onClick={openCart}
+                className={`relative w-10 h-10 border-2 flex items-center justify-center transition-colors ${isMenuOpen ? 'border-background/30 text-background' : 'border-foreground'}`}
+              >
                 <ShoppingBag className="h-4 w-4" />
                 <span className="absolute -top-2 -right-2 w-5 h-5 bg-primary text-primary-foreground text-[10px] font-bold flex items-center justify-center">
-                  0
+                  {cartCount}
                 </span>
               </button>
               <button

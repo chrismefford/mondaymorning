@@ -1,5 +1,6 @@
 import { useParams, Link } from "react-router-dom";
 import { useShopifyProduct } from "@/hooks/useShopifyProduct";
+import { useCart } from "@/hooks/useCart";
 import { getSuggestedRecipe } from "@/lib/recipeMatch";
 import { occasionLabels } from "@/data/recipes";
 import Header from "@/components/layout/Header";
@@ -13,6 +14,16 @@ import stampGold from "@/assets/stamp-gold.svg";
 const ProductPage = () => {
   const { handle } = useParams<{ handle: string }>();
   const { data: product, isLoading, error } = useShopifyProduct(handle || "");
+  const { addToCart, isLoading: isAddingToCart } = useCart();
+
+  // Get the first variant ID for adding to cart
+  const firstVariantId = product?.variants?.[0]?.id;
+
+  const handleAddToCart = async () => {
+    if (firstVariantId) {
+      await addToCart(firstVariantId);
+    }
+  };
 
   if (isLoading) {
     return (
@@ -121,9 +132,15 @@ const ProductPage = () => {
 
               <Button 
                 size="lg" 
-                className="w-full lg:w-auto font-sans text-sm font-semibold uppercase tracking-wider px-12 py-6 bg-forest text-cream hover:bg-forest-light gap-2"
+                onClick={handleAddToCart}
+                disabled={isAddingToCart || !firstVariantId}
+                className="w-full lg:w-auto font-sans text-sm font-semibold uppercase tracking-wider px-12 py-6 bg-forest text-cream hover:bg-forest-light gap-2 disabled:opacity-50"
               >
-                <ShoppingBag className="h-5 w-5" />
+                {isAddingToCart ? (
+                  <Loader2 className="h-5 w-5 animate-spin" />
+                ) : (
+                  <ShoppingBag className="h-5 w-5" />
+                )}
                 Add to Cart
               </Button>
             </div>
