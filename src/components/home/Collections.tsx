@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { collections } from "@/data/products";
 import { ArrowUpRight, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -42,9 +43,9 @@ const Collections = () => {
         {/* MOBILE: Stacked cards with overlap effect */}
         <div className="lg:hidden px-4 space-y-4">
           {collections.map((collection, index) => (
-            <a
+            <Link
               key={collection.id}
-              href={`#${collection.id}`}
+              to={`/collections/${collection.id}`}
               className="group block relative overflow-hidden border-2 border-cream/20 aspect-[16/10]"
             >
               <img
@@ -82,7 +83,7 @@ const Collections = () => {
                   </div>
                 </div>
               </div>
-            </a>
+            </Link>
           ))}
 
           {/* View all button */}
@@ -99,9 +100,9 @@ const Collections = () => {
         <div className="hidden lg:block container mx-auto px-4 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-6">
             {collections.map((collection, index) => (
-              <a
+              <Link
                 key={collection.id}
-                href={`#${collection.id}`}
+                to={`/collections/${collection.id}`}
                 className={`group relative overflow-hidden border-2 border-cream/20 hover:border-gold transition-colors duration-300 ${
                   index === 0 || collection.id === 'na-beer' ? 'md:row-span-2 aspect-square md:aspect-auto' : 'aspect-[16/9]'
                 }`}
@@ -141,7 +142,7 @@ const Collections = () => {
                     </div>
                   </div>
                 </div>
-              </a>
+              </Link>
             ))}
           </div>
         </div>
