@@ -12,10 +12,29 @@ const FeaturedProducts = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
 
   // Convert Shopify products to local format, or use fallback
-  const products = shopifyProducts?.map(shopifyToLocalProduct) || fallbackProducts;
+  const allProducts = shopifyProducts?.map(shopifyToLocalProduct) || fallbackProducts;
   
-  const featuredProduct = products[0];
-  const gridProducts = products.slice(1, 5);
+  // Sort to prioritize best sellers first
+  const sortedProducts = [...allProducts].sort((a, b) => {
+    // Best sellers and staff picks come first
+    const aIsBestSeller = a.badge === "Best Seller" || a.badge === "Staff Pick";
+    const bIsBestSeller = b.badge === "Best Seller" || b.badge === "Staff Pick";
+    
+    if (aIsBestSeller && !bIsBestSeller) return -1;
+    if (!aIsBestSeller && bIsBestSeller) return 1;
+    
+    // Then "New" items
+    const aIsNew = a.badge === "New";
+    const bIsNew = b.badge === "New";
+    
+    if (aIsNew && !bIsNew) return -1;
+    if (!aIsNew && bIsNew) return 1;
+    
+    return 0;
+  });
+  
+  const featuredProduct = sortedProducts[0];
+  const gridProducts = sortedProducts.slice(1, 5);
 
   return (
     <section id="shop" className="py-10 lg:py-24 bg-cream relative overflow-hidden">

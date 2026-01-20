@@ -132,9 +132,15 @@ export function shopifyToLocalProduct(product: ShopifyProduct) {
   const compareAtPrice = parseFloat(product.compareAtPriceRange.minVariantPrice.amount);
   const category = product.productType || "Beverages";
   
+  // Generate a tagline from description or use a fallback
+  const tagline = product.description
+    ? product.description.split('.')[0].slice(0, 50) + (product.description.length > 50 ? '...' : '')
+    : "Crafted for moments that matter";
+  
   return {
     id: product.id,
     name: product.title,
+    tagline,
     price,
     compareAtPrice: compareAtPrice > price ? compareAtPrice : undefined,
     image: product.featuredImage?.url || "/placeholder.svg",
