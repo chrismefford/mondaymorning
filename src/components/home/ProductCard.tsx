@@ -3,7 +3,6 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ShoppingBag, Loader2 } from "lucide-react";
 import { useCart } from "@/hooks/useCart";
-import { useProcessedImage } from "@/hooks/useProcessedImage";
 import type { Product } from "@/data/products";
 
 interface ExtendedProduct extends Product {
@@ -22,19 +21,13 @@ const ProductCard = ({ product, variant = "default", useLifestyleImage = true, s
   const isFeatured = variant === "featured";
   const { addToCart, isLoading } = useCart();
   
-  // Use AI background removal for product images
-  const { processedUrl, isProcessing: isProcessingImage } = useProcessedImage(
-    product.image,
-    true // Always process so all product images can be transparent cutouts
-  );
-  
   // Use lifestyle image for homepage display, fall back to product image
   const lifestyleImage = useLifestyleImage && product.lifestyleImage 
     ? product.lifestyleImage 
     : product.image;
   
-  // Use processed image if available, otherwise fall back to original
-  const productImage = processedUrl || product.image;
+  // Use original product image directly (no AI processing)
+  const productImage = product.image;
 
   // Generate product link using handle if available, fallback to slugified name
   const productLink = product.handle 
@@ -65,20 +58,11 @@ const ProductCard = ({ product, variant = "default", useLifestyleImage = true, s
         >
           {showProductOnly ? (
             /* Product Only Mode - no hover effect */
-            <>
-              {isProcessingImage && (
-                <div className="absolute inset-0 flex items-center justify-center z-20 bg-transparent">
-                  <Loader2 className="h-6 w-6 animate-spin text-forest/50" />
-                </div>
-              )}
-              <img
-                src={productImage}
-                alt={product.name}
-                className={`absolute inset-0 w-full h-full object-contain p-4 pb-8 relative z-10 transition-opacity duration-300 ${
-                  isProcessingImage ? "opacity-50" : "opacity-100"
-                }`}
-              />
-            </>
+            <img
+              src={productImage}
+              alt={product.name}
+              className="absolute inset-0 w-full h-full object-contain p-4 pb-8 z-10"
+            />
           ) : (
             <>
               {/* Lifestyle Image (default) */}
