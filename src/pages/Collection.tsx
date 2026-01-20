@@ -67,25 +67,35 @@ const CollectionPage = () => {
   // Get local collection meta for fallback
   const collectionMeta = collections.find(c => c.id === slug);
   
-  // Convert Shopify products to local format and randomly assign staff picks
+  // Convert Shopify products to local format and randomly assign staff picks/best sellers
   const displayProducts = React.useMemo(() => {
     const products = data?.products?.map(shopifyToLocalProduct) || [];
     
-    // Randomly pick ~20% of products to be staff picks (seeded by product count for consistency)
+    // Randomly pick ~20% of products to be staff picks and ~10% to be best sellers
     const staffPickIndices = new Set<number>();
-    const numStaffPicks = Math.max(1, Math.floor(products.length * 0.2));
+    const bestSellerIndices = new Set<number>();
+    const numStaffPicks = Math.max(1, Math.floor(products.length * 0.15));
+    const numBestSellers = Math.max(1, Math.floor(products.length * 0.1));
     
     // Use product IDs to create deterministic "random" picks
     products.forEach((product, index) => {
       const hash = product.id.split('').reduce((a, b) => ((a << 5) - a) + b.charCodeAt(0), 0);
-      if (Math.abs(hash) % 5 === 0 && staffPickIndices.size < numStaffPicks) {
+      const mod = Math.abs(hash) % 10;
+      
+      if (mod === 0 && bestSellerIndices.size < numBestSellers) {
+        bestSellerIndices.add(index);
+      } else if (mod <= 2 && staffPickIndices.size < numStaffPicks && !bestSellerIndices.has(index)) {
         staffPickIndices.add(index);
       }
     });
     
     return products.map((product, index) => ({
       ...product,
-      badge: staffPickIndices.has(index) ? "Staff Pick" : product.badge
+      badge: bestSellerIndices.has(index) 
+        ? "Best Seller" 
+        : staffPickIndices.has(index) 
+          ? "Staff Pick" 
+          : product.badge
     }));
   }, [data?.products]);
 
