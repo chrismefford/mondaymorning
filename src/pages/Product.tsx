@@ -201,6 +201,33 @@ const ProductPage = () => {
                   </Badge>
                 </div>
 
+                {/* Featured Product Callout */}
+                <div className="bg-gold/10 border border-gold/30 rounded-lg p-4 mb-6">
+                  <p className="font-sans text-xs uppercase tracking-wider text-gold mb-2 font-semibold">
+                    Featured Product
+                  </p>
+                  <Link 
+                    to={`/product/${handle}`}
+                    className="flex items-center gap-3 group/product"
+                  >
+                    <div className="w-12 h-12 bg-white border border-forest/20 rounded overflow-hidden shrink-0">
+                      <img 
+                        src={product.image} 
+                        alt={product.name}
+                        className="w-full h-full object-contain p-1"
+                      />
+                    </div>
+                    <div>
+                      <p className="font-serif text-forest font-semibold group-hover/product:text-gold transition-colors">
+                        {product.name}
+                      </p>
+                      <p className="font-sans text-xs text-muted-foreground">
+                        Use in this recipe • ${product.price.toFixed(2)}
+                      </p>
+                    </div>
+                  </Link>
+                </div>
+
                 {/* Ingredients */}
                 <div className="border-t-2 border-forest/10 pt-6">
                   <h4 className="font-sans text-xs uppercase tracking-[0.2em] text-gold mb-4 font-semibold">
