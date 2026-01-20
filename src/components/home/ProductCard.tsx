@@ -21,9 +21,12 @@ const ProductCard = ({ product, variant = "default", useLifestyleImage = true }:
   const { addToCart, isLoading } = useCart();
   
   // Use lifestyle image for homepage display, fall back to product image
-  const displayImage = useLifestyleImage && product.lifestyleImage 
+  const lifestyleImage = useLifestyleImage && product.lifestyleImage 
     ? product.lifestyleImage 
     : product.image;
+  
+  // Always have the actual product image available for hover reveal
+  const productImage = product.image;
 
   // Generate product link using handle if available, fallback to slugified name
   const productLink = product.handle 
@@ -46,16 +49,24 @@ const ProductCard = ({ product, variant = "default", useLifestyleImage = true }:
       <article 
         className={`group relative ${isFeatured ? "lg:flex lg:items-center lg:gap-12" : ""}`}
       >
-        {/* Image Container */}
+        {/* Image Container with Hover Reveal */}
         <div 
           className={`relative overflow-hidden rounded-2xl bg-sand ${
             isFeatured ? "lg:w-1/2 aspect-[4/5]" : "aspect-[3/4]"
           } shadow-card group-hover:shadow-elevated transition-shadow duration-300`}
         >
+          {/* Lifestyle Image (default) */}
           <img
-            src={displayImage}
+            src={lifestyleImage}
             alt={product.name}
-            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+            className="absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ease-out group-hover:opacity-0"
+          />
+          
+          {/* Product Image (revealed on hover) */}
+          <img
+            src={productImage}
+            alt={`${product.name} bottle`}
+            className="absolute inset-0 w-full h-full object-contain p-6 bg-cream transition-opacity duration-500 ease-out opacity-0 group-hover:opacity-100"
           />
           
           {/* Badge */}
@@ -68,7 +79,7 @@ const ProductCard = ({ product, variant = "default", useLifestyleImage = true }:
           )}
 
           {/* Quick Add Overlay */}
-          <div className="absolute inset-x-0 bottom-0 top-16 flex items-end p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gradient-to-t from-forest-deep/80 via-forest-deep/40 to-transparent">
+          <div className="absolute inset-x-0 bottom-0 p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100 bg-gradient-to-t from-forest-deep/90 via-forest-deep/60 to-transparent z-10">
             <Button 
               onClick={handleAddToCart}
               disabled={isLoading || !firstVariantId}
