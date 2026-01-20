@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ShoppingBag, Loader2 } from "lucide-react";
 import { useCart } from "@/hooks/useCart";
+import { useProcessedImage } from "@/hooks/useProcessedImage";
 import type { Product } from "@/data/products";
 
 interface ExtendedProduct extends Product {
@@ -21,13 +22,19 @@ const ProductCard = ({ product, variant = "default", useLifestyleImage = true, s
   const isFeatured = variant === "featured";
   const { addToCart, isLoading } = useCart();
   
+  // Use AI background removal for product images in showProductOnly mode
+  const { processedUrl, isProcessing: isProcessingImage } = useProcessedImage(
+    product.image,
+    showProductOnly // Only process when showing product-only view
+  );
+  
   // Use lifestyle image for homepage display, fall back to product image
   const lifestyleImage = useLifestyleImage && product.lifestyleImage 
     ? product.lifestyleImage 
     : product.image;
   
-  // Always have the actual product image available for hover reveal
-  const productImage = product.image;
+  // Use processed image if available, otherwise fall back to original
+  const productImage = processedUrl || product.image;
 
   // Generate product link using handle if available, fallback to slugified name
   const productLink = product.handle 
@@ -70,10 +77,17 @@ const ProductCard = ({ product, variant = "default", useLifestyleImage = true, s
                   ? "bg-gradient-to-br from-gold/20 via-cream to-gold/10" 
                   : "bg-gradient-to-br from-sand via-cream to-sand/80"
               } opacity-50`} />
+              {isProcessingImage && (
+                <div className="absolute inset-0 flex items-center justify-center z-20 bg-cream/50">
+                  <Loader2 className="h-6 w-6 animate-spin text-forest/50" />
+                </div>
+              )}
               <img
                 src={productImage}
                 alt={product.name}
-                className="absolute inset-0 w-full h-full object-contain p-4 pb-8 relative z-10"
+                className={`absolute inset-0 w-full h-full object-contain p-4 pb-8 relative z-10 transition-opacity duration-300 ${
+                  isProcessingImage ? "opacity-50" : "opacity-100"
+                }`}
               />
             </>
           ) : (
