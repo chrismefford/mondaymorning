@@ -65,7 +65,7 @@ const ProductCard = ({ product, variant = "default", useLifestyleImage = true, s
               <img
                 src={productImage}
                 alt={product.name}
-                className="absolute inset-0 w-full h-full object-contain p-6 relative z-10"
+                className="absolute inset-0 w-full h-full object-contain p-4 pb-8 relative z-10"
               />
             </>
           ) : (
