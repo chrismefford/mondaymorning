@@ -6,11 +6,16 @@ import type { Product } from "@/data/products";
 interface ProductCardProps {
   product: Product;
   variant?: "default" | "featured";
+  useLifestyleImage?: boolean; // Whether to use lifestyle image (for homepage)
 }
 
-const ProductCard = ({ product, variant = "default" }: ProductCardProps) => {
+const ProductCard = ({ product, variant = "default", useLifestyleImage = true }: ProductCardProps) => {
   const isFeatured = variant === "featured";
-
+  
+  // Use lifestyle image for homepage display, fall back to product image
+  const displayImage = useLifestyleImage && product.lifestyleImage 
+    ? product.lifestyleImage 
+    : product.image;
   return (
     <article 
       className={`group relative ${isFeatured ? "lg:flex lg:items-center lg:gap-12" : ""}`}
@@ -22,7 +27,7 @@ const ProductCard = ({ product, variant = "default" }: ProductCardProps) => {
         } shadow-card group-hover:shadow-elevated transition-shadow duration-300`}
       >
         <img
-          src={product.image}
+          src={displayImage}
           alt={product.name}
           className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
         />
