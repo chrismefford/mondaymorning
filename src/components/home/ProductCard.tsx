@@ -22,10 +22,10 @@ const ProductCard = ({ product, variant = "default", useLifestyleImage = true, s
   const isFeatured = variant === "featured";
   const { addToCart, isLoading } = useCart();
   
-  // Use AI background removal for product images in showProductOnly mode
+  // Use AI background removal for product images
   const { processedUrl, isProcessing: isProcessingImage } = useProcessedImage(
     product.image,
-    showProductOnly // Only process when showing product-only view
+    true // Always process so all product images can be transparent cutouts
   );
   
   // Use lifestyle image for homepage display, fall back to product image
@@ -59,26 +59,15 @@ const ProductCard = ({ product, variant = "default", useLifestyleImage = true, s
       >
         {/* Image Container with Hover Reveal */}
         <div 
-          className={`relative overflow-hidden rounded-2xl ${
-            showProductOnly 
-              ? product.badge?.toLowerCase().includes("best") 
-                ? "bg-gold/10 border-3 border-gold shadow-lg" 
-                : "bg-sand border-2 border-forest/10"
-              : "bg-cream"
-          } ${
+          className={`relative overflow-hidden rounded-2xl bg-transparent ${
             isFeatured ? "lg:w-1/2 aspect-[4/5]" : "aspect-[3/4]"
           } shadow-card group-hover:shadow-elevated transition-shadow duration-300`}
         >
           {showProductOnly ? (
-            /* Product Only Mode - no hover effect, with subtle texture */
+            /* Product Only Mode - no hover effect */
             <>
-              <div className={`absolute inset-0 ${
-                product.badge?.toLowerCase().includes("best") 
-                  ? "bg-gradient-to-br from-gold/20 via-cream to-gold/10" 
-                  : "bg-gradient-to-br from-sand via-cream to-sand/80"
-              } opacity-50`} />
               {isProcessingImage && (
-                <div className="absolute inset-0 flex items-center justify-center z-20 bg-cream/50">
+                <div className="absolute inset-0 flex items-center justify-center z-20 bg-transparent">
                   <Loader2 className="h-6 w-6 animate-spin text-forest/50" />
                 </div>
               )}
@@ -103,7 +92,7 @@ const ProductCard = ({ product, variant = "default", useLifestyleImage = true, s
               <img
                 src={productImage}
                 alt={`${product.name} bottle`}
-                className="absolute inset-0 w-full h-full object-contain p-6 bg-cream transition-opacity duration-500 ease-out opacity-0 group-hover:opacity-100"
+                className="absolute inset-0 w-full h-full object-contain p-6 bg-transparent transition-opacity duration-500 ease-out opacity-0 group-hover:opacity-100"
               />
             </>
           )}
