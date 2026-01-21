@@ -139,22 +139,22 @@ const ProductPage = () => {
             </div>
 
             {/* Product Info */}
-            <div className="flex flex-col justify-center">
-              <span className="font-sans text-xs uppercase tracking-[0.3em] text-gold mb-2">
+            <div className="flex flex-col justify-center lg:pr-8">
+              <span className="font-sans text-xs uppercase tracking-[0.3em] text-gold mb-3">
                 {product.category}
               </span>
               
-              <h1 className="font-serif text-4xl lg:text-5xl xl:text-6xl font-bold text-forest mb-4">
+              <h1 className="font-serif text-4xl lg:text-5xl xl:text-6xl font-bold text-forest mb-6 leading-[1.05]">
                 {product.name}
               </h1>
               
               {product.tagline && (
-                <p className="font-serif text-xl italic text-forest/70 mb-6">
+                <p className="font-serif text-xl lg:text-2xl italic text-forest/70 mb-8 leading-relaxed">
                   "{product.tagline}"
                 </p>
               )}
               
-              <p className="font-sans text-base text-muted-foreground leading-relaxed mb-8 max-w-lg">
+              <p className="font-sans text-base lg:text-lg text-muted-foreground leading-relaxed mb-10">
                 {product.description}
               </p>
 
