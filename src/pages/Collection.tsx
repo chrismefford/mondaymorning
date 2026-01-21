@@ -6,7 +6,7 @@ import Footer from "@/components/layout/Footer";
 import ProductCard from "@/components/home/ProductCard";
 import { Button } from "@/components/ui/button";
 import { collections } from "@/data/products";
-import { useShopifyCollectionProducts, shopifyToLocalProduct } from "@/hooks/useShopifyProducts";
+import { useShopifyCollectionProducts, useShopifyProducts, shopifyToLocalProduct } from "@/hooks/useShopifyProducts";
 import textureCream from "@/assets/texture-cream.svg";
 import stampGold from "@/assets/stamp-gold.svg";
 
@@ -56,20 +56,31 @@ const collectionMapping: Record<string, { shopifyHandle: string; title: string; 
 
 const CollectionPage = () => {
   const { slug } = useParams<{ slug: string }>();
+
+  const isBestSellers = slug === "best-sellers";
   
   // Get Shopify collection handle from our slug
   const collectionInfo = slug ? collectionMapping[slug] : null;
   const shopifyHandle = collectionInfo?.shopifyHandle || slug || "";
   
-  // Fetch products directly from Shopify collection
-  const { data, isLoading, error } = useShopifyCollectionProducts(shopifyHandle, 100);
+  // Fetch products directly from Shopify
+  // Best Sellers: use Shopify's BEST_SELLING sort (not a collection handle)
+  const bestSellersQuery = useShopifyProducts(100, { sortKey: "BEST_SELLING" });
+  const collectionQuery = useShopifyCollectionProducts(shopifyHandle, 100);
+
+  const data = isBestSellers
+    ? { products: bestSellersQuery.data || [] }
+    : collectionQuery.data;
+
+  const isLoading = isBestSellers ? bestSellersQuery.isLoading : collectionQuery.isLoading;
+  const error = isBestSellers ? bestSellersQuery.error : collectionQuery.error;
   
   // Get local collection meta for fallback
   const collectionMeta = collections.find(c => c.id === slug);
   
   // Convert Shopify products to local format and randomly assign staff picks/best sellers
   const displayProducts = React.useMemo(() => {
-    const products = data?.products?.map(shopifyToLocalProduct) || [];
+    const products = (data as any)?.products?.map(shopifyToLocalProduct) || [];
     
     // Randomly pick ~20% of products to be staff picks and ~10% to be best sellers
     const staffPickIndices = new Set<number>();

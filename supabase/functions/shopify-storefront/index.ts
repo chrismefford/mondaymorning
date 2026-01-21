@@ -56,8 +56,8 @@ interface ShopifyCollection {
 }
 
 const PRODUCTS_QUERY = `
-  query GetProducts($first: Int!, $after: String) {
-    products(first: $first, after: $after) {
+  query GetProducts($first: Int!, $after: String, $sortKey: ProductSortKeys, $reverse: Boolean) {
+    products(first: $first, after: $after, sortKey: $sortKey, reverse: $reverse) {
       pageInfo {
         hasNextPage
         endCursor
@@ -525,6 +525,8 @@ serve(async (req) => {
     const collectionHandle = url.searchParams.get("collection");
     const productHandle = url.searchParams.get("handle");
     const first = parseInt(url.searchParams.get("first") || "50");
+    const sortKey = url.searchParams.get("sortKey") || undefined;
+    const reverse = url.searchParams.get("reverse") === "true";
 
     let data;
     let body: Record<string, unknown> = {};
@@ -540,7 +542,7 @@ serve(async (req) => {
 
     switch (action) {
       case "products":
-        data = await shopifyFetch(PRODUCTS_QUERY, { first });
+        data = await shopifyFetch(PRODUCTS_QUERY, { first, sortKey, reverse });
         return new Response(
           JSON.stringify({
             products: data.products.edges.map((edge: { node: ShopifyProduct }) => edge.node),
