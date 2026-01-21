@@ -48,14 +48,20 @@ const SearchOverlay = ({ isOpen, onClose }: SearchOverlayProps) => {
 
   // Filter products based on search query
   const filteredProducts = products
-    ?.map(shopifyToLocalProduct)
+    ?.map((product) => {
+      const local = shopifyToLocalProduct(product);
+      // Include raw product data for better search matching
+      return { ...local, tags: product.tags, vendor: product.vendor };
+    })
     .filter((product) => {
       if (!debouncedQuery.trim()) return false;
       const searchLower = debouncedQuery.toLowerCase();
       return (
         product.name.toLowerCase().includes(searchLower) ||
         product.category.toLowerCase().includes(searchLower) ||
-        product.description?.toLowerCase().includes(searchLower)
+        product.description?.toLowerCase().includes(searchLower) ||
+        product.vendor?.toLowerCase().includes(searchLower) ||
+        product.tags?.some((tag: string) => tag.toLowerCase().includes(searchLower))
       );
     })
     .slice(0, 6);
