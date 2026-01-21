@@ -13,6 +13,7 @@ import About from "./pages/About";
 import RecipesPage from "./pages/Recipes";
 import ProductPage from "./pages/Product";
 import CollectionPage from "./pages/Collection";
+import ShopPage from "./pages/Shop";
 import Locations from "./pages/Locations";
 import Auth from "./pages/Auth";
 import Admin from "./pages/Admin";
@@ -41,6 +42,7 @@ const AppContent = () => {
       <CartDrawer />
       <Routes>
         <Route path="/" element={<Index />} />
+        <Route path="/shop" element={<ShopPage />} />
         <Route path="/about" element={<About />} />
         <Route path="/recipes" element={<RecipesPage />} />
         <Route path="/product/:handle" element={<ProductPage />} />
