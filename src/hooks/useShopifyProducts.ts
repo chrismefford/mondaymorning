@@ -54,18 +54,20 @@ export interface ShopifyCollection {
 
 async function fetchFromShopify<T>(action: string, params: Record<string, string> = {}): Promise<T> {
   const queryParams = new URLSearchParams({ action, ...params });
-  
-  const { data, error } = await supabase.functions.invoke("shopify-storefront", {
-    body: null,
-    method: "GET",
-  });
 
-  // Use fetch directly since supabase.functions.invoke doesn't support GET params well
+  // Use fetch directly since our function expects query params.
+  // IMPORTANT: send the project publishable key as `apikey` and prefer a user access token
+  // when available (so this works for both logged-in and logged-out visitors).
+  const publishableKey = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY as string;
+  const { data: authData } = await supabase.auth.getSession();
+  const accessToken = authData.session?.access_token;
+
   const response = await fetch(
     `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/shopify-storefront?${queryParams}`,
     {
       headers: {
-        Authorization: `Bearer ${import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY}`,
+        apikey: publishableKey,
+        Authorization: `Bearer ${accessToken ?? publishableKey}`,
       },
     }
   );
