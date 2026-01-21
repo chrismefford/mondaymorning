@@ -34,36 +34,125 @@ const stores = [
 ];
 
 const partners = [
-  { name: "The Patio on Lamont", neighborhood: "Pacific Beach", type: "restaurant" },
-  { name: "Wonderland Ocean Pub", neighborhood: "Ocean Beach", type: "bar" },
-  { name: "OB Noodle House", neighborhood: "Ocean Beach", type: "restaurant" },
-  { name: "The Joint", neighborhood: "Ocean Beach", type: "bar" },
-  { name: "Waterbar", neighborhood: "Pacific Beach", type: "bar" },
-  { name: "JRDN Restaurant", neighborhood: "Pacific Beach", type: "restaurant" },
-  { name: "Pillbox Tavern", neighborhood: "Solana Beach", type: "bar" },
-  { name: "Board & Brew", neighborhood: "Del Mar", type: "restaurant" },
-  { name: "Raglan Public House", neighborhood: "Ocean Beach", type: "bar" },
-  { name: "Grass Skirt Tiki Room", neighborhood: "Pacific Beach", type: "bar" },
-  { name: "The Local", neighborhood: "Pacific Beach", type: "bar" },
-  { name: "Wonderland Ocean Pub", neighborhood: "Ocean Beach", type: "bar" },
-  { name: "Firehouse American Eatery", neighborhood: "Pacific Beach", type: "restaurant" },
-  { name: "Oscars Mexican Seafood", neighborhood: "Pacific Beach", type: "restaurant" },
-  { name: "South Beach Bar & Grille", neighborhood: "Ocean Beach", type: "bar" },
-  { name: "Mike's Taco Club", neighborhood: "Ocean Beach", type: "restaurant" },
-  { name: "Hodad's", neighborhood: "Ocean Beach", type: "restaurant" },
-  { name: "Pizza Port", neighborhood: "Ocean Beach", type: "restaurant" },
-  { name: "The Lafayette Hotel", neighborhood: "North Park", type: "restaurant" },
-  { name: "Campfire", neighborhood: "Carlsbad", type: "restaurant" },
-  { name: "Herb & Wood", neighborhood: "Little Italy", type: "restaurant" },
-  { name: "Queenstown Public House", neighborhood: "Little Italy", type: "bar" },
-  { name: "False Idol", neighborhood: "Little Italy", type: "bar" },
-  { name: "Coin-Op Game Room", neighborhood: "North Park", type: "bar" },
-  { name: "Tiger! Tiger!", neighborhood: "North Park", type: "bar" },
-  { name: "Polite Provisions", neighborhood: "Normal Heights", type: "bar" },
-  { name: "Soda & Swine", neighborhood: "Normal Heights", type: "restaurant" },
-  { name: "Craft & Commerce", neighborhood: "Little Italy", type: "bar" },
-  { name: "El Dorado Cocktail Lounge", neighborhood: "East Village", type: "bar" },
-  { name: "Prohibition Lounge", neighborhood: "Gaslamp", type: "bar" },
+  { 
+    name: "Fall Brewing Company", 
+    address: "4542 30th St, San Diego, CA 92116",
+    neighborhood: "North Park", 
+    type: "brewery",
+    mapUrl: "https://www.google.com/maps/place/Fall+Brewing+Company/@32.760023,-117.1304411,17z/"
+  },
+  { 
+    name: "Selva Coffee House", 
+    address: "3535 Camino del Rio W, San Diego, CA 92110",
+    neighborhood: "Mission Valley", 
+    type: "restaurant",
+    mapUrl: "https://www.google.com/maps/place/Selva+Coffee+House/@32.7562493,-117.2042902,17z/"
+  },
+  { 
+    name: "Maya Moon Collective", 
+    address: "3349 Adams Ave, San Diego, CA 92116",
+    neighborhood: "Normal Heights", 
+    type: "restaurant",
+    mapUrl: "https://www.google.com/maps/place/Maya+Moon+Collective/@32.7655,-117.1283,17z/"
+  },
+  { 
+    name: "Moniker General", 
+    address: "2860 Sims Rd, San Diego, CA 92106",
+    neighborhood: "Liberty Station", 
+    type: "restaurant",
+    mapUrl: "https://www.google.com/maps/place/Moniker+General/@32.7428,-117.2108,17z/"
+  },
+  { 
+    name: "Boney's Bayside Market", 
+    address: "155 Orange Ave, Coronado, CA 92118",
+    neighborhood: "Coronado", 
+    type: "restaurant",
+    mapUrl: "https://www.google.com/maps/place/Boney's+Bayside+Market/@32.6855,-117.1765,17z/"
+  },
+  { 
+    name: "Collins & Coupe", 
+    address: "2876 El Cajon Blvd #100, San Diego, CA 92104",
+    neighborhood: "North Park", 
+    type: "bar",
+    mapUrl: "https://www.google.com/maps/place/Collins+%26+Coupe/@32.7476,-117.1272,17z/"
+  },
+  { 
+    name: "Miss B's Coconut Club", 
+    address: "3704 Mission Blvd, San Diego, CA 92109",
+    neighborhood: "Mission Beach", 
+    type: "bar",
+    mapUrl: "https://www.google.com/maps/place/Miss+B's+Coconut+Club/@32.7892,-117.2539,17z/"
+  },
+  { 
+    name: "Park 101", 
+    address: "3040 Carlsbad Blvd, Carlsbad, CA 92008",
+    neighborhood: "Carlsbad", 
+    type: "bar",
+    mapUrl: "https://www.google.com/maps/place/PRK101/@33.1252,-117.3389,17z/"
+  },
+  { 
+    name: "Louisiana Purchase", 
+    address: "2305 University Ave, San Diego, CA 92104",
+    neighborhood: "North Park", 
+    type: "restaurant",
+    mapUrl: "https://www.google.com/maps/place/Louisiana+Purchase/@32.7497,-117.1291,17z/"
+  },
+  { 
+    name: "Coco Maya by Miss B's", 
+    address: "1660 India St, San Diego, CA 92101",
+    neighborhood: "Little Italy", 
+    type: "bar",
+    mapUrl: "https://www.google.com/maps/place/Coco+Maya+by+Miss+B's/@32.7225,-117.1686,17z/"
+  },
+  { 
+    name: "The Lobby Tiki Bar", 
+    address: "408 Pier View Wy, Oceanside, CA 92054",
+    neighborhood: "Oceanside", 
+    type: "bar",
+    mapUrl: "https://www.google.com/maps/place/The+Lobby+Tiki+Bar/@33.1954,-117.3795,17z/"
+  },
+  { 
+    name: "Cococabana", 
+    address: "408 Pier View Wy Suite 401, Oceanside, CA 92054",
+    neighborhood: "Oceanside", 
+    type: "bar",
+    mapUrl: "https://www.google.com/maps/place/Cococabana/@33.1954,-117.3795,17z/"
+  },
+  { 
+    name: "Dunedin New Zealand Eats", 
+    address: "3501 30th St, San Diego, CA 92104",
+    neighborhood: "North Park", 
+    type: "restaurant",
+    mapUrl: "https://www.google.com/maps/place/Dunedin+New+Zealand+Eats/@32.7506,-117.1298,17z/"
+  },
+  { 
+    name: "Queenstown Public House", 
+    address: "1557 Columbia St, San Diego, CA 92101",
+    neighborhood: "Little Italy", 
+    type: "bar",
+    mapUrl: "https://www.google.com/maps/place/Queenstown+Public+House/@32.7206,-117.1686,17z/"
+  },
+  { 
+    name: "Bare Back Grill", 
+    address: "4640 Mission Blvd, San Diego, CA 92109",
+    neighborhood: "Pacific Beach", 
+    type: "restaurant",
+    mapUrl: "https://www.google.com/maps/place/Bare+Back+Grill/@32.7935,-117.2535,17z/"
+  },
+  { 
+    name: "Raglan Public House", 
+    address: "1851 Bacon St, San Diego, CA 92107",
+    neighborhood: "Ocean Beach", 
+    type: "bar",
+    mapUrl: "https://www.google.com/maps/place/Raglan+Public+House/@32.7486,-117.2502,17z/"
+  },
+  { 
+    name: "Queenstown Village", 
+    address: "1044 Wall St, La Jolla, CA 92037",
+    neighborhood: "La Jolla", 
+    type: "restaurant",
+    mapUrl: "https://www.google.com/maps/place/Queenstown+Village/@32.8489,-117.2739,17z/"
+  },
 ];
 
 const Locations = () => {
@@ -208,7 +297,7 @@ const Locations = () => {
                 Partner Locations
               </span>
               <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl text-cream">
-                Find Us at <span className="italic">30+ Spots</span>
+                Find Us at <span className="italic">{partners.length}+ Spots</span>
               </h2>
               <p className="font-sans text-cream/70 max-w-xl mx-auto mt-4">
                 Enjoy Monday Morning drinks at these San Diego restaurants and bars.
@@ -218,20 +307,26 @@ const Locations = () => {
             {/* Grid of partners */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {partners.map((partner, index) => (
-                <div 
+                <a 
                   key={index}
-                  className="bg-cream/5 border border-cream/10 p-5 hover:bg-cream/10 hover:border-gold/30 transition-all group"
+                  href={partner.mapUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-cream/5 border border-cream/10 p-5 hover:bg-cream/10 hover:border-gold/30 transition-all group block"
                 >
                   <div className="flex items-start justify-between gap-3">
                     <div>
                       <h3 className="font-sans text-sm font-semibold text-cream group-hover:text-gold transition-colors">
                         {partner.name}
                       </h3>
+                      <p className="font-sans text-xs text-cream/70 mt-1">
+                        {partner.address}
+                      </p>
                       <p className="font-sans text-xs text-cream/50 mt-1">
                         {partner.neighborhood}
                       </p>
                     </div>
-                    <div className="flex-shrink-0">
+                    <div className="flex-shrink-0 flex flex-col items-center gap-2">
                       {partner.type === "restaurant" ? (
                         <UtensilsCrossed className="h-4 w-4 text-gold/60" />
                       ) : partner.type === "bar" ? (
@@ -239,9 +334,10 @@ const Locations = () => {
                       ) : (
                         <Beer className="h-4 w-4 text-gold/60" />
                       )}
+                      <ExternalLink className="h-3 w-3 text-cream/30 group-hover:text-gold transition-colors" />
                     </div>
                   </div>
-                </div>
+                </a>
               ))}
             </div>
 
