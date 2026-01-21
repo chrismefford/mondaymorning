@@ -265,7 +265,7 @@ const Locations = () => {
                     </div>
 
                     <a 
-                      className="mt-4"
+                      className="block mt-6"
                       href={store.mapUrl}
                       target="_blank"
                       rel="noopener noreferrer"
