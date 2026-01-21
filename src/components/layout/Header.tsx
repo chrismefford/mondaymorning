@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
-import { Menu, X, ShoppingBag, ArrowUpRight, Sparkles, Beer, Wine, Martini, Star, Leaf, Package, ChevronDown, Sunrise, UtensilsCrossed, Sofa, Umbrella, PartyPopper } from "lucide-react";
+import { Menu, X, ShoppingBag, ArrowUpRight, Sparkles, Beer, Wine, Martini, Star, Leaf, Package, ChevronDown, Sunrise, UtensilsCrossed, Sofa, Umbrella, PartyPopper, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useCart } from "@/hooks/useCart";
 import logoGold from "@/assets/logo-primary-gold.svg";
 import logoWhite from "@/assets/logo-primary-white.svg";
+import SearchOverlay from "@/components/search/SearchOverlay";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -34,6 +35,7 @@ const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isCollectionsOpen, setIsCollectionsOpen] = useState(false);
   const [isRecipesOpen, setIsRecipesOpen] = useState(false);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
   const { cartCount, openCart } = useCart();
 
   useEffect(() => {
@@ -144,6 +146,13 @@ const Header = () => {
 
             {/* Desktop Actions */}
             <div className="hidden lg:flex items-center gap-2">
+              <button 
+                onClick={() => setIsSearchOpen(true)}
+                className="w-10 h-10 border-2 border-foreground flex items-center justify-center hover:bg-foreground hover:text-background transition-colors group"
+                aria-label="Search products"
+              >
+                <Search className="h-4 w-4" />
+              </button>
               <Button 
                 variant="ghost" 
                 size="sm"
@@ -163,6 +172,13 @@ const Header = () => {
             </div>
 
             <div className="lg:hidden flex items-center gap-3 relative z-50">
+              <button 
+                onClick={() => setIsSearchOpen(true)}
+                className={`w-10 h-10 border-2 flex items-center justify-center transition-colors ${isMenuOpen ? 'border-background/30 text-background' : 'border-foreground'}`}
+                aria-label="Search products"
+              >
+                <Search className="h-4 w-4" />
+              </button>
               <button 
                 onClick={openCart}
                 className={`relative w-10 h-10 border-2 flex items-center justify-center transition-colors ${isMenuOpen ? 'border-background/30 text-background' : 'border-foreground'}`}
@@ -297,6 +313,9 @@ const Header = () => {
           </div>
         </nav>
       </div>
+
+      {/* Search Overlay */}
+      <SearchOverlay isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)} />
     </>
   );
 };
