@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
+import { Link } from "react-router-dom";
 import { recipes, occasionLabels, Occasion, Recipe } from "@/data/recipes";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Clock, Users, ChefHat, X } from "lucide-react";
+import { ArrowRight, Clock, Users, ChefHat, ShoppingBag } from "lucide-react";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import stampGold from "@/assets/stamp-gold.svg";
@@ -12,12 +13,80 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
+import { useShopifyProducts, ShopifyProduct, shopifyToLocalProduct } from "@/hooks/useShopifyProducts";
+
+/**
+ * Find the best matching product for a recipe based on its productKeywords
+ */
+function findMatchingProduct(recipe: Recipe, products: ShopifyProduct[]): ReturnType<typeof shopifyToLocalProduct> | null {
+  const keywords = recipe.productKeywords || [];
+  if (keywords.length === 0 || products.length === 0) return null;
+
+  // Filter out gift cards and memberships
+  const beverageProducts = products.filter(p => {
+    const type = p.productType?.toLowerCase() || "";
+    const title = p.title?.toLowerCase() || "";
+    return !type.includes("gift") && !type.includes("membership") && 
+           !title.includes("gift card") && !title.includes("membership");
+  });
+
+  if (beverageProducts.length === 0) return null;
+
+  // Score products by keyword match
+  const scoredProducts = beverageProducts.map(product => {
+    const productNameLower = product.title.toLowerCase();
+    const productCategoryLower = (product.productType || "").toLowerCase();
+    const combinedText = `${productNameLower} ${productCategoryLower}`;
+
+    let score = 0;
+    for (const keyword of keywords) {
+      const keywordLower = keyword.toLowerCase();
+      if (productNameLower.includes(keywordLower)) {
+        score += 3;
+      } else if (productCategoryLower.includes(keywordLower)) {
+        score += 2;
+      } else if (combinedText.includes(keywordLower)) {
+        score += 1;
+      }
+    }
+    return { product, score };
+  });
+
+  // Sort by score descending
+  scoredProducts.sort((a, b) => b.score - a.score);
+
+  // Get products with score > 0
+  const matches = scoredProducts.filter(p => p.score > 0);
+
+  if (matches.length > 0) {
+    // Use recipe id hash to pick from top matches for variety
+    let hash = 0;
+    for (let i = 0; i < recipe.id.length; i++) {
+      hash = ((hash << 5) - hash) + recipe.id.charCodeAt(i);
+      hash |= 0;
+    }
+    const topN = Math.min(3, matches.length);
+    const index = Math.abs(hash) % topN;
+    return shopifyToLocalProduct(matches[index].product);
+  }
+
+  return null;
+}
 
 const occasions: Occasion[] = ["breakfast", "dinner", "relaxing", "beach", "celebration"];
 
 const RecipesPage = () => {
   const [activeOccasion, setActiveOccasion] = useState<Occasion | "all">("all");
   const [selectedRecipe, setSelectedRecipe] = useState<Recipe | null>(null);
+
+  // Fetch all products to match with recipes
+  const { data: shopifyProducts = [] } = useShopifyProducts(100);
+
+  // Find matching product for selected recipe
+  const matchingProduct = useMemo(() => {
+    if (!selectedRecipe || shopifyProducts.length === 0) return null;
+    return findMatchingProduct(selectedRecipe, shopifyProducts);
+  }, [selectedRecipe, shopifyProducts]);
 
   const filteredRecipes = activeOccasion === "all" 
     ? recipes 
@@ -254,6 +323,41 @@ const RecipesPage = () => {
                     ))}
                   </ul>
                 </div>
+
+                {/* Featured Product Section */}
+                {matchingProduct && (
+                  <div className="mt-8 border-t-2 border-forest/20 pt-6">
+                    <h3 className="font-sans text-xs uppercase tracking-[0.2em] text-gold mb-4 font-semibold flex items-center gap-2">
+                      <ShoppingBag className="h-4 w-4" />
+                      Make it with
+                    </h3>
+                    <Link 
+                      to={`/products/${matchingProduct.handle}`}
+                      className="flex items-center gap-4 p-3 bg-forest/5 border-2 border-forest/10 hover:border-gold hover:bg-gold/5 transition-all group"
+                      onClick={() => setSelectedRecipe(null)}
+                    >
+                      <div className="w-20 h-20 bg-cream border border-forest/10 shrink-0 overflow-hidden">
+                        <img 
+                          src={matchingProduct.image} 
+                          alt={matchingProduct.name}
+                          className="w-full h-full object-contain"
+                        />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <p className="font-serif text-lg text-forest group-hover:text-gold transition-colors truncate">
+                          {matchingProduct.name}
+                        </p>
+                        <p className="font-sans text-sm text-muted-foreground truncate">
+                          {matchingProduct.category}
+                        </p>
+                        <p className="font-sans text-sm font-semibold text-gold mt-1">
+                          {matchingProduct.price}
+                        </p>
+                      </div>
+                      <ArrowRight className="h-5 w-5 text-forest/40 group-hover:text-gold transition-colors shrink-0" />
+                    </Link>
+                  </div>
+                )}
 
                 <div className="mt-8 p-4 bg-forest/5 border-2 border-forest/10">
                   <p className="font-sans text-sm text-muted-foreground">
