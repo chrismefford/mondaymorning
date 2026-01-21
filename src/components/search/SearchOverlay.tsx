@@ -90,7 +90,7 @@ const SearchOverlay = ({ isOpen, onClose }: SearchOverlayProps) => {
       />
 
       {/* Content */}
-      <div className="relative z-10 h-full flex flex-col items-center justify-start pt-24 lg:pt-32 px-6">
+      <div className="relative z-10 h-full flex flex-col items-center justify-start pt-24 lg:pt-32 px-6 overflow-y-auto pb-24">
         {/* Close button */}
         <button
           onClick={onClose}
