@@ -17,7 +17,7 @@ const stores = [
     ],
     phone: "(619) 555-0101",
     mapUrl: "https://maps.google.com/?q=1854+Garnet+Ave+San+Diego+CA+92109",
-    image: "/images/beach-lifestyle.jpg",
+    image: "/images/pacific-beach-location.jpg",
   },
   {
     name: "Ocean Beach",
@@ -29,7 +29,7 @@ const stores = [
     ],
     phone: "(619) 555-0102",
     mapUrl: "https://maps.google.com/?q=4967+Newport+Ave+San+Diego+CA+92107",
-    image: "/images/beach-bonfire.jpg",
+    image: "/images/ocean-beach-location.jpg",
   },
 ];
 
