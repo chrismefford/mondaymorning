@@ -77,12 +77,31 @@ async function fetchFromShopify<T>(action: string, params: Record<string, string
   return response.json();
 }
 
-export function useShopifyProducts(first = 50) {
+export type ShopifyProductSortKey =
+  | "BEST_SELLING"
+  | "CREATED_AT"
+  | "ID"
+  | "PRICE"
+  | "PRODUCT_TYPE"
+  | "RELEVANCE"
+  | "TITLE"
+  | "UPDATED_AT"
+  | "VENDOR";
+
+export function useShopifyProducts(
+  first = 50,
+  options?: {
+    sortKey?: ShopifyProductSortKey;
+    reverse?: boolean;
+  }
+) {
   return useQuery({
-    queryKey: ["shopify-products", first],
+    queryKey: ["shopify-products", first, options?.sortKey, options?.reverse],
     queryFn: async () => {
       const data = await fetchFromShopify<{ products: ShopifyProduct[] }>("products", { 
-        first: first.toString() 
+        first: first.toString(),
+        ...(options?.sortKey ? { sortKey: options.sortKey } : {}),
+        ...(typeof options?.reverse === "boolean" ? { reverse: String(options.reverse) } : {}),
       });
       return data.products;
     },
