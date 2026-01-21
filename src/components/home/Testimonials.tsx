@@ -188,7 +188,7 @@ const Testimonials = () => {
         </div>
 
         {/* Social Proof Bar */}
-        <div className="border-t-2 border-forest pt-8 lg:pt-12 mt-8 lg:mt-0">
+        <div className="border-t-2 border-ocean/30 pt-8 lg:pt-12 mt-8 lg:mt-0">
           <div className="grid grid-cols-3 gap-4 lg:gap-16">
             {[
               { value: "10K+", label: "Happy customers" },
@@ -196,7 +196,7 @@ const Testimonials = () => {
               { value: "50+", label: "SoCal retailers" },
             ].map((stat) => (
               <div key={stat.label} className="text-center group">
-                <div className="font-serif text-2xl lg:text-6xl font-bold text-forest group-hover:text-gold transition-colors">
+                <div className="font-serif text-2xl lg:text-6xl font-bold text-forest group-hover:text-ocean transition-colors">
                   {stat.value}
                 </div>
                 <div className="font-sans text-[9px] lg:text-xs uppercase tracking-[0.15em] lg:tracking-[0.2em] text-muted-foreground mt-1 lg:mt-2">
