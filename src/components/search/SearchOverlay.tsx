@@ -51,12 +51,14 @@ const SearchOverlay = ({ isOpen, onClose }: SearchOverlayProps) => {
     ?.map((product) => {
       const local = shopifyToLocalProduct(product);
       // Include raw product data for better search matching
-      return { ...local, tags: product.tags, vendor: product.vendor };
+      return { ...local, tags: product.tags, vendor: product.vendor, title: product.title };
     })
     .filter((product) => {
       if (!debouncedQuery.trim()) return false;
       const searchLower = debouncedQuery.toLowerCase();
+      // Search product title, name, category, description, vendor, and tags
       return (
+        product.title?.toLowerCase().includes(searchLower) ||
         product.name.toLowerCase().includes(searchLower) ||
         product.category.toLowerCase().includes(searchLower) ||
         product.description?.toLowerCase().includes(searchLower) ||
@@ -64,7 +66,7 @@ const SearchOverlay = ({ isOpen, onClose }: SearchOverlayProps) => {
         product.tags?.some((tag: string) => tag.toLowerCase().includes(searchLower))
       );
     })
-    .slice(0, 6);
+    .slice(0, 12);
 
   const handleProductClick = (handle: string) => {
     navigate(`/product/${handle}`);
