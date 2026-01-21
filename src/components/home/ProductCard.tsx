@@ -123,12 +123,12 @@ const ProductCard = ({ product, variant = "default", useLifestyleImage = true, s
         </div>
 
         {/* Product Info */}
-        <div className={`${isFeatured ? "lg:w-1/2 lg:py-8" : "mt-4"}`}>
-          <span className="font-sans text-xs font-medium uppercase tracking-wider text-ocean">
+        <div className={`${isFeatured ? "lg:w-1/2 lg:py-8" : "mt-4 text-center px-2 pb-3"}`}>
+          <span className="font-sans text-[10px] font-bold uppercase tracking-[0.15em] text-ocean">
             {product.category}
           </span>
           
-          <h3 className={`font-serif font-medium mt-1 ${isFeatured ? "text-3xl lg:text-4xl" : "text-xl"}`}>
+          <h3 className={`font-serif font-semibold mt-1 leading-tight ${isFeatured ? "text-3xl lg:text-4xl" : "text-base lg:text-lg"}`}>
             {product.name}
           </h3>
           
