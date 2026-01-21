@@ -1,5 +1,5 @@
 // Lifestyle image imports for homepage display
-import lifestyleSpirit from "@/assets/lifestyle/na-spirit-cocktail.jpg";
+import rooftopCheers from "@/assets/lifestyle/rooftop-cheers.jpg";
 import lifestyleWine from "@/assets/lifestyle/na-wine-cheers.jpg";
 import lifestyleBeer from "@/assets/lifestyle/na-beer-beach.jpg";
 import lifestyleFunctional from "@/assets/lifestyle/na-functional-elixir.jpg";
@@ -35,7 +35,7 @@ export interface Product {
 // Map categories to lifestyle images
 export const categoryLifestyleImages: Record<string, string> = {
   "Aperitif": lifestyleTropical,
-  "Spirit Alternative": lifestyleSpirit,
+  "Spirit Alternative": rooftopCheers,
   "Functional Elixir": lifestyleFunctional,
   "Wine Alternative": lifestyleWine,
   "Sparkling": lifestyleWine,
