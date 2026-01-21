@@ -100,18 +100,18 @@ const ProductPage = () => {
           <img src={stampGold} alt="" className="w-full" />
         </div>
 
-        <div className="container mx-auto px-4 py-8 lg:py-16 relative z-10">
+        <div className="container mx-auto px-6 lg:px-12 xl:px-20 py-8 lg:py-16 relative z-10">
           {/* Breadcrumb */}
           <Link 
             to="/#shop" 
-            className="inline-flex items-center gap-2 text-forest/70 hover:text-forest transition-colors mb-8 font-sans text-sm"
+            className="inline-flex items-center gap-2 text-forest/70 hover:text-forest transition-colors mb-12 lg:mb-16 font-sans text-sm"
           >
             <ArrowLeft className="h-4 w-4" />
             Back to Shop
           </Link>
 
           {/* Product Section */}
-          <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 mb-16 lg:mb-24">
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 xl:gap-32 mb-20 lg:mb-32">
             {/* Product Image */}
             <div className="relative">
               <div className="aspect-square bg-white border-2 border-forest overflow-hidden shadow-card relative">
@@ -139,32 +139,32 @@ const ProductPage = () => {
             </div>
 
             {/* Product Info */}
-            <div className="flex flex-col justify-center lg:pr-8">
-              <span className="font-sans text-xs uppercase tracking-[0.3em] text-gold mb-3">
+            <div className="flex flex-col justify-center lg:pl-4 xl:pl-8">
+              <span className="font-sans text-sm uppercase tracking-[0.3em] text-gold mb-4">
                 {product.category}
               </span>
               
-              <h1 className="font-serif text-4xl lg:text-5xl xl:text-6xl font-bold text-forest mb-6 leading-[1.05]">
+              <h1 className="font-serif text-5xl lg:text-6xl xl:text-7xl font-bold text-forest mb-8 leading-[1.02]">
                 {product.name}
               </h1>
               
               {product.tagline && (
-                <p className="font-serif text-xl lg:text-2xl italic text-forest/70 mb-8 leading-relaxed">
+                <p className="font-serif text-2xl lg:text-3xl italic text-forest/60 mb-10 leading-snug max-w-2xl">
                   "{product.tagline}"
                 </p>
               )}
               
-              <p className="font-sans text-base lg:text-lg text-muted-foreground leading-relaxed mb-10">
+              <p className="font-sans text-lg lg:text-xl text-muted-foreground leading-relaxed mb-12 max-w-2xl">
                 {product.description}
               </p>
 
               {/* Price & CTA */}
-              <div className="flex items-center gap-4 mb-8">
-                <span className="font-sans text-3xl font-bold text-forest">
+              <div className="flex items-center gap-6 mb-10">
+                <span className="font-sans text-4xl font-bold text-forest">
                   ${product.price.toFixed(2)}
                 </span>
                 {product.compareAtPrice && (
-                  <span className="font-sans text-lg text-muted-foreground line-through">
+                  <span className="font-sans text-xl text-muted-foreground line-through">
                     ${product.compareAtPrice.toFixed(2)}
                   </span>
                 )}
