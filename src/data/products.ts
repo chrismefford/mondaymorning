@@ -162,7 +162,7 @@ export const products: Product[] = [
     tagline: "Unwind without unwinding",
     description: "A soothing evening blend of chamomile, passionflower, and gentle adaptogens.",
     price: 26,
-    image: "https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=600&q=80",
+    image: "https://images.unsplash.com/photo-1544145945-f90425340c7e?w=600&q=80",
     lifestyleImage: lifestyleBotanical,
     flavor: "Chamomile • Lavender • Honey",
     mood: "Calm & Centered",

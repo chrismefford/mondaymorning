@@ -265,7 +265,7 @@ export const recipes: Recipe[] = [
     occasion: "relaxing",
     tagline: "Drift off peacefully",
     description: "A warming blend of apple cider, cinnamon, and Abstinence Epilogue X for a cozy nightcap.",
-    image: "https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=800&q=80",
+    image: "https://images.unsplash.com/photo-1544145945-f90425340c7e?w=800&q=80",
     prepTime: "10 min",
     servings: 1,
     difficulty: "Easy",
