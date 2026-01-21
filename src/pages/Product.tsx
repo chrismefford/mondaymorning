@@ -1,13 +1,16 @@
+import { useState, useMemo } from "react";
 import { useParams, Link } from "react-router-dom";
 import { useShopifyProduct } from "@/hooks/useShopifyProduct";
+import { useShopifyProducts, shopifyToLocalProduct } from "@/hooks/useShopifyProducts";
 import { useCart } from "@/hooks/useCart";
 import { getSuggestedRecipe } from "@/lib/recipeMatch";
 import { occasionLabels } from "@/data/recipes";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import ProductCard from "@/components/home/ProductCard";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { ArrowLeft, ShoppingBag, Clock, Users, Loader2 } from "lucide-react";
+import { ArrowLeft, ShoppingBag, Clock, Users, Loader2, ChevronLeft, ChevronRight } from "lucide-react";
 import textureCream from "@/assets/texture-cream.svg";
 import stampGold from "@/assets/stamp-gold.svg";
 
@@ -15,6 +18,34 @@ const ProductPage = () => {
   const { handle } = useParams<{ handle: string }>();
   const { data: product, isLoading, error } = useShopifyProduct(handle || "");
   const { addToCart, isLoading: isAddingToCart } = useCart();
+  const [currentPage, setCurrentPage] = useState(0);
+  const PRODUCTS_PER_PAGE = 8;
+  const TOTAL_PAGES = 3;
+
+  // Fetch more products for "More to Explore" section
+  const { data: allProducts } = useShopifyProducts(PRODUCTS_PER_PAGE * TOTAL_PAGES);
+
+  // Filter out current product and convert to local format
+  const moreProducts = useMemo(() => {
+    if (!allProducts) return [];
+    return allProducts
+      .map(shopifyToLocalProduct)
+      .filter((p) => p.handle !== handle)
+      .filter((p) => 
+        !p.category?.toLowerCase().includes('membership') &&
+        !p.name?.toLowerCase().includes('gift card') &&
+        !p.name?.toLowerCase().includes('subscription')
+      );
+  }, [allProducts, handle]);
+
+  // Get current page of products
+  const currentProducts = useMemo(() => {
+    const start = currentPage * PRODUCTS_PER_PAGE;
+    return moreProducts.slice(start, start + PRODUCTS_PER_PAGE);
+  }, [moreProducts, currentPage]);
+
+  const hasNextPage = (currentPage + 1) * PRODUCTS_PER_PAGE < moreProducts.length;
+  const hasPrevPage = currentPage > 0;
 
   // Get the first variant ID for adding to cart
   const firstVariantId = product?.variants?.[0]?.id;
@@ -257,6 +288,70 @@ const ProductPage = () => {
               </div>
             </div>
           </section>
+
+          {/* More to Explore Section */}
+          {currentProducts.length > 0 && (
+            <section className="border-t-2 border-forest/10 pt-12 lg:pt-20">
+              <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-4 mb-8 lg:mb-12">
+                <div>
+                  <span className="font-sans text-xs uppercase tracking-[0.3em] text-gold mb-2 block">
+                    Keep Exploring
+                  </span>
+                  <h2 className="font-serif text-3xl lg:text-4xl text-forest">
+                    More to Discover
+                  </h2>
+                </div>
+
+                {/* Pagination controls */}
+                <div className="flex items-center gap-4">
+                  <span className="font-sans text-sm text-muted-foreground">
+                    Page {currentPage + 1} of {Math.min(TOTAL_PAGES, Math.ceil(moreProducts.length / PRODUCTS_PER_PAGE))}
+                  </span>
+                  <div className="flex gap-2">
+                    <Button
+                      variant="outline"
+                      size="icon"
+                      onClick={() => setCurrentPage((p) => p - 1)}
+                      disabled={!hasPrevPage}
+                      className="border-2 border-forest text-forest hover:bg-forest hover:text-cream disabled:opacity-30"
+                    >
+                      <ChevronLeft className="h-4 w-4" />
+                    </Button>
+                    <Button
+                      variant="outline"
+                      size="icon"
+                      onClick={() => setCurrentPage((p) => p + 1)}
+                      disabled={!hasNextPage}
+                      className="border-2 border-forest text-forest hover:bg-forest hover:text-cream disabled:opacity-30"
+                    >
+                      <ChevronRight className="h-4 w-4" />
+                    </Button>
+                  </div>
+                </div>
+              </div>
+
+              {/* Product Grid */}
+              <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-8">
+                {currentProducts.map((p) => (
+                  <ProductCard key={p.id} product={p} />
+                ))}
+              </div>
+
+              {/* Page indicator dots */}
+              <div className="flex justify-center gap-2 mt-8">
+                {Array.from({ length: Math.min(TOTAL_PAGES, Math.ceil(moreProducts.length / PRODUCTS_PER_PAGE)) }).map((_, i) => (
+                  <button
+                    key={i}
+                    onClick={() => setCurrentPage(i)}
+                    className={`h-2 rounded-full transition-all ${
+                      i === currentPage ? "w-6 bg-gold" : "w-2 bg-forest/20 hover:bg-forest/40"
+                    }`}
+                    aria-label={`Go to page ${i + 1}`}
+                  />
+                ))}
+              </div>
+            </section>
+          )}
         </div>
       </main>
 
