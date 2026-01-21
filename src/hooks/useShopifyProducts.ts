@@ -111,6 +111,19 @@ export type ShopifyProductSortKey =
   | "UPDATED_AT"
   | "VENDOR";
 
+/**
+ * Checks if a product is active and available for sale.
+ * The Storefront API only returns published products, but this also ensures
+ * at least one variant is available for purchase.
+ */
+export function isActiveProduct(product: ShopifyProduct): boolean {
+  // Product must have at least one variant available for sale
+  const hasAvailableVariant = product.variants.edges.some(
+    (edge) => edge.node.availableForSale
+  );
+  return hasAvailableVariant;
+}
+
 export function useShopifyProducts(
   first = 50,
   options?: {
@@ -122,7 +135,8 @@ export function useShopifyProducts(
     queryKey: ["shopify-products", first, options?.sortKey, options?.reverse],
     queryFn: async () => {
       const data = await fetchShopifyProductsPage(first, options);
-      return data.products;
+      // Filter to only include active products with available variants
+      return data.products.filter(isActiveProduct);
     },
   });
 }
@@ -161,7 +175,8 @@ export function useShopifyAllProducts(options?: {
         if (!after) break;
       }
 
-      return all;
+      // Filter to only include active products with available variants
+      return all.filter(isActiveProduct);
     },
   });
 }
