@@ -5,6 +5,8 @@ import naBeer from "@/assets/na-beer.jpg";
 import naWine from "@/assets/na-wine.jpg";
 import naOldFashioned from "@/assets/na-old-fashioned.jpg";
 import stampGold from "@/assets/stamp-gold.svg";
+import logoPrimaryGold from "@/assets/logo-primary-gold.svg";
+import logoPrimaryWhite from "@/assets/logo-primary-white.svg";
 
 const Hero = () => {
   return (
@@ -27,8 +29,13 @@ const Hero = () => {
 
         {/* Content overlay - positioned at bottom */}
         <div className="relative z-20 mt-auto px-6 pb-8 pt-32 text-cream">
-          {/* Animated badge */}
+          {/* Logo above headline - Mobile */}
           <div className="mb-6 animate-fade-up">
+            <img 
+              src={logoPrimaryWhite} 
+              alt="Monday Morning" 
+              className="h-16 w-auto mb-4"
+            />
             <span className="inline-flex items-center gap-2 font-sans text-[10px] font-bold uppercase tracking-[0.4em] text-cream/80">
               <span className="w-8 h-px bg-gold" />
               America's #1 NA Bottle Shop
@@ -115,8 +122,13 @@ const Hero = () => {
       <div className="hidden lg:flex flex-1 relative">
         {/* Left side - Typography */}
         <div className="w-1/2 flex flex-col justify-center px-16 py-32 relative z-20">
-          {/* Small badge */}
+          {/* Logo above headline - Desktop */}
           <div className="mb-8 animate-fade-up">
+            <img 
+              src={logoPrimaryGold} 
+              alt="Monday Morning" 
+              className="h-24 xl:h-28 w-auto mb-6"
+            />
             <span className="inline-block font-sans text-xs font-semibold uppercase tracking-[0.3em] text-forest border-2 border-forest px-4 py-2">
               America's #1 NA Bottle Shop
             </span>

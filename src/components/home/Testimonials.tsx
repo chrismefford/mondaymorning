@@ -1,5 +1,6 @@
 import { Star, ArrowRight, ArrowLeft } from "lucide-react";
 import { useState } from "react";
+import stampGreen from "@/assets/stamp-green.svg";
 
 const testimonials = [
   {
@@ -40,6 +41,11 @@ const Testimonials = () => {
     <section className="py-16 lg:py-40 bg-sand relative overflow-hidden">
       {/* Grain texture */}
       <div className="grain absolute inset-0 pointer-events-none" />
+
+      {/* Background stamp watermark */}
+      <div className="absolute bottom-0 right-0 w-[20rem] lg:w-[40rem] opacity-[0.03] pointer-events-none select-none translate-x-1/4 translate-y-1/4">
+        <img src={stampGreen} alt="" className="w-full h-full" />
+      </div>
 
       {/* Large quote mark */}
       <div className="absolute top-8 left-4 lg:top-12 lg:left-16 font-serif text-[8rem] lg:text-[25rem] text-forest/5 leading-none pointer-events-none select-none">

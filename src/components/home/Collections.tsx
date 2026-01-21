@@ -3,6 +3,7 @@ import { collections } from "@/data/products";
 import { ArrowUpRight, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import stampGold from "@/assets/stamp-gold.svg";
+import stampBlue from "@/assets/stamp-blue.svg";
 import textureGreen from "@/assets/texture-green.svg";
 
 const Collections = () => {
@@ -17,9 +18,12 @@ const Collections = () => {
       {/* Grain overlay */}
       <div className="grain absolute inset-0 pointer-events-none" />
       
-      {/* Decorative stamp */}
+      {/* Decorative stamps - multiple for visual interest */}
       <div className="absolute -top-20 -right-20 w-64 lg:w-96 opacity-10 pointer-events-none">
         <img src={stampGold} alt="" className="w-full h-full" />
+      </div>
+      <div className="absolute bottom-0 left-0 w-[20rem] lg:w-[35rem] opacity-[0.05] pointer-events-none select-none -translate-x-1/4 translate-y-1/4">
+        <img src={stampBlue} alt="" className="w-full h-full" />
       </div>
 
       <div className="relative z-10">
