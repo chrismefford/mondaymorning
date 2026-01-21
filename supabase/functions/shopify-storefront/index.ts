@@ -525,6 +525,7 @@ serve(async (req) => {
     const collectionHandle = url.searchParams.get("collection");
     const productHandle = url.searchParams.get("handle");
     const first = parseInt(url.searchParams.get("first") || "50");
+    const after = url.searchParams.get("after") || undefined;
     const sortKey = url.searchParams.get("sortKey") || undefined;
     const reverse = url.searchParams.get("reverse") === "true";
 
@@ -542,7 +543,7 @@ serve(async (req) => {
 
     switch (action) {
       case "products":
-        data = await shopifyFetch(PRODUCTS_QUERY, { first, sortKey, reverse });
+        data = await shopifyFetch(PRODUCTS_QUERY, { first, after, sortKey, reverse });
         return new Response(
           JSON.stringify({
             products: data.products.edges.map((edge: { node: ShopifyProduct }) => edge.node),

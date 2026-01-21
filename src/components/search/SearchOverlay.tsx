@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { Search, X, ArrowRight, Loader2 } from "lucide-react";
-import { useShopifyProducts, shopifyToLocalProduct } from "@/hooks/useShopifyProducts";
+import { useShopifyAllProducts, shopifyToLocalProduct } from "@/hooks/useShopifyProducts";
 import { useNavigate } from "react-router-dom";
 
 interface SearchOverlayProps {
@@ -14,7 +14,8 @@ const SearchOverlay = ({ isOpen, onClose }: SearchOverlayProps) => {
   const inputRef = useRef<HTMLInputElement>(null);
   const navigate = useNavigate();
 
-  const { data: products, isLoading } = useShopifyProducts(50);
+  // Fetch full catalog for reliable search (store has 400+ products)
+  const { data: products, isLoading } = useShopifyAllProducts({ enabled: isOpen });
 
   // Debounce search query
   useEffect(() => {

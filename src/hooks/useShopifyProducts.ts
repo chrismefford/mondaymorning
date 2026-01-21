@@ -52,6 +52,11 @@ export interface ShopifyCollection {
   } | null;
 }
 
+export interface ShopifyPageInfo {
+  hasNextPage: boolean;
+  endCursor: string | null;
+}
+
 async function fetchFromShopify<T>(action: string, params: Record<string, string> = {}): Promise<T> {
   const queryParams = new URLSearchParams({ action, ...params });
 
@@ -79,6 +84,22 @@ async function fetchFromShopify<T>(action: string, params: Record<string, string
   return response.json();
 }
 
+async function fetchShopifyProductsPage(
+  first: number,
+  options?: {
+    after?: string;
+    sortKey?: ShopifyProductSortKey;
+    reverse?: boolean;
+  }
+): Promise<{ products: ShopifyProduct[]; pageInfo: ShopifyPageInfo }> {
+  return fetchFromShopify<{ products: ShopifyProduct[]; pageInfo: ShopifyPageInfo }>("products", {
+    first: first.toString(),
+    ...(options?.after ? { after: options.after } : {}),
+    ...(options?.sortKey ? { sortKey: options.sortKey } : {}),
+    ...(typeof options?.reverse === "boolean" ? { reverse: String(options.reverse) } : {}),
+  });
+}
+
 export type ShopifyProductSortKey =
   | "BEST_SELLING"
   | "CREATED_AT"
@@ -100,12 +121,47 @@ export function useShopifyProducts(
   return useQuery({
     queryKey: ["shopify-products", first, options?.sortKey, options?.reverse],
     queryFn: async () => {
-      const data = await fetchFromShopify<{ products: ShopifyProduct[] }>("products", { 
-        first: first.toString(),
-        ...(options?.sortKey ? { sortKey: options.sortKey } : {}),
-        ...(typeof options?.reverse === "boolean" ? { reverse: String(options.reverse) } : {}),
-      });
+      const data = await fetchShopifyProductsPage(first, options);
       return data.products;
+    },
+  });
+}
+
+/**
+ * Fetches the full product catalog by paging until the end.
+ * Useful for client-side search (e.g. to ensure "Kava" is found even if it's not in the first page).
+ */
+export function useShopifyAllProducts(options?: {
+  sortKey?: ShopifyProductSortKey;
+  reverse?: boolean;
+  enabled?: boolean;
+  pageSize?: number;
+}) {
+  const pageSize = Math.min(Math.max(options?.pageSize ?? 250, 1), 250);
+
+  return useQuery({
+    queryKey: ["shopify-products-all", pageSize, options?.sortKey, options?.reverse],
+    enabled: options?.enabled ?? true,
+    queryFn: async () => {
+      const all: ShopifyProduct[] = [];
+      let after: string | undefined = undefined;
+
+      // Safety cap in case of unexpected pagination behavior
+      for (let page = 0; page < 25; page++) {
+        const data = await fetchShopifyProductsPage(pageSize, {
+          after,
+          sortKey: options?.sortKey,
+          reverse: options?.reverse,
+        });
+
+        all.push(...data.products);
+
+        if (!data.pageInfo?.hasNextPage) break;
+        after = data.pageInfo.endCursor ?? undefined;
+        if (!after) break;
+      }
+
+      return all;
     },
   });
 }
