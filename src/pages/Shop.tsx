@@ -382,7 +382,7 @@ const ShopPage = () => {
                     return (
                       <div 
                         key={item.data.id}
-                        className="col-span-2 lg:col-span-2"
+                        className="col-span-2 md:col-span-3 lg:col-span-4"
                       >
                         <FunDivider divider={item.data} />
                       </div>
