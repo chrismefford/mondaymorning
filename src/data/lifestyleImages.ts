@@ -8,8 +8,6 @@ import poolsideFriendsDrinks from "@/assets/lifestyle/poolside-friends-drinks.jp
 import dinnerPartyToast from "@/assets/lifestyle/dinner-party-toast.jpg";
 
 // Spirit alternatives - cocktails and bar scenes
-import spiritBarCraft from "@/assets/lifestyle/spirit-bar-craft.jpg";
-import spiritCoupeElegant from "@/assets/lifestyle/spirit-coupe-elegant.jpg";
 import lifestyleSpirit from "@/assets/lifestyle/na-spirit-cocktail.jpg";
 import botanicalBar2 from "@/assets/lifestyle/botanical-bar-2.jpg";
 
@@ -58,9 +56,9 @@ import yacht10 from "@/assets/lifestyle/yacht-10.jpg";
 // Category-specific image pools
 export const categoryImagePools: Record<string, string[]> = {
   // Spirits get cocktail/bar scenes with people
-  "Spirit Alternative": [friendsBeachToast, rooftopCheers, spiritBarCraft, spiritCoupeElegant],
-  "Spirit": [friendsBeachToast, rooftopCheers, spiritBarCraft, spiritCoupeElegant],
-  "Spirits": [friendsBeachToast, rooftopCheers, spiritBarCraft, spiritCoupeElegant],
+  "Spirit Alternative": [friendsBeachToast, rooftopCheers, dinnerPartyToast, aperitifGoldenHour],
+  "Spirit": [friendsBeachToast, rooftopCheers, dinnerPartyToast, aperitifGoldenHour],
+  "Spirits": [friendsBeachToast, rooftopCheers, dinnerPartyToast, aperitifGoldenHour],
   
   // Wine gets dinner party and celebration scenes with people
   "Wine Alternative": [dinnerPartyToast, rooftopCheers, wineDinnerToast, dinnerParty3],
@@ -146,7 +144,8 @@ export function getLifestyleImageByIndex(index: number, category: string = "defa
 
 // All lifestyle images in a flat pool (for general use)
 export const lifestyleImagePool: string[] = [
-  spiritBarCraft, spiritCoupeElegant, lifestyleSpirit, botanicalBar2,
+  rooftopCheers, dinnerPartyToast, friendsBeachToast, aperitifGoldenHour,
+  lifestyleSpirit, botanicalBar2,
   wineDinnerToast, wineVineyardPour, lifestyleWine, dinnerParty3, vineyard9,
   beerPatioFriends, beerBeachBonfire, lifestyleBeer, patioBeer6,
   functionalWellnessMorning, functionalZenTonic, lifestyleFunctional, wellness12,

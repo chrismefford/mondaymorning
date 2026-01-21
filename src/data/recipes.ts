@@ -63,7 +63,7 @@ export const recipes: Recipe[] = [
     occasion: "breakfast",
     tagline: "Calm meets bright",
     description: "Fresh blueberries muddled with lavender syrup and Amethyst Blueberry Ginger Mint for a soothing yet vibrant morning drink.",
-    image: "https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=800&q=80",
+    image: "https://images.unsplash.com/photo-1544145945-f90425340c7e?w=800&q=80",
     prepTime: "7 min",
     servings: 1,
     difficulty: "Easy",

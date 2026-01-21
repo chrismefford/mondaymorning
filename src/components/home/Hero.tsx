@@ -3,7 +3,7 @@ import { ArrowRight, ArrowDown } from "lucide-react";
 import { Link } from "react-router-dom";
 import naBeer from "@/assets/na-beer.jpg";
 import naWine from "@/assets/na-wine.jpg";
-import naOldFashioned from "@/assets/na-old-fashioned.jpg";
+import rooftopCheers from "@/assets/lifestyle/rooftop-cheers.jpg";
 import stampGold from "@/assets/stamp-gold.svg";
 import logoPrimaryGold from "@/assets/logo-primary-gold.svg";
 import logoPrimaryWhite from "@/assets/logo-primary-white.svg";
@@ -107,7 +107,7 @@ const Hero = () => {
         </div>
         <div className="absolute top-16 right-36 z-30 animate-float" style={{ animationDelay: '0.6s' }}>
           <div className="w-12 h-16 bg-cream p-1 pb-3 border-2 border-forest shadow-brutal rotate-12">
-            <img src={naOldFashioned} alt="Old Fashioned" className="w-full h-full object-cover" />
+            <img src={rooftopCheers} alt="Rooftop cheers" className="w-full h-full object-cover" />
           </div>
         </div>
 
@@ -214,8 +214,8 @@ const Hero = () => {
           </div>
           <div className="absolute bottom-1/4 -left-12 z-30 animate-float" style={{ animationDelay: '0.6s' }}>
             <div className="w-36 h-48 bg-cream p-2 pb-8 border-2 border-forest shadow-brutal rotate-6">
-              <img src={naOldFashioned} alt="Old Fashioned" className="w-full h-full object-cover" />
-              <span className="absolute bottom-2 left-0 right-0 text-center font-serif text-sm italic text-forest">Old Fashioned</span>
+              <img src={rooftopCheers} alt="Rooftop cheers" className="w-full h-full object-cover" />
+              <span className="absolute bottom-2 left-0 right-0 text-center font-serif text-sm italic text-forest">Good Vibes</span>
             </div>
           </div>
 
