@@ -2,7 +2,7 @@ import { useState, useMemo } from "react";
 import { Link } from "react-router-dom";
 import { recipes, occasionLabels, Occasion, Recipe } from "@/data/recipes";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Clock, Users, ChefHat, ShoppingBag } from "lucide-react";
+import { ArrowRight, Clock, Users, ChefHat, ShoppingCart, Plus, ShoppingBag } from "lucide-react";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import stampGold from "@/assets/stamp-gold.svg";
@@ -14,11 +14,17 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { useShopifyProducts, ShopifyProduct, shopifyToLocalProduct } from "@/hooks/useShopifyProducts";
+import { useCart } from "@/hooks/useCart";
+
+interface RecipeProduct {
+  product: ReturnType<typeof shopifyToLocalProduct>;
+  shopifyProduct: ShopifyProduct;
+}
 
 /**
  * Find the product for a recipe - either by explicit handle or keyword matching
  */
-function findRecipeProduct(recipe: Recipe, products: ShopifyProduct[]): ReturnType<typeof shopifyToLocalProduct> | null {
+function findRecipeProduct(recipe: Recipe, products: ShopifyProduct[]): RecipeProduct | null {
   if (products.length === 0) return null;
 
   // Filter out gift cards and memberships
@@ -33,8 +39,10 @@ function findRecipeProduct(recipe: Recipe, products: ShopifyProduct[]): ReturnTy
 
   // If recipe has explicit product handle, use that
   if (recipe.featuredProductHandle) {
-    const product = beverageProducts.find(p => p.handle === recipe.featuredProductHandle);
-    if (product) return shopifyToLocalProduct(product);
+    const shopifyProduct = beverageProducts.find(p => p.handle === recipe.featuredProductHandle);
+    if (shopifyProduct) {
+      return { product: shopifyToLocalProduct(shopifyProduct), shopifyProduct };
+    }
   }
 
   // Fall back to keyword matching
@@ -57,10 +65,24 @@ function findRecipeProduct(recipe: Recipe, products: ShopifyProduct[]): ReturnTy
   const matches = scoredProducts.filter(p => p.score > 0);
 
   if (matches.length > 0) {
-    return shopifyToLocalProduct(matches[0].product);
+    const shopifyProduct = matches[0].product;
+    return { product: shopifyToLocalProduct(shopifyProduct), shopifyProduct };
   }
 
   return null;
+}
+
+/**
+ * Check if an ingredient contains the product name
+ */
+function isProductIngredient(ingredient: string, productName: string): boolean {
+  const ingredientLower = ingredient.toLowerCase();
+  const productNameLower = productName.toLowerCase();
+  
+  // Check if ingredient contains product name or key parts of it
+  const productWords = productNameLower.split(/\s+/).filter(w => w.length > 3);
+  return productWords.some(word => ingredientLower.includes(word)) || 
+         ingredientLower.includes(productNameLower);
 }
 
 const occasions: Occasion[] = ["breakfast", "dinner", "relaxing", "beach", "celebration"];
@@ -68,12 +90,13 @@ const occasions: Occasion[] = ["breakfast", "dinner", "relaxing", "beach", "cele
 const RecipesPage = () => {
   const [activeOccasion, setActiveOccasion] = useState<Occasion | "all">("all");
   const [selectedRecipe, setSelectedRecipe] = useState<Recipe | null>(null);
+  const { addToCart, isLoading: isCartLoading } = useCart();
 
   // Fetch all products to match with recipes
   const { data: shopifyProducts = [] } = useShopifyProducts(100);
 
   // Find matching product for selected recipe
-  const matchingProduct = useMemo(() => {
+  const matchingProductData = useMemo(() => {
     if (!selectedRecipe || shopifyProducts.length === 0) return null;
     return findRecipeProduct(selectedRecipe, shopifyProducts);
   }, [selectedRecipe, shopifyProducts]);
@@ -302,52 +325,73 @@ const RecipesPage = () => {
                     Ingredients
                   </h3>
                   <ul className="space-y-3">
-                    {selectedRecipe.ingredients.map((ingredient, index) => (
-                      <li
-                        key={index}
-                        className="font-sans text-base text-forest flex items-center gap-3"
-                      >
-                        <span className="w-2 h-2 rounded-full bg-gold shrink-0" />
-                        {ingredient}
-                      </li>
-                    ))}
+                    {selectedRecipe.ingredients.map((ingredient, index) => {
+                      const isProduct = matchingProductData && isProductIngredient(ingredient, matchingProductData.product.name);
+                      const variantId = matchingProductData?.shopifyProduct.variants.edges[0]?.node.id;
+                      
+                      if (isProduct && matchingProductData) {
+                        return (
+                          <li
+                            key={index}
+                            className="font-sans text-base flex items-start gap-3 p-3 -mx-3 bg-gold/10 border-2 border-gold/30 rounded-lg"
+                          >
+                            <span className="w-2 h-2 rounded-full bg-gold shrink-0 mt-2" />
+                            <div className="flex-1 min-w-0">
+                              <div className="flex items-center gap-2 flex-wrap">
+                                <Link 
+                                  to={`/product/${matchingProductData.product.handle}`}
+                                  className="text-forest font-semibold hover:text-gold transition-colors underline underline-offset-2"
+                                  onClick={() => setSelectedRecipe(null)}
+                                >
+                                  {ingredient}
+                                </Link>
+                                <span className="font-sans text-xs bg-gold text-forest px-2 py-0.5 uppercase tracking-wider font-semibold">
+                                  Shop
+                                </span>
+                              </div>
+                              <div className="flex items-center gap-3 mt-2">
+                                <img 
+                                  src={matchingProductData.product.image} 
+                                  alt={matchingProductData.product.name}
+                                  className="w-12 h-12 object-contain bg-cream border border-forest/10 rounded"
+                                />
+                                <div className="flex-1">
+                                  <p className="font-sans text-sm text-muted-foreground">
+                                    ${matchingProductData.product.price.toFixed(2)}
+                                  </p>
+                                </div>
+                                {variantId && (
+                                  <Button
+                                    size="sm"
+                                    onClick={(e) => {
+                                      e.preventDefault();
+                                      addToCart(variantId);
+                                    }}
+                                    disabled={isCartLoading}
+                                    className="bg-forest text-cream hover:bg-forest-deep font-sans text-xs uppercase tracking-wider gap-1"
+                                  >
+                                    <Plus className="h-3 w-3" />
+                                    Add to Cart
+                                  </Button>
+                                )}
+                              </div>
+                            </div>
+                          </li>
+                        );
+                      }
+                      
+                      return (
+                        <li
+                          key={index}
+                          className="font-sans text-base text-forest flex items-center gap-3"
+                        >
+                          <span className="w-2 h-2 rounded-full bg-gold shrink-0" />
+                          {ingredient}
+                        </li>
+                      );
+                    })}
                   </ul>
                 </div>
-
-                {/* Featured Product Section */}
-                {matchingProduct && (
-                  <div className="mt-8 border-t-2 border-forest/20 pt-6">
-                    <h3 className="font-sans text-xs uppercase tracking-[0.2em] text-gold mb-4 font-semibold flex items-center gap-2">
-                      <ShoppingBag className="h-4 w-4" />
-                      Make it with
-                    </h3>
-                    <Link 
-                      to={`/products/${matchingProduct.handle}`}
-                      className="flex items-center gap-4 p-3 bg-forest/5 border-2 border-forest/10 hover:border-gold hover:bg-gold/5 transition-all group"
-                      onClick={() => setSelectedRecipe(null)}
-                    >
-                      <div className="w-20 h-20 bg-cream border border-forest/10 shrink-0 overflow-hidden">
-                        <img 
-                          src={matchingProduct.image} 
-                          alt={matchingProduct.name}
-                          className="w-full h-full object-contain"
-                        />
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <p className="font-serif text-lg text-forest group-hover:text-gold transition-colors truncate">
-                          {matchingProduct.name}
-                        </p>
-                        <p className="font-sans text-sm text-muted-foreground truncate">
-                          {matchingProduct.category}
-                        </p>
-                        <p className="font-sans text-sm font-semibold text-gold mt-1">
-                          {matchingProduct.price}
-                        </p>
-                      </div>
-                      <ArrowRight className="h-5 w-5 text-forest/40 group-hover:text-gold transition-colors shrink-0" />
-                    </Link>
-                  </div>
-                )}
 
                 <div className="mt-8 p-4 bg-forest/5 border-2 border-forest/10">
                   <p className="font-sans text-sm text-muted-foreground">
