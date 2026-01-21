@@ -1,93 +1,70 @@
 import { useEffect, useState } from "react";
 import stampGold from "@/assets/stamp-gold.svg";
 import StorySubmissionForm from "./StorySubmissionForm";
+import { supabase } from "@/integrations/supabase/client";
 
-const reasons = [
-  {
-    id: 1,
-    text: "Hangovers were stealing my weekends.",
-    author: "Mike, 34",
-  },
-  {
-    id: 2,
-    text: "I wanted to actually remember the concert.",
-    author: "Jess, 28",
-  },
-  {
-    id: 3,
-    text: "My skin has never looked better.",
-    author: "Taylor, 31",
-  },
-  {
-    id: 4,
-    text: "Training for a marathon. Still want to be social.",
-    author: "Carlos, 29",
-  },
-  {
-    id: 5,
-    text: "Pregnant, not boring.",
-    author: "Sarah, 32",
-  },
-  {
-    id: 6,
-    text: "Realized I was only drinking because everyone else was.",
-    author: "Alex, 26",
-  },
-  {
-    id: 7,
-    text: "5am gym sessions hit different when you're not hungover.",
-    author: "Jordan, 30",
-  },
-  {
-    id: 8,
-    text: "I like who I am sober. Turns out, so does everyone else.",
-    author: "Nina, 27",
-  },
-  {
-    id: 9,
-    text: "My wallet thanked me. Then my liver did too.",
-    author: "Chris, 35",
-  },
-  {
-    id: 10,
-    text: "Sober driver = free tacos. Always.",
-    author: "Priya, 24",
-  },
-  {
-    id: 11,
-    text: "Anxiety said 'bye bye' when alcohol did.",
-    author: "Marcus, 33",
-  },
-  {
-    id: 12,
-    text: "I'm the designated driver. Might as well enjoy something good.",
-    author: "Elena, 29",
-  },
+interface Story {
+  id: string;
+  text: string;
+  author: string;
+}
+
+// Fallback stories when no approved stories exist
+const fallbackReasons: Story[] = [
+  { id: "1", text: "Hangovers were stealing my weekends.", author: "Mike, 34" },
+  { id: "2", text: "I wanted to actually remember the concert.", author: "Jess, 28" },
+  { id: "3", text: "My skin has never looked better.", author: "Taylor, 31" },
+  { id: "4", text: "Training for a marathon. Still want to be social.", author: "Carlos, 29" },
+  { id: "5", text: "Pregnant, not boring.", author: "Sarah, 32" },
+  { id: "6", text: "Realized I was only drinking because everyone else was.", author: "Alex, 26" },
 ];
 
 const WhyWeDontDrink = () => {
+  const [stories, setStories] = useState<Story[]>(fallbackReasons);
   const [activeIndex, setActiveIndex] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
   const [isFormOpen, setIsFormOpen] = useState(false);
 
-  // Auto-rotate through reasons
+  // Fetch approved stories from database
+  useEffect(() => {
+    const fetchStories = async () => {
+      const { data, error } = await supabase
+        .from('story_submissions')
+        .select('id, text, author_name, author_location')
+        .eq('is_approved', true)
+        .order('created_at', { ascending: false });
+
+      if (!error && data && data.length > 0) {
+        const formattedStories: Story[] = data.map((s) => ({
+          id: s.id,
+          text: s.text,
+          author: s.author_location ? `${s.author_name}, ${s.author_location}` : s.author_name,
+        }));
+        setStories(formattedStories);
+      }
+    };
+    
+    fetchStories();
+  }, []);
+
+  // Auto-rotate through stories
   useEffect(() => {
     const interval = setInterval(() => {
       setIsAnimating(true);
       setTimeout(() => {
-        setActiveIndex((prev) => (prev + 1) % reasons.length);
+        setActiveIndex((prev) => (prev + 1) % stories.length);
         setIsAnimating(false);
       }, 300);
     }, 4000);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [stories.length]);
 
   // Get visible cards (current + next few for carousel effect)
   const getVisibleReasons = () => {
     const visible = [];
-    for (let i = 0; i < 5; i++) {
-      visible.push(reasons[(activeIndex + i) % reasons.length]);
+    for (let i = 0; i < Math.min(5, stories.length); i++) {
+      visible.push(stories[(activeIndex + i) % stories.length]);
     }
     return visible;
   };
@@ -124,16 +101,16 @@ const WhyWeDontDrink = () => {
             }`}
           >
             <p className="font-serif text-xl italic text-forest leading-relaxed mb-4">
-              "{reasons[activeIndex].text}"
+              "{stories[activeIndex]?.text}"
             </p>
             <p className="font-sans text-sm text-forest/60">
-              — {reasons[activeIndex].author}
+              — {stories[activeIndex]?.author}
             </p>
           </div>
 
           {/* Dots indicator */}
           <div className="flex justify-center gap-2 mt-6">
-            {reasons.slice(0, 6).map((_, i) => (
+            {stories.slice(0, 6).map((_, i) => (
               <button
                 key={i}
                 onClick={() => setActiveIndex(i)}
