@@ -1,203 +1,325 @@
-import React, { useState, useMemo } from "react";
+import React, { useMemo } from "react";
 import { Link } from "react-router-dom";
-import { Loader2, Sparkles, Wine, Beer, Leaf, Martini, Heart, Filter, Quote, Star, Zap, Sun, PartyPopper } from "lucide-react";
+import { Loader2, ArrowRight, Sun, Moon, Users, Palmtree, Sparkles, Wine, Heart } from "lucide-react";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import ProductCard from "@/components/home/ProductCard";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 import { useShopifyAllProducts, shopifyToLocalProduct } from "@/hooks/useShopifyProducts";
 import textureCream from "@/assets/texture-cream.svg";
-import textureBlue from "@/assets/texture-blue.svg";
 import stampGold from "@/assets/stamp-gold.svg";
 
-// Category filters with icons
-const categories = [
-  { id: "all", name: "All Vibes", icon: Sparkles, color: "bg-gold" },
-  { id: "Spirit Alternative", name: "Spirits", icon: Martini, color: "bg-ocean" },
-  { id: "Wine Alternative", name: "Wine", icon: Wine, color: "bg-coral" },
-  { id: "NA Beer", name: "Beer", icon: Beer, color: "bg-gold" },
-  { id: "Functional", name: "Functional", icon: Leaf, color: "bg-forest" },
-  { id: "Ready to Drink", name: "RTD", icon: Heart, color: "bg-sunset" },
-];
+// Lifestyle images for vibe sections
+import friendsBeachToast from "@/assets/lifestyle/friends-beach-toast.jpg";
+import rooftopCheers from "@/assets/lifestyle/rooftop-cheers.jpg";
+import dinnerPartyToast from "@/assets/lifestyle/dinner-party-toast.jpg";
+import poolsideFriendsDrinks from "@/assets/lifestyle/poolside-friends-drinks.jpg";
+import beachSunset1 from "@/assets/lifestyle/beach-sunset-1.jpg";
+import sparklingCelebration from "@/assets/lifestyle/sparkling-celebration.jpg";
+import functionalWellnessMorning from "@/assets/lifestyle/functional-wellness-morning.jpg";
+import patioCoupleBeers from "@/assets/lifestyle/patio-couple-beers.jpg";
 
-// Fun divider modules that will be inserted throughout the grid
-const funDividers = [
+// Vibe sections configuration
+const vibeSections = [
   {
-    id: "quote-1",
-    type: "quote",
-    bg: "bg-ocean",
-    text: '"Drink like you give a damn about tomorrow."',
-    author: "— The sober curious",
-    icon: Quote,
+    id: "beach-day",
+    title: "Beach Day",
+    subtitle: "Sun, sand, and good sips",
+    icon: Palmtree,
+    image: friendsBeachToast,
+    bgColor: "bg-ocean",
+    textColor: "text-cream",
+    accentColor: "text-gold",
+    categories: ["Ready to Drink", "RTD", "Beverages", "NA Beer", "Beer"],
+    keywords: ["tropical", "coconut", "citrus", "lime", "mango", "pineapple", "watermelon", "beach"],
+    maxProducts: 4,
   },
   {
-    id: "callout-1", 
-    type: "callout",
-    bg: "bg-gold",
-    headline: "Staff Obsession",
-    text: "We've tried everything. These are the ones we actually take home.",
-    icon: Star,
+    id: "date-night",
+    title: "Date Night",
+    subtitle: "Intimate moments, elevated",
+    icon: Heart,
+    image: dinnerPartyToast,
+    bgColor: "bg-forest",
+    textColor: "text-cream",
+    accentColor: "text-gold",
+    categories: ["Wine Alternative", "Wine", "Sparkling", "Spirit Alternative"],
+    keywords: ["red", "pinot", "cabernet", "rose", "champagne", "elegant", "romantic"],
+    maxProducts: 4,
   },
   {
-    id: "stat-1",
-    type: "stat",
-    bg: "bg-forest",
-    stat: "425+",
-    label: "Ways to not drink",
-    subtext: "Zero excuses left",
-    icon: Zap,
-  },
-  {
-    id: "quote-2",
-    type: "quote", 
-    bg: "bg-coral",
-    text: '"Alcohol-free hits different when it actually hits."',
-    author: "— A convert",
-    icon: Quote,
-  },
-  {
-    id: "callout-2",
-    type: "callout",
-    bg: "bg-ocean",
-    headline: "RIP Hangovers",
-    text: "Remember those? Yeah, we don't either.",
+    id: "golden-hour",
+    title: "Golden Hour",
+    subtitle: "When the light hits just right",
     icon: Sun,
+    image: rooftopCheers,
+    bgColor: "bg-gold",
+    textColor: "text-forest",
+    accentColor: "text-forest",
+    categories: ["Aperitif", "Aperitivo", "Spirit Alternative", "Sparkling"],
+    keywords: ["aperitif", "spritz", "bitter", "orange", "botanical", "herb"],
+    maxProducts: 4,
   },
   {
-    id: "stat-2",
-    type: "stat",
-    bg: "bg-gold",
-    stat: "0%",
-    label: "Regrets",
-    subtext: "Finally, a flex",
-    icon: PartyPopper,
+    id: "cozy-evening",
+    title: "Cozy Evening",
+    subtitle: "Unwind in your own way",
+    icon: Moon,
+    image: patioCoupleBeers,
+    bgColor: "bg-coral",
+    textColor: "text-cream",
+    accentColor: "text-cream",
+    categories: ["Functional Elixir", "Functional", "Spirit Alternative", "Botanical"],
+    keywords: ["calm", "relax", "lavender", "chamomile", "warm", "spice", "vanilla", "whiskey", "bourbon"],
+    maxProducts: 4,
+  },
+  {
+    id: "party-mode",
+    title: "Party Mode",
+    subtitle: "Toast without the hangover",
+    icon: Sparkles,
+    image: sparklingCelebration,
+    bgColor: "bg-ocean",
+    textColor: "text-cream",
+    accentColor: "text-gold",
+    categories: ["Sparkling", "Champagne Alternative", "Ready to Drink"],
+    keywords: ["celebration", "toast", "bubbly", "sparkling", "party", "prosecco"],
+    maxProducts: 4,
+  },
+  {
+    id: "morning-ritual",
+    title: "Morning Ritual",
+    subtitle: "Start with intention",
+    icon: Sun,
+    image: functionalWellnessMorning,
+    bgColor: "bg-forest",
+    textColor: "text-cream",
+    accentColor: "text-gold",
+    categories: ["Functional Elixir", "Functional", "Adaptogens"],
+    keywords: ["morning", "energy", "focus", "clarity", "wellness", "ginger", "turmeric", "lemon"],
+    maxProducts: 4,
   },
 ];
 
-// Divider component
-const FunDivider = ({ divider }: { divider: typeof funDividers[0] }) => {
-  const Icon = divider.icon;
+// Lookbook card component
+const LookbookCard = ({ 
+  product, 
+  variant = "default" 
+}: { 
+  product: any; 
+  variant?: "default" | "large" | "vertical" 
+}) => {
+  return (
+    <div className={`
+      relative group
+      ${variant === "large" ? "col-span-2 row-span-2" : ""}
+      ${variant === "vertical" ? "row-span-2" : ""}
+    `}>
+      <ProductCard 
+        product={product} 
+        showProductOnly 
+        variant={variant === "large" ? "featured" : "default"}
+      />
+    </div>
+  );
+};
+
+// Vibe section component with lookbook layout
+const VibeSection = ({ 
+  vibe, 
+  products, 
+  index 
+}: { 
+  vibe: typeof vibeSections[0]; 
+  products: any[];
+  index: number;
+}) => {
+  const Icon = vibe.icon;
+  const isReversed = index % 2 === 1;
   
-  if (divider.type === "quote") {
-    return (
-      <div className={`${divider.bg} rounded-2xl p-6 lg:p-8 flex flex-col justify-center h-full min-h-[280px] lg:min-h-[320px] relative overflow-hidden`}>
-        <div className="grain absolute inset-0 pointer-events-none opacity-20" />
-        <Icon className={`h-10 w-10 lg:h-12 lg:w-12 mb-4 ${divider.bg === 'bg-forest' ? 'text-gold' : 'text-cream/80'}`} />
-        <p className={`font-serif text-3xl lg:text-5xl xl:text-6xl italic font-black leading-[0.95] ${divider.bg === 'bg-gold' ? 'text-forest' : 'text-cream'}`}>
-          {divider.text}
-        </p>
-        <span className={`font-sans text-sm lg:text-base font-bold uppercase tracking-wider mt-4 ${divider.bg === 'bg-gold' ? 'text-forest/70' : 'text-cream/70'}`}>
-          {divider.author}
-        </span>
-      </div>
-    );
-  }
+  if (products.length === 0) return null;
   
-  if (divider.type === "callout") {
-    return (
-      <div className={`${divider.bg} rounded-2xl p-6 lg:p-8 flex flex-col justify-center h-full min-h-[280px] lg:min-h-[320px] relative overflow-hidden`}>
-        <div className="grain absolute inset-0 pointer-events-none opacity-20" />
-        <div className="flex items-center gap-3 mb-3">
-          <Icon className={`h-6 w-6 lg:h-8 lg:w-8 ${divider.bg === 'bg-gold' ? 'text-forest' : 'text-gold'}`} />
-          <span className={`font-sans text-sm lg:text-base font-black uppercase tracking-wider ${divider.bg === 'bg-gold' ? 'text-forest' : 'text-gold'}`}>
-            {divider.headline}
-          </span>
+  return (
+    <section className={`relative py-12 lg:py-20 ${index === 0 ? 'pt-8 lg:pt-12' : ''}`}>
+      <div className="container mx-auto px-4 lg:px-8">
+        {/* Section Header */}
+        <div className={`flex flex-col lg:flex-row items-start lg:items-end gap-6 lg:gap-12 mb-8 lg:mb-12 ${isReversed ? 'lg:flex-row-reverse' : ''}`}>
+          {/* Lifestyle Image with Title Overlay */}
+          <div className="relative w-full lg:w-1/2 aspect-[4/3] rounded-2xl overflow-hidden group">
+            <img 
+              src={vibe.image} 
+              alt={vibe.title}
+              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-forest/80 via-forest/20 to-transparent" />
+            <div className="grain absolute inset-0 pointer-events-none opacity-20" />
+            
+            {/* Title overlay on image */}
+            <div className="absolute bottom-0 left-0 right-0 p-6 lg:p-8">
+              <div className="flex items-center gap-3 mb-2">
+                <div className="w-10 h-10 rounded-full bg-gold/90 flex items-center justify-center">
+                  <Icon className="h-5 w-5 text-forest" />
+                </div>
+                <span className="font-sans text-xs font-bold uppercase tracking-[0.2em] text-gold">
+                  The Vibe
+                </span>
+              </div>
+              <h2 className="font-serif text-4xl lg:text-5xl xl:text-6xl text-cream mb-2">
+                {vibe.title}
+              </h2>
+              <p className="font-sans text-base lg:text-lg text-cream/80 max-w-md">
+                {vibe.subtitle}
+              </p>
+            </div>
+          </div>
+          
+          {/* Products Grid - Lookbook Style */}
+          <div className="w-full lg:w-1/2">
+            <div className="grid grid-cols-2 gap-4 lg:gap-6">
+              {products.slice(0, 4).map((product, idx) => (
+                <LookbookCard 
+                  key={product.id} 
+                  product={product}
+                  variant={idx === 0 && products.length >= 4 ? "default" : "default"}
+                />
+              ))}
+            </div>
+            
+            {/* View more link */}
+            <Link 
+              to={`/collections/${vibe.id}`}
+              className="inline-flex items-center gap-2 mt-6 font-sans text-sm font-bold uppercase tracking-wider text-forest hover:text-gold transition-colors group"
+            >
+              Shop this vibe
+              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+            </Link>
+          </div>
         </div>
-        <p className={`font-serif text-3xl lg:text-5xl xl:text-6xl font-black leading-[0.95] ${divider.bg === 'bg-gold' ? 'text-forest' : 'text-cream'}`}>
-          {divider.text}
-        </p>
       </div>
-    );
-  }
-  
-  if (divider.type === "stat") {
-    return (
-      <div className={`${divider.bg} rounded-2xl p-6 lg:p-8 flex flex-col justify-center items-center text-center h-full min-h-[280px] lg:min-h-[320px] relative overflow-hidden`}>
-        <div className="grain absolute inset-0 pointer-events-none opacity-20" />
-        <Icon className={`h-8 w-8 lg:h-10 lg:w-10 mb-2 ${divider.bg === 'bg-gold' ? 'text-forest' : 'text-gold'}`} />
-        <span className={`font-serif text-8xl lg:text-9xl xl:text-[10rem] font-black leading-none ${divider.bg === 'bg-gold' ? 'text-forest' : 'text-cream'}`}>
-          {divider.stat}
-        </span>
-        <span className={`font-sans text-lg lg:text-xl font-black uppercase tracking-wider mt-2 ${divider.bg === 'bg-gold' ? 'text-forest' : 'text-cream'}`}>
-          {divider.label}
-        </span>
-        <span className={`font-sans text-sm lg:text-base font-medium mt-1 ${divider.bg === 'bg-gold' ? 'text-forest/60' : 'text-cream/60'}`}>
-          {divider.subtext}
-        </span>
+      
+      {/* Decorative divider */}
+      {index < vibeSections.length - 1 && (
+        <div className="container mx-auto px-4 lg:px-8 mt-12 lg:mt-16">
+          <div className="h-px bg-forest/10 w-full" />
+        </div>
+      )}
+    </section>
+  );
+};
+
+// Full-width lookbook banner
+const LookbookBanner = ({ 
+  image, 
+  title, 
+  subtitle, 
+  products, 
+  bgColor = "bg-forest" 
+}: { 
+  image: string; 
+  title: string; 
+  subtitle: string; 
+  products: any[];
+  bgColor?: string;
+}) => {
+  return (
+    <section className={`relative py-16 lg:py-24 ${bgColor} overflow-hidden`}>
+      <div className="grain absolute inset-0 pointer-events-none opacity-20" />
+      
+      <div className="container mx-auto px-4 lg:px-8 relative z-10">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
+          {/* Content */}
+          <div className="text-center lg:text-left">
+            <span className="font-sans text-xs font-bold uppercase tracking-[0.3em] text-gold mb-4 block">
+              Staff Favorites
+            </span>
+            <h2 className="font-serif text-4xl lg:text-5xl xl:text-6xl text-cream mb-4">
+              {title}
+            </h2>
+            <p className="font-sans text-lg text-cream/80 mb-8 max-w-md mx-auto lg:mx-0">
+              {subtitle}
+            </p>
+            <Button 
+              asChild
+              className="font-sans text-sm font-bold uppercase tracking-widest bg-gold text-forest hover:bg-gold/90"
+            >
+              <Link to="/collections/best-sellers">
+                Shop Best Sellers
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </Link>
+            </Button>
+          </div>
+          
+          {/* Products showcase */}
+          <div className="grid grid-cols-2 gap-4 lg:gap-6">
+            {products.slice(0, 4).map((product) => (
+              <div key={product.id} className="bg-cream rounded-xl overflow-hidden">
+                <ProductCard product={product} showProductOnly />
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
-    );
-  }
-  
-  return null;
+    </section>
+  );
 };
 
 const ShopPage = () => {
-  const [activeCategory, setActiveCategory] = useState("all");
-  const [showFilters, setShowFilters] = useState(false);
-  
   // Fetch all products
   const { data: products, isLoading, error } = useShopifyAllProducts({
     sortKey: "BEST_SELLING",
   });
 
-  // Convert and filter products
-  const displayProducts = useMemo(() => {
+  // Convert products
+  const allProducts = useMemo(() => {
     if (!products) return [];
     
-    const converted = products
+    return products
       .map(shopifyToLocalProduct)
-      // Filter out non-beverage items
       .filter(p => 
         !p.name.toLowerCase().includes("gift card") &&
         !p.name.toLowerCase().includes("membership") &&
         !p.name.toLowerCase().includes("subscription")
       );
-    
-    // Apply category filter
-    if (activeCategory === "all") return converted;
-    
-    return converted.filter(p => 
-      p.category?.toLowerCase().includes(activeCategory.toLowerCase()) ||
-      activeCategory.toLowerCase().includes(p.category?.toLowerCase() || "")
-    );
-  }, [products, activeCategory]);
+  }, [products]);
 
-  // Build grid items with dividers interspersed
-  const gridItems = useMemo(() => {
-    const items: Array<{ type: 'product' | 'divider'; data: any; index: number }> = [];
-    let dividerIndex = 0;
+  // Match products to vibe sections
+  const vibeProducts = useMemo(() => {
+    const productsByVibe: Record<string, any[]> = {};
+    const usedProductIds = new Set<string>();
     
-    displayProducts.forEach((product, index) => {
-      // Insert a divider every 8 products (after positions 7, 15, 23, etc.)
-      if (index > 0 && index % 8 === 0 && dividerIndex < funDividers.length) {
-        items.push({
-          type: 'divider',
-          data: funDividers[dividerIndex],
-          index: items.length,
-        });
-        dividerIndex++;
-      }
-      
-      items.push({
-        type: 'product',
-        data: product,
-        index: items.length,
+    vibeSections.forEach((vibe) => {
+      const matches = allProducts.filter((product) => {
+        // Don't reuse products
+        if (usedProductIds.has(product.id)) return false;
+        
+        // Check category match
+        const categoryMatch = vibe.categories.some(cat => 
+          product.category?.toLowerCase().includes(cat.toLowerCase()) ||
+          cat.toLowerCase().includes(product.category?.toLowerCase() || "")
+        );
+        
+        // Check keyword match in name
+        const keywordMatch = vibe.keywords.some(keyword =>
+          product.name.toLowerCase().includes(keyword.toLowerCase())
+        );
+        
+        return categoryMatch || keywordMatch;
       });
+      
+      // Take up to maxProducts
+      const selected = matches.slice(0, vibe.maxProducts);
+      selected.forEach(p => usedProductIds.add(p.id));
+      
+      productsByVibe[vibe.id] = selected;
     });
     
-    return items;
-  }, [displayProducts]);
+    return productsByVibe;
+  }, [allProducts]);
 
-  // Randomly assign visual emphasis to some products (deterministic based on index)
-  const getCardSize = (index: number, productId: string) => {
-    const hash = productId.split('').reduce((a, b) => ((a << 5) - a) + b.charCodeAt(0), 0);
-    const mod = Math.abs(hash) % 16;
-    
-    // Fewer large cards when dividers are present
-    if (mod === 0 && index < displayProducts.length - 2) return "large";
-    return "normal";
-  };
+  // Get best sellers for the banner
+  const bestSellers = useMemo(() => {
+    return allProducts.slice(0, 4);
+  }, [allProducts]);
 
   return (
     <div className="min-h-screen bg-cream">
@@ -206,239 +328,115 @@ const ShopPage = () => {
       <main className="pt-20">
         {/* Hero Section */}
         <section className="relative py-16 lg:py-24 bg-forest text-cream overflow-hidden">
-          {/* Background texture */}
-          <div 
-            className="absolute inset-0 opacity-5 pointer-events-none"
-            style={{ backgroundImage: `url(${textureBlue})`, backgroundSize: 'cover' }}
-          />
-          <div className="grain absolute inset-0 pointer-events-none opacity-30" />
-          
           {/* Decorative stamp */}
           <div className="absolute -top-20 -right-20 w-64 lg:w-[28rem] opacity-[0.05] pointer-events-none">
             <img src={stampGold} alt="" className="w-full h-full" />
           </div>
+          <div className="grain absolute inset-0 pointer-events-none opacity-30" />
           
           <div className="container mx-auto px-4 lg:px-8 relative z-10">
             <div className="max-w-4xl mx-auto text-center">
               <span className="font-sans text-xs font-semibold uppercase tracking-[0.3em] text-gold mb-4 block">
-                425+ Flavors
+                Shop by Vibe
               </span>
               <h1 className="font-serif text-5xl lg:text-7xl xl:text-8xl mb-6">
-                The <span className="italic">Good Stuff</span>
+                Find Your <span className="italic">Moment</span>
               </h1>
-              <p className="font-sans text-lg lg:text-xl text-cream/80 max-w-2xl mx-auto mb-8">
-                Premium non-alcoholic drinks for every mood, moment, and vibe. 
-                Find your new favorite.
+              <p className="font-sans text-lg lg:text-xl text-cream/80 max-w-2xl mx-auto">
+                Whether it's golden hour on the rooftop or a cozy night in—we've got 
+                the perfect pour for every vibe.
               </p>
-              
-              {/* Fun stats */}
-              <div className="flex flex-wrap justify-center gap-8 lg:gap-16 mt-12">
-                <div className="text-center">
-                  <span className="block font-serif text-4xl lg:text-5xl text-gold">425+</span>
-                  <span className="font-sans text-xs uppercase tracking-wider text-cream/60">Flavors</span>
-                </div>
-                <div className="text-center">
-                  <span className="block font-serif text-4xl lg:text-5xl text-gold">0%</span>
-                  <span className="font-sans text-xs uppercase tracking-wider text-cream/60">Alcohol</span>
-                </div>
-                <div className="text-center">
-                  <span className="block font-serif text-4xl lg:text-5xl text-gold">100%</span>
-                  <span className="font-sans text-xs uppercase tracking-wider text-cream/60">Good Vibes</span>
-                </div>
-              </div>
             </div>
           </div>
         </section>
 
-        {/* Category Pills */}
-        <section className="sticky top-16 lg:top-20 z-40 bg-cream/95 backdrop-blur-md border-b border-forest/10 py-4">
-          <div className="container mx-auto px-4 lg:px-8">
-            <div className="flex items-center gap-3 overflow-x-auto pb-2 scrollbar-hide">
-              {/* Mobile filter button */}
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={() => setShowFilters(!showFilters)}
-                className="lg:hidden shrink-0 border-forest/30"
-              >
-                <Filter className="h-4 w-4 mr-2" />
-                Filter
+        {/* Loading state */}
+        {isLoading && (
+          <section className="py-32">
+            <div className="flex flex-col items-center justify-center">
+              <Loader2 className="h-12 w-12 animate-spin text-gold mb-4" />
+              <span className="font-sans text-muted-foreground">Curating the vibes...</span>
+            </div>
+          </section>
+        )}
+
+        {/* Error state */}
+        {error && !isLoading && (
+          <section className="py-20">
+            <div className="text-center">
+              <p className="text-muted-foreground mb-4">
+                Unable to load products. Please try again.
+              </p>
+              <Button onClick={() => window.location.reload()}>
+                Refresh Page
               </Button>
-              
-              {/* Category pills */}
-              <div className="hidden lg:flex items-center gap-3">
-                {categories.map((cat) => {
-                  const Icon = cat.icon;
-                  const isActive = activeCategory === cat.id;
-                  return (
-                    <button
-                      key={cat.id}
-                      onClick={() => setActiveCategory(cat.id)}
-                      className={`
-                        flex items-center gap-2 px-5 py-2.5 rounded-full font-sans text-sm font-medium
-                        transition-all duration-300 shrink-0
-                        ${isActive 
-                          ? "bg-forest text-cream shadow-lg scale-105" 
-                          : "bg-cream border-2 border-forest/20 text-forest hover:border-forest/40 hover:bg-sand"
-                        }
-                      `}
-                    >
-                      <Icon className={`h-4 w-4 ${isActive ? "text-gold" : ""}`} />
-                      {cat.name}
-                    </button>
-                  );
-                })}
-              </div>
-              
-              {/* Product count */}
-              <div className="ml-auto shrink-0">
-                <Badge variant="secondary" className="font-sans text-xs bg-sand text-forest border-0">
-                  {displayProducts.length} drinks
-                </Badge>
-              </div>
             </div>
+          </section>
+        )}
+
+        {/* Vibe Sections */}
+        {!isLoading && !error && (
+          <div className="relative">
+            {/* Background texture */}
+            <div 
+              className="absolute inset-0 opacity-30 pointer-events-none"
+              style={{ backgroundImage: `url(${textureCream})`, backgroundSize: 'cover' }}
+            />
             
-            {/* Mobile filters drawer */}
-            {showFilters && (
-              <div className="lg:hidden mt-4 pb-2 animate-fade-in">
-                <div className="flex flex-wrap gap-2">
-                  {categories.map((cat) => {
-                    const Icon = cat.icon;
-                    const isActive = activeCategory === cat.id;
-                    return (
-                      <button
-                        key={cat.id}
-                        onClick={() => {
-                          setActiveCategory(cat.id);
-                          setShowFilters(false);
-                        }}
-                        className={`
-                          flex items-center gap-2 px-4 py-2 rounded-full font-sans text-sm font-medium
-                          transition-all duration-300
-                          ${isActive 
-                            ? "bg-forest text-cream" 
-                            : "bg-sand/50 text-forest border border-forest/20"
-                          }
-                        `}
-                      >
-                        <Icon className="h-4 w-4" />
-                        {cat.name}
-                      </button>
-                    );
-                  })}
-                </div>
-              </div>
-            )}
+            {vibeSections.map((vibe, index) => (
+              <VibeSection 
+                key={vibe.id}
+                vibe={vibe}
+                products={vibeProducts[vibe.id] || []}
+                index={index}
+              />
+            ))}
           </div>
-        </section>
+        )}
 
-        {/* Products Grid with Fun Dividers */}
-        <section className="py-12 lg:py-20 relative">
-          {/* Background texture */}
-          <div 
-            className="absolute inset-0 opacity-30 pointer-events-none"
-            style={{ backgroundImage: `url(${textureCream})`, backgroundSize: 'cover' }}
+        {/* Best Sellers Banner */}
+        {!isLoading && !error && bestSellers.length > 0 && (
+          <LookbookBanner 
+            image={rooftopCheers}
+            title="The Essentials"
+            subtitle="The drinks everyone's talking about. Start here."
+            products={bestSellers}
+            bgColor="bg-forest"
           />
-          
-          <div className="container mx-auto px-4 lg:px-8 relative z-10">
-            {/* Loading state */}
-            {isLoading && (
-              <div className="flex flex-col items-center justify-center py-32">
-                <Loader2 className="h-12 w-12 animate-spin text-gold mb-4" />
-                <span className="font-sans text-muted-foreground">Loading the good stuff...</span>
-              </div>
-            )}
+        )}
 
-            {/* Error state */}
-            {error && !isLoading && (
-              <div className="text-center py-20">
-                <p className="text-muted-foreground mb-4">
-                  Unable to load products. Please try again.
-                </p>
-                <Button onClick={() => window.location.reload()}>
-                  Refresh Page
-                </Button>
-              </div>
-            )}
-
-            {/* No products state */}
-            {!isLoading && !error && displayProducts.length === 0 && (
-              <div className="text-center py-20">
-                <h3 className="font-serif text-2xl mb-4">No drinks found</h3>
-                <p className="text-muted-foreground mb-6">
-                  Try a different category or browse all products.
-                </p>
-                <Button onClick={() => setActiveCategory("all")}>
-                  View All Drinks
-                </Button>
-              </div>
-            )}
-
-            {/* Products with dividers */}
-            {!isLoading && gridItems.length > 0 && (
-              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 lg:gap-6 gap-y-10 lg:gap-y-16">
-                {gridItems.map((item, idx) => {
-                  if (item.type === 'divider') {
-                    return (
-                      <div 
-                        key={item.data.id}
-                        className="col-span-2 md:col-span-3 lg:col-span-4"
-                      >
-                        <FunDivider divider={item.data} />
-                      </div>
-                    );
-                  }
-                  
-                  const product = item.data;
-                  const productIndex = displayProducts.indexOf(product);
-                  const size = getCardSize(productIndex, product.id);
-                  const isLarge = size === "large";
-                  const shouldOffset = productIndex % 7 === 3;
-                  
-                  return (
-                    <div 
-                      key={product.id}
-                      className={`
-                        ${isLarge ? "col-span-2" : ""}
-                        ${shouldOffset && !isLarge ? "lg:translate-y-6" : ""}
-                        transition-all duration-300
-                      `}
-                    >
-                      <ProductCard 
-                        product={product} 
-                        showProductOnly 
-                        variant={isLarge ? "featured" : "default"}
-                      />
-                    </div>
-                  );
-                })}
-              </div>
-            )}
-          </div>
-        </section>
-
-        {/* Bottom CTA */}
-        <section className="py-16 lg:py-24 bg-gold relative overflow-hidden">
-          <div className="grain absolute inset-0 pointer-events-none opacity-20" />
+        {/* All Products Link */}
+        <section className="py-16 lg:py-24 bg-sand relative overflow-hidden">
+          <div className="grain absolute inset-0 pointer-events-none opacity-10" />
           
           <div className="container mx-auto px-4 lg:px-8 text-center relative z-10">
             <h2 className="font-serif text-3xl lg:text-5xl text-forest mb-4">
-              Can't decide?
+              Want to see <span className="italic">everything</span>?
             </h2>
             <p className="font-sans text-forest/70 max-w-md mx-auto mb-8">
-              Visit one of our shops to taste before you buy. Our team will help you find your perfect match.
+              Browse our full collection of 425+ non-alcoholic drinks.
             </p>
-            <Button 
-              asChild
-              size="lg"
-              className="font-sans text-sm font-bold uppercase tracking-widest bg-forest text-cream hover:bg-forest-deep px-10 py-6"
-            >
-              <Link to="/locations">Find a Shop</Link>
-            </Button>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button 
+                asChild
+                size="lg"
+                className="font-sans text-sm font-bold uppercase tracking-widest bg-forest text-cream hover:bg-forest-deep px-10 py-6"
+              >
+                <Link to="/collections/all">Browse All Products</Link>
+              </Button>
+              <Button 
+                asChild
+                size="lg"
+                variant="outline"
+                className="font-sans text-sm font-bold uppercase tracking-widest border-forest text-forest hover:bg-forest hover:text-cream px-10 py-6"
+              >
+                <Link to="/locations">Visit a Shop</Link>
+              </Button>
+            </div>
           </div>
         </section>
       </main>
-
+      
       <Footer />
     </div>
   );
