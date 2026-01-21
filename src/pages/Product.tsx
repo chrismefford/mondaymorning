@@ -121,7 +121,7 @@ const ProductPage = () => {
                   className="w-full h-full object-contain p-8"
                 />
                 {/* Logo watermark on product image */}
-                <div className="absolute bottom-4 right-4 opacity-30 pointer-events-none">
+                <div className="absolute bottom-4 right-4 opacity-50 pointer-events-none">
                   <img 
                     src={logoSecondaryGold} 
                     alt="" 
