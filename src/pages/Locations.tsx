@@ -254,7 +254,7 @@ const Locations = () => {
                       </div>
                     </div>
 
-                    <div className="flex items-start gap-4 mb-10 lg:mb-4">
+                    <div className="flex items-start gap-4 mb-8">
                       <Phone className="h-5 w-5 text-gold mt-0.5 flex-shrink-0" />
                       <a 
                         href={`tel:${store.phone}`}
@@ -265,6 +265,7 @@ const Locations = () => {
                     </div>
 
                     <a 
+                      className="mt-4"
                       href={store.mapUrl}
                       target="_blank"
                       rel="noopener noreferrer"
