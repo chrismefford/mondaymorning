@@ -148,9 +148,27 @@ const Newsletter = () => {
       {/* Bottom marquee */}
       <div className="bg-gold text-forest-deep py-3 lg:py-4 overflow-hidden">
         <div className="marquee-reverse whitespace-nowrap">
-          <span className="inline-block font-sans text-xs lg:text-sm uppercase tracking-[0.2em] mx-6 lg:mx-8">
-            ✦ Ocean Beach ✦ Pacific Beach ✦ 400+ Flavors ✦ Try Before You Buy ✦ America's #1 NA Shop ✦ 
-            ✦ Ocean Beach ✦ Pacific Beach ✦ 400+ Flavors ✦ Try Before You Buy ✦ America's #1 NA Shop ✦
+          <span className="inline-block font-sans text-xs lg:text-sm uppercase tracking-[0.2em]">
+            <span className="mx-8 lg:mx-12">Ocean Beach</span>
+            <span className="text-forest-deep/60">✦</span>
+            <span className="mx-8 lg:mx-12">Pacific Beach</span>
+            <span className="text-forest-deep/60">✦</span>
+            <span className="mx-8 lg:mx-12">400+ Flavors</span>
+            <span className="text-forest-deep/60">✦</span>
+            <span className="mx-8 lg:mx-12">Try Before You Buy</span>
+            <span className="text-forest-deep/60">✦</span>
+            <span className="mx-8 lg:mx-12">America's #1 NA Shop</span>
+            <span className="text-forest-deep/60">✦</span>
+            <span className="mx-8 lg:mx-12">Ocean Beach</span>
+            <span className="text-forest-deep/60">✦</span>
+            <span className="mx-8 lg:mx-12">Pacific Beach</span>
+            <span className="text-forest-deep/60">✦</span>
+            <span className="mx-8 lg:mx-12">400+ Flavors</span>
+            <span className="text-forest-deep/60">✦</span>
+            <span className="mx-8 lg:mx-12">Try Before You Buy</span>
+            <span className="text-forest-deep/60">✦</span>
+            <span className="mx-8 lg:mx-12">America's #1 NA Shop</span>
+            <span className="text-forest-deep/60">✦</span>
           </span>
         </div>
       </div>
