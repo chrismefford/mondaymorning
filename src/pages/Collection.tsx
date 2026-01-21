@@ -43,7 +43,7 @@ const collectionMapping: Record<string, { shopifyHandle: string; title: string; 
     description: "Toast-worthy moments. Elegant options for celebrations."
   },
   "best-sellers": {
-    shopifyHandle: "frontpage",
+    shopifyHandle: "best-sellers",
     title: "Best Sellers",
     description: "Our community favorites. The drinks that keep people coming back."
   },
