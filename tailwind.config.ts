@@ -87,6 +87,7 @@ export default {
         ocean: {
           DEFAULT: "hsl(var(--ocean))",
           light: "hsl(var(--ocean-light))",
+          deep: "hsl(var(--ocean-deep))",
         },
         midnight: "hsl(var(--midnight))",
       },

@@ -233,29 +233,29 @@ const Hero = () => {
       </div>
 
       {/* Marquee strip */}
-      <div className="bg-forest text-cream py-3 lg:py-4 overflow-hidden relative z-20">
+      <div className="bg-ocean text-cream py-3 lg:py-4 overflow-hidden relative z-20">
         <div className="marquee whitespace-nowrap">
           <span className="inline-block font-sans text-xs lg:text-sm uppercase tracking-[0.2em]">
             <span className="mx-8 lg:mx-12">America's #1 NA Shop</span>
-            <span className="text-gold">✦</span>
+            <span className="text-cream/60">✦</span>
             <span className="mx-8 lg:mx-12">425+ Flavors</span>
-            <span className="text-gold">✦</span>
+            <span className="text-cream/60">✦</span>
             <span className="mx-8 lg:mx-12">Ocean Beach</span>
-            <span className="text-gold">✦</span>
+            <span className="text-cream/60">✦</span>
             <span className="mx-8 lg:mx-12">Pacific Beach</span>
-            <span className="text-gold">✦</span>
+            <span className="text-cream/60">✦</span>
             <span className="mx-8 lg:mx-12">Try Before You Buy</span>
-            <span className="text-gold">✦</span>
+            <span className="text-cream/60">✦</span>
             <span className="mx-8 lg:mx-12">America's #1 NA Shop</span>
-            <span className="text-gold">✦</span>
+            <span className="text-cream/60">✦</span>
             <span className="mx-8 lg:mx-12">425+ Flavors</span>
-            <span className="text-gold">✦</span>
+            <span className="text-cream/60">✦</span>
             <span className="mx-8 lg:mx-12">Ocean Beach</span>
-            <span className="text-gold">✦</span>
+            <span className="text-cream/60">✦</span>
             <span className="mx-8 lg:mx-12">Pacific Beach</span>
-            <span className="text-gold">✦</span>
+            <span className="text-cream/60">✦</span>
             <span className="mx-8 lg:mx-12">Try Before You Buy</span>
-            <span className="text-gold">✦</span>
+            <span className="text-cream/60">✦</span>
           </span>
         </div>
       </div>
