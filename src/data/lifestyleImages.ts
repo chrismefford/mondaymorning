@@ -8,7 +8,6 @@ import poolsideFriendsDrinks from "@/assets/lifestyle/poolside-friends-drinks.jp
 import dinnerPartyToast from "@/assets/lifestyle/dinner-party-toast.jpg";
 
 // Spirit alternatives - cocktails and bar scenes
-import lifestyleSpirit from "@/assets/lifestyle/na-spirit-cocktail.jpg";
 import botanicalBar2 from "@/assets/lifestyle/botanical-bar-2.jpg";
 
 // Wine alternatives - wine glasses and dinner settings
@@ -145,7 +144,7 @@ export function getLifestyleImageByIndex(index: number, category: string = "defa
 // All lifestyle images in a flat pool (for general use)
 export const lifestyleImagePool: string[] = [
   rooftopCheers, dinnerPartyToast, friendsBeachToast, aperitifGoldenHour,
-  lifestyleSpirit, botanicalBar2,
+  poolsideFriendsDrinks, botanicalBar2,
   wineDinnerToast, wineVineyardPour, lifestyleWine, dinnerParty3, vineyard9,
   beerPatioFriends, beerBeachBonfire, lifestyleBeer, patioBeer6,
   functionalWellnessMorning, functionalZenTonic, lifestyleFunctional, wellness12,
