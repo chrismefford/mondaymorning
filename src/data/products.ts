@@ -135,7 +135,7 @@ export const products: Product[] = [
     description: "Spicy ginger meets lime in this ready-to-pour take on the beloved Moscow Mule.",
     price: 16,
     image: "https://images.unsplash.com/photo-1536935338788-846bb9981813?w=600&q=80",
-    lifestyleImage: lifestyleSpirit,
+    lifestyleImage: rooftopCheers,
     flavor: "Ginger • Lime • Copper warmth",
     mood: "Refreshing & Social",
     benefits: ["Real ginger root", "No artificial anything", "4-pack convenience"],
