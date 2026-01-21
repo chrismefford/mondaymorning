@@ -27,17 +27,17 @@ const funDividers = [
     id: "quote-1",
     type: "quote",
     bg: "bg-ocean",
-    text: '"Best hangover cure? Never having one."',
-    author: "— Every Monday Morning customer",
+    text: '"Drink like you give a damn about tomorrow."',
+    author: "— The sober curious",
     icon: Quote,
   },
   {
     id: "callout-1", 
     type: "callout",
     bg: "bg-gold",
-    emoji: "🌅",
-    headline: "Staff Pick",
-    text: "Our team can't stop drinking these. Like, literally every shift.",
+    emoji: "🔥",
+    headline: "Staff Obsession",
+    text: "We've tried everything. These are the ones we actually take home.",
     icon: Star,
   },
   {
@@ -45,25 +45,25 @@ const funDividers = [
     type: "stat",
     bg: "bg-forest",
     stat: "425+",
-    label: "Flavors to explore",
-    subtext: "That's a lot of Monday mornings",
+    label: "Ways to not drink",
+    subtext: "Zero excuses left",
     icon: Zap,
   },
   {
     id: "quote-2",
     type: "quote", 
     bg: "bg-coral",
-    text: '"I didn\'t know NA drinks could taste this good!"',
-    author: "— Someone who just got it",
+    text: '"Alcohol-free hits different when it actually hits."',
+    author: "— A convert",
     icon: Quote,
   },
   {
     id: "callout-2",
     type: "callout",
     bg: "bg-ocean",
-    emoji: "☀️",
-    headline: "Sunday Scaries?",
-    text: "Not when you wake up feeling like this.",
+    emoji: "💀",
+    headline: "RIP Hangovers",
+    text: "Remember those? Yeah, we don't either.",
     icon: Sun,
   },
   {
@@ -72,7 +72,7 @@ const funDividers = [
     bg: "bg-gold",
     stat: "0%",
     label: "Regrets",
-    subtext: "100% the vibe",
+    subtext: "Finally, a flex",
     icon: PartyPopper,
   },
 ];
@@ -83,13 +83,13 @@ const FunDivider = ({ divider }: { divider: typeof funDividers[0] }) => {
   
   if (divider.type === "quote") {
     return (
-      <div className={`${divider.bg} rounded-2xl p-8 lg:p-10 flex flex-col justify-center h-full min-h-[240px] relative overflow-hidden`}>
+      <div className={`${divider.bg} rounded-2xl p-10 lg:p-14 flex flex-col justify-center h-full min-h-[280px] lg:min-h-[320px] relative overflow-hidden`}>
         <div className="grain absolute inset-0 pointer-events-none opacity-20" />
-        <Icon className={`h-10 w-10 mb-4 ${divider.bg === 'bg-forest' ? 'text-gold' : 'text-cream/80'}`} />
-        <p className={`font-serif text-2xl lg:text-3xl xl:text-4xl italic font-bold leading-tight ${divider.bg === 'bg-gold' ? 'text-forest' : 'text-cream'}`}>
+        <Icon className={`h-12 w-12 lg:h-16 lg:w-16 mb-6 ${divider.bg === 'bg-forest' ? 'text-gold' : 'text-cream/80'}`} />
+        <p className={`font-serif text-3xl lg:text-5xl xl:text-6xl italic font-bold leading-[1.1] ${divider.bg === 'bg-gold' ? 'text-forest' : 'text-cream'}`}>
           {divider.text}
         </p>
-        <span className={`font-sans text-sm font-semibold mt-4 ${divider.bg === 'bg-gold' ? 'text-forest/70' : 'text-cream/70'}`}>
+        <span className={`font-sans text-base lg:text-lg font-bold uppercase tracking-wider mt-6 ${divider.bg === 'bg-gold' ? 'text-forest/70' : 'text-cream/70'}`}>
           {divider.author}
         </span>
       </div>
@@ -98,16 +98,16 @@ const FunDivider = ({ divider }: { divider: typeof funDividers[0] }) => {
   
   if (divider.type === "callout") {
     return (
-      <div className={`${divider.bg} rounded-2xl p-8 lg:p-10 flex flex-col justify-center h-full min-h-[240px] relative overflow-hidden`}>
+      <div className={`${divider.bg} rounded-2xl p-10 lg:p-14 flex flex-col justify-center h-full min-h-[280px] lg:min-h-[320px] relative overflow-hidden`}>
         <div className="grain absolute inset-0 pointer-events-none opacity-20" />
-        <span className="text-5xl mb-4">{divider.emoji}</span>
-        <div className="flex items-center gap-2 mb-3">
-          <Icon className={`h-5 w-5 ${divider.bg === 'bg-gold' ? 'text-forest' : 'text-gold'}`} />
-          <span className={`font-sans text-sm font-bold uppercase tracking-wider ${divider.bg === 'bg-gold' ? 'text-forest' : 'text-gold'}`}>
+        <span className="text-6xl lg:text-7xl mb-6">{divider.emoji}</span>
+        <div className="flex items-center gap-3 mb-4">
+          <Icon className={`h-6 w-6 lg:h-8 lg:w-8 ${divider.bg === 'bg-gold' ? 'text-forest' : 'text-gold'}`} />
+          <span className={`font-sans text-base lg:text-xl font-black uppercase tracking-wider ${divider.bg === 'bg-gold' ? 'text-forest' : 'text-gold'}`}>
             {divider.headline}
           </span>
         </div>
-        <p className={`font-serif text-xl lg:text-2xl xl:text-3xl font-bold leading-tight ${divider.bg === 'bg-gold' ? 'text-forest' : 'text-cream'}`}>
+        <p className={`font-serif text-2xl lg:text-4xl xl:text-5xl font-bold leading-[1.1] ${divider.bg === 'bg-gold' ? 'text-forest' : 'text-cream'}`}>
           {divider.text}
         </p>
       </div>
@@ -116,16 +116,16 @@ const FunDivider = ({ divider }: { divider: typeof funDividers[0] }) => {
   
   if (divider.type === "stat") {
     return (
-      <div className={`${divider.bg} rounded-2xl p-8 lg:p-10 flex flex-col justify-center items-center text-center h-full min-h-[240px] relative overflow-hidden`}>
+      <div className={`${divider.bg} rounded-2xl p-10 lg:p-14 flex flex-col justify-center items-center text-center h-full min-h-[280px] lg:min-h-[320px] relative overflow-hidden`}>
         <div className="grain absolute inset-0 pointer-events-none opacity-20" />
-        <Icon className={`h-8 w-8 mb-3 ${divider.bg === 'bg-gold' ? 'text-forest' : 'text-gold'}`} />
-        <span className={`font-serif text-6xl lg:text-7xl xl:text-8xl font-bold ${divider.bg === 'bg-gold' ? 'text-forest' : 'text-cream'}`}>
+        <Icon className={`h-10 w-10 lg:h-12 lg:w-12 mb-4 ${divider.bg === 'bg-gold' ? 'text-forest' : 'text-gold'}`} />
+        <span className={`font-serif text-7xl lg:text-8xl xl:text-9xl font-black ${divider.bg === 'bg-gold' ? 'text-forest' : 'text-cream'}`}>
           {divider.stat}
         </span>
-        <span className={`font-sans text-lg font-bold mt-2 ${divider.bg === 'bg-gold' ? 'text-forest' : 'text-cream'}`}>
+        <span className={`font-sans text-xl lg:text-2xl font-black uppercase tracking-wider mt-3 ${divider.bg === 'bg-gold' ? 'text-forest' : 'text-cream'}`}>
           {divider.label}
         </span>
-        <span className={`font-sans text-sm font-medium mt-2 ${divider.bg === 'bg-gold' ? 'text-forest/60' : 'text-cream/60'}`}>
+        <span className={`font-sans text-base lg:text-lg font-medium mt-2 ${divider.bg === 'bg-gold' ? 'text-forest/60' : 'text-cream/60'}`}>
           {divider.subtext}
         </span>
       </div>
