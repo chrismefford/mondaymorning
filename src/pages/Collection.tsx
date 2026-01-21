@@ -65,7 +65,7 @@ const CollectionPage = () => {
   
   // Fetch products directly from Shopify
   // Best Sellers: use Shopify's BEST_SELLING sort (not a collection handle)
-  const bestSellersQuery = useShopifyProducts(100, { sortKey: "BEST_SELLING" });
+  const bestSellersQuery = useShopifyProducts(100, { sortKey: "BEST_SELLING", reverse: true });
   const collectionQuery = useShopifyCollectionProducts(shopifyHandle, 100);
 
   const data = isBestSellers
