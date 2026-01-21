@@ -16,11 +16,10 @@ import {
 import { useShopifyProducts, ShopifyProduct, shopifyToLocalProduct } from "@/hooks/useShopifyProducts";
 
 /**
- * Find the best matching product for a recipe based on its productKeywords
+ * Find the product for a recipe - either by explicit handle or keyword matching
  */
-function findMatchingProduct(recipe: Recipe, products: ShopifyProduct[]): ReturnType<typeof shopifyToLocalProduct> | null {
-  const keywords = recipe.productKeywords || [];
-  if (keywords.length === 0 || products.length === 0) return null;
+function findRecipeProduct(recipe: Recipe, products: ShopifyProduct[]): ReturnType<typeof shopifyToLocalProduct> | null {
+  if (products.length === 0) return null;
 
   // Filter out gift cards and memberships
   const beverageProducts = products.filter(p => {
@@ -32,42 +31,33 @@ function findMatchingProduct(recipe: Recipe, products: ShopifyProduct[]): Return
 
   if (beverageProducts.length === 0) return null;
 
-  // Score products by keyword match
+  // If recipe has explicit product handle, use that
+  if (recipe.featuredProductHandle) {
+    const product = beverageProducts.find(p => p.handle === recipe.featuredProductHandle);
+    if (product) return shopifyToLocalProduct(product);
+  }
+
+  // Fall back to keyword matching
+  const keywords = recipe.productKeywords || [];
+  if (keywords.length === 0) return null;
+
   const scoredProducts = beverageProducts.map(product => {
     const productNameLower = product.title.toLowerCase();
     const productCategoryLower = (product.productType || "").toLowerCase();
-    const combinedText = `${productNameLower} ${productCategoryLower}`;
-
     let score = 0;
     for (const keyword of keywords) {
       const keywordLower = keyword.toLowerCase();
-      if (productNameLower.includes(keywordLower)) {
-        score += 3;
-      } else if (productCategoryLower.includes(keywordLower)) {
-        score += 2;
-      } else if (combinedText.includes(keywordLower)) {
-        score += 1;
-      }
+      if (productNameLower.includes(keywordLower)) score += 3;
+      else if (productCategoryLower.includes(keywordLower)) score += 2;
     }
     return { product, score };
   });
 
-  // Sort by score descending
   scoredProducts.sort((a, b) => b.score - a.score);
-
-  // Get products with score > 0
   const matches = scoredProducts.filter(p => p.score > 0);
 
   if (matches.length > 0) {
-    // Use recipe id hash to pick from top matches for variety
-    let hash = 0;
-    for (let i = 0; i < recipe.id.length; i++) {
-      hash = ((hash << 5) - hash) + recipe.id.charCodeAt(i);
-      hash |= 0;
-    }
-    const topN = Math.min(3, matches.length);
-    const index = Math.abs(hash) % topN;
-    return shopifyToLocalProduct(matches[index].product);
+    return shopifyToLocalProduct(matches[0].product);
   }
 
   return null;
@@ -85,7 +75,7 @@ const RecipesPage = () => {
   // Find matching product for selected recipe
   const matchingProduct = useMemo(() => {
     if (!selectedRecipe || shopifyProducts.length === 0) return null;
-    return findMatchingProduct(selectedRecipe, shopifyProducts);
+    return findRecipeProduct(selectedRecipe, shopifyProducts);
   }, [selectedRecipe, shopifyProducts]);
 
   const filteredRecipes = activeOccasion === "all" 
