@@ -13,6 +13,7 @@ import { Badge } from "@/components/ui/badge";
 import { ArrowLeft, ShoppingBag, Clock, Users, Loader2, ChevronLeft, ChevronRight } from "lucide-react";
 import textureCream from "@/assets/texture-cream.svg";
 import stampGold from "@/assets/stamp-gold.svg";
+import logoSecondaryGold from "@/assets/logo-secondary-gold.svg";
 
 const ProductPage = () => {
   const { handle } = useParams<{ handle: string }>();
@@ -113,12 +114,20 @@ const ProductPage = () => {
           <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 mb-16 lg:mb-24">
             {/* Product Image */}
             <div className="relative">
-              <div className="aspect-square bg-white border-2 border-forest overflow-hidden shadow-card">
+              <div className="aspect-square bg-white border-2 border-forest overflow-hidden shadow-card relative">
                 <img
                   src={product.image}
                   alt={product.name}
                   className="w-full h-full object-contain p-8"
                 />
+                {/* Logo watermark on product image */}
+                <div className="absolute bottom-4 right-4 opacity-10 pointer-events-none">
+                  <img 
+                    src={logoSecondaryGold} 
+                    alt="" 
+                    className="w-20 h-auto"
+                  />
+                </div>
               </div>
               {product.badge && (
                 <Badge className="absolute top-4 left-4 bg-gold text-forest-deep font-sans text-xs font-bold border-0 shadow-md">
