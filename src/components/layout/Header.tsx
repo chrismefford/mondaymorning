@@ -59,7 +59,7 @@ const Header = () => {
   }, [isMenuOpen]);
 
   const navLinks = [
-    { name: "Shop", href: "#shop", number: "01" },
+    { name: "Shop", href: "/shop", number: "01" },
     { name: "Collections", href: "#collections", number: "02", hasDropdown: true, dropdownType: "collections" },
     { name: "Story", href: "/about", number: "03" },
     { name: "Recipes", href: "/recipes", number: "04", hasDropdown: true, dropdownType: "recipes" },
