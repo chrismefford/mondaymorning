@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from "react";
 import { Link } from "react-router-dom";
-import { Loader2, Sparkles, Wine, Beer, Leaf, Martini, Heart, Filter, X } from "lucide-react";
+import { Loader2, Sparkles, Wine, Beer, Leaf, Martini, Heart, Filter, Quote, Star, Zap, Sun, PartyPopper } from "lucide-react";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import ProductCard from "@/components/home/ProductCard";
@@ -20,6 +20,120 @@ const categories = [
   { id: "Functional", name: "Functional", icon: Leaf, color: "bg-forest" },
   { id: "Ready to Drink", name: "RTD", icon: Heart, color: "bg-sunset" },
 ];
+
+// Fun divider modules that will be inserted throughout the grid
+const funDividers = [
+  {
+    id: "quote-1",
+    type: "quote",
+    bg: "bg-ocean",
+    text: '"Best hangover cure? Never having one."',
+    author: "— Every Monday Morning customer",
+    icon: Quote,
+  },
+  {
+    id: "callout-1", 
+    type: "callout",
+    bg: "bg-gold",
+    emoji: "🌅",
+    headline: "Staff Pick",
+    text: "Our team can't stop drinking these. Like, literally every shift.",
+    icon: Star,
+  },
+  {
+    id: "stat-1",
+    type: "stat",
+    bg: "bg-forest",
+    stat: "425+",
+    label: "Flavors to explore",
+    subtext: "That's a lot of Monday mornings",
+    icon: Zap,
+  },
+  {
+    id: "quote-2",
+    type: "quote", 
+    bg: "bg-coral",
+    text: '"I didn\'t know NA drinks could taste this good!"',
+    author: "— Someone who just got it",
+    icon: Quote,
+  },
+  {
+    id: "callout-2",
+    type: "callout",
+    bg: "bg-ocean",
+    emoji: "☀️",
+    headline: "Sunday Scaries?",
+    text: "Not when you wake up feeling like this.",
+    icon: Sun,
+  },
+  {
+    id: "stat-2",
+    type: "stat",
+    bg: "bg-gold",
+    stat: "0%",
+    label: "Regrets",
+    subtext: "100% the vibe",
+    icon: PartyPopper,
+  },
+];
+
+// Divider component
+const FunDivider = ({ divider }: { divider: typeof funDividers[0] }) => {
+  const Icon = divider.icon;
+  
+  if (divider.type === "quote") {
+    return (
+      <div className={`${divider.bg} rounded-2xl p-6 lg:p-8 flex flex-col justify-center h-full min-h-[200px] relative overflow-hidden`}>
+        <div className="grain absolute inset-0 pointer-events-none opacity-20" />
+        <Icon className={`h-8 w-8 mb-4 ${divider.bg === 'bg-forest' ? 'text-gold' : 'text-cream/80'}`} />
+        <p className={`font-serif text-xl lg:text-2xl italic leading-relaxed ${divider.bg === 'bg-gold' ? 'text-forest' : 'text-cream'}`}>
+          {divider.text}
+        </p>
+        <span className={`font-sans text-xs mt-4 ${divider.bg === 'bg-gold' ? 'text-forest/70' : 'text-cream/70'}`}>
+          {divider.author}
+        </span>
+      </div>
+    );
+  }
+  
+  if (divider.type === "callout") {
+    return (
+      <div className={`${divider.bg} rounded-2xl p-6 lg:p-8 flex flex-col justify-center h-full min-h-[200px] relative overflow-hidden`}>
+        <div className="grain absolute inset-0 pointer-events-none opacity-20" />
+        <span className="text-4xl mb-3">{divider.emoji}</span>
+        <div className="flex items-center gap-2 mb-2">
+          <Icon className={`h-4 w-4 ${divider.bg === 'bg-gold' ? 'text-forest' : 'text-gold'}`} />
+          <span className={`font-sans text-xs font-bold uppercase tracking-wider ${divider.bg === 'bg-gold' ? 'text-forest' : 'text-gold'}`}>
+            {divider.headline}
+          </span>
+        </div>
+        <p className={`font-serif text-lg lg:text-xl ${divider.bg === 'bg-gold' ? 'text-forest' : 'text-cream'}`}>
+          {divider.text}
+        </p>
+      </div>
+    );
+  }
+  
+  if (divider.type === "stat") {
+    return (
+      <div className={`${divider.bg} rounded-2xl p-6 lg:p-8 flex flex-col justify-center items-center text-center h-full min-h-[200px] relative overflow-hidden`}>
+        <div className="grain absolute inset-0 pointer-events-none opacity-20" />
+        <Icon className={`h-6 w-6 mb-2 ${divider.bg === 'bg-gold' ? 'text-forest' : 'text-gold'}`} />
+        <span className={`font-serif text-5xl lg:text-6xl font-bold ${divider.bg === 'bg-gold' ? 'text-forest' : 'text-cream'}`}>
+          {divider.stat}
+        </span>
+        <span className={`font-sans text-sm font-medium mt-1 ${divider.bg === 'bg-gold' ? 'text-forest' : 'text-cream'}`}>
+          {divider.label}
+        </span>
+        <span className={`font-sans text-xs mt-2 ${divider.bg === 'bg-gold' ? 'text-forest/60' : 'text-cream/60'}`}>
+          {divider.subtext}
+        </span>
+      </div>
+    );
+  }
+  
+  return null;
+};
 
 const ShopPage = () => {
   const [activeCategory, setActiveCategory] = useState("all");
@@ -52,12 +166,38 @@ const ShopPage = () => {
     );
   }, [products, activeCategory]);
 
+  // Build grid items with dividers interspersed
+  const gridItems = useMemo(() => {
+    const items: Array<{ type: 'product' | 'divider'; data: any; index: number }> = [];
+    let dividerIndex = 0;
+    
+    displayProducts.forEach((product, index) => {
+      // Insert a divider every 8 products (after positions 7, 15, 23, etc.)
+      if (index > 0 && index % 8 === 0 && dividerIndex < funDividers.length) {
+        items.push({
+          type: 'divider',
+          data: funDividers[dividerIndex],
+          index: items.length,
+        });
+        dividerIndex++;
+      }
+      
+      items.push({
+        type: 'product',
+        data: product,
+        index: items.length,
+      });
+    });
+    
+    return items;
+  }, [displayProducts]);
+
   // Randomly assign visual emphasis to some products (deterministic based on index)
   const getCardSize = (index: number, productId: string) => {
     const hash = productId.split('').reduce((a, b) => ((a << 5) - a) + b.charCodeAt(0), 0);
-    const mod = Math.abs(hash) % 12;
+    const mod = Math.abs(hash) % 16;
     
-    // Every ~8th product gets a large card
+    // Fewer large cards when dividers are present
     if (mod === 0 && index < displayProducts.length - 2) return "large";
     return "normal";
   };
@@ -77,7 +217,7 @@ const ShopPage = () => {
           <div className="grain absolute inset-0 pointer-events-none opacity-30" />
           
           {/* Decorative stamp */}
-          <div className="absolute -top-20 -right-20 w-64 lg:w-[28rem] opacity-[0.05] pointer-events-none animate-spin-slow">
+          <div className="absolute -top-20 -right-20 w-64 lg:w-[28rem] opacity-[0.05] pointer-events-none">
             <img src={stampGold} alt="" className="w-full h-full" />
           </div>
           
@@ -195,7 +335,7 @@ const ShopPage = () => {
           </div>
         </section>
 
-        {/* Products Grid - Fun Layout */}
+        {/* Products Grid with Fun Dividers */}
         <section className="py-12 lg:py-20 relative">
           {/* Background texture */}
           <div 
@@ -237,22 +377,33 @@ const ShopPage = () => {
               </div>
             )}
 
-            {/* Products - Masonry-style grid */}
-            {!isLoading && displayProducts.length > 0 && (
-              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 lg:gap-6 gap-y-12 lg:gap-y-20">
-                {displayProducts.map((product, index) => {
-                  const size = getCardSize(index, product.id);
-                  const isLarge = size === "large";
+            {/* Products with dividers */}
+            {!isLoading && gridItems.length > 0 && (
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 lg:gap-6 gap-y-10 lg:gap-y-16">
+                {gridItems.map((item, idx) => {
+                  if (item.type === 'divider') {
+                    return (
+                      <div 
+                        key={item.data.id}
+                        className="col-span-2 lg:col-span-2"
+                      >
+                        <FunDivider divider={item.data} />
+                      </div>
+                    );
+                  }
                   
-                  // Add visual variety with offset
-                  const shouldOffset = index % 5 === 2;
+                  const product = item.data;
+                  const productIndex = displayProducts.indexOf(product);
+                  const size = getCardSize(productIndex, product.id);
+                  const isLarge = size === "large";
+                  const shouldOffset = productIndex % 7 === 3;
                   
                   return (
                     <div 
                       key={product.id}
                       className={`
-                        ${isLarge ? "col-span-2 row-span-1" : ""}
-                        ${shouldOffset && !isLarge ? "lg:translate-y-8" : ""}
+                        ${isLarge ? "col-span-2" : ""}
+                        ${shouldOffset && !isLarge ? "lg:translate-y-6" : ""}
                         transition-all duration-300
                       `}
                     >
