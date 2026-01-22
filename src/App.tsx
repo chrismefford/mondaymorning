@@ -17,6 +17,9 @@ import ShopPage from "./pages/Shop";
 import Locations from "./pages/Locations";
 import Auth from "./pages/Auth";
 import Admin from "./pages/Admin";
+import Blog from "./pages/Blog";
+import BlogPostPage from "./pages/BlogPost";
+import BlogImport from "./pages/BlogImport";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -50,6 +53,9 @@ const AppContent = () => {
         <Route path="/locations" element={<Locations />} />
         <Route path="/auth" element={<Auth />} />
         <Route path="/admin" element={<Admin />} />
+        <Route path="/blog" element={<Blog />} />
+        <Route path="/blog/:slug" element={<BlogPostPage />} />
+        <Route path="/blog-import" element={<BlogImport />} />
         {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
         <Route path="*" element={<NotFound />} />
       </Routes>
