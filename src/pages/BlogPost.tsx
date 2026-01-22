@@ -150,41 +150,22 @@ const BlogPost = () => {
       <Header />
       <main className="pt-24">
         <article className="pb-16 md:pb-24">
-          {/* Hero */}
-          <header className="bg-brand-green py-12 md:py-20">
-            <div className="container mx-auto px-4">
-              <div className="max-w-3xl mx-auto text-center">
+          {/* Content */}
+          <div className="bg-blog-gold">
+            <div className="container mx-auto px-4 py-12">
+              <div className="max-w-3xl mx-auto">
                 <Link
                   to="/blog"
-                  className="inline-flex items-center gap-2 text-white/80 hover:text-white mb-6 transition-colors"
+                  className="inline-flex items-center gap-2 text-secondary hover:text-secondary/80 mb-6 transition-colors"
                 >
                   <ArrowLeft className="w-4 h-4" />
                   Back to Blog
                 </Link>
-                <h1 className="font-serif text-3xl md:text-5xl text-white mb-4">
-                  {post.title}
-                </h1>
-                <div className="flex items-center justify-center gap-2 text-white/80">
-                  <Calendar className="w-4 h-4" />
-                  <time dateTime={publishedDate || undefined}>
-                    {format(
-                      new Date(post.published_at || post.created_at),
-                      "MMMM d, yyyy"
-                    )}
-                  </time>
+                <div className="prose prose-lg dark:prose-invert prose-headings:font-serif prose-headings:text-foreground prose-p:text-foreground/80 prose-a:text-secondary prose-a:no-underline hover:prose-a:underline prose-img:rounded-lg">
+                  <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                    {post.content}
+                  </ReactMarkdown>
                 </div>
-              </div>
-            </div>
-          </header>
-
-
-          {/* Content */}
-          <div className="bg-blog-gold">
-            <div className="container mx-auto px-4 py-12">
-              <div className="max-w-3xl mx-auto prose prose-lg dark:prose-invert prose-headings:font-serif prose-headings:text-foreground prose-p:text-foreground/80 prose-a:text-secondary prose-a:no-underline hover:prose-a:underline prose-img:rounded-lg">
-                <ReactMarkdown remarkPlugins={[remarkGfm]}>
-                  {post.content}
-                </ReactMarkdown>
               </div>
             </div>
           </div>
