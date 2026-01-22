@@ -149,14 +149,19 @@ const Footer = () => {
             © {new Date().getFullYear()} Monday Morning. Made with ☀️ in San Diego.
           </p>
           <div className="flex items-center gap-6">
-            {["Privacy", "Terms", "Shipping", "Returns"].map((item) => (
-              <a 
-                key={item}
-                href="#" 
+            {[
+              { label: "Privacy", path: "/privacy" },
+              { label: "Terms", path: "/terms" },
+              { label: "Shipping", path: "/shipping" },
+              { label: "Returns", path: "/returns" },
+            ].map((item) => (
+              <Link 
+                key={item.label}
+                to={item.path}
                 className="font-sans text-xs text-cream/50 hover:text-gold transition-colors"
               >
-                {item}
-              </a>
+                {item.label}
+              </Link>
             ))}
             <Link 
               to="/admin"
