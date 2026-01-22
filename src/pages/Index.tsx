@@ -9,6 +9,7 @@ import Recipes from "@/components/home/Recipes";
 import Testimonials from "@/components/home/Testimonials";
 import Newsletter from "@/components/home/Newsletter";
 import Instagram from "@/components/home/Instagram";
+import NAExpertChat from "@/components/chat/NAExpertChat";
 
 const Index = () => {
   return (
@@ -26,6 +27,7 @@ const Index = () => {
         <Instagram />
       </main>
       <Footer />
+      <NAExpertChat />
     </div>
   );
 };
