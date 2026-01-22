@@ -21,6 +21,10 @@ import Admin from "./pages/Admin";
 import Blog from "./pages/Blog";
 import BlogPostPage from "./pages/BlogPost";
 import BlogImport from "./pages/BlogImport";
+import Privacy from "./pages/Privacy";
+import Terms from "./pages/Terms";
+import Shipping from "./pages/Shipping";
+import Returns from "./pages/Returns";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -57,6 +61,10 @@ const AppContent = () => {
         <Route path="/blog" element={<Blog />} />
         <Route path="/blog/:slug" element={<BlogPostPage />} />
         <Route path="/blog-import" element={<BlogImport />} />
+        <Route path="/privacy" element={<Privacy />} />
+        <Route path="/terms" element={<Terms />} />
+        <Route path="/shipping" element={<Shipping />} />
+        <Route path="/returns" element={<Returns />} />
         {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
         <Route path="*" element={<NotFound />} />
       </Routes>
