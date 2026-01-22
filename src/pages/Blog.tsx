@@ -17,6 +17,8 @@ interface BlogPost {
   created_at: string;
 }
 
+const FALLBACK_BLOG_IMAGE = "/images/beach-lifestyle.jpg";
+
 const Blog = () => {
   const { data: posts, isLoading, error } = useQuery({
     queryKey: ["blog-posts"],
@@ -102,7 +104,16 @@ const Blog = () => {
                           <img
                             src={post.featured_image}
                             alt={post.title}
+                            loading="lazy"
                             className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                            onError={(e) => {
+                              // If the image URL is dead (common with imported/hotlinked images),
+                              // fall back to a local stock image so the card never renders blank.
+                              const img = e.currentTarget;
+                              if (img.src !== window.location.origin + FALLBACK_BLOG_IMAGE) {
+                                img.src = FALLBACK_BLOG_IMAGE;
+                              }
+                            }}
                           />
                         </div>
                       ) : (
