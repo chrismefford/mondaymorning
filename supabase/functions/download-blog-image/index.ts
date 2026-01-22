@@ -20,19 +20,48 @@ Deno.serve(async (req) => {
       );
     }
 
-    console.log('Downloading image:', imageUrl);
+    // Normalize URL: convert http to https
+    let normalizedUrl = imageUrl.trim();
+    if (normalizedUrl.startsWith('http://')) {
+      normalizedUrl = normalizedUrl.replace('http://', 'https://');
+    }
+    
+    console.log('Downloading image:', normalizedUrl);
 
-    // Download the image
-    const imageResponse = await fetch(imageUrl, {
-      headers: {
-        'User-Agent': 'Mozilla/5.0 (compatible; BlogImageDownloader/1.0)',
-      },
-    });
+    // Download the image with retries
+    let imageResponse: Response | null = null;
+    let lastError: Error | null = null;
+    
+    for (let attempt = 0; attempt < 3; attempt++) {
+      try {
+        imageResponse = await fetch(normalizedUrl, {
+          headers: {
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+            'Accept': 'image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8',
+            'Accept-Language': 'en-US,en;q=0.9',
+            'Referer': 'https://www.squarespace.com/',
+          },
+        });
+        
+        if (imageResponse.ok) break;
+        
+        console.log(`Attempt ${attempt + 1} failed with status ${imageResponse.status}`);
+      } catch (err) {
+        lastError = err instanceof Error ? err : new Error(String(err));
+        console.log(`Attempt ${attempt + 1} error:`, lastError.message);
+      }
+      
+      // Wait before retry
+      if (attempt < 2) {
+        await new Promise(resolve => setTimeout(resolve, 1000 * (attempt + 1)));
+      }
+    }
 
-    if (!imageResponse.ok) {
-      console.error('Failed to download image:', imageResponse.status);
+    if (!imageResponse || !imageResponse.ok) {
+      const status = imageResponse?.status || 'unknown';
+      console.error('Failed to download image after retries:', status);
       return new Response(
-        JSON.stringify({ success: false, error: `Failed to download image: ${imageResponse.status}` }),
+        JSON.stringify({ success: false, error: `Failed to download image: ${status}` }),
         { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
       );
     }
