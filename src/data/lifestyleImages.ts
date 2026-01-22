@@ -7,6 +7,24 @@ import patioCoupleBeers from "@/assets/lifestyle/patio-couple-beers.jpg";
 import poolsideFriendsDrinks from "@/assets/lifestyle/poolside-friends-drinks.jpg";
 import dinnerPartyToast from "@/assets/lifestyle/dinner-party-toast.jpg";
 
+// NEW: Additional diverse lifestyle images
+import dinnerCheersIntimate from "@/assets/lifestyle/dinner-cheers-intimate.jpg";
+import rooftopSunsetFriends from "@/assets/lifestyle/rooftop-sunset-friends.jpg";
+import vineyardCoupleWine from "@/assets/lifestyle/vineyard-couple-wine.jpg";
+import beachBonfireBeers from "@/assets/lifestyle/beach-bonfire-beers.jpg";
+import upscaleBarToast from "@/assets/lifestyle/upscale-bar-toast.jpg";
+import poolsideCabanaFriends from "@/assets/lifestyle/poolside-cabana-friends.jpg";
+import morningPatioCouple from "@/assets/lifestyle/morning-patio-couple.jpg";
+import gardenPartyToast from "@/assets/lifestyle/garden-party-toast.jpg";
+import breweryPatioFriends from "@/assets/lifestyle/brewery-patio-friends.jpg";
+import trattoriaWineCouple from "@/assets/lifestyle/trattoria-wine-couple.jpg";
+import beachSunsetCocktails from "@/assets/lifestyle/beach-sunset-cocktails.jpg";
+import brunchMimosasElegant from "@/assets/lifestyle/brunch-mimosas-elegant.jpg";
+import yachtPartyDrinks from "@/assets/lifestyle/yacht-party-drinks.jpg";
+import fireplaceCozyDrinks from "@/assets/lifestyle/fireplace-cozy-drinks.jpg";
+import tikiBarTropical from "@/assets/lifestyle/tiki-bar-tropical.jpg";
+import wellnessRetreatDrinks from "@/assets/lifestyle/wellness-retreat-drinks.jpg";
+
 // Spirit alternatives - cocktails and bar scenes
 import botanicalBar2 from "@/assets/lifestyle/botanical-bar-2.jpg";
 
@@ -52,52 +70,126 @@ import tikiBar7 from "@/assets/lifestyle/tiki-bar-7.jpg";
 // Additional lifestyle images
 import yacht10 from "@/assets/lifestyle/yacht-10.jpg";
 
-// Category-specific image pools
+// Category-specific image pools - EXPANDED for more variety
 export const categoryImagePools: Record<string, string[]> = {
-  // Spirits get cocktail/bar scenes with people
-  "Spirit Alternative": [friendsBeachToast, rooftopCheers, dinnerPartyToast, aperitifGoldenHour],
-  "Spirit": [friendsBeachToast, rooftopCheers, dinnerPartyToast, aperitifGoldenHour],
-  "Spirits": [friendsBeachToast, rooftopCheers, dinnerPartyToast, aperitifGoldenHour],
+  // Spirits get cocktail/bar scenes with people - 8 unique images
+  "Spirit Alternative": [
+    friendsBeachToast, rooftopCheers, dinnerPartyToast, aperitifGoldenHour,
+    upscaleBarToast, rooftopSunsetFriends, dinnerCheersIntimate, beachSunsetCocktails
+  ],
+  "Spirit": [
+    friendsBeachToast, rooftopCheers, dinnerPartyToast, aperitifGoldenHour,
+    upscaleBarToast, rooftopSunsetFriends, dinnerCheersIntimate, beachSunsetCocktails
+  ],
+  "Spirits": [
+    friendsBeachToast, rooftopCheers, dinnerPartyToast, aperitifGoldenHour,
+    upscaleBarToast, rooftopSunsetFriends, dinnerCheersIntimate, beachSunsetCocktails
+  ],
   
-  // Wine gets dinner party and celebration scenes with people
-  "Wine Alternative": [dinnerPartyToast, rooftopCheers, wineDinnerToast, dinnerParty3],
-  "Wine": [dinnerPartyToast, rooftopCheers, wineDinnerToast, dinnerParty3],
-  "Red Wine": [dinnerPartyToast, wineDinnerToast, dinnerParty3],
-  "White Wine": [dinnerPartyToast, rooftopCheers, wineVineyardPour],
+  // Wine gets dinner party and celebration scenes - 8 unique images
+  "Wine Alternative": [
+    dinnerPartyToast, rooftopCheers, wineDinnerToast, dinnerParty3,
+    vineyardCoupleWine, trattoriaWineCouple, dinnerCheersIntimate, gardenPartyToast
+  ],
+  "Wine": [
+    dinnerPartyToast, rooftopCheers, wineDinnerToast, dinnerParty3,
+    vineyardCoupleWine, trattoriaWineCouple, dinnerCheersIntimate, gardenPartyToast
+  ],
+  "Red Wine": [
+    dinnerPartyToast, wineDinnerToast, dinnerParty3,
+    trattoriaWineCouple, dinnerCheersIntimate, fireplaceCozyDrinks
+  ],
+  "White Wine": [
+    dinnerPartyToast, rooftopCheers, wineVineyardPour,
+    vineyardCoupleWine, gardenPartyToast, brunchMimosasElegant
+  ],
   
-  // Beer gets casual outdoor scenes with people
-  "NA Beer": [patioCoupleBeers, friendsBeachToast, beerPatioFriends, beerBeachBonfire],
-  "Beer": [patioCoupleBeers, friendsBeachToast, beerPatioFriends, beerBeachBonfire],
+  // Beer gets casual outdoor scenes - 8 unique images
+  "NA Beer": [
+    patioCoupleBeers, friendsBeachToast, beerPatioFriends, beerBeachBonfire,
+    beachBonfireBeers, breweryPatioFriends, patioBeer6, rooftopSunsetFriends
+  ],
+  "Beer": [
+    patioCoupleBeers, friendsBeachToast, beerPatioFriends, beerBeachBonfire,
+    beachBonfireBeers, breweryPatioFriends, patioBeer6, rooftopSunsetFriends
+  ],
   
-  // Functional gets wellness/social scenes
-  "Functional Elixir": [poolsideFriendsDrinks, patioCoupleBeers, functionalWellnessMorning, wellness12],
-  "Functional": [poolsideFriendsDrinks, patioCoupleBeers, functionalWellnessMorning, wellness12],
-  "Adaptogens": [poolsideFriendsDrinks, patioCoupleBeers, wellness12],
+  // Bitters get moody bar scenes - 6 unique images
+  "Bitters": [
+    upscaleBarToast, dinnerCheersIntimate, rooftopCheers, 
+    botanicalBar2, library8, fireplaceCozyDrinks
+  ],
   
-  // Sparkling gets celebration scenes with people
-  "Sparkling": [rooftopCheers, dinnerPartyToast, sparklingCelebration, celebration5],
-  "Champagne Alternative": [rooftopCheers, dinnerPartyToast, sparklingCelebration],
+  // Functional gets wellness/social scenes - 8 unique images
+  "Functional Elixir": [
+    poolsideFriendsDrinks, patioCoupleBeers, functionalWellnessMorning, wellness12,
+    wellnessRetreatDrinks, morningPatioCouple, brunchMimosasElegant, gardenPartyToast
+  ],
+  "Functional": [
+    poolsideFriendsDrinks, patioCoupleBeers, functionalWellnessMorning, wellness12,
+    wellnessRetreatDrinks, morningPatioCouple, brunchMimosasElegant, gardenPartyToast
+  ],
+  "Adaptogens": [
+    poolsideFriendsDrinks, patioCoupleBeers, wellness12,
+    wellnessRetreatDrinks, morningPatioCouple, functionalWellnessMorning
+  ],
   
-  // Aperitifs get golden hour social scenes with people
-  "Aperitif": [friendsBeachToast, rooftopCheers, aperitifGoldenHour, beachSunset1],
-  "Aperitivo": [friendsBeachToast, rooftopCheers, aperitifGoldenHour],
+  // Sparkling gets celebration scenes - 8 unique images
+  "Sparkling": [
+    rooftopCheers, dinnerPartyToast, sparklingCelebration, celebration5,
+    gardenPartyToast, brunchMimosasElegant, yachtPartyDrinks, rooftopSunsetFriends
+  ],
+  "Champagne Alternative": [
+    rooftopCheers, dinnerPartyToast, sparklingCelebration,
+    gardenPartyToast, brunchMimosasElegant, yachtPartyDrinks
+  ],
   
-  // Ready to drink gets casual beach/poolside with people
-  "Ready to Drink": [poolsideFriendsDrinks, friendsBeachToast, rtdBeachPicnic, tropicalPoolside],
-  "RTD": [poolsideFriendsDrinks, friendsBeachToast, rtdBeachPicnic, tropicalPoolside],
-  "Beverages": [poolsideFriendsDrinks, friendsBeachToast, patioCoupleBeers, tropicalPoolside],
-  "Mixers": [poolsideFriendsDrinks, friendsBeachToast, tropicalPoolside],
+  // Aperitifs get golden hour social scenes - 8 unique images
+  "Aperitif": [
+    friendsBeachToast, rooftopCheers, aperitifGoldenHour, beachSunset1,
+    rooftopSunsetFriends, beachSunsetCocktails, gardenPartyToast, upscaleBarToast
+  ],
+  "Aperitivo": [
+    friendsBeachToast, rooftopCheers, aperitifGoldenHour,
+    rooftopSunsetFriends, beachSunsetCocktails, upscaleBarToast
+  ],
   
-  // Botanical gets moody scenes
-  "Botanical": [rooftopCheers, dinnerPartyToast, lifestyleBotanical, library8],
+  // Ready to drink gets casual beach/poolside - 8 unique images
+  "Ready to Drink": [
+    poolsideFriendsDrinks, friendsBeachToast, rtdBeachPicnic, tropicalPoolside,
+    poolsideCabanaFriends, beachSunsetCocktails, yachtPartyDrinks, tikiBarTropical
+  ],
+  "RTD": [
+    poolsideFriendsDrinks, friendsBeachToast, rtdBeachPicnic, tropicalPoolside,
+    poolsideCabanaFriends, beachSunsetCocktails, yachtPartyDrinks, tikiBarTropical
+  ],
+  "Beverages": [
+    poolsideFriendsDrinks, friendsBeachToast, patioCoupleBeers, tropicalPoolside,
+    poolsideCabanaFriends, morningPatioCouple, brunchMimosasElegant, beachSunsetCocktails
+  ],
+  "Mixers": [
+    poolsideFriendsDrinks, friendsBeachToast, tropicalPoolside,
+    tikiBarTropical, beachSunsetCocktails, rooftopSunsetFriends
+  ],
   
-  // Tiki/tropical with people
-  "Tiki": [poolsideFriendsDrinks, friendsBeachToast, tikiBar7, tropicalPoolside],
+  // Botanical gets moody scenes - 6 unique images
+  "Botanical": [
+    rooftopCheers, dinnerPartyToast, lifestyleBotanical, library8,
+    upscaleBarToast, fireplaceCozyDrinks
+  ],
   
-  // Default fallback pool - prioritize people shots
+  // Tiki/tropical with people - 8 unique images
+  "Tiki": [
+    poolsideFriendsDrinks, friendsBeachToast, tikiBar7, tropicalPoolside,
+    tikiBarTropical, poolsideCabanaFriends, beachSunsetCocktails, yachtPartyDrinks
+  ],
+  
+  // Default fallback pool - 16 unique images for maximum variety
   "default": [
     friendsBeachToast, poolsideFriendsDrinks, rooftopCheers, patioCoupleBeers,
-    dinnerPartyToast, beachSunset1, aperitifGoldenHour
+    dinnerPartyToast, beachSunset1, aperitifGoldenHour, rooftopSunsetFriends,
+    dinnerCheersIntimate, beachBonfireBeers, gardenPartyToast, beachSunsetCocktails,
+    brunchMimosasElegant, yachtPartyDrinks, poolsideCabanaFriends, upscaleBarToast
   ],
 };
 
@@ -141,15 +233,21 @@ export function getLifestyleImageByIndex(index: number, category: string = "defa
   return pool[adjustedIndex];
 }
 
-// All lifestyle images in a flat pool (for general use)
+// All lifestyle images in a flat pool (for general use) - 40+ unique images
 export const lifestyleImagePool: string[] = [
+  // New social lifestyle images
+  dinnerCheersIntimate, rooftopSunsetFriends, vineyardCoupleWine, beachBonfireBeers,
+  upscaleBarToast, poolsideCabanaFriends, morningPatioCouple, gardenPartyToast,
+  breweryPatioFriends, trattoriaWineCouple, beachSunsetCocktails, brunchMimosasElegant,
+  yachtPartyDrinks, fireplaceCozyDrinks, tikiBarTropical, wellnessRetreatDrinks,
+  // Original images
   rooftopCheers, dinnerPartyToast, friendsBeachToast, aperitifGoldenHour,
-  poolsideFriendsDrinks, botanicalBar2,
+  poolsideFriendsDrinks, botanicalBar2, patioCoupleBeers,
   wineDinnerToast, wineVineyardPour, lifestyleWine, dinnerParty3, vineyard9,
   beerPatioFriends, beerBeachBonfire, lifestyleBeer, patioBeer6,
   functionalWellnessMorning, functionalZenTonic, lifestyleFunctional, wellness12,
   sparklingCelebration, celebration5,
-  aperitifGoldenHour, rooftop11, beachSunset1,
+  rooftop11, beachSunset1,
   rtdBeachPicnic, tropicalPoolside, lifestyleTropical, poolside4,
   lifestyleBotanical, library8, tikiBar7, yacht10,
 ];
