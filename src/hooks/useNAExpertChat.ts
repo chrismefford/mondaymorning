@@ -1,13 +1,28 @@
 import { useState, useCallback } from "react";
+import { useShopifyAllProducts, isActiveProduct, ShopifyProduct } from "./useShopifyProducts";
 
 type Message = { role: "user" | "assistant"; content: string };
 
 const CHAT_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/na-expert-chat`;
 
+// Extract product info for the AI
+const formatProductsForAI = (products: ShopifyProduct[]) => {
+  return products
+    .filter(isActiveProduct)
+    .map(p => ({
+      handle: p.handle,
+      name: p.title,
+      category: p.productType || "Beverages",
+    }));
+};
+
 export const useNAExpertChat = () => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  
+  // Fetch all products for the AI to reference
+  const { data: shopifyProducts } = useShopifyAllProducts({ pageSize: 250 });
 
   const sendMessage = useCallback(async (input: string) => {
     const userMsg: Message = { role: "user", content: input };
@@ -29,13 +44,19 @@ export const useNAExpertChat = () => {
     };
 
     try {
+      // Format products for the AI
+      const products = formatProductsForAI(shopifyProducts || []);
+
       const resp = await fetch(CHAT_URL, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY}`,
         },
-        body: JSON.stringify({ messages: [...messages, userMsg] }),
+        body: JSON.stringify({ 
+          messages: [...messages, userMsg],
+          products,
+        }),
       });
 
       if (!resp.ok) {
@@ -105,7 +126,7 @@ export const useNAExpertChat = () => {
     } finally {
       setIsLoading(false);
     }
-  }, [messages]);
+  }, [messages, shopifyProducts]);
 
   const clearChat = useCallback(() => {
     setMessages([]);
