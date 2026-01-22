@@ -1,5 +1,6 @@
 import { useParams, Link } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
+import { Helmet } from "react-helmet-async";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { supabase } from "@/integrations/supabase/client";
@@ -37,9 +38,19 @@ const BlogPost = () => {
     enabled: !!slug,
   });
 
+  // SEO meta values
+  const pageTitle = post ? `${post.title} | Monday Morning Blog` : "Blog Post | Monday Morning";
+  const pageDescription = post?.excerpt || "Read this article from Monday Morning Bottle Shop.";
+  const ogImage = post?.featured_image || "/og-image.png";
+  const canonicalUrl = `https://mondaymorning.lovable.app/blog/${slug}`;
+  const publishedDate = post?.published_at || post?.created_at;
+
   if (isLoading) {
     return (
       <div className="min-h-screen bg-background">
+        <Helmet>
+          <title>Loading... | Monday Morning Blog</title>
+        </Helmet>
         <Header />
         <main className="pt-24">
           <div className="container mx-auto px-4 py-16">
@@ -65,6 +76,10 @@ const BlogPost = () => {
   if (error || !post) {
     return (
       <div className="min-h-screen bg-background">
+        <Helmet>
+          <title>Post Not Found | Monday Morning Blog</title>
+          <meta name="robots" content="noindex" />
+        </Helmet>
         <Header />
         <main className="pt-24">
           <div className="container mx-auto px-4 py-16 text-center">
@@ -88,11 +103,62 @@ const BlogPost = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <Helmet>
+        <title>{pageTitle}</title>
+        <meta name="description" content={pageDescription} />
+        <link rel="canonical" href={canonicalUrl} />
+        
+        {/* Open Graph */}
+        <meta property="og:title" content={post.title} />
+        <meta property="og:description" content={pageDescription} />
+        <meta property="og:type" content="article" />
+        <meta property="og:url" content={canonicalUrl} />
+        <meta property="og:image" content={ogImage} />
+        {publishedDate && (
+          <meta property="article:published_time" content={publishedDate} />
+        )}
+        
+        {/* Twitter */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={post.title} />
+        <meta name="twitter:description" content={pageDescription} />
+        <meta name="twitter:image" content={ogImage} />
+        
+        {/* JSON-LD Structured Data */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BlogPosting",
+            "headline": post.title,
+            "description": pageDescription,
+            "image": ogImage,
+            "datePublished": publishedDate,
+            "dateModified": post.created_at,
+            "author": {
+              "@type": "Organization",
+              "name": "Monday Morning Bottle Shop"
+            },
+            "publisher": {
+              "@type": "Organization",
+              "name": "Monday Morning Bottle Shop",
+              "logo": {
+                "@type": "ImageObject",
+                "url": "https://mondaymorning.lovable.app/og-image.png"
+              }
+            },
+            "mainEntityOfPage": {
+              "@type": "WebPage",
+              "@id": canonicalUrl
+            }
+          })}
+        </script>
+      </Helmet>
+
       <Header />
       <main className="pt-24">
         <article className="pb-16 md:pb-24">
           {/* Hero */}
-          <div className="bg-brand-green py-12 md:py-20">
+          <header className="bg-brand-green py-12 md:py-20">
             <div className="container mx-auto px-4">
               <div className="max-w-3xl mx-auto text-center">
                 <Link
@@ -107,7 +173,7 @@ const BlogPost = () => {
                 </h1>
                 <div className="flex items-center justify-center gap-2 text-white/80">
                   <Calendar className="w-4 h-4" />
-                  <time>
+                  <time dateTime={publishedDate || undefined}>
                     {format(
                       new Date(post.published_at || post.created_at),
                       "MMMM d, yyyy"
@@ -116,7 +182,7 @@ const BlogPost = () => {
                 </div>
               </div>
             </div>
-          </div>
+          </header>
 
           {/* Featured Image */}
           {post.featured_image && (
