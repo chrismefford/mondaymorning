@@ -36,6 +36,28 @@ function replaceImageUrl(content: string, oldUrl: string, newUrl: string): strin
   return content.replace(new RegExp(oldUrl.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g'), newUrl);
 }
 
+// Clean up common Squarespace import artifacts
+function sanitizeContent(content: string): string {
+  let cleaned = content;
+  
+  // Remove [0](url) style artifacts (cart links, etc.)
+  cleaned = cleaned.replace(/\[\d+\]\(https?:\/\/[^\)]+\)\s*/g, '');
+  
+  // Remove empty links like [](url)
+  cleaned = cleaned.replace(/\[\]\(https?:\/\/[^\)]+\)\s*/g, '');
+  
+  // Remove standalone numbers at start of content
+  cleaned = cleaned.replace(/^\d+\s*\n+/, '');
+  
+  // Clean up multiple consecutive newlines (more than 2)
+  cleaned = cleaned.replace(/\n{3,}/g, '\n\n');
+  
+  // Trim leading/trailing whitespace
+  cleaned = cleaned.trim();
+  
+  return cleaned;
+}
+
 const BlogImport = () => {
   const { user, isAdmin, isLoading: authLoading } = useAuth();
   const navigate = useNavigate();
@@ -118,9 +140,10 @@ const BlogImport = () => {
     }
   };
 
-  // Process a post: download all images and update content
+  // Process a post: download all images, sanitize content, and update
   const processPostImages = async (post: ScrapedPost): Promise<ScrapedPost> => {
-    let updatedContent = post.content;
+    // First, sanitize the content to remove import artifacts
+    let updatedContent = sanitizeContent(post.content);
     let updatedFeaturedImage = post.featured_image;
 
     // Download featured image
