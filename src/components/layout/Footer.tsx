@@ -1,12 +1,24 @@
+import { useState } from "react";
 import { Instagram, Mail, MapPin, Settings } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { useNewsletterSubscribe } from "@/hooks/useNewsletterSubscribe";
 import logoSecondaryWhite from "@/assets/logo-secondary-white.svg";
 import stampWhite from "@/assets/stamp-white.svg";
 import textureGreen from "@/assets/texture-green.svg";
 
 const Footer = () => {
+  const [email, setEmail] = useState("");
+  const { subscribe, isLoading } = useNewsletterSubscribe();
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const success = await subscribe(email);
+    if (success) {
+      setEmail("");
+    }
+  };
   return (
     <footer className="bg-forest text-cream py-16 lg:py-24 relative overflow-hidden">
       {/* Organic texture background */}
@@ -111,17 +123,21 @@ const Footer = () => {
             <p className="font-sans text-sm text-cream/70 mb-4">
               Join the sunrise crew for local events, new flavors, and good vibes.
             </p>
-            <form className="flex gap-2" onSubmit={(e) => e.preventDefault()}>
+            <form className="flex gap-2" onSubmit={handleSubmit}>
               <Input 
                 type="email" 
                 placeholder="Your email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                disabled={isLoading}
                 className="bg-cream/10 border-cream/20 text-cream placeholder:text-cream/40 focus:border-gold"
               />
               <Button 
                 type="submit"
+                disabled={isLoading}
                 className="shrink-0 bg-gold hover:bg-gold/90 text-forest-deep font-semibold"
               >
-                Join
+                {isLoading ? "..." : "Join"}
               </Button>
             </form>
           </div>

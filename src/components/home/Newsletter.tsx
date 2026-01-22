@@ -1,11 +1,24 @@
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ArrowRight } from "lucide-react";
+import { useNewsletterSubscribe } from "@/hooks/useNewsletterSubscribe";
 import stampGold from "@/assets/stamp-gold.svg";
 import textureGreen from "@/assets/texture-green.svg";
 import friendsCocktails from "@/assets/friends-cocktails.jpg";
 
 const Newsletter = () => {
+  const [email, setEmail] = useState("");
+  const { subscribe, isLoading } = useNewsletterSubscribe();
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const success = await subscribe(email);
+    if (success) {
+      setEmail("");
+    }
+  };
+
   return (
     <section className="relative overflow-hidden">
       {/* MOBILE LAYOUT - Stacked with image background */}
@@ -37,20 +50,24 @@ const Newsletter = () => {
 
           <form 
             className="space-y-3"
-            onSubmit={(e) => e.preventDefault()}
+            onSubmit={handleSubmit}
           >
             <Input
               type="email"
               placeholder="your@email.com"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              disabled={isLoading}
               className="bg-transparent border-2 border-cream/30 text-cream placeholder:text-cream/50 focus:border-gold focus:ring-0 h-14 font-sans"
             />
             <Button 
               type="submit"
               size="lg"
+              disabled={isLoading}
               className="w-full font-sans text-sm font-bold uppercase tracking-widest bg-gold text-forest-deep hover:bg-gold/90 h-14"
             >
-              Join
-              <ArrowRight className="ml-2 h-4 w-4" />
+              {isLoading ? "Joining..." : "Join"}
+              {!isLoading && <ArrowRight className="ml-2 h-4 w-4" />}
             </Button>
             <p className="font-sans text-[10px] text-cream/50 text-center">
               No spam, just good vibes. Unsubscribe anytime.
@@ -99,21 +116,25 @@ const Newsletter = () => {
 
             <form 
               className="space-y-4"
-              onSubmit={(e) => e.preventDefault()}
+              onSubmit={handleSubmit}
             >
               <div className="flex flex-col sm:flex-row gap-3">
                 <Input
                   type="email"
                   placeholder="your@email.com"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  disabled={isLoading}
                   className="bg-transparent border-2 border-cream/30 text-cream placeholder:text-cream/50 focus:border-gold focus:ring-0 h-14 font-sans"
                 />
                 <Button 
                   type="submit"
                   size="lg"
+                  disabled={isLoading}
                   className="font-sans text-sm font-semibold uppercase tracking-wider shrink-0 bg-gold text-forest-deep hover:bg-gold/90 h-14 px-8"
                 >
-                  Join
-                  <ArrowRight className="ml-2 h-4 w-4" />
+                  {isLoading ? "Joining..." : "Join"}
+                  {!isLoading && <ArrowRight className="ml-2 h-4 w-4" />}
                 </Button>
               </div>
               <p className="font-sans text-xs text-cream/50">
