@@ -84,6 +84,7 @@ export default {
           DEFAULT: "hsl(var(--sand))",
           warm: "hsl(var(--sand-warm))",
         },
+        "blog-gold": "hsl(var(--blog-gold))",
         ocean: {
           DEFAULT: "hsl(var(--ocean))",
           light: "hsl(var(--ocean-light))",

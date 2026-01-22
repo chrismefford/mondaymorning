@@ -191,11 +191,13 @@ const BlogPost = () => {
           )}
 
           {/* Content */}
-          <div className="container mx-auto px-4 py-12">
-            <div className="max-w-3xl mx-auto prose prose-lg dark:prose-invert prose-headings:font-serif prose-headings:text-foreground prose-p:text-muted-foreground prose-a:text-brand-green prose-a:no-underline hover:prose-a:underline prose-img:rounded-lg">
-              <ReactMarkdown remarkPlugins={[remarkGfm]}>
-                {post.content}
-              </ReactMarkdown>
+          <div className="bg-blog-gold">
+            <div className="container mx-auto px-4 py-12">
+              <div className="max-w-3xl mx-auto prose prose-lg dark:prose-invert prose-headings:font-serif prose-headings:text-foreground prose-p:text-foreground/80 prose-a:text-secondary prose-a:no-underline hover:prose-a:underline prose-img:rounded-lg">
+                <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                  {post.content}
+                </ReactMarkdown>
+              </div>
             </div>
           </div>
         </article>
