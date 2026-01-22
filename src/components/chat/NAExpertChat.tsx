@@ -60,6 +60,7 @@ const MessageContent = ({ content }: { content: string }) => {
 
 const NAExpertChat = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
   const [inputValue, setInputValue] = useState("");
   const { messages, isLoading, error, sendMessage, clearChat } = useNAExpertChat();
   const scrollAreaRef = useRef<HTMLDivElement>(null);
@@ -91,17 +92,34 @@ const NAExpertChat = () => {
 
   return (
     <>
-      {/* Floating Chat Button */}
-      <button
-        onClick={() => setIsOpen(true)}
+      {/* Floating Chat Button with Hover Message */}
+      <div 
         className={cn(
-          "fixed bottom-6 right-6 z-50 w-14 h-14 bg-forest text-cream rounded-full shadow-lg flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-xl",
-          isOpen && "scale-0 opacity-0"
+          "fixed bottom-6 right-6 z-50 flex items-center gap-3 transition-all duration-300",
+          isOpen && "scale-0 opacity-0 pointer-events-none"
         )}
-        aria-label="Open chat"
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
       >
-        <MessageCircle className="w-6 h-6" />
-      </button>
+        {/* Hover tooltip */}
+        <div 
+          className={cn(
+            "bg-forest text-cream px-4 py-2.5 rounded-2xl rounded-br-sm shadow-lg max-w-[220px] text-sm leading-snug transition-all duration-300 origin-right",
+            isHovered ? "scale-100 opacity-100" : "scale-95 opacity-0 pointer-events-none"
+          )}
+        >
+          <span className="font-medium">Hey! 👋</span> I'm your NA drink expert—ask me anything!
+        </div>
+        
+        {/* Chat button */}
+        <button
+          onClick={() => setIsOpen(true)}
+          className="w-14 h-14 bg-forest text-cream rounded-full shadow-lg flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-xl"
+          aria-label="Open chat"
+        >
+          <MessageCircle className="w-6 h-6" />
+        </button>
+      </div>
 
       {/* Chat Window */}
       <div
