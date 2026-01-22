@@ -8,6 +8,7 @@ import { HelmetProvider } from "react-helmet-async";
 import { AuthProvider } from "@/hooks/useAuth";
 import { CartProvider } from "@/hooks/useCart";
 import CartDrawer from "@/components/cart/CartDrawer";
+import NAExpertChat from "@/components/chat/NAExpertChat";
 import LoadingScreen from "@/components/LoadingScreen";
 import Index from "./pages/Index";
 import About from "./pages/About";
@@ -48,6 +49,7 @@ const AppContent = () => {
   return (
     <>
       <CartDrawer />
+      <NAExpertChat />
       <Routes>
         <Route path="/" element={<Index />} />
         <Route path="/shop" element={<ShopPage />} />
