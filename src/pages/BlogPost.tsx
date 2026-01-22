@@ -48,9 +48,6 @@ const BlogPost = () => {
   if (isLoading) {
     return (
       <div className="min-h-screen bg-background">
-        <Helmet>
-          <title>Loading... | Monday Morning Blog</title>
-        </Helmet>
         <Header />
         <main className="pt-24">
           <div className="container mx-auto px-4 py-16">
@@ -76,10 +73,6 @@ const BlogPost = () => {
   if (error || !post) {
     return (
       <div className="min-h-screen bg-background">
-        <Helmet>
-          <title>Post Not Found | Monday Morning Blog</title>
-          <meta name="robots" content="noindex" />
-        </Helmet>
         <Header />
         <main className="pt-24">
           <div className="container mx-auto px-4 py-16 text-center">
