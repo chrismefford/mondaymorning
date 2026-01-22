@@ -177,18 +177,6 @@ const BlogPost = () => {
             </div>
           </header>
 
-          {/* Featured Image */}
-          {post.featured_image && (
-            <div className="container mx-auto px-4 -mt-8">
-              <div className="max-w-4xl mx-auto">
-                <img
-                  src={post.featured_image}
-                  alt={post.title}
-                  className="w-full aspect-[16/9] object-cover rounded-lg shadow-xl"
-                />
-              </div>
-            </div>
-          )}
 
           {/* Content */}
           <div className="bg-blog-gold">
