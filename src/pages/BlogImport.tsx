@@ -1,13 +1,15 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Progress } from "@/components/ui/progress";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/useAuth";
-import { Loader2, Check, AlertCircle } from "lucide-react";
+import { Loader2, Check, AlertCircle, Image } from "lucide-react";
 
 interface ScrapedPost {
   title: string;
@@ -16,6 +18,22 @@ interface ScrapedPost {
   excerpt: string;
   featured_image: string | null;
   published_at: string | null;
+}
+
+// Extract all image URLs from markdown content
+function extractImageUrls(markdown: string): string[] {
+  const imageRegex = /!\[.*?\]\((https?:\/\/[^\)]+)\)/g;
+  const urls: string[] = [];
+  let match;
+  while ((match = imageRegex.exec(markdown)) !== null) {
+    urls.push(match[1]);
+  }
+  return urls;
+}
+
+// Replace image URL in content
+function replaceImageUrl(content: string, oldUrl: string, newUrl: string): string {
+  return content.replace(new RegExp(oldUrl.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g'), newUrl);
 }
 
 const BlogImport = () => {
@@ -29,6 +47,7 @@ const BlogImport = () => {
   const [scrapedPosts, setScrapedPosts] = useState<ScrapedPost[]>([]);
   const [selectedPosts, setSelectedPosts] = useState<Set<number>>(new Set());
   const [progress, setProgress] = useState("");
+  const [importProgress, setImportProgress] = useState(0);
 
   const handleScrape = async () => {
     setIsLoading(true);
@@ -80,6 +99,58 @@ const BlogImport = () => {
     setSelectedPosts(newSelected);
   };
 
+  // Download and re-host a single image
+  const downloadImage = async (imageUrl: string, slug: string): Promise<string | null> => {
+    try {
+      const { data, error } = await supabase.functions.invoke("download-blog-image", {
+        body: { imageUrl, slug },
+      });
+
+      if (error || !data?.success) {
+        console.error("Failed to download image:", imageUrl, error || data?.error);
+        return null;
+      }
+
+      return data.newUrl;
+    } catch (err) {
+      console.error("Error downloading image:", err);
+      return null;
+    }
+  };
+
+  // Process a post: download all images and update content
+  const processPostImages = async (post: ScrapedPost): Promise<ScrapedPost> => {
+    let updatedContent = post.content;
+    let updatedFeaturedImage = post.featured_image;
+
+    // Download featured image
+    if (post.featured_image) {
+      const newUrl = await downloadImage(post.featured_image, post.slug);
+      if (newUrl) {
+        updatedFeaturedImage = newUrl;
+        updatedContent = replaceImageUrl(updatedContent, post.featured_image, newUrl);
+      }
+    }
+
+    // Extract and download all images from content
+    const contentImages = extractImageUrls(post.content);
+    for (const imageUrl of contentImages) {
+      // Skip if already processed (featured image)
+      if (imageUrl === post.featured_image) continue;
+      
+      const newUrl = await downloadImage(imageUrl, post.slug);
+      if (newUrl) {
+        updatedContent = replaceImageUrl(updatedContent, imageUrl, newUrl);
+      }
+    }
+
+    return {
+      ...post,
+      content: updatedContent,
+      featured_image: updatedFeaturedImage,
+    };
+  };
+
   const handleImport = async () => {
     if (selectedPosts.size === 0) {
       toast({
@@ -91,24 +162,35 @@ const BlogImport = () => {
     }
 
     setIsSaving(true);
+    setImportProgress(0);
     let imported = 0;
     let failed = 0;
 
     const postsToImport = scrapedPosts.filter((_, i) => selectedPosts.has(i));
+    const totalPosts = postsToImport.length;
 
-    for (const post of postsToImport) {
+    for (let i = 0; i < postsToImport.length; i++) {
+      const post = postsToImport[i];
+      setProgress(`Processing ${i + 1}/${totalPosts}: ${post.title.substring(0, 30)}...`);
+      setImportProgress(((i + 0.5) / totalPosts) * 100);
+
       try {
+        // Download and re-host images
+        const processedPost = await processPostImages(post);
+        
+        setImportProgress(((i + 0.8) / totalPosts) * 100);
+
+        // Save to database
         const { error } = await supabase.from("blog_posts").insert({
-          title: post.title,
-          slug: post.slug,
-          content: post.content,
-          excerpt: post.excerpt || null,
-          featured_image: post.featured_image,
-          published_at: post.published_at,
+          title: processedPost.title,
+          slug: processedPost.slug,
+          content: processedPost.content,
+          excerpt: processedPost.excerpt || null,
+          featured_image: processedPost.featured_image,
+          published_at: processedPost.published_at,
         });
 
         if (error) {
-          // Check if it's a duplicate slug error
           if (error.code === "23505") {
             console.log(`Skipping duplicate: ${post.slug}`);
           } else {
@@ -121,13 +203,17 @@ const BlogImport = () => {
         console.error(`Failed to import ${post.title}:`, err);
         failed++;
       }
+
+      setImportProgress(((i + 1) / totalPosts) * 100);
     }
 
     setIsSaving(false);
+    setProgress("");
+    setImportProgress(0);
 
     toast({
       title: "Import complete!",
-      description: `Imported ${imported} posts${failed > 0 ? `, ${failed} failed` : ""}.`,
+      description: `Imported ${imported} posts with images${failed > 0 ? `, ${failed} failed` : ""}.`,
     });
 
     if (imported > 0) {
@@ -152,6 +238,9 @@ const BlogImport = () => {
   if (!user || !isAdmin) {
     return (
       <div className="min-h-screen bg-background">
+        <Helmet>
+          <title>Access Denied | Monday Morning</title>
+        </Helmet>
         <Header />
         <main className="pt-24">
           <div className="container mx-auto px-4 py-16 text-center">
@@ -170,13 +259,17 @@ const BlogImport = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <Helmet>
+        <title>Import Blog | Monday Morning</title>
+        <meta name="robots" content="noindex, nofollow" />
+      </Helmet>
       <Header />
       <main className="pt-24">
         <div className="container mx-auto px-4 py-12">
           <div className="max-w-4xl mx-auto">
             <h1 className="font-serif text-4xl mb-2">Import Blog Posts</h1>
             <p className="text-muted-foreground mb-8">
-              Scrape and import blog posts from your Squarespace site
+              Scrape and import blog posts from your Squarespace site. Images will be automatically downloaded and re-hosted.
             </p>
 
             {/* URL Input */}
@@ -187,9 +280,9 @@ const BlogImport = () => {
                 onChange={(e) => setBlogUrl(e.target.value)}
                 placeholder="https://yoursite.com/blog"
                 className="flex-1"
-                disabled={isLoading}
+                disabled={isLoading || isSaving}
               />
-              <Button onClick={handleScrape} disabled={isLoading || !blogUrl}>
+              <Button onClick={handleScrape} disabled={isLoading || isSaving || !blogUrl}>
                 {isLoading ? (
                   <>
                     <Loader2 className="w-4 h-4 mr-2 animate-spin" />
@@ -201,8 +294,15 @@ const BlogImport = () => {
               </Button>
             </div>
 
-            {progress && (
-              <p className="text-muted-foreground mb-4">{progress}</p>
+            {/* Progress */}
+            {(progress || isSaving) && (
+              <div className="mb-6 space-y-2">
+                <p className="text-muted-foreground flex items-center gap-2">
+                  {isSaving && <Image className="w-4 h-4" />}
+                  {progress || "Processing..."}
+                </p>
+                {isSaving && <Progress value={importProgress} className="h-2" />}
+              </div>
             )}
 
             {/* Scraped Posts */}
@@ -226,6 +326,10 @@ const BlogImport = () => {
                     )}
                   </Button>
                 </div>
+
+                <p className="text-sm text-muted-foreground">
+                  All images will be downloaded and stored locally so they remain available after you cancel Squarespace.
+                </p>
 
                 <div className="border rounded-lg divide-y">
                   {scrapedPosts.map((post, index) => (
