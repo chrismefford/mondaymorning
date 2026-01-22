@@ -38,9 +38,33 @@ const BlogPost = () => {
     enabled: !!slug,
   });
 
-  // SEO meta values
-  const pageTitle = post ? `${post.title} | Monday Morning Blog` : "Blog Post | Monday Morning";
-  const pageDescription = post?.excerpt || "Read this article from Monday Morning Bottle Shop.";
+  // SEO meta values - optimized for search engines
+  // Title: Keep under 60 chars for best display in SERPs
+  const truncateTitle = (title: string, maxLen: number) => {
+    if (title.length <= maxLen) return title;
+    return title.substring(0, maxLen - 3).trim() + "...";
+  };
+  
+  // Description: Ideal 120-160 chars, clean up any import artifacts
+  const cleanExcerpt = (excerpt: string | null): string => {
+    if (!excerpt) return "Discover alcohol-free drinks, mocktail recipes, and mindful drinking tips from Monday Morning Bottle Shop in San Diego.";
+    // Remove any leftover import artifacts
+    let cleaned = excerpt
+      .replace(/\[\d*\]\([^)]+\)/g, '') // Remove [0](url) patterns
+      .replace(/\[\]\([^)]+\)/g, '')     // Remove [](url) patterns
+      .replace(/\n+/g, ' ')              // Replace newlines with spaces
+      .trim();
+    // Truncate to ~155 chars at word boundary
+    if (cleaned.length > 155) {
+      cleaned = cleaned.substring(0, 155).replace(/\s+\S*$/, '') + "...";
+    }
+    return cleaned || "Discover alcohol-free drinks, mocktail recipes, and mindful drinking tips from Monday Morning Bottle Shop in San Diego.";
+  };
+  
+  const baseTitle = post?.title || "Blog Post";
+  const seoTitle = truncateTitle(baseTitle, 50);
+  const pageTitle = post ? `${seoTitle} | Monday Morning` : "Blog Post | Monday Morning";
+  const pageDescription = cleanExcerpt(post?.excerpt);
   const ogImage = post?.featured_image || "/og-image.png";
   const canonicalUrl = `https://mondaymorning.lovable.app/blog/${slug}`;
   const publishedDate = post?.published_at || post?.created_at;
@@ -102,20 +126,23 @@ const BlogPost = () => {
         <link rel="canonical" href={canonicalUrl} />
         
         {/* Open Graph */}
-        <meta property="og:title" content={post.title} />
+        <meta property="og:title" content={seoTitle} />
         <meta property="og:description" content={pageDescription} />
         <meta property="og:type" content="article" />
         <meta property="og:url" content={canonicalUrl} />
         <meta property="og:image" content={ogImage} />
+        <meta property="og:site_name" content="Monday Morning Bottle Shop" />
         {publishedDate && (
           <meta property="article:published_time" content={publishedDate} />
         )}
+        <meta property="article:section" content="Non-Alcoholic Drinks" />
         
         {/* Twitter */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={post.title} />
+        <meta name="twitter:title" content={seoTitle} />
         <meta name="twitter:description" content={pageDescription} />
         <meta name="twitter:image" content={ogImage} />
+        <meta name="twitter:site" content="@mondaymorningsd" />
         
         {/* JSON-LD Structured Data */}
         <script type="application/ld+json">
@@ -123,17 +150,20 @@ const BlogPost = () => {
             "@context": "https://schema.org",
             "@type": "BlogPosting",
             "headline": post.title,
+            "alternativeHeadline": seoTitle,
             "description": pageDescription,
             "image": ogImage,
             "datePublished": publishedDate,
             "dateModified": post.created_at,
             "author": {
               "@type": "Organization",
-              "name": "Monday Morning Bottle Shop"
+              "name": "Monday Morning Bottle Shop",
+              "url": "https://mondaymorning.lovable.app"
             },
             "publisher": {
               "@type": "Organization",
               "name": "Monday Morning Bottle Shop",
+              "url": "https://mondaymorning.lovable.app",
               "logo": {
                 "@type": "ImageObject",
                 "url": "https://mondaymorning.lovable.app/og-image.png"
@@ -142,7 +172,8 @@ const BlogPost = () => {
             "mainEntityOfPage": {
               "@type": "WebPage",
               "@id": canonicalUrl
-            }
+            },
+            "keywords": "non-alcoholic drinks, NA beverages, mocktails, alcohol-free, San Diego, mindful drinking, sober curious"
           })}
         </script>
       </Helmet>
