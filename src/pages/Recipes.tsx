@@ -1,6 +1,7 @@
 import { useState, useMemo } from "react";
 import { Link } from "react-router-dom";
 import { recipes, occasionLabels, Occasion, Recipe } from "@/data/recipes";
+import { getImageByOccasion } from "@/data/recipeImages";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Clock, Users, ChefHat, ShoppingCart, Plus, ShoppingBag } from "lucide-react";
 import Header from "@/components/layout/Header";
@@ -15,6 +16,12 @@ import {
 } from "@/components/ui/dialog";
 import { useShopifyProducts, ShopifyProduct, shopifyToLocalProduct } from "@/hooks/useShopifyProducts";
 import { useCart } from "@/hooks/useCart";
+
+// Helper to get recipe image - uses local assets or falls back to recipe.image
+function getRecipeImageUrl(recipe: Recipe, index: number): string {
+  // Use local generated images based on occasion for variety
+  return getImageByOccasion(recipe.occasion, index);
+}
 
 interface RecipeProduct {
   product: ReturnType<typeof shopifyToLocalProduct>;
@@ -413,11 +420,15 @@ interface RecipeCardProps {
 }
 
 const RecipeCard = ({ recipe, onClick }: RecipeCardProps) => {
+  // Get index from recipe id for consistent image assignment
+  const imageIndex = parseInt(recipe.id.replace(/\D/g, '') || '0', 10);
+  const imageUrl = getRecipeImageUrl(recipe, imageIndex);
+  
   return (
     <button onClick={onClick} className="group text-left w-full">
       <div className="relative aspect-[4/3] overflow-hidden border-2 border-forest mb-4">
         <img
-          src={recipe.image}
+          src={imageUrl}
           alt={recipe.title}
           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
         />
