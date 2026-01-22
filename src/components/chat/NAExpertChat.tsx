@@ -1,11 +1,62 @@
 import { useState, useRef, useEffect } from "react";
-import { MessageCircle, X, Send, Trash2 } from "lucide-react";
+import { MessageCircle, X, Send, Trash2, ShoppingBag } from "lucide-react";
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { useNAExpertChat } from "@/hooks/useNAExpertChat";
 import { cn } from "@/lib/utils";
 import stampGold from "@/assets/stamp-gold.svg";
+
+// Parse product links from message content
+// Format: [[PRODUCT:handle|Product Name]]
+const parseProductLinks = (content: string) => {
+  const productLinkRegex = /\[\[PRODUCT:([^\]|]+)\|([^\]]+)\]\]/g;
+  const parts: Array<{ type: "text" | "product"; content: string; handle?: string; name?: string }> = [];
+  let lastIndex = 0;
+  let match;
+
+  while ((match = productLinkRegex.exec(content)) !== null) {
+    // Add text before the match
+    if (match.index > lastIndex) {
+      parts.push({ type: "text", content: content.slice(lastIndex, match.index) });
+    }
+    // Add the product link
+    parts.push({ type: "product", content: match[0], handle: match[1], name: match[2] });
+    lastIndex = productLinkRegex.lastIndex;
+  }
+
+  // Add remaining text
+  if (lastIndex < content.length) {
+    parts.push({ type: "text", content: content.slice(lastIndex) });
+  }
+
+  return parts.length > 0 ? parts : [{ type: "text" as const, content }];
+};
+
+const MessageContent = ({ content }: { content: string }) => {
+  const parts = parseProductLinks(content);
+
+  return (
+    <>
+      {parts.map((part, i) => {
+        if (part.type === "product" && part.handle && part.name) {
+          return (
+            <Link
+              key={i}
+              to={`/product/${part.handle}`}
+              className="inline-flex items-center gap-1 px-2 py-0.5 bg-gold/20 hover:bg-gold/30 text-forest font-medium rounded-md transition-colors mx-0.5"
+            >
+              <ShoppingBag className="w-3 h-3" />
+              {part.name}
+            </Link>
+          );
+        }
+        return <span key={i}>{part.content}</span>;
+      })}
+    </>
+  );
+};
 
 const NAExpertChat = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -117,7 +168,11 @@ const NAExpertChat = () => {
                         : "bg-forest/10 text-forest rounded-bl-md"
                     )}
                   >
-                    {msg.content}
+                    {msg.role === "assistant" ? (
+                      <MessageContent content={msg.content} />
+                    ) : (
+                      msg.content
+                    )}
                   </div>
                 </div>
               ))}
