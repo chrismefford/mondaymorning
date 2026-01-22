@@ -1,7 +1,7 @@
 import { useState, useMemo } from "react";
 import { Link } from "react-router-dom";
 import { recipes, occasionLabels, Occasion, Recipe } from "@/data/recipes";
-import { getImageByOccasion } from "@/data/recipeImages";
+import { getRecipeImage } from "@/data/recipeImages";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Clock, Users, ChefHat, ShoppingCart, Plus, ShoppingBag } from "lucide-react";
 import Header from "@/components/layout/Header";
@@ -17,10 +17,9 @@ import {
 import { useShopifyProducts, ShopifyProduct, shopifyToLocalProduct } from "@/hooks/useShopifyProducts";
 import { useCart } from "@/hooks/useCart";
 
-// Helper to get recipe image - uses local assets or falls back to recipe.image
-function getRecipeImageUrl(recipe: Recipe, index: number): string {
-  // Use local generated images based on occasion for variety
-  return getImageByOccasion(recipe.occasion, index);
+// Helper to get recipe image - uses direct ID-to-image mapping for context-appropriate images
+function getRecipeImageUrl(recipe: Recipe): string {
+  return getRecipeImage(recipe.id);
 }
 
 interface RecipeProduct {
@@ -167,9 +166,9 @@ const RecipesPage = () => {
                   onClick={() => setSelectedRecipe(recipe)}
                   className="group text-left"
                 >
-                  <div className="aspect-[4/5] overflow-hidden border-2 border-cream/20 mb-4 relative">
+                <div className="aspect-[4/5] overflow-hidden border-2 border-cream/20 mb-4 relative">
                     <img
-                      src={recipe.image}
+                      src={getRecipeImageUrl(recipe)}
                       alt={recipe.title}
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                     />
@@ -286,7 +285,7 @@ const RecipesPage = () => {
             <>
               <div className="relative aspect-video">
                 <img
-                  src={selectedRecipe.image}
+                  src={getRecipeImageUrl(selectedRecipe)}
                   alt={selectedRecipe.title}
                   className="w-full h-full object-cover"
                 />
@@ -420,9 +419,7 @@ interface RecipeCardProps {
 }
 
 const RecipeCard = ({ recipe, onClick }: RecipeCardProps) => {
-  // Get index from recipe id for consistent image assignment
-  const imageIndex = parseInt(recipe.id.replace(/\D/g, '') || '0', 10);
-  const imageUrl = getRecipeImageUrl(recipe, imageIndex);
+  const imageUrl = getRecipeImageUrl(recipe);
   
   return (
     <button onClick={onClick} className="group text-left w-full">

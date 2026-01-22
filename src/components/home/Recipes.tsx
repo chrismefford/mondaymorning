@@ -1,5 +1,6 @@
 import { useState, useRef } from "react";
 import { recipes, occasionLabels, Occasion } from "@/data/recipes";
+import { getRecipeImage } from "@/data/recipeImages";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, ArrowUpRight, Clock, Users, ChefHat } from "lucide-react";
 import stampGold from "@/assets/stamp-gold.svg";
@@ -89,9 +90,9 @@ const Recipes = () => {
             <div className="lg:hidden">
               {/* Featured Recipe Card */}
               <div className="relative mb-8">
-                <div className="aspect-[4/5] overflow-hidden border-2 border-forest">
+              <div className="aspect-[4/5] overflow-hidden border-2 border-forest">
                   <img
-                    src={featuredRecipe.image}
+                    src={getRecipeImage(featuredRecipe.id)}
                     alt={featuredRecipe.title}
                     className="w-full h-full object-cover"
                   />
@@ -168,7 +169,7 @@ const Recipes = () => {
                 <div className="lg:col-span-7 relative group">
                   <div className="aspect-[4/3] overflow-hidden border-2 border-forest">
                     <img
-                      src={featuredRecipe.image}
+                      src={getRecipeImage(featuredRecipe.id)}
                       alt={featuredRecipe.title}
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                     />
@@ -321,7 +322,7 @@ const RecipeCard = ({ recipe }: RecipeCardProps) => {
     <article className="group">
       <div className="relative aspect-[4/3] overflow-hidden border-2 border-forest mb-4">
         <img
-          src={recipe.image}
+          src={getRecipeImage(recipe.id)}
           alt={recipe.title}
           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
         />

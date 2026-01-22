@@ -164,20 +164,62 @@ export const allRecipeImages = [
   espressoMocktail,
 ];
 
-// Get a consistent image for a recipe based on its ID
+// Direct mapping of recipe IDs to contextually appropriate images
+export const recipeImageMap: Record<string, string> = {
+  // BREAKFAST
+  "1": naSparklingWhite,        // Sunrise Mimosa - sparkling wine
+  "2": matchaDrink,              // Morning Clarity Fizz - wellness drink
+  "3": lavenderLemonade,         // Blueberry Lavender Lemonade
+  "b4": bloodOrange,             // Grapefruit Rosemary Spritz
+  "b5": peachBellini,            // Peach Bellini
+  "b6": tropicalMocktail,        // Tropical Acai Refresher
+  
+  // DINNER
+  "4": berrySangria,             // NA Red Wine Sangria
+  "5": aperitifSpritz,           // Rosemary Citrus Spritz
+  "6": botanicalMocktail,        // Botanical Gin & Tonic
+  "d4": naOldFashioned,          // Smoked Maple Old Fashioned
+  "d5": cucumberCooler,          // Herb Garden Gimlet
+  "d6": spicedPear,              // Spiced Pear Fizz
+  
+  // RELAXING
+  "7": honeyChamomile,           // Chamomile Honey Soother
+  "8": lavenderLemonade,         // Lavender Dreams
+  "9": cucumberCooler,           // Cucumber Mint Cooler
+  "r4": roseSpritzer,            // Rose & Cardamom Elixir
+  "r5": darkStormy,              // Sleepy Time Toddy
+  "r6": espressoMocktail,        // Vanilla Almond Nightcap
+  
+  // BEACH
+  "10": tropicalMocktail,        // Tropical Sunset
+  "11": watermelonFresca,        // Watermelon Wave
+  "12": coconutDrink,            // Coconut Lime Refresher
+  "be4": mangoLassi,             // Mango Tango Margarita
+  "be5": tropicalMocktail,       // Piña Colada Dream - reuse tropical (different from 10)
+  "be6": cranberrySpritzer,      // Sea Breeze Cooler
+  
+  // CELEBRATION
+  "13": naSparklingWhite,        // Sparkling Elderflower Royale
+  "14": naRedWineGlass,          // Midnight Toast
+  "15": aperitifSpritz,          // Aperitif Spritz Celebration
+  "c4": roseSpritzer,            // Rosé All Day
+  "c5": naChardonnay,            // Champagne Wishes
+  "c6": passionFruit,            // Gold Rush Punch
+};
+
+// Get the mapped image for a recipe, with fallback
 export function getRecipeImage(recipeId: string): string {
-  const hash = recipeId.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
-  return allRecipeImages[hash % allRecipeImages.length];
+  return recipeImageMap[recipeId] || allRecipeImages[0];
 }
 
-// Get image by occasion and index for variety
+// Get image by occasion and index for variety (fallback for unmapped recipes)
 export function getImageByOccasion(occasion: string, index: number): string {
   const occasionImages: Record<string, string[]> = {
-    breakfast: [peachBellini, naSparklingWhite, tropicalMocktail, mangoLassi, passionFruit, honeyChamomile],
-    dinner: [naRedWineGlass, naOldFashioned, naNegroni, botanicalMocktail, bittersSoda, berrySangria],
-    relaxing: [lavenderLemonade, honeyChamomile, cucumberCooler, matchaDrink, spicedPear, kombuchaGlass],
-    beach: [tropicalMocktail, watermelonFresca, coconutDrink, blueLagoon, strawberryDaiquiri, virginMargarita],
-    celebration: [naSparklingWhite, roseSpritzer, aperitifSpritz, peachBellini, cranberrySpritzer, bloodOrange],
+    breakfast: [naSparklingWhite, matchaDrink, lavenderLemonade, bloodOrange, peachBellini, tropicalMocktail],
+    dinner: [berrySangria, aperitifSpritz, botanicalMocktail, naOldFashioned, cucumberCooler, spicedPear],
+    relaxing: [honeyChamomile, lavenderLemonade, cucumberCooler, roseSpritzer, darkStormy, espressoMocktail],
+    beach: [tropicalMocktail, watermelonFresca, coconutDrink, mangoLassi, blueLagoon, cranberrySpritzer],
+    celebration: [naSparklingWhite, naRedWineGlass, aperitifSpritz, roseSpritzer, naChardonnay, passionFruit],
   };
   
   const images = occasionImages[occasion] || allRecipeImages;
