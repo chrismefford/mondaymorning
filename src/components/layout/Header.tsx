@@ -165,9 +165,11 @@ const Header = () => {
                 className="relative w-10 h-10 border-2 border-foreground flex items-center justify-center hover:bg-foreground hover:text-background transition-colors group"
               >
                 <ShoppingBag className="h-4 w-4" />
-                <span className="absolute -top-2 -right-2 w-5 h-5 bg-primary text-primary-foreground text-[10px] font-bold flex items-center justify-center">
-                  {cartCount}
-                </span>
+                {cartCount > 0 && (
+                  <span className="absolute -top-2 -right-2 w-5 h-5 bg-primary text-primary-foreground text-[10px] font-bold flex items-center justify-center">
+                    {cartCount}
+                  </span>
+                )}
               </button>
             </div>
 
@@ -184,9 +186,11 @@ const Header = () => {
                 className={`relative w-10 h-10 border-2 flex items-center justify-center transition-colors ${isMenuOpen ? 'border-background/30 text-background' : 'border-foreground'}`}
               >
                 <ShoppingBag className="h-4 w-4" />
-                <span className="absolute -top-2 -right-2 w-5 h-5 bg-primary text-primary-foreground text-[10px] font-bold flex items-center justify-center">
-                  {cartCount}
-                </span>
+                {cartCount > 0 && (
+                  <span className="absolute -top-2 -right-2 w-5 h-5 bg-primary text-primary-foreground text-[10px] font-bold flex items-center justify-center">
+                    {cartCount}
+                  </span>
+                )}
               </button>
               <button
                 className={`w-10 h-10 border-2 flex items-center justify-center transition-colors ${isMenuOpen ? 'border-background/30 text-background' : 'border-foreground'}`}
