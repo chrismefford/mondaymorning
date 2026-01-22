@@ -121,15 +121,21 @@ const BlogImport = () => {
     setSelectedPosts(newSelected);
   };
 
-  // Download and re-host a single image
+  // Download and re-host a single image with http→https normalization
   const downloadImage = async (imageUrl: string, slug: string): Promise<string | null> => {
     try {
+      // Normalize URL: convert http to https before sending
+      let normalizedUrl = imageUrl.trim();
+      if (normalizedUrl.startsWith('http://')) {
+        normalizedUrl = normalizedUrl.replace('http://', 'https://');
+      }
+      
       const { data, error } = await supabase.functions.invoke("download-blog-image", {
-        body: { imageUrl, slug },
+        body: { imageUrl: normalizedUrl, slug },
       });
 
       if (error || !data?.success) {
-        console.error("Failed to download image:", imageUrl, error || data?.error);
+        console.error("Failed to download image:", normalizedUrl, error || data?.error);
         return null;
       }
 
