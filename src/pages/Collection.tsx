@@ -202,14 +202,9 @@ const CollectionPage = () => {
 
             {/* Products grid */}
             {!isLoading && displayProducts.length > 0 && (
-              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 gap-y-16 lg:gap-8 lg:gap-y-24">
-                {displayProducts.map((product, index) => (
-                  <div 
-                    key={product.id}
-                    className={`${index % 3 === 1 ? 'lg:translate-y-8' : ''}`}
-                  >
-                    <ProductCard product={product} showProductOnly />
-                  </div>
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 lg:gap-8 items-start">
+                {displayProducts.map((product) => (
+                  <ProductCard key={product.id} product={product} showProductOnly />
                 ))}
               </div>
             )}
