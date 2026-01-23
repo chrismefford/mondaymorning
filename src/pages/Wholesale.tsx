@@ -476,18 +476,22 @@ const Wholesale = () => {
                   <img src={stampGold} alt="" className="w-full h-full" />
                 </div>
                 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-10">
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-10">
                   <div className="text-center">
-                    <div className="font-serif text-4xl md:text-5xl text-gold mb-2">$14</div>
-                    <p className="font-sans text-sm text-cream/70">Average NA cocktail price</p>
+                    <div className="font-serif text-3xl md:text-4xl text-gold mb-2">$14</div>
+                    <p className="font-sans text-xs text-cream/70">Average NA cocktail price</p>
                   </div>
                   <div className="text-center">
-                    <div className="font-serif text-4xl md:text-5xl text-gold mb-2">$2</div>
-                    <p className="font-sans text-sm text-cream/70">Your cost to make it</p>
+                    <div className="font-serif text-3xl md:text-4xl text-gold mb-2">$2</div>
+                    <p className="font-sans text-xs text-cream/70">Your cost to make it</p>
                   </div>
                   <div className="text-center">
-                    <div className="font-serif text-4xl md:text-5xl text-gold mb-2">85%</div>
-                    <p className="font-sans text-sm text-cream/70">Gross margin per drink</p>
+                    <div className="font-serif text-3xl md:text-4xl text-gold mb-2">85%</div>
+                    <p className="font-sans text-xs text-cream/70">Gross margin per drink</p>
+                  </div>
+                  <div className="text-center">
+                    <div className="font-serif text-3xl md:text-4xl text-gold mb-2">$0</div>
+                    <p className="font-sans text-xs text-cream/70">Alcohol tax</p>
                   </div>
                 </div>
                 
