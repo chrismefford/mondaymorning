@@ -11,3 +11,6 @@ verify_jwt = false
 
 [functions.na-expert-chat]
 verify_jwt = false
+
+[functions.wholesale-chat]
+verify_jwt = false
