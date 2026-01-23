@@ -225,32 +225,18 @@ const WholesaleChat = () => {
     setInputValue("");
   };
 
-  const [isHovered, setIsHovered] = useState(false);
-
   return (
     <>
-      <div className={cn("fixed bottom-6 right-6 z-50", isOpen && "hidden")}>
-        {/* Hover tooltip */}
-        <div 
-          className={cn(
-            "absolute bottom-full right-0 mb-2 whitespace-nowrap bg-forest text-cream px-4 py-2 rounded-lg shadow-lg transition-all duration-200 font-sans text-sm",
-            isHovered ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2 pointer-events-none"
-          )}
-        >
-          Wholesale Questions Answered Here
-          <div className="absolute -bottom-1 right-6 w-2 h-2 bg-forest rotate-45" />
-        </div>
-        
-        <button
-          onClick={() => setIsOpen(true)}
-          onMouseEnter={() => setIsHovered(true)}
-          onMouseLeave={() => setIsHovered(false)}
-          className="flex items-center gap-2 px-4 py-3 bg-gold text-forest-deep font-semibold rounded-full shadow-xl hover:bg-gold/90 transition-all duration-300"
-        >
-          <MessageCircle className="w-5 h-5" />
-          <span>Questions? Let's talk</span>
-        </button>
-      </div>
+      <button
+        onClick={() => setIsOpen(true)}
+        className={cn(
+          "fixed bottom-6 right-6 z-50 flex items-center gap-2 px-4 py-3 bg-gold text-forest-deep font-semibold rounded-full shadow-xl hover:bg-gold/90 transition-all duration-300",
+          isOpen && "hidden"
+        )}
+      >
+        <MessageCircle className="w-5 h-5" />
+        <span>Wholesale Questions Answered Here</span>
+      </button>
 
       {isOpen && (
         <div className="fixed bottom-6 right-6 z-50 w-[380px] max-w-[calc(100vw-3rem)] h-[500px] max-h-[calc(100vh-6rem)] bg-cream border-2 border-forest/20 rounded-2xl shadow-2xl flex flex-col overflow-hidden">

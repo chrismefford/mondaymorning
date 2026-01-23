@@ -159,6 +159,7 @@ const Footer = () => {
               <Link 
                 key={item.label}
                 to={item.path}
+                onClick={() => window.scrollTo(0, 0)}
                 className="font-sans text-xs text-cream/50 hover:text-gold transition-colors"
               >
                 {item.label}
