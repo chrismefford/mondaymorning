@@ -66,6 +66,14 @@ const Header = () => {
     { name: "Find Us", href: "/locations", number: "05" },
   ];
 
+  // Determine if we're on a dark hero page
+  const isDarkHeroPage = typeof window !== 'undefined' && 
+    (window.location.pathname === '/services' || 
+     window.location.pathname === '/locations' ||
+     window.location.pathname === '/about');
+
+  const showLightText = !isScrolled && isDarkHeroPage;
+
   return (
     <>
       <header 
@@ -80,7 +88,7 @@ const Header = () => {
             {/* Logo */}
             <a href="/" className="group flex items-center relative z-50">
               <img 
-                src={isMenuOpen ? logoWhite : logoGold} 
+                src={isMenuOpen || showLightText ? logoWhite : logoGold} 
                 alt="Monday Morning" 
                 className="h-8 lg:h-10 w-auto transition-all"
               />
@@ -94,7 +102,9 @@ const Header = () => {
                   <DropdownMenu key={link.name} modal={false}>
                     <DropdownMenuTrigger asChild>
                       <button
-                        className="font-sans text-xs font-semibold uppercase tracking-[0.15em] text-foreground px-5 py-2 hover:text-primary transition-colors duration-200 relative group flex items-center gap-1"
+                        className={`font-sans text-xs font-semibold uppercase tracking-[0.15em] px-5 py-2 hover:text-primary transition-colors duration-200 relative group flex items-center gap-1 ${
+                          showLightText ? 'text-cream' : 'text-foreground'
+                        }`}
                       >
                         {link.name}
                         <ChevronDown className="h-3 w-3 transition-transform duration-200 group-data-[state=open]:rotate-180" />
@@ -135,7 +145,9 @@ const Header = () => {
                   <a
                     key={link.name}
                     href={link.href}
-                    className="font-sans text-xs font-semibold uppercase tracking-[0.15em] text-foreground px-5 py-2 hover:text-primary transition-colors duration-200 relative group"
+                    className={`font-sans text-xs font-semibold uppercase tracking-[0.15em] px-5 py-2 hover:text-primary transition-colors duration-200 relative group ${
+                      showLightText ? 'text-cream' : 'text-foreground'
+                    }`}
                   >
                     {link.name}
                     <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1 h-1 bg-primary scale-0 group-hover:scale-100 transition-transform duration-200" />
@@ -148,7 +160,11 @@ const Header = () => {
             <div className="hidden lg:flex items-center gap-2">
               <button 
                 onClick={() => setIsSearchOpen(true)}
-                className="w-10 h-10 border-2 border-foreground flex items-center justify-center hover:bg-foreground hover:text-background transition-colors group"
+                className={`w-10 h-10 border-2 flex items-center justify-center transition-colors group ${
+                  showLightText 
+                    ? 'border-cream/50 text-cream hover:bg-cream hover:text-forest' 
+                    : 'border-foreground hover:bg-foreground hover:text-background'
+                }`}
                 aria-label="Search products"
               >
                 <Search className="h-4 w-4" />
@@ -156,13 +172,19 @@ const Header = () => {
               <Button 
                 variant="ghost" 
                 size="sm"
-                className="font-sans text-xs font-semibold uppercase tracking-wider"
+                className={`font-sans text-xs font-semibold uppercase tracking-wider ${
+                  showLightText ? 'text-cream hover:text-gold' : ''
+                }`}
               >
                 Account
               </Button>
               <button 
                 onClick={openCart}
-                className="relative w-10 h-10 border-2 border-foreground flex items-center justify-center hover:bg-foreground hover:text-background transition-colors group"
+                className={`relative w-10 h-10 border-2 flex items-center justify-center transition-colors group ${
+                  showLightText 
+                    ? 'border-cream/50 text-cream hover:bg-cream hover:text-forest' 
+                    : 'border-foreground hover:bg-foreground hover:text-background'
+                }`}
               >
                 <ShoppingBag className="h-4 w-4" />
                 {cartCount > 0 && (
@@ -176,14 +198,26 @@ const Header = () => {
             <div className="lg:hidden flex items-center gap-3 relative z-50">
               <button 
                 onClick={() => setIsSearchOpen(true)}
-                className={`w-10 h-10 border-2 flex items-center justify-center transition-colors ${isMenuOpen ? 'border-background/30 text-background' : 'border-foreground'}`}
+                className={`w-10 h-10 border-2 flex items-center justify-center transition-colors ${
+                  isMenuOpen 
+                    ? 'border-background/30 text-background' 
+                    : showLightText 
+                      ? 'border-cream/50 text-cream' 
+                      : 'border-foreground'
+                }`}
                 aria-label="Search products"
               >
                 <Search className="h-4 w-4" />
               </button>
               <button 
                 onClick={openCart}
-                className={`relative w-10 h-10 border-2 flex items-center justify-center transition-colors ${isMenuOpen ? 'border-background/30 text-background' : 'border-foreground'}`}
+                className={`relative w-10 h-10 border-2 flex items-center justify-center transition-colors ${
+                  isMenuOpen 
+                    ? 'border-background/30 text-background' 
+                    : showLightText 
+                      ? 'border-cream/50 text-cream' 
+                      : 'border-foreground'
+                }`}
               >
                 <ShoppingBag className="h-4 w-4" />
                 {cartCount > 0 && (
@@ -193,7 +227,13 @@ const Header = () => {
                 )}
               </button>
               <button
-                className={`w-10 h-10 border-2 flex items-center justify-center transition-colors ${isMenuOpen ? 'border-background/30 text-background' : 'border-foreground'}`}
+                className={`w-10 h-10 border-2 flex items-center justify-center transition-colors ${
+                  isMenuOpen 
+                    ? 'border-background/30 text-background' 
+                    : showLightText 
+                      ? 'border-cream/50 text-cream' 
+                      : 'border-foreground'
+                }`}
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
                 aria-label="Toggle menu"
               >
