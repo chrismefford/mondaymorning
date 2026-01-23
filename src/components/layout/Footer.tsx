@@ -154,6 +154,7 @@ const Footer = () => {
               { label: "Terms", path: "/terms" },
               { label: "Shipping", path: "/shipping" },
               { label: "Returns", path: "/returns" },
+              { label: "Services", path: "/services" },
             ].map((item) => (
               <Link 
                 key={item.label}
