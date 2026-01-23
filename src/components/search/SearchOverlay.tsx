@@ -75,7 +75,13 @@ const SearchOverlay = ({ isOpen, onClose }: SearchOverlayProps) => {
     setQuery("");
   };
 
-  const popularSearches = ["NA Wine", "Beer", "Spirits", "Functionals", "Best Sellers"];
+  const popularSearches = [
+    { label: "NA Wine", search: "wine" },
+    { label: "Beer", search: "beer" },
+    { label: "Spirits", search: "spirit" },
+    { label: "Functionals", search: "functional" },
+    { label: "Best Sellers", path: "/collections/best-sellers" },
+  ];
 
   return (
     <div
@@ -144,16 +150,22 @@ const SearchOverlay = ({ isOpen, onClose }: SearchOverlayProps) => {
                 Popular Searches
               </p>
               <div className="flex flex-wrap gap-2">
-                {popularSearches.map((term) => (
+                {popularSearches.map((item) => (
                   <button
-                    key={term}
+                    key={item.label}
                     onClick={() => {
-                      setQuery(term);
-                      setDebouncedQuery(term);
+                      if (item.path) {
+                        navigate(item.path);
+                        onClose();
+                        setQuery("");
+                      } else if (item.search) {
+                        setQuery(item.search);
+                        setDebouncedQuery(item.search);
+                      }
                     }}
                     className="px-4 py-2 border border-cream/20 text-cream/70 font-sans text-sm hover:border-gold hover:text-gold hover:shadow-[0_0_15px_rgba(212,175,55,0.3)] transition-all duration-300"
                   >
-                    {term}
+                    {item.label}
                   </button>
                 ))}
               </div>
