@@ -147,7 +147,10 @@ const SearchOverlay = ({ isOpen, onClose }: SearchOverlayProps) => {
                 {popularSearches.map((term) => (
                   <button
                     key={term}
-                    onClick={() => setQuery(term)}
+                    onClick={() => {
+                      setQuery(term);
+                      setDebouncedQuery(term);
+                    }}
                     className="px-4 py-2 border border-cream/20 text-cream/70 font-sans text-sm hover:border-gold hover:text-gold hover:shadow-[0_0_15px_rgba(212,175,55,0.3)] transition-all duration-300"
                   >
                     {term}
