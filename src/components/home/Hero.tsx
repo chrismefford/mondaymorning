@@ -74,8 +74,8 @@ const Hero = () => {
           </div>
 
           {/* Full-width stacked buttons */}
-          <div className="space-y-3 animate-fade-up delay-400">
-            <Link to="/locations">
+          <div className="flex flex-col gap-3 animate-fade-up delay-400">
+            <Link to="/locations" className="inline-block">
               <Button 
                 size="lg" 
                 className="w-full font-sans text-sm font-bold uppercase tracking-widest py-6 bg-gold text-forest-deep hover:bg-gold/90"
@@ -84,7 +84,7 @@ const Hero = () => {
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
             </Link>
-            <Link to="/locations">
+            <Link to="/locations" className="inline-block">
               <Button 
                 variant="outline" 
                 size="lg"
