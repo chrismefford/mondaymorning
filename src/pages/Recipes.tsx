@@ -94,7 +94,13 @@ function isProductIngredient(ingredient: string, productName: string): boolean {
 const occasions: Occasion[] = ["breakfast", "dinner", "relaxing", "beach", "celebration"];
 
 const RecipesPage = () => {
-  const [activeOccasion, setActiveOccasion] = useState<Occasion | "all">("all");
+  // Get occasion from URL query params
+  const searchParams = new URLSearchParams(window.location.search);
+  const occasionFromUrl = searchParams.get('occasion') as Occasion | null;
+  
+  const [activeOccasion, setActiveOccasion] = useState<Occasion | "all">(
+    occasionFromUrl && occasions.includes(occasionFromUrl as Occasion) ? occasionFromUrl : "all"
+  );
   const [selectedRecipe, setSelectedRecipe] = useState<Recipe | null>(null);
   const { addToCart, isLoading: isCartLoading } = useCart();
 
@@ -264,13 +270,15 @@ const RecipesPage = () => {
               <p className="font-sans text-lg text-forest/80 mb-8">
                 Visit our shops in Ocean Beach or Pacific Beach to pick up everything you need. We'll even help you find the perfect bottles.
               </p>
-              <Button 
-                size="lg"
-                className="font-sans text-sm font-bold uppercase tracking-widest bg-forest text-cream hover:bg-forest-deep px-8 py-6 group"
-              >
-                Shop NA Spirits
-                <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-              </Button>
+              <Link to="/shop">
+                <Button 
+                  size="lg"
+                  className="font-sans text-sm font-bold uppercase tracking-widest bg-forest text-cream hover:bg-forest-deep px-8 py-6 group"
+                >
+                  Shop NA Spirits
+                  <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                </Button>
+              </Link>
             </div>
           </div>
         </section>

@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { MapPin, Clock, Phone, ExternalLink, Wine, Beer, UtensilsCrossed } from "lucide-react";
@@ -345,9 +346,9 @@ const Locations = () => {
             <div className="text-center mt-12">
               <p className="font-sans text-sm text-cream/50">
                 Want to carry Monday Morning at your establishment?{" "}
-                <a href="mailto:wholesale@mondaymorning.com" className="text-gold hover:underline">
+                <Link to="/services" className="text-gold hover:underline">
                   Contact our wholesale team
-                </a>
+                </Link>
               </p>
             </div>
           </div>
@@ -362,12 +363,14 @@ const Locations = () => {
             <p className="font-sans text-forest/70 mb-8 max-w-md mx-auto">
               Shop our curated collection online and get premium NA drinks delivered to your door.
             </p>
-            <Button 
-              size="lg"
-              className="font-sans text-sm font-bold uppercase tracking-widest bg-forest text-cream hover:bg-forest-deep px-10 py-6"
-            >
-              Shop Online
-            </Button>
+            <Link to="/shop">
+              <Button 
+                size="lg"
+                className="font-sans text-sm font-bold uppercase tracking-widest bg-forest text-cream hover:bg-forest-deep px-10 py-6"
+              >
+                Shop Online
+              </Button>
+            </Link>
           </div>
         </section>
       </main>

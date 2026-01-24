@@ -184,12 +184,13 @@ const About = () => {
 
             <div className="flex flex-wrap justify-center gap-4 lg:gap-6 max-w-4xl mx-auto">
               {brands.map((brand) => (
-                <div 
+                <Link 
                   key={brand}
+                  to="/shop"
                   className="px-6 py-3 lg:px-8 lg:py-4 border-2 border-forest/30 hover:border-gold hover:bg-gold/10 transition-all duration-300 cursor-pointer"
                 >
                   <span className="font-serif text-lg lg:text-xl text-forest font-medium">{brand}</span>
-                </div>
+                </Link>
               ))}
             </div>
 
@@ -289,13 +290,15 @@ const About = () => {
                     <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
                   </Button>
                 </Link>
-                <Button 
-                  size="lg"
-                  variant="outline"
-                  className="font-sans text-sm font-bold uppercase tracking-widest border-2 border-forest text-forest hover:bg-forest hover:text-cream px-8 py-6"
-                >
-                  Shop Online
-                </Button>
+                <Link to="/shop">
+                  <Button 
+                    size="lg"
+                    variant="outline"
+                    className="font-sans text-sm font-bold uppercase tracking-widest border-2 border-forest text-forest hover:bg-forest hover:text-cream px-8 py-6"
+                  >
+                    Shop Online
+                  </Button>
+                </Link>
               </div>
             </div>
           </div>

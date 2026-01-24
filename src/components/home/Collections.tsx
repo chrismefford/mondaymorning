@@ -91,13 +91,15 @@ const Collections = () => {
           ))}
 
           {/* View all button */}
-          <Button 
-            variant="outline"
-            className="w-full font-sans text-sm font-bold uppercase tracking-widest py-5 border-2 border-cream/30 text-cream bg-transparent hover:bg-gold hover:border-gold hover:text-forest mt-6"
-          >
-            Browse All Collections
-            <ArrowRight className="ml-2 h-4 w-4" />
-          </Button>
+          <Link to="/shop">
+            <Button 
+              variant="outline"
+              className="w-full font-sans text-sm font-bold uppercase tracking-widest py-5 border-2 border-cream/30 text-cream bg-transparent hover:bg-gold hover:border-gold hover:text-forest mt-6"
+            >
+              Browse All Collections
+              <ArrowRight className="ml-2 h-4 w-4" />
+            </Button>
+          </Link>
         </div>
 
         {/* DESKTOP: Grid layout */}

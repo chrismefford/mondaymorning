@@ -55,14 +55,16 @@ const Footer = () => {
             </p>
             <div className="flex items-center gap-4">
               <a 
-                href="#" 
+                href="https://instagram.com/mondaymorning.af" 
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-10 h-10 border-2 border-cream/30 flex items-center justify-center text-cream/70 hover:text-cream hover:border-gold hover:bg-gold/10 transition-colors"
                 aria-label="Instagram"
               >
                 <Instagram className="h-5 w-5" />
               </a>
               <a 
-                href="#" 
+                href="mailto:zane@mondaymorning-af.com" 
                 className="w-10 h-10 border-2 border-cream/30 flex items-center justify-center text-cream/70 hover:text-cream hover:border-gold hover:bg-gold/10 transition-colors"
                 aria-label="Email"
               >
