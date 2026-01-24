@@ -10,6 +10,7 @@ import { CartProvider } from "@/hooks/useCart";
 import CartDrawer from "@/components/cart/CartDrawer";
 import NAExpertChat from "@/components/chat/NAExpertChat";
 import LoadingScreen from "@/components/LoadingScreen";
+import ScrollToTop from "@/components/ScrollToTop";
 import Index from "./pages/Index";
 import About from "./pages/About";
 import RecipesPage from "./pages/Recipes";
@@ -49,6 +50,7 @@ const AppContent = () => {
 
   return (
     <>
+      <ScrollToTop />
       <CartDrawer />
       <NAExpertChat />
       <Routes>
