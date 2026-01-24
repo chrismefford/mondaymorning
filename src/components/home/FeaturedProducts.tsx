@@ -73,13 +73,15 @@ const FeaturedProducts = () => {
             <p className="font-sans text-sm lg:text-base text-muted-foreground max-w-sm hidden lg:block">
               Don't guess—taste. Every bottle here has been handpicked because it's actually good.
             </p>
-            <Button 
-              variant="ghost" 
-              className="hidden lg:flex font-sans text-sm font-semibold uppercase tracking-wider group self-start lg:self-auto border-2 border-transparent hover:border-forest text-forest px-6 py-3"
-            >
-              View all 400+
-              <ArrowUpRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
-            </Button>
+            <Link to="/shop">
+              <Button 
+                variant="ghost" 
+                className="hidden lg:flex font-sans text-sm font-semibold uppercase tracking-wider group self-start lg:self-auto border-2 border-transparent hover:border-forest text-forest px-6 py-3"
+              >
+                View all 400+
+                <ArrowUpRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
+              </Button>
+            </Link>
           </div>
         </div>
 
@@ -156,13 +158,15 @@ const FeaturedProducts = () => {
 
             {/* View all button - mobile */}
             <div className="px-4 mt-8">
-              <Button 
-                variant="outline"
-                className="w-full font-sans text-sm font-bold uppercase tracking-widest py-5 border-2 border-forest text-forest hover:bg-forest hover:text-cream"
-              >
-                Browse All 400+ Flavors
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
+              <Link to="/shop">
+                <Button 
+                  variant="outline"
+                  className="w-full font-sans text-sm font-bold uppercase tracking-widest py-5 border-2 border-forest text-forest hover:bg-forest hover:text-cream"
+                >
+                  Browse All 400+ Flavors
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Button>
+              </Link>
             </div>
           </div>
         )}

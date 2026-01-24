@@ -75,13 +75,15 @@ const Hero = () => {
 
           {/* Full-width stacked buttons */}
           <div className="space-y-3 animate-fade-up delay-400">
-            <Button 
-              size="lg" 
-              className="w-full font-sans text-sm font-bold uppercase tracking-widest py-6 bg-gold text-forest-deep hover:bg-gold/90"
-            >
-              Come Try Something
-              <ArrowRight className="ml-2 h-4 w-4" />
-            </Button>
+            <Link to="/locations">
+              <Button 
+                size="lg" 
+                className="w-full font-sans text-sm font-bold uppercase tracking-widest py-6 bg-gold text-forest-deep hover:bg-gold/90"
+              >
+                Come Try Something
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </Button>
+            </Link>
             <Link to="/locations">
               <Button 
                 variant="outline" 
@@ -167,13 +169,15 @@ const Hero = () => {
 
           {/* CTA Buttons */}
           <div className="flex flex-wrap gap-4 animate-fade-up delay-400">
-            <Button 
-              size="lg" 
-              className="font-sans text-sm font-semibold uppercase tracking-wider px-8 py-6 bg-forest text-cream hover:bg-forest-light hover-brutal"
-            >
-              Come Try Something
-              <ArrowRight className="ml-2 h-4 w-4" />
-            </Button>
+            <Link to="/locations">
+              <Button 
+                size="lg" 
+                className="font-sans text-sm font-semibold uppercase tracking-wider px-8 py-6 bg-forest text-cream hover:bg-forest-light hover-brutal"
+              >
+                Come Try Something
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </Button>
+            </Link>
             <Link to="/locations">
               <Button 
                 variant="outline" 

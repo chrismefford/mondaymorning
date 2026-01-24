@@ -1,4 +1,5 @@
 import { useState, useRef } from "react";
+import { Link } from "react-router-dom";
 import { recipes, occasionLabels, Occasion } from "@/data/recipes";
 import { getRecipeImage } from "@/data/recipeImages";
 import { Button } from "@/components/ui/button";
@@ -122,13 +123,15 @@ const Recipes = () => {
                       {featuredRecipe.difficulty}
                     </span>
                   </div>
-                  <Button
-                    size="sm"
-                    className="w-full bg-gold text-forest-deep font-sans text-xs uppercase tracking-wider hover:bg-gold/90"
-                  >
-                    View Recipe
-                    <ArrowRight className="ml-2 h-3 w-3" />
-                  </Button>
+                  <Link to="/recipes">
+                    <Button
+                      size="sm"
+                      className="w-full bg-gold text-forest-deep font-sans text-xs uppercase tracking-wider hover:bg-gold/90"
+                    >
+                      View Recipe
+                      <ArrowRight className="ml-2 h-3 w-3" />
+                    </Button>
+                  </Link>
                 </div>
               </div>
 
@@ -152,13 +155,15 @@ const Recipes = () => {
 
               {/* View all button - mobile */}
               <div className="mt-6">
-                <Button
-                  variant="outline"
-                  className="w-full font-sans text-sm font-bold uppercase tracking-widest py-5 border-2 border-forest text-forest hover:bg-forest hover:text-cream"
-                >
-                  Browse All Recipes
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </Button>
+                <Link to="/recipes">
+                  <Button
+                    variant="outline"
+                    className="w-full font-sans text-sm font-bold uppercase tracking-widest py-5 border-2 border-forest text-forest hover:bg-forest hover:text-cream"
+                  >
+                    Browse All Recipes
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </Button>
+                </Link>
               </div>
             </div>
 
@@ -199,13 +204,15 @@ const Recipes = () => {
                         {featuredRecipe.difficulty}
                       </span>
                     </div>
-                    <Button
-                      size="lg"
-                      className="w-fit bg-gold text-forest-deep font-sans text-sm uppercase tracking-wider hover:bg-gold/90 px-8"
-                    >
-                      View Full Recipe
-                      <ArrowRight className="ml-2 h-4 w-4" />
-                    </Button>
+                    <Link to="/recipes">
+                      <Button
+                        size="lg"
+                        className="w-fit bg-gold text-forest-deep font-sans text-sm uppercase tracking-wider hover:bg-gold/90 px-8"
+                      >
+                        View Full Recipe
+                        <ArrowRight className="ml-2 h-4 w-4" />
+                      </Button>
+                    </Link>
                   </div>
                   {/* Offset accent box */}
                   <div className="absolute -bottom-4 -right-4 w-32 h-32 bg-gold z-[-1]" />
@@ -297,13 +304,15 @@ const Recipes = () => {
 
               {/* View all link */}
               <div className="mt-8 text-center">
-                <Button
-                  variant="ghost"
-                  className="font-sans text-sm font-semibold uppercase tracking-wider group border-2 border-transparent hover:border-forest text-forest px-6 py-3"
-                >
-                  View All Recipes
-                  <ArrowUpRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
-                </Button>
+                <Link to="/recipes">
+                  <Button
+                    variant="ghost"
+                    className="font-sans text-sm font-semibold uppercase tracking-wider group border-2 border-transparent hover:border-forest text-forest px-6 py-3"
+                  >
+                    View All Recipes
+                    <ArrowUpRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
+                  </Button>
+                </Link>
               </div>
             </div>
           </>
@@ -333,14 +342,14 @@ const RecipeCard = ({ recipe }: RecipeCardProps) => {
           </span>
         </div>
         {/* Hover overlay */}
-        <div className="absolute inset-0 bg-forest-deep/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+        <Link to="/recipes" className="absolute inset-0 bg-forest-deep/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
           <Button
             size="sm"
             className="bg-gold text-forest-deep font-sans text-xs uppercase tracking-wider"
           >
             View Recipe
           </Button>
-        </div>
+        </Link>
       </div>
       <div>
         <h4 className="font-serif text-lg font-bold text-forest group-hover:text-gold transition-colors">

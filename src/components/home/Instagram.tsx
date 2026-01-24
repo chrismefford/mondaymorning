@@ -39,11 +39,13 @@ const Instagram = () => {
           </div>
           
           <a 
-            href="#" 
+            href="https://instagram.com/mondaymorning.af" 
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex items-center gap-2 font-sans text-sm font-medium text-foreground hover:text-ocean transition-colors story-link"
           >
             <InstagramIcon className="h-4 w-4 lg:h-5 lg:w-5" />
-            @mondaymorningaf
+            @mondaymorning.af
           </a>
           
           <h2 className="font-serif text-3xl lg:text-5xl font-medium mt-3 lg:mt-4">
@@ -60,7 +62,9 @@ const Instagram = () => {
             {instagramImages.map((image, index) => (
               <a
                 key={index}
-                href="#"
+                href="https://instagram.com/mondaymorning.af"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="flex-shrink-0 w-32 aspect-square overflow-hidden group relative"
               >
                 <img
@@ -84,7 +88,9 @@ const Instagram = () => {
           {instagramImages.map((image, index) => (
             <a
               key={index}
-              href="#"
+              href="https://instagram.com/mondaymorning.af"
+              target="_blank"
+              rel="noopener noreferrer"
               className="aspect-square rounded-xl overflow-hidden group relative"
             >
               <img
