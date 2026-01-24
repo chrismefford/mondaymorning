@@ -1,9 +1,10 @@
 import { useState } from "react";
-import { Instagram, Mail, MapPin, Settings } from "lucide-react";
+import { Instagram, MapPin, Settings } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useNewsletterSubscribe } from "@/hooks/useNewsletterSubscribe";
+import ContactFormDialog from "@/components/ContactFormDialog";
 import logoSecondaryWhite from "@/assets/logo-secondary-white.svg";
 import stampWhite from "@/assets/stamp-white.svg";
 import textureGreen from "@/assets/texture-green.svg";
@@ -63,13 +64,7 @@ const Footer = () => {
               >
                 <Instagram className="h-5 w-5" />
               </a>
-              <a 
-                href="mailto:zane@mondaymorning-af.com" 
-                className="w-10 h-10 border-2 border-cream/30 flex items-center justify-center text-cream/70 hover:text-cream hover:border-gold hover:bg-gold/10 transition-colors"
-                aria-label="Email"
-              >
-                <Mail className="h-5 w-5" />
-              </a>
+              <ContactFormDialog />
             </div>
           </div>
 
