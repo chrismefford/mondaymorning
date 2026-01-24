@@ -73,7 +73,7 @@ const FeaturedProducts = () => {
             <p className="font-sans text-sm lg:text-base text-muted-foreground max-w-sm hidden lg:block">
               Don't guess—taste. Every bottle here has been handpicked because it's actually good.
             </p>
-            <Link to="/collections/best-sellers">
+            <Link to="/collections/best-sellers" onClick={() => window.scrollTo(0, 0)}>
               <Button 
                 variant="ghost" 
                 className="hidden lg:flex font-sans text-sm font-semibold uppercase tracking-wider group self-start lg:self-auto border-2 border-transparent hover:border-forest text-forest px-6 py-3"
@@ -158,7 +158,7 @@ const FeaturedProducts = () => {
 
             {/* View all button - mobile */}
             <div className="px-4 mt-8">
-              <Link to="/collections/best-sellers">
+              <Link to="/collections/best-sellers" onClick={() => window.scrollTo(0, 0)}>
                 <Button 
                   variant="outline"
                   className="w-full font-sans text-sm font-bold uppercase tracking-widest py-5 border-2 border-forest text-forest hover:bg-forest hover:text-cream"
