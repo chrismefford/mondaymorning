@@ -73,22 +73,22 @@ const Hero = () => {
             </div>
           </div>
 
-          {/* Full-width stacked buttons */}
-          <div className="flex flex-col gap-3 animate-fade-up delay-400">
-            <Link to="/locations" className="inline-block">
+          {/* Centered buttons */}
+          <div className="flex flex-col items-center gap-3 animate-fade-up delay-400">
+            <Link to="/locations">
               <Button 
                 size="lg" 
-                className="w-full font-sans text-sm font-bold uppercase tracking-widest py-6 bg-gold text-forest-deep hover:bg-gold/90"
+                className="font-sans text-sm font-bold uppercase tracking-widest px-8 py-6 bg-gold text-forest-deep hover:bg-gold/90"
               >
                 Come Try Something
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
             </Link>
-            <Link to="/locations" className="inline-block">
+            <Link to="/locations">
               <Button 
                 variant="outline" 
                 size="lg"
-                className="w-full font-sans text-sm font-bold uppercase tracking-widest py-6 border-2 border-cream/30 text-cream bg-transparent hover:bg-cream/10"
+                className="font-sans text-sm font-bold uppercase tracking-widest px-8 py-6 border-2 border-cream/30 text-cream bg-transparent hover:bg-cream/10"
               >
                 Find a Store
               </Button>
