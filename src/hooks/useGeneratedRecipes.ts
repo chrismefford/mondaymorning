@@ -49,8 +49,8 @@ export function useRecipesForProduct(productHandle: string) {
         .from("generated_recipes")
         .select("*")
         .eq("is_approved", true)
-        .contains("product_handles", [productHandle])
-        .limit(3);
+        .eq("featured_product_handle", productHandle)
+        .limit(5);
 
       if (error) throw error;
       return data as GeneratedRecipe[];
