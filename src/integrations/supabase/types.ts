@@ -50,6 +50,72 @@ export type Database = {
         }
         Relationships: []
       }
+      generated_recipes: {
+        Row: {
+          created_at: string
+          description: string
+          difficulty: string
+          featured_product_handle: string
+          featured_product_name: string
+          id: string
+          image_url: string | null
+          ingredients: Json
+          instructions: Json
+          is_approved: boolean
+          is_featured: boolean
+          occasion: string
+          prep_time: string
+          product_handles: Json
+          servings: number
+          slug: string
+          tagline: string | null
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          description: string
+          difficulty?: string
+          featured_product_handle: string
+          featured_product_name: string
+          id?: string
+          image_url?: string | null
+          ingredients?: Json
+          instructions?: Json
+          is_approved?: boolean
+          is_featured?: boolean
+          occasion: string
+          prep_time?: string
+          product_handles?: Json
+          servings?: number
+          slug: string
+          tagline?: string | null
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          description?: string
+          difficulty?: string
+          featured_product_handle?: string
+          featured_product_name?: string
+          id?: string
+          image_url?: string | null
+          ingredients?: Json
+          instructions?: Json
+          is_approved?: boolean
+          is_featured?: boolean
+          occasion?: string
+          prep_time?: string
+          product_handles?: Json
+          servings?: number
+          slug?: string
+          tagline?: string | null
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       processed_image_cache: {
         Row: {
           created_at: string
