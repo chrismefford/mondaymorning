@@ -74,7 +74,7 @@ const vibeSections = [
     image: patioCoupleBeers,
     bgColor: "bg-coral",
     textColor: "text-cream",
-    accentColor: "text-cream",
+    accentColor: "text-gold",
     texture: textureCream,
     categories: ["Functional Elixir", "Functional", "Spirit Alternative", "Botanical"],
     keywords: ["calm", "relax", "lavender", "chamomile", "warm", "spice", "vanilla", "whiskey", "bourbon"],
@@ -212,7 +212,7 @@ const VibeSection = ({
         <div className="flex justify-center mt-8 lg:mt-10">
           <Link 
             to={`/collections/${vibe.id}`}
-            className={`inline-flex items-center gap-2 font-sans text-sm font-bold uppercase tracking-wider ${vibe.textColor} hover:${vibe.accentColor} transition-colors group border-b-2 border-current pb-1`}
+            className={`inline-flex items-center gap-2 font-sans text-sm font-bold uppercase tracking-wider ${vibe.accentColor} hover:opacity-80 transition-colors group border-b-2 border-current pb-1`}
           >
             Shop {vibe.title}
             <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
@@ -439,7 +439,7 @@ const ShopPage = () => {
                 asChild
                 size="lg"
                 variant="outline"
-                className="font-sans text-sm font-bold uppercase tracking-widest border-2 border-cream text-cream hover:bg-cream hover:text-forest px-10 py-6"
+                className="font-sans text-sm font-bold uppercase tracking-widest border-2 border-gold text-gold hover:bg-gold hover:text-forest px-10 py-6"
               >
                 <Link to="/locations">Visit a Shop</Link>
               </Button>
