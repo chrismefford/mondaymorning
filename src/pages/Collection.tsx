@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { useParams, Link } from "react-router-dom";
 import { ArrowLeft, Loader2 } from "lucide-react";
 import Header from "@/components/layout/Header";
@@ -6,7 +6,7 @@ import Footer from "@/components/layout/Footer";
 import ProductCard from "@/components/home/ProductCard";
 import { Button } from "@/components/ui/button";
 import { collections } from "@/data/products";
-import { useShopifyCollectionProducts, useShopifyProducts, shopifyToLocalProduct } from "@/hooks/useShopifyProducts";
+import { useShopifyCollectionProducts, useShopifyProducts, useShopifyAllProducts, shopifyToLocalProduct } from "@/hooks/useShopifyProducts";
 import textureCream from "@/assets/texture-cream.svg";
 import stampGold from "@/assets/stamp-gold.svg";
 
@@ -54,33 +54,128 @@ const collectionMapping: Record<string, { shopifyHandle: string; title: string; 
   }
 };
 
+// Vibe-based collections that filter by keywords and categories
+const vibeCollections: Record<string, { 
+  title: string; 
+  description: string; 
+  categories: string[]; 
+  keywords: string[];
+  excludeKeywords?: string[];
+}> = {
+  "beach-day": {
+    title: "Beach Day",
+    description: "Sun, sand, and good sips. Refreshing drinks perfect for a day by the water.",
+    categories: ["Ready to Drink", "RTD", "Beverages", "NA Beer", "Beer", "Sparkling"],
+    keywords: ["tropical", "coconut", "citrus", "lime", "mango", "pineapple", "watermelon", "beach", "summer", "refreshing", "light", "crisp", "lager", "pilsner", "radler", "shandy", "seltzer", "agua fresca"],
+  },
+  "date-night": {
+    title: "Date Night",
+    description: "Intimate moments, elevated. Sophisticated sips for romantic evenings.",
+    categories: ["Wine Alternative", "Wine", "Sparkling", "Spirit Alternative", "Aperitif", "Gummies"],
+    keywords: ["red", "pinot", "cabernet", "rose", "champagne", "elegant", "romantic", "noir", "merlot", "shiraz", "chardonnay", "prosecco", "brut", "negroni", "manhattan", "old fashioned", "gummy", "gummies", "edible"],
+  },
+  "golden-hour": {
+    title: "Golden Hour",
+    description: "When the light hits just right. Aperitifs and spritzes for sunset sipping.",
+    categories: ["Aperitif", "Aperitivo", "Spirit Alternative", "Sparkling", "Bitters"],
+    keywords: ["aperitif", "aperitivo", "spritz", "bitter", "orange", "botanical", "herb", "vermouth", "amaro", "campari", "aperol", "blood orange", "citrus", "tonic", "g&t"],
+  },
+  "cozy-evening": {
+    title: "Cozy Evening",
+    description: "Unwind in your own way. Warming sips for nights in.",
+    categories: ["Functional Elixir", "Functional", "Spirit Alternative", "Botanical"],
+    keywords: ["calm", "relax", "lavender", "chamomile", "warm", "spice", "vanilla", "whiskey", "bourbon", "scotch", "rum", "brandy", "cognac", "cinnamon", "honey", "ginger", "cozy", "fireside"],
+  },
+  "party-mode": {
+    title: "Party Mode",
+    description: "Toast without the hangover. Celebratory drinks that keep the energy going.",
+    categories: ["Sparkling", "Champagne Alternative", "Ready to Drink", "Wine Alternative"],
+    keywords: ["celebration", "toast", "bubbly", "sparkling", "party", "prosecco", "champagne", "brut", "cava", "fizz", "bubbles", "festive", "cheers"],
+  },
+  "morning-ritual": {
+    title: "Morning Ritual",
+    description: "Start with intention. Energizing drinks and wellness elixirs for a mindful morning.",
+    categories: ["Functional Elixir", "Functional", "Adaptogens", "Wellness", "Coffee"],
+    keywords: ["morning", "energy", "focus", "clarity", "wellness", "ginger", "turmeric", "lemon", "coffee", "espresso", "matcha", "green tea", "immunity", "boost", "adaptogen", "nootropic", "mushroom", "lion's mane", "reishi"],
+  },
+};
+
 const CollectionPage = () => {
   const { slug } = useParams<{ slug: string }>();
 
   const isBestSellers = slug === "best-sellers";
+  const isVibeCollection = slug ? vibeCollections[slug] !== undefined : false;
   
   // Get Shopify collection handle from our slug
   const collectionInfo = slug ? collectionMapping[slug] : null;
+  const vibeInfo = slug ? vibeCollections[slug] : null;
   const shopifyHandle = collectionInfo?.shopifyHandle || slug || "";
   
   // Fetch products directly from Shopify
   // Best Sellers: use Shopify's BEST_SELLING sort (not a collection handle)
   const bestSellersQuery = useShopifyProducts(100, { sortKey: "BEST_SELLING" });
   const collectionQuery = useShopifyCollectionProducts(shopifyHandle, 100);
+  const allProductsQuery = useShopifyAllProducts({ sortKey: "BEST_SELLING" });
 
+  // Determine which data source to use
   const data = isBestSellers
     ? { products: bestSellersQuery.data || [] }
+    : isVibeCollection
+    ? { products: allProductsQuery.data || [] }
     : collectionQuery.data;
 
-  const isLoading = isBestSellers ? bestSellersQuery.isLoading : collectionQuery.isLoading;
-  const error = isBestSellers ? bestSellersQuery.error : collectionQuery.error;
+  const isLoading = isBestSellers 
+    ? bestSellersQuery.isLoading 
+    : isVibeCollection 
+    ? allProductsQuery.isLoading 
+    : collectionQuery.isLoading;
+  const error = isBestSellers 
+    ? bestSellersQuery.error 
+    : isVibeCollection 
+    ? allProductsQuery.error 
+    : collectionQuery.error;
   
   // Get local collection meta for fallback
   const collectionMeta = collections.find(c => c.id === slug);
   
-  // Convert Shopify products to local format and randomly assign staff picks/best sellers
-  const displayProducts = React.useMemo(() => {
-    const products = (data as any)?.products?.map(shopifyToLocalProduct) || [];
+  // Convert and filter Shopify products
+  const displayProducts = useMemo(() => {
+    let products = (data as any)?.products?.map(shopifyToLocalProduct) || [];
+    
+    // Filter out non-beverage items
+    products = products.filter((p: any) => 
+      !p.name.toLowerCase().includes("gift card") &&
+      !p.name.toLowerCase().includes("membership") &&
+      !p.name.toLowerCase().includes("subscription")
+    );
+    
+    // If this is a vibe collection, filter by keywords and categories
+    if (isVibeCollection && vibeInfo) {
+      products = products.filter((product: any) => {
+        const nameLC = product.name.toLowerCase();
+        const categoryLC = (product.category || "").toLowerCase();
+        const descLC = (product.description || "").toLowerCase();
+        
+        // Check category match
+        const categoryMatch = vibeInfo.categories.some(cat => 
+          categoryLC.includes(cat.toLowerCase()) ||
+          cat.toLowerCase().includes(categoryLC)
+        );
+        
+        // Check keyword match in name or description
+        const keywordMatch = vibeInfo.keywords.some(keyword =>
+          nameLC.includes(keyword.toLowerCase()) ||
+          descLC.includes(keyword.toLowerCase())
+        );
+        
+        // Check exclude keywords
+        const isExcluded = vibeInfo.excludeKeywords?.some(keyword =>
+          nameLC.includes(keyword.toLowerCase())
+        ) || false;
+        
+        return (categoryMatch || keywordMatch) && !isExcluded;
+      });
+    }
     
     // Randomly pick ~20% of products to be staff picks and ~10% to be best sellers
     const staffPickIndices = new Set<number>();
@@ -89,8 +184,8 @@ const CollectionPage = () => {
     const numBestSellers = Math.max(1, Math.floor(products.length * 0.1));
     
     // Use product IDs to create deterministic "random" picks
-    products.forEach((product, index) => {
-      const hash = product.id.split('').reduce((a, b) => ((a << 5) - a) + b.charCodeAt(0), 0);
+    products.forEach((product: any, index: number) => {
+      const hash = product.id.split('').reduce((a: number, b: string) => ((a << 5) - a) + b.charCodeAt(0), 0);
       const mod = Math.abs(hash) % 10;
       
       if (mod === 0 && bestSellerIndices.size < numBestSellers) {
@@ -100,7 +195,7 @@ const CollectionPage = () => {
       }
     });
     
-    return products.map((product, index) => ({
+    return products.map((product: any, index: number) => ({
       ...product,
       badge: bestSellerIndices.has(index) 
         ? "Best Seller" 
@@ -108,7 +203,7 @@ const CollectionPage = () => {
           ? "Staff Pick" 
           : product.badge
     }));
-  }, [data?.products]);
+  }, [data, isVibeCollection, vibeInfo]);
 
   return (
     <div className="min-h-screen bg-cream">
@@ -131,22 +226,22 @@ const CollectionPage = () => {
           <div className="container mx-auto px-4 lg:px-8 relative z-10">
             {/* Back link */}
             <Link 
-              to="/#collections" 
+              to={isVibeCollection ? "/shop" : "/#collections"} 
               className="inline-flex items-center gap-2 font-sans text-sm text-cream/70 hover:text-gold transition-colors mb-8"
             >
               <ArrowLeft className="h-4 w-4" />
-              Back to Collections
+              {isVibeCollection ? "Back to Shop" : "Back to Collections"}
             </Link>
             
             <div className="max-w-3xl">
               <span className="font-sans text-xs font-medium uppercase tracking-[0.3em] text-gold mb-4 block">
-                Collection
+                {isVibeCollection ? "The Vibe" : "Collection"}
               </span>
               <h1 className="font-serif text-4xl lg:text-6xl xl:text-7xl font-bold mb-6">
-                {collectionInfo?.title || collectionMeta?.name || "Collection"}
+                {vibeInfo?.title || collectionInfo?.title || collectionMeta?.name || "Collection"}
               </h1>
               <p className="font-sans text-lg lg:text-xl text-cream/80 max-w-2xl">
-                {collectionInfo?.description || collectionMeta?.description || "Explore our curated selection."}
+                {vibeInfo?.description || collectionInfo?.description || collectionMeta?.description || "Explore our curated selection."}
               </p>
               
               {!isLoading && displayProducts.length > 0 && (
