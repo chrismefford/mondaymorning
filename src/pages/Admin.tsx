@@ -3,9 +3,11 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '@/hooks/useAuth';
 import { supabase } from '@/integrations/supabase/client';
 import { Button } from '@/components/ui/button';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { toast } from 'sonner';
 import logoWhite from '@/assets/logo-primary-white.svg';
-import { Check, X, Trash2, LogOut } from 'lucide-react';
+import { Check, X, Trash2, LogOut, MessageSquare, ChefHat } from 'lucide-react';
+import { RecipeGenerator } from '@/components/admin/RecipeGenerator';
 
 interface StorySubmission {
   id: string;
@@ -135,56 +137,82 @@ const Admin = () => {
           </Button>
         </div>
 
-        <h1 className="font-display text-4xl text-cream mb-8">Story Submissions</h1>
+        <Tabs defaultValue="stories" className="space-y-6">
+          <TabsList className="bg-cream/10 border border-cream/20">
+            <TabsTrigger 
+              value="stories" 
+              className="data-[state=active]:bg-cream data-[state=active]:text-forest text-cream"
+            >
+              <MessageSquare className="w-4 h-4 mr-2" />
+              Stories
+            </TabsTrigger>
+            <TabsTrigger 
+              value="recipes"
+              className="data-[state=active]:bg-cream data-[state=active]:text-forest text-cream"
+            >
+              <ChefHat className="w-4 h-4 mr-2" />
+              Recipe Generator
+            </TabsTrigger>
+          </TabsList>
 
-        {isLoading ? (
-          <div className="text-cream/70">Loading stories...</div>
-        ) : (
-          <>
-            {/* Pending Stories */}
-            <section className="mb-12">
-              <h2 className="font-display text-2xl text-gold mb-4">
-                Pending Review ({pendingStories.length})
-              </h2>
-              {pendingStories.length === 0 ? (
-                <p className="text-cream/50 font-sans">No pending stories</p>
-              ) : (
-                <div className="space-y-4">
-                  {pendingStories.map((story) => (
-                    <StoryCard
-                      key={story.id}
-                      story={story}
-                      onApprove={() => handleApprove(story.id, true)}
-                      onReject={() => handleDelete(story.id)}
-                    />
-                  ))}
-                </div>
-              )}
-            </section>
+          <TabsContent value="stories">
+            <h1 className="font-display text-4xl text-cream mb-8">Story Submissions</h1>
 
-            {/* Approved Stories */}
-            <section>
-              <h2 className="font-display text-2xl text-cream mb-4">
-                Approved ({approvedStories.length})
-              </h2>
-              {approvedStories.length === 0 ? (
-                <p className="text-cream/50 font-sans">No approved stories yet</p>
-              ) : (
-                <div className="space-y-4">
-                  {approvedStories.map((story) => (
-                    <StoryCard
-                      key={story.id}
-                      story={story}
-                      onUnapprove={() => handleApprove(story.id, false)}
-                      onDelete={() => handleDelete(story.id)}
-                      isApproved
-                    />
-                  ))}
-                </div>
-              )}
-            </section>
-          </>
-        )}
+            {isLoading ? (
+              <div className="text-cream/70">Loading stories...</div>
+            ) : (
+              <>
+                {/* Pending Stories */}
+                <section className="mb-12">
+                  <h2 className="font-display text-2xl text-gold mb-4">
+                    Pending Review ({pendingStories.length})
+                  </h2>
+                  {pendingStories.length === 0 ? (
+                    <p className="text-cream/50 font-sans">No pending stories</p>
+                  ) : (
+                    <div className="space-y-4">
+                      {pendingStories.map((story) => (
+                        <StoryCard
+                          key={story.id}
+                          story={story}
+                          onApprove={() => handleApprove(story.id, true)}
+                          onReject={() => handleDelete(story.id)}
+                        />
+                      ))}
+                    </div>
+                  )}
+                </section>
+
+                {/* Approved Stories */}
+                <section>
+                  <h2 className="font-display text-2xl text-cream mb-4">
+                    Approved ({approvedStories.length})
+                  </h2>
+                  {approvedStories.length === 0 ? (
+                    <p className="text-cream/50 font-sans">No approved stories yet</p>
+                  ) : (
+                    <div className="space-y-4">
+                      {approvedStories.map((story) => (
+                        <StoryCard
+                          key={story.id}
+                          story={story}
+                          onUnapprove={() => handleApprove(story.id, false)}
+                          onDelete={() => handleDelete(story.id)}
+                          isApproved
+                        />
+                      ))}
+                    </div>
+                  )}
+                </section>
+              </>
+            )}
+          </TabsContent>
+
+          <TabsContent value="recipes">
+            <h1 className="font-display text-4xl text-cream mb-8">AI Recipe Generator</h1>
+            <RecipeGenerator />
+          </TabsContent>
+        </Tabs>
       </main>
     </div>
   );
