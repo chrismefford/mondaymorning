@@ -4,16 +4,18 @@ import { occasionLabels } from "@/data/recipes";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
-import { Clock, Users, ChevronRight, Loader2, Sparkles } from "lucide-react";
+import { Clock, Users, ChevronRight, Loader2, Sparkles, Plus } from "lucide-react";
 import { Link } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { useQueryClient } from "@tanstack/react-query";
+import { useCart } from "@/hooks/useCart";
 
 interface ProductRecipesProps {
   productHandle: string;
   productName: string;
   productImage: string;
   productPrice: number;
+  productVariantId?: string;
   productCategory?: string;
   productDescription?: string;
 }
@@ -23,6 +25,7 @@ const ProductRecipes = ({
   productName, 
   productImage, 
   productPrice,
+  productVariantId,
   productCategory = "Beverage",
   productDescription = ""
 }: ProductRecipesProps) => {
@@ -31,6 +34,7 @@ const ProductRecipes = ({
   const [isGenerating, setIsGenerating] = useState(false);
   const [generationAttempted, setGenerationAttempted] = useState(false);
   const queryClient = useQueryClient();
+  const { addToCart, isLoading: isCartLoading } = useCart();
 
   // Auto-generate recipe if none exist
   useEffect(() => {
@@ -229,27 +233,40 @@ const ProductRecipes = ({
                   <p className="font-sans text-xs uppercase tracking-wider text-gold mb-2 font-semibold">
                     Featured Product
                   </p>
-                  <Link 
-                    to={`/product/${productHandle}`}
-                    onClick={() => setSelectedRecipe(null)}
-                    className="flex items-center gap-3 group/product"
-                  >
-                    <div className="w-12 h-12 bg-white border border-forest/20 rounded overflow-hidden shrink-0">
-                      <img 
-                        src={productImage} 
-                        alt={productName}
-                        className="w-full h-full object-contain p-1"
-                      />
-                    </div>
-                    <div>
-                      <p className="font-serif text-forest font-semibold group-hover/product:text-gold transition-colors">
-                        {productName}
-                      </p>
-                      <p className="font-sans text-xs text-muted-foreground">
-                        Use in this recipe • ${productPrice.toFixed(2)}
-                      </p>
-                    </div>
-                  </Link>
+                  <div className="flex items-center justify-between gap-3">
+                    <Link 
+                      to={`/product/${productHandle}`}
+                      onClick={() => setSelectedRecipe(null)}
+                      className="flex items-center gap-3 group/product flex-1"
+                    >
+                      <div className="w-12 h-12 bg-white border border-forest/20 rounded overflow-hidden shrink-0">
+                        <img 
+                          src={productImage} 
+                          alt={productName}
+                          className="w-full h-full object-contain p-1"
+                        />
+                      </div>
+                      <div>
+                        <p className="font-serif text-forest font-semibold group-hover/product:text-gold transition-colors">
+                          {productName}
+                        </p>
+                        <p className="font-sans text-xs text-muted-foreground">
+                          ${productPrice.toFixed(2)}
+                        </p>
+                      </div>
+                    </Link>
+                    {productVariantId && (
+                      <Button
+                        size="sm"
+                        onClick={() => addToCart(productVariantId)}
+                        disabled={isCartLoading}
+                        className="bg-forest text-cream hover:bg-forest-deep font-sans text-xs uppercase tracking-wider gap-1 shrink-0"
+                      >
+                        <Plus className="h-3 w-3" />
+                        Add to Cart
+                      </Button>
+                    )}
+                  </div>
                 </div>
 
                 {/* Ingredients */}
