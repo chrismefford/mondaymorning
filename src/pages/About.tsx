@@ -186,7 +186,7 @@ const About = () => {
               {brands.map((brand) => (
                 <Link 
                   key={brand}
-                  to="/shop"
+                  to={`/collections/brand/${encodeURIComponent(brand.toLowerCase().replace(/\s+/g, '-'))}`}
                   className="px-6 py-3 lg:px-8 lg:py-4 border-2 border-forest/30 hover:border-gold hover:bg-gold/10 transition-all duration-300 cursor-pointer"
                 >
                   <span className="font-serif text-lg lg:text-xl text-forest font-medium">{brand}</span>

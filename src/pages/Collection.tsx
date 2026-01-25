@@ -109,15 +109,20 @@ const vibeCollections: Record<string, {
 };
 
 const CollectionPage = () => {
-  const { slug } = useParams<{ slug: string }>();
+  const { slug, brand } = useParams<{ slug?: string; brand?: string }>();
+  
+  // Determine the effective slug - use slug or decode brand
+  const effectiveSlug = slug || "";
+  const isBrandFilter = !!brand;
+  const brandName = brand ? decodeURIComponent(brand).replace(/-/g, ' ') : "";
 
-  const isBestSellers = slug === "best-sellers";
-  const isVibeCollection = slug ? vibeCollections[slug] !== undefined : false;
+  const isBestSellers = effectiveSlug === "best-sellers";
+  const isVibeCollection = effectiveSlug ? vibeCollections[effectiveSlug] !== undefined : false;
   
   // Get Shopify collection handle from our slug
-  const collectionInfo = slug ? collectionMapping[slug] : null;
-  const vibeInfo = slug ? vibeCollections[slug] : null;
-  const shopifyHandle = collectionInfo?.shopifyHandle || slug || "";
+  const collectionInfo = effectiveSlug ? collectionMapping[effectiveSlug] : null;
+  const vibeInfo = effectiveSlug ? vibeCollections[effectiveSlug] : null;
+  const shopifyHandle = collectionInfo?.shopifyHandle || effectiveSlug || "";
   
   // Fetch products directly from Shopify
   // Best Sellers: use Shopify's BEST_SELLING sort (not a collection handle)
@@ -125,21 +130,22 @@ const CollectionPage = () => {
   const collectionQuery = useShopifyCollectionProducts(shopifyHandle, 100);
   const allProductsQuery = useShopifyAllProducts({ sortKey: "BEST_SELLING" });
 
-  // Determine which data source to use
+  // Determine which data source to use - brand filter and vibe collections need all products
+  const needsAllProducts = isBrandFilter || isVibeCollection;
   const data = isBestSellers
     ? { products: bestSellersQuery.data || [] }
-    : isVibeCollection
+    : needsAllProducts
     ? { products: allProductsQuery.data || [] }
     : collectionQuery.data;
 
   const isLoading = isBestSellers 
     ? bestSellersQuery.isLoading 
-    : isVibeCollection 
+    : needsAllProducts 
     ? allProductsQuery.isLoading 
     : collectionQuery.isLoading;
   const error = isBestSellers 
     ? bestSellersQuery.error 
-    : isVibeCollection 
+    : needsAllProducts 
     ? allProductsQuery.error 
     : collectionQuery.error;
   
@@ -156,6 +162,18 @@ const CollectionPage = () => {
       !p.name.toLowerCase().includes("membership") &&
       !p.name.toLowerCase().includes("subscription")
     );
+    
+    // If this is a brand filter, filter by brand/vendor name
+    if (isBrandFilter && brandName) {
+      const brandLC = brandName.toLowerCase();
+      products = products.filter((product: any) => {
+        const nameLC = product.name.toLowerCase();
+        const vendorLC = (product.vendor || "").toLowerCase();
+        
+        // Check if product name or vendor contains brand name
+        return nameLC.includes(brandLC) || vendorLC.includes(brandLC);
+      });
+    }
     
     // If this is a vibe collection, filter by keywords and categories (unless showAll)
     if (isVibeCollection && vibeInfo && !vibeInfo.showAll) {
@@ -211,7 +229,7 @@ const CollectionPage = () => {
           ? "Staff Pick" 
           : product.badge
     }));
-  }, [data, isVibeCollection, vibeInfo]);
+  }, [data, isVibeCollection, vibeInfo, isBrandFilter, brandName]);
 
   return (
     <div className="min-h-screen bg-cream">
@@ -234,22 +252,24 @@ const CollectionPage = () => {
           <div className="container mx-auto px-4 lg:px-8 relative z-10">
             {/* Back link */}
             <Link 
-              to={isVibeCollection ? "/shop" : "/#collections"} 
+              to={isBrandFilter ? "/about" : isVibeCollection ? "/shop" : "/#collections"} 
               className="inline-flex items-center gap-2 font-sans text-sm text-cream/70 hover:text-gold transition-colors mb-8"
             >
               <ArrowLeft className="h-4 w-4" />
-              {isVibeCollection ? "Back to Shop" : "Back to Collections"}
+              {isBrandFilter ? "Back to About" : isVibeCollection ? "Back to Shop" : "Back to Collections"}
             </Link>
             
             <div className="max-w-3xl">
               <span className="font-sans text-xs font-medium uppercase tracking-[0.3em] text-gold mb-4 block">
-                {isVibeCollection ? "The Vibe" : "Collection"}
+                {isBrandFilter ? "Brand" : isVibeCollection ? "The Vibe" : "Collection"}
               </span>
-              <h1 className="font-serif text-4xl lg:text-6xl xl:text-7xl font-bold mb-6">
-                {vibeInfo?.title || collectionInfo?.title || collectionMeta?.name || "Collection"}
+              <h1 className="font-serif text-4xl lg:text-6xl xl:text-7xl font-bold mb-6 capitalize">
+                {isBrandFilter ? brandName : vibeInfo?.title || collectionInfo?.title || collectionMeta?.name || "Collection"}
               </h1>
               <p className="font-sans text-lg lg:text-xl text-cream/80 max-w-2xl">
-                {vibeInfo?.description || collectionInfo?.description || collectionMeta?.description || "Explore our curated selection."}
+                {isBrandFilter 
+                  ? `Explore all products from ${brandName}.`
+                  : vibeInfo?.description || collectionInfo?.description || collectionMeta?.description || "Explore our curated selection."}
               </p>
               
               {!isLoading && displayProducts.length > 0 && (
