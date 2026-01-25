@@ -290,7 +290,7 @@ const About = () => {
                     <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
                   </Button>
                 </Link>
-                <Link to="/shop">
+                <Link to="/collections/all">
                   <Button 
                     size="lg"
                     variant="outline"
