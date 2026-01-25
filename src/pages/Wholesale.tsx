@@ -5,6 +5,7 @@ import Footer from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import ContactFormDialog from "@/components/ContactFormDialog";
+import TastingFormDialog from "@/components/TastingFormDialog";
 import { 
   TrendingUp, 
   DollarSign, 
@@ -378,16 +379,14 @@ const Wholesale = () => {
                     </Button>
                   }
                 />
-                <a 
-                  href="https://maps.google.com/?q=1854+Garnet+Ave,+San+Diego,+CA+92109"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <Button size="lg" variant="outline" className="border-gold text-gold hover:bg-gold hover:text-forest">
-                    Come Taste First
-                    <MapPin className="w-4 h-4 ml-2" />
-                  </Button>
-                </a>
+                <TastingFormDialog 
+                  trigger={
+                    <Button size="lg" variant="outline" className="border-gold text-gold hover:bg-gold hover:text-forest">
+                      Come Taste First
+                      <MapPin className="w-4 h-4 ml-2" />
+                    </Button>
+                  }
+                />
               </div>
             </div>
           </div>
