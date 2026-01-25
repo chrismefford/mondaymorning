@@ -187,6 +187,7 @@ const ProductPage = () => {
             productName={product.name}
             productImage={product.image}
             productPrice={product.price}
+            productVariantId={firstVariantId}
             productCategory={product.category}
             productDescription={product.description}
           />
