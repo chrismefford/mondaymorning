@@ -3,14 +3,13 @@ import { useParams, Link } from "react-router-dom";
 import { useShopifyProduct } from "@/hooks/useShopifyProduct";
 import { useShopifyProducts, shopifyToLocalProduct } from "@/hooks/useShopifyProducts";
 import { useCart } from "@/hooks/useCart";
-import { getSuggestedRecipe } from "@/lib/recipeMatch";
-import { occasionLabels } from "@/data/recipes";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import ProductCard from "@/components/home/ProductCard";
+import ProductRecipes from "@/components/product/ProductRecipes";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { ArrowLeft, ShoppingBag, Clock, Users, Loader2, ChevronLeft, ChevronRight } from "lucide-react";
+import { ArrowLeft, ShoppingBag, Loader2, ChevronLeft, ChevronRight } from "lucide-react";
 import textureCream from "@/assets/texture-cream.svg";
 import stampGold from "@/assets/stamp-gold.svg";
 import logoSecondaryGold from "@/assets/logo-secondary-gold.svg";
@@ -79,10 +78,6 @@ const ProductPage = () => {
       </div>
     );
   }
-
-  // Get a suggested recipe based on the product category
-  const suggestedRecipe = getSuggestedRecipe(product.name, product.category);
-  const occasion = occasionLabels[suggestedRecipe.occasion];
 
   return (
     <div className="min-h-screen bg-cream">
@@ -186,117 +181,13 @@ const ProductPage = () => {
             </div>
           </div>
 
-          {/* Suggested Recipe Section */}
-          <section className="border-t-2 border-forest/10 pt-12 lg:pt-20">
-            <div className="text-center mb-8 lg:mb-12">
-              <span className="font-sans text-xs uppercase tracking-[0.3em] text-gold mb-2 block">
-                Try it in a mocktail
-              </span>
-              <h2 className="font-serif text-3xl lg:text-4xl text-forest">
-                Suggested Recipe
-              </h2>
-            </div>
-
-            <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center max-w-5xl mx-auto">
-              {/* Recipe Image */}
-              <div className="relative group">
-                <div className="aspect-[4/3] overflow-hidden border-2 border-forest">
-                  <img
-                    src={suggestedRecipe.image}
-                    alt={suggestedRecipe.title}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
-                </div>
-                {/* Occasion badge */}
-                <div className="absolute top-4 left-4 bg-forest text-cream px-3 py-1.5 font-sans text-xs uppercase tracking-wider flex items-center gap-2">
-                  <span>{occasion.emoji}</span>
-                  <span>{occasion.label}</span>
-                </div>
-              </div>
-
-              {/* Recipe Info */}
-              <div>
-                <h3 className="font-serif text-2xl lg:text-3xl font-bold text-forest mb-2">
-                  {suggestedRecipe.title}
-                </h3>
-                <p className="font-serif text-lg italic text-gold mb-4">
-                  "{suggestedRecipe.tagline}"
-                </p>
-                <p className="font-sans text-muted-foreground leading-relaxed mb-6">
-                  {suggestedRecipe.description}
-                </p>
-
-                {/* Meta */}
-                <div className="flex items-center gap-6 mb-6 font-sans text-sm text-forest/70">
-                  <div className="flex items-center gap-2">
-                    <Clock className="h-4 w-4" />
-                    <span>{suggestedRecipe.prepTime}</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Users className="h-4 w-4" />
-                    <span>{suggestedRecipe.servings} serving{suggestedRecipe.servings > 1 ? 's' : ''}</span>
-                  </div>
-                  <Badge variant="outline" className="border-forest/30 text-forest text-xs">
-                    {suggestedRecipe.difficulty}
-                  </Badge>
-                </div>
-
-                {/* Featured Product Callout */}
-                <div className="bg-gold/10 border border-gold/30 rounded-lg p-4 mb-6">
-                  <p className="font-sans text-xs uppercase tracking-wider text-gold mb-2 font-semibold">
-                    Featured Product
-                  </p>
-                  <Link 
-                    to={`/product/${handle}`}
-                    className="flex items-center gap-3 group/product"
-                  >
-                    <div className="w-12 h-12 bg-white border border-forest/20 rounded overflow-hidden shrink-0">
-                      <img 
-                        src={product.image} 
-                        alt={product.name}
-                        className="w-full h-full object-contain p-1"
-                      />
-                    </div>
-                    <div>
-                      <p className="font-serif text-forest font-semibold group-hover/product:text-gold transition-colors">
-                        {product.name}
-                      </p>
-                      <p className="font-sans text-xs text-muted-foreground">
-                        Use in this recipe • ${product.price.toFixed(2)}
-                      </p>
-                    </div>
-                  </Link>
-                </div>
-
-                {/* Ingredients */}
-                <div className="border-t-2 border-forest/10 pt-6">
-                  <h4 className="font-sans text-xs uppercase tracking-[0.2em] text-gold mb-4 font-semibold">
-                    Ingredients
-                  </h4>
-                  <ul className="space-y-2">
-                    {suggestedRecipe.ingredients.map((ingredient, index) => (
-                      <li 
-                        key={index} 
-                        className="font-sans text-sm text-forest flex items-center gap-3"
-                      >
-                        <span className="w-1.5 h-1.5 rounded-full bg-gold shrink-0" />
-                        {ingredient}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                <Link to="/recipes">
-                  <Button 
-                    variant="outline" 
-                    className="mt-8 font-sans text-sm uppercase tracking-wider border-2 border-forest text-forest hover:bg-forest hover:text-cream"
-                  >
-                    View All Recipes
-                  </Button>
-                </Link>
-              </div>
-            </div>
-          </section>
+          {/* AI-Generated Recipes Section */}
+          <ProductRecipes 
+            productHandle={handle || ""} 
+            productName={product.name}
+            productImage={product.image}
+            productPrice={product.price}
+          />
 
           {/* More to Explore Section */}
           {currentProducts.length > 0 && (

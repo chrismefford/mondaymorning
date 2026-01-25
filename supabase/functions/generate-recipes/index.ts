@@ -149,15 +149,25 @@ Respond with JSON in this exact format:
   }
 }
 
-async function fetchShopifyProducts(supabaseUrl: string, anonKey: string): Promise<ShopifyProduct[]> {
+async function fetchShopifyProducts(): Promise<ShopifyProduct[]> {
   console.log("Fetching products from Shopify...");
   
+  const storefrontToken = Deno.env.get("SHOPIFY_STOREFRONT_TOKEN");
+  const storeDomain = Deno.env.get("SHOPIFY_STORE_DOMAIN");
+  
+  if (!storefrontToken || !storeDomain) {
+    console.error("Shopify credentials not configured");
+    return [];
+  }
+  
+  const cleanDomain = storeDomain.replace(/^https?:\/\//, "").replace(/\/$/, "");
+  
   try {
-    const response = await fetch(`${supabaseUrl}/functions/v1/shopify-storefront`, {
+    const response = await fetch(`https://${cleanDomain}/api/2024-01/graphql.json`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": `Bearer ${anonKey}`,
+        "X-Shopify-Storefront-Access-Token": storefrontToken,
       },
       body: JSON.stringify({
         query: `{
@@ -168,6 +178,13 @@ async function fetchShopifyProducts(supabaseUrl: string, anonKey: string): Promi
                 title
                 productType
                 description
+                variants(first: 1) {
+                  edges {
+                    node {
+                      availableForSale
+                    }
+                  }
+                }
               }
             }
           }
@@ -176,14 +193,20 @@ async function fetchShopifyProducts(supabaseUrl: string, anonKey: string): Promi
     });
 
     if (!response.ok) {
-      console.error("Failed to fetch Shopify products:", response.status);
+      const text = await response.text();
+      console.error("Failed to fetch Shopify products:", response.status, text);
       return [];
     }
 
     const data = await response.json();
+    console.log("Shopify response:", JSON.stringify(data).substring(0, 500));
+    
     const products = data.data?.products?.edges || [];
     
     return products
+      .filter((edge: any) => 
+        edge.node.variants?.edges?.some((v: any) => v.node.availableForSale)
+      )
       .map((edge: any) => ({
         handle: edge.node.handle,
         name: edge.node.title,
@@ -266,7 +289,7 @@ serve(async (req) => {
 
     if (isAutoMode) {
       // Auto mode: fetch all products and generate for all occasions
-      products = await fetchShopifyProducts(supabaseUrl, supabaseAnonKey);
+      products = await fetchShopifyProducts();
       occasions = OCCASIONS;
       console.log(`Auto mode: Found ${products.length} products`);
     } else {
