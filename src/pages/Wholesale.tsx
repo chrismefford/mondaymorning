@@ -383,7 +383,7 @@ const Wholesale = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <Button size="lg" variant="outline" className="border-cream/40 text-cream hover:bg-cream/10">
+                  <Button size="lg" variant="outline" className="border-gold text-gold hover:bg-gold hover:text-forest">
                     Come Taste First
                     <MapPin className="w-4 h-4 ml-2" />
                   </Button>
