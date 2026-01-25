@@ -433,7 +433,7 @@ const ShopPage = () => {
                 size="lg"
                 className="font-sans text-sm font-bold uppercase tracking-widest bg-gold text-forest hover:bg-gold/90 px-10 py-6"
               >
-                <Link to="/shop">Browse All Products</Link>
+                <Link to="/collections/all">Browse All Products</Link>
               </Button>
               <Button 
                 asChild
