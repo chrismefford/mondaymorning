@@ -61,7 +61,15 @@ const vibeCollections: Record<string, {
   categories: string[]; 
   keywords: string[];
   excludeKeywords?: string[];
+  showAll?: boolean;
 }> = {
+  "all": {
+    title: "All Products",
+    description: "Browse our complete collection of 425+ non-alcoholic drinks.",
+    categories: [],
+    keywords: [],
+    showAll: true,
+  },
   "beach-day": {
     title: "Beach Day",
     description: "Sun, sand, and good sips. Refreshing drinks perfect for a day by the water.",
@@ -149,8 +157,8 @@ const CollectionPage = () => {
       !p.name.toLowerCase().includes("subscription")
     );
     
-    // If this is a vibe collection, filter by keywords and categories
-    if (isVibeCollection && vibeInfo) {
+    // If this is a vibe collection, filter by keywords and categories (unless showAll)
+    if (isVibeCollection && vibeInfo && !vibeInfo.showAll) {
       products = products.filter((product: any) => {
         const nameLC = product.name.toLowerCase();
         const categoryLC = (product.category || "").toLowerCase();
