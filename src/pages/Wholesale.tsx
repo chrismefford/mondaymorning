@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
@@ -41,6 +42,13 @@ import textureBlue from "@/assets/texture-blue.svg";
 import textureCream from "@/assets/texture-cream.svg";
 import logoSecondaryGold from "@/assets/logo-secondary-gold.svg";
 import { cn } from "@/lib/utils";
+import { 
+  SITE_NAME, 
+  SITE_URL, 
+  DEFAULT_OG_IMAGE,
+  TWITTER_HANDLE,
+  getCanonicalUrl
+} from "@/lib/seo";
 
 // Partner locations data with context
 const partners = [

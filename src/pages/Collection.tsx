@@ -1,5 +1,6 @@
 import React, { useMemo } from "react";
 import { useParams, Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import { ArrowLeft, Loader2 } from "lucide-react";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
@@ -9,6 +10,16 @@ import { collections } from "@/data/products";
 import { useShopifyCollectionProducts, useShopifyProducts, useShopifyAllProducts, shopifyToLocalProduct } from "@/hooks/useShopifyProducts";
 import textureCream from "@/assets/texture-cream.svg";
 import stampGold from "@/assets/stamp-gold.svg";
+import { 
+  SITE_NAME, 
+  SITE_URL, 
+  DEFAULT_OG_IMAGE,
+  TWITTER_HANDLE,
+  truncateForSEO,
+  getCanonicalUrl,
+  generateCollectionSchema,
+  generateBreadcrumbSchema
+} from "@/lib/seo";
 
 // Map our collection slugs to Shopify collection handles
 const collectionMapping: Record<string, { shopifyHandle: string; title: string; description: string }> = {
@@ -231,8 +242,66 @@ const CollectionPage = () => {
     }));
   }, [data, isVibeCollection, vibeInfo, isBrandFilter, brandName]);
 
+  // SEO data
+  const collectionTitle = isBrandFilter 
+    ? brandName 
+    : vibeInfo?.title || collectionInfo?.title || collectionMeta?.name || "Collection";
+  const collectionDescription = isBrandFilter
+    ? `Explore all ${brandName} products at ${SITE_NAME}. Premium non-alcoholic beverages shipped nationwide.`
+    : vibeInfo?.description || collectionInfo?.description || collectionMeta?.description || "Explore our curated selection of non-alcoholic beverages.";
+  
+  const pageTitle = `${truncateForSEO(collectionTitle, 50)} | ${SITE_NAME}`;
+  const pageDescription = truncateForSEO(collectionDescription, 155);
+  const canonicalUrl = getCanonicalUrl(isBrandFilter ? `/collections/brand/${brand}` : `/collections/${slug}`);
+  
+  const collectionSchema = generateCollectionSchema({
+    name: collectionTitle,
+    description: collectionDescription,
+    url: canonicalUrl,
+    products: displayProducts.slice(0, 10).map(p => ({
+      name: p.name,
+      url: `${SITE_URL}/product/${p.handle}`,
+      image: p.image
+    }))
+  });
+
+  const breadcrumbSchema = generateBreadcrumbSchema([
+    { name: "Home", url: SITE_URL },
+    { name: isBrandFilter ? "Brands" : "Collections", url: `${SITE_URL}/shop` },
+    { name: collectionTitle, url: canonicalUrl }
+  ]);
+
   return (
     <div className="min-h-screen bg-cream">
+      <Helmet>
+        <title>{pageTitle}</title>
+        <meta name="description" content={pageDescription} />
+        <link rel="canonical" href={canonicalUrl} />
+        
+        {/* Open Graph */}
+        <meta property="og:title" content={pageTitle} />
+        <meta property="og:description" content={pageDescription} />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={canonicalUrl} />
+        <meta property="og:image" content={DEFAULT_OG_IMAGE} />
+        <meta property="og:site_name" content={SITE_NAME} />
+        
+        {/* Twitter */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={pageTitle} />
+        <meta name="twitter:description" content={pageDescription} />
+        <meta name="twitter:image" content={DEFAULT_OG_IMAGE} />
+        <meta name="twitter:site" content={TWITTER_HANDLE} />
+        
+        {/* JSON-LD Structured Data */}
+        <script type="application/ld+json">
+          {JSON.stringify(collectionSchema)}
+        </script>
+        <script type="application/ld+json">
+          {JSON.stringify(breadcrumbSchema)}
+        </script>
+      </Helmet>
+
       <Header />
       
       <main className="pt-20">

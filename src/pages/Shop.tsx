@@ -1,5 +1,6 @@
 import React, { useMemo } from "react";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import { Loader2, ArrowRight, ArrowUpRight, Sun, Moon, Users, Palmtree, Sparkles, Wine, Heart } from "lucide-react";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
@@ -11,6 +12,13 @@ import textureGreen from "@/assets/texture-green.svg";
 import textureBlue from "@/assets/texture-blue.svg";
 import stampGold from "@/assets/stamp-gold.svg";
 import stampBlue from "@/assets/stamp-blue.svg";
+import { 
+  SITE_NAME, 
+  SITE_URL, 
+  DEFAULT_OG_IMAGE,
+  TWITTER_HANDLE,
+  getCanonicalUrl
+} from "@/lib/seo";
 
 // Lifestyle images for vibe sections
 import friendsBeachToast from "@/assets/lifestyle/friends-beach-toast.jpg";
@@ -281,8 +289,33 @@ const ShopPage = () => {
     return allProducts.slice(0, 4);
   }, [allProducts]);
 
+  const pageTitle = "Shop by Vibe | Monday Morning Bottle Shop";
+  const pageDescription = "Explore 425+ non-alcoholic drinks organized by vibe. Beach Day, Date Night, Golden Hour & more. Find the perfect NA beer, wine, or spirit for any moment.";
+  const canonicalUrl = getCanonicalUrl("/shop");
+
   return (
     <div className="min-h-screen bg-cream">
+      <Helmet>
+        <title>{pageTitle}</title>
+        <meta name="description" content={pageDescription} />
+        <link rel="canonical" href={canonicalUrl} />
+        
+        {/* Open Graph */}
+        <meta property="og:title" content={pageTitle} />
+        <meta property="og:description" content={pageDescription} />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={canonicalUrl} />
+        <meta property="og:image" content={DEFAULT_OG_IMAGE} />
+        <meta property="og:site_name" content={SITE_NAME} />
+        
+        {/* Twitter */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={pageTitle} />
+        <meta name="twitter:description" content={pageDescription} />
+        <meta name="twitter:image" content={DEFAULT_OG_IMAGE} />
+        <meta name="twitter:site" content={TWITTER_HANDLE} />
+      </Helmet>
+      
       <Header />
       
       <main className="pt-20">
