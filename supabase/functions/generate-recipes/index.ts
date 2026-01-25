@@ -27,7 +27,10 @@ interface GeneratedRecipe {
   featured_product_handle: string;
   featured_product_name: string;
   product_handles: string[];
+  is_approved: boolean;
 }
+
+const OCCASIONS = ["breakfast", "dinner", "relaxing", "beach", "celebration"];
 
 const SYSTEM_PROMPT = `You are a professional mixologist and recipe developer specializing in non-alcoholic (NA) beverages. You create delicious, creative mocktail and drink recipes that feature specific NA products.
 
@@ -138,10 +141,63 @@ Respond with JSON in this exact format:
       featured_product_handle: product.handle,
       featured_product_name: product.name,
       product_handles: [product.handle],
+      is_approved: true, // Auto-approve for automatic generation
     };
   } catch (error) {
     console.error(`Error generating recipe for ${product.name}:`, error);
     return null;
+  }
+}
+
+async function fetchShopifyProducts(supabaseUrl: string, anonKey: string): Promise<ShopifyProduct[]> {
+  console.log("Fetching products from Shopify...");
+  
+  try {
+    const response = await fetch(`${supabaseUrl}/functions/v1/shopify-storefront`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${anonKey}`,
+      },
+      body: JSON.stringify({
+        query: `{
+          products(first: 100) {
+            edges {
+              node {
+                handle
+                title
+                productType
+                description
+              }
+            }
+          }
+        }`,
+      }),
+    });
+
+    if (!response.ok) {
+      console.error("Failed to fetch Shopify products:", response.status);
+      return [];
+    }
+
+    const data = await response.json();
+    const products = data.data?.products?.edges || [];
+    
+    return products
+      .map((edge: any) => ({
+        handle: edge.node.handle,
+        name: edge.node.title,
+        category: edge.node.productType || "Beverage",
+        description: edge.node.description?.substring(0, 200),
+      }))
+      .filter((p: ShopifyProduct) => 
+        !p.name.toLowerCase().includes("gift") &&
+        !p.name.toLowerCase().includes("membership") &&
+        !p.name.toLowerCase().includes("subscription")
+      );
+  } catch (error) {
+    console.error("Error fetching Shopify products:", error);
+    return [];
   }
 }
 
@@ -153,59 +209,80 @@ serve(async (req) => {
   try {
     const supabaseUrl = Deno.env.get("SUPABASE_URL")!;
     const supabaseServiceKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
+    const supabaseAnonKey = Deno.env.get("SUPABASE_ANON_KEY")!;
     const lovableApiKey = Deno.env.get("LOVABLE_API_KEY");
 
     if (!lovableApiKey) {
       throw new Error("LOVABLE_API_KEY is not configured");
     }
 
-    // Verify admin access
+    const supabase = createClient(supabaseUrl, supabaseServiceKey);
+    
+    // Check if this is an automated/cron request or admin request
     const authHeader = req.headers.get("Authorization");
-    if (!authHeader) {
+    let isAuthorized = false;
+    let isAutoMode = false;
+    let body: any = {};
+
+    try {
+      body = await req.json();
+    } catch {
+      body = {};
+    }
+
+    // Check for auto mode (cron job)
+    if (body.auto === true) {
+      isAutoMode = true;
+      isAuthorized = true;
+      console.log("Running in auto mode (scheduled job)");
+    } else if (authHeader) {
+      // Verify admin access for manual requests
+      const token = authHeader.replace("Bearer ", "");
+      const { data: { user }, error: userError } = await supabase.auth.getUser(token);
+      
+      if (!userError && user) {
+        const { data: roleData } = await supabase
+          .from("user_roles")
+          .select("role")
+          .eq("user_id", user.id)
+          .eq("role", "admin")
+          .maybeSingle();
+
+        if (roleData) {
+          isAuthorized = true;
+        }
+      }
+    }
+
+    if (!isAuthorized) {
       return new Response(JSON.stringify({ error: "Unauthorized" }), {
         status: 401,
         headers: { ...corsHeaders, "Content-Type": "application/json" },
       });
     }
 
-    const supabase = createClient(supabaseUrl, supabaseServiceKey);
-    
-    // Get user from token
-    const token = authHeader.replace("Bearer ", "");
-    const { data: { user }, error: userError } = await supabase.auth.getUser(token);
-    
-    if (userError || !user) {
-      return new Response(JSON.stringify({ error: "Invalid token" }), {
-        status: 401,
-        headers: { ...corsHeaders, "Content-Type": "application/json" },
-      });
+    let products: ShopifyProduct[];
+    let occasions: string[];
+
+    if (isAutoMode) {
+      // Auto mode: fetch all products and generate for all occasions
+      products = await fetchShopifyProducts(supabaseUrl, supabaseAnonKey);
+      occasions = OCCASIONS;
+      console.log(`Auto mode: Found ${products.length} products`);
+    } else {
+      // Manual mode: use provided products and occasion
+      products = body.products || [];
+      occasions = [body.occasion || "celebration"];
     }
 
-    // Check if user is admin
-    const { data: roleData } = await supabase
-      .from("user_roles")
-      .select("role")
-      .eq("user_id", user.id)
-      .eq("role", "admin")
-      .maybeSingle();
-
-    if (!roleData) {
-      return new Response(JSON.stringify({ error: "Admin access required" }), {
-        status: 403,
-        headers: { ...corsHeaders, "Content-Type": "application/json" },
-      });
-    }
-
-    const { products, occasion = "celebration" } = await req.json();
-
-    if (!products || !Array.isArray(products) || products.length === 0) {
-      return new Response(JSON.stringify({ error: "Products array required" }), {
+    if (products.length === 0) {
+      return new Response(JSON.stringify({ error: "No products found" }), {
         status: 400,
         headers: { ...corsHeaders, "Content-Type": "application/json" },
       });
     }
 
-    console.log(`Generating recipes for ${products.length} products, occasion: ${occasion}`);
+    console.log(`Generating recipes for ${products.length} products across ${occasions.length} occasions`);
 
     const results = {
       success: [] as string[],
@@ -214,41 +291,44 @@ serve(async (req) => {
     };
 
     for (const product of products) {
-      // Check if recipe already exists for this product
-      const { data: existing } = await supabase
-        .from("generated_recipes")
-        .select("id")
-        .eq("featured_product_handle", product.handle)
-        .eq("occasion", occasion)
-        .maybeSingle();
-
-      if (existing) {
-        console.log(`Recipe already exists for ${product.name} (${occasion}), skipping`);
-        results.skipped.push(product.name);
-        continue;
-      }
-
-      const recipe = await generateRecipeForProduct(product, occasion, lovableApiKey);
-      
-      if (recipe) {
-        const { error: insertError } = await supabase
+      for (const occasion of occasions) {
+        // Check if recipe already exists for this product/occasion combo
+        const { data: existing } = await supabase
           .from("generated_recipes")
-          .insert(recipe);
+          .select("id")
+          .eq("featured_product_handle", product.handle)
+          .eq("occasion", occasion)
+          .maybeSingle();
 
-        if (insertError) {
-          console.error(`Failed to insert recipe for ${product.name}:`, insertError);
-          results.failed.push(product.name);
-        } else {
-          console.log(`Successfully created recipe: ${recipe.title}`);
-          results.success.push(product.name);
+        if (existing) {
+          results.skipped.push(`${product.name} (${occasion})`);
+          continue;
         }
-      } else {
-        results.failed.push(product.name);
-      }
 
-      // Small delay to avoid rate limiting
-      await new Promise(resolve => setTimeout(resolve, 500));
+        const recipe = await generateRecipeForProduct(product, occasion, lovableApiKey);
+        
+        if (recipe) {
+          const { error: insertError } = await supabase
+            .from("generated_recipes")
+            .insert(recipe);
+
+          if (insertError) {
+            console.error(`Failed to insert recipe for ${product.name}:`, insertError);
+            results.failed.push(`${product.name} (${occasion})`);
+          } else {
+            console.log(`Successfully created recipe: ${recipe.title}`);
+            results.success.push(`${product.name} (${occasion})`);
+          }
+        } else {
+          results.failed.push(`${product.name} (${occasion})`);
+        }
+
+        // Delay between requests to avoid rate limiting
+        await new Promise(resolve => setTimeout(resolve, 1000));
+      }
     }
+
+    console.log(`Generation complete: ${results.success.length} created, ${results.skipped.length} skipped, ${results.failed.length} failed`);
 
     return new Response(JSON.stringify({ 
       message: "Recipe generation complete",
