@@ -1,28 +1,109 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRecipesForProduct, GeneratedRecipe } from "@/hooks/useGeneratedRecipes";
 import { occasionLabels } from "@/data/recipes";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
-import { Clock, Users, ChevronRight } from "lucide-react";
+import { Clock, Users, ChevronRight, Loader2, Sparkles } from "lucide-react";
 import { Link } from "react-router-dom";
+import { supabase } from "@/integrations/supabase/client";
+import { useQueryClient } from "@tanstack/react-query";
 
 interface ProductRecipesProps {
   productHandle: string;
   productName: string;
   productImage: string;
   productPrice: number;
+  productCategory?: string;
+  productDescription?: string;
 }
 
-const ProductRecipes = ({ productHandle, productName, productImage, productPrice }: ProductRecipesProps) => {
+const ProductRecipes = ({ 
+  productHandle, 
+  productName, 
+  productImage, 
+  productPrice,
+  productCategory = "Beverage",
+  productDescription = ""
+}: ProductRecipesProps) => {
   const { data: recipes, isLoading } = useRecipesForProduct(productHandle);
   const [selectedRecipe, setSelectedRecipe] = useState<GeneratedRecipe | null>(null);
+  const [isGenerating, setIsGenerating] = useState(false);
+  const [generationAttempted, setGenerationAttempted] = useState(false);
+  const queryClient = useQueryClient();
 
-  if (isLoading || !recipes || recipes.length === 0) {
-    return null;
-  }
+  // Auto-generate recipe if none exist
+  useEffect(() => {
+    const generateRecipe = async () => {
+      if (isLoading || generationAttempted || isGenerating) return;
+      if (recipes && recipes.length > 0) return;
+      if (!productHandle || !productName) return;
+
+      setIsGenerating(true);
+      setGenerationAttempted(true);
+
+      try {
+        console.log(`Auto-generating recipe for ${productName}`);
+        
+        const { error } = await supabase.functions.invoke("generate-recipes", {
+          body: {
+            products: [{
+              handle: productHandle,
+              name: productName,
+              category: productCategory,
+              description: productDescription?.substring(0, 200)
+            }],
+            occasion: "relaxing" // Default occasion for on-demand generation
+          }
+        });
+
+        if (error) {
+          console.error("Failed to generate recipe:", error);
+        } else {
+          // Refetch recipes after generation
+          setTimeout(() => {
+            queryClient.invalidateQueries({ queryKey: ["generated-recipes", "product", productHandle] });
+          }, 2000);
+        }
+      } catch (err) {
+        console.error("Error generating recipe:", err);
+      } finally {
+        setIsGenerating(false);
+      }
+    };
+
+    generateRecipe();
+  }, [recipes, isLoading, productHandle, productName, productCategory, productDescription, generationAttempted, isGenerating, queryClient]);
 
   const occasion = selectedRecipe ? occasionLabels[selectedRecipe.occasion] : null;
+
+  // Show loading state while generating
+  if (isLoading || isGenerating) {
+    return (
+      <section className="border-t-2 border-forest/10 pt-12 lg:pt-20">
+        <div className="text-center mb-8 lg:mb-12">
+          <span className="font-sans text-xs uppercase tracking-[0.3em] text-gold mb-2 block">
+            Try it in a mocktail
+          </span>
+          <h2 className="font-serif text-3xl lg:text-4xl text-forest">
+            Recipes with {productName}
+          </h2>
+        </div>
+        <div className="flex flex-col items-center justify-center py-12 gap-4">
+          <Loader2 className="h-8 w-8 animate-spin text-gold" />
+          <p className="font-sans text-sm text-muted-foreground flex items-center gap-2">
+            <Sparkles className="h-4 w-4" />
+            {isGenerating ? "Creating a custom recipe..." : "Loading recipes..."}
+          </p>
+        </div>
+      </section>
+    );
+  }
+
+  // Don't show section if no recipes and generation was attempted
+  if (!recipes || recipes.length === 0) {
+    return null;
+  }
 
   return (
     <section className="border-t-2 border-forest/10 pt-12 lg:pt-20">
