@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -8,6 +9,14 @@ import textureCream from "@/assets/texture-cream.svg";
 import textureGreen from "@/assets/texture-green.svg";
 import zaneFounder from "@/assets/zane-founder.png";
 import cheersDrinks from "@/assets/cheers-drinks.jpg";
+import { 
+  SITE_NAME, 
+  SITE_URL, 
+  DEFAULT_OG_IMAGE,
+  TWITTER_HANDLE,
+  getCanonicalUrl,
+  organizationSchema
+} from "@/lib/seo";
 
 const About = () => {
   const brands = [
@@ -51,8 +60,47 @@ const About = () => {
     },
   ];
 
+  const pageTitle = "About Us | Monday Morning Bottle Shop";
+  const pageDescription = "Meet Zane, the founder of Monday Morning. Discover why we created San Diego's premier non-alcoholic bottle shop with 425+ flavors to help you drink differently.";
+  const canonicalUrl = getCanonicalUrl("/about");
+
+  const aboutSchema = {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    "name": "About Monday Morning Bottle Shop",
+    "description": pageDescription,
+    "url": canonicalUrl,
+    "mainEntity": organizationSchema
+  };
+
   return (
     <div className="min-h-screen bg-cream">
+      <Helmet>
+        <title>{pageTitle}</title>
+        <meta name="description" content={pageDescription} />
+        <link rel="canonical" href={canonicalUrl} />
+        
+        {/* Open Graph */}
+        <meta property="og:title" content={pageTitle} />
+        <meta property="og:description" content={pageDescription} />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={canonicalUrl} />
+        <meta property="og:image" content={DEFAULT_OG_IMAGE} />
+        <meta property="og:site_name" content={SITE_NAME} />
+        
+        {/* Twitter */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={pageTitle} />
+        <meta name="twitter:description" content={pageDescription} />
+        <meta name="twitter:image" content={DEFAULT_OG_IMAGE} />
+        <meta name="twitter:site" content={TWITTER_HANDLE} />
+        
+        {/* JSON-LD */}
+        <script type="application/ld+json">
+          {JSON.stringify(aboutSchema)}
+        </script>
+      </Helmet>
+
       <Header />
       
       <main>

@@ -1,5 +1,6 @@
 import { useState, useMemo } from "react";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import { recipes, occasionLabels, Occasion, Recipe } from "@/data/recipes";
 import { getRecipeImage } from "@/data/recipeImages";
 import { Button } from "@/components/ui/button";
@@ -16,6 +17,13 @@ import {
 } from "@/components/ui/dialog";
 import { useShopifyProducts, ShopifyProduct, shopifyToLocalProduct } from "@/hooks/useShopifyProducts";
 import { useCart } from "@/hooks/useCart";
+import { 
+  SITE_NAME, 
+  SITE_URL, 
+  DEFAULT_OG_IMAGE,
+  TWITTER_HANDLE,
+  getCanonicalUrl
+} from "@/lib/seo";
 
 // Helper to get recipe image - uses direct ID-to-image mapping for context-appropriate images
 function getRecipeImageUrl(recipe: Recipe): string {
@@ -119,8 +127,60 @@ const RecipesPage = () => {
 
   const featuredRecipes = recipes.filter((r) => r.featured);
 
+  const pageTitle = "NA Mocktail Recipes | Monday Morning Bottle Shop";
+  const pageDescription = "Discover delicious non-alcoholic cocktail recipes. Easy mocktails for breakfast, dinner, beach days & celebrations. Made with premium NA spirits, wine & beer.";
+  const canonicalUrl = getCanonicalUrl("/recipes");
+
+  const recipeListSchema = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "Non-Alcoholic Mocktail Recipes",
+    "description": pageDescription,
+    "numberOfItems": recipes.length,
+    "itemListElement": recipes.slice(0, 10).map((recipe, index) => ({
+      "@type": "ListItem",
+      "position": index + 1,
+      "item": {
+        "@type": "Recipe",
+        "name": recipe.title,
+        "description": recipe.description,
+        "recipeCategory": "Mocktail",
+        "recipeCuisine": "American",
+        "prepTime": `PT${recipe.prepTime.replace(/\s?mins?/i, '')}M`,
+        "recipeYield": `${recipe.servings} serving(s)`,
+        "recipeIngredient": recipe.ingredients
+      }
+    }))
+  };
+
   return (
     <div className="min-h-screen bg-cream">
+      <Helmet>
+        <title>{pageTitle}</title>
+        <meta name="description" content={pageDescription} />
+        <link rel="canonical" href={canonicalUrl} />
+        
+        {/* Open Graph */}
+        <meta property="og:title" content={pageTitle} />
+        <meta property="og:description" content={pageDescription} />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={canonicalUrl} />
+        <meta property="og:image" content={DEFAULT_OG_IMAGE} />
+        <meta property="og:site_name" content={SITE_NAME} />
+        
+        {/* Twitter */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={pageTitle} />
+        <meta name="twitter:description" content={pageDescription} />
+        <meta name="twitter:image" content={DEFAULT_OG_IMAGE} />
+        <meta name="twitter:site" content={TWITTER_HANDLE} />
+        
+        {/* JSON-LD */}
+        <script type="application/ld+json">
+          {JSON.stringify(recipeListSchema)}
+        </script>
+      </Helmet>
+
       <Header />
       
       <main>
