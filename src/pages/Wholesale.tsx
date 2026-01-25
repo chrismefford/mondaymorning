@@ -4,6 +4,7 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import ContactFormDialog from "@/components/ContactFormDialog";
 import { 
   TrendingUp, 
   DollarSign, 
@@ -369,12 +370,14 @@ const Wholesale = () => {
               </p>
               
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                <a href="mailto:sales@mondaymorning-af.com">
-                  <Button size="lg" className="bg-gold hover:bg-gold/90 text-forest-deep font-semibold px-8">
-                    Let's Talk
-                    <ArrowRight className="w-4 h-4 ml-2" />
-                  </Button>
-                </a>
+                <ContactFormDialog 
+                  trigger={
+                    <Button size="lg" className="bg-gold hover:bg-gold/90 text-forest-deep font-semibold px-8">
+                      Let's Talk
+                      <ArrowRight className="w-4 h-4 ml-2" />
+                    </Button>
+                  }
+                />
                 <a 
                   href="https://maps.google.com/?q=1854+Garnet+Ave,+San+Diego,+CA+92109"
                   target="_blank"
