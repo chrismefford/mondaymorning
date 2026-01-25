@@ -193,7 +193,18 @@ const BlogPost = () => {
                   Back to Blog
                 </Link>
                 <div className="prose prose-lg dark:prose-invert prose-headings:font-serif prose-headings:text-foreground prose-p:text-foreground/80 prose-a:text-secondary prose-a:no-underline hover:prose-a:underline prose-img:rounded-lg">
-                  <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                  <ReactMarkdown 
+                    remarkPlugins={[remarkGfm]}
+                    disallowedElements={['script', 'iframe', 'object', 'embed']}
+                    unwrapDisallowed={true}
+                    urlTransform={(url) => {
+                      // Block javascript: and data: URIs to prevent XSS
+                      if (url.startsWith('javascript:') || url.startsWith('data:')) {
+                        return '#blocked';
+                      }
+                      return url;
+                    }}
+                  >
                     {post.content}
                   </ReactMarkdown>
                 </div>
