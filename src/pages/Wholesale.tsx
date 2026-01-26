@@ -7,7 +7,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import ContactFormDialog from "@/components/ContactFormDialog";
 import TastingFormDialog from "@/components/TastingFormDialog";
-import { 
+import WholesaleApplicationForm from "@/components/wholesale/WholesaleApplicationForm";
+import {
   TrendingUp, 
   DollarSign, 
   Users, 
@@ -379,10 +380,10 @@ const Wholesale = () => {
               </p>
               
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                <ContactFormDialog 
+                <WholesaleApplicationForm 
                   trigger={
                     <Button size="lg" className="bg-gold hover:bg-gold/90 text-forest-deep font-semibold px-8">
-                      Let's Talk
+                      Apply for Wholesale
                       <ArrowRight className="w-4 h-4 ml-2" />
                     </Button>
                   }
@@ -395,6 +396,17 @@ const Wholesale = () => {
                     </Button>
                   }
                 />
+              </div>
+              
+              {/* Existing Partner Login */}
+              <div className="mt-6 text-center">
+                <Link 
+                  to="/wholesale-login"
+                  className="text-sm text-cream/70 hover:text-gold transition-colors inline-flex items-center gap-1"
+                >
+                  Already a partner? Sign in to your B2B account
+                  <ArrowRight className="w-3 h-3" />
+                </Link>
               </div>
             </div>
           </div>

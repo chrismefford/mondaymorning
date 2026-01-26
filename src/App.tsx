@@ -28,6 +28,8 @@ import Terms from "./pages/Terms";
 import Shipping from "./pages/Shipping";
 import Returns from "./pages/Returns";
 import Wholesale from "./pages/Wholesale";
+import WholesaleAuth from "./pages/WholesaleAuth";
+import WholesaleCatalog from "./pages/WholesaleCatalog";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -72,6 +74,8 @@ const AppContent = () => {
         <Route path="/shipping" element={<Shipping />} />
         <Route path="/returns" element={<Returns />} />
         <Route path="/services" element={<Wholesale />} />
+        <Route path="/wholesale-login" element={<WholesaleAuth />} />
+        <Route path="/wholesale-catalog" element={<WholesaleCatalog />} />
         {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
         <Route path="*" element={<NotFound />} />
       </Routes>
