@@ -111,6 +111,7 @@ serve(async (req: Request) => {
           firstName: firstName,
           lastName: lastName,
           email: app.email,
+          phone: app.phone || undefined,
         },
       },
     };
@@ -151,10 +152,10 @@ serve(async (req: Request) => {
     const companyId = shopifyResult.data?.companyCreate?.company?.id;
     console.log("Company created:", companyId);
 
-    // Update the application status to indicate it was synced
+    // Update the application status to pending approval - company is created but not yet activated
     await supabase
       .from("wholesale_applications")
-      .update({ status: "synced_to_shopify" })
+      .update({ status: "pending_approval" })
       .eq("id", applicationId);
 
     return new Response(
