@@ -50,13 +50,22 @@ const SearchOverlay = ({ isOpen, onClose }: SearchOverlayProps) => {
     };
   }, [isOpen, onClose]);
 
+  // Compound search terms - these match specific tag patterns
+  const compoundSearches: Record<string, { requiredTag?: string; requiredType?: string; titleKeywords?: string[] }> = {
+    "red wine": { requiredTag: "redwine", requiredType: "wine" },
+    "red wines": { requiredTag: "redwine", requiredType: "wine" },
+    "white wine": { requiredTag: "whitewine", requiredType: "wine" },
+    "white wines": { requiredTag: "whitewine", requiredType: "wine" },
+    "rose wine": { requiredTag: "rosewine", requiredType: "wine" },
+    "rosé wine": { requiredTag: "rosewine", requiredType: "wine" },
+    "sparkling wine": { requiredTag: "sparklingwine", requiredType: "wine" },
+    "sparkling wines": { requiredTag: "sparklingwine", requiredType: "wine" },
+  };
+
   // Search aliases - map search terms to additional terms to look for
-  // Tags in Shopify use camelCase like "RedWine", "WhiteWine", "SparklingWine"
   const searchAliases: Record<string, string[]> = {
-    "red": ["redwine", "cabernet", "merlot", "pinot noir", "rouge", "tempranillo", "shiraz", "syrah", "ruby"],
-    "red wine": ["redwine"],
+    "red": ["redwine", "cabernet", "merlot", "pinot noir", "rouge", "tempranillo", "shiraz", "syrah", "red blend"],
     "white": ["whitewine", "chardonnay", "sauvignon blanc", "pinot grigio", "riesling", "moscato"],
-    "white wine": ["whitewine"],
     "rose": ["rosé", "roséwine", "rosewine", "pink"],
     "rosé": ["rose", "roséwine", "rosewine", "pink"],
     "sparkling": ["sparklingwine", "bubbly", "champagne", "prosecco", "cava", "fizz", "brut"],
@@ -68,20 +77,7 @@ const SearchOverlay = ({ isOpen, onClose }: SearchOverlayProps) => {
     "functional": ["adaptogen", "nootropic", "wellness", "elixir", "kava"],
     "cocktail": ["mixer", "ready to drink", "rtd"],
     "canned": ["cannedwine", "rtd"],
-  };
-
-  // Helper to check if product matches a single term (or any of its aliases)
-  const termMatchesProduct = (term: string, searchableText: string): boolean => {
-    // Check direct match
-    if (searchableText.includes(term)) return true;
-    
-    // Check aliases for this term
-    const aliases = searchAliases[term];
-    if (aliases) {
-      return aliases.some(alias => searchableText.includes(alias));
-    }
-    
-    return false;
+    "wine": ["wine", "vino"],
   };
 
   // Filter products based on search query
@@ -100,15 +96,35 @@ const SearchOverlay = ({ isOpen, onClose }: SearchOverlayProps) => {
       if (!debouncedQuery.trim()) return false;
       const searchLower = debouncedQuery.toLowerCase().trim();
       
-      // Split query into individual terms
+      // Build tag string for matching (lowercase, no spaces for camelCase tags)
+      const tagsLower = (product.tags || []).map(t => t.toLowerCase().replace(/\s+/g, '')).join(" ");
+      const productTypeLower = (product.productType || "").toLowerCase();
+      const titleLower = (product.title || product.name || "").toLowerCase();
+      
+      // Check for compound search matches first (e.g., "red wine" -> must have RedWine tag)
+      const compoundMatch = compoundSearches[searchLower];
+      if (compoundMatch) {
+        // Must match the required tag or have required type + color in title
+        if (compoundMatch.requiredTag && tagsLower.includes(compoundMatch.requiredTag)) {
+          return true;
+        }
+        // Fallback: check type + title contains color word
+        if (compoundMatch.requiredType && productTypeLower.includes(compoundMatch.requiredType)) {
+          const colorWord = searchLower.split(" ")[0]; // "red", "white", etc.
+          if (titleLower.includes(colorWord)) {
+            return true;
+          }
+        }
+        return false;
+      }
+      
+      // For general searches, use term-by-term matching
       const searchTerms = searchLower.split(/\s+/).filter(t => t.length > 0);
       
-      // Build searchable text from all product fields
+      // Build searchable text - but be more restrictive (exclude descriptions to avoid false matches)
       const searchableText = [
         product.title,
         product.name,
-        product.category,
-        product.description,
         product.vendor,
         product.productType,
         ...(product.tags || []),
@@ -117,8 +133,18 @@ const SearchOverlay = ({ isOpen, onClose }: SearchOverlayProps) => {
         .join(" ")
         .toLowerCase();
 
-      // ALL search terms must match (each term can match directly or via alias)
-      return searchTerms.every(term => termMatchesProduct(term, searchableText));
+      // Helper to check if product matches a single term
+      const termMatchesProduct = (term: string): boolean => {
+        if (searchableText.includes(term)) return true;
+        const aliases = searchAliases[term];
+        if (aliases) {
+          return aliases.some(alias => searchableText.includes(alias));
+        }
+        return false;
+      };
+
+      // ALL search terms must match
+      return searchTerms.every(term => termMatchesProduct(term));
     })
     .slice(0, 24);
 
