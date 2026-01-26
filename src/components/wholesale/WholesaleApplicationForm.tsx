@@ -26,26 +26,6 @@ interface WholesaleApplicationFormProps {
   trigger?: React.ReactNode;
 }
 
-const businessTypes = [
-  "Restaurant",
-  "Bar / Lounge",
-  "Hotel",
-  "Cafe / Coffee Shop",
-  "Retail Store",
-  "Event Venue",
-  "Catering Company",
-  "Country Club / Golf Course",
-  "Spa / Wellness Center",
-  "Other",
-];
-
-const volumeOptions = [
-  "Less than $500/month",
-  "$500 - $1,000/month",
-  "$1,000 - $2,500/month",
-  "$2,500 - $5,000/month",
-  "$5,000+/month",
-];
 
 export default function WholesaleApplicationForm({ trigger }: WholesaleApplicationFormProps) {
   const [open, setOpen] = useState(false);
@@ -57,11 +37,6 @@ export default function WholesaleApplicationForm({ trigger }: WholesaleApplicati
     contactName: "",
     email: "",
     phone: "",
-    businessType: "",
-    websiteUrl: "",
-    locationsCount: "",
-    estimatedMonthlyVolume: "",
-    additionalNotes: "",
     taxId: "",
   });
 
@@ -72,7 +47,7 @@ export default function WholesaleApplicationForm({ trigger }: WholesaleApplicati
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    if (!formData.companyName || !formData.contactName || !formData.email || !formData.phone || !formData.businessType) {
+    if (!formData.companyName || !formData.contactName || !formData.email || !formData.phone) {
       toast.error("Please fill in all required fields");
       return;
     }
@@ -87,12 +62,8 @@ export default function WholesaleApplicationForm({ trigger }: WholesaleApplicati
           company_name: formData.companyName,
           contact_name: formData.contactName,
           email: formData.email,
-          phone: formData.phone || null,
-          business_type: formData.businessType,
-          website_url: formData.websiteUrl || null,
-          locations_count: formData.locationsCount ? parseInt(formData.locationsCount) : null,
-          estimated_monthly_volume: formData.estimatedMonthlyVolume || null,
-          additional_notes: formData.additionalNotes || null,
+          phone: formData.phone,
+          business_type: "Wholesale Inquiry",
           tax_id: formData.taxId || null,
           status: "pending",
         })
@@ -129,11 +100,6 @@ export default function WholesaleApplicationForm({ trigger }: WholesaleApplicati
           contactName: "",
           email: "",
           phone: "",
-          businessType: "",
-          websiteUrl: "",
-          locationsCount: "",
-          estimatedMonthlyVolume: "",
-          additionalNotes: "",
           taxId: "",
         });
         setIsSuccess(false);
@@ -164,59 +130,15 @@ export default function WholesaleApplicationForm({ trigger }: WholesaleApplicati
       <div className="space-y-4">
         <h3 className="font-serif text-lg text-forest border-b border-forest/10 pb-2">Business Information</h3>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div className="space-y-2">
-            <Label htmlFor="companyName">Company Name *</Label>
-            <Input
-              id="companyName"
-              value={formData.companyName}
-              onChange={(e) => handleInputChange("companyName", e.target.value)}
-              placeholder="Your business name"
-              required
-            />
-          </div>
-          
-          <div className="space-y-2">
-            <Label htmlFor="businessType">Business Type *</Label>
-            <Select
-              value={formData.businessType}
-              onValueChange={(value) => handleInputChange("businessType", value)}
-            >
-              <SelectTrigger>
-                <SelectValue placeholder="Select type" />
-              </SelectTrigger>
-              <SelectContent>
-                {businessTypes.map((type) => (
-                  <SelectItem key={type} value={type}>{type}</SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-          </div>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div className="space-y-2">
-            <Label htmlFor="websiteUrl">Website (optional)</Label>
-            <Input
-              id="websiteUrl"
-              type="text"
-              value={formData.websiteUrl}
-              onChange={(e) => handleInputChange("websiteUrl", e.target.value)}
-              placeholder="yourwebsite.com"
-            />
-          </div>
-          
-          <div className="space-y-2">
-            <Label htmlFor="locationsCount">Number of Locations</Label>
-            <Input
-              id="locationsCount"
-              type="number"
-              min="1"
-              value={formData.locationsCount}
-              onChange={(e) => handleInputChange("locationsCount", e.target.value)}
-              placeholder="1"
-            />
-          </div>
+        <div className="space-y-2">
+          <Label htmlFor="companyName">Company Name *</Label>
+          <Input
+            id="companyName"
+            value={formData.companyName}
+            onChange={(e) => handleInputChange("companyName", e.target.value)}
+            placeholder="Your business name"
+            required
+          />
         </div>
       </div>
 
@@ -272,40 +194,6 @@ export default function WholesaleApplicationForm({ trigger }: WholesaleApplicati
             />
           </div>
         </div>
-      </div>
-
-      {/* Order Estimate */}
-      <div className="space-y-4">
-        <h3 className="font-serif text-lg text-forest border-b border-forest/10 pb-2">Order Estimate</h3>
-        
-        <div className="space-y-2">
-          <Label htmlFor="estimatedMonthlyVolume">Estimated Monthly Volume</Label>
-          <Select
-            value={formData.estimatedMonthlyVolume}
-            onValueChange={(value) => handleInputChange("estimatedMonthlyVolume", value)}
-          >
-            <SelectTrigger>
-              <SelectValue placeholder="Select estimated volume" />
-            </SelectTrigger>
-            <SelectContent>
-              {volumeOptions.map((option) => (
-                <SelectItem key={option} value={option}>{option}</SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-        </div>
-      </div>
-
-      {/* Additional Notes */}
-      <div className="space-y-2">
-        <Label htmlFor="additionalNotes">Additional Notes (optional)</Label>
-        <Textarea
-          id="additionalNotes"
-          value={formData.additionalNotes}
-          onChange={(e) => handleInputChange("additionalNotes", e.target.value)}
-          placeholder="Tell us about your business, current beverage program, or any specific needs..."
-          rows={4}
-        />
       </div>
 
       {/* Submit Button */}

@@ -74,13 +74,7 @@ serve(async (req: Request) => {
     // Build the note with application details
     const noteLines = [
       `Application ID: ${app.id}`,
-      `Business Type: ${app.business_type}`,
-      app.website_url ? `Website: ${app.website_url}` : null,
-      app.locations_count ? `Locations: ${app.locations_count}` : null,
-      app.estimated_monthly_volume ? `Est. Monthly Volume: ${app.estimated_monthly_volume}` : null,
-      app.product_interests?.length ? `Product Interests: ${app.product_interests.join(", ")}` : null,
       app.tax_id ? `Tax ID: ${app.tax_id}` : null,
-      app.additional_notes ? `Notes: ${app.additional_notes}` : null,
       `Submitted: ${app.created_at}`,
     ].filter(Boolean).join("\n");
 
