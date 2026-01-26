@@ -120,15 +120,15 @@ export const recipes: Recipe[] = [
     title: "NA Red Wine Sangria",
     occasion: "dinner",
     tagline: "Elegant & complex",
-    description: "Bolle Non-Alcoholic Red shines in this sophisticated sangria with fresh citrus and seasonal fruits.",
+    description: "Lautus Savvy Red shines in this sophisticated sangria with fresh citrus and seasonal fruits.",
     image: "https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=800&q=80",
     prepTime: "10 min",
     servings: 4,
     difficulty: "Easy",
-    ingredients: ["1 bottle Bolle Non-Alcoholic Red", "Sliced oranges", "Fresh berries", "Cinnamon stick", "Sparkling water"],
+    ingredients: ["1 bottle Lautus Savvy Red", "Sliced oranges", "Fresh berries", "Cinnamon stick", "Sparkling water"],
     featured: true,
     productKeywords: ["wine", "red", "cabernet", "merlot", "pinot"],
-    featuredProductHandle: "bolle-non-alcoholic-red"
+    featuredProductHandle: "lautus-savvy-red"
   },
   {
     id: "5",
