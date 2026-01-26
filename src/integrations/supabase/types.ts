@@ -191,6 +191,110 @@ export type Database = {
         }
         Relationships: []
       }
+      wholesale_applications: {
+        Row: {
+          additional_notes: string | null
+          business_type: string
+          company_name: string
+          contact_name: string
+          created_at: string
+          email: string
+          estimated_monthly_volume: string | null
+          id: string
+          locations_count: number | null
+          phone: string | null
+          product_interests: string[] | null
+          status: string
+          tax_id: string | null
+          updated_at: string
+          website_url: string | null
+        }
+        Insert: {
+          additional_notes?: string | null
+          business_type: string
+          company_name: string
+          contact_name: string
+          created_at?: string
+          email: string
+          estimated_monthly_volume?: string | null
+          id?: string
+          locations_count?: number | null
+          phone?: string | null
+          product_interests?: string[] | null
+          status?: string
+          tax_id?: string | null
+          updated_at?: string
+          website_url?: string | null
+        }
+        Update: {
+          additional_notes?: string | null
+          business_type?: string
+          company_name?: string
+          contact_name?: string
+          created_at?: string
+          email?: string
+          estimated_monthly_volume?: string | null
+          id?: string
+          locations_count?: number | null
+          phone?: string | null
+          product_interests?: string[] | null
+          status?: string
+          tax_id?: string | null
+          updated_at?: string
+          website_url?: string | null
+        }
+        Relationships: []
+      }
+      wholesale_customers: {
+        Row: {
+          application_id: string | null
+          business_type: string
+          company_name: string
+          created_at: string
+          discount_tier: string | null
+          id: string
+          is_active: boolean | null
+          payment_terms: string | null
+          tax_id: string | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          application_id?: string | null
+          business_type: string
+          company_name: string
+          created_at?: string
+          discount_tier?: string | null
+          id?: string
+          is_active?: boolean | null
+          payment_terms?: string | null
+          tax_id?: string | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          application_id?: string | null
+          business_type?: string
+          company_name?: string
+          created_at?: string
+          discount_tier?: string | null
+          id?: string
+          is_active?: boolean | null
+          payment_terms?: string | null
+          tax_id?: string | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "wholesale_customers_application_id_fkey"
+            columns: ["application_id"]
+            isOneToOne: false
+            referencedRelation: "wholesale_applications"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
@@ -203,6 +307,7 @@ export type Database = {
         }
         Returns: boolean
       }
+      is_wholesale_customer: { Args: never; Returns: boolean }
     }
     Enums: {
       app_role: "admin" | "user"
