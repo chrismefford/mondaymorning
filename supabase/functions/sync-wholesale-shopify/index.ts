@@ -64,51 +64,78 @@ serve(async (req: Request) => {
 
     const app = application as WholesaleApplication;
 
-    console.log(`Syncing application ${app.id} for ${app.company_name} to Shopify`);
+    console.log(`Syncing application ${app.id} for ${app.company_name} to Shopify Companies`);
 
-    // Create a draft order in Shopify
-    const draftOrderData = {
-      draft_order: {
-        note: `Wholesale Application from ${app.company_name}`,
-        email: app.email,
-        tags: "wholesale-application",
-        note_attributes: [
-          { name: "Application ID", value: app.id },
-          { name: "Company Name", value: app.company_name },
-          { name: "Contact Name", value: app.contact_name },
-          { name: "Business Type", value: app.business_type },
-          { name: "Phone", value: app.phone || "Not provided" },
-          { name: "Website", value: app.website_url || "Not provided" },
-          { name: "Locations", value: String(app.locations_count || "Not specified") },
-          { name: "Monthly Volume", value: app.estimated_monthly_volume || "Not specified" },
-          { name: "Product Interests", value: app.product_interests?.join(", ") || "Not specified" },
-          { name: "Tax ID", value: app.tax_id || "Not provided" },
-          { name: "Additional Notes", value: app.additional_notes || "None" },
-          { name: "Submitted At", value: app.created_at },
-        ],
-        line_items: [
-          {
-            title: `Wholesale Application - ${app.company_name}`,
-            quantity: 1,
-            price: "0.00",
-            taxable: false,
+    // Parse contact name into first and last name
+    const nameParts = app.contact_name.trim().split(" ");
+    const firstName = nameParts[0] || "Unknown";
+    const lastName = nameParts.slice(1).join(" ") || "Contact";
+
+    // Build the note with application details
+    const noteLines = [
+      `Application ID: ${app.id}`,
+      `Business Type: ${app.business_type}`,
+      app.website_url ? `Website: ${app.website_url}` : null,
+      app.locations_count ? `Locations: ${app.locations_count}` : null,
+      app.estimated_monthly_volume ? `Est. Monthly Volume: ${app.estimated_monthly_volume}` : null,
+      app.product_interests?.length ? `Product Interests: ${app.product_interests.join(", ")}` : null,
+      app.tax_id ? `Tax ID: ${app.tax_id}` : null,
+      app.additional_notes ? `Notes: ${app.additional_notes}` : null,
+      `Submitted: ${app.created_at}`,
+    ].filter(Boolean).join("\n");
+
+    // GraphQL mutation to create a company with contact and location
+    const mutation = `
+      mutation companyCreate($input: CompanyCreateInput!) {
+        companyCreate(input: $input) {
+          company {
+            id
+            name
           }
-        ],
+          userErrors {
+            field
+            message
+          }
+        }
       }
+    `;
+
+    const variables = {
+      input: {
+        company: {
+          name: app.company_name,
+          note: noteLines,
+          externalId: app.id,
+        },
+        companyContact: {
+          firstName: firstName,
+          lastName: lastName,
+          email: app.email,
+          phone: app.phone || undefined,
+        },
+        companyLocation: {
+          name: "Main Location",
+          phone: app.phone || undefined,
+          billingSameAsShipping: true,
+        },
+      },
     };
 
     // Clean the domain (remove protocol if present)
     const cleanDomain = shopifyAdminDomain.replace(/^https?:\/\//, "").replace(/\/$/, "");
     
     const shopifyResponse = await fetch(
-      `https://${cleanDomain}/admin/api/2024-01/draft_orders.json`,
+      `https://${cleanDomain}/admin/api/2024-10/graphql.json`,
       {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
           "X-Shopify-Access-Token": shopifyAdminToken,
         },
-        body: JSON.stringify(draftOrderData),
+        body: JSON.stringify({
+          query: mutation,
+          variables: variables,
+        }),
       }
     );
 
@@ -119,7 +146,16 @@ serve(async (req: Request) => {
     }
 
     const shopifyResult = await shopifyResponse.json();
-    console.log("Draft order created:", shopifyResult.draft_order?.id);
+    
+    // Check for GraphQL user errors
+    if (shopifyResult.data?.companyCreate?.userErrors?.length > 0) {
+      const errors = shopifyResult.data.companyCreate.userErrors;
+      console.error("Shopify user errors:", errors);
+      throw new Error(`Shopify error: ${errors.map((e: any) => e.message).join(", ")}`);
+    }
+
+    const companyId = shopifyResult.data?.companyCreate?.company?.id;
+    console.log("Company created:", companyId);
 
     // Update the application status to indicate it was synced
     await supabase
@@ -130,8 +166,8 @@ serve(async (req: Request) => {
     return new Response(
       JSON.stringify({
         success: true,
-        message: "Application synced to Shopify as draft order",
-        draftOrderId: shopifyResult.draft_order?.id,
+        message: "Application synced to Shopify as Company",
+        companyId: companyId,
       }),
       {
         headers: { ...corsHeaders, "Content-Type": "application/json" },
