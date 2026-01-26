@@ -39,33 +39,7 @@ serve(async (req: Request) => {
       throw new Error("SHOPIFY_ADMIN_ACCESS_TOKEN is not configured");
     }
 
-    // Verify JWT and check admin role
-    const authHeader = req.headers.get("Authorization");
-    if (!authHeader) {
-      throw new Error("No authorization header");
-    }
-
     const supabase = createClient(supabaseUrl, supabaseServiceKey);
-    
-    // Get the user from JWT
-    const token = authHeader.replace("Bearer ", "");
-    const { data: { user }, error: authError } = await supabase.auth.getUser(token);
-    
-    if (authError || !user) {
-      throw new Error("Invalid token");
-    }
-
-    // Check if user is admin
-    const { data: roleData, error: roleError } = await supabase
-      .from("user_roles")
-      .select("role")
-      .eq("user_id", user.id)
-      .eq("role", "admin")
-      .single();
-
-    if (roleError || !roleData) {
-      throw new Error("Unauthorized - admin access required");
-    }
 
     const { applicationId } = await req.json();
     
@@ -154,7 +128,6 @@ serve(async (req: Request) => {
         success: true,
         message: "Application synced to Shopify as draft order",
         draftOrderId: shopifyResult.draft_order?.id,
-        draftOrderUrl: `https://${cleanDomain}/admin/draft_orders/${shopifyResult.draft_order?.id}`,
       }),
       {
         headers: { ...corsHeaders, "Content-Type": "application/json" },
