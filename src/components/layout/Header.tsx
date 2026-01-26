@@ -31,6 +31,9 @@ const recipeItems = [
   { name: "Blog", icon: BookOpen, href: "/blog", isBlog: true },
 ];
 
+// Shopify customer account URL
+const SHOPIFY_ACCOUNT_URL = "https://mondaymorning-af.myshopify.com/account";
+
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -174,7 +177,7 @@ const Header = () => {
               >
                 <Search className="h-4 w-4" />
               </button>
-              <a href="/auth">
+              <a href={SHOPIFY_ACCOUNT_URL} target="_blank" rel="noopener noreferrer">
                 <Button 
                   variant="ghost" 
                   size="sm"
@@ -350,7 +353,7 @@ const Header = () => {
             }`}
             style={{ transitionDelay: '600ms' }}
           >
-            <a href="/auth" onClick={() => setIsMenuOpen(false)}>
+            <a href={SHOPIFY_ACCOUNT_URL} target="_blank" rel="noopener noreferrer" onClick={() => setIsMenuOpen(false)}>
               <Button 
                 variant="outline" 
                 size="lg" 
