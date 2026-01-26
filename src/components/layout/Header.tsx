@@ -174,15 +174,17 @@ const Header = () => {
               >
                 <Search className="h-4 w-4" />
               </button>
-              <Button 
-                variant="ghost" 
-                size="sm"
-                className={`font-sans text-xs font-semibold uppercase tracking-wider ${
-                  showLightText ? 'text-cream hover:text-gold' : ''
-                }`}
-              >
-                Account
-              </Button>
+              <a href="/auth">
+                <Button 
+                  variant="ghost" 
+                  size="sm"
+                  className={`font-sans text-xs font-semibold uppercase tracking-wider ${
+                    showLightText ? 'text-cream hover:text-gold' : ''
+                  }`}
+                >
+                  Account
+                </Button>
+              </a>
               <button 
                 onClick={openCart}
                 className={`relative w-10 h-10 border-2 flex items-center justify-center transition-colors group ${
@@ -348,13 +350,15 @@ const Header = () => {
             }`}
             style={{ transitionDelay: '600ms' }}
           >
-            <Button 
-              variant="outline" 
-              size="lg" 
-              className="w-full font-sans text-sm font-bold uppercase tracking-widest py-6 border-2 border-background/30 text-background bg-transparent hover:bg-background/10"
-            >
-              Account
-            </Button>
+            <a href="/auth" onClick={() => setIsMenuOpen(false)}>
+              <Button 
+                variant="outline" 
+                size="lg" 
+                className="w-full font-sans text-sm font-bold uppercase tracking-widest py-6 border-2 border-background/30 text-background bg-transparent hover:bg-background/10"
+              >
+                Account
+              </Button>
+            </a>
             
             {/* Social / tagline */}
             <div className="mt-8 text-center">
