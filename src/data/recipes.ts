@@ -33,15 +33,15 @@ export const recipes: Recipe[] = [
     title: "Sunrise Mimosa",
     occasion: "breakfast",
     tagline: "Golden hour in a glass",
-    description: "A bright, bubbly mocktail combining fresh-pressed orange juice with Jøyus Sparkling White for the perfect Sunday brunch companion.",
+    description: "A bright, bubbly mocktail combining fresh-pressed orange juice with Bolle Sparkling White for the perfect Sunday brunch companion.",
     image: "https://images.unsplash.com/photo-1560508179-b2c9a3f8e92b?w=800&q=80",
     prepTime: "3 min",
     servings: 1,
     difficulty: "Easy",
-    ingredients: ["3 oz fresh orange juice", "3 oz Jøyus Sparkling White", "Orange twist", "Fresh mint sprig"],
+    ingredients: ["3 oz fresh orange juice", "3 oz Bolle Sparkling White", "Orange twist", "Fresh mint sprig"],
     featured: true,
     productKeywords: ["sparkling", "wine", "bubbly", "prosecco", "champagne"],
-    featuredProductHandle: "joyus-sparkling-white"
+    featuredProductHandle: "bolle-sparkling-white"
   },
   {
     id: "2",
@@ -90,14 +90,14 @@ export const recipes: Recipe[] = [
     title: "Peach Bellini",
     occasion: "breakfast",
     tagline: "Classic brunch elegance",
-    description: "Velvety peach purée meets Jøyus Sparkling Rosé for a timeless brunch favorite.",
+    description: "Velvety peach purée meets Bolle Sparkling Rosé for a timeless brunch favorite.",
     image: "https://images.unsplash.com/photo-1560508179-b2c9a3f8e92b?w=800&q=80",
     prepTime: "5 min",
     servings: 1,
     difficulty: "Easy",
-    ingredients: ["Fresh peach purée", "4 oz Jøyus Sparkling Rosé", "Peach slice", "Fresh mint"],
+    ingredients: ["Fresh peach purée", "4 oz Bolle Sparkling Rosé", "Peach slice", "Fresh mint"],
     productKeywords: ["sparkling", "wine", "prosecco", "bubbly"],
-    featuredProductHandle: "joyus-sparkling-rose"
+    featuredProductHandle: "bolle-sparkling-rose"
   },
   {
     id: "b6",
@@ -120,15 +120,15 @@ export const recipes: Recipe[] = [
     title: "NA Red Wine Sangria",
     occasion: "dinner",
     tagline: "Elegant & complex",
-    description: "Leitz Eins Zwei Zero Pinot Noir shines in this sophisticated sangria with fresh citrus and seasonal fruits.",
+    description: "Bolle Non-Alcoholic Red shines in this sophisticated sangria with fresh citrus and seasonal fruits.",
     image: "https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=800&q=80",
     prepTime: "10 min",
     servings: 4,
     difficulty: "Easy",
-    ingredients: ["1 bottle Leitz Eins Zwei Zero Pinot Noir", "Sliced oranges", "Fresh berries", "Cinnamon stick", "Sparkling water"],
+    ingredients: ["1 bottle Bolle Non-Alcoholic Red", "Sliced oranges", "Fresh berries", "Cinnamon stick", "Sparkling water"],
     featured: true,
     productKeywords: ["wine", "red", "cabernet", "merlot", "pinot"],
-    featuredProductHandle: "leitz-eins-zwei-zero-pinot-noir"
+    featuredProductHandle: "bolle-non-alcoholic-red"
   },
   {
     id: "5",
@@ -191,14 +191,14 @@ export const recipes: Recipe[] = [
     title: "Spiced Pear Fizz",
     occasion: "dinner",
     tagline: "Autumn in a glass",
-    description: "Ripe pear nectar meets Jøyus Sparkling White and warming spices for a cozy dinner companion.",
+    description: "Ripe pear nectar meets Bolle Sparkling White and warming spices for a cozy dinner companion.",
     image: "https://images.unsplash.com/photo-1558642452-9d2a7deb7f62?w=800&q=80",
     prepTime: "7 min",
     servings: 1,
     difficulty: "Easy",
-    ingredients: ["Fresh pear juice", "Cinnamon stick", "Star anise", "Ginger syrup", "4 oz Jøyus Sparkling White"],
+    ingredients: ["Fresh pear juice", "Cinnamon stick", "Star anise", "Ginger syrup", "4 oz Bolle Sparkling White"],
     productKeywords: ["sparkling", "cider", "pear", "fruit"],
-    featuredProductHandle: "joyus-sparkling-white"
+    featuredProductHandle: "bolle-sparkling-white"
   },
 
   // RELAXING
@@ -381,15 +381,15 @@ export const recipes: Recipe[] = [
     title: "Sparkling Elderflower Royale",
     occasion: "celebration",
     tagline: "Effervescent & elegant",
-    description: "Jøyus Sparkling White takes center stage in this sophisticated celebration-worthy mocktail.",
+    description: "Bolle Sparkling White takes center stage in this sophisticated celebration-worthy mocktail.",
     image: "https://images.unsplash.com/photo-1558642452-9d2a7deb7f62?w=800&q=80",
     prepTime: "3 min",
     servings: 1,
     difficulty: "Easy",
-    ingredients: ["5 oz Jøyus Sparkling White", "Dash of elderflower cordial", "Lemon twist", "Edible flowers"],
+    ingredients: ["5 oz Bolle Sparkling White", "Dash of elderflower cordial", "Lemon twist", "Edible flowers"],
     featured: true,
     productKeywords: ["sparkling", "champagne", "prosecco", "bubbly", "wine"],
-    featuredProductHandle: "joyus-sparkling-white"
+    featuredProductHandle: "bolle-sparkling-white"
   },
   {
     id: "14",
@@ -424,28 +424,28 @@ export const recipes: Recipe[] = [
     title: "Rose Gold Fizz",
     occasion: "celebration",
     tagline: "Blushing elegance",
-    description: "A stunning pink mocktail with Jøyus Sparkling Rosé and raspberry for special toasts.",
+    description: "A stunning pink mocktail with Bolle Sparkling Rosé and raspberry for special toasts.",
     image: "https://images.unsplash.com/photo-1560508179-b2c9a3f8e92b?w=800&q=80",
     prepTime: "5 min",
     servings: 1,
     difficulty: "Easy",
-    ingredients: ["4 oz Jøyus Sparkling Rosé", "Fresh raspberry purée", "Sparkling water", "Edible rose petals", "Gold sugar rim"],
+    ingredients: ["4 oz Bolle Sparkling Rosé", "Fresh raspberry purée", "Sparkling water", "Edible rose petals", "Gold sugar rim"],
     productKeywords: ["rose", "rosé", "pink", "wine", "floral"],
-    featuredProductHandle: "joyus-sparkling-rose"
+    featuredProductHandle: "bolle-sparkling-rose"
   },
   {
     id: "c5",
     title: "Champagne Dreams",
     occasion: "celebration",
     tagline: "Pop the bubbles",
-    description: "Jøyus Sparkling White with white grape and elderflower—as luxurious as the real thing.",
+    description: "Bolle Sparkling White with white grape and elderflower—as luxurious as the real thing.",
     image: "https://images.unsplash.com/photo-1544145945-f90425340c7e?w=800&q=80",
     prepTime: "3 min",
     servings: 1,
     difficulty: "Easy",
-    ingredients: ["White grape juice", "5 oz Jøyus Sparkling White", "Lemon twist", "Fresh thyme sprig"],
+    ingredients: ["White grape juice", "5 oz Bolle Sparkling White", "Lemon twist", "Fresh thyme sprig"],
     productKeywords: ["sparkling", "champagne", "prosecco", "bubbly", "white"],
-    featuredProductHandle: "joyus-sparkling-white"
+    featuredProductHandle: "bolle-sparkling-white"
   },
   {
     id: "c6",
