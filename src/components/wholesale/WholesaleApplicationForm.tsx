@@ -3,7 +3,6 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { Checkbox } from "@/components/ui/checkbox";
 import {
   Dialog,
   DialogContent,
@@ -40,15 +39,6 @@ const businessTypes = [
   "Other",
 ];
 
-const productInterests = [
-  { id: "na-spirits", label: "NA Spirits" },
-  { id: "na-wines", label: "NA Wines" },
-  { id: "na-beers", label: "NA Beers" },
-  { id: "functional-beverages", label: "Functional Beverages" },
-  { id: "mixers", label: "Mixers & Tonics" },
-  { id: "rtd", label: "Ready-to-Drink Cocktails" },
-];
-
 const volumeOptions = [
   "Less than $500/month",
   "$500 - $1,000/month",
@@ -71,22 +61,12 @@ export default function WholesaleApplicationForm({ trigger }: WholesaleApplicati
     websiteUrl: "",
     locationsCount: "",
     estimatedMonthlyVolume: "",
-    productInterests: [] as string[],
     additionalNotes: "",
     taxId: "",
   });
 
   const handleInputChange = (field: string, value: string) => {
     setFormData(prev => ({ ...prev, [field]: value }));
-  };
-
-  const handleProductInterestToggle = (productId: string) => {
-    setFormData(prev => ({
-      ...prev,
-      productInterests: prev.productInterests.includes(productId)
-        ? prev.productInterests.filter(id => id !== productId)
-        : [...prev.productInterests, productId],
-    }));
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -112,7 +92,6 @@ export default function WholesaleApplicationForm({ trigger }: WholesaleApplicati
           website_url: formData.websiteUrl || null,
           locations_count: formData.locationsCount ? parseInt(formData.locationsCount) : null,
           estimated_monthly_volume: formData.estimatedMonthlyVolume || null,
-          product_interests: formData.productInterests.length > 0 ? formData.productInterests : null,
           additional_notes: formData.additionalNotes || null,
           tax_id: formData.taxId || null,
           status: "pending",
@@ -154,7 +133,6 @@ export default function WholesaleApplicationForm({ trigger }: WholesaleApplicati
           websiteUrl: "",
           locationsCount: "",
           estimatedMonthlyVolume: "",
-          productInterests: [],
           additionalNotes: "",
           taxId: "",
         });
@@ -221,10 +199,10 @@ export default function WholesaleApplicationForm({ trigger }: WholesaleApplicati
             <Label htmlFor="websiteUrl">Website (optional)</Label>
             <Input
               id="websiteUrl"
-              type="url"
+              type="text"
               value={formData.websiteUrl}
               onChange={(e) => handleInputChange("websiteUrl", e.target.value)}
-              placeholder="https://yourwebsite.com"
+              placeholder="yourwebsite.com"
             />
           </div>
           
@@ -295,25 +273,10 @@ export default function WholesaleApplicationForm({ trigger }: WholesaleApplicati
         </div>
       </div>
 
-      {/* Product Interests */}
+      {/* Order Estimate */}
       <div className="space-y-4">
-        <h3 className="font-serif text-lg text-forest border-b border-forest/10 pb-2">Product Interests</h3>
+        <h3 className="font-serif text-lg text-forest border-b border-forest/10 pb-2">Order Estimate</h3>
         
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-          {productInterests.map((product) => (
-            <div key={product.id} className="flex items-center space-x-2">
-              <Checkbox
-                id={product.id}
-                checked={formData.productInterests.includes(product.id)}
-                onCheckedChange={() => handleProductInterestToggle(product.id)}
-              />
-              <Label htmlFor={product.id} className="text-sm cursor-pointer">
-                {product.label}
-              </Label>
-            </div>
-          ))}
-        </div>
-
         <div className="space-y-2">
           <Label htmlFor="estimatedMonthlyVolume">Estimated Monthly Volume</Label>
           <Select
