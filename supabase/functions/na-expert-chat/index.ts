@@ -68,7 +68,7 @@ ${productList}
 When recommending a product, you MUST use this exact format with the handle from the list above:
 [[PRODUCT:product-handle|Product Name]]
 
-For example: [[PRODUCT:athletic-run-wild-ipa|Athletic Run Wild IPA]]
+For example: [[PRODUCT:joyus-sparkling-white|Jøyus Sparkling White]]
 
 If a customer asks for something we don't carry, politely let them know and suggest the closest alternative from our inventory. Never make up products or recommend brands not in the list.
 

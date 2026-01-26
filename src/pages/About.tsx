@@ -21,7 +21,7 @@ import {
 const About = () => {
   const brands = [
     "Atmos", "Buzzkill", "Pentire", "Tenneyson", "Three Spirit", 
-    "Bauhaus", "Pathfinder", "Go Brewing", "Dromme", "Ritual Zero Proof"
+    "Bauhaus", "Pathfinder", "Go Brewing", "Dromme", "Abstinence"
   ];
 
   const testimonials = [

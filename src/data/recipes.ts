@@ -48,14 +48,14 @@ export const recipes: Recipe[] = [
     title: "Morning Clarity Fizz",
     occasion: "breakfast",
     tagline: "Start your day intentionally",
-    description: "A refreshing blend of ginger, lemon, and Kin Euphorics High Rhode topped with sparkling water.",
+    description: "A refreshing blend of ginger, lemon, and Amethyst Ginger Lemon topped with sparkling water.",
     image: "https://images.unsplash.com/photo-1544145945-f90425340c7e?w=800&q=80",
     prepTime: "5 min",
     servings: 1,
     difficulty: "Easy",
-    ingredients: ["4 oz Kin Euphorics High Rhode", "1 oz fresh lemon juice", "Sparkling water", "Candied ginger"],
-    productKeywords: ["functional", "elixir", "wellness", "tonic", "adaptogen"],
-    featuredProductHandle: "kin-euphorics-high-rhode"
+    ingredients: ["4 oz Amethyst Ginger Lemon", "1 oz fresh lemon juice", "Sparkling water", "Candied ginger"],
+    productKeywords: ["functional", "elixir", "wellness", "tonic", "adaptogen", "ginger"],
+    featuredProductHandle: "amethyst-na-spirits-ginger-lemon"
   },
   {
     id: "3",
@@ -104,14 +104,14 @@ export const recipes: Recipe[] = [
     title: "Tropical Acai Refresher",
     occasion: "breakfast",
     tagline: "Superfood sunrise",
-    description: "Antioxidant-rich acai blended with Caleño Light & Zesty for an energizing morning boost.",
+    description: "Antioxidant-rich acai blended with Amethyst Tropical Punch for an energizing morning boost.",
     image: "https://images.unsplash.com/photo-1590301157890-4810ed352733?w=800&q=80",
     prepTime: "8 min",
     servings: 1,
     difficulty: "Easy",
-    ingredients: ["Acai purée", "2 oz Caleño Light & Zesty", "Pineapple juice", "Coconut water", "Fresh berries"],
+    ingredients: ["Acai purée", "2 oz Amethyst Tropical Punch", "Pineapple juice", "Coconut water", "Fresh berries"],
     productKeywords: ["tropical", "fruit", "wellness", "functional"],
-    featuredProductHandle: "caleno-light-zesty"
+    featuredProductHandle: "amethyst-na-spirits-tropical-punch"
   },
 
   // DINNER
@@ -207,15 +207,15 @@ export const recipes: Recipe[] = [
     title: "Chamomile Honey Soother",
     occasion: "relaxing",
     tagline: "Unwind naturally",
-    description: "Warm chamomile tea meets Kin Euphorics Dream Light for a calming evening mocktail perfect for winding down.",
+    description: "Warm chamomile tea meets All The Bitter Lavender Bitters for a calming evening mocktail perfect for winding down.",
     image: "https://images.unsplash.com/photo-1558642452-9d2a7deb7f62?w=800&q=80",
     prepTime: "8 min",
     servings: 1,
     difficulty: "Easy",
-    ingredients: ["Chamomile tea", "2 oz Kin Euphorics Dream Light", "Local honey", "Fresh lemon juice", "Cinnamon stick"],
+    ingredients: ["Chamomile tea", "3 dashes All The Bitter Lavender Bitters", "Local honey", "Fresh lemon juice", "Cinnamon stick"],
     featured: true,
-    productKeywords: ["tea", "herbal", "wellness", "functional"],
-    featuredProductHandle: "kin-euphorics-dream-light"
+    productKeywords: ["tea", "herbal", "wellness", "functional", "bitters"],
+    featuredProductHandle: "all-the-bitter-lavender-bitters"
   },
   {
     id: "8",
@@ -278,14 +278,14 @@ export const recipes: Recipe[] = [
     title: "Vanilla Almond Nightcap",
     occasion: "relaxing",
     tagline: "Sweet serenity",
-    description: "Creamy almond milk with Caleño Dark & Spicy and a hint of nutmeg for a comforting evening ritual.",
+    description: "Creamy almond milk with Abstinence Epilogue X and a hint of nutmeg for a comforting evening drink.",
     image: "https://images.unsplash.com/photo-1544145945-f90425340c7e?w=800&q=80",
     prepTime: "5 min",
     servings: 1,
     difficulty: "Easy",
-    ingredients: ["Almond milk", "2 oz Caleño Dark & Spicy", "Vanilla bean", "Maple syrup", "Ground nutmeg"],
-    productKeywords: ["cream", "vanilla", "dessert", "sweet"],
-    featuredProductHandle: "caleno-dark-spicy"
+    ingredients: ["Almond milk", "2 oz Abstinence Epilogue X", "Vanilla bean", "Maple syrup", "Ground nutmeg"],
+    productKeywords: ["cream", "vanilla", "dessert", "sweet", "whiskey"],
+    featuredProductHandle: "abstinence-spirits-epilogue-x"
   },
 
   // BEACH
@@ -294,15 +294,15 @@ export const recipes: Recipe[] = [
     title: "Tropical Sunset",
     occasion: "beach",
     tagline: "Paradise found",
-    description: "Pineapple, coconut, and Caleño Dark & Spicy create the ultimate beach day sipper—no umbrella required.",
+    description: "Pineapple, coconut, and Amethyst Tropical Punch create the ultimate beach day sipper—no umbrella required.",
     image: "https://images.unsplash.com/photo-1536935338788-846bb9981813?w=800&q=80",
     prepTime: "5 min",
     servings: 1,
     difficulty: "Easy",
-    ingredients: ["4 oz pineapple juice", "2 oz Caleño Dark & Spicy", "Coconut cream", "Pineapple wedge", "Maraschino cherry"],
+    ingredients: ["4 oz pineapple juice", "2 oz Amethyst Tropical Punch", "Coconut cream", "Pineapple wedge", "Maraschino cherry"],
     featured: true,
     productKeywords: ["rum", "tropical", "coconut", "pineapple", "caribbean"],
-    featuredProductHandle: "caleno-dark-spicy"
+    featuredProductHandle: "amethyst-na-spirits-tropical-punch"
   },
   {
     id: "11",
@@ -323,42 +323,42 @@ export const recipes: Recipe[] = [
     title: "Coconut Lime Refresher",
     occasion: "beach",
     tagline: "Coastal vibes only",
-    description: "Creamy coconut water, zesty lime, and Caleño Light & Zesty transport you straight to the shoreline.",
+    description: "Creamy coconut water, zesty lime, and Amethyst Lime Basil transport you straight to the shoreline.",
     image: "https://images.unsplash.com/photo-1534353473418-4cfa6c56fd38?w=800&q=80",
     prepTime: "3 min",
     servings: 1,
     difficulty: "Easy",
-    ingredients: ["6 oz coconut water", "2 oz Caleño Light & Zesty", "Fresh lime juice", "Lime wheel", "Toasted coconut flakes"],
-    productKeywords: ["rum", "coconut", "tropical", "caribbean"],
-    featuredProductHandle: "caleno-light-zesty"
+    ingredients: ["6 oz coconut water", "2 oz Amethyst Lime Basil", "Fresh lime juice", "Lime wheel", "Toasted coconut flakes"],
+    productKeywords: ["rum", "coconut", "tropical", "caribbean", "lime"],
+    featuredProductHandle: "amethyst-na-spirits-lime-basil"
   },
   {
     id: "be4",
     title: "Mango Tango Margarita",
     occasion: "beach",
     tagline: "Tropical bliss",
-    description: "Ripe mango blended with Ritual Zero Proof Tequila Alternative and lime for an instant vacation in a glass.",
+    description: "Ripe mango blended with Amethyst Watermelon Lime and lime for an instant vacation in a glass.",
     image: "https://images.unsplash.com/photo-1560508179-b2c9a3f8e92b?w=800&q=80",
     prepTime: "5 min",
     servings: 1,
     difficulty: "Easy",
-    ingredients: ["Fresh mango", "2 oz Ritual Zero Proof Tequila Alternative", "Lime juice", "Agave nectar", "Chili-lime rim"],
+    ingredients: ["Fresh mango", "2 oz Amethyst Watermelon Lime", "Lime juice", "Agave nectar", "Chili-lime rim"],
     productKeywords: ["tequila", "agave", "margarita", "mango", "mexican"],
-    featuredProductHandle: "ritual-zero-proof-tequila-alternative"
+    featuredProductHandle: "amethyst-na-spirits-watermelon-lime"
   },
   {
     id: "be5",
     title: "Piña Colada Dream",
     occasion: "beach",
     tagline: "Classic island escape",
-    description: "Creamy coconut, sweet pineapple, and Caleño Dark & Spicy blended to perfection—the beach essential.",
+    description: "Creamy coconut, sweet pineapple, and Amethyst Tropical Punch blended to perfection—the beach essential.",
     image: "https://images.unsplash.com/photo-1551538827-9c037cb4f32a?w=800&q=80",
     prepTime: "5 min",
     servings: 1,
     difficulty: "Easy",
-    ingredients: ["4 oz pineapple juice", "2 oz Caleño Dark & Spicy", "Coconut cream", "Pineapple wedge", "Maraschino cherry"],
+    ingredients: ["4 oz pineapple juice", "2 oz Amethyst Tropical Punch", "Coconut cream", "Pineapple wedge", "Maraschino cherry"],
     productKeywords: ["rum", "coconut", "pineapple", "tropical"],
-    featuredProductHandle: "caleno-dark-spicy"
+    featuredProductHandle: "amethyst-na-spirits-tropical-punch"
   },
   {
     id: "be6",
