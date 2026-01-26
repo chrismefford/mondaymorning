@@ -175,18 +175,8 @@ const Header = () => {
                 }`}
               >
                 <Search className="h-4 w-4" />
+                Search
               </button>
-              <a href={SHOPIFY_ACCOUNT_URL} target="_blank" rel="noopener noreferrer">
-                <Button 
-                  variant="ghost" 
-                  size="sm"
-                  className={`font-sans text-xs font-semibold uppercase tracking-wider ${
-                    showLightText ? 'text-cream hover:text-gold' : ''
-                  }`}
-                >
-                  Account
-                </Button>
-              </a>
               <button 
                 onClick={openCart}
                 className={`relative w-10 h-10 border-2 flex items-center justify-center transition-colors group ${
