@@ -84,7 +84,7 @@ serve(async (req: Request) => {
       `Submitted: ${app.created_at}`,
     ].filter(Boolean).join("\n");
 
-    // GraphQL mutation to create a company with contact and location
+    // GraphQL mutation to create a company with contact (no location - can be added manually in Shopify)
     const mutation = `
       mutation companyCreate($input: CompanyCreateInput!) {
         companyCreate(input: $input) {
@@ -111,12 +111,6 @@ serve(async (req: Request) => {
           firstName: firstName,
           lastName: lastName,
           email: app.email,
-          phone: app.phone || undefined,
-        },
-        companyLocation: {
-          name: "Main Location",
-          phone: app.phone || undefined,
-          billingSameAsShipping: true,
         },
       },
     };
