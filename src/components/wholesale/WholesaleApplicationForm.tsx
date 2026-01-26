@@ -96,21 +96,40 @@ export default function WholesaleApplicationForm({ trigger }: WholesaleApplicati
   const onSubmit = async (data: ApplicationFormData) => {
     setIsSubmitting(true);
     try {
-      const { error } = await supabase.from("wholesale_applications").insert({
-        company_name: data.company_name,
-        contact_name: data.contact_name,
-        email: data.email,
-        phone: data.phone || null,
-        business_type: data.business_type,
-        tax_id: data.tax_id || null,
-        estimated_monthly_volume: data.estimated_monthly_volume || null,
-        locations_count: data.locations_count || 1,
-        website_url: data.website_url || null,
-        additional_notes: data.additional_notes || null,
-        product_interests: selectedInterests,
-      });
+      const { data: insertedApp, error } = await supabase
+        .from("wholesale_applications")
+        .insert({
+          company_name: data.company_name,
+          contact_name: data.contact_name,
+          email: data.email,
+          phone: data.phone || null,
+          business_type: data.business_type,
+          tax_id: data.tax_id || null,
+          estimated_monthly_volume: data.estimated_monthly_volume || null,
+          locations_count: data.locations_count || 1,
+          website_url: data.website_url || null,
+          additional_notes: data.additional_notes || null,
+          product_interests: selectedInterests,
+        })
+        .select()
+        .single();
 
       if (error) throw error;
+
+      // Sync to Shopify in the background (don't block success)
+      if (insertedApp?.id) {
+        supabase.functions.invoke("sync-wholesale-shopify", {
+          body: { applicationId: insertedApp.id },
+        }).then((result) => {
+          if (result.error) {
+            console.error("Shopify sync failed:", result.error);
+          } else {
+            console.log("Application synced to Shopify");
+          }
+        }).catch((err) => {
+          console.error("Shopify sync error:", err);
+        });
+      }
 
       setIsSuccess(true);
       toast.success("Application submitted! We'll be in touch within 24-48 hours.");
