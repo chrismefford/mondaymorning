@@ -32,11 +32,15 @@ serve(async (req: Request) => {
   try {
     const supabaseUrl = Deno.env.get("SUPABASE_URL")!;
     const supabaseServiceKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
-    const shopifyDomain = Deno.env.get("SHOPIFY_STORE_DOMAIN")!;
+    const shopifyAdminDomain = Deno.env.get("SHOPIFY_ADMIN_DOMAIN")!;
     const shopifyAdminToken = Deno.env.get("SHOPIFY_ADMIN_ACCESS_TOKEN")!;
 
     if (!shopifyAdminToken) {
       throw new Error("SHOPIFY_ADMIN_ACCESS_TOKEN is not configured");
+    }
+
+    if (!shopifyAdminDomain) {
+      throw new Error("SHOPIFY_ADMIN_DOMAIN is not configured");
     }
 
     const supabase = createClient(supabaseUrl, supabaseServiceKey);
@@ -94,7 +98,7 @@ serve(async (req: Request) => {
     };
 
     // Clean the domain (remove protocol if present)
-    const cleanDomain = shopifyDomain.replace(/^https?:\/\//, "").replace(/\/$/, "");
+    const cleanDomain = shopifyAdminDomain.replace(/^https?:\/\//, "").replace(/\/$/, "");
     
     const shopifyResponse = await fetch(
       `https://${cleanDomain}/admin/api/2024-01/draft_orders.json`,
