@@ -5,6 +5,28 @@ const corsHeaders = {
   "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
 };
 
+// Simple in-memory rate limiting (resets on function cold start)
+const rateLimitMap = new Map<string, { count: number; resetTime: number }>();
+const RATE_LIMIT_WINDOW_MS = 60000; // 1 minute window
+const RATE_LIMIT_MAX_REQUESTS = 10; // 10 requests per minute per IP
+
+function checkRateLimit(clientId: string): boolean {
+  const now = Date.now();
+  const record = rateLimitMap.get(clientId);
+  
+  if (!record || now > record.resetTime) {
+    rateLimitMap.set(clientId, { count: 1, resetTime: now + RATE_LIMIT_WINDOW_MS });
+    return true;
+  }
+  
+  if (record.count >= RATE_LIMIT_MAX_REQUESTS) {
+    return false;
+  }
+  
+  record.count++;
+  return true;
+}
+
 const buildSystemPrompt = (products: Array<{ handle: string; name: string; category: string }>) => {
   const productList = products.map(p => `- ${p.name} (handle: ${p.handle}, category: ${p.category})`).join("\n");
   
@@ -63,6 +85,19 @@ serve(async (req) => {
   }
 
   try {
+    // Rate limiting using client IP or a fallback identifier
+    const clientId = req.headers.get("x-forwarded-for") || 
+                     req.headers.get("x-real-ip") || 
+                     "unknown";
+    
+    if (!checkRateLimit(clientId)) {
+      console.log(`Rate limit exceeded for client: ${clientId}`);
+      return new Response(JSON.stringify({ error: "Too many requests. Please wait a moment before trying again." }), {
+        status: 429,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
+
     const { messages, products } = await req.json();
     const LOVABLE_API_KEY = Deno.env.get("LOVABLE_API_KEY");
     
