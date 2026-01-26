@@ -47,27 +47,87 @@ const SearchOverlay = ({ isOpen, onClose }: SearchOverlayProps) => {
     };
   }, [isOpen, onClose]);
 
+  // Search aliases for common product category terms
+  const searchAliases: Record<string, string[]> = {
+    "red": ["red wine", "red", "cabernet", "merlot", "pinot noir", "rouge"],
+    "white": ["white wine", "white", "chardonnay", "sauvignon blanc", "pinot grigio", "riesling"],
+    "rose": ["rosé", "rose", "pink"],
+    "rosé": ["rosé", "rose", "pink"],
+    "wine": ["wine", "vino", "dealcoholized wine"],
+    "beer": ["beer", "lager", "ale", "ipa", "pilsner", "stout", "porter", "wheat"],
+    "light beer": ["light", "lite", "lager", "pilsner", "session"],
+    "ipa": ["ipa", "india pale ale", "pale ale", "hop"],
+    "spirit": ["spirit", "whiskey", "bourbon", "gin", "rum", "vodka", "tequila"],
+    "sparkling": ["sparkling", "bubbly", "champagne", "prosecco", "cava", "fizz"],
+    "functional": ["functional", "adaptogen", "nootropic", "wellness", "elixir"],
+    "cocktail": ["cocktail", "mixer", "ready to drink", "rtd", "canned"],
+  };
+
+  // Helper to check if product matches search terms
+  const matchesSearch = (product: ReturnType<typeof shopifyToLocalProduct> & { 
+    tags?: string[]; 
+    vendor?: string; 
+    title?: string;
+    productType?: string;
+  }, searchTerms: string[]): boolean => {
+    // Build a searchable text blob from all product fields
+    const searchableText = [
+      product.title,
+      product.name,
+      product.category,
+      product.description,
+      product.vendor,
+      product.productType,
+      ...(product.tags || []),
+    ]
+      .filter(Boolean)
+      .join(" ")
+      .toLowerCase();
+
+    // Every search term must match somewhere in the product
+    return searchTerms.every(term => searchableText.includes(term));
+  };
+
   // Filter products based on search query
   const filteredProducts = products
     ?.map((product) => {
       const local = shopifyToLocalProduct(product);
       // Include raw product data for better search matching
-      return { ...local, tags: product.tags, vendor: product.vendor, title: product.title };
+      return { 
+        ...local, 
+        tags: product.tags, 
+        vendor: product.vendor, 
+        title: product.title,
+        productType: product.productType 
+      };
     })
     .filter((product) => {
       if (!debouncedQuery.trim()) return false;
-      const searchLower = debouncedQuery.toLowerCase();
-      // Search product title, name, category, description, vendor, and tags
-      return (
-        product.title?.toLowerCase().includes(searchLower) ||
-        product.name.toLowerCase().includes(searchLower) ||
-        product.category.toLowerCase().includes(searchLower) ||
-        product.description?.toLowerCase().includes(searchLower) ||
-        product.vendor?.toLowerCase().includes(searchLower) ||
-        product.tags?.some((tag: string) => tag.toLowerCase().includes(searchLower))
-      );
+      const searchLower = debouncedQuery.toLowerCase().trim();
+      
+      // Split query into individual terms for multi-word matching
+      const searchTerms = searchLower.split(/\s+/).filter(t => t.length > 0);
+      
+      // Check direct match first
+      if (matchesSearch(product, searchTerms)) {
+        return true;
+      }
+      
+      // Check if any alias matches
+      for (const [key, aliases] of Object.entries(searchAliases)) {
+        if (searchLower.includes(key)) {
+          // If user searched for a term with aliases, check if product matches any alias
+          const hasAliasMatch = aliases.some(alias => {
+            const aliasTerms = alias.toLowerCase().split(/\s+/);
+            return matchesSearch(product, aliasTerms);
+          });
+          if (hasAliasMatch) return true;
+        }
+      }
+      
+      return false;
     })
-    .slice(0, 12);
+    .slice(0, 24);
 
   const handleProductClick = (handle: string) => {
     navigate(`/product/${handle}`);
