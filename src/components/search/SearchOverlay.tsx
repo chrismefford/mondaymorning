@@ -14,8 +14,11 @@ const SearchOverlay = ({ isOpen, onClose }: SearchOverlayProps) => {
   const inputRef = useRef<HTMLInputElement>(null);
   const navigate = useNavigate();
 
-  // Fetch full catalog for reliable search (store has 400+ products)
-  const { data: products, isLoading } = useShopifyAllProducts({ enabled: isOpen });
+  // Fetch full catalog sorted by best-selling for relevant search results
+  const { data: products, isLoading } = useShopifyAllProducts({ 
+    enabled: isOpen,
+    sortKey: "BEST_SELLING"
+  });
 
   // Debounce search query
   useEffect(() => {
