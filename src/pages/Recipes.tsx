@@ -91,12 +91,18 @@ function findRecipeProduct(recipe: Recipe, products: ShopifyProduct[]): RecipePr
  */
 function isProductIngredient(ingredient: string, productName: string): boolean {
   const ingredientLower = ingredient.toLowerCase();
-  const productNameLower = productName.toLowerCase();
+  // Remove dashes and extra spaces from product name for flexible matching
+  const productNameLower = productName.toLowerCase().replace(/-/g, ' ').replace(/\s+/g, ' ').trim();
   
-  // Check if ingredient contains product name or key parts of it
+  // Check if ingredient contains product name directly (without dashes)
+  const ingredientNormalized = ingredientLower.replace(/-/g, ' ').replace(/\s+/g, ' ');
+  if (ingredientNormalized.includes(productNameLower)) {
+    return true;
+  }
+  
+  // Check if key parts of product name are in ingredient
   const productWords = productNameLower.split(/\s+/).filter(w => w.length > 3);
-  return productWords.some(word => ingredientLower.includes(word)) || 
-         ingredientLower.includes(productNameLower);
+  return productWords.length > 0 && productWords.every(word => ingredientLower.includes(word));
 }
 
 const occasions: Occasion[] = ["breakfast", "dinner", "relaxing", "beach", "celebration"];
