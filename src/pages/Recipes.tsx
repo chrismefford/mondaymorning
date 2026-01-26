@@ -16,6 +16,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { useShopifyProducts, ShopifyProduct, shopifyToLocalProduct } from "@/hooks/useShopifyProducts";
+import { useShopifyProduct } from "@/hooks/useShopifyProduct";
 import { useCart } from "@/hooks/useCart";
 import { 
   SITE_NAME, 
@@ -121,11 +122,27 @@ const RecipesPage = () => {
   // Fetch all products to match with recipes
   const { data: shopifyProducts = [] } = useShopifyProducts(100);
 
+  // Fetch the featured product directly (important: catalog has 400+ items; first 100 may not include it)
+  const { data: featuredProductData } = useShopifyProduct(
+    selectedRecipe?.featuredProductHandle ?? ""
+  );
+
   // Find matching product for selected recipe
   const matchingProductData = useMemo(() => {
-    if (!selectedRecipe || shopifyProducts.length === 0) return null;
+    if (!selectedRecipe) return null;
+
+    // Prefer the explicit featured product (by handle) when available
+    if (featuredProductData?.raw) {
+      return {
+        product: featuredProductData,
+        shopifyProduct: featuredProductData.raw,
+      };
+    }
+
+    // Fallback to matching within the first N products
+    if (shopifyProducts.length === 0) return null;
     return findRecipeProduct(selectedRecipe, shopifyProducts);
-  }, [selectedRecipe, shopifyProducts]);
+  }, [selectedRecipe, shopifyProducts, featuredProductData]);
 
   const filteredRecipes = activeOccasion === "all" 
     ? recipes 
