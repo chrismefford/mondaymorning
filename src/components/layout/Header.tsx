@@ -168,12 +168,11 @@ const Header = () => {
             <div className="hidden lg:flex items-center gap-2">
               <button 
                 onClick={() => setIsSearchOpen(true)}
-                className={`w-10 h-10 border-2 flex items-center justify-center transition-colors group ${
+                className={`flex items-center gap-2 px-3 py-2 font-sans text-xs font-semibold uppercase tracking-wider transition-colors ${
                   showLightText 
-                    ? 'border-cream/50 text-cream hover:bg-cream hover:text-forest' 
-                    : 'border-foreground hover:bg-foreground hover:text-background'
+                    ? 'text-cream hover:text-gold' 
+                    : 'text-foreground hover:text-primary'
                 }`}
-                aria-label="Search products"
               >
                 <Search className="h-4 w-4" />
               </button>
