@@ -17,3 +17,12 @@ verify_jwt = false
 
 [functions.generate-recipes]
 verify_jwt = false
+
+[functions.sync-wholesale-shopify]
+verify_jwt = false
+
+[functions.scrape-blog]
+verify_jwt = false
+
+[functions.download-blog-image]
+verify_jwt = false
