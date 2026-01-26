@@ -48,19 +48,23 @@ const SearchOverlay = ({ isOpen, onClose }: SearchOverlayProps) => {
   }, [isOpen, onClose]);
 
   // Search aliases - map search terms to additional terms to look for
+  // Tags in Shopify use camelCase like "RedWine", "WhiteWine", "SparklingWine"
   const searchAliases: Record<string, string[]> = {
-    "red": ["cabernet", "merlot", "pinot noir", "rouge", "tempranillo", "shiraz", "syrah"],
-    "white": ["chardonnay", "sauvignon blanc", "pinot grigio", "riesling", "moscato"],
-    "rose": ["rosé", "pink"],
-    "rosé": ["rose", "pink"],
+    "red": ["redwine", "cabernet", "merlot", "pinot noir", "rouge", "tempranillo", "shiraz", "syrah", "ruby"],
+    "red wine": ["redwine"],
+    "white": ["whitewine", "chardonnay", "sauvignon blanc", "pinot grigio", "riesling", "moscato"],
+    "white wine": ["whitewine"],
+    "rose": ["rosé", "roséwine", "rosewine", "pink"],
+    "rosé": ["rose", "roséwine", "rosewine", "pink"],
+    "sparkling": ["sparklingwine", "bubbly", "champagne", "prosecco", "cava", "fizz", "brut"],
     "beer": ["lager", "ale", "ipa", "pilsner", "stout", "porter", "wheat", "helles", "kolsch"],
     "light": ["lite", "lager", "pilsner", "session", "helles", "kolsch"],
     "ipa": ["india pale ale", "pale ale"],
     "spirit": ["whiskey", "bourbon", "gin", "rum", "vodka", "tequila", "aperitif"],
     "spirits": ["whiskey", "bourbon", "gin", "rum", "vodka", "tequila", "aperitif"],
-    "sparkling": ["bubbly", "champagne", "prosecco", "cava", "fizz", "brut"],
     "functional": ["adaptogen", "nootropic", "wellness", "elixir", "kava"],
     "cocktail": ["mixer", "ready to drink", "rtd"],
+    "canned": ["cannedwine", "rtd"],
   };
 
   // Helper to check if product matches a single term (or any of its aliases)
