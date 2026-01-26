@@ -72,7 +72,7 @@ export default function WholesaleApplicationForm({ trigger }: WholesaleApplicati
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    if (!formData.companyName || !formData.contactName || !formData.email || !formData.businessType) {
+    if (!formData.companyName || !formData.contactName || !formData.email || !formData.phone || !formData.businessType) {
       toast.error("Please fill in all required fields");
       return;
     }
@@ -251,13 +251,14 @@ export default function WholesaleApplicationForm({ trigger }: WholesaleApplicati
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="space-y-2">
-            <Label htmlFor="phone">Phone (optional)</Label>
+            <Label htmlFor="phone">Phone *</Label>
             <Input
               id="phone"
               type="tel"
               value={formData.phone}
               onChange={(e) => handleInputChange("phone", e.target.value)}
               placeholder="(555) 123-4567"
+              required
             />
           </div>
           
