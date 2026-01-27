@@ -207,6 +207,7 @@ serve(async (req: Request) => {
 
     // Create the CompanyContact separately WITHOUT assigning to a location.
     // This prevents Shopify from auto-assigning a role (like "Ordering only") which triggers "Ordering approved".
+    let createdContactId: string | null = null;
     if (companyId) {
       try {
         const createContactMutation = `
@@ -267,11 +268,66 @@ serve(async (req: Request) => {
         } else if (topLevelErrors.length > 0) {
           console.warn("companyContactCreate GraphQL errors:", topLevelErrors);
         } else {
-          const contactId = contactJson?.data?.companyContactCreate?.companyContact?.id;
-          console.log(`Created contact ${contactId} WITHOUT role assignment (Ordering NOT approved)`);
+          createdContactId = contactJson?.data?.companyContactCreate?.companyContact?.id;
+          console.log(`Created contact ${createdContactId} WITHOUT role assignment (Ordering NOT approved)`);
         }
       } catch (e) {
         console.warn("companyContactCreate failed (non-fatal, company still created):", e);
+      }
+    }
+
+    // Set the created contact as the company's MAIN CONTACT so they appear in the "Main contact" column.
+    if (companyId && createdContactId) {
+      try {
+        const assignMainContactMutation = `
+          mutation companyAssignMainContact($companyId: ID!, $companyContactId: ID!) {
+            companyAssignMainContact(companyId: $companyId, companyContactId: $companyContactId) {
+              company {
+                id
+                mainContact {
+                  id
+                }
+              }
+              userErrors {
+                field
+                message
+              }
+            }
+          }
+        `;
+
+        const mainContactResp = await fetch(
+          `https://${cleanDomain}/admin/api/2024-10/graphql.json`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              "X-Shopify-Access-Token": shopifyAdminToken,
+            },
+            body: JSON.stringify({
+              query: assignMainContactMutation,
+              variables: {
+                companyId,
+                companyContactId: createdContactId,
+              },
+            }),
+          }
+        );
+
+        const mainContactJson = await mainContactResp.json();
+        const mainContactUserErrors = mainContactJson?.data?.companyAssignMainContact?.userErrors ?? [];
+        const mainContactTopErrors = mainContactJson?.errors ?? [];
+
+        if (mainContactUserErrors.length > 0) {
+          console.warn("companyAssignMainContact userErrors:", mainContactUserErrors);
+        } else if (mainContactTopErrors.length > 0) {
+          console.warn("companyAssignMainContact GraphQL errors:", mainContactTopErrors);
+        } else {
+          const mainContactId = mainContactJson?.data?.companyAssignMainContact?.company?.mainContact?.id;
+          console.log(`Set ${mainContactId} as main contact for company`);
+        }
+      } catch (e) {
+        console.warn("companyAssignMainContact failed (non-fatal):", e);
       }
     }
 
