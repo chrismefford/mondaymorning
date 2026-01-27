@@ -193,6 +193,101 @@ serve(async (req: Request) => {
     const companyId = shopifyResult.data?.companyCreate?.company?.id;
     console.log("Company created:", companyId);
 
+    // Shopify may auto-create a default location. To ensure the company shows up as
+    // "Ordering not approved", explicitly BLOCK checkout at the location level.
+    // (Shopify's UI uses ordering access on locations to determine the approved/not approved badge.)
+    if (companyId) {
+      try {
+        const getLocationsQuery = `
+          query companyLocations($id: ID!) {
+            company(id: $id) {
+              id
+              locations(first: 10) {
+                edges {
+                  node {
+                    id
+                  }
+                }
+              }
+            }
+          }
+        `;
+
+        const locationsResp = await fetch(
+          `https://${cleanDomain}/admin/api/2024-10/graphql.json`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              "X-Shopify-Access-Token": shopifyAdminToken,
+            },
+            body: JSON.stringify({
+              query: getLocationsQuery,
+              variables: { id: companyId },
+            }),
+          }
+        );
+
+        const locationsJson = await locationsResp.json();
+        const locationIds: string[] =
+          locationsJson?.data?.company?.locations?.edges?.map((e: any) => e?.node?.id).filter(Boolean) ?? [];
+
+        if (locationIds.length > 0) {
+          console.log("Found company locations:", locationIds.join(", "));
+
+          const blockCheckoutMutation = `
+            mutation companyLocationUpdate($input: CompanyLocationUpdateInput!) {
+              companyLocationUpdate(input: $input) {
+                companyLocation {
+                  id
+                }
+                userErrors {
+                  field
+                  message
+                }
+              }
+            }
+          `;
+
+          for (const locationId of locationIds) {
+            const blockResp = await fetch(
+              `https://${cleanDomain}/admin/api/2024-10/graphql.json`,
+              {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                  "X-Shopify-Access-Token": shopifyAdminToken,
+                },
+                body: JSON.stringify({
+                  query: blockCheckoutMutation,
+                  variables: {
+                    input: {
+                      id: locationId,
+                      buyerExperienceConfiguration: {
+                        checkoutState: "BLOCKED",
+                      },
+                    },
+                  },
+                }),
+              }
+            );
+
+            const blockJson = await blockResp.json();
+            const blockErrors = blockJson?.data?.companyLocationUpdate?.userErrors ?? [];
+            if (blockErrors.length > 0) {
+              console.warn("Could not set checkoutState=BLOCKED:", blockErrors);
+            } else {
+              console.log("Set checkoutState=BLOCKED for location:", locationId);
+            }
+          }
+        } else {
+          console.log("No company locations found; leaving as-is (should be ordering not approved).")
+        }
+      } catch (e) {
+        console.warn("Post-create ordering lock failed (non-fatal):", e);
+      }
+    }
+
     // Update the application status to pending approval - company is created but not yet activated
     await supabase
       .from("wholesale_applications")
