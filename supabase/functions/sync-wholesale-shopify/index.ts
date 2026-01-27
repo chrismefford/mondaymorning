@@ -72,20 +72,31 @@ serve(async (req: Request) => {
     const lastName = nameParts.slice(1).join(" ") || "Contact";
 
     // Format phone to E.164 format for Shopify (e.g., +16157726641)
-    let formattedPhone: string | undefined = undefined;
-    if (app.phone) {
-      // Remove all non-digit characters
-      const digitsOnly = app.phone.replace(/\D/g, "");
-      // If it's a 10-digit US number, add +1 prefix
-      if (digitsOnly.length === 10) {
-        formattedPhone = `+1${digitsOnly}`;
-      } else if (digitsOnly.length === 11 && digitsOnly.startsWith("1")) {
-        formattedPhone = `+${digitsOnly}`;
-      } else if (digitsOnly.length > 10) {
-        // Assume it already has country code
-        formattedPhone = `+${digitsOnly}`;
+    // Shopify is strict here; if we can't confidently normalize, omit the phone field.
+    const normalizePhoneE164 = (raw: string | null): string | undefined => {
+      if (!raw) return undefined;
+      const trimmed = raw.trim();
+
+      // If it already looks like E.164, keep it (after stripping spaces/dashes)
+      if (trimmed.startsWith("+")) {
+        const digits = trimmed.replace(/[^\d]/g, "");
+        // E.164 max 15 digits; practical minimum with country code is usually 11
+        if (digits.length >= 11 && digits.length <= 15) return `+${digits}`;
+        return undefined;
       }
-      // If phone format is invalid, skip it (don't fail the sync)
+
+      // Otherwise, strip to digits and infer US if 10 digits
+      const digitsOnly = trimmed.replace(/\D/g, "");
+      if (digitsOnly.length === 10) return `+1${digitsOnly}`;
+      if (digitsOnly.length === 11 && digitsOnly.startsWith("1")) return `+${digitsOnly}`;
+
+      // We won't guess other country codes.
+      return undefined;
+    };
+
+    const formattedPhone = normalizePhoneE164(app.phone);
+    if (app.phone && !formattedPhone) {
+      console.log(`Skipping invalid/ambiguous phone for Shopify: ${app.phone}`);
     }
 
     // Build the note with application details
