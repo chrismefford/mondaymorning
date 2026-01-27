@@ -235,11 +235,22 @@ serve(async (req: Request) => {
         if (locationIds.length > 0) {
           console.log("Found company locations:", locationIds.join(", "));
 
+          // Use the documented signature: companyLocationUpdate(companyLocationId, input)
           const blockCheckoutMutation = `
-            mutation companyLocationUpdate($input: CompanyLocationUpdateInput!) {
-              companyLocationUpdate(input: $input) {
+            mutation companyLocationUpdate($companyLocationId: ID!, $input: CompanyLocationUpdateInput!) {
+              companyLocationUpdate(companyLocationId: $companyLocationId, input: $input) {
                 companyLocation {
                   id
+                  buyerExperienceConfiguration {
+                    checkoutState
+                  }
+                  catalogs(first: 5) {
+                    edges {
+                      node {
+                        id
+                      }
+                    }
+                  }
                 }
                 userErrors {
                   field
@@ -261,23 +272,28 @@ serve(async (req: Request) => {
                 body: JSON.stringify({
                   query: blockCheckoutMutation,
                   variables: {
+                    companyLocationId: locationId,
                     input: {
-                      id: locationId,
                       buyerExperienceConfiguration: {
                         checkoutState: "BLOCKED",
                       },
-                    },
+                    }
                   },
                 }),
               }
             );
 
             const blockJson = await blockResp.json();
+            const topLevelErrors = blockJson?.errors ?? [];
             const blockErrors = blockJson?.data?.companyLocationUpdate?.userErrors ?? [];
             if (blockErrors.length > 0) {
               console.warn("Could not set checkoutState=BLOCKED:", blockErrors);
+            } else if (topLevelErrors.length > 0) {
+              console.warn("companyLocationUpdate GraphQL errors:", topLevelErrors);
             } else {
-              console.log("Set checkoutState=BLOCKED for location:", locationId);
+              const resultingState = blockJson?.data?.companyLocationUpdate?.companyLocation?.buyerExperienceConfiguration?.checkoutState;
+              const catalogCount = blockJson?.data?.companyLocationUpdate?.companyLocation?.catalogs?.edges?.length ?? 0;
+              console.log(`Set checkoutState=BLOCKED for location: ${locationId} (state=${resultingState}, catalogs=${catalogCount})`);
             }
           }
         } else {
