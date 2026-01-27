@@ -252,16 +252,108 @@ serve(async (req: Request) => {
         );
 
         const contactJson = await contactResp.json();
+        console.log("companyContactCreate response:", JSON.stringify(contactJson, null, 2));
+        
         const contactUserErrors = contactJson?.data?.companyContactCreate?.userErrors ?? [];
         const topLevelErrors = contactJson?.errors ?? [];
 
         if (contactUserErrors.length > 0) {
-          // Check if it's "already taken" error - treat as success
+          // Check if it's "already taken" error - we need to find the existing customer and create a contact
           const alreadyExists = contactUserErrors.some((e: any) =>
             e.message?.toLowerCase().includes("already been taken")
           );
           if (alreadyExists) {
-            console.log("Contact already exists - continuing with company creation");
+            console.log("Customer already exists in Shopify - looking up existing customer to create company contact");
+            
+            // Find existing customer by email
+            const findCustomerQuery = `
+              query findCustomer($email: String!) {
+                customers(first: 1, query: $email) {
+                  edges {
+                    node {
+                      id
+                      email
+                    }
+                  }
+                }
+              }
+            `;
+            
+            const customerResp = await fetch(
+              `https://${cleanDomain}/admin/api/2024-10/graphql.json`,
+              {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                  "X-Shopify-Access-Token": shopifyAdminToken,
+                },
+                body: JSON.stringify({
+                  query: findCustomerQuery,
+                  variables: { email: app.email },
+                }),
+              }
+            );
+            
+            const customerJson = await customerResp.json();
+            const existingCustomerId = customerJson?.data?.customers?.edges?.[0]?.node?.id;
+            
+            if (existingCustomerId) {
+              console.log(`Found existing customer: ${existingCustomerId}`);
+              
+              // Use companyContactCreate with the existing customer ID
+              const createContactFromCustomerMutation = `
+                mutation companyContactCreate($companyId: ID!, $input: CompanyContactInput!) {
+                  companyContactCreate(companyId: $companyId, input: $input) {
+                    companyContact {
+                      id
+                      customer {
+                        id
+                        email
+                      }
+                    }
+                    userErrors {
+                      field
+                      message
+                    }
+                  }
+                }
+              `;
+              
+              const contactFromCustomerResp = await fetch(
+                `https://${cleanDomain}/admin/api/2024-10/graphql.json`,
+                {
+                  method: "POST",
+                  headers: {
+                    "Content-Type": "application/json",
+                    "X-Shopify-Access-Token": shopifyAdminToken,
+                  },
+                  body: JSON.stringify({
+                    query: createContactFromCustomerMutation,
+                    variables: {
+                      companyId,
+                      input: {
+                        customer: {
+                          id: existingCustomerId,
+                        },
+                      },
+                    },
+                  }),
+                }
+              );
+              
+              const contactFromCustomerJson = await contactFromCustomerResp.json();
+              console.log("companyContactCreate (from existing customer) response:", JSON.stringify(contactFromCustomerJson, null, 2));
+              
+              const fromCustomerErrors = contactFromCustomerJson?.data?.companyContactCreate?.userErrors ?? [];
+              if (fromCustomerErrors.length === 0) {
+                createdContactId = contactFromCustomerJson?.data?.companyContactCreate?.companyContact?.id;
+                console.log(`Created contact ${createdContactId} from existing customer (Ordering NOT approved)`);
+              } else {
+                console.warn("companyContactCreate from existing customer userErrors:", fromCustomerErrors);
+              }
+            } else {
+              console.warn("Could not find existing customer by email:", app.email);
+            }
           } else {
             console.warn("companyContactCreate userErrors:", contactUserErrors);
           }
@@ -272,7 +364,7 @@ serve(async (req: Request) => {
           console.log(`Created contact ${createdContactId} WITHOUT role assignment (Ordering NOT approved)`);
         }
       } catch (e) {
-        console.warn("companyContactCreate failed (non-fatal, company still created):", e);
+        console.error("companyContactCreate failed:", e);
       }
     }
 
