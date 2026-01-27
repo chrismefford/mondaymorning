@@ -139,6 +139,35 @@ serve(async (req: Request) => {
     // Check for GraphQL user errors
     if (shopifyResult.data?.companyCreate?.userErrors?.length > 0) {
       const errors = shopifyResult.data.companyCreate.userErrors;
+      
+      // Check if error is "email already taken" - treat as success (already synced)
+      const emailTakenError = errors.some((e: any) => 
+        e.message?.toLowerCase().includes("email") && 
+        e.message?.toLowerCase().includes("already been taken")
+      );
+      
+      if (emailTakenError) {
+        console.log("Contact email already exists in Shopify - treating as already synced");
+        
+        // Update status to pending_approval since it's already in Shopify
+        await supabase
+          .from("wholesale_applications")
+          .update({ status: "pending_approval" })
+          .eq("id", applicationId);
+        
+        return new Response(
+          JSON.stringify({
+            success: true,
+            message: "Application already exists in Shopify",
+            alreadyExists: true,
+          }),
+          {
+            headers: { ...corsHeaders, "Content-Type": "application/json" },
+            status: 200,
+          }
+        );
+      }
+      
       console.error("Shopify user errors:", errors);
       throw new Error(`Shopify error: ${errors.map((e: any) => e.message).join(", ")}`);
     }
