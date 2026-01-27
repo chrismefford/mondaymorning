@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Menu, X, ShoppingBag, ArrowUpRight, Sparkles, Beer, Wine, Martini, Star, Leaf, Package, ChevronDown, Sunrise, UtensilsCrossed, Sofa, Umbrella, PartyPopper, Search, BookOpen } from "lucide-react";
+import { Menu, X, ShoppingBag, ArrowUpRight, Sparkles, Beer, Wine, Martini, Star, Leaf, Package, ChevronDown, Sunrise, UtensilsCrossed, Sofa, Umbrella, PartyPopper, Search, BookOpen, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useCart } from "@/hooks/useCart";
 import logoGold from "@/assets/logo-primary-gold.svg";
@@ -177,6 +177,19 @@ const Header = () => {
                 <Search className="h-4 w-4" />
                 Search
               </button>
+              <a 
+                href={SHOPIFY_ACCOUNT_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`flex items-center gap-2 px-3 py-2 font-sans text-xs font-semibold uppercase tracking-wider transition-colors ${
+                  showLightText 
+                    ? 'text-cream hover:text-gold' 
+                    : 'text-foreground hover:text-primary'
+                }`}
+              >
+                <User className="h-4 w-4" />
+                Account
+              </a>
               <button 
                 onClick={openCart}
                 className={`relative w-10 h-10 border-2 flex items-center justify-center transition-colors group ${
