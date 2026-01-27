@@ -140,11 +140,16 @@ serve(async (req: Request) => {
           phone: formattedPhone,
         },
         // Create an initial location so we can control checkout behavior immediately.
-        // Note: We do not provide a shipping address because we don't collect it in the application.
-        // If Shopify requires addresses for your store, we'll add address fields to the wholesale form.
+        // IMPORTANT: Including a shippingAddress is required for buyerExperienceConfiguration to be respected.
         companyLocation: {
           name: "Main Location",
           phone: formattedPhone,
+          shippingAddress: {
+            address1: "TBD",
+            city: "TBD",
+            countryCode: "US",
+            zip: "00000",
+          },
           buyerExperienceConfiguration: {
             checkoutToDraft: true,
           },
