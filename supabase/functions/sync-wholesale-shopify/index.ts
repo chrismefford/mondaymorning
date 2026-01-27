@@ -78,13 +78,22 @@ serve(async (req: Request) => {
       `Submitted: ${app.created_at}`,
     ].filter(Boolean).join("\n");
 
-    // GraphQL mutation to create a company with contact (no location - can be added manually in Shopify)
+    // GraphQL mutation to create a company with contact and location (ordering NOT approved = Draft status)
+    // By creating without a catalog, the company will show as "Ordering not approved" in Shopify
     const mutation = `
       mutation companyCreate($input: CompanyCreateInput!) {
         companyCreate(input: $input) {
           company {
             id
             name
+            locations(first: 1) {
+              edges {
+                node {
+                  id
+                  name
+                }
+              }
+            }
           }
           userErrors {
             field
@@ -106,6 +115,12 @@ serve(async (req: Request) => {
           lastName: lastName,
           email: app.email,
           phone: app.phone || undefined,
+        },
+        // Create a location but WITHOUT assigning a catalog - this keeps ordering as "Draft" (not approved)
+        companyLocation: {
+          name: app.company_name,
+          // No catalogId = ordering not approved (Draft status)
+          // Admin can manually approve ordering later in Shopify
         },
       },
     };
