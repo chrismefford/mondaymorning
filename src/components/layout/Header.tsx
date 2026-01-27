@@ -32,7 +32,7 @@ const recipeItems = [
 ];
 
 // Shopify customer account URL
-const SHOPIFY_ACCOUNT_URL = "https://mondaymorning-af.myshopify.com/account";
+const SHOPIFY_ACCOUNT_URL = "https://shopify.com/90213777708/account";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
