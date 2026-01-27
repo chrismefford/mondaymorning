@@ -108,7 +108,9 @@ serve(async (req: Request) => {
 
     // GraphQL mutation to create a company.
     // IMPORTANT:
-    // - We set buyerExperienceConfiguration.checkoutToDraft=true at the LOCATION level so all orders are submitted as drafts.
+    // - We create the company first.
+    // - Then we create a company location via companyLocationCreate WITH buyerExperienceConfiguration.checkoutToDraft=true.
+    //   This controls Shopify's "Order submission" behavior (drafts for review vs auto-submit).
     // - We do NOT assign any catalogs here. A company without catalogs should remain "Ordering not approved"
     //   until you manually assign a catalog in Shopify.
     const mutation = `
@@ -138,22 +140,6 @@ serve(async (req: Request) => {
           lastName: lastName,
           email: app.email,
           phone: formattedPhone,
-        },
-        // Create an initial location so we can control checkout behavior immediately.
-        // IMPORTANT: Including a shippingAddress is required for buyerExperienceConfiguration to be respected.
-        companyLocation: {
-          name: "Main Location",
-          phone: formattedPhone,
-          shippingAddress: {
-            address1: "TBD",
-            city: "San Diego",
-            countryCode: "US",
-            zoneCode: "CA",
-            zip: "92101",
-          },
-          buyerExperienceConfiguration: {
-            checkoutToDraft: true,
-          },
         },
       },
     };
@@ -222,7 +208,77 @@ serve(async (req: Request) => {
     const companyId = shopifyResult.data?.companyCreate?.company?.id;
     console.log("Company created:", companyId);
 
-    // Shopify may auto-create a default location. To ensure the company shows up as
+    // Create an initial location via companyLocationCreate so checkoutToDraft is applied at creation time.
+    // IMPORTANT: Including a shippingAddress is required for buyerExperienceConfiguration to be respected.
+    if (companyId) {
+      try {
+        const createLocationMutation = `
+          mutation companyLocationCreate($companyId: ID!, $input: CompanyLocationCreateInput!) {
+            companyLocationCreate(companyId: $companyId, input: $input) {
+              companyLocation {
+                id
+                buyerExperienceConfiguration {
+                  checkoutToDraft
+                }
+              }
+              userErrors {
+                field
+                message
+              }
+            }
+          }
+        `;
+
+        const createLocationResp = await fetch(
+          `https://${cleanDomain}/admin/api/2024-10/graphql.json`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              "X-Shopify-Access-Token": shopifyAdminToken,
+            },
+            body: JSON.stringify({
+              query: createLocationMutation,
+              variables: {
+                companyId,
+                input: {
+                  name: "Main Location",
+                  phone: formattedPhone,
+                  shippingAddress: {
+                    address1: "TBD",
+                    city: "San Diego",
+                    countryCode: "US",
+                    zoneCode: "CA",
+                    zip: "92101",
+                  },
+                  buyerExperienceConfiguration: {
+                    checkoutToDraft: true,
+                  },
+                },
+              },
+            }),
+          }
+        );
+
+        const createLocationJson = await createLocationResp.json();
+        const topLevelErrors = createLocationJson?.errors ?? [];
+        const userErrors = createLocationJson?.data?.companyLocationCreate?.userErrors ?? [];
+
+        if (userErrors.length > 0) {
+          console.warn("companyLocationCreate userErrors:", userErrors);
+        } else if (topLevelErrors.length > 0) {
+          console.warn("companyLocationCreate GraphQL errors:", topLevelErrors);
+        } else {
+          const locationId = createLocationJson?.data?.companyLocationCreate?.companyLocation?.id;
+          const checkoutToDraft = createLocationJson?.data?.companyLocationCreate?.companyLocation?.buyerExperienceConfiguration?.checkoutToDraft;
+          console.log(`Created location ${locationId} with checkoutToDraft=${checkoutToDraft}`);
+        }
+      } catch (e) {
+        console.warn("companyLocationCreate failed (non-fatal):", e);
+      }
+    }
+
+    // Shopify may auto-create additional/default locations. To ensure the company shows up as
     // "Ordering not approved", explicitly BLOCK checkout at the location level.
     // (Shopify's UI uses ordering access on locations to determine the approved/not approved badge.)
     if (companyId) {
