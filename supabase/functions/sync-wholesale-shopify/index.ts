@@ -242,7 +242,8 @@ serve(async (req: Request) => {
                   firstName: firstName,
                   lastName: lastName,
                   email: app.email,
-                  phone: formattedPhone,
+                  // Only include phone if we have a valid E.164 formatted number
+                  ...(formattedPhone ? { phone: formattedPhone } : {}),
                 },
               },
             }),
