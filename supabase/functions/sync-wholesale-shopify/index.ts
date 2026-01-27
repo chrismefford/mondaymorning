@@ -106,9 +106,11 @@ serve(async (req: Request) => {
       `Submitted: ${app.created_at}`,
     ].filter(Boolean).join("\n");
 
-    // GraphQL mutation to create a company with contact ONLY.
-    // IMPORTANT: To keep the company as "Ordering not approved" in Shopify,
-    // we intentionally do NOT create a company location here.
+    // GraphQL mutation to create a company.
+    // IMPORTANT:
+    // - We set buyerExperienceConfiguration.checkoutToDraft=true at the LOCATION level so all orders are submitted as drafts.
+    // - We do NOT assign any catalogs here. A company without catalogs should remain "Ordering not approved"
+    //   until you manually assign a catalog in Shopify.
     const mutation = `
       mutation companyCreate($input: CompanyCreateInput!) {
         companyCreate(input: $input) {
@@ -136,6 +138,16 @@ serve(async (req: Request) => {
           lastName: lastName,
           email: app.email,
           phone: formattedPhone,
+        },
+        // Create an initial location so we can control checkout behavior immediately.
+        // Note: We do not provide a shipping address because we don't collect it in the application.
+        // If Shopify requires addresses for your store, we'll add address fields to the wholesale form.
+        companyLocation: {
+          name: "Main Location",
+          phone: formattedPhone,
+          buyerExperienceConfiguration: {
+            checkoutToDraft: true,
+          },
         },
       },
     };
@@ -220,6 +232,13 @@ serve(async (req: Request) => {
                     buyerExperienceConfiguration {
                       checkoutToDraft
                     }
+                    catalogs(first: 10) {
+                      edges {
+                        node {
+                          id
+                        }
+                      }
+                    }
                   }
                 }
               }
@@ -243,11 +262,12 @@ serve(async (req: Request) => {
         );
 
         const locationsJson = await locationsResp.json();
-        const locationNodes: Array<{ id: string; checkoutToDraft?: boolean | null }> =
+        const locationNodes: Array<{ id: string; checkoutToDraft?: boolean | null; catalogIds: string[] }> =
           locationsJson?.data?.company?.locations?.edges
             ?.map((e: any) => ({
               id: e?.node?.id,
               checkoutToDraft: e?.node?.buyerExperienceConfiguration?.checkoutToDraft ?? null,
+              catalogIds: e?.node?.catalogs?.edges?.map((ce: any) => ce?.node?.id).filter(Boolean) ?? [],
             }))
             .filter((n: any) => !!n?.id) ?? [];
 
@@ -256,8 +276,107 @@ serve(async (req: Request) => {
         if (locationIds.length > 0) {
           console.log(
             "Found company locations (pre-update):",
-            locationNodes.map((n) => `${n.id}(checkoutToDraft=${n.checkoutToDraft})`).join(", ")
+            locationNodes
+              .map((n) => `${n.id}(checkoutToDraft=${n.checkoutToDraft}, catalogs=${n.catalogIds.length})`)
+              .join(", ")
           );
+
+          // Remove any catalogs that Shopify auto-assigned so the company remains "Ordering NOT approved"
+          // until you manually assign a catalog in Shopify.
+          // We do this safely per catalog: read its current companyLocationIds, remove ours, then write back.
+          const allCatalogIds = Array.from(new Set(locationNodes.flatMap((n) => n.catalogIds)));
+          if (allCatalogIds.length > 0) {
+            console.log(`Catalogs were auto-assigned (${allCatalogIds.length}); attempting to unassign from new company locations.`);
+
+            const catalogLocationsQuery = `
+              query catalogLocations($id: ID!) {
+                catalog(id: $id) {
+                  id
+                  context {
+                    companyLocations(first: 100) {
+                      edges {
+                        node {
+                          id
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            `;
+
+            const catalogContextUpdateMutation = `
+              mutation catalogContextUpdate($catalogId: ID!, $input: CatalogContextInput!) {
+                catalogContextUpdate(catalogId: $catalogId, input: $input) {
+                  catalog {
+                    id
+                  }
+                  userErrors {
+                    field
+                    message
+                  }
+                }
+              }
+            `;
+
+            for (const catalogId of allCatalogIds) {
+              try {
+                const catalogResp = await fetch(
+                  `https://${cleanDomain}/admin/api/2024-10/graphql.json`,
+                  {
+                    method: "POST",
+                    headers: {
+                      "Content-Type": "application/json",
+                      "X-Shopify-Access-Token": shopifyAdminToken,
+                    },
+                    body: JSON.stringify({
+                      query: catalogLocationsQuery,
+                      variables: { id: catalogId },
+                    }),
+                  }
+                );
+
+                const catalogJson = await catalogResp.json();
+                const existingIds: string[] =
+                  catalogJson?.data?.catalog?.context?.companyLocations?.edges
+                    ?.map((e: any) => e?.node?.id)
+                    .filter(Boolean) ?? [];
+
+                const remainingIds = existingIds.filter((id) => !locationIds.includes(id));
+
+                // Only write if our location is actually present.
+                if (remainingIds.length === existingIds.length) continue;
+
+                const updateResp = await fetch(
+                  `https://${cleanDomain}/admin/api/2024-10/graphql.json`,
+                  {
+                    method: "POST",
+                    headers: {
+                      "Content-Type": "application/json",
+                      "X-Shopify-Access-Token": shopifyAdminToken,
+                    },
+                    body: JSON.stringify({
+                      query: catalogContextUpdateMutation,
+                      variables: {
+                        catalogId,
+                        input: { companyLocationIds: remainingIds },
+                      },
+                    }),
+                  }
+                );
+
+                const updateJson = await updateResp.json();
+                const userErrors = updateJson?.data?.catalogContextUpdate?.userErrors ?? [];
+                if (userErrors.length > 0) {
+                  console.warn(`catalogContextUpdate userErrors for catalog ${catalogId}:`, userErrors);
+                } else {
+                  console.log(`Unassigned catalogs for new locations on catalog ${catalogId} (removed=${existingIds.length - remainingIds.length}).`);
+                }
+              } catch (e) {
+                console.warn(`Catalog unassignment failed for ${catalogId} (non-fatal):`, e);
+              }
+            }
+          }
 
           // Use the documented signature: companyLocationUpdate(companyLocationId, input)
           // Set checkoutToDraft: true so all orders require manual approval
@@ -332,17 +451,20 @@ serve(async (req: Request) => {
             );
 
             const verifyJson = await verifyResp.json();
-            const verifyNodes: Array<{ id: string; checkoutToDraft?: boolean | null }> =
+            const verifyNodes: Array<{ id: string; checkoutToDraft?: boolean | null; catalogIds: string[] }> =
               verifyJson?.data?.company?.locations?.edges
                 ?.map((e: any) => ({
                   id: e?.node?.id,
                   checkoutToDraft: e?.node?.buyerExperienceConfiguration?.checkoutToDraft ?? null,
+                  catalogIds: e?.node?.catalogs?.edges?.map((ce: any) => ce?.node?.id).filter(Boolean) ?? [],
                 }))
                 .filter((n: any) => !!n?.id) ?? [];
 
             console.log(
               "Company locations (post-update):",
-              verifyNodes.map((n) => `${n.id}(checkoutToDraft=${n.checkoutToDraft})`).join(", ")
+              verifyNodes
+                .map((n) => `${n.id}(checkoutToDraft=${n.checkoutToDraft}, catalogs=${n.catalogIds.length})`)
+                .join(", ")
             );
           } catch (e) {
             console.warn("CheckoutToDraft verification failed (non-fatal):", e);
