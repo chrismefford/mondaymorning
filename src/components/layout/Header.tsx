@@ -31,8 +31,6 @@ const recipeItems = [
   { name: "Blog", icon: BookOpen, href: "/blog", isBlog: true },
 ];
 
-// Shopify customer account URL
-const SHOPIFY_ACCOUNT_URL = "https://shopify.com/90213777708/account";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -178,9 +176,7 @@ const Header = () => {
                 Search
               </button>
               <a 
-                href={SHOPIFY_ACCOUNT_URL}
-                target="_blank"
-                rel="noopener noreferrer"
+                href="/auth"
                 className={`flex items-center gap-2 px-3 py-2 font-sans text-xs font-semibold uppercase tracking-wider transition-colors ${
                   showLightText 
                     ? 'text-cream hover:text-gold' 
@@ -355,7 +351,7 @@ const Header = () => {
             }`}
             style={{ transitionDelay: '600ms' }}
           >
-            <a href={SHOPIFY_ACCOUNT_URL} target="_blank" rel="noopener noreferrer" onClick={() => setIsMenuOpen(false)}>
+            <a href="/auth" onClick={() => setIsMenuOpen(false)}>
               <Button 
                 variant="outline" 
                 size="lg" 
