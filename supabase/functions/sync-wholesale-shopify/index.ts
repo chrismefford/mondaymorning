@@ -278,9 +278,10 @@ serve(async (req: Request) => {
       }
     }
 
-    // Shopify may auto-create additional/default locations. To ensure the company shows up as
-    // "Ordering not approved", explicitly BLOCK checkout at the location level.
-    // (Shopify's UI uses ordering access on locations to determine the approved/not approved badge.)
+    // Shopify B2B "Ordering approved" is controlled primarily by whether a CATALOG is assigned
+    // to the company location. We MUST ensure NO catalogs are assigned on creation.
+    // Shopify may auto-create additional/default locations and even auto-attach catalogs depending
+    // on store configuration. We proactively remove any catalogs we detect.
     if (companyId) {
       try {
         const getLocationsQuery = `
@@ -381,7 +382,7 @@ serve(async (req: Request) => {
               }
             `;
 
-            for (const catalogId of allCatalogIds) {
+             for (const catalogId of allCatalogIds) {
               try {
                 const catalogResp = await fetch(
                   `https://${cleanDomain}/admin/api/2024-10/graphql.json`,
@@ -528,14 +529,26 @@ serve(async (req: Request) => {
                 .map((n) => `${n.id}(checkoutToDraft=${n.checkoutToDraft}, catalogs=${n.catalogIds.length})`)
                 .join(", ")
             );
+
+            // Hard guarantee: if Shopify still shows catalogs on any location, the company will appear
+            // "Ordering approved". Fail the sync so we don't mistakenly mark the application as ready.
+            const stillHasCatalogs = verifyNodes.some((n) => (n.catalogIds?.length ?? 0) > 0);
+            if (stillHasCatalogs) {
+              throw new Error(
+                "Shopify still has catalogs assigned to the new company location(s). " +
+                  "Remove catalogs or disable auto-assignment rules in Shopify, then retry the sync."
+              );
+            }
           } catch (e) {
-            console.warn("CheckoutToDraft verification failed (non-fatal):", e);
+            // Treat verification failures as fatal: we cannot guarantee "Ordering NOT approved".
+            throw e;
           }
         } else {
           console.log("No company locations found; leaving as-is (should be ordering not approved).")
         }
       } catch (e) {
-        console.warn("Post-create ordering lock failed (non-fatal):", e);
+        // Fatal: if we cannot guarantee catalogs are removed, do not silently succeed.
+        throw e;
       }
     }
 
