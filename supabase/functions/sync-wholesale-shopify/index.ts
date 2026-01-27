@@ -300,10 +300,10 @@ serve(async (req: Request) => {
             if (existingCustomerId) {
               console.log(`Found existing customer: ${existingCustomerId}`);
               
-              // Use companyContactCreate with the existing customer ID
-              const createContactFromCustomerMutation = `
-                mutation companyContactCreate($companyId: ID!, $input: CompanyContactInput!) {
-                  companyContactCreate(companyId: $companyId, input: $input) {
+              // Use companyAssignCustomerAsContact to link existing customer as a company contact
+              const assignCustomerMutation = `
+                mutation companyAssignCustomerAsContact($companyId: ID!, $customerId: ID!) {
+                  companyAssignCustomerAsContact(companyId: $companyId, customerId: $customerId) {
                     companyContact {
                       id
                       customer {
@@ -319,7 +319,7 @@ serve(async (req: Request) => {
                 }
               `;
               
-              const contactFromCustomerResp = await fetch(
+              const assignCustomerResp = await fetch(
                 `https://${cleanDomain}/admin/api/2024-10/graphql.json`,
                 {
                   method: "POST",
@@ -328,28 +328,24 @@ serve(async (req: Request) => {
                     "X-Shopify-Access-Token": shopifyAdminToken,
                   },
                   body: JSON.stringify({
-                    query: createContactFromCustomerMutation,
+                    query: assignCustomerMutation,
                     variables: {
                       companyId,
-                      input: {
-                        customer: {
-                          id: existingCustomerId,
-                        },
-                      },
+                      customerId: existingCustomerId,
                     },
                   }),
                 }
               );
               
-              const contactFromCustomerJson = await contactFromCustomerResp.json();
-              console.log("companyContactCreate (from existing customer) response:", JSON.stringify(contactFromCustomerJson, null, 2));
+              const assignCustomerJson = await assignCustomerResp.json();
+              console.log("companyAssignCustomerAsContact response:", JSON.stringify(assignCustomerJson, null, 2));
               
-              const fromCustomerErrors = contactFromCustomerJson?.data?.companyContactCreate?.userErrors ?? [];
-              if (fromCustomerErrors.length === 0) {
-                createdContactId = contactFromCustomerJson?.data?.companyContactCreate?.companyContact?.id;
-                console.log(`Created contact ${createdContactId} from existing customer (Ordering NOT approved)`);
+              const assignErrors = assignCustomerJson?.data?.companyAssignCustomerAsContact?.userErrors ?? [];
+              if (assignErrors.length === 0) {
+                createdContactId = assignCustomerJson?.data?.companyAssignCustomerAsContact?.companyContact?.id;
+                console.log(`Assigned existing customer as contact ${createdContactId} (Ordering NOT approved)`);
               } else {
-                console.warn("companyContactCreate from existing customer userErrors:", fromCustomerErrors);
+                console.warn("companyAssignCustomerAsContact userErrors:", assignErrors);
               }
             } else {
               console.warn("Could not find existing customer by email:", app.email);
