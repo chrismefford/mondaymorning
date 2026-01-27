@@ -146,9 +146,10 @@ serve(async (req: Request) => {
           phone: formattedPhone,
           shippingAddress: {
             address1: "TBD",
-            city: "TBD",
+            city: "San Diego",
             countryCode: "US",
-            zip: "00000",
+            zoneCode: "CA",
+            zip: "92101",
           },
           buyerExperienceConfiguration: {
             checkoutToDraft: true,
