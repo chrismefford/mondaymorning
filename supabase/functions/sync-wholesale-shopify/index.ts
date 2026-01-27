@@ -71,6 +71,23 @@ serve(async (req: Request) => {
     const firstName = nameParts[0] || "Unknown";
     const lastName = nameParts.slice(1).join(" ") || "Contact";
 
+    // Format phone to E.164 format for Shopify (e.g., +16157726641)
+    let formattedPhone: string | undefined = undefined;
+    if (app.phone) {
+      // Remove all non-digit characters
+      const digitsOnly = app.phone.replace(/\D/g, "");
+      // If it's a 10-digit US number, add +1 prefix
+      if (digitsOnly.length === 10) {
+        formattedPhone = `+1${digitsOnly}`;
+      } else if (digitsOnly.length === 11 && digitsOnly.startsWith("1")) {
+        formattedPhone = `+${digitsOnly}`;
+      } else if (digitsOnly.length > 10) {
+        // Assume it already has country code
+        formattedPhone = `+${digitsOnly}`;
+      }
+      // If phone format is invalid, skip it (don't fail the sync)
+    }
+
     // Build the note with application details
     const noteLines = [
       `Application ID: ${app.id}`,
@@ -107,7 +124,7 @@ serve(async (req: Request) => {
           firstName: firstName,
           lastName: lastName,
           email: app.email,
-          phone: app.phone || undefined,
+          phone: formattedPhone,
         },
       },
     };
