@@ -217,6 +217,9 @@ serve(async (req: Request) => {
                 edges {
                   node {
                     id
+                    buyerExperienceConfiguration {
+                      checkoutToDraft
+                    }
                   }
                 }
               }
@@ -240,11 +243,21 @@ serve(async (req: Request) => {
         );
 
         const locationsJson = await locationsResp.json();
-        const locationIds: string[] =
-          locationsJson?.data?.company?.locations?.edges?.map((e: any) => e?.node?.id).filter(Boolean) ?? [];
+        const locationNodes: Array<{ id: string; checkoutToDraft?: boolean | null }> =
+          locationsJson?.data?.company?.locations?.edges
+            ?.map((e: any) => ({
+              id: e?.node?.id,
+              checkoutToDraft: e?.node?.buyerExperienceConfiguration?.checkoutToDraft ?? null,
+            }))
+            .filter((n: any) => !!n?.id) ?? [];
+
+        const locationIds: string[] = locationNodes.map((n) => n.id);
 
         if (locationIds.length > 0) {
-          console.log("Found company locations:", locationIds.join(", "));
+          console.log(
+            "Found company locations (pre-update):",
+            locationNodes.map((n) => `${n.id}(checkoutToDraft=${n.checkoutToDraft})`).join(", ")
+          );
 
           // Use the documented signature: companyLocationUpdate(companyLocationId, input)
           // Set checkoutToDraft: true so all orders require manual approval
@@ -299,6 +312,40 @@ serve(async (req: Request) => {
               const checkoutToDraft = blockJson?.data?.companyLocationUpdate?.companyLocation?.buyerExperienceConfiguration?.checkoutToDraft;
               console.log(`Set checkoutToDraft=${checkoutToDraft} for location: ${locationId}`);
             }
+          }
+
+          // Verify persisted values after update (what Shopify will actually display)
+          try {
+            const verifyResp = await fetch(
+              `https://${cleanDomain}/admin/api/2024-10/graphql.json`,
+              {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                  "X-Shopify-Access-Token": shopifyAdminToken,
+                },
+                body: JSON.stringify({
+                  query: getLocationsQuery,
+                  variables: { id: companyId },
+                }),
+              }
+            );
+
+            const verifyJson = await verifyResp.json();
+            const verifyNodes: Array<{ id: string; checkoutToDraft?: boolean | null }> =
+              verifyJson?.data?.company?.locations?.edges
+                ?.map((e: any) => ({
+                  id: e?.node?.id,
+                  checkoutToDraft: e?.node?.buyerExperienceConfiguration?.checkoutToDraft ?? null,
+                }))
+                .filter((n: any) => !!n?.id) ?? [];
+
+            console.log(
+              "Company locations (post-update):",
+              verifyNodes.map((n) => `${n.id}(checkoutToDraft=${n.checkoutToDraft})`).join(", ")
+            );
+          } catch (e) {
+            console.warn("CheckoutToDraft verification failed (non-fatal):", e);
           }
         } else {
           console.log("No company locations found; leaving as-is (should be ordering not approved).")
