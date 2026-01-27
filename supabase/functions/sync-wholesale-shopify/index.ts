@@ -106,13 +106,13 @@ serve(async (req: Request) => {
       `Submitted: ${app.created_at}`,
     ].filter(Boolean).join("\n");
 
-    // GraphQL mutation to create a company.
+    // GraphQL mutation to create a company WITHOUT a contact.
     // IMPORTANT:
-    // - We create the company first.
+    // - We create the company first WITHOUT companyContact to prevent Shopify from auto-assigning
+    //   the contact a role (like "Ordering only") to the default location.
     // - Then we create a company location via companyLocationCreate WITH buyerExperienceConfiguration.checkoutToDraft=true.
-    //   This controls Shopify's "Order submission" behavior (drafts for review vs auto-submit).
-    // - We do NOT assign any catalogs here. A company without catalogs should remain "Ordering not approved"
-    //   until you manually assign a catalog in Shopify.
+    // - Then we create the contact separately WITHOUT assigning them to a location.
+    // - This ensures the company shows as "Ordering NOT approved" until admin manually assigns a catalog and role.
     const mutation = `
       mutation companyCreate($input: CompanyCreateInput!) {
         companyCreate(input: $input) {
@@ -135,12 +135,9 @@ serve(async (req: Request) => {
           note: noteLines,
           externalId: app.id,
         },
-        companyContact: {
-          firstName: firstName,
-          lastName: lastName,
-          email: app.email,
-          phone: formattedPhone,
-        },
+        // NOTE: We intentionally do NOT include companyContact here.
+        // Including it causes Shopify to auto-assign the contact a role to the default location,
+        // which triggers "Ordering approved" status. We create the contact separately below.
       },
     };
 
@@ -207,6 +204,75 @@ serve(async (req: Request) => {
 
     const companyId = shopifyResult.data?.companyCreate?.company?.id;
     console.log("Company created:", companyId);
+
+    // Create the CompanyContact separately WITHOUT assigning to a location.
+    // This prevents Shopify from auto-assigning a role (like "Ordering only") which triggers "Ordering approved".
+    if (companyId) {
+      try {
+        const createContactMutation = `
+          mutation companyContactCreate($companyId: ID!, $input: CompanyContactInput!) {
+            companyContactCreate(companyId: $companyId, input: $input) {
+              companyContact {
+                id
+                customer {
+                  email
+                }
+              }
+              userErrors {
+                field
+                message
+              }
+            }
+          }
+        `;
+
+        const contactResp = await fetch(
+          `https://${cleanDomain}/admin/api/2024-10/graphql.json`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              "X-Shopify-Access-Token": shopifyAdminToken,
+            },
+            body: JSON.stringify({
+              query: createContactMutation,
+              variables: {
+                companyId,
+                input: {
+                  firstName: firstName,
+                  lastName: lastName,
+                  email: app.email,
+                  phone: formattedPhone,
+                },
+              },
+            }),
+          }
+        );
+
+        const contactJson = await contactResp.json();
+        const contactUserErrors = contactJson?.data?.companyContactCreate?.userErrors ?? [];
+        const topLevelErrors = contactJson?.errors ?? [];
+
+        if (contactUserErrors.length > 0) {
+          // Check if it's "already taken" error - treat as success
+          const alreadyExists = contactUserErrors.some((e: any) =>
+            e.message?.toLowerCase().includes("already been taken")
+          );
+          if (alreadyExists) {
+            console.log("Contact already exists - continuing with company creation");
+          } else {
+            console.warn("companyContactCreate userErrors:", contactUserErrors);
+          }
+        } else if (topLevelErrors.length > 0) {
+          console.warn("companyContactCreate GraphQL errors:", topLevelErrors);
+        } else {
+          const contactId = contactJson?.data?.companyContactCreate?.companyContact?.id;
+          console.log(`Created contact ${contactId} WITHOUT role assignment (Ordering NOT approved)`);
+        }
+      } catch (e) {
+        console.warn("companyContactCreate failed (non-fatal, company still created):", e);
+      }
+    }
 
     // Create an initial location via companyLocationCreate so checkoutToDraft is applied at creation time.
     // IMPORTANT: Including a shippingAddress is required for buyerExperienceConfiguration to be respected.
