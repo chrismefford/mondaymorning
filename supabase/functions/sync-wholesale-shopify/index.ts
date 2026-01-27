@@ -155,14 +155,13 @@ serve(async (req: Request) => {
     if (shopifyResult.data?.companyCreate?.userErrors?.length > 0) {
       const errors = shopifyResult.data.companyCreate.userErrors;
       
-      // Check if error is "email already taken" - treat as success (already synced)
-      const emailTakenError = errors.some((e: any) => 
-        e.message?.toLowerCase().includes("email") && 
+      // Check if error is "already taken" (email or phone) - treat as success (already synced)
+      const alreadyExistsError = errors.some((e: any) => 
         e.message?.toLowerCase().includes("already been taken")
       );
       
-      if (emailTakenError) {
-        console.log("Contact email already exists in Shopify - treating as already synced");
+      if (alreadyExistsError) {
+        console.log("Contact already exists in Shopify - treating as already synced");
         
         // Update status to pending_approval since it's already in Shopify
         await supabase
