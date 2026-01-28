@@ -149,7 +149,7 @@ export default function WholesaleCatalog() {
 
       <Header />
 
-      <main className="flex-1">
+      <main className="flex-1 pt-20">
         {/* Header Banner */}
         <div className="bg-forest text-cream py-8">
           <div className="container mx-auto px-4">
