@@ -6,9 +6,10 @@ import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { toast } from 'sonner';
 import logoWhite from '@/assets/logo-primary-white.svg';
-import { Check, X, Trash2, LogOut, MessageSquare, ChefHat, Building2 } from 'lucide-react';
+import { Check, X, Trash2, LogOut, MessageSquare, ChefHat, Building2, DollarSign } from 'lucide-react';
 import { RecipeGenerator } from '@/components/admin/RecipeGenerator';
 import WholesaleCustomerManager from '@/components/admin/WholesaleCustomerManager';
+import WholesalePriceManager from '@/components/admin/WholesalePriceManager';
 
 interface StorySubmission {
   id: string;
@@ -161,6 +162,13 @@ const Admin = () => {
               <Building2 className="w-4 h-4 mr-2" />
               Wholesale
             </TabsTrigger>
+            <TabsTrigger 
+              value="pricing"
+              className="data-[state=active]:bg-cream data-[state=active]:text-forest text-cream"
+            >
+              <DollarSign className="w-4 h-4 mr-2" />
+              F&B Pricing
+            </TabsTrigger>
           </TabsList>
 
           <TabsContent value="stories">
@@ -224,6 +232,12 @@ const Admin = () => {
           <TabsContent value="wholesale">
             <div className="bg-cream rounded-lg p-6">
               <WholesaleCustomerManager />
+            </div>
+          </TabsContent>
+
+          <TabsContent value="pricing">
+            <div className="bg-cream rounded-lg p-6">
+              <WholesalePriceManager />
             </div>
           </TabsContent>
         </Tabs>

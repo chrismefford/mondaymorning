@@ -15,11 +15,11 @@ import {
 } from "@/components/ui/select";
 import { supabase } from "@/integrations/supabase/client";
 import {
-  useShopifyB2BProducts,
   useShopifyAllProducts,
   formatShopifyPrice,
   type ShopifyProduct,
 } from "@/hooks/useShopifyProducts";
+import { useWholesalePrices, getWholesalePrice } from "@/hooks/useWholesalePrices";
 import { toast } from "sonner";
 import {
   Loader2,
@@ -29,10 +29,7 @@ import {
   LogOut,
   Phone,
   Mail,
-  Download,
-  ShoppingCart,
 } from "lucide-react";
-import logoSecondaryGold from "@/assets/logo-secondary-gold.svg";
 import { SITE_NAME, getCanonicalUrl } from "@/lib/seo";
 import { cn } from "@/lib/utils";
 
@@ -41,13 +38,6 @@ interface WholesaleCustomer {
   company_name: string;
   discount_tier: string;
   payment_terms: string;
-  shopify_company_location_id: string | null;
-}
-
-// Calculate discount percentage from retail (compareAt) vs wholesale (current) price
-function calculateDiscountPercent(retailPrice: number, wholesalePrice: number): number {
-  if (retailPrice <= 0 || wholesalePrice >= retailPrice) return 0;
-  return ((retailPrice - wholesalePrice) / retailPrice) * 100;
 }
 
 export default function WholesaleCatalog() {
@@ -57,20 +47,14 @@ export default function WholesaleCatalog() {
   const [searchQuery, setSearchQuery] = useState("");
   const [categoryFilter, setCategoryFilter] = useState("all");
 
-  // Use B2B pricing if companyLocationId is available, otherwise fall back to regular products
-  const { data: b2bProducts, isLoading: b2bLoading } = useShopifyB2BProducts({
-    companyLocationId: customer?.shopify_company_location_id ?? null,
+  // Fetch products from Shopify
+  const { data: products, isLoading: productsLoading } = useShopifyAllProducts({
     sortKey: "BEST_SELLING",
-    enabled: !!customer?.shopify_company_location_id,
+    enabled: !!customer,
   });
 
-  const { data: regularProducts, isLoading: regularLoading } = useShopifyAllProducts({
-    sortKey: "BEST_SELLING",
-    enabled: !!customer && !customer.shopify_company_location_id,
-  });
-
-  const products = b2bProducts ?? regularProducts;
-  const productsLoading = b2bLoading || regularLoading;
+  // Fetch F&B prices from database
+  const { data: wholesalePricesData, isLoading: pricesLoading } = useWholesalePrices();
 
   useEffect(() => {
     const checkAccess = async () => {
@@ -83,7 +67,7 @@ export default function WholesaleCatalog() {
 
       const { data: wholesaleData, error } = await supabase
         .from("wholesale_customers")
-        .select("id, company_name, discount_tier, payment_terms, shopify_company_location_id")
+        .select("id, company_name, discount_tier, payment_terms")
         .eq("user_id", session.user.id)
         .eq("is_active", true)
         .maybeSingle();
@@ -135,17 +119,35 @@ export default function WholesaleCatalog() {
     new Set(products?.map((p) => p.productType).filter(Boolean) || [])
   ).sort();
 
-  // Get prices from Shopify data
+  // Get prices - use F&B pricing from database if available, otherwise fall back to Shopify prices
   const getProductPricing = (product: ShopifyProduct) => {
-    const wholesalePrice = parseFloat(product.priceRange.minVariantPrice.amount);
-    const retailPrice = parseFloat(product.compareAtPriceRange.minVariantPrice.amount);
-    // Use compareAt as retail if available, otherwise wholesale is the only price
-    const effectiveRetail = retailPrice > wholesalePrice ? retailPrice : wholesalePrice;
-    const discountPercent = calculateDiscountPercent(effectiveRetail, wholesalePrice);
-    return { wholesalePrice, retailPrice: effectiveRetail, discountPercent };
+    const wholesalePrice = getWholesalePrice(wholesalePricesData?.priceMap, product.handle);
+    
+    if (wholesalePrice) {
+      // Use F&B pricing from database
+      const retail = wholesalePrice.retail_price ?? parseFloat(product.priceRange.minVariantPrice.amount);
+      const discount = retail > wholesalePrice.wholesale_price
+        ? ((retail - wholesalePrice.wholesale_price) / retail) * 100
+        : 0;
+      return { 
+        wholesalePrice: wholesalePrice.wholesale_price, 
+        retailPrice: retail, 
+        discountPercent: discount,
+        hasFBPricing: true 
+      };
+    }
+    
+    // Fallback to Shopify prices (no discount shown)
+    const shopifyPrice = parseFloat(product.priceRange.minVariantPrice.amount);
+    return { 
+      wholesalePrice: shopifyPrice, 
+      retailPrice: shopifyPrice, 
+      discountPercent: 0,
+      hasFBPricing: false 
+    };
   };
 
-  if (isLoading) {
+  if (isLoading || pricesLoading) {
     return (
       <div className="min-h-screen bg-cream flex items-center justify-center">
         <Loader2 className="w-8 h-8 animate-spin text-forest" />
@@ -276,6 +278,7 @@ export default function WholesaleCatalog() {
                     wholesalePrice={pricing.wholesalePrice}
                     retailPrice={pricing.retailPrice}
                     discountPercent={pricing.discountPercent}
+                    hasFBPricing={pricing.hasFBPricing}
                   />
                 );
               })}
@@ -327,11 +330,13 @@ function WholesaleProductCard({
   wholesalePrice,
   retailPrice,
   discountPercent,
+  hasFBPricing,
 }: {
   product: ShopifyProduct;
   wholesalePrice: number;
   retailPrice: number;
   discountPercent: number;
+  hasFBPricing: boolean;
 }) {
   const hasDiscount = discountPercent > 0;
 
@@ -374,13 +379,13 @@ function WholesaleProductCard({
         <div className="space-y-1">
           {hasDiscount && (
             <p className="text-sm text-forest/50 line-through">
-              {formatShopifyPrice(retailPrice.toFixed(2))}
+              ${retailPrice.toFixed(2)}
             </p>
           )}
           <p className="text-xl font-bold text-forest">
-            {formatShopifyPrice(wholesalePrice.toFixed(2))}
+            ${wholesalePrice.toFixed(2)}
           </p>
-          {hasDiscount && (
+          {hasFBPricing && (
             <p className="text-xs text-gold font-medium">
               F&B Pricing
             </p>
