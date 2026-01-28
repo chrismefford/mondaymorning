@@ -16,8 +16,10 @@ export default function WholesaleAuth() {
 
   const handleShopifyLogin = () => {
     setIsRedirecting(true);
-    // Redirect to Shopify's B2B customer account login
-    window.location.href = SHOPIFY_B2B_LOGIN_URL;
+    // Open Shopify's B2B customer account login in a new tab (required since Shopify blocks iframes)
+    window.open(SHOPIFY_B2B_LOGIN_URL, '_blank', 'noopener,noreferrer');
+    // Reset state after a short delay since user is opening new tab
+    setTimeout(() => setIsRedirecting(false), 1000);
   };
 
   return (
