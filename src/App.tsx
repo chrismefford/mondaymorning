@@ -9,6 +9,7 @@ import { AuthProvider } from "@/hooks/useAuth";
 import { CartProvider } from "@/hooks/useCart";
 import CartDrawer from "@/components/cart/CartDrawer";
 import NAExpertChat from "@/components/chat/NAExpertChat";
+import FloatingBusinessButton from "@/components/FloatingBusinessButton";
 import LoadingScreen from "@/components/LoadingScreen";
 import ScrollToTop from "@/components/ScrollToTop";
 import Index from "./pages/Index";
@@ -55,6 +56,7 @@ const AppContent = () => {
       <ScrollToTop />
       <CartDrawer />
       <NAExpertChat />
+      <FloatingBusinessButton />
       <Routes>
         <Route path="/" element={<Index />} />
         <Route path="/shop" element={<ShopPage />} />
