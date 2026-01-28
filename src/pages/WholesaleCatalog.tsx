@@ -321,12 +321,11 @@ function WholesaleProductCard({
   retailPrice: number;
   discountPercent: number;
 }) {
-  const savings = retailPrice - wholesalePrice;
   const hasDiscount = discountPercent > 0;
 
   return (
     <div className="bg-white rounded-xl border border-forest/10 overflow-hidden hover:shadow-lg transition-shadow">
-      {/* Image */}
+      {/* Image with discount badge */}
       <div className="aspect-square bg-cream/50 relative">
         {product.featuredImage?.url ? (
           <img
@@ -339,10 +338,10 @@ function WholesaleProductCard({
             <Package className="w-12 h-12 text-forest/20" />
           </div>
         )}
-        {/* Discount Badge - only show if there's a real discount */}
+        {/* Discount Badge - positioned on top of image */}
         {hasDiscount && (
-          <div className="absolute top-3 right-3">
-            <Badge className="bg-gold text-forest-deep font-semibold">
+          <div className="absolute top-3 left-3">
+            <Badge className="bg-gold text-forest-deep font-bold text-sm px-2 py-1">
               {discountPercent.toFixed(0)}% OFF
             </Badge>
           </div>
@@ -359,24 +358,20 @@ function WholesaleProductCard({
         </h3>
         <p className="text-xs text-forest/60 mb-3">{product.productType}</p>
 
-        {/* Pricing */}
-        <div className="flex items-end justify-between">
-          <div>
-            {hasDiscount && (
-              <p className="text-xs text-forest/50 line-through">
-                Retail: {formatShopifyPrice(retailPrice.toString())}
-              </p>
-            )}
-            <p className="text-lg font-semibold text-forest">
-              {formatShopifyPrice(wholesalePrice.toFixed(2))}
-            </p>
-          </div>
+        {/* Pricing - F&B wholesale price with strikethrough retail */}
+        <div className="space-y-1">
           {hasDiscount && (
-            <div className="text-right">
-              <p className="text-xs text-green-600 font-medium">
-                Save {formatShopifyPrice(savings.toFixed(2))}
-              </p>
-            </div>
+            <p className="text-sm text-forest/50 line-through">
+              {formatShopifyPrice(retailPrice.toFixed(2))}
+            </p>
+          )}
+          <p className="text-xl font-bold text-forest">
+            {formatShopifyPrice(wholesalePrice.toFixed(2))}
+          </p>
+          {hasDiscount && (
+            <p className="text-xs text-gold font-medium">
+              F&B Pricing
+            </p>
           )}
         </div>
 
