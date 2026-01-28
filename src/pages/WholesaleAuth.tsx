@@ -37,25 +37,48 @@ export default function WholesaleAuth() {
 
   // Check if already logged in as wholesale customer
   useEffect(() => {
+    const checkWholesaleStatus = async (userId: string) => {
+      const { data: wholesaleData } = await supabase
+        .from("wholesale_customers")
+        .select("id, company_name, is_active")
+        .eq("user_id", userId)
+        .eq("is_active", true)
+        .maybeSingle();
+
+      if (wholesaleData) {
+        toast.success(`Welcome, ${wholesaleData.company_name}!`);
+        navigate("/wholesale-catalog");
+      } else {
+        // User is logged in but not a wholesale customer
+        toast.error("Your account is not registered as a B2B partner. Please contact sales@mondaymorning-af.com to apply.");
+        await supabase.auth.signOut();
+      }
+    };
+
+    // Check existing session on mount
     const checkExistingSession = async () => {
       const { data: { session } } = await supabase.auth.getSession();
       
       if (session?.user) {
-        // Check if they're a wholesale customer
-        const { data: wholesaleData } = await supabase
-          .from("wholesale_customers")
-          .select("id, is_active")
-          .eq("user_id", session.user.id)
-          .eq("is_active", true)
-          .maybeSingle();
-
-        if (wholesaleData) {
-          navigate("/wholesale-catalog");
-        }
+        checkWholesaleStatus(session.user.id);
       }
     };
 
     checkExistingSession();
+
+    // Listen for auth state changes (handles Google OAuth callback)
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(
+      (event, session) => {
+        if (event === 'SIGNED_IN' && session?.user) {
+          // Defer the check to prevent deadlock
+          setTimeout(() => {
+            checkWholesaleStatus(session.user.id);
+          }, 0);
+        }
+      }
+    );
+
+    return () => subscription.unsubscribe();
   }, [navigate]);
 
   const validateForm = () => {
