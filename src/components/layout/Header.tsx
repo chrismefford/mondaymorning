@@ -71,7 +71,8 @@ const Header = () => {
   // Determine if we're on a dark hero page
   const isDarkHeroPage = typeof window !== 'undefined' && 
     (window.location.pathname === '/services' || 
-     window.location.pathname === '/locations');
+     window.location.pathname === '/locations' ||
+     window.location.pathname === '/wholesale-catalog');
 
   const showLightText = !isScrolled && isDarkHeroPage;
 
