@@ -55,6 +55,9 @@ interface ShopifyCollection {
   } | null;
 }
 
+// F&B Price List ID from Shopify Markets
+const FB_PRICE_LIST_ID = "gid://shopify/PriceList/31714738476";
+
 const PRODUCTS_QUERY = `
   query GetProducts($first: Int!, $after: String, $sortKey: ProductSortKeys, $reverse: Boolean) {
     products(first: $first, after: $after, sortKey: $sortKey, reverse: $reverse) {
@@ -99,6 +102,75 @@ const PRODUCTS_QUERY = `
                 }
               }
             }
+          }
+        }
+      }
+    }
+  }
+`;
+
+// Admin API query to get products with price list prices
+const ADMIN_PRODUCTS_QUERY = `
+  query GetAdminProducts($first: Int!, $after: String) {
+    products(first: $first, after: $after) {
+      pageInfo {
+        hasNextPage
+        endCursor
+      }
+      nodes {
+        id
+        title
+        description
+        handle
+        featuredImage {
+          url
+          altText
+        }
+        status
+        productType
+        vendor
+        tags
+        variants(first: 10) {
+          nodes {
+            id
+            title
+            inventoryQuantity
+            price
+            compareAtPrice
+          }
+        }
+      }
+    }
+  }
+`;
+
+// Admin API query to get price list prices
+const PRICE_LIST_PRICES_QUERY = `
+  query GetPriceListPrices($priceListId: ID!, $first: Int!, $after: String) {
+    priceList(id: $priceListId) {
+      id
+      name
+      currency
+      prices(first: $first, after: $after) {
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+        nodes {
+          variant {
+            id
+            product {
+              id
+              handle
+            }
+          }
+          price {
+            amount
+            currencyCode
+          }
+          compareAtPrice {
+            amount
+            currencyCode
           }
         }
       }
@@ -570,6 +642,46 @@ async function shopifyFetch(query: string, variables: Record<string, unknown> = 
   return json.data;
 }
 
+// Admin API fetch for catalog pricing
+async function shopifyAdminFetch(query: string, variables: Record<string, unknown> = {}) {
+  const adminToken = Deno.env.get("SHOPIFY_ADMIN_ACCESS_TOKEN");
+  const adminDomain = Deno.env.get("SHOPIFY_ADMIN_DOMAIN") || Deno.env.get("SHOPIFY_STORE_DOMAIN");
+
+  if (!adminToken || !adminDomain) {
+    throw new Error("Shopify Admin credentials not configured");
+  }
+
+  const cleanDomain = adminDomain.replace(/^https?:\/\//, "").replace(/\/$/, "");
+
+  console.log(`Making Shopify Admin API request to ${cleanDomain}`);
+  console.log("Query:", query.slice(0, 100) + "...");
+  console.log("Variables:", JSON.stringify(variables));
+
+  const response = await fetch(`https://${cleanDomain}/admin/api/2024-01/graphql.json`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "X-Shopify-Access-Token": adminToken,
+    },
+    body: JSON.stringify({ query, variables }),
+  });
+
+  if (!response.ok) {
+    const errorText = await response.text();
+    console.error("Shopify Admin API error:", errorText);
+    throw new Error(`Shopify Admin API error: ${response.status}`);
+  }
+
+  const json = await response.json();
+  
+  if (json.errors) {
+    console.error("Shopify Admin GraphQL errors:", json.errors);
+    throw new Error(json.errors[0]?.message || "GraphQL error");
+  }
+
+  return json.data;
+}
+
 serve(async (req) => {
   if (req.method === "OPTIONS") {
     return new Response(null, { headers: corsHeaders });
@@ -651,6 +763,144 @@ serve(async (req) => {
           { headers: { ...corsHeaders, "Content-Type": "application/json" } }
         );
       }
+
+      // Catalog products with F&B pricing from Admin API
+      case "catalog-products": {
+        console.log("Fetching catalog products with F&B pricing");
+        
+        // Step 1: Fetch products from Admin API
+        const productsData = await shopifyAdminFetch(ADMIN_PRODUCTS_QUERY, { 
+          first, 
+          after
+        });
+        
+        // Step 2: Fetch all price list prices (paginated)
+        const priceMap = new Map<string, { price: string; compareAtPrice: string | null }>();
+        let priceAfter: string | null = null;
+        
+        for (let page = 0; page < 25; page++) {
+          const priceData = await shopifyAdminFetch(PRICE_LIST_PRICES_QUERY, {
+            priceListId: FB_PRICE_LIST_ID,
+            first: 250,
+            after: priceAfter
+          }) as {
+            priceList: {
+              prices: {
+                pageInfo: { hasNextPage: boolean; endCursor: string | null };
+                nodes: Array<{
+                  variant: { id: string; product: { id: string; handle: string } };
+                  price: { amount: string; currencyCode: string };
+                  compareAtPrice: { amount: string; currencyCode: string } | null;
+                }>;
+              };
+            };
+          };
+          
+          if (!priceData.priceList?.prices?.nodes) break;
+          
+          for (const node of priceData.priceList.prices.nodes) {
+            if (node.variant?.id) {
+              priceMap.set(node.variant.id, {
+                price: node.price?.amount || "0",
+                compareAtPrice: node.compareAtPrice?.amount || null
+              });
+            }
+          }
+          
+          if (!priceData.priceList.prices.pageInfo.hasNextPage) break;
+          priceAfter = priceData.priceList.prices.pageInfo.endCursor;
+          if (!priceAfter) break;
+        }
+        
+        console.log(`Loaded ${priceMap.size} price list entries`);
+        
+        // Step 3: Transform and merge products with prices
+        const transformedProducts = productsData.products.nodes
+          .filter((p: { status: string }) => p.status === "ACTIVE")
+          .map((product: {
+            id: string;
+            title: string;
+            description: string;
+            handle: string;
+            featuredImage: { url: string; altText: string | null } | null;
+            productType: string;
+            vendor: string;
+            tags: string[];
+            variants: {
+              nodes: Array<{
+                id: string;
+                title: string;
+                price: string;
+                compareAtPrice: string | null;
+                inventoryQuantity: number;
+              }>;
+            };
+          }) => {
+            // Get the first variant's pricing
+            const firstVariant = product.variants.nodes[0];
+            const retailPrice = firstVariant?.price || "0";
+            const catalogPriceEntry = priceMap.get(firstVariant?.id);
+            const hasCatalogPricing = !!catalogPriceEntry;
+            
+            return {
+              id: product.id,
+              title: product.title,
+              description: product.description,
+              handle: product.handle,
+              featuredImage: product.featuredImage,
+              productType: product.productType,
+              vendor: product.vendor,
+              tags: product.tags,
+              // Use catalog pricing if available, otherwise fall back to regular price
+              priceRange: {
+                minVariantPrice: {
+                  amount: catalogPriceEntry?.price || retailPrice,
+                  currencyCode: "USD"
+                }
+              },
+              // Use retail price as compareAt to show discount
+              compareAtPriceRange: {
+                minVariantPrice: {
+                  amount: retailPrice,
+                  currencyCode: "USD"
+                }
+              },
+              // Flag to indicate F&B pricing is being used
+              hasCatalogPricing,
+              variants: {
+                edges: product.variants.nodes.map((v) => {
+                  const variantPriceEntry = priceMap.get(v.id);
+                  return {
+                    node: {
+                      id: v.id,
+                      title: v.title,
+                      availableForSale: (v.inventoryQuantity ?? 0) > 0,
+                      price: {
+                        amount: variantPriceEntry?.price || v.price,
+                        currencyCode: "USD"
+                      },
+                      compareAtPrice: {
+                        amount: v.price,
+                        currencyCode: "USD"
+                      },
+                      retailPrice: v.price,
+                      catalogPrice: variantPriceEntry?.price || null
+                    }
+                  };
+                })
+              }
+            };
+          });
+          
+        return new Response(
+          JSON.stringify({
+            products: transformedProducts,
+            pageInfo: productsData.products.pageInfo,
+          }),
+          { headers: { ...corsHeaders, "Content-Type": "application/json" } }
+        );
+      }
+
 
       case "product":
         if (!productHandle) {

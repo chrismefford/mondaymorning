@@ -15,11 +15,10 @@ import {
 } from "@/components/ui/select";
 import { supabase } from "@/integrations/supabase/client";
 import {
-  useShopifyAllProducts,
+  useShopifyCatalogProducts,
   formatShopifyPrice,
   type ShopifyProduct,
 } from "@/hooks/useShopifyProducts";
-import { useWholesalePrices, getWholesalePrice } from "@/hooks/useWholesalePrices";
 import { toast } from "sonner";
 import {
   Loader2,
@@ -47,14 +46,10 @@ export default function WholesaleCatalog() {
   const [searchQuery, setSearchQuery] = useState("");
   const [categoryFilter, setCategoryFilter] = useState("all");
 
-  // Fetch products from Shopify
-  const { data: products, isLoading: productsLoading } = useShopifyAllProducts({
-    sortKey: "BEST_SELLING",
+  // Fetch products with F&B catalog pricing from Shopify Admin API
+  const { data: products, isLoading: productsLoading } = useShopifyCatalogProducts({
     enabled: !!customer,
   });
-
-  // Fetch F&B prices from database
-  const { data: wholesalePricesData, isLoading: pricesLoading } = useWholesalePrices();
 
   useEffect(() => {
     const checkAccess = async () => {
@@ -119,35 +114,25 @@ export default function WholesaleCatalog() {
     new Set(products?.map((p) => p.productType).filter(Boolean) || [])
   ).sort();
 
-  // Get prices - use F&B pricing from database if available, otherwise fall back to Shopify prices
-  const getProductPricing = (product: ShopifyProduct) => {
-    const wholesalePrice = getWholesalePrice(wholesalePricesData?.priceMap, product.handle);
+  // Get prices from catalog pricing (comes from Shopify Admin API with contextualPricing)
+  const getProductPricing = (product: ShopifyProduct & { hasCatalogPricing?: boolean }) => {
+    const catalogPrice = parseFloat(product.priceRange.minVariantPrice.amount);
+    const retailPrice = parseFloat(product.compareAtPriceRange.minVariantPrice.amount);
     
-    if (wholesalePrice) {
-      // Use F&B pricing from database
-      const retail = wholesalePrice.retail_price ?? parseFloat(product.priceRange.minVariantPrice.amount);
-      const discount = retail > wholesalePrice.wholesale_price
-        ? ((retail - wholesalePrice.wholesale_price) / retail) * 100
-        : 0;
-      return { 
-        wholesalePrice: wholesalePrice.wholesale_price, 
-        retailPrice: retail, 
-        discountPercent: discount,
-        hasFBPricing: true 
-      };
-    }
-    
-    // Fallback to Shopify prices (no discount shown)
-    const shopifyPrice = parseFloat(product.priceRange.minVariantPrice.amount);
+    const hasDiscount = retailPrice > catalogPrice;
+    const discountPercent = hasDiscount
+      ? ((retailPrice - catalogPrice) / retailPrice) * 100
+      : 0;
+      
     return { 
-      wholesalePrice: shopifyPrice, 
-      retailPrice: shopifyPrice, 
-      discountPercent: 0,
-      hasFBPricing: false 
+      wholesalePrice: catalogPrice, 
+      retailPrice: retailPrice, 
+      discountPercent,
+      hasFBPricing: product.hasCatalogPricing ?? false
     };
   };
 
-  if (isLoading || pricesLoading) {
+  if (isLoading) {
     return (
       <div className="min-h-screen bg-cream flex items-center justify-center">
         <Loader2 className="w-8 h-8 animate-spin text-forest" />

@@ -186,53 +186,30 @@ export function useShopifyAllProducts(options?: {
 }
 
 /**
- * Fetches B2B products with catalog-specific pricing using companyLocationId
+ * Fetches products with F&B catalog pricing from Admin API
+ * Uses contextualPricing to get catalog-specific wholesale prices
  */
-async function fetchB2BProductsPage(
-  first: number,
-  companyLocationId: string,
-  options?: {
-    after?: string;
-    sortKey?: ShopifyProductSortKey;
-    reverse?: boolean;
-  }
-): Promise<{ products: ShopifyProduct[]; pageInfo: ShopifyPageInfo }> {
-  return fetchFromShopify<{ products: ShopifyProduct[]; pageInfo: ShopifyPageInfo }>("b2b-products", {
-    first: first.toString(),
-    companyLocationId,
-    ...(options?.after ? { after: options.after } : {}),
-    ...(options?.sortKey ? { sortKey: options.sortKey } : {}),
-    ...(typeof options?.reverse === "boolean" ? { reverse: String(options.reverse) } : {}),
-  });
-}
-
-/**
- * Fetches full B2B product catalog with catalog-specific pricing
- */
-export function useShopifyB2BProducts(options: {
-  companyLocationId: string | null;
-  sortKey?: ShopifyProductSortKey;
-  reverse?: boolean;
+export function useShopifyCatalogProducts(options?: {
   enabled?: boolean;
   pageSize?: number;
 }) {
   const pageSize = Math.min(Math.max(options?.pageSize ?? 250, 1), 250);
 
   return useQuery({
-    queryKey: ["shopify-b2b-products", options.companyLocationId, pageSize, options?.sortKey, options?.reverse],
-    enabled: (options?.enabled ?? true) && !!options.companyLocationId,
+    queryKey: ["shopify-catalog-products", pageSize],
+    enabled: options?.enabled ?? true,
     queryFn: async () => {
-      if (!options.companyLocationId) return [];
-      
-      const all: ShopifyProduct[] = [];
+      const all: (ShopifyProduct & { hasCatalogPricing?: boolean })[] = [];
       let after: string | undefined = undefined;
 
-      // Safety cap in case of unexpected pagination behavior
+      // Safety cap
       for (let page = 0; page < 25; page++) {
-        const data = await fetchB2BProductsPage(pageSize, options.companyLocationId, {
-          after,
-          sortKey: options?.sortKey,
-          reverse: options?.reverse,
+        const data = await fetchFromShopify<{ 
+          products: (ShopifyProduct & { hasCatalogPricing?: boolean })[]; 
+          pageInfo: ShopifyPageInfo 
+        }>("catalog-products", {
+          first: pageSize.toString(),
+          ...(after ? { after } : {}),
         });
 
         all.push(...data.products);
@@ -242,8 +219,7 @@ export function useShopifyB2BProducts(options: {
         if (!after) break;
       }
 
-      // Filter to only include active products with available variants
-      return all.filter(isActiveProduct);
+      return all;
     },
   });
 }
