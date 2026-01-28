@@ -1,0 +1,53 @@
+import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import { Building2 } from "lucide-react";
+import { cn } from "@/lib/utils";
+
+const FloatingBusinessButton = () => {
+  const [isVisible, setIsVisible] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
+
+  useEffect(() => {
+    // Show button after a slight delay for smooth entrance
+    const timer = setTimeout(() => setIsVisible(true), 1000);
+    return () => clearTimeout(timer);
+  }, []);
+
+  return (
+    <Link
+      to="/services"
+      className={cn(
+        "fixed z-50 flex items-center gap-2 bg-forest text-cream",
+        "rounded-full shadow-lg transition-all duration-300 ease-out",
+        "hover:bg-gold hover:text-forest hover:shadow-xl",
+        "focus:outline-none focus:ring-2 focus:ring-gold focus:ring-offset-2",
+        // Position: bottom right, above the chat button
+        "bottom-24 right-4 lg:bottom-8 lg:right-8",
+        // Sizing and padding
+        isHovered ? "px-5 py-3" : "p-3 lg:px-5 lg:py-3",
+        // Animation
+        isVisible 
+          ? "translate-x-0 opacity-100" 
+          : "translate-x-full opacity-0"
+      )}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      aria-label="For Businesses - Request wholesale pricing"
+    >
+      <Building2 className="h-5 w-5 flex-shrink-0" />
+      <span 
+        className={cn(
+          "font-sans text-xs font-semibold uppercase tracking-wider whitespace-nowrap",
+          "transition-all duration-300",
+          // Always show on desktop, toggle on mobile based on hover
+          "hidden lg:block",
+          isHovered && "!block"
+        )}
+      >
+        For Businesses
+      </span>
+    </Link>
+  );
+};
+
+export default FloatingBusinessButton;
