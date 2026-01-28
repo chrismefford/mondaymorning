@@ -12,3 +12,13 @@ Allow: /
 
 User-agent: *
 Allow: /
+
+# Sitemap
+Sitemap: https://mondaymorning.lovable.app/sitemap.xml
+
+# Disallow admin/internal routes
+User-agent: *
+Disallow: /admin
+Disallow: /blog-import
+Disallow: /wholesale-login
+Disallow: /wholesale-catalog
