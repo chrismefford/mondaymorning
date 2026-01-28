@@ -20,8 +20,8 @@ const FloatingBusinessButton = () => {
         "rounded-full shadow-lg transition-all duration-300 ease-out",
         "hover:bg-gold hover:text-forest hover:shadow-xl",
         "focus:outline-none focus:ring-2 focus:ring-gold focus:ring-offset-2",
-        // Position: top center
-        "top-20 left-1/2 -translate-x-1/2",
+        // Position: top right
+        "top-20 right-4 lg:right-8",
         // Sizing and padding
         "px-5 py-3",
         // Animation
