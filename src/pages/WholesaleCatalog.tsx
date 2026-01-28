@@ -119,14 +119,15 @@ export default function WholesaleCatalog() {
     const catalogPrice = parseFloat(product.priceRange.minVariantPrice.amount);
     const retailPrice = parseFloat(product.compareAtPriceRange.minVariantPrice.amount);
     
-    const hasDiscount = retailPrice > catalogPrice;
+    // Show discount when catalog price is lower than retail
+    const hasDiscount = retailPrice > catalogPrice && catalogPrice > 0;
     const discountPercent = hasDiscount
-      ? ((retailPrice - catalogPrice) / retailPrice) * 100
+      ? Math.round(((retailPrice - catalogPrice) / retailPrice) * 100)
       : 0;
       
     return { 
       wholesalePrice: catalogPrice, 
-      retailPrice: retailPrice, 
+      retailPrice: hasDiscount ? retailPrice : 0, // Only show retail if there's a discount
       discountPercent,
       hasFBPricing: product.hasCatalogPricing ?? false
     };
@@ -341,10 +342,10 @@ function WholesaleProductCard({
           </div>
         )}
         {/* Discount Badge - positioned on top of image */}
-        {hasDiscount && (
+        {hasDiscount && discountPercent > 0 && (
           <div className="absolute top-3 left-3">
-            <Badge className="bg-gold text-forest-deep font-bold text-sm px-2 py-1">
-              {discountPercent.toFixed(0)}% OFF
+            <Badge className="bg-gold text-forest-deep font-bold text-sm px-3 py-1.5 shadow-md">
+              {discountPercent}% OFF
             </Badge>
           </div>
         )}
@@ -362,7 +363,7 @@ function WholesaleProductCard({
 
         {/* Pricing - F&B wholesale price with strikethrough retail */}
         <div className="space-y-1">
-          {hasDiscount && (
+          {hasDiscount && retailPrice > 0 && (
             <p className="text-sm text-forest/50 line-through">
               ${retailPrice.toFixed(2)}
             </p>
@@ -370,7 +371,7 @@ function WholesaleProductCard({
           <p className="text-xl font-bold text-forest">
             ${wholesalePrice.toFixed(2)}
           </p>
-          {hasFBPricing && (
+          {(hasFBPricing || hasDiscount) && (
             <p className="text-xs text-gold font-medium">
               F&B Pricing
             </p>
