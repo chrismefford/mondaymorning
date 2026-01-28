@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Menu, X, ShoppingBag, ArrowUpRight, Sparkles, Beer, Wine, Martini, Star, Leaf, Package, ChevronDown, Sunrise, UtensilsCrossed, Sofa, Umbrella, PartyPopper, Search, BookOpen, User } from "lucide-react";
+import { Menu, X, ShoppingBag, ArrowUpRight, Sparkles, Beer, Wine, Martini, Star, Leaf, Package, ChevronDown, Sunrise, UtensilsCrossed, Sofa, Umbrella, PartyPopper, Search, BookOpen, User, Building2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useCart } from "@/hooks/useCart";
 import logoGold from "@/assets/logo-primary-gold.svg";
@@ -176,6 +176,17 @@ const Header = () => {
                 Search
               </button>
               <a 
+                href="/wholesale-login"
+                className={`flex items-center gap-2 px-3 py-2 font-sans text-xs font-semibold uppercase tracking-wider transition-colors ${
+                  showLightText 
+                    ? 'text-cream hover:text-gold' 
+                    : 'text-foreground hover:text-primary'
+                }`}
+              >
+                <Building2 className="h-4 w-4" />
+                B2B
+              </a>
+              <a 
                 href="/auth"
                 className={`flex items-center gap-2 px-3 py-2 font-sans text-xs font-semibold uppercase tracking-wider transition-colors ${
                   showLightText 
@@ -351,15 +362,27 @@ const Header = () => {
             }`}
             style={{ transitionDelay: '600ms' }}
           >
-            <a href="/auth" onClick={() => setIsMenuOpen(false)}>
-              <Button 
-                variant="outline" 
-                size="lg" 
-                className="w-full font-sans text-sm font-bold uppercase tracking-widest py-6 border-2 border-background/30 text-background bg-transparent hover:bg-background/10"
-              >
-                Account
-              </Button>
-            </a>
+            <div className="flex gap-3">
+              <a href="/wholesale-login" onClick={() => setIsMenuOpen(false)} className="flex-1">
+                <Button 
+                  variant="outline" 
+                  size="lg" 
+                  className="w-full font-sans text-sm font-bold uppercase tracking-widest py-6 border-2 border-primary/50 text-primary bg-transparent hover:bg-primary/10"
+                >
+                  <Building2 className="h-4 w-4 mr-2" />
+                  B2B
+                </Button>
+              </a>
+              <a href="/auth" onClick={() => setIsMenuOpen(false)} className="flex-1">
+                <Button 
+                  variant="outline" 
+                  size="lg" 
+                  className="w-full font-sans text-sm font-bold uppercase tracking-widest py-6 border-2 border-background/30 text-background bg-transparent hover:bg-background/10"
+                >
+                  Account
+                </Button>
+              </a>
+            </div>
             
             {/* Social / tagline */}
             <div className="mt-8 text-center">
