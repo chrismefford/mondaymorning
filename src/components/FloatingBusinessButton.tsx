@@ -5,12 +5,27 @@ import { cn } from "@/lib/utils";
 
 const FloatingBusinessButton = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const [isAtTop, setIsAtTop] = useState(true);
 
   useEffect(() => {
     // Show button after a slight delay for smooth entrance
     const timer = setTimeout(() => setIsVisible(true), 1000);
     return () => clearTimeout(timer);
   }, []);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      // Show button only when near the top of the page (within 200px)
+      setIsAtTop(window.scrollY < 200);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll(); // Check initial position
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const shouldShow = isVisible && isAtTop;
 
   return (
     <Link
@@ -24,10 +39,10 @@ const FloatingBusinessButton = () => {
         "top-[340px] lg:top-80 right-4 lg:right-8",
         // Sizing and padding
         "px-5 py-3",
-        // Animation
-        isVisible 
-          ? "translate-y-0 opacity-100" 
-          : "-translate-y-full opacity-0"
+        // Animation - hide when scrolling down
+        shouldShow 
+          ? "translate-x-0 opacity-100" 
+          : "translate-x-full opacity-0 pointer-events-none"
       )}
       aria-label="For Businesses - Request wholesale pricing"
     >
