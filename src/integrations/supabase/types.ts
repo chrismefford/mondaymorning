@@ -255,6 +255,7 @@ export type Database = {
           id: string
           is_active: boolean | null
           payment_terms: string | null
+          shopify_company_location_id: string | null
           tax_id: string | null
           updated_at: string
           user_id: string
@@ -268,6 +269,7 @@ export type Database = {
           id?: string
           is_active?: boolean | null
           payment_terms?: string | null
+          shopify_company_location_id?: string | null
           tax_id?: string | null
           updated_at?: string
           user_id: string
@@ -281,6 +283,7 @@ export type Database = {
           id?: string
           is_active?: boolean | null
           payment_terms?: string | null
+          shopify_company_location_id?: string | null
           tax_id?: string | null
           updated_at?: string
           user_id?: string

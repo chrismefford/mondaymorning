@@ -15,6 +15,7 @@ import {
 } from "@/components/ui/select";
 import { supabase } from "@/integrations/supabase/client";
 import {
+  useShopifyB2BProducts,
   useShopifyAllProducts,
   formatShopifyPrice,
   type ShopifyProduct,
@@ -40,6 +41,7 @@ interface WholesaleCustomer {
   company_name: string;
   discount_tier: string;
   payment_terms: string;
+  shopify_company_location_id: string | null;
 }
 
 // Calculate discount percentage from retail (compareAt) vs wholesale (current) price
@@ -55,10 +57,20 @@ export default function WholesaleCatalog() {
   const [searchQuery, setSearchQuery] = useState("");
   const [categoryFilter, setCategoryFilter] = useState("all");
 
-  const { data: products, isLoading: productsLoading } = useShopifyAllProducts({
+  // Use B2B pricing if companyLocationId is available, otherwise fall back to regular products
+  const { data: b2bProducts, isLoading: b2bLoading } = useShopifyB2BProducts({
+    companyLocationId: customer?.shopify_company_location_id ?? null,
     sortKey: "BEST_SELLING",
-    enabled: !!customer,
+    enabled: !!customer?.shopify_company_location_id,
   });
+
+  const { data: regularProducts, isLoading: regularLoading } = useShopifyAllProducts({
+    sortKey: "BEST_SELLING",
+    enabled: !!customer && !customer.shopify_company_location_id,
+  });
+
+  const products = b2bProducts ?? regularProducts;
+  const productsLoading = b2bLoading || regularLoading;
 
   useEffect(() => {
     const checkAccess = async () => {
@@ -71,7 +83,7 @@ export default function WholesaleCatalog() {
 
       const { data: wholesaleData, error } = await supabase
         .from("wholesale_customers")
-        .select("id, company_name, discount_tier, payment_terms")
+        .select("id, company_name, discount_tier, payment_terms, shopify_company_location_id")
         .eq("user_id", session.user.id)
         .eq("is_active", true)
         .maybeSingle();
