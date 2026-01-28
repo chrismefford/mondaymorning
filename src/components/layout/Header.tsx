@@ -113,7 +113,7 @@ const Header = () => {
                       </button>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent 
-                      className="w-64 bg-forest border-2 border-gold/30 p-2 mt-2"
+                      className="w-64 !bg-forest border-2 border-gold/30 p-2 mt-2 z-[100] shadow-xl"
                       sideOffset={8}
                       align="center"
                     >
