@@ -298,6 +298,36 @@ export type Database = {
           },
         ]
       }
+      wholesale_prices: {
+        Row: {
+          created_at: string
+          id: string
+          product_handle: string
+          retail_price: number | null
+          updated_at: string
+          variant_id: string | null
+          wholesale_price: number
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          product_handle: string
+          retail_price?: number | null
+          updated_at?: string
+          variant_id?: string | null
+          wholesale_price: number
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          product_handle?: string
+          retail_price?: number | null
+          updated_at?: string
+          variant_id?: string | null
+          wholesale_price?: number
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
