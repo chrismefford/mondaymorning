@@ -42,12 +42,11 @@ interface WholesaleCustomer {
   payment_terms: string;
 }
 
-// Discount tiers (configured in Shopify Plus, simulated here for display)
-const discountTiers: Record<string, number> = {
-  standard: 0.20, // 20% off
-  premium: 0.30, // 30% off
-  vip: 0.40, // 40% off
-};
+// Calculate discount percentage from retail (compareAt) vs wholesale (current) price
+function calculateDiscountPercent(retailPrice: number, wholesalePrice: number): number {
+  if (retailPrice <= 0 || wholesalePrice >= retailPrice) return 0;
+  return ((retailPrice - wholesalePrice) / retailPrice) * 100;
+}
 
 export default function WholesaleCatalog() {
   const navigate = useNavigate();
@@ -124,11 +123,14 @@ export default function WholesaleCatalog() {
     new Set(products?.map((p) => p.productType).filter(Boolean) || [])
   ).sort();
 
-  // Calculate wholesale price
-  const getWholesalePrice = (retailPrice: string) => {
-    const retail = parseFloat(retailPrice);
-    const discount = discountTiers[customer?.discount_tier || "standard"] || 0.20;
-    return retail * (1 - discount);
+  // Get prices from Shopify data
+  const getProductPricing = (product: ShopifyProduct) => {
+    const wholesalePrice = parseFloat(product.priceRange.minVariantPrice.amount);
+    const retailPrice = parseFloat(product.compareAtPriceRange.minVariantPrice.amount);
+    // Use compareAt as retail if available, otherwise wholesale is the only price
+    const effectiveRetail = retailPrice > wholesalePrice ? retailPrice : wholesalePrice;
+    const discountPercent = calculateDiscountPercent(effectiveRetail, wholesalePrice);
+    return { wholesalePrice, retailPrice: effectiveRetail, discountPercent };
   };
 
   if (isLoading) {
@@ -206,10 +208,8 @@ export default function WholesaleCatalog() {
                 </a>
               </div>
               <p className="text-sm text-forest/70">
-                <span className="font-medium text-gold">
-                  {(discountTiers[customer?.discount_tier || "standard"] * 100).toFixed(0)}% off
-                </span>{" "}
-                retail prices
+                <span className="font-medium text-gold">Wholesale pricing</span>{" "}
+                vs retail
               </p>
             </div>
           </div>
@@ -255,18 +255,18 @@ export default function WholesaleCatalog() {
             </div>
           ) : filteredProducts && filteredProducts.length > 0 ? (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-              {filteredProducts.map((product) => (
-                <WholesaleProductCard
-                  key={product.id}
-                  product={product}
-                  wholesalePrice={getWholesalePrice(
-                    product.priceRange.minVariantPrice.amount
-                  )}
-                  discountPercent={
-                    discountTiers[customer?.discount_tier || "standard"] * 100
-                  }
-                />
-              ))}
+              {filteredProducts.map((product) => {
+                const pricing = getProductPricing(product);
+                return (
+                  <WholesaleProductCard
+                    key={product.id}
+                    product={product}
+                    wholesalePrice={pricing.wholesalePrice}
+                    retailPrice={pricing.retailPrice}
+                    discountPercent={pricing.discountPercent}
+                  />
+                );
+              })}
             </div>
           ) : (
             <div className="text-center py-20">
@@ -313,14 +313,16 @@ export default function WholesaleCatalog() {
 function WholesaleProductCard({
   product,
   wholesalePrice,
+  retailPrice,
   discountPercent,
 }: {
   product: ShopifyProduct;
   wholesalePrice: number;
+  retailPrice: number;
   discountPercent: number;
 }) {
-  const retailPrice = parseFloat(product.priceRange.minVariantPrice.amount);
   const savings = retailPrice - wholesalePrice;
+  const hasDiscount = discountPercent > 0;
 
   return (
     <div className="bg-white rounded-xl border border-forest/10 overflow-hidden hover:shadow-lg transition-shadow">
@@ -337,12 +339,14 @@ function WholesaleProductCard({
             <Package className="w-12 h-12 text-forest/20" />
           </div>
         )}
-        {/* Discount Badge */}
-        <div className="absolute top-3 right-3">
-          <Badge className="bg-gold text-forest-deep font-semibold">
-            {discountPercent.toFixed(0)}% OFF
-          </Badge>
-        </div>
+        {/* Discount Badge - only show if there's a real discount */}
+        {hasDiscount && (
+          <div className="absolute top-3 right-3">
+            <Badge className="bg-gold text-forest-deep font-semibold">
+              {discountPercent.toFixed(0)}% OFF
+            </Badge>
+          </div>
+        )}
       </div>
 
       {/* Info */}
@@ -358,18 +362,22 @@ function WholesaleProductCard({
         {/* Pricing */}
         <div className="flex items-end justify-between">
           <div>
-            <p className="text-xs text-forest/50 line-through">
-              Retail: {formatShopifyPrice(retailPrice.toString())}
-            </p>
+            {hasDiscount && (
+              <p className="text-xs text-forest/50 line-through">
+                Retail: {formatShopifyPrice(retailPrice.toString())}
+              </p>
+            )}
             <p className="text-lg font-semibold text-forest">
               {formatShopifyPrice(wholesalePrice.toFixed(2))}
             </p>
           </div>
-          <div className="text-right">
-            <p className="text-xs text-green-600 font-medium">
-              Save {formatShopifyPrice(savings.toFixed(2))}
-            </p>
-          </div>
+          {hasDiscount && (
+            <div className="text-right">
+              <p className="text-xs text-green-600 font-medium">
+                Save {formatShopifyPrice(savings.toFixed(2))}
+              </p>
+            </div>
+          )}
         </div>
 
         {/* Variants info */}
