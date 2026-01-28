@@ -36,6 +36,10 @@ export interface ShopifyProduct {
           amount: string;
           currencyCode: string;
         };
+        compareAtPrice?: {
+          amount: string;
+          currencyCode: string;
+        } | null;
       };
     }>;
   };
@@ -163,6 +167,69 @@ export function useShopifyAllProducts(options?: {
       // Safety cap in case of unexpected pagination behavior
       for (let page = 0; page < 25; page++) {
         const data = await fetchShopifyProductsPage(pageSize, {
+          after,
+          sortKey: options?.sortKey,
+          reverse: options?.reverse,
+        });
+
+        all.push(...data.products);
+
+        if (!data.pageInfo?.hasNextPage) break;
+        after = data.pageInfo.endCursor ?? undefined;
+        if (!after) break;
+      }
+
+      // Filter to only include active products with available variants
+      return all.filter(isActiveProduct);
+    },
+  });
+}
+
+/**
+ * Fetches B2B products with catalog-specific pricing using companyLocationId
+ */
+async function fetchB2BProductsPage(
+  first: number,
+  companyLocationId: string,
+  options?: {
+    after?: string;
+    sortKey?: ShopifyProductSortKey;
+    reverse?: boolean;
+  }
+): Promise<{ products: ShopifyProduct[]; pageInfo: ShopifyPageInfo }> {
+  return fetchFromShopify<{ products: ShopifyProduct[]; pageInfo: ShopifyPageInfo }>("b2b-products", {
+    first: first.toString(),
+    companyLocationId,
+    ...(options?.after ? { after: options.after } : {}),
+    ...(options?.sortKey ? { sortKey: options.sortKey } : {}),
+    ...(typeof options?.reverse === "boolean" ? { reverse: String(options.reverse) } : {}),
+  });
+}
+
+/**
+ * Fetches full B2B product catalog with catalog-specific pricing
+ */
+export function useShopifyB2BProducts(options: {
+  companyLocationId: string | null;
+  sortKey?: ShopifyProductSortKey;
+  reverse?: boolean;
+  enabled?: boolean;
+  pageSize?: number;
+}) {
+  const pageSize = Math.min(Math.max(options?.pageSize ?? 250, 1), 250);
+
+  return useQuery({
+    queryKey: ["shopify-b2b-products", options.companyLocationId, pageSize, options?.sortKey, options?.reverse],
+    enabled: (options?.enabled ?? true) && !!options.companyLocationId,
+    queryFn: async () => {
+      if (!options.companyLocationId) return [];
+      
+      const all: ShopifyProduct[] = [];
+      let after: string | undefined = undefined;
+
+      // Safety cap in case of unexpected pagination behavior
+      for (let page = 0; page < 25; page++) {
+        const data = await fetchB2BProductsPage(pageSize, options.companyLocationId, {
           after,
           sortKey: options?.sortKey,
           reverse: options?.reverse,

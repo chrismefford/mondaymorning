@@ -106,6 +106,62 @@ const PRODUCTS_QUERY = `
   }
 `;
 
+// B2B Products query with @inContext for catalog pricing
+const B2B_PRODUCTS_QUERY = `
+  query GetB2BProducts($first: Int!, $after: String, $sortKey: ProductSortKeys, $reverse: Boolean, $companyLocationId: ID!) @inContext(companyLocationId: $companyLocationId) {
+    products(first: $first, after: $after, sortKey: $sortKey, reverse: $reverse) {
+      pageInfo {
+        hasNextPage
+        endCursor
+      }
+      edges {
+        node {
+          id
+          title
+          description
+          handle
+          featuredImage {
+            url
+            altText
+          }
+          priceRange {
+            minVariantPrice {
+              amount
+              currencyCode
+            }
+          }
+          compareAtPriceRange {
+            minVariantPrice {
+              amount
+              currencyCode
+            }
+          }
+          tags
+          productType
+          vendor
+          variants(first: 10) {
+            edges {
+              node {
+                id
+                title
+                availableForSale
+                price {
+                  amount
+                  currencyCode
+                }
+                compareAtPrice {
+                  amount
+                  currencyCode
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
 const COLLECTIONS_QUERY = `
   query GetCollections($first: Int!) {
     collections(first: $first) {
@@ -573,6 +629,28 @@ serve(async (req) => {
           }),
           { headers: { ...corsHeaders, "Content-Type": "application/json" } }
         );
+
+      case "b2b-products": {
+        const companyLocationId = url.searchParams.get("companyLocationId");
+        if (!companyLocationId) {
+          throw new Error("companyLocationId required for B2B pricing");
+        }
+        console.log("Fetching B2B products with companyLocationId:", companyLocationId);
+        data = await shopifyFetch(B2B_PRODUCTS_QUERY, { 
+          first, 
+          after, 
+          sortKey, 
+          reverse,
+          companyLocationId 
+        });
+        return new Response(
+          JSON.stringify({
+            products: data.products.edges.map((edge: { node: ShopifyProduct }) => edge.node),
+            pageInfo: data.products.pageInfo,
+          }),
+          { headers: { ...corsHeaders, "Content-Type": "application/json" } }
+        );
+      }
 
       case "product":
         if (!productHandle) {
