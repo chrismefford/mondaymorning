@@ -6,8 +6,9 @@ import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { toast } from 'sonner';
 import logoWhite from '@/assets/logo-primary-white.svg';
-import { Check, X, Trash2, LogOut, MessageSquare, ChefHat } from 'lucide-react';
+import { Check, X, Trash2, LogOut, MessageSquare, ChefHat, Building2 } from 'lucide-react';
 import { RecipeGenerator } from '@/components/admin/RecipeGenerator';
+import WholesaleCustomerManager from '@/components/admin/WholesaleCustomerManager';
 
 interface StorySubmission {
   id: string;
@@ -153,6 +154,13 @@ const Admin = () => {
               <ChefHat className="w-4 h-4 mr-2" />
               Recipe Generator
             </TabsTrigger>
+            <TabsTrigger 
+              value="wholesale"
+              className="data-[state=active]:bg-cream data-[state=active]:text-forest text-cream"
+            >
+              <Building2 className="w-4 h-4 mr-2" />
+              Wholesale
+            </TabsTrigger>
           </TabsList>
 
           <TabsContent value="stories">
@@ -211,6 +219,12 @@ const Admin = () => {
           <TabsContent value="recipes">
             <h1 className="font-display text-4xl text-cream mb-8">AI Recipe Generator</h1>
             <RecipeGenerator />
+          </TabsContent>
+
+          <TabsContent value="wholesale">
+            <div className="bg-cream rounded-lg p-6">
+              <WholesaleCustomerManager />
+            </div>
           </TabsContent>
         </Tabs>
       </main>
