@@ -84,9 +84,9 @@ const vibeSections = [
     textColor: "text-cream",
     accentColor: "text-gold",
     texture: textureCream,
-    categories: ["Functional Elixir", "Functional", "Spirit Alternative", "Botanical"],
-    keywords: ["calm", "relax", "lavender", "chamomile", "warm", "spice", "vanilla", "whiskey", "bourbon"],
-    featuredProductHandle: "dromme-relax-founder-edition",
+    categories: ["Wine Alternative", "Wine", "Functional Elixir", "Functional", "Spirit Alternative", "Botanical"],
+    keywords: ["calm", "relax", "lavender", "chamomile", "warm", "spice", "vanilla", "whiskey", "bourbon", "red", "merlot", "cabernet"],
+    featuredProductHandle: "lautus-savvy-red",
     maxProducts: 4,
   },
   {
