@@ -100,7 +100,7 @@ const Header = () => {
             </a>
 
             {/* Desktop Navigation - Center */}
-            <nav className="hidden lg:flex items-center gap-1">
+            <nav className="hidden md:flex items-center gap-1">
               {navLinks.map((link) => {
                 const dropdownItems = link.dropdownType === "recipes" ? recipeItems : categoryItems;
                 return link.hasDropdown ? (
@@ -167,7 +167,7 @@ const Header = () => {
             </nav>
 
             {/* Desktop Actions */}
-            <div className="hidden lg:flex items-center gap-2">
+            <div className="hidden md:flex items-center gap-2">
               <button 
                 onClick={() => setIsSearchOpen(true)}
                 className={`flex items-center gap-2 px-3 py-2 font-sans text-xs font-semibold uppercase tracking-wider transition-colors ${
@@ -226,7 +226,7 @@ const Header = () => {
               </button>
             </div>
 
-            <div className="lg:hidden flex items-center gap-3 relative z-50">
+            <div className="md:hidden flex items-center gap-3 relative z-50">
               <button 
                 onClick={() => setIsSearchOpen(true)}
                 className={`w-10 h-10 border-2 flex items-center justify-center transition-colors ${
@@ -281,7 +281,7 @@ const Header = () => {
 
       {/* Mobile Menu - Full screen dramatic overlay */}
       <div 
-        className={`lg:hidden fixed inset-0 z-40 transition-all duration-500 ${
+        className={`md:hidden fixed inset-0 z-40 transition-all duration-500 ${
           isMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
         }`}
       >

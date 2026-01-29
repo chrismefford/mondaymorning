@@ -15,7 +15,7 @@ const Hero = () => {
       <div className="grain absolute inset-0 z-10 pointer-events-none" />
       
       {/* MOBILE LAYOUT - Full screen immersive */}
-      <div className="lg:hidden relative flex-1 flex flex-col">
+      <div className="md:hidden relative flex-1 flex flex-col">
         {/* Full-screen image background */}
         <div className="absolute inset-0">
           <img
@@ -121,7 +121,7 @@ const Hero = () => {
       </div>
 
       {/* DESKTOP LAYOUT */}
-      <div className="hidden lg:flex flex-1 relative">
+      <div className="hidden md:flex flex-1 relative">
         {/* Left side - Typography */}
         <div className="w-1/2 flex flex-col justify-center px-16 py-32 relative z-20">
           {/* Logo above headline - Desktop */}
@@ -265,7 +265,7 @@ const Hero = () => {
       </div>
 
       {/* Scroll indicator - Desktop only */}
-      <div className="absolute bottom-24 left-16 z-30 hidden lg:flex flex-col items-center gap-2 animate-bounce-subtle">
+      <div className="absolute bottom-24 left-16 z-30 hidden md:flex flex-col items-center gap-2 animate-bounce-subtle">
         <span className="font-sans text-xs uppercase tracking-[0.2em] [writing-mode:vertical-lr]">Scroll</span>
         <ArrowDown className="h-4 w-4" />
       </div>
