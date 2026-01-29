@@ -86,6 +86,9 @@ const vibeSections = [
     texture: textureCream,
     categories: ["Wine Alternative", "Wine", "Functional Elixir", "Functional", "Spirit Alternative", "Botanical"],
     keywords: ["calm", "relax", "lavender", "chamomile", "warm", "spice", "vanilla", "whiskey", "bourbon", "red", "merlot", "cabernet"],
+    // Prefer the Calm version (and never show the Awake / slushy items in this vibe)
+    preferredKeywords: ["dromme", "calm"],
+    excludeKeywords: ["awake", "slush", "slushy"],
     featuredProductHandles: ["kava-haven-kava-infused-spirit", "amethyst", "lautus-de-airen-red"],
     maxProducts: 4,
   },
@@ -258,6 +261,14 @@ const ShopPage = () => {
     
     vibeSections.forEach((vibe) => {
       const selected: any[] = [];
+      const excludeKeywords = ((vibe as any).excludeKeywords as string[] | undefined) ?? [];
+      const preferredKeywords = ((vibe as any).preferredKeywords as string[] | undefined) ?? [];
+
+      const isExcluded = (product: any) => {
+        if (!excludeKeywords.length) return false;
+        const blob = `${product?.name ?? ""} ${product?.handle ?? ""}`.toLowerCase();
+        return excludeKeywords.some((k) => blob.includes(k.toLowerCase()));
+      };
       
       // First, check for multiple featured products by handles array
       const featuredHandles = (vibe as any).featuredProductHandles as string[] | undefined;
@@ -272,7 +283,7 @@ const ShopPage = () => {
               p.handle?.includes(handle) && !usedProductIds.has(p.id)
             );
           }
-          if (product) {
+          if (product && !isExcluded(product)) {
             selected.push(product);
             usedProductIds.add(product.id);
           }
@@ -285,15 +296,34 @@ const ShopPage = () => {
           p.handle === (vibe as any).featuredProductHandle && 
           !usedProductIds.has(p.id)
         );
-        if (featuredProduct) {
+        if (featuredProduct && !isExcluded(featuredProduct)) {
           selected.push(featuredProduct);
           usedProductIds.add(featuredProduct.id);
         }
+      }
+
+      // Prefer specific products by keywords (e.g., "Dromme" + "Calm") before general matching.
+      if (preferredKeywords.length > 0 && selected.length < vibe.maxProducts) {
+        const preferredMatches = allProducts.filter((product) => {
+          if (usedProductIds.has(product.id)) return false;
+          if (isExcluded(product)) return false;
+          const name = (product.name ?? "").toLowerCase();
+          return preferredKeywords.every((k) => name.includes(k.toLowerCase()));
+        });
+
+        const remainingSlots = vibe.maxProducts - selected.length;
+        preferredMatches.slice(0, remainingSlots).forEach((p) => {
+          selected.push(p);
+          usedProductIds.add(p.id);
+        });
       }
       
       const matches = allProducts.filter((product) => {
         // Don't reuse products
         if (usedProductIds.has(product.id)) return false;
+
+        // Exclusions per vibe (e.g., block "Awake" from Cozy Evening)
+        if (isExcluded(product)) return false;
         
         // Check category match
         const categoryMatch = vibe.categories.some(cat => 
