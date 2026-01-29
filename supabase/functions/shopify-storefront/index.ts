@@ -815,6 +815,9 @@ serve(async (req) => {
         console.log(`Loaded ${priceMap.size} price list entries`);
         
         // Step 3: Transform and merge products with prices
+        // IMPORTANT: Only return products that are actually in the F&B price list.
+        // (Previously we returned all ACTIVE products and simply fell back to retail pricing,
+        // which makes the wholesale catalog show everything.)
         const transformedProducts = productsData.products.nodes
           .filter((p: { status: string }) => p.status === "ACTIVE")
           .map((product: {
@@ -836,11 +839,14 @@ serve(async (req) => {
               }>;
             };
           }) => {
-            // Get the first variant's pricing
-            const firstVariant = product.variants.nodes[0];
-            const retailPrice = firstVariant?.price || "0";
-            const catalogPriceEntry = priceMap.get(firstVariant?.id);
-            const hasCatalogPricing = !!catalogPriceEntry;
+            // Determine whether ANY variant is in the price list
+            const hasCatalogPricing = product.variants.nodes.some((v) => priceMap.has(v.id));
+
+            // Prefer the first variant that has catalog pricing (fallback to first variant)
+            const preferredVariant =
+              product.variants.nodes.find((v) => priceMap.has(v.id)) ?? product.variants.nodes[0];
+            const retailPrice = preferredVariant?.price || "0";
+            const catalogPriceEntry = preferredVariant ? priceMap.get(preferredVariant.id) : undefined;
             
             return {
               id: product.id,
@@ -851,7 +857,7 @@ serve(async (req) => {
               productType: product.productType,
               vendor: product.vendor,
               tags: product.tags,
-              // Use catalog pricing if available, otherwise fall back to regular price
+               // Use catalog pricing (this endpoint only returns catalog-priced products)
               priceRange: {
                 minVariantPrice: {
                   amount: catalogPriceEntry?.price || retailPrice,
@@ -890,7 +896,8 @@ serve(async (req) => {
                 })
               }
             };
-          });
+           })
+          .filter((p: { hasCatalogPricing: boolean }) => p.hasCatalogPricing);
           
         return new Response(
           JSON.stringify({
