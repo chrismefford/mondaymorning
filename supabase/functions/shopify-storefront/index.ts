@@ -936,6 +936,115 @@ serve(async (req) => {
           { headers: { ...corsHeaders, "Content-Type": "application/json" } }
         );
 
+      // Single product with F&B catalog pricing
+      case "catalog-product": {
+        if (!productHandle) {
+          throw new Error("Product handle required");
+        }
+        console.log("Fetching single product with F&B pricing:", productHandle);
+        
+        // Step 1: Fetch the product from storefront API (for full details)
+        const productData = await shopifyFetch(PRODUCT_BY_HANDLE_QUERY, { handle: productHandle });
+        const baseProduct = productData.productByHandle;
+        
+        if (!baseProduct) {
+          return new Response(
+            JSON.stringify({ product: null }),
+            { headers: { ...corsHeaders, "Content-Type": "application/json" } }
+          );
+        }
+        
+        // Step 2: Fetch price list prices to check for F&B pricing
+        const priceMap = new Map<string, { price: string; compareAtPrice: string | null }>();
+        let priceAfter: string | null = null;
+        
+        for (let page = 0; page < 25; page++) {
+          const priceData = await shopifyAdminFetch(PRICE_LIST_PRICES_QUERY, {
+            priceListId: FB_PRICE_LIST_ID,
+            first: 250,
+            after: priceAfter
+          }) as {
+            priceList: {
+              prices: {
+                pageInfo: { hasNextPage: boolean; endCursor: string | null };
+                nodes: Array<{
+                  variant: { id: string; product: { id: string; handle: string } };
+                  price: { amount: string; currencyCode: string };
+                  compareAtPrice: { amount: string; currencyCode: string } | null;
+                }>;
+              };
+            };
+          };
+          
+          if (!priceData.priceList?.prices?.nodes) break;
+          
+          for (const node of priceData.priceList.prices.nodes) {
+            if (node.variant?.id) {
+              priceMap.set(node.variant.id, {
+                price: node.price?.amount || "0",
+                compareAtPrice: node.compareAtPrice?.amount || null
+              });
+            }
+          }
+          
+          if (!priceData.priceList.prices.pageInfo.hasNextPage) break;
+          priceAfter = priceData.priceList.prices.pageInfo.endCursor;
+          if (!priceAfter) break;
+        }
+        
+        // Step 3: Check if any variant has catalog pricing applied
+        const normalizeMoney = (value: string | null | undefined) => {
+          const n = Number.parseFloat(String(value ?? ""));
+          return Number.isFinite(n) ? n : NaN;
+        };
+        
+        let hasCatalogPricing = false;
+        let catalogPrice = "0";
+        let retailPrice = "0";
+        
+        for (const edge of baseProduct.variants.edges) {
+          const variantId = edge.node.id;
+          const variantRetailPrice = edge.node.price?.amount || "0";
+          const entry = priceMap.get(variantId);
+          
+          if (entry?.price) {
+            const retail = normalizeMoney(variantRetailPrice);
+            const catalog = normalizeMoney(entry.price);
+            
+            if (Number.isFinite(retail) && Number.isFinite(catalog) && Math.abs(catalog - retail) > 0.0001) {
+              hasCatalogPricing = true;
+              catalogPrice = entry.price;
+              retailPrice = variantRetailPrice;
+              break;
+            }
+          }
+        }
+        
+        console.log(`Product ${productHandle}: hasCatalogPricing=${hasCatalogPricing}, catalog=${catalogPrice}, retail=${retailPrice}`);
+        
+        const transformedProduct = {
+          ...baseProduct,
+          hasCatalogPricing,
+          priceRange: {
+            minVariantPrice: {
+              amount: hasCatalogPricing ? catalogPrice : baseProduct.priceRange.minVariantPrice.amount,
+              currencyCode: "USD"
+            }
+          },
+          compareAtPriceRange: {
+            minVariantPrice: {
+              amount: hasCatalogPricing ? retailPrice : baseProduct.compareAtPriceRange?.minVariantPrice?.amount || "0",
+              currencyCode: "USD"
+            }
+          }
+        };
+        
+        return new Response(
+          JSON.stringify({ product: transformedProduct }),
+          { headers: { ...corsHeaders, "Content-Type": "application/json" } }
+        );
+      }
+
       // Cart operations
       case "cart-create": {
         const lines = body.lines as Array<{ merchandiseId: string; quantity: number }> || [];
