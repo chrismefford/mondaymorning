@@ -86,6 +86,7 @@ const vibeSections = [
     texture: textureCream,
     categories: ["Functional Elixir", "Functional", "Spirit Alternative", "Botanical"],
     keywords: ["calm", "relax", "lavender", "chamomile", "warm", "spice", "vanilla", "whiskey", "bourbon"],
+    featuredProductHandle: "dromme-relax-founder-edition",
     maxProducts: 4,
   },
   {
@@ -256,9 +257,20 @@ const ShopPage = () => {
     const usedProductIds = new Set<string>();
     
     vibeSections.forEach((vibe) => {
+      // First, check for featured product by handle
+      let featuredProduct: any = null;
+      if ((vibe as any).featuredProductHandle) {
+        featuredProduct = allProducts.find(p => 
+          p.handle === (vibe as any).featuredProductHandle && 
+          !usedProductIds.has(p.id)
+        );
+      }
+      
       const matches = allProducts.filter((product) => {
         // Don't reuse products
         if (usedProductIds.has(product.id)) return false;
+        // Skip featured product from regular matches (we'll add it first)
+        if (featuredProduct && product.id === featuredProduct.id) return false;
         
         // Check category match
         const categoryMatch = vibe.categories.some(cat => 
@@ -274,9 +286,19 @@ const ShopPage = () => {
         return categoryMatch || keywordMatch;
       });
       
-      // Take up to maxProducts
-      const selected = matches.slice(0, vibe.maxProducts);
-      selected.forEach(p => usedProductIds.add(p.id));
+      // Build final list: featured product first, then other matches
+      const selected: any[] = [];
+      if (featuredProduct) {
+        selected.push(featuredProduct);
+        usedProductIds.add(featuredProduct.id);
+      }
+      
+      // Fill remaining slots
+      const remaining = matches.slice(0, vibe.maxProducts - selected.length);
+      remaining.forEach(p => {
+        selected.push(p);
+        usedProductIds.add(p.id);
+      });
       
       productsByVibe[vibe.id] = selected;
     });
