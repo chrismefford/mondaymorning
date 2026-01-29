@@ -86,7 +86,7 @@ const vibeSections = [
     texture: textureCream,
     categories: ["Wine Alternative", "Wine", "Functional Elixir", "Functional", "Spirit Alternative", "Botanical", "Kava"],
     keywords: ["calm", "relax", "lavender", "chamomile", "warm", "spice", "vanilla", "whiskey", "bourbon", "red", "merlot", "cabernet", "kava"],
-    featuredProductHandle: "kava-haven-kava-infused-spirit",
+    featuredProductHandles: ["kava-haven-kava-infused-spirit", "goodvines-sauvignon-blanc", "amethyst"],
     maxProducts: 4,
   },
   {
@@ -257,20 +257,43 @@ const ShopPage = () => {
     const usedProductIds = new Set<string>();
     
     vibeSections.forEach((vibe) => {
-      // First, check for featured product by handle
-      let featuredProduct: any = null;
-      if ((vibe as any).featuredProductHandle) {
-        featuredProduct = allProducts.find(p => 
+      const selected: any[] = [];
+      
+      // First, check for multiple featured products by handles array
+      const featuredHandles = (vibe as any).featuredProductHandles as string[] | undefined;
+      if (featuredHandles && featuredHandles.length > 0) {
+        featuredHandles.forEach(handle => {
+          // Try exact match first, then partial match
+          let product = allProducts.find(p => 
+            p.handle === handle && !usedProductIds.has(p.id)
+          );
+          if (!product) {
+            product = allProducts.find(p => 
+              p.handle?.includes(handle) && !usedProductIds.has(p.id)
+            );
+          }
+          if (product) {
+            selected.push(product);
+            usedProductIds.add(product.id);
+          }
+        });
+      }
+      
+      // Legacy: check for single featured product by handle
+      if ((vibe as any).featuredProductHandle && selected.length === 0) {
+        const featuredProduct = allProducts.find(p => 
           p.handle === (vibe as any).featuredProductHandle && 
           !usedProductIds.has(p.id)
         );
+        if (featuredProduct) {
+          selected.push(featuredProduct);
+          usedProductIds.add(featuredProduct.id);
+        }
       }
       
       const matches = allProducts.filter((product) => {
         // Don't reuse products
         if (usedProductIds.has(product.id)) return false;
-        // Skip featured product from regular matches (we'll add it first)
-        if (featuredProduct && product.id === featuredProduct.id) return false;
         
         // Check category match
         const categoryMatch = vibe.categories.some(cat => 
@@ -285,13 +308,6 @@ const ShopPage = () => {
         
         return categoryMatch || keywordMatch;
       });
-      
-      // Build final list: featured product first, then other matches
-      const selected: any[] = [];
-      if (featuredProduct) {
-        selected.push(featuredProduct);
-        usedProductIds.add(featuredProduct.id);
-      }
       
       // Fill remaining slots
       const remaining = matches.slice(0, vibe.maxProducts - selected.length);
