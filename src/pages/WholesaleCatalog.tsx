@@ -257,7 +257,7 @@ export default function WholesaleCatalog() {
               <Loader2 className="w-8 h-8 animate-spin text-forest" />
             </div>
           ) : filteredProducts && filteredProducts.length > 0 ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 items-stretch">
               {filteredProducts.map((product) => {
                 const pricing = getProductPricing(product);
                 return (
