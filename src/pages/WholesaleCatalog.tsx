@@ -330,8 +330,8 @@ function WholesaleProductCard({
   const hasDiscount = discountPercent > 0;
 
   return (
-    <div className="bg-white rounded-xl border border-forest/10 overflow-hidden hover:shadow-lg transition-shadow">
-      {/* Image with discount badge */}
+    <div className="bg-white rounded-xl border border-forest/10 overflow-hidden hover:shadow-lg transition-shadow h-full flex flex-col">
+      {/* Image */}
       <div className="aspect-square bg-cream/50 relative">
         {product.featuredImage?.url ? (
           <img
@@ -344,18 +344,10 @@ function WholesaleProductCard({
             <Package className="w-12 h-12 text-forest/20" />
           </div>
         )}
-        {/* Discount Badge - positioned on top of image */}
-        {hasDiscount && discountPercent > 0 && (
-          <div className="absolute top-3 left-3">
-            <Badge className="bg-gold text-forest-deep font-bold text-sm px-3 py-1.5 shadow-md">
-              {discountPercent}% OFF
-            </Badge>
-          </div>
-        )}
       </div>
 
-      {/* Info */}
-      <div className="p-4">
+      {/* Info - flex-grow to fill remaining space, flex-col to push button down */}
+      <div className="p-4 flex flex-col flex-grow">
         <p className="text-xs text-forest/50 uppercase tracking-wide mb-1">
           {product.vendor}
         </p>
@@ -388,12 +380,15 @@ function WholesaleProductCard({
           </p>
         )}
 
-        {/* View Product Button */}
-        <Link to={`/product/${product.handle}`}>
+        {/* Spacer to push button to bottom */}
+        <div className="flex-grow" />
+
+        {/* View Product Button - always at bottom */}
+        <Link to={`/product/${product.handle}`} className="mt-4">
           <Button
             variant="outline"
             size="sm"
-            className="w-full mt-4 border-forest/20 text-forest hover:bg-forest hover:text-cream"
+            className="w-full border-forest/20 text-forest hover:bg-forest hover:text-cream"
           >
             View Details
           </Button>
