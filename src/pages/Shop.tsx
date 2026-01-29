@@ -86,7 +86,7 @@ const vibeSections = [
     texture: textureCream,
     categories: ["Wine Alternative", "Wine", "Functional Elixir", "Functional", "Spirit Alternative", "Botanical", "Kava"],
     keywords: ["calm", "relax", "lavender", "chamomile", "warm", "spice", "vanilla", "whiskey", "bourbon", "red", "merlot", "cabernet", "kava"],
-    featuredProductHandle: "kava-haven",
+    featuredProductHandle: "kava-haven-bottle",
     maxProducts: 4,
   },
   {
