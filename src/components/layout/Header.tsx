@@ -199,15 +199,6 @@ const Header = () => {
                   align="end"
                 >
                   <DropdownMenuItem 
-                    className="flex items-center gap-3 px-4 py-3 cursor-pointer rounded-none border-b border-cream/10 text-cream hover:text-forest hover:bg-gold focus:bg-gold focus:text-forest transition-all duration-200"
-                    asChild
-                  >
-                    <a href="/auth">
-                      <User className="h-5 w-5 text-gold" />
-                      <span className="font-sans text-sm font-medium tracking-wide">My Account</span>
-                    </a>
-                  </DropdownMenuItem>
-                  <DropdownMenuItem 
                     className="flex items-center gap-3 px-4 py-3 cursor-pointer rounded-none text-cream hover:text-forest hover:bg-gold focus:bg-gold focus:text-forest transition-all duration-200"
                     asChild
                   >
@@ -384,21 +375,11 @@ const Header = () => {
             style={{ transitionDelay: '600ms' }}
           >
             <div className="flex flex-col gap-3">
-              <a href="/auth" onClick={() => setIsMenuOpen(false)}>
-                <Button 
-                  variant="outline" 
-                  size="lg" 
-                  className="w-full font-sans text-sm font-bold uppercase tracking-widest py-6 border-2 border-primary/50 text-primary bg-transparent hover:bg-primary/10"
-                >
-                  <User className="h-4 w-4 mr-2" />
-                  My Account
-                </Button>
-              </a>
               <a href="/wholesale-login" onClick={() => setIsMenuOpen(false)}>
                 <Button 
                   variant="outline" 
                   size="lg" 
-                  className="w-full font-sans text-sm font-bold uppercase tracking-widest py-6 border-2 border-background/30 text-background bg-transparent hover:bg-background/10"
+                  className="w-full font-sans text-sm font-bold uppercase tracking-widest py-6 border-2 border-primary/50 text-primary bg-transparent hover:bg-primary/10"
                 >
                   <Building2 className="h-4 w-4 mr-2" />
                   B2B / Wholesale
