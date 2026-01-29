@@ -71,8 +71,11 @@ const Header = () => {
   // Determine if we're on a dark hero page
   const isDarkHeroPage = typeof window !== 'undefined' && 
     (window.location.pathname === '/services' || 
-     window.location.pathname === '/locations' ||
-     window.location.pathname === '/wholesale-catalog');
+     window.location.pathname === '/locations');
+
+  // Wholesale catalog needs solid header background always
+  const isWholesaleCatalog = typeof window !== 'undefined' && 
+    window.location.pathname === '/wholesale-catalog';
 
   const showLightText = !isScrolled && isDarkHeroPage;
 
@@ -80,7 +83,7 @@ const Header = () => {
     <>
       <header 
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-          isScrolled 
+          isScrolled || isWholesaleCatalog
             ? "bg-background/95 backdrop-blur-md border-b-2 border-foreground" 
             : "bg-transparent"
         }`}
