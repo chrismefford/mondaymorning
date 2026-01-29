@@ -51,6 +51,7 @@ const ProductRecipes = ({
         
         const { error } = await supabase.functions.invoke("generate-recipes", {
           body: {
+            onDemand: true, // Flag for public on-demand generation
             products: [{
               handle: productHandle,
               name: productName,

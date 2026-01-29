@@ -241,10 +241,11 @@ serve(async (req) => {
 
     const supabase = createClient(supabaseUrl, supabaseServiceKey);
     
-    // Check if this is an automated/cron request or admin request
+    // Check if this is an automated/cron request, admin request, or on-demand generation
     const authHeader = req.headers.get("Authorization");
     let isAuthorized = false;
     let isAutoMode = false;
+    let isOnDemand = false;
     let body: any = {};
 
     try {
@@ -258,8 +259,15 @@ serve(async (req) => {
       isAutoMode = true;
       isAuthorized = true;
       console.log("Running in auto mode (scheduled job)");
-    } else if (authHeader) {
-      // Verify admin access for manual requests
+    } 
+    // Check for on-demand mode (single product recipe generation from product pages)
+    else if (body.onDemand === true && body.products?.length === 1) {
+      isOnDemand = true;
+      isAuthorized = true;
+      console.log("Running in on-demand mode for single product");
+    }
+    else if (authHeader) {
+      // Verify admin access for manual batch requests
       const token = authHeader.replace("Bearer ", "");
       const { data: { user }, error: userError } = await supabase.auth.getUser(token);
       
