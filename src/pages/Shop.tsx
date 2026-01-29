@@ -84,9 +84,9 @@ const vibeSections = [
     textColor: "text-cream",
     accentColor: "text-gold",
     texture: textureCream,
-    categories: ["Wine Alternative", "Wine", "Functional Elixir", "Functional", "Spirit Alternative", "Botanical"],
-    keywords: ["calm", "relax", "lavender", "chamomile", "warm", "spice", "vanilla", "whiskey", "bourbon", "red", "merlot", "cabernet"],
-    featuredProductHandle: "lautus-savvy-red",
+    categories: ["Wine Alternative", "Wine", "Functional Elixir", "Functional", "Spirit Alternative", "Botanical", "Kava"],
+    keywords: ["calm", "relax", "lavender", "chamomile", "warm", "spice", "vanilla", "whiskey", "bourbon", "red", "merlot", "cabernet", "kava"],
+    featuredProductHandle: "kava-haven",
     maxProducts: 4,
   },
   {
