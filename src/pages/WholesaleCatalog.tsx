@@ -334,11 +334,14 @@ function WholesaleProductCard({
       {/* Image */}
       <div className="aspect-square bg-cream/50 relative">
         {product.featuredImage?.url ? (
-          <img
-            src={product.featuredImage.url}
-            alt={product.featuredImage.altText || product.title}
-            className="w-full h-full object-cover"
-          />
+          <div className="w-full h-full flex items-center justify-center p-8">
+            <img
+              src={product.featuredImage.url}
+              alt={product.featuredImage.altText || product.title}
+              className="max-w-full max-h-full object-contain"
+              loading="lazy"
+            />
+          </div>
         ) : (
           <div className="w-full h-full flex items-center justify-center">
             <Package className="w-12 h-12 text-forest/20" />
