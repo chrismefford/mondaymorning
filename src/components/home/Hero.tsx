@@ -152,7 +152,7 @@ const Hero = () => {
           </p>
 
           {/* Stats row */}
-          <div className="flex gap-10 mb-10 py-6 border-y-2 border-forest/20 animate-fade-up delay-300">
+          <div className="flex gap-10 mb-10 py-6 border-y-2 border-forest/20 max-w-md animate-fade-up delay-300">
             <div>
               <span className="block font-serif text-4xl font-bold text-gold">425+</span>
               <span className="font-sans text-xs uppercase tracking-wider text-muted-foreground">Flavors & Styles</span>
