@@ -95,8 +95,11 @@ export default function WholesaleCatalog() {
     navigate("/wholesale-login");
   };
 
-  // Filter products
+  // Filter products - ONLY show products with F&B catalog pricing
   const filteredProducts = products?.filter((product) => {
+    // Must have F&B catalog pricing to be shown
+    if (!product.hasCatalogPricing) return false;
+    
     const matchesSearch =
       searchQuery === "" ||
       product.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
