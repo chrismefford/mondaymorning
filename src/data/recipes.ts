@@ -48,42 +48,42 @@ export const recipes: Recipe[] = [
     title: "Morning Clarity Fizz",
     occasion: "breakfast",
     tagline: "Start your day intentionally",
-    description: "A refreshing blend of ginger, lemon, and Amethyst Ginger Lemon topped with sparkling water.",
+    description: "A refreshing blend of ginger, lemon, and Abstinence Cape Spice topped with sparkling water.",
     image: "https://images.unsplash.com/photo-1544145945-f90425340c7e?w=800&q=80",
     prepTime: "5 min",
     servings: 1,
     difficulty: "Easy",
-    ingredients: ["4 oz Amethyst Ginger Lemon", "1 oz fresh lemon juice", "Sparkling water", "Candied ginger"],
-    productKeywords: ["functional", "elixir", "wellness", "tonic", "adaptogen", "ginger"],
-    featuredProductHandle: "amethyst-na-spirits-ginger-lemon"
+    ingredients: ["4 oz Abstinence Spirits - Cape Spice", "1 oz fresh lemon juice", "Sparkling water", "Candied ginger"],
+    productKeywords: ["functional", "elixir", "wellness", "tonic", "adaptogen", "ginger", "spice"],
+    featuredProductHandle: "abstinence-spirits-cape-spice"
   },
   {
     id: "3",
     title: "Blueberry Lavender Lemonade",
     occasion: "breakfast",
     tagline: "Calm meets bright",
-    description: "Fresh blueberries muddled with lavender syrup and Amethyst Blueberry Ginger Mint for a soothing yet vibrant morning drink.",
+    description: "Fresh blueberries muddled with lavender syrup and Abstinence Cape Floral for a soothing yet vibrant morning drink.",
     image: "https://images.unsplash.com/photo-1544145945-f90425340c7e?w=800&q=80",
     prepTime: "7 min",
     servings: 1,
     difficulty: "Easy",
-    ingredients: ["2 oz Amethyst Blueberry Ginger Mint", "Lavender simple syrup", "Fresh lemon juice", "Sparkling water", "Lavender sprig"],
-    productKeywords: ["botanical", "floral", "lavender", "berry"],
-    featuredProductHandle: "amethyst-na-spirits-blueberry-ginger-mint"
+    ingredients: ["2 oz Abstinence Spirits - Cape Floral", "Lavender simple syrup", "Fresh lemon juice", "Sparkling water", "Lavender sprig", "Fresh blueberries"],
+    productKeywords: ["botanical", "floral", "lavender", "berry", "gin"],
+    featuredProductHandle: "abstinence-spirits-cape-floral"
   },
   {
     id: "b4",
     title: "Grapefruit Rosemary Spritz",
     occasion: "breakfast",
     tagline: "Bright & herbaceous",
-    description: "Fresh grapefruit juice meets Amethyst Grapefruit Basil for a sophisticated breakfast sipper.",
+    description: "Fresh grapefruit juice meets Abstinence Blood Orange Aperitif for a sophisticated breakfast sipper.",
     image: "https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?w=800&q=80",
     prepTime: "5 min",
     servings: 1,
     difficulty: "Easy",
-    ingredients: ["2 oz Amethyst Grapefruit Basil", "2 oz fresh grapefruit juice", "Rosemary simple syrup", "Sparkling water", "Rosemary sprig"],
-    productKeywords: ["citrus", "grapefruit", "spritz", "aperitif"],
-    featuredProductHandle: "amethyst-na-spirits-grapefruit-basil"
+    ingredients: ["2 oz Abstinence Spirits - Blood Orange Aperitif", "2 oz fresh grapefruit juice", "Rosemary simple syrup", "Sparkling water", "Rosemary sprig"],
+    productKeywords: ["citrus", "grapefruit", "spritz", "aperitif", "orange"],
+    featuredProductHandle: "abstinence-spirits-blood-orange-aperitif"
   },
   {
     id: "b5",
@@ -104,14 +104,14 @@ export const recipes: Recipe[] = [
     title: "Tropical Acai Refresher",
     occasion: "breakfast",
     tagline: "Superfood sunrise",
-    description: "Antioxidant-rich acai blended with Amethyst Tropical Punch for an energizing morning boost.",
+    description: "Antioxidant-rich acai blended with Abstinence Cape Citrus for an energizing morning boost.",
     image: "https://images.unsplash.com/photo-1590301157890-4810ed352733?w=800&q=80",
     prepTime: "8 min",
     servings: 1,
     difficulty: "Easy",
-    ingredients: ["Acai purée", "2 oz Amethyst Tropical Punch", "Pineapple juice", "Coconut water", "Fresh berries"],
-    productKeywords: ["tropical", "fruit", "wellness", "functional"],
-    featuredProductHandle: "amethyst-na-spirits-tropical-punch"
+    ingredients: ["Acai purée", "2 oz Abstinence Spirits - Cape Citrus", "Pineapple juice", "Coconut water", "Fresh berries"],
+    productKeywords: ["tropical", "fruit", "wellness", "functional", "citrus"],
+    featuredProductHandle: "abstinence-spirits-cape-citrus"
   },
 
   // DINNER
@@ -177,14 +177,14 @@ export const recipes: Recipe[] = [
     title: "Herb Garden Gimlet",
     occasion: "dinner",
     tagline: "Fresh from the garden",
-    description: "A vibrant blend of fresh herbs, lime, and Amethyst Lemon Cucumber Serrano for a crisp dinner starter.",
+    description: "A vibrant blend of fresh herbs, lime, and Abstinence Cape Floral for a crisp dinner starter.",
     image: "https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?w=800&q=80",
     prepTime: "5 min",
     servings: 1,
     difficulty: "Easy",
-    ingredients: ["Fresh basil", "Fresh mint", "Lime juice", "Simple syrup", "2 oz Amethyst Lemon Cucumber Serrano", "Cucumber slice"],
+    ingredients: ["Fresh basil", "Fresh mint", "Lime juice", "Simple syrup", "2 oz Abstinence Spirits - Cape Floral", "Cucumber slice"],
     productKeywords: ["gin", "botanical", "herb", "cucumber"],
-    featuredProductHandle: "amethyst-na-spirits-lemon-cucumber-serrano"
+    featuredProductHandle: "abstinence-spirits-cape-floral"
   },
   {
     id: "d6",
@@ -236,14 +236,14 @@ export const recipes: Recipe[] = [
     title: "Cucumber Mint Cooler",
     occasion: "relaxing",
     tagline: "Cool & composed",
-    description: "Fresh cucumber and mint create a refreshingly zen experience with Amethyst Lemon Cucumber Serrano.",
+    description: "Fresh cucumber and mint create a refreshingly zen experience with Abstinence Cape Floral.",
     image: "https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?w=800&q=80",
     prepTime: "5 min",
     servings: 1,
     difficulty: "Easy",
-    ingredients: ["Fresh cucumber slices", "Fresh mint leaves", "Lime juice", "2 oz Amethyst Lemon Cucumber Serrano", "Sparkling water"],
+    ingredients: ["Fresh cucumber slices", "Fresh mint leaves", "Lime juice", "2 oz Abstinence Spirits - Cape Floral", "Sparkling water"],
     productKeywords: ["gin", "cucumber", "botanical", "herb"],
-    featuredProductHandle: "amethyst-na-spirits-lemon-cucumber-serrano"
+    featuredProductHandle: "abstinence-spirits-cape-floral"
   },
   {
     id: "r4",
@@ -294,71 +294,71 @@ export const recipes: Recipe[] = [
     title: "Tropical Sunset",
     occasion: "beach",
     tagline: "Paradise found",
-    description: "Pineapple, coconut, and Amethyst Tropical Punch create the ultimate beach day sipper—no umbrella required.",
+    description: "Pineapple, coconut, and Cut Above Agave Blanco create the ultimate beach day sipper—no umbrella required.",
     image: "https://images.unsplash.com/photo-1536935338788-846bb9981813?w=800&q=80",
     prepTime: "5 min",
     servings: 1,
     difficulty: "Easy",
-    ingredients: ["4 oz pineapple juice", "2 oz Amethyst Tropical Punch", "Coconut cream", "Pineapple wedge", "Maraschino cherry"],
+    ingredients: ["4 oz pineapple juice", "2 oz Cut Above - Agave Blanco", "Coconut cream", "Pineapple wedge", "Maraschino cherry"],
     featured: true,
-    productKeywords: ["rum", "tropical", "coconut", "pineapple", "caribbean"],
-    featuredProductHandle: "amethyst-na-spirits-tropical-punch"
+    productKeywords: ["rum", "tropical", "coconut", "pineapple", "caribbean", "tequila", "agave"],
+    featuredProductHandle: "cut-above-agave-blanco"
   },
   {
     id: "11",
     title: "Watermelon Wave",
     occasion: "beach",
     tagline: "Summer in a cup",
-    description: "Fresh watermelon juice meets Amethyst Watermelon Lime and fresh mint for the most refreshing beach companion.",
+    description: "Fresh watermelon juice meets Cut Above Agave Blanco and fresh mint for the most refreshing beach companion.",
     image: "https://images.unsplash.com/photo-1570831739435-6601aa3fa4fb?w=800&q=80",
     prepTime: "7 min",
     servings: 1,
     difficulty: "Easy",
-    ingredients: ["Fresh watermelon juice", "2 oz Amethyst Watermelon Lime", "Lime juice", "Fresh mint", "Tajín rim"],
+    ingredients: ["Fresh watermelon juice", "2 oz Cut Above - Agave Blanco", "Lime juice", "Fresh mint", "Tajín rim"],
     productKeywords: ["tequila", "agave", "margarita", "lime", "mexican"],
-    featuredProductHandle: "amethyst-na-spirits-watermelon-lime"
+    featuredProductHandle: "cut-above-agave-blanco"
   },
   {
     id: "12",
     title: "Coconut Lime Refresher",
     occasion: "beach",
     tagline: "Coastal vibes only",
-    description: "Creamy coconut water, zesty lime, and Amethyst Lime Basil transport you straight to the shoreline.",
+    description: "Creamy coconut water, zesty lime, and Abstinence Cape Citrus transport you straight to the shoreline.",
     image: "https://images.unsplash.com/photo-1534353473418-4cfa6c56fd38?w=800&q=80",
     prepTime: "3 min",
     servings: 1,
     difficulty: "Easy",
-    ingredients: ["6 oz coconut water", "2 oz Amethyst Lime Basil", "Fresh lime juice", "Lime wheel", "Toasted coconut flakes"],
-    productKeywords: ["rum", "coconut", "tropical", "caribbean", "lime"],
-    featuredProductHandle: "amethyst-na-spirits-lime-basil"
+    ingredients: ["6 oz coconut water", "2 oz Abstinence Spirits - Cape Citrus", "Fresh lime juice", "Lime wheel", "Toasted coconut flakes"],
+    productKeywords: ["rum", "coconut", "tropical", "caribbean", "lime", "citrus"],
+    featuredProductHandle: "abstinence-spirits-cape-citrus"
   },
   {
     id: "be4",
     title: "Mango Tango Margarita",
     occasion: "beach",
     tagline: "Tropical bliss",
-    description: "Ripe mango blended with Amethyst Watermelon Lime and lime for an instant vacation in a glass.",
+    description: "Ripe mango blended with Cut Above Agave Blanco and lime for an instant vacation in a glass.",
     image: "https://images.unsplash.com/photo-1560508179-b2c9a3f8e92b?w=800&q=80",
     prepTime: "5 min",
     servings: 1,
     difficulty: "Easy",
-    ingredients: ["Fresh mango", "2 oz Amethyst Watermelon Lime", "Lime juice", "Agave nectar", "Chili-lime rim"],
+    ingredients: ["Fresh mango", "2 oz Cut Above - Agave Blanco", "Lime juice", "Agave nectar", "Chili-lime rim"],
     productKeywords: ["tequila", "agave", "margarita", "mango", "mexican"],
-    featuredProductHandle: "amethyst-na-spirits-watermelon-lime"
+    featuredProductHandle: "cut-above-agave-blanco"
   },
   {
     id: "be5",
     title: "Piña Colada Dream",
     occasion: "beach",
     tagline: "Classic island escape",
-    description: "Creamy coconut, sweet pineapple, and Amethyst Tropical Punch blended to perfection—the beach essential.",
+    description: "Creamy coconut, sweet pineapple, and Cut Above Agave Blanco blended to perfection—the beach essential.",
     image: "https://images.unsplash.com/photo-1551538827-9c037cb4f32a?w=800&q=80",
     prepTime: "5 min",
     servings: 1,
     difficulty: "Easy",
-    ingredients: ["4 oz pineapple juice", "2 oz Amethyst Tropical Punch", "Coconut cream", "Pineapple wedge", "Maraschino cherry"],
-    productKeywords: ["rum", "coconut", "pineapple", "tropical"],
-    featuredProductHandle: "amethyst-na-spirits-tropical-punch"
+    ingredients: ["4 oz pineapple juice", "2 oz Cut Above - Agave Blanco", "Coconut cream", "Pineapple wedge", "Maraschino cherry"],
+    productKeywords: ["rum", "coconut", "pineapple", "tropical", "tequila", "agave"],
+    featuredProductHandle: "cut-above-agave-blanco"
   },
   {
     id: "be6",
@@ -452,14 +452,14 @@ export const recipes: Recipe[] = [
     title: "Berry Jubilee",
     occasion: "celebration",
     tagline: "Festive & fruity",
-    description: "A vibrant mix of seasonal berries with Amethyst Blueberry Ginger Mint and sparkling bubbles.",
+    description: "A vibrant mix of seasonal berries with Abstinence Cape Floral and sparkling bubbles.",
     image: "https://images.unsplash.com/photo-1497534446932-c925b458314e?w=800&q=80",
     prepTime: "7 min",
     servings: 1,
     difficulty: "Easy",
-    ingredients: ["Mixed berry purée", "2 oz Amethyst Blueberry Ginger Mint", "Vanilla syrup", "Sparkling water", "Fresh berries"],
-    productKeywords: ["vodka", "berry", "fruit", "clean"],
-    featuredProductHandle: "amethyst-na-spirits-blueberry-ginger-mint"
+    ingredients: ["Mixed berry purée", "2 oz Abstinence Spirits - Cape Floral", "Vanilla syrup", "Sparkling water", "Fresh berries"],
+    productKeywords: ["vodka", "berry", "fruit", "clean", "botanical", "gin"],
+    featuredProductHandle: "abstinence-spirits-cape-floral"
   },
   {
     id: "c7",

@@ -32,29 +32,28 @@ interface GeneratedRecipe {
 
 const OCCASIONS = ["breakfast", "dinner", "relaxing", "beach", "celebration"];
 
-const SYSTEM_PROMPT = `You are a professional mixologist and recipe developer specializing in non-alcoholic (NA) beverages. You create delicious, creative mocktail and drink recipes that feature specific NA products.
+const SYSTEM_PROMPT = `You are a professional mixologist creating non-alcoholic drink recipes.
 
-Your recipes should:
-- Be realistic and actually tasty
-- Feature the NA product prominently as the main ingredient
-- Include common mixers and garnishes available at home or grocery stores
-- Have creative, catchy names that reflect the drink's character
-- Include clear, easy-to-follow instructions
-- Be appropriate for the occasion specified
+CRITICAL RULES - YOU MUST FOLLOW THESE EXACTLY:
+1. The FEATURED PRODUCT NAME must be used EXACTLY as provided - do not modify, abbreviate, or add words like "Tropical Punch" or other flavor descriptors unless that is the EXACT product name given.
+2. In the ingredients list, write the featured product EXACTLY as: "[measurement] [EXACT PRODUCT NAME AS PROVIDED]"
+3. DO NOT invent product variants, flavors, or sub-products that were not explicitly provided.
+4. Use only common mixers (club soda, lime juice, simple syrup, etc.) alongside the featured product.
+5. The recipe should be realistic, tasty, and appropriate for the occasion.
 
-CRITICAL: Every recipe MUST use the featured product as the base or main ingredient. The recipe should highlight how to use that specific product in a delicious way.
+Example: If the product is "Amethyst NA Spirits - Lemon Cucumber Serrano", you MUST write exactly that name in ingredients, NOT "Amethyst Tropical Punch" or any other made-up variant.
 
-For each recipe, provide:
-1. A creative title (not just the product name)
-2. A short tagline (one catchy sentence)
-3. A description (2-3 sentences about the drink)
+For each recipe provide:
+1. Creative title (not just the product name)
+2. Short tagline (one catchy sentence)
+3. Description (2-3 sentences)
 4. Prep time (e.g., "5 mins")
 5. Servings (usually 1-2)
 6. Difficulty (Easy, Medium, or Advanced)
-7. Ingredients list (include exact measurements, always list the featured product first)
-8. Step-by-step instructions (3-6 steps)
+7. Ingredients list (EXACT product name first with measurement, then common mixers)
+8. Instructions (3-6 steps)
 
-Respond ONLY with valid JSON matching the schema provided.`;
+Respond ONLY with valid JSON.`;
 
 async function generateRecipeForProduct(
   product: ShopifyProduct,
@@ -65,9 +64,12 @@ async function generateRecipeForProduct(
   
   const prompt = `Create a ${occasion} drink recipe featuring this NA product:
 
-Product: ${product.name}
+FEATURED PRODUCT (use this EXACT name in ingredients): "${product.name}"
 Category: ${product.category}
+Product Handle: ${product.handle}
 ${product.description ? `Description: ${product.description}` : ""}
+
+IMPORTANT: In the ingredients list, you MUST write the product name EXACTLY as "${product.name}" - do not change, abbreviate, or add any words to it.
 
 The recipe should be perfect for a ${occasion} setting. Make it creative and delicious!
 
@@ -79,7 +81,7 @@ Respond with JSON in this exact format:
   "prep_time": "5 mins",
   "servings": 1,
   "difficulty": "Easy",
-  "ingredients": ["4 oz ${product.name}", "2 oz lime juice", "...more ingredients"],
+  "ingredients": ["4 oz ${product.name}", "2 oz fresh lime juice", "1 oz simple syrup", "Club soda to top", "Lime wheel for garnish"],
   "instructions": ["Step 1...", "Step 2...", "..."]
 }`;
 
