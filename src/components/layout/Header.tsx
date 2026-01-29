@@ -179,28 +179,45 @@ const Header = () => {
                 <Search className="h-4 w-4" />
                 Search
               </button>
-              <a 
-                href="/wholesale-login"
-                className={`flex items-center gap-2 px-3 py-2 font-sans text-xs font-semibold uppercase tracking-wider transition-colors ${
-                  showLightText 
-                    ? 'text-cream hover:text-gold' 
-                    : 'text-foreground hover:text-primary'
-                }`}
-              >
-                <Building2 className="h-4 w-4" />
-                B2B
-              </a>
-              <a 
-                href="/auth"
-                className={`flex items-center gap-2 px-3 py-2 font-sans text-xs font-semibold uppercase tracking-wider transition-colors ${
-                  showLightText 
-                    ? 'text-cream hover:text-gold' 
-                    : 'text-foreground hover:text-primary'
-                }`}
-              >
-                <User className="h-4 w-4" />
-                Account
-              </a>
+              <DropdownMenu modal={false}>
+                <DropdownMenuTrigger asChild>
+                  <button
+                    className={`flex items-center gap-2 px-3 py-2 font-sans text-xs font-semibold uppercase tracking-wider transition-colors ${
+                      showLightText 
+                        ? 'text-cream hover:text-gold' 
+                        : 'text-foreground hover:text-primary'
+                    }`}
+                  >
+                    <User className="h-4 w-4" />
+                    Account
+                    <ChevronDown className="h-3 w-3" />
+                  </button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent 
+                  className="w-48 !bg-forest border-2 border-gold/30 p-2 mt-2 z-[100] shadow-xl"
+                  sideOffset={8}
+                  align="end"
+                >
+                  <DropdownMenuItem 
+                    className="flex items-center gap-3 px-4 py-3 cursor-pointer rounded-none border-b border-cream/10 text-cream hover:text-forest hover:bg-gold focus:bg-gold focus:text-forest transition-all duration-200"
+                    asChild
+                  >
+                    <a href="/auth">
+                      <User className="h-5 w-5 text-gold" />
+                      <span className="font-sans text-sm font-medium tracking-wide">My Account</span>
+                    </a>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem 
+                    className="flex items-center gap-3 px-4 py-3 cursor-pointer rounded-none text-cream hover:text-forest hover:bg-gold focus:bg-gold focus:text-forest transition-all duration-200"
+                    asChild
+                  >
+                    <a href="/wholesale-login">
+                      <Building2 className="h-5 w-5 text-gold" />
+                      <span className="font-sans text-sm font-medium tracking-wide">B2B / Wholesale</span>
+                    </a>
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
               <button 
                 onClick={openCart}
                 className={`relative w-10 h-10 border-2 flex items-center justify-center transition-colors group ${
@@ -366,24 +383,25 @@ const Header = () => {
             }`}
             style={{ transitionDelay: '600ms' }}
           >
-            <div className="flex gap-3">
-              <a href="/wholesale-login" onClick={() => setIsMenuOpen(false)} className="flex-1">
+            <div className="flex flex-col gap-3">
+              <a href="/auth" onClick={() => setIsMenuOpen(false)}>
                 <Button 
                   variant="outline" 
                   size="lg" 
                   className="w-full font-sans text-sm font-bold uppercase tracking-widest py-6 border-2 border-primary/50 text-primary bg-transparent hover:bg-primary/10"
                 >
-                  <Building2 className="h-4 w-4 mr-2" />
-                  B2B
+                  <User className="h-4 w-4 mr-2" />
+                  My Account
                 </Button>
               </a>
-              <a href="/auth" onClick={() => setIsMenuOpen(false)} className="flex-1">
+              <a href="/wholesale-login" onClick={() => setIsMenuOpen(false)}>
                 <Button 
                   variant="outline" 
                   size="lg" 
                   className="w-full font-sans text-sm font-bold uppercase tracking-widest py-6 border-2 border-background/30 text-background bg-transparent hover:bg-background/10"
                 >
-                  Account
+                  <Building2 className="h-4 w-4 mr-2" />
+                  B2B / Wholesale
                 </Button>
               </a>
             </div>
