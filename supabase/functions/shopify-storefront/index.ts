@@ -839,14 +839,16 @@ serve(async (req) => {
               }>;
             };
           }) => {
-            // Determine whether ANY variant is in the price list
-            const hasCatalogPricing = product.variants.nodes.some((v) => priceMap.has(v.id));
-
             // Prefer the first variant that has catalog pricing (fallback to first variant)
             const preferredVariant =
               product.variants.nodes.find((v) => priceMap.has(v.id)) ?? product.variants.nodes[0];
             const retailPrice = preferredVariant?.price || "0";
             const catalogPriceEntry = preferredVariant ? priceMap.get(preferredVariant.id) : undefined;
+            
+            // IMPORTANT: Only consider it "catalog priced" if the price is DIFFERENT from retail
+            // This means pricing rules have been APPLIED, not just that the product is in the catalog
+            const catalogPrice = catalogPriceEntry?.price || null;
+            const hasCatalogPricing = catalogPrice !== null && catalogPrice !== retailPrice;
             
             return {
               id: product.id,
