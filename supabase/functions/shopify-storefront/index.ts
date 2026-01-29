@@ -839,16 +839,29 @@ serve(async (req) => {
               }>;
             };
           }) => {
-            // Prefer the first variant that has catalog pricing (fallback to first variant)
-            const preferredVariant =
-              product.variants.nodes.find((v) => priceMap.has(v.id)) ?? product.variants.nodes[0];
+            // IMPORTANT: Only treat a product as "F&B priced" if a pricing RULE is actually applied.
+            // In practice that means: the price list has an entry AND it differs from the retail price.
+            // (String compare is unreliable: "10" vs "10.00" would incorrectly count as different.)
+            const normalizeMoney = (value: string | null | undefined) => {
+              const n = Number.parseFloat(String(value ?? ""));
+              return Number.isFinite(n) ? n : NaN;
+            };
+
+            const appliedVariants = product.variants.nodes.filter((v) => {
+              const entry = priceMap.get(v.id);
+              if (!entry?.price) return false;
+              const retail = normalizeMoney(v.price);
+              const catalog = normalizeMoney(entry.price);
+              if (!Number.isFinite(retail) || !Number.isFinite(catalog)) return false;
+              return Math.abs(catalog - retail) > 0.0001;
+            });
+
+            const hasCatalogPricing = appliedVariants.length > 0;
+
+            // Prefer a variant with APPLIED catalog pricing (fallback to first variant)
+            const preferredVariant = appliedVariants[0] ?? product.variants.nodes[0];
             const retailPrice = preferredVariant?.price || "0";
             const catalogPriceEntry = preferredVariant ? priceMap.get(preferredVariant.id) : undefined;
-            
-            // IMPORTANT: Only consider it "catalog priced" if the price is DIFFERENT from retail
-            // This means pricing rules have been APPLIED, not just that the product is in the catalog
-            const catalogPrice = catalogPriceEntry?.price || null;
-            const hasCatalogPricing = catalogPrice !== null && catalogPrice !== retailPrice;
             
             return {
               id: product.id,
@@ -873,7 +886,7 @@ serve(async (req) => {
                   currencyCode: "USD"
                 }
               },
-              // Flag to indicate F&B pricing is being used
+              // Flag to indicate F&B pricing rules were applied (used for filtering on the client)
               hasCatalogPricing,
               variants: {
                 edges: product.variants.nodes.map((v) => {
