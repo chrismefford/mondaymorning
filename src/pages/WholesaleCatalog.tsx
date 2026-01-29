@@ -176,10 +176,10 @@ export default function WholesaleCatalog() {
               </div>
 
               <div className="flex items-center gap-3">
-                <Button
+              <Button
                   variant="outline"
                   size="sm"
-                  className="border-cream/30 text-cream hover:bg-cream hover:text-forest"
+                  className="border-gold text-gold hover:bg-gold hover:text-forest-deep"
                   onClick={handleLogout}
                 >
                   <LogOut className="w-4 h-4 mr-2" />
