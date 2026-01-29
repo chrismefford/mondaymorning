@@ -78,6 +78,8 @@ const SearchOverlay = ({ isOpen, onClose }: SearchOverlayProps) => {
     "cocktail": ["mixer", "ready to drink", "rtd"],
     "canned": ["cannedwine", "rtd"],
     "wine": ["wine", "vino"],
+    "dromme": ["drømme"],
+    "dromme beer": ["drømme"],
   };
 
   // Filter products based on search query
