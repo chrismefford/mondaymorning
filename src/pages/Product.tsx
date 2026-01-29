@@ -3,6 +3,7 @@ import { useParams, Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { useShopifyProduct } from "@/hooks/useShopifyProduct";
 import { useShopifyProducts, shopifyToLocalProduct } from "@/hooks/useShopifyProducts";
+import { useWholesaleProductPrice } from "@/hooks/useWholesaleProductPrice";
 import { useCart } from "@/hooks/useCart";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
@@ -28,6 +29,7 @@ import {
 const ProductPage = () => {
   const { handle } = useParams<{ handle: string }>();
   const { data: product, isLoading, error } = useShopifyProduct(handle || "");
+  const { data: wholesalePrice, isWholesale } = useWholesaleProductPrice(handle || "");
   const { addToCart, isLoading: isAddingToCart } = useCart();
   const [currentPage, setCurrentPage] = useState(0);
   const PRODUCTS_PER_PAGE = 8;
@@ -225,14 +227,35 @@ const ProductPage = () => {
               </p>
 
               {/* Price & CTA */}
-              <div className="flex items-center gap-4 mb-6">
-                <span className="font-sans text-2xl lg:text-3xl font-bold text-forest">
-                  ${product.price.toFixed(2)}
-                </span>
-                {product.compareAtPrice && (
-                  <span className="font-sans text-lg text-muted-foreground line-through">
-                    ${product.compareAtPrice.toFixed(2)}
-                  </span>
+              <div className="mb-6">
+                {/* F&B Pricing for wholesale customers */}
+                {isWholesale && wholesalePrice?.hasFBPricing ? (
+                  <div className="space-y-1">
+                    {wholesalePrice.retailPrice > 0 && (
+                      <span className="font-sans text-lg text-muted-foreground line-through block">
+                        ${wholesalePrice.retailPrice.toFixed(2)}
+                      </span>
+                    )}
+                    <div className="flex items-center gap-3">
+                      <span className="font-sans text-2xl lg:text-3xl font-bold text-forest">
+                        ${wholesalePrice.wholesalePrice.toFixed(2)}
+                      </span>
+                      <Badge className="bg-gold text-forest-deep font-sans text-xs font-bold border-0">
+                        F&B Pricing
+                      </Badge>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="flex items-center gap-4">
+                    <span className="font-sans text-2xl lg:text-3xl font-bold text-forest">
+                      ${product.price.toFixed(2)}
+                    </span>
+                    {product.compareAtPrice && (
+                      <span className="font-sans text-lg text-muted-foreground line-through">
+                        ${product.compareAtPrice.toFixed(2)}
+                      </span>
+                    )}
+                  </div>
                 )}
               </div>
 
