@@ -168,14 +168,14 @@ const ProductPage = () => {
           <img src={stampGold} alt="" className="w-full" />
         </div>
 
-        <div className="container mx-auto px-4 lg:px-8 xl:px-12 py-6 lg:py-12 relative z-10">
+        <div className="container mx-auto px-4 lg:px-8 xl:px-12 pt-12 lg:pt-16 pb-6 lg:pb-12 relative z-10">
           {/* Breadcrumb */}
           <Link 
-            to="/#shop" 
+            to={isWholesale ? "/wholesale-catalog" : "/#shop"}
             className="inline-flex items-center gap-2 text-forest/70 hover:text-forest transition-colors mb-8 lg:mb-10 font-sans text-sm"
           >
             <ArrowLeft className="h-4 w-4" />
-            Back to Shop
+            {isWholesale ? "Back to Wholesale Products" : "Back to Shop"}
           </Link>
 
           {/* Product Section */}
