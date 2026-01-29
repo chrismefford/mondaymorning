@@ -349,11 +349,11 @@ function WholesaleProductCard({
       {/* Info - flex-grow to fill remaining space, flex-col to push button down */}
       <div className="p-4 flex flex-col flex-grow">
         {/* Title block: reserve height so titles/prices align across cards */}
-        <div className="min-h-[92px]">
+        <div className="min-h-[120px]">
           <p className="text-xs text-forest/50 uppercase tracking-wide mb-1">
             {product.vendor}
           </p>
-          <h3 className="font-serif text-lg text-forest mb-1 line-clamp-2">
+          <h3 className="font-serif text-lg text-forest mb-1 line-clamp-2 leading-snug">
             {product.title}
           </h3>
           <p className="text-xs text-forest/60">{product.productType}</p>
