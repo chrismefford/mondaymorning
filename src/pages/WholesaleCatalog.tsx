@@ -348,37 +348,47 @@ function WholesaleProductCard({
 
       {/* Info - flex-grow to fill remaining space, flex-col to push button down */}
       <div className="p-4 flex flex-col flex-grow">
-        <p className="text-xs text-forest/50 uppercase tracking-wide mb-1">
-          {product.vendor}
-        </p>
-        <h3 className="font-serif text-lg text-forest mb-1 line-clamp-2">
-          {product.title}
-        </h3>
-        <p className="text-xs text-forest/60 mb-3">{product.productType}</p>
+        {/* Title block: reserve height so titles/prices align across cards */}
+        <div className="min-h-[92px]">
+          <p className="text-xs text-forest/50 uppercase tracking-wide mb-1">
+            {product.vendor}
+          </p>
+          <h3 className="font-serif text-lg text-forest mb-1 line-clamp-2">
+            {product.title}
+          </h3>
+          <p className="text-xs text-forest/60">{product.productType}</p>
+        </div>
 
-        {/* Pricing - F&B wholesale price with strikethrough retail */}
-        <div className="space-y-1">
-          {hasDiscount && retailPrice > 0 && (
-            <p className="text-sm text-forest/50 line-through">
-              ${retailPrice.toFixed(2)}
-            </p>
-          )}
+        {/* Pricing block: always reserve the same vertical space */}
+        <div className="mt-3 space-y-1 min-h-[72px]">
+          {/* Retail line placeholder keeps wholesale price aligned */}
+          <p
+            className={cn(
+              "text-sm text-forest/50 line-through h-5",
+              hasDiscount && retailPrice > 0 ? "opacity-100" : "opacity-0 select-none"
+            )}
+            aria-hidden={!(hasDiscount && retailPrice > 0)}
+          >
+            ${retailPrice.toFixed(2)}
+          </p>
           <p className="text-xl font-bold text-forest">
             ${wholesalePrice.toFixed(2)}
           </p>
           {(hasFBPricing || hasDiscount) && (
-            <p className="text-xs text-gold font-medium">
-              F&B Pricing
-            </p>
+            <p className="text-xs text-gold font-medium">F&B Pricing</p>
           )}
         </div>
 
-        {/* Variants info */}
-        {product.variants.edges.length > 1 && (
-          <p className="text-xs text-forest/50 mt-2">
-            {product.variants.edges.length} variants available
-          </p>
-        )}
+        {/* Variants info (reserve height so button lines up) */}
+        <p
+          className={cn(
+            "text-xs text-forest/50 mt-2 min-h-[16px]",
+            product.variants.edges.length > 1 ? "opacity-100" : "opacity-0 select-none"
+          )}
+          aria-hidden={!(product.variants.edges.length > 1)}
+        >
+          {product.variants.edges.length} variants available
+        </p>
 
         {/* Spacer to push button to bottom */}
         <div className="flex-grow" />
