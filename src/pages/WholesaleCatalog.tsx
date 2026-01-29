@@ -19,6 +19,7 @@ import {
   formatShopifyPrice,
   type ShopifyProduct,
 } from "@/hooks/useShopifyProducts";
+import { useCart } from "@/hooks/useCart";
 import { toast } from "sonner";
 import {
   Loader2,
@@ -28,6 +29,7 @@ import {
   LogOut,
   Phone,
   Mail,
+  ShoppingBag,
 } from "lucide-react";
 import { SITE_NAME, getCanonicalUrl } from "@/lib/seo";
 import { cn } from "@/lib/utils";
@@ -328,6 +330,24 @@ function WholesaleProductCard({
   hasFBPricing: boolean;
 }) {
   const hasDiscount = discountPercent > 0;
+  const { addToCart, isLoading: isAddingToCart } = useCart();
+  const [isAdding, setIsAdding] = useState(false);
+
+  // Get the first variant ID for adding to cart
+  const firstVariantId = product.variants.edges[0]?.node.id;
+
+  const handleAddToCart = async (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (!firstVariantId || isAdding) return;
+    
+    setIsAdding(true);
+    try {
+      await addToCart(firstVariantId);
+    } finally {
+      setIsAdding(false);
+    }
+  };
 
   return (
     <div className="bg-white rounded-xl border border-forest/10 overflow-hidden hover:shadow-lg transition-shadow h-full flex flex-col">
@@ -396,16 +416,31 @@ function WholesaleProductCard({
         {/* Spacer to push button to bottom */}
         <div className="flex-grow" />
 
-        {/* View Product Button - always at bottom */}
-        <Link to={`/product/${product.handle}`} className="mt-4">
+        {/* Buttons - always at bottom */}
+        <div className="mt-4 flex flex-col gap-2">
           <Button
-            variant="outline"
             size="sm"
-            className="w-full border-forest/20 text-forest hover:bg-forest hover:text-cream"
+            className="w-full bg-forest text-cream hover:bg-forest-light gap-2"
+            onClick={handleAddToCart}
+            disabled={isAdding || isAddingToCart || !firstVariantId}
           >
-            View Details
+            {isAdding ? (
+              <Loader2 className="w-4 h-4 animate-spin" />
+            ) : (
+              <ShoppingBag className="w-4 h-4" />
+            )}
+            Add to Cart
           </Button>
-        </Link>
+          <Link to={`/product/${product.handle}`}>
+            <Button
+              variant="outline"
+              size="sm"
+              className="w-full border-forest/20 text-forest hover:bg-forest hover:text-cream"
+            >
+              View Details
+            </Button>
+          </Link>
+        </div>
       </div>
     </div>
   );
