@@ -86,15 +86,22 @@ const ProductCard = ({ product, variant = "default", useLifestyleImage = true, s
             </>
           )}
           
-          {/* Badge */}
-          {product.badge && (
+          {/* Sold Out Badge - always visible */}
+          {isSoldOut && (
+            <Badge 
+              className="absolute top-4 left-4 z-20 font-sans text-xs font-bold border-0 shadow-md bg-muted text-muted-foreground"
+            >
+              Sold Out
+            </Badge>
+          )}
+          
+          {/* Regular Badge - only show if not sold out */}
+          {!isSoldOut && product.badge && (
             <Badge 
               className={`absolute top-4 left-4 z-20 font-sans text-xs font-bold border-0 shadow-md ${
-                isSoldOut
-                  ? "bg-muted text-muted-foreground"
-                  : product.badge.toLowerCase().includes("staff") 
-                    ? "bg-forest text-cream" 
-                    : "bg-gold text-forest-deep"
+                product.badge.toLowerCase().includes("staff") 
+                  ? "bg-forest text-cream" 
+                  : "bg-gold text-forest-deep"
               }`}
             >
               {product.badge}
