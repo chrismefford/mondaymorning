@@ -1,3 +1,6 @@
+# Monday Morning Bottle Shop - robots.txt
+# Domain: mondaymorning-af.com
+
 User-agent: Googlebot
 Allow: /
 
@@ -14,7 +17,7 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://mondaymorning.lovable.app/sitemap.xml
+Sitemap: https://mondaymorning-af.com/sitemap.xml
 
 # Disallow admin/internal routes
 User-agent: *
@@ -22,3 +25,20 @@ Disallow: /admin
 Disallow: /blog-import
 Disallow: /wholesale-login
 Disallow: /wholesale-catalog
+Disallow: /auth
+
+# Block AI training crawlers (optional - same as old Squarespace site)
+User-agent: GPTBot
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+User-agent: anthropic-ai
+Disallow: /
+
+User-agent: ClaudeBot
+Disallow: /
+
+User-agent: Google-Extended
+Disallow: /

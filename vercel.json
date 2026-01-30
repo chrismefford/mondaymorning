@@ -1,0 +1,36 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "redirects": [
+    { "source": "/home", "destination": "/", "permanent": true },
+    { "source": "/contact", "destination": "/locations", "permanent": true },
+    { "source": "/newsletter-july", "destination": "/", "permanent": true },
+    { "source": "/newsletter", "destination": "/", "permanent": true },
+    { "source": "/wholesale", "destination": "/services", "permanent": true },
+    { "source": "/careers", "destination": "/about", "permanent": true },
+    { "source": "/shipping-and-returns", "destination": "/shipping", "permanent": true },
+    { "source": "/terms-of-service", "destination": "/terms", "permanent": true },
+    { "source": "/privacy-policy", "destination": "/privacy", "permanent": true },
+    { "source": "/account", "destination": "/auth", "permanent": true },
+    { "source": "/account/:path*", "destination": "/auth", "permanent": true },
+    { "source": "/recipes/category/Margarita", "destination": "/recipes?occasion=cocktails", "permanent": true },
+    { "source": "/recipes/category/Old+Fashioned", "destination": "/recipes?occasion=cocktails", "permanent": true },
+    { "source": "/recipes/category/Negroni", "destination": "/recipes?occasion=cocktails", "permanent": true },
+    { "source": "/recipes/category/:path*", "destination": "/recipes", "permanent": true },
+    { "source": "/recipes/blog-post-title-:path*", "destination": "/recipes", "permanent": true },
+    { "source": "/recipes/fjxcgh8px72dd2z-:path*", "destination": "/recipes", "permanent": true },
+    { "source": "/recipes/sdsx42rxyxamk9e", "destination": "/recipes", "permanent": true }
+  ],
+  "rewrites": [
+    { "source": "/((?!api/).*)", "destination": "/index.html" }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "X-Frame-Options", "value": "DENY" },
+        { "key": "X-XSS-Protection", "value": "1; mode=block" }
+      ]
+    }
+  ]
+}
