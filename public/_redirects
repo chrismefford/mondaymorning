@@ -1,0 +1,88 @@
+# Monday Morning SEO Migration Redirects
+# Format: old-path new-path status-code
+# Deploy to Netlify/Vercel/Cloudflare Pages
+
+# =============================================================================
+# CORE PAGE REDIRECTS (301 Permanent)
+# =============================================================================
+
+# Homepage variants
+/home / 301
+
+# Contact → Locations
+/contact /locations 301
+/contact#visit-us /locations 301
+
+# Newsletter landing
+/newsletter-july / 301
+/newsletter / 301
+
+# Wholesale
+/wholesale /services 301
+
+# Careers → About
+/careers /about 301
+
+# Policy pages (URL standardization)
+/shipping-and-returns /shipping 301
+/terms-of-service /terms 301
+/privacy-policy /privacy 301
+
+# =============================================================================
+# RECIPE CATEGORY REDIRECTS
+# =============================================================================
+
+/recipes/category/Margarita /recipes?occasion=cocktails 301
+/recipes/category/Old+Fashioned /recipes?occasion=cocktails 301
+/recipes/category/Negroni /recipes?occasion=cocktails 301
+/recipes/category/* /recipes 301
+
+# Individual recipes → recipes index (legacy Squarespace slugs)
+/recipes/blog-post-title-* /recipes 301
+/recipes/fjxcgh8px72dd2z-* /recipes 301
+/recipes/sdsx42rxyxamk9e /recipes 301
+
+# =============================================================================
+# BLOG TAG PAGES (410 Gone - content removed)
+# These return 410 to indicate content was intentionally removed
+# =============================================================================
+
+/blog/tag/* /404 410
+
+# =============================================================================
+# COMMUNITY EVENTS (410 Gone - expired content)
+# Past events have no equivalent - return 410
+# =============================================================================
+
+/community-events-calendar/* /404 410
+/community-events-calendar /404 410
+
+# =============================================================================
+# EXTERNAL SHOP REDIRECT
+# If someone still has old shop URLs bookmarked
+# =============================================================================
+
+# Note: This requires DNS/proxy setup for shop.mondaymorning-af.com
+# The subdomain needs to be configured to redirect to main domain
+
+# =============================================================================
+# SQUARESPACE SYSTEM PATHS (Block/Redirect)
+# =============================================================================
+
+/config /404 404
+/account /auth 301
+/account/* /auth 301
+
+# =============================================================================
+# WWW CANONICALIZATION
+# Force non-www (configure at DNS/hosting level)
+# =============================================================================
+
+# https://www.mondaymorning-af.com/* https://mondaymorning-af.com/:splat 301
+
+# =============================================================================
+# HTTPS ENFORCEMENT
+# Should be handled at hosting/CDN level
+# =============================================================================
+
+# http://mondaymorning-af.com/* https://mondaymorning-af.com/:splat 301

@@ -1,7 +1,7 @@
 // SEO utility constants and helpers for Monday Morning Bottle Shop
 
 export const SITE_NAME = "Monday Morning Bottle Shop";
-export const SITE_URL = "https://mondaymorning.lovable.app";
+export const SITE_URL = "https://mondaymorning-af.com";
 export const DEFAULT_OG_IMAGE = `${SITE_URL}/og-image.png`;
 export const TWITTER_HANDLE = "@mondaymorningsd";
 

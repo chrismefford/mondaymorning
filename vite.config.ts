@@ -34,9 +34,9 @@ export default defineConfig(({ mode }) => ({
     mode === "development" && componentTagger(),
     // Generate sitemap.xml for all routes
     Sitemap({
-      hostname: "https://mondaymorning.lovable.app",
+      hostname: "https://mondaymorning-af.com",
       dynamicRoutes: staticRoutes,
-      exclude: ["/admin", "/blog-import", "/wholesale-login", "/wholesale-catalog"],
+      exclude: ["/admin", "/blog-import", "/wholesale-login", "/wholesale-catalog", "/auth", "/404"],
       changefreq: "weekly",
       priority: 0.8,
       lastmod: new Date(),
