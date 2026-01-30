@@ -60,11 +60,15 @@ const ProductPage = () => {
   const hasNextPage = (currentPage + 1) * PRODUCTS_PER_PAGE < moreProducts.length;
   const hasPrevPage = currentPage > 0;
 
-  // Get the first variant ID for adding to cart
-  const firstVariantId = product?.variants?.[0]?.id;
+  // Get the first available variant ID for adding to cart
+  const availableVariant = product?.variants?.find((v: { availableForSale: boolean }) => v.availableForSale);
+  const firstVariantId = availableVariant?.id;
+  
+  // Check if product is sold out
+  const isSoldOut = product ? !product.variants?.some((v: { availableForSale: boolean }) => v.availableForSale) : false;
 
   const handleAddToCart = async () => {
-    if (firstVariantId) {
+    if (firstVariantId && !isSoldOut) {
       await addToCart(firstVariantId);
     }
   };
@@ -197,9 +201,13 @@ const ProductPage = () => {
                   />
                 </div>
               </div>
-              {product.badge && (
-                <Badge className="absolute top-3 left-3 bg-gold text-forest-deep font-sans text-xs font-bold border-0 shadow-md">
-                  {product.badge}
+              {(product.badge || isSoldOut) && (
+                <Badge className={`absolute top-3 left-3 font-sans text-xs font-bold border-0 shadow-md ${
+                  isSoldOut 
+                    ? "bg-muted text-muted-foreground" 
+                    : "bg-gold text-forest-deep"
+                }`}>
+                  {isSoldOut ? "Sold Out" : product.badge}
                 </Badge>
               )}
               {/* Decorative offset */}
@@ -262,15 +270,23 @@ const ProductPage = () => {
               <Button 
                 size="lg" 
                 onClick={handleAddToCart}
-                disabled={isAddingToCart || !firstVariantId}
-                className="w-full lg:w-auto font-sans text-sm font-semibold uppercase tracking-wider px-10 py-5 bg-forest text-cream hover:bg-forest-light gap-2 disabled:opacity-50"
+                disabled={isAddingToCart || isSoldOut}
+                className={`w-full lg:w-auto font-sans text-sm font-semibold uppercase tracking-wider px-10 py-5 gap-2 ${
+                  isSoldOut 
+                    ? "bg-muted text-muted-foreground cursor-not-allowed" 
+                    : "bg-forest text-cream hover:bg-forest-light"
+                }`}
               >
                 {isAddingToCart ? (
                   <Loader2 className="h-5 w-5 animate-spin" />
+                ) : isSoldOut ? (
+                  "Sold Out"
                 ) : (
-                  <ShoppingBag className="h-5 w-5" />
+                  <>
+                    <ShoppingBag className="h-5 w-5" />
+                    Add to Cart
+                  </>
                 )}
-                Add to Cart
               </Button>
             </div>
           </div>

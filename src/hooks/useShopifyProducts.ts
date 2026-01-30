@@ -128,19 +128,31 @@ export function isActiveProduct(product: ShopifyProduct): boolean {
   return hasAvailableVariant;
 }
 
+/**
+ * Checks if a product is sold out (all variants unavailable).
+ */
+export function isSoldOut(product: ShopifyProduct): boolean {
+  return !product.variants.edges.some((edge) => edge.node.availableForSale);
+}
+
 export function useShopifyProducts(
   first = 50,
   options?: {
     sortKey?: ShopifyProductSortKey;
     reverse?: boolean;
+    includeSoldOut?: boolean;
   }
 ) {
   return useQuery({
-    queryKey: ["shopify-products", first, options?.sortKey, options?.reverse],
+    queryKey: ["shopify-products", first, options?.sortKey, options?.reverse, options?.includeSoldOut],
     queryFn: async () => {
       const data = await fetchShopifyProductsPage(first, options);
-      // Filter to only include active products with available variants
-      return data.products.filter(isActiveProduct);
+      // Include sold out products by default so they show with "Sold Out" badge
+      // Only filter if explicitly excluding sold out
+      if (options?.includeSoldOut === false) {
+        return data.products.filter(isActiveProduct);
+      }
+      return data.products;
     },
   });
 }
@@ -154,11 +166,12 @@ export function useShopifyAllProducts(options?: {
   reverse?: boolean;
   enabled?: boolean;
   pageSize?: number;
+  includeSoldOut?: boolean;
 }) {
   const pageSize = Math.min(Math.max(options?.pageSize ?? 250, 1), 250);
 
   return useQuery({
-    queryKey: ["shopify-products-all", pageSize, options?.sortKey, options?.reverse],
+    queryKey: ["shopify-products-all", pageSize, options?.sortKey, options?.reverse, options?.includeSoldOut],
     enabled: options?.enabled ?? true,
     queryFn: async () => {
       const all: ShopifyProduct[] = [];
@@ -179,8 +192,12 @@ export function useShopifyAllProducts(options?: {
         if (!after) break;
       }
 
-      // Filter to only include active products with available variants
-      return all.filter(isActiveProduct);
+      // Include sold out products by default so they show with "Sold Out" badge
+      // Only filter if explicitly excluding sold out
+      if (options?.includeSoldOut === false) {
+        return all.filter(isActiveProduct);
+      }
+      return all;
     },
   });
 }
@@ -266,11 +283,22 @@ export function shopifyToLocalProduct(product: ShopifyProduct) {
   const price = parseFloat(product.priceRange.minVariantPrice.amount);
   const compareAtPrice = parseFloat(product.compareAtPriceRange.minVariantPrice.amount);
   const category = product.productType || "Beverages";
+  const soldOut = isSoldOut(product);
   
   // Generate a tagline from description or use a fallback
   const tagline = product.description
     ? product.description.split('.')[0].slice(0, 50) + (product.description.length > 50 ? '...' : '')
     : "Crafted for moments that matter";
+  
+  // Determine badge - sold out takes priority
+  let badge: string | undefined;
+  if (soldOut) {
+    badge = "Sold Out";
+  } else if (product.tags.includes("new")) {
+    badge = "New";
+  } else if (product.tags.includes("bestseller")) {
+    badge = "Best Seller";
+  }
   
   return {
     id: product.id,
@@ -279,11 +307,12 @@ export function shopifyToLocalProduct(product: ShopifyProduct) {
     price,
     compareAtPrice: compareAtPrice > price ? compareAtPrice : undefined,
     image: product.featuredImage?.url || "/placeholder.svg",
-    lifestyleImage: getCategoryLifestyleImage(product.id, product.title, category), // Category-appropriate image
+    lifestyleImage: getCategoryLifestyleImage(product.id, product.title, category),
     description: product.description,
     category,
-    badge: product.tags.includes("new") ? "New" : product.tags.includes("bestseller") ? "Best Seller" : undefined,
+    badge,
     handle: product.handle,
     variants: product.variants.edges.map(e => e.node),
+    soldOut,
   };
 }
