@@ -8,6 +8,7 @@ import type { Product } from "@/data/products";
 interface ExtendedProduct extends Product {
   handle?: string;
   variants?: Array<{ id: string; title: string; availableForSale: boolean }>;
+  soldOut?: boolean;
 }
 
 interface ProductCardProps {
@@ -34,13 +35,17 @@ const ProductCard = ({ product, variant = "default", useLifestyleImage = true, s
     ? `/product/${product.handle}` 
     : `/product/${product.name.toLowerCase().replace(/\s+/g, '-')}`;
 
-  // Get first variant ID for adding to cart
-  const firstVariantId = product.variants?.[0]?.id;
+  // Get first available variant ID for adding to cart
+  const availableVariant = product.variants?.find(v => v.availableForSale);
+  const firstVariantId = availableVariant?.id;
+  
+  // Check if product is sold out
+  const isSoldOut = product.soldOut || !firstVariantId;
 
   const handleAddToCart = async (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
-    if (firstVariantId) {
+    if (firstVariantId && !isSoldOut) {
       await addToCart(firstVariantId);
     }
   };
@@ -85,9 +90,11 @@ const ProductCard = ({ product, variant = "default", useLifestyleImage = true, s
           {product.badge && (
             <Badge 
               className={`absolute top-4 left-4 z-20 font-sans text-xs font-bold border-0 shadow-md ${
-                product.badge.toLowerCase().includes("staff") 
-                  ? "bg-forest text-cream" 
-                  : "bg-gold text-forest-deep"
+                isSoldOut
+                  ? "bg-muted text-muted-foreground"
+                  : product.badge.toLowerCase().includes("staff") 
+                    ? "bg-forest text-cream" 
+                    : "bg-gold text-forest-deep"
               }`}
             >
               {product.badge}
@@ -108,16 +115,24 @@ const ProductCard = ({ product, variant = "default", useLifestyleImage = true, s
           <div className="absolute inset-x-0 bottom-0 p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100 bg-gradient-to-t from-forest-deep/90 via-forest-deep/60 to-transparent z-10">
             <Button 
               onClick={handleAddToCart}
-              disabled={isLoading || !firstVariantId}
-              className="w-full font-sans text-sm font-medium bg-forest text-cream hover:bg-forest-light gap-2 disabled:opacity-50"
+              disabled={isLoading || isSoldOut}
+              className={`w-full font-sans text-sm font-medium gap-2 ${
+                isSoldOut 
+                  ? "bg-muted text-muted-foreground cursor-not-allowed" 
+                  : "bg-forest text-cream hover:bg-forest-light"
+              }`}
               size="lg"
             >
               {isLoading ? (
                 <Loader2 className="h-4 w-4 animate-spin" />
+              ) : isSoldOut ? (
+                "Sold Out"
               ) : (
-                <ShoppingBag className="h-4 w-4" />
+                <>
+                  <ShoppingBag className="h-4 w-4" />
+                  Add to Cart — ${product.price}
+                </>
               )}
-              Add to Cart — ${product.price}
             </Button>
           </div>
         </div>
@@ -176,18 +191,26 @@ const ProductCard = ({ product, variant = "default", useLifestyleImage = true, s
               <div className="mt-8 flex items-center gap-4">
                 <Button 
                   onClick={handleAddToCart}
-                  disabled={isLoading || !firstVariantId}
+                  disabled={isLoading || isSoldOut}
                   size="lg" 
-                  className="font-sans text-sm font-medium px-8 gap-2 bg-primary hover:bg-coral-dark disabled:opacity-50"
+                  className={`font-sans text-sm font-medium px-8 gap-2 ${
+                    isSoldOut 
+                      ? "bg-muted text-muted-foreground cursor-not-allowed" 
+                      : "bg-primary hover:bg-coral-dark"
+                  }`}
                 >
                   {isLoading ? (
                     <Loader2 className="h-4 w-4 animate-spin" />
+                  ) : isSoldOut ? (
+                    "Sold Out"
                   ) : (
-                    <ShoppingBag className="h-4 w-4" />
+                    <>
+                      <ShoppingBag className="h-4 w-4" />
+                      Add to Cart — ${product.price}
+                    </>
                   )}
-                  Add to Cart — ${product.price}
                 </Button>
-                {product.compareAtPrice && (
+                {product.compareAtPrice && !isSoldOut && (
                   <span className="font-sans text-sm text-muted-foreground line-through">
                     ${product.compareAtPrice}
                   </span>
