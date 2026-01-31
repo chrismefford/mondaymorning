@@ -22,13 +22,22 @@ const ProductCard = ({ product, variant = "default", useLifestyleImage = true, s
   const isFeatured = variant === "featured";
   const { addToCart, isLoading } = useCart();
   
+  // Helper to optimize Shopify image URLs for faster mobile loading
+  const optimizeShopifyImage = (url: string, width = 400) => {
+    if (!url || !url.includes('cdn.shopify.com')) return url;
+    // Shopify supports image transforms via URL params
+    const separator = url.includes('?') ? '&' : '?';
+    return `${url}${separator}width=${width}&quality=80`;
+  };
+
   // Use lifestyle image for homepage display, fall back to product image
   const lifestyleImage = useLifestyleImage && product.lifestyleImage 
     ? product.lifestyleImage 
     : product.image;
   
   // Use original product image directly (no AI processing)
-  const productImage = product.image;
+  // Optimize Shopify images for faster loading
+  const productImage = optimizeShopifyImage(product.image, 400);
 
   // Generate product link using handle if available, fallback to slugified name
   const productLink = product.handle 
@@ -66,6 +75,7 @@ const ProductCard = ({ product, variant = "default", useLifestyleImage = true, s
             <img
               src={productImage}
               alt={product.name}
+              loading="lazy"
               className="absolute inset-0 w-full h-full object-contain p-4 pb-8 z-10"
             />
           ) : (
@@ -74,6 +84,7 @@ const ProductCard = ({ product, variant = "default", useLifestyleImage = true, s
               <img
                 src={lifestyleImage}
                 alt={product.name}
+                loading="lazy"
                 className="absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ease-out group-hover:opacity-0"
               />
               
@@ -81,6 +92,7 @@ const ProductCard = ({ product, variant = "default", useLifestyleImage = true, s
               <img
                 src={productImage}
                 alt={`${product.name} bottle`}
+                loading="lazy"
                 className="absolute inset-0 w-full h-full object-contain p-6 bg-transparent transition-opacity duration-500 ease-out opacity-0 group-hover:opacity-100"
               />
             </>
