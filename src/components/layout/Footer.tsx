@@ -141,11 +141,8 @@ const Footer = () => {
         </div>
 
         {/* Bottom Bar */}
-        <div className="mt-16 pt-8 border-t border-cream/10 flex flex-col lg:flex-row items-center justify-between gap-4">
-          <p className="font-sans text-xs text-cream/50">
-            © {new Date().getFullYear()} Monday Morning. Made with ☀️ in San Diego.
-          </p>
-          <div className="flex items-center gap-6">
+        <div className="mt-16 pt-8 border-t border-cream/10 flex flex-col items-center gap-4">
+          <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2">
             {[
               { label: "Privacy", path: "/privacy" },
               { label: "Terms", path: "/terms" },
@@ -170,6 +167,9 @@ const Footer = () => {
               Admin
             </Link>
           </div>
+          <p className="font-sans text-xs text-cream/50 text-center">
+            © {new Date().getFullYear()} Monday Morning. Made with ☀️ in San Diego.
+          </p>
         </div>
       </div>
     </footer>
