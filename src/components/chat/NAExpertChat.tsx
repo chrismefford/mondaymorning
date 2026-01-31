@@ -95,7 +95,7 @@ const NAExpertChat = () => {
       {/* Floating Chat Button with Hover Message */}
       <div 
         className={cn(
-          "fixed bottom-20 right-6 z-50 flex items-center gap-3 transition-all duration-300",
+          "fixed bottom-28 right-4 lg:bottom-20 lg:right-6 z-50 flex items-center gap-3 transition-all duration-300",
           isOpen && "scale-0 opacity-0 pointer-events-none"
         )}
         onMouseEnter={() => setIsHovered(true)}
@@ -124,7 +124,7 @@ const NAExpertChat = () => {
       {/* Chat Window */}
       <div
         className={cn(
-          "fixed bottom-20 right-6 z-50 w-[380px] max-w-[calc(100vw-48px)] h-[500px] max-h-[calc(100vh-120px)] bg-cream border-2 border-forest/20 rounded-2xl shadow-2xl flex flex-col overflow-hidden transition-all duration-300",
+          "fixed bottom-28 right-4 lg:bottom-20 lg:right-6 z-50 w-[380px] max-w-[calc(100vw-32px)] h-[450px] max-h-[calc(100vh-140px)] bg-cream border-2 border-forest/20 rounded-2xl shadow-2xl flex flex-col overflow-hidden transition-all duration-300",
           isOpen ? "scale-100 opacity-100" : "scale-95 opacity-0 pointer-events-none"
         )}
       >
