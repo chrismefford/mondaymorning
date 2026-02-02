@@ -22,7 +22,7 @@ const Story = () => {
     { 
       icon: MapPin,
       title: "Shop", 
-      subtitle: "400+ Options",
+      subtitle: "500+ Options",
       description: "Take your favorites home. The largest AF selection in America, curated for you." 
     },
   ];
@@ -30,7 +30,7 @@ const Story = () => {
   const stats = [
     { value: "61%", label: "of Gen Z are drinking less" },
     { value: "49%", label: "of Millennials are cutting back" },
-    { value: "400+", label: "flavors to discover" },
+    { value: "500+", label: "flavors to discover" },
   ];
 
   return (
@@ -115,7 +115,7 @@ const Story = () => {
                   "NA drinks can't taste good." We hear it all the time. <strong className="text-forest">That's exactly why we opened.</strong>
                 </p>
                 <p>
-                  Forget sugary mocktails with Sprite and juice. We stock <strong className="text-forest">400+ flavors</strong>—wines, beers, spirits, aperitifs—more than any shop in America.
+                  Forget sugary mocktails with Sprite and juice. We stock <strong className="text-forest">500+ flavors</strong>—wines, beers, spirits, aperitifs—more than any shop in America.
                 </p>
                 <p className="text-lg lg:text-xl font-medium text-forest">
                   Our favorite customers? The ones who don't believe us yet.

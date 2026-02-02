@@ -167,7 +167,7 @@ const partners = [
 
 const Locations = () => {
   const pageTitle = "Store Locations | Monday Morning Bottle Shop";
-  const pageDescription = "Visit Monday Morning's NA bottle shops in Pacific Beach & Ocean Beach, San Diego. Try 425+ non-alcoholic drinks before you buy. Plus find us at 17+ partner bars and restaurants.";
+  const pageDescription = "Visit Monday Morning's NA bottle shops in Pacific Beach & Ocean Beach, San Diego. Try 500+ non-alcoholic drinks before you buy. Plus find us at 17+ partner bars and restaurants.";
   const canonicalUrl = getCanonicalUrl("/locations");
 
   return (
@@ -222,7 +222,7 @@ const Locations = () => {
               Visit <span className="italic">Monday Morning</span>
             </h1>
             <p className="font-sans text-cream/70 max-w-2xl mx-auto text-lg">
-              Stop by one of our two San Diego locations to explore 400+ flavors, or find us at your favorite local restaurant or bar.
+              Stop by one of our two San Diego locations to explore 500+ flavors, or find us at your favorite local restaurant or bar.
             </p>
           </div>
         </section>
@@ -243,7 +243,7 @@ const Locations = () => {
                 America's #1 <span className="italic">NA Bottle Shops</span>
               </h2>
               <p className="font-sans text-forest/70 max-w-xl mx-auto mt-4">
-                Try before you buy at our tasting bars. 400+ flavors waiting for you.
+                Try before you buy at our tasting bars. 500+ flavors waiting for you.
               </p>
             </div>
 

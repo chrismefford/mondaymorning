@@ -61,7 +61,7 @@ const About = () => {
   ];
 
   const pageTitle = "About Us | Monday Morning Bottle Shop";
-  const pageDescription = "Meet Zane, the founder of Monday Morning. Discover why we created San Diego's premier non-alcoholic bottle shop with 425+ flavors to help you drink differently.";
+  const pageDescription = "Meet Zane, the founder of Monday Morning. Discover why we created San Diego's premier non-alcoholic bottle shop with 500+ flavors to help you drink differently.";
   const canonicalUrl = getCanonicalUrl("/about");
 
   const aboutSchema = {

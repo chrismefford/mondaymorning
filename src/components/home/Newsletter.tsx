@@ -44,7 +44,7 @@ const Newsletter = () => {
           </h2>
           
           <p className="font-sans text-sm text-cream/70 mb-8">
-            Be the first to know about new flavors hitting our 400+ selection, 
+            Be the first to know about new flavors hitting our 500+ selection, 
             tastings at OB & PB, and get 10% off your first order.
           </p>
 
@@ -111,7 +111,7 @@ const Newsletter = () => {
             </h2>
             
             <p className="font-sans text-lg text-cream/70 mb-10">
-              New flavors drop weekly across our 400+ selection. Get first dibs on tastings at Ocean Beach & Pacific Beach, plus 10% off your first order.
+              New flavors drop weekly across our 500+ selection. Get first dibs on tastings at Ocean Beach & Pacific Beach, plus 10% off your first order.
             </p>
 
             <form 
@@ -174,7 +174,7 @@ const Newsletter = () => {
             <span className="text-cream/60">✦</span>
             <span className="mx-8 lg:mx-12">Pacific Beach</span>
             <span className="text-cream/60">✦</span>
-            <span className="mx-8 lg:mx-12">400+ Flavors</span>
+            <span className="mx-8 lg:mx-12">500+ Flavors</span>
             <span className="text-cream/60">✦</span>
             <span className="mx-8 lg:mx-12">Try Before You Buy</span>
             <span className="text-cream/60">✦</span>
@@ -184,7 +184,7 @@ const Newsletter = () => {
             <span className="text-cream/60">✦</span>
             <span className="mx-8 lg:mx-12">Pacific Beach</span>
             <span className="text-cream/60">✦</span>
-            <span className="mx-8 lg:mx-12">400+ Flavors</span>
+            <span className="mx-8 lg:mx-12">500+ Flavors</span>
             <span className="text-cream/60">✦</span>
             <span className="mx-8 lg:mx-12">Try Before You Buy</span>
             <span className="text-cream/60">✦</span>
