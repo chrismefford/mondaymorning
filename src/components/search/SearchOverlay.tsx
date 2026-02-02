@@ -278,27 +278,35 @@ const SearchOverlay = ({ isOpen, onClose }: SearchOverlayProps) => {
                     className="w-full group flex items-center gap-4 p-4 border border-cream/10 hover:border-gold hover:shadow-[0_0_20px_rgba(212,175,55,0.2)] bg-cream/5 hover:bg-cream/10 transition-all duration-300"
                     style={{ animationDelay: `${index * 50}ms` }}
                   >
-                    {/* Product image */}
-                    <div className="w-16 h-16 bg-sand/10 border border-cream/10 flex-shrink-0 overflow-hidden">
+                    {/* Product image with sold out overlay */}
+                    <div className="relative w-16 h-16 bg-sand/10 border border-cream/10 flex-shrink-0 overflow-hidden">
                       <img
                         src={product.image}
                         alt={product.name}
-                        className="w-full h-full object-contain group-hover:scale-110 transition-transform duration-300"
+                        className={`w-full h-full object-contain group-hover:scale-110 transition-transform duration-300 ${product.soldOut ? 'opacity-50' : ''}`}
                       />
+                      {product.soldOut && (
+                        <div className="absolute inset-0 flex items-center justify-center">
+                          <span className="bg-cream/90 text-forest text-[8px] font-sans uppercase tracking-wider px-1.5 py-0.5">
+                            Sold Out
+                          </span>
+                        </div>
+                      )}
                     </div>
                     
                     {/* Product info */}
                     <div className="flex-1 text-left">
-                      <h3 className="font-serif text-lg text-cream group-hover:text-gold transition-colors">
+                      <h3 className={`font-serif text-lg transition-colors ${product.soldOut ? 'text-cream/50' : 'text-cream group-hover:text-gold'}`}>
                         {product.name}
                       </h3>
                       <p className="font-sans text-sm text-cream/50">
                         {product.category} • ${product.price.toFixed(2)}
+                        {product.soldOut && <span className="ml-2 text-cream/30">• Sold Out</span>}
                       </p>
                     </div>
 
                     {/* Arrow */}
-                    <ArrowRight className="h-5 w-5 text-cream/30 group-hover:text-gold group-hover:translate-x-1 transition-all duration-300" />
+                    <ArrowRight className={`h-5 w-5 transition-all duration-300 ${product.soldOut ? 'text-cream/20' : 'text-cream/30 group-hover:text-gold group-hover:translate-x-1'}`} />
                   </button>
                 ))}
               </div>
