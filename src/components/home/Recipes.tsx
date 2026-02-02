@@ -54,14 +54,14 @@ const Recipes = () => {
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-4 lg:gap-8 mb-8 lg:mb-12">
           <div>
             <span className="font-sans text-[10px] lg:text-xs font-semibold uppercase tracking-[0.3em] text-gold mb-2 lg:mb-4 block">
-              Mocktail Recipes
+              Recipes
             </span>
             <h2 className="font-serif text-3xl lg:text-5xl xl:text-6xl leading-[1]">
               Drinks for every <span className="italic text-gold">moment</span>
             </h2>
           </div>
           <p className="font-sans text-sm lg:text-base text-muted-foreground max-w-sm hidden lg:block">
-            From sunrise sips to celebration toasts—find the perfect mocktail for any occasion.
+            From sunrise sips to celebration toasts—find the perfect drink for any occasion.
           </p>
         </div>
 
@@ -183,7 +183,7 @@ const Recipes = () => {
                   <div className="absolute inset-0 bg-gradient-to-t from-forest-deep/90 via-forest-deep/30 to-transparent flex flex-col justify-end p-8">
                     <span className="inline-flex items-center gap-2 font-sans text-xs uppercase tracking-[0.3em] text-gold mb-3">
                       <ChefHat className="h-4 w-4" />
-                      {occasionLabels[activeOccasion].emoji} {occasionLabels[activeOccasion].label} Mocktail
+                      {occasionLabels[activeOccasion].emoji} {occasionLabels[activeOccasion].label}
                     </span>
                     <h3 className="font-serif text-3xl lg:text-4xl font-bold text-cream mb-3">
                       {featuredRecipe.title}
@@ -252,8 +252,8 @@ const Recipes = () => {
                       {occasionLabels[activeOccasion].emoji}
                     </span>
                     <div>
-                      <span className="font-sans text-xs uppercase tracking-wider text-gold">
-                        {occasionLabels[activeOccasion].label} Mocktail
+                        <span className="font-sans text-xs uppercase tracking-wider text-gold">
+                          {occasionLabels[activeOccasion].label}
                       </span>
                       <p className="font-sans text-sm text-muted-foreground">
                         Perfect for your {occasionLabels[activeOccasion].label.toLowerCase()} moments
@@ -338,7 +338,7 @@ const RecipeCard = ({ recipe }: RecipeCardProps) => {
         {/* Occasion badge */}
         <div className="absolute top-3 left-3 z-10">
           <span className="inline-flex items-center gap-1 font-sans text-[10px] uppercase tracking-wider bg-cream/90 text-forest px-2 py-1 border border-forest/20">
-            🍹 Mocktail
+            🍹 Recipe
           </span>
         </div>
         {/* Hover overlay */}
