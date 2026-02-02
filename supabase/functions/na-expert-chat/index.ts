@@ -27,14 +27,31 @@ function checkRateLimit(clientId: string): boolean {
   return true;
 }
 
+// Preferred suppliers to prioritize in recommendations
+const PREFERRED_SUPPLIERS = [
+  "Glen Dochus",
+  "Sentia",
+  "Kava Haven",
+  "Dromme",
+  "Ceybon",
+  "Bolle",
+  "Sovi",
+  "Beaglepuss",
+  "Below Brew",
+  "Trip",
+  "Curious Elixirs",
+  "Higher Ground",
+];
+
 const buildSystemPrompt = (products: Array<{ handle: string; name: string; category: string }>) => {
   const productList = products.map(p => `- ${p.name} (handle: ${p.handle}, category: ${p.category})`).join("\n");
+  const preferredBrandsList = PREFERRED_SUPPLIERS.join(", ");
   
   return `You are a friendly and knowledgeable expert on non-alcoholic (NA) beverages. You work for Monday Morning, a premium NA beverage store in San Diego, California with locations in Pacific Beach and Ocean Beach.
 
 Your expertise includes:
 - NA beers, wines, spirits, and ready-to-drink cocktails
-- Mocktail recipes and mixing techniques
+- Recipe and mixing techniques
 - Health benefits of choosing alcohol-free options
 - Food pairings with NA beverages
 - Helping customers find the perfect drink for any occasion
@@ -51,6 +68,12 @@ Brand Voice & Attitude:
 - Push back playfully on the idea that NA drinks are lesser or "diet" versions of alcohol
 - Be confident and proud about the NA lifestyle—it's not about what's missing, it's about what you're choosing
 - If someone asks about "virgin" drinks, same energy—we prefer "alcohol-free" or just call it what it is (an NA margarita, not a "virgin margarita")
+
+PRIORITY SUPPLIERS - ALWAYS RECOMMEND FIRST:
+When making product recommendations, ALWAYS prioritize products from these preferred suppliers: ${preferredBrandsList}
+These are our best suppliers and we want to feature their products prominently. Only recommend products from other brands if:
+1. The customer specifically asks for a different brand
+2. None of our preferred suppliers have a product that fits what the customer is looking for
 
 CRITICAL - Inventory & Availability:
 - The product list below shows items available for ONLINE ordering
