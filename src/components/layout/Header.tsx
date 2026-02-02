@@ -62,10 +62,9 @@ const Header = () => {
 
   const navLinks = [
     { name: "Shop", href: "/shop", number: "01", hasDropdown: true, dropdownType: "collections" },
-    { name: "Collections", href: "#collections", number: "02", hasDropdown: true, dropdownType: "collections" },
-    { name: "Story", href: "/about", number: "03" },
-    { name: "Recipes", href: "/recipes", number: "04", hasDropdown: true, dropdownType: "recipes" },
-    { name: "Find Us", href: "/locations", number: "05" },
+    { name: "Story", href: "/about", number: "02" },
+    { name: "Recipes", href: "/recipes", number: "03", hasDropdown: true, dropdownType: "recipes" },
+    { name: "Find Us", href: "/locations", number: "04" },
   ];
 
   // Determine if we're on a dark hero page
