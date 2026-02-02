@@ -358,7 +358,7 @@ const ShopPage = () => {
   }, [allProducts]);
 
   const pageTitle = "Shop by Vibe | Monday Morning Bottle Shop";
-  const pageDescription = "Explore 425+ non-alcoholic drinks organized by vibe. Beach Day, Date Night, Golden Hour & more. Find the perfect NA beer, wine, or spirit for any moment.";
+  const pageDescription = "Explore 500+ non-alcoholic drinks organized by vibe. Beach Day, Date Night, Golden Hour & more. Find the perfect NA beer, wine, or spirit for any moment.";
   const canonicalUrl = getCanonicalUrl("/shop");
 
   return (
@@ -416,7 +416,7 @@ const ShopPage = () => {
               {/* Fun stats */}
               <div className="flex flex-wrap justify-center gap-8 lg:gap-16 mt-12">
                 <div className="text-center">
-                  <span className="block font-serif text-4xl lg:text-5xl text-gold">425+</span>
+                  <span className="block font-serif text-4xl lg:text-5xl text-gold">500+</span>
                   <span className="font-sans text-xs uppercase tracking-wider text-cream/60">Flavors</span>
                 </div>
                 <div className="text-center">

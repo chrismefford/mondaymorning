@@ -87,7 +87,7 @@ export const localBusinessSchema = {
   "@context": "https://schema.org",
   "@type": "LiquorStore",
   "name": SITE_NAME,
-  "description": "San Diego's premier non-alcoholic bottle shop with 425+ flavors. Try before you buy at our Pacific Beach and Ocean Beach locations.",
+  "description": "San Diego's premier non-alcoholic bottle shop with 500+ flavors. Try before you buy at our Pacific Beach and Ocean Beach locations.",
   "url": SITE_URL,
   "telephone": "+1-619-555-0101",
   "priceRange": "$$",

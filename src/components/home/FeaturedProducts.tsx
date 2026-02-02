@@ -64,7 +64,7 @@ const FeaturedProducts = () => {
           <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-4 lg:gap-6">
             <div>
               <span className="font-sans text-[10px] lg:text-xs font-semibold uppercase tracking-[0.3em] text-gold mb-2 lg:mb-4 block">
-                ( 400+ to choose from )
+                ( 500+ to choose from )
               </span>
               <h2 className="font-serif text-3xl lg:text-5xl xl:text-6xl leading-[1]">
                 Try something <span className="italic text-gold">new</span>
@@ -78,7 +78,7 @@ const FeaturedProducts = () => {
                 variant="ghost" 
                 className="hidden lg:flex font-sans text-sm font-semibold uppercase tracking-wider group self-start lg:self-auto border-2 border-transparent hover:border-forest text-forest px-6 py-3"
               >
-                View all 400+
+                View all 500+
                 <ArrowUpRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
               </Button>
             </Link>
@@ -164,7 +164,7 @@ const FeaturedProducts = () => {
                   variant="outline"
                   className="w-full font-sans text-sm font-bold uppercase tracking-widest py-5 border-2 border-forest text-forest hover:bg-forest hover:text-cream"
                 >
-                  Browse All 400+ Flavors
+                  Browse All 500+ Flavors
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
               </Link>

@@ -76,7 +76,7 @@ const vibeCollections: Record<string, {
 }> = {
   "all": {
     title: "All Products",
-    description: "Browse our complete collection of 425+ non-alcoholic drinks.",
+    description: "Browse our complete collection of 500+ non-alcoholic drinks.",
     categories: [],
     keywords: [],
     showAll: true,

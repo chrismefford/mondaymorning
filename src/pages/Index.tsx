@@ -22,7 +22,7 @@ import {
 
 const Index = () => {
   const pageTitle = "Monday Morning | America's #1 NA Bottle Shop & Tasting Room";
-  const pageDescription = "San Diego's premier non-alcoholic bottle shop with 425+ flavors. Shop NA beer, wine, spirits & mocktails. Try before you buy at our Pacific Beach & Ocean Beach locations.";
+  const pageDescription = "San Diego's premier non-alcoholic bottle shop with 500+ flavors. Shop NA beer, wine, spirits & mocktails. Try before you buy at our Pacific Beach & Ocean Beach locations.";
   const canonicalUrl = SITE_URL;
 
   return (
