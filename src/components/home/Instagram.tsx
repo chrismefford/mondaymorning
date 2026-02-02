@@ -33,7 +33,7 @@ const Instagram = () => {
       <div className="lg:container lg:mx-auto lg:px-8">
         {/* Section Header */}
         <div className="text-center mb-8 lg:mb-12 px-4 lg:px-0">
-          <div className="inline-flex items-center gap-2 text-ocean mb-3 lg:mb-4">
+          <div className="inline-flex items-center gap-2 text-ocean mb-4 lg:mb-5">
             <MapPin className="h-3 w-3 lg:h-4 lg:w-4" />
             <span className="font-sans text-xs lg:text-sm font-medium">San Diego, California</span>
           </div>
