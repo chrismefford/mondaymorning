@@ -4,11 +4,9 @@ import { Link } from "react-router-dom";
 import stampGold from "@/assets/stamp-gold.svg";
 import logoPrimaryGold from "@/assets/logo-primary-gold.svg";
 import logoPrimaryWhite from "@/assets/logo-primary-white.svg";
-
-// Featured product images from Shopify catalog
-const kavaHaven = "https://cdn.shopify.com/s/files/1/0618/7628/8712/files/KAVA_Haven_Elxir_5oz_Blended.png?v=1741127548";
-const sentiaGold = "https://cdn.shopify.com/s/files/1/0618/7628/8712/files/Sentia_Gold_Bottle_1.png?v=1741110178";
-const bolleRose = "https://cdn.shopify.com/s/files/1/0618/7628/8712/files/Bolle_Rose.png?v=1738627655";
+import kavaHaven from "@/assets/products/kava-haven.png";
+import sentiaGold from "@/assets/products/sentia-gold.png";
+import bolleRose from "@/assets/products/bolle-rose.png";
 
 const Hero = () => {
   return (
