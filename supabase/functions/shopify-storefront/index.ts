@@ -137,6 +137,9 @@ const ADMIN_PRODUCTS_QUERY = `
             inventoryQuantity
             price
             compareAtPrice
+            inventoryItem {
+              tracked
+            }
           }
         }
       }
@@ -710,15 +713,91 @@ serve(async (req) => {
     }
 
     switch (action) {
-      case "products":
-        data = await shopifyFetch(PRODUCTS_QUERY, { first, after, sortKey, reverse });
+      case "products": {
+        // Use Admin API to filter out products with inventory not tracked
+        console.log("Fetching products with inventory tracking filter");
+        
+        const productsData = await shopifyAdminFetch(ADMIN_PRODUCTS_QUERY, { 
+          first, 
+          after
+        }) as {
+          products: {
+            pageInfo: { hasNextPage: boolean; endCursor: string | null };
+            nodes: Array<{
+              id: string;
+              title: string;
+              description: string;
+              handle: string;
+              featuredImage: { url: string; altText: string | null } | null;
+              status: string;
+              productType: string;
+              vendor: string;
+              tags: string[];
+              variants: {
+                nodes: Array<{
+                  id: string;
+                  title: string;
+                  inventoryQuantity: number;
+                  price: string;
+                  compareAtPrice: string | null;
+                  inventoryItem?: { tracked: boolean };
+                }>;
+              };
+            }>;
+          };
+        };
+        
+        // Filter: ACTIVE status + has at least one variant with tracked inventory
+        const filteredProducts = productsData.products.nodes
+          .filter((p) => {
+            if (p.status !== "ACTIVE") return false;
+            const hasAnyTrackedInventory = p.variants.nodes.some(v => v.inventoryItem?.tracked === true);
+            return hasAnyTrackedInventory;
+          })
+          .map((product) => ({
+            id: product.id,
+            title: product.title,
+            description: product.description,
+            handle: product.handle,
+            featuredImage: product.featuredImage,
+            priceRange: {
+              minVariantPrice: {
+                amount: product.variants.nodes[0]?.price || "0",
+                currencyCode: "USD"
+              }
+            },
+            compareAtPriceRange: {
+              minVariantPrice: {
+                amount: product.variants.nodes[0]?.compareAtPrice || "0",
+                currencyCode: "USD"
+              }
+            },
+            tags: product.tags,
+            productType: product.productType,
+            vendor: product.vendor,
+            variants: {
+              edges: product.variants.nodes.map((v) => ({
+                node: {
+                  id: v.id,
+                  title: v.title,
+                  availableForSale: (v.inventoryQuantity ?? 0) > 0,
+                  price: {
+                    amount: v.price,
+                    currencyCode: "USD"
+                  }
+                }
+              }))
+            }
+          }));
+        
         return new Response(
           JSON.stringify({
-            products: data.products.edges.map((edge: { node: ShopifyProduct }) => edge.node),
-            pageInfo: data.products.pageInfo,
+            products: filteredProducts,
+            pageInfo: productsData.products.pageInfo,
           }),
           { headers: { ...corsHeaders, "Content-Type": "application/json" } }
         );
+      }
 
       case "collections":
         data = await shopifyFetch(COLLECTIONS_QUERY, { first });
@@ -819,7 +898,14 @@ serve(async (req) => {
         // (Previously we returned all ACTIVE products and simply fell back to retail pricing,
         // which makes the wholesale catalog show everything.)
         const transformedProducts = productsData.products.nodes
-          .filter((p: { status: string }) => p.status === "ACTIVE")
+          .filter((p: { status: string; variants: { nodes: Array<{ inventoryItem?: { tracked: boolean } }> } }) => {
+            // Filter 1: Only ACTIVE products
+            if (p.status !== "ACTIVE") return false;
+            
+            // Filter 2: Exclude products where ALL variants have inventory NOT tracked
+            const hasAnyTrackedInventory = p.variants.nodes.some(v => v.inventoryItem?.tracked === true);
+            return hasAnyTrackedInventory;
+          })
           .map((product: {
             id: string;
             title: string;
@@ -836,6 +922,7 @@ serve(async (req) => {
                 price: string;
                 compareAtPrice: string | null;
                 inventoryQuantity: number;
+                inventoryItem?: { tracked: boolean };
               }>;
             };
           }) => {
