@@ -20,6 +20,7 @@ const categoryItems = [
   { name: "Functionals", icon: Leaf, href: "/collections/functional" },
   { name: "Beach Vibes", icon: Umbrella, href: "/collections/beach-bonfire" },
   { name: "Weddings & Events", icon: PartyPopper, href: "/collections/weddings" },
+  { name: "Shop All", icon: Search, href: "/shop", isShopAll: true },
 ];
 
 const recipeItems = [
@@ -125,11 +126,13 @@ const Header = () => {
                         const IconComponent = item.icon;
                         const itemHref = 'href' in item ? (item as { href: string }).href : undefined;
                         const isBlog = 'isBlog' in item && item.isBlog;
+                        const isShopAll = 'isShopAll' in item && item.isShopAll;
+                        const isSpecial = isBlog || isShopAll;
                         return (
                           <DropdownMenuItem 
                             key={item.name}
                             className={`flex items-center gap-3 px-4 py-3 cursor-pointer rounded-none border-b border-cream/10 last:border-b-0 transition-all duration-200 ${
-                              isBlog 
+                              isSpecial 
                                 ? 'text-ocean hover:text-forest hover:bg-ocean focus:bg-ocean focus:text-forest border-t border-cream/20 mt-1' 
                                 : 'text-cream hover:text-forest hover:bg-gold focus:bg-gold focus:text-forest'
                             }`}
@@ -137,12 +140,12 @@ const Header = () => {
                           >
                             {itemHref ? (
                               <a href={itemHref}>
-                                <IconComponent className={`h-5 w-5 ${isBlog ? 'text-ocean' : 'text-gold'}`} />
+                                <IconComponent className={`h-5 w-5 ${isSpecial ? 'text-ocean' : 'text-gold'}`} />
                                 <span className="font-sans text-sm font-medium tracking-wide">{item.name}</span>
                               </a>
                             ) : (
                               <>
-                                <IconComponent className={`h-5 w-5 ${isBlog ? 'text-ocean' : 'text-gold'}`} />
+                                <IconComponent className={`h-5 w-5 ${isSpecial ? 'text-ocean' : 'text-gold'}`} />
                                 <span className="font-sans text-sm font-medium tracking-wide">{item.name}</span>
                               </>
                             )}
@@ -328,16 +331,18 @@ const Header = () => {
                         const IconComponent = item.icon;
                         const itemHref = 'href' in item ? (item as { href: string }).href : link.href;
                         const isBlog = 'isBlog' in item && item.isBlog;
+                        const isShopAll = 'isShopAll' in item && item.isShopAll;
+                        const isSpecial = isBlog || isShopAll;
                         return (
                           <a
                             key={item.name}
                             href={itemHref}
                             className={`flex items-center gap-3 py-3 transition-colors ${
-                              isBlog ? 'text-ocean hover:text-ocean-light mt-2 pt-3 border-t border-background/20' : 'text-background/70 hover:text-primary'
+                              isSpecial ? 'text-ocean hover:text-ocean-light mt-2 pt-3 border-t border-background/20' : 'text-background/70 hover:text-primary'
                             }`}
                             onClick={() => setIsMenuOpen(false)}
                           >
-                            <IconComponent className={`h-4 w-4 ${isBlog ? 'text-ocean' : 'text-primary'}`} />
+                            <IconComponent className={`h-4 w-4 ${isSpecial ? 'text-ocean' : 'text-primary'}`} />
                             <span className="font-sans text-sm tracking-wide">{item.name}</span>
                           </a>
                         );
