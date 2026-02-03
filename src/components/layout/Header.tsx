@@ -72,7 +72,8 @@ const Header = () => {
   // Determine if we're on a dark hero page
   const isDarkHeroPage = typeof window !== 'undefined' && 
     (window.location.pathname === '/services' || 
-     window.location.pathname === '/locations');
+     window.location.pathname === '/locations' ||
+     window.location.pathname === '/valentines');
 
   // Wholesale catalog needs solid header background always
   const isWholesaleCatalog = typeof window !== 'undefined' && 
