@@ -11,7 +11,7 @@ import wineToast from "@/assets/lifestyle/wine-dinner-toast.jpg";
 const Valentines = () => {
   const pageTitle = "Sips & Sweethearts | Valentine's Date Night";
   const pageDescription = "Join us February 12th for an unforgettable Valentine's date night featuring handcrafted NA cocktails, chocolate pairings, charcuterie, and a cozy movie screening.";
-  const ticketUrl = "https://www.facebook.com/flx/warn/?u=https%3A%2F%2Fwww.eventbrite.com%2Fe%2F1982235825715%3Faff%3Doddtdtcreator&h=AT0IvYDsrJvjmcTnGOz7uBCdfvB9eSMqTrgxobvbemYtyWZW4S30OkjJF0WL0_jmEtak_Biecr5gCVUiihR3pfahY046OMsGtYQT8Q19J-YRfXy-2-jleINWtLALwk7j3bRrP4lW5SI9uZU";
+  const ticketUrl = "https://www.eventbrite.com/e/san-diego-valentines-day-experience-sips-sweethearts-tickets-1982235825715?aff=oddtdtcreator";
 
   const includes = [
     { icon: Wine, title: "NA Cocktail Experience", description: "Create two of our most loved cocktails with bartender DY" },
