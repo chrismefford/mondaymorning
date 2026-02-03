@@ -2,9 +2,11 @@ import { Helmet } from "react-helmet-async";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
-import { Heart, Calendar, Clock, Users, Wine, Gift, Film, Camera, UtensilsCrossed } from "lucide-react";
+import { Heart, Calendar, Clock, Users, Wine, Gift, Film, Camera, UtensilsCrossed, MapPin, ArrowRight } from "lucide-react";
 import { SITE_NAME, SITE_URL } from "@/lib/seo";
-import stampGold from "@/assets/stamp-gold.svg";
+import dinnerCheers from "@/assets/lifestyle/dinner-cheers-intimate.jpg";
+import sparkling from "@/assets/lifestyle/sparkling-celebration.jpg";
+import wineToast from "@/assets/lifestyle/wine-dinner-toast.jpg";
 
 const Valentines = () => {
   const pageTitle = "Sips & Sweethearts | Valentine's Date Night";
@@ -12,15 +14,15 @@ const Valentines = () => {
   const ticketUrl = "https://www.eventbrite.com/e/sips-sweethearts-a-couples-cocktail-movie-experience-tickets-1243161234327";
 
   const includes = [
-    { icon: Wine, text: "Hand-crafted NA cocktail experience" },
-    { icon: Gift, text: "Chocolate truffle pairing by Maya Moon" },
-    { icon: Camera, text: 'Couples "Love Portraits"' },
-    { icon: UtensilsCrossed, text: "Charcuterie board for two" },
-    { icon: Film, text: "Cozy movie screening" },
+    { icon: Wine, title: "NA Cocktail Experience", description: "Create two of our most loved cocktails with bartender DY" },
+    { icon: Gift, title: "Chocolate Truffle Pairing", description: "Artisan chocolates by Maya Moon paired with your drinks" },
+    { icon: Camera, title: "Couples Love Portraits", description: "Take home a custom couples caricature keepsake" },
+    { icon: UtensilsCrossed, title: "Charcuterie for Two", description: "A beautifully curated board to share" },
+    { icon: Film, title: "Cozy Movie Screening", description: "End the night with a romantic film together" },
   ];
 
   return (
-    <div className="min-h-screen bg-cream">
+    <div className="min-h-screen bg-background">
       <Helmet>
         <title>{pageTitle} | {SITE_NAME}</title>
         <meta name="description" content={pageDescription} />
@@ -32,166 +34,215 @@ const Valentines = () => {
 
       <Header />
 
-      <main className="relative overflow-hidden">
-        {/* Decorative hearts border */}
-        <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-0 left-0 w-full h-4 bg-gradient-to-r from-rose-500 via-red-500 to-rose-500" />
-          <div className="absolute bottom-0 left-0 w-full h-4 bg-gradient-to-r from-rose-500 via-red-500 to-rose-500" />
-          <div className="absolute top-0 left-0 w-4 h-full bg-gradient-to-b from-rose-500 via-red-500 to-rose-500" />
-          <div className="absolute top-0 right-0 w-4 h-full bg-gradient-to-b from-rose-500 via-red-500 to-rose-500" />
-          
-          {/* Floating hearts */}
-          <Heart className="absolute top-8 left-8 w-6 h-6 text-red-500 fill-red-500 animate-pulse" />
-          <Heart className="absolute top-12 right-12 w-8 h-8 text-red-500 fill-red-500 animate-pulse" style={{ animationDelay: '0.5s' }} />
-          <Heart className="absolute top-1/4 left-6 w-5 h-5 text-red-500 fill-red-500 animate-pulse" style={{ animationDelay: '1s' }} />
-          <Heart className="absolute top-1/3 right-8 w-6 h-6 text-red-500 fill-red-500 animate-pulse" style={{ animationDelay: '0.3s' }} />
-          <Heart className="absolute bottom-1/4 left-10 w-7 h-7 text-red-500 fill-red-500 animate-pulse" style={{ animationDelay: '0.7s' }} />
-          <Heart className="absolute bottom-1/3 right-6 w-5 h-5 text-red-500 fill-red-500 animate-pulse" style={{ animationDelay: '1.2s' }} />
-        </div>
-
+      <main>
         {/* Hero Section */}
-        <section className="relative pt-32 pb-16 px-6 text-center">
-          <div className="max-w-4xl mx-auto">
-            {/* Script title */}
-            <h1 className="font-serif text-5xl md:text-7xl lg:text-8xl text-red-600 mb-4 italic">
-              Sips & Sweethearts
-            </h1>
-            
-            <h2 className="font-sans text-lg md:text-xl uppercase tracking-[0.3em] text-red-700 font-bold mb-6">
-              A Couples Cocktail & Movie Experience
-            </h2>
-            
-            <p className="font-sans text-sm md:text-base text-red-600/80 max-w-2xl mx-auto mb-10 leading-relaxed">
-              Connect, sip, and unwind with a curated Valentine's date night featuring handcrafted NA cocktails, chocolate pairings, and cozy vibes
-            </p>
+        <section className="relative min-h-[90vh] flex items-center overflow-hidden">
+          {/* Background Image */}
+          <div className="absolute inset-0">
+            <img
+              src={dinnerCheers}
+              alt="Couples enjoying intimate dinner"
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-rose-900/90 via-rose-900/70 to-rose-900/40" />
+          </div>
 
-            {/* Date/Time Card */}
-            <div className="inline-block border-4 border-dashed border-red-400 px-8 md:px-16 py-6 mb-8 relative">
-              {/* Corner accents */}
-              <div className="absolute -top-2 -left-2 w-4 h-4 border-l-4 border-t-4 border-red-600" />
-              <div className="absolute -top-2 -right-2 w-4 h-4 border-r-4 border-t-4 border-red-600" />
-              <div className="absolute -bottom-2 -left-2 w-4 h-4 border-l-4 border-b-4 border-red-600" />
-              <div className="absolute -bottom-2 -right-2 w-4 h-4 border-r-4 border-b-4 border-red-600" />
+          {/* Grain texture */}
+          <div className="grain absolute inset-0 z-10 pointer-events-none" />
+
+          {/* Content */}
+          <div className="relative z-20 w-full max-w-7xl mx-auto px-6 py-32">
+            <div className="max-w-2xl">
+              {/* Event Badge */}
+              <div className="inline-flex items-center gap-2 bg-cream/10 backdrop-blur-sm border border-cream/20 rounded-full px-4 py-2 mb-6 animate-fade-in">
+                <Heart className="w-4 h-4 text-rose-300 fill-rose-300" />
+                <span className="font-sans text-xs uppercase tracking-[0.2em] text-cream/90">Valentine's Event</span>
+              </div>
+
+              {/* Title */}
+              <h1 className="font-serif text-5xl md:text-6xl lg:text-7xl text-cream mb-4 animate-fade-in">
+                Sips & <span className="italic text-rose-300">Sweethearts</span>
+              </h1>
               
-              <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-12">
-                <div className="flex items-center gap-2">
-                  <Calendar className="w-5 h-5 text-red-600" />
-                  <span className="font-sans text-lg md:text-xl font-bold text-red-700 uppercase tracking-wider">February</span>
-                  <span className="font-serif text-4xl md:text-5xl font-bold text-red-600">12</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Clock className="w-5 h-5 text-red-600" />
-                  <span className="font-sans text-lg md:text-xl font-bold text-red-700">6PM - 7:30PM</span>
-                </div>
-              </div>
-              <div className="mt-4 flex items-center justify-center gap-2">
-                <Users className="w-5 h-5 text-red-600" />
-                <span className="font-sans text-xl md:text-2xl font-bold text-red-700">$60 PER COUPLE</span>
-              </div>
-            </div>
+              <p className="font-sans text-lg md:text-xl text-cream/80 mb-8 max-w-lg animate-fade-in" style={{ animationDelay: '0.1s' }}>
+                A curated couples cocktail & movie experience. Connect, sip, and create memories together.
+              </p>
 
-            {/* CTA Button */}
-            <div className="mb-12">
-              <a href={ticketUrl} target="_blank" rel="noopener noreferrer">
-                <Button 
-                  size="lg" 
-                  className="bg-red-600 hover:bg-red-700 text-cream font-sans text-base md:text-lg font-bold uppercase tracking-wider px-10 py-7 shadow-lg hover:shadow-xl transition-all"
-                >
-                  <Heart className="w-5 h-5 mr-2 fill-current" />
-                  Get Tickets Now
-                </Button>
-              </a>
+              {/* Event Details */}
+              <div className="flex flex-wrap gap-6 mb-10 animate-fade-in" style={{ animationDelay: '0.2s' }}>
+                <div className="flex items-center gap-2 text-cream/90">
+                  <Calendar className="w-5 h-5 text-rose-300" />
+                  <span className="font-sans text-sm">February 12, 2025</span>
+                </div>
+                <div className="flex items-center gap-2 text-cream/90">
+                  <Clock className="w-5 h-5 text-rose-300" />
+                  <span className="font-sans text-sm">6:00 PM - 7:30 PM</span>
+                </div>
+                <div className="flex items-center gap-2 text-cream/90">
+                  <MapPin className="w-5 h-5 text-rose-300" />
+                  <span className="font-sans text-sm">Ocean Beach Location</span>
+                </div>
+              </div>
+
+              {/* CTA */}
+              <div className="flex flex-col sm:flex-row gap-4 animate-fade-in" style={{ animationDelay: '0.3s' }}>
+                <a href={ticketUrl} target="_blank" rel="noopener noreferrer">
+                  <Button 
+                    size="lg" 
+                    className="bg-rose-500 hover:bg-rose-600 text-cream font-sans text-sm font-semibold uppercase tracking-wider px-8 py-6"
+                  >
+                    Get Tickets — $60/Couple
+                    <ArrowRight className="w-4 h-4 ml-2" />
+                  </Button>
+                </a>
+              </div>
             </div>
+          </div>
+
+          {/* Floating accent */}
+          <div className="absolute bottom-12 right-12 hidden lg:block animate-float">
+            <Heart className="w-24 h-24 text-rose-400/20 fill-rose-400/20" />
           </div>
         </section>
 
         {/* What's Included Section */}
-        <section className="py-16 px-6 bg-gradient-to-b from-cream to-rose-50">
+        <section className="py-24 px-6 bg-cream">
           <div className="max-w-6xl mx-auto">
-            <div className="grid md:grid-cols-2 gap-12 items-start">
-              {/* Left Column - Description */}
-              <div>
-                {/* Ticket-style header */}
-                <div className="inline-block border-4 border-red-600 px-6 py-3 mb-8 relative">
-                  <div className="absolute -left-3 top-1/2 -translate-y-1/2 w-6 h-6 bg-cream rounded-full border-4 border-red-600" />
-                  <div className="absolute -right-3 top-1/2 -translate-y-1/2 w-6 h-6 bg-cream rounded-full border-4 border-red-600" />
-                  <Heart className="absolute -top-3 left-1/2 -translate-x-1/2 w-6 h-6 text-red-600 fill-red-600" />
-                  <Heart className="absolute -bottom-3 left-1/2 -translate-x-1/2 w-6 h-6 text-red-600 fill-red-600" />
-                  <h3 className="font-sans text-xl font-bold uppercase tracking-[0.2em] text-red-700">Tickets Include</h3>
+            <div className="text-center mb-16">
+              <span className="inline-flex items-center gap-2 font-sans text-xs font-semibold uppercase tracking-[0.3em] text-rose-600 mb-4">
+                <span className="w-8 h-px bg-rose-400" />
+                What's Included
+                <span className="w-8 h-px bg-rose-400" />
+              </span>
+              <h2 className="font-serif text-4xl md:text-5xl text-forest mb-4">
+                An Evening to <span className="italic text-rose-600">Remember</span>
+              </h2>
+              <p className="font-sans text-muted-foreground max-w-xl mx-auto">
+                Everything you need for the perfect date night, all in one unforgettable experience.
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {includes.map((item, index) => (
+                <div 
+                  key={index} 
+                  className="group bg-background border-2 border-forest/10 p-8 hover:border-rose-300 hover:shadow-lg transition-all duration-300"
+                >
+                  <div className="w-14 h-14 bg-rose-100 rounded-full flex items-center justify-center mb-6 group-hover:bg-rose-500 transition-colors">
+                    <item.icon className="w-6 h-6 text-rose-600 group-hover:text-cream transition-colors" />
+                  </div>
+                  <h3 className="font-serif text-xl text-forest mb-2">{item.title}</h3>
+                  <p className="font-sans text-sm text-muted-foreground">{item.description}</p>
                 </div>
-
-                <p className="font-sans text-base text-red-800/80 leading-relaxed mb-8">
-                  Sip, snack, connect, and unwind. Enjoy sparkling Bollé, make-your-own NA cocktails with chocolate pairings, charcuterie for two, a couples caricature, connection cards, a cozy movie screening, and exclusive post-event discounts.
+              ))}
+              
+              {/* Price Card */}
+              <div className="bg-rose-600 text-cream p-8 flex flex-col justify-center">
+                <Users className="w-10 h-10 mb-4 text-rose-200" />
+                <span className="font-sans text-sm uppercase tracking-wider text-rose-200 mb-2">Per Couple</span>
+                <span className="font-serif text-5xl font-bold mb-4">$60</span>
+                <p className="font-sans text-sm text-rose-100">
+                  Limited spots available. Reserve yours today.
                 </p>
+              </div>
+            </div>
+          </div>
+        </section>
 
-                {/* Includes List */}
-                <div className="space-y-4">
-                  {includes.map((item, index) => (
-                    <div key={index} className="flex items-center gap-4">
-                      <Heart className="w-5 h-5 text-red-500 fill-red-500 flex-shrink-0" />
-                      <span className="font-sans text-base text-red-700">{item.text}</span>
-                    </div>
-                  ))}
+        {/* Experience Section */}
+        <section className="py-24 px-6 bg-background">
+          <div className="max-w-6xl mx-auto">
+            <div className="grid lg:grid-cols-2 gap-16 items-center">
+              {/* Images */}
+              <div className="relative">
+                <div className="aspect-[4/5] overflow-hidden border-2 border-forest">
+                  <img 
+                    src={sparkling} 
+                    alt="Sparkling celebration" 
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <div className="absolute -bottom-8 -right-8 w-2/3 aspect-square overflow-hidden border-2 border-forest bg-background p-2 shadow-brutal hidden md:block">
+                  <img 
+                    src={wineToast} 
+                    alt="Couples toasting" 
+                    className="w-full h-full object-cover"
+                  />
                 </div>
               </div>
 
-              {/* Right Column - Cocktail Experience */}
-              <div className="bg-red-600 p-8 md:p-10 text-cream relative">
-                {/* Decorative stamp */}
-                <div className="absolute -top-6 -right-6 w-24 h-24 opacity-20">
-                  <img src={stampGold} alt="" className="w-full h-full" />
-                </div>
-                
-                <h3 className="font-sans text-lg md:text-xl font-bold uppercase tracking-wider text-center mb-6">
-                  Put Your Bartending Skills to the Test
-                </h3>
-                <p className="font-sans text-base text-cream/90 text-center leading-relaxed mb-6">
-                  Create two of Monday Morning's most loved NA cocktails. Learn about ingredients, functionality, and flavor with our resident bartender DY.
+              {/* Content */}
+              <div className="lg:pl-8">
+                <span className="inline-flex items-center gap-2 font-sans text-xs font-semibold uppercase tracking-[0.3em] text-rose-600 mb-4">
+                  <Heart className="w-4 h-4 fill-rose-600" />
+                  The Experience
+                </span>
+                <h2 className="font-serif text-4xl md:text-5xl text-forest mb-6">
+                  Craft Your Own <span className="italic text-rose-600">Love Story</span>
+                </h2>
+                <p className="font-sans text-muted-foreground mb-6 leading-relaxed">
+                  Put your bartending skills to the test as you create two of Monday Morning's most loved NA cocktails. Learn about ingredients, functionality, and flavor profiles with our resident bartender DY guiding you every step of the way.
                 </p>
-                
-                <div className="flex justify-center">
-                  <Wine className="w-16 h-16 text-cream/40" />
+                <p className="font-sans text-muted-foreground mb-8 leading-relaxed">
+                  Between sips, enjoy artisan chocolate truffles from Maya Moon, share a beautifully curated charcuterie board, and capture the moment with a custom couples portrait. End the evening with a cozy movie screening—the perfect finale to your date night.
+                </p>
+
+                <div className="flex flex-col sm:flex-row gap-4">
+                  <a href={ticketUrl} target="_blank" rel="noopener noreferrer">
+                    <Button 
+                      size="lg" 
+                      className="bg-forest hover:bg-forest-light text-cream font-sans text-sm font-semibold uppercase tracking-wider px-8 py-6"
+                    >
+                      Reserve Your Spot
+                      <Heart className="w-4 h-4 ml-2 fill-current" />
+                    </Button>
+                  </a>
                 </div>
               </div>
             </div>
           </div>
         </section>
 
-        {/* Final CTA Section */}
-        <section className="py-16 px-6 bg-cream text-center">
-          <div className="max-w-3xl mx-auto">
-            {/* Brand heart logo */}
-            <div className="relative inline-block mb-8">
-              <Heart className="w-20 h-20 text-red-600 fill-red-600" />
-              <span className="absolute inset-0 flex items-center justify-center font-sans text-[8px] font-bold text-cream uppercase tracking-wider leading-tight text-center px-3 pt-1">
-                Monday<br/>Morning<br/>Bottle Shop
-              </span>
-            </div>
-
-            <h2 className="font-sans text-2xl md:text-3xl font-bold uppercase tracking-wider text-red-600 mb-2">
-              Limited Spots Available
-            </h2>
-            <p className="font-sans text-xl md:text-2xl font-bold uppercase tracking-wider text-red-700 mb-8">
-              Grab Tickets and Reserve Today!
+        {/* Partner Section */}
+        <section className="py-16 px-6 bg-rose-50 border-y-2 border-rose-200">
+          <div className="max-w-4xl mx-auto text-center">
+            <p className="font-sans text-sm text-rose-700 mb-2">Make it a full evening</p>
+            <p className="font-serif text-2xl md:text-3xl text-forest mb-4">
+              Dine at Cafe Athena & Save
             </p>
+            <p className="font-sans text-muted-foreground">
+              Book your dinner before or after the event at Cafe Athena and receive{" "}
+              <span className="font-bold text-rose-600">$10 off your $40+ purchase</span>
+            </p>
+          </div>
+        </section>
 
+        {/* Final CTA Section */}
+        <section className="py-24 px-6 bg-forest text-cream text-center relative overflow-hidden">
+          {/* Background hearts */}
+          <div className="absolute inset-0 opacity-5">
+            <Heart className="absolute top-10 left-10 w-32 h-32 fill-current" />
+            <Heart className="absolute bottom-10 right-10 w-48 h-48 fill-current" />
+            <Heart className="absolute top-1/2 left-1/3 w-24 h-24 fill-current" />
+          </div>
+
+          <div className="relative z-10 max-w-2xl mx-auto">
+            <Heart className="w-12 h-12 text-rose-400 fill-rose-400 mx-auto mb-6" />
+            <h2 className="font-serif text-4xl md:text-5xl mb-4">
+              Don't Miss This <span className="italic text-gold">Date Night</span>
+            </h2>
+            <p className="font-sans text-cream/70 mb-8 max-w-lg mx-auto">
+              Limited spots available for this exclusive Valentine's experience. Treat yourself and your partner to an evening you'll never forget.
+            </p>
             <a href={ticketUrl} target="_blank" rel="noopener noreferrer">
               <Button 
                 size="lg" 
-                className="bg-red-600 hover:bg-red-700 text-cream font-sans text-base md:text-lg font-bold uppercase tracking-wider px-12 py-7 shadow-lg hover:shadow-xl transition-all mb-10"
+                className="bg-rose-500 hover:bg-rose-600 text-cream font-sans text-sm font-semibold uppercase tracking-wider px-10 py-7"
               >
-                <Heart className="w-5 h-5 mr-2 fill-current" />
-                Reserve Your Spot
+                Get Tickets — $60/Couple
+                <ArrowRight className="w-4 h-4 ml-2" />
               </Button>
             </a>
-
-            {/* Cafe Athena Partnership */}
-            <div className="border-t-2 border-red-200 pt-8">
-              <p className="font-sans text-sm text-red-600/80 italic">
-                Book your dinner before or after the event at Cafe Athena and receive{" "}
-                <span className="font-bold text-red-700">$10 off $40+ purchase!</span>
-              </p>
-            </div>
           </div>
         </section>
       </main>
