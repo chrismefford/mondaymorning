@@ -1,12 +1,14 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, ArrowDown } from "lucide-react";
 import { Link } from "react-router-dom";
-import naBeer from "@/assets/na-beer.jpg";
-import naWine from "@/assets/na-wine.jpg";
-import rooftopCheers from "@/assets/lifestyle/rooftop-cheers.jpg";
 import stampGold from "@/assets/stamp-gold.svg";
 import logoPrimaryGold from "@/assets/logo-primary-gold.svg";
 import logoPrimaryWhite from "@/assets/logo-primary-white.svg";
+
+// Featured product images from Shopify catalog
+const kavaHaven = "https://cdn.shopify.com/s/files/1/0618/7628/8712/files/KAVA_Haven_Elxir_5oz_Blended.png?v=1741127548";
+const sentiaGold = "https://cdn.shopify.com/s/files/1/0618/7628/8712/files/Sentia_Gold_Bottle_1.png?v=1741110178";
+const bolleRose = "https://cdn.shopify.com/s/files/1/0618/7628/8712/files/Bolle_Rose.png?v=1738627655";
 
 const Hero = () => {
   return (
@@ -99,17 +101,17 @@ const Hero = () => {
         {/* Floating polaroid cards - Mobile */}
         <div className="absolute top-20 right-2 z-30 animate-float">
           <div className="w-16 h-20 bg-cream p-1 pb-4 border-2 border-forest shadow-brutal rotate-6">
-            <img src={naBeer} alt="NA Beer" className="w-full h-full object-cover" />
+            <img src={kavaHaven} alt="Kava Haven" className="w-full h-full object-contain bg-cream" />
           </div>
         </div>
         <div className="absolute top-32 right-20 z-30 animate-float" style={{ animationDelay: '0.3s' }}>
           <div className="w-14 h-18 bg-cream p-1 pb-3 border-2 border-forest shadow-brutal -rotate-3">
-            <img src={naWine} alt="NA Wine" className="w-full h-full object-cover" />
+            <img src={sentiaGold} alt="Sentia Gold" className="w-full h-full object-contain bg-cream" />
           </div>
         </div>
         <div className="absolute top-16 right-36 z-30 animate-float" style={{ animationDelay: '0.6s' }}>
           <div className="w-12 h-16 bg-cream p-1 pb-3 border-2 border-forest shadow-brutal rotate-12">
-            <img src={rooftopCheers} alt="Rooftop cheers" className="w-full h-full object-cover" />
+            <img src={bolleRose} alt="Bolle Rosé" className="w-full h-full object-contain bg-cream" />
           </div>
         </div>
 
@@ -206,20 +208,20 @@ const Hero = () => {
           {/* Floating polaroid cards - Desktop */}
           <div className="absolute top-1/4 -left-16 z-30 animate-float">
             <div className="w-40 h-52 bg-cream p-2 pb-8 border-2 border-forest shadow-brutal -rotate-6">
-              <img src={naBeer} alt="NA Beer" className="w-full h-full object-cover" />
-              <span className="absolute bottom-2 left-0 right-0 text-center font-serif text-sm italic text-forest">NA Beer</span>
+              <img src={kavaHaven} alt="Kava Haven" className="w-full h-full object-contain bg-cream" />
+              <span className="absolute bottom-2 left-0 right-0 text-center font-serif text-sm italic text-forest">Kava Haven</span>
             </div>
           </div>
           <div className="absolute top-[45%] -left-8 z-40 animate-float" style={{ animationDelay: '0.3s' }}>
             <div className="w-44 h-56 bg-cream p-2 pb-8 border-2 border-forest shadow-brutal rotate-3">
-              <img src={naWine} alt="NA Wine" className="w-full h-full object-cover" />
-              <span className="absolute bottom-2 left-0 right-0 text-center font-serif text-sm italic text-forest">NA Wine</span>
+              <img src={sentiaGold} alt="Sentia Gold" className="w-full h-full object-contain bg-cream" />
+              <span className="absolute bottom-2 left-0 right-0 text-center font-serif text-sm italic text-forest">Sentia Gold</span>
             </div>
           </div>
           <div className="absolute bottom-1/4 -left-12 z-30 animate-float" style={{ animationDelay: '0.6s' }}>
             <div className="w-36 h-48 bg-cream p-2 pb-8 border-2 border-forest shadow-brutal rotate-6">
-              <img src={rooftopCheers} alt="Rooftop cheers" className="w-full h-full object-cover" />
-              <span className="absolute bottom-2 left-0 right-0 text-center font-serif text-sm italic text-forest">Good Vibes</span>
+              <img src={bolleRose} alt="Bolle Rosé" className="w-full h-full object-contain bg-cream" />
+              <span className="absolute bottom-2 left-0 right-0 text-center font-serif text-sm italic text-forest">Bolle Rosé</span>
             </div>
           </div>
 
