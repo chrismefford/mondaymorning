@@ -80,7 +80,7 @@ const Valentines = () => {
                 </div>
                 <div className="flex items-center gap-2 text-cream/90">
                   <MapPin className="w-5 h-5 text-rose-300" />
-                  <span className="font-sans text-sm">Ocean Beach Location</span>
+                  <span className="font-sans text-sm">Pacific Beach Location</span>
                 </div>
               </div>
 
