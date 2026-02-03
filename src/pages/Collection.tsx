@@ -136,15 +136,21 @@ const CollectionPage = () => {
   const shopifyHandle = collectionInfo?.shopifyHandle || effectiveSlug || "";
   
   // Fetch products directly from Shopify
-  // Best Sellers: use Shopify's BEST_SELLING sort (not a collection handle)
-  const bestSellersQuery = useShopifyProducts(20, { sortKey: "BEST_SELLING" });
+  // Best Sellers: fetch more (50) to account for filtered non-tracked items, then limit to top 20
+  const bestSellersQuery = useShopifyProducts(50, { sortKey: "BEST_SELLING" });
   const collectionQuery = useShopifyCollectionProducts(shopifyHandle, 100);
   const allProductsQuery = useShopifyAllProducts({ sortKey: "BEST_SELLING" });
 
   // Determine which data source to use - brand filter and vibe collections need all products
   const needsAllProducts = isBrandFilter || isVibeCollection;
+  
+  // For Best Sellers, limit to top 20 after fetching (since some may be filtered out as non-tracked)
+  const bestSellersProducts = useMemo(() => {
+    return (bestSellersQuery.data || []).slice(0, 20);
+  }, [bestSellersQuery.data]);
+  
   const data = isBestSellers
-    ? { products: bestSellersQuery.data || [] }
+    ? { products: bestSellersProducts }
     : needsAllProducts
     ? { products: allProductsQuery.data || [] }
     : collectionQuery.data;
