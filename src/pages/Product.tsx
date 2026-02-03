@@ -26,6 +26,12 @@ import {
   generateBreadcrumbSchema
 } from "@/lib/seo";
 
+// Staff Pick brands - curated brand list
+const STAFF_PICK_BRANDS = [
+  "glen dochus", "sentia", "kava haven", "dromme", "drømme", "ceybon", 
+  "bolle", "sovi", "beaglepuss", "below brew", "trip", "curious elixirs", "higher ground"
+];
+
 const ProductPage = () => {
   const { handle } = useParams<{ handle: string }>();
   const { data: product, isLoading, error } = useShopifyProduct(handle || "");
@@ -34,6 +40,16 @@ const ProductPage = () => {
   const [currentPage, setCurrentPage] = useState(0);
   const PRODUCTS_PER_PAGE = 8;
   const TOTAL_PAGES = 3;
+
+  // Check if product is from a Staff Pick brand
+  const isStaffPickBrand = useMemo(() => {
+    if (!product) return false;
+    const nameLC = product.name?.toLowerCase() || "";
+    const vendorLC = product.raw?.vendor?.toLowerCase() || "";
+    return STAFF_PICK_BRANDS.some(brand => 
+      nameLC.includes(brand) || vendorLC.includes(brand)
+    );
+  }, [product]);
 
   // Fetch more products for "More to Explore" section
   const { data: allProducts } = useShopifyProducts(PRODUCTS_PER_PAGE * TOTAL_PAGES);
@@ -201,13 +217,13 @@ const ProductPage = () => {
                   />
                 </div>
               </div>
-              {(product.badge || isSoldOut) && (
+              {(product.badge || isSoldOut || isStaffPickBrand) && (
                 <Badge className={`absolute top-3 left-3 font-sans text-xs font-bold border-0 shadow-md ${
                   isSoldOut 
                     ? "bg-muted text-muted-foreground" 
                     : "bg-gold text-forest-deep"
                 }`}>
-                  {isSoldOut ? "Sold Out" : product.badge}
+                  {isSoldOut ? "Sold Out" : isStaffPickBrand ? "Staff Pick" : product.badge}
                 </Badge>
               )}
               {/* Decorative offset */}
