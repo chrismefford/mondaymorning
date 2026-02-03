@@ -137,7 +137,7 @@ const CollectionPage = () => {
   
   // Fetch products directly from Shopify
   // Best Sellers: use Shopify's BEST_SELLING sort (not a collection handle)
-  const bestSellersQuery = useShopifyProducts(100, { sortKey: "BEST_SELLING" });
+  const bestSellersQuery = useShopifyProducts(20, { sortKey: "BEST_SELLING" });
   const collectionQuery = useShopifyCollectionProducts(shopifyHandle, 100);
   const allProductsQuery = useShopifyAllProducts({ sortKey: "BEST_SELLING" });
 
@@ -214,7 +214,12 @@ const CollectionPage = () => {
       });
     }
     
-    // Randomly pick ~20% of products to be staff picks and ~10% to be best sellers
+    // Staff Picks: only from curated brand list
+    const staffPickBrands = [
+      "glen dochus", "sentia", "kava haven", "dromme", "drømme", "ceybon", 
+      "bolle", "sovi", "beaglepuss", "below brew", "trip", "curious elixirs", "higher ground"
+    ];
+    
     const staffPickIndices = new Set<number>();
     const bestSellerIndices = new Set<number>();
     const numStaffPicks = Math.max(1, Math.floor(products.length * 0.15));
@@ -225,9 +230,16 @@ const CollectionPage = () => {
       const hash = product.id.split('').reduce((a: number, b: string) => ((a << 5) - a) + b.charCodeAt(0), 0);
       const mod = Math.abs(hash) % 10;
       
+      // Check if product is from a staff pick brand
+      const nameLC = product.name.toLowerCase();
+      const vendorLC = (product.vendor || "").toLowerCase();
+      const isFromStaffPickBrand = staffPickBrands.some(brand => 
+        nameLC.includes(brand) || vendorLC.includes(brand)
+      );
+      
       if (mod === 0 && bestSellerIndices.size < numBestSellers) {
         bestSellerIndices.add(index);
-      } else if (mod <= 2 && staffPickIndices.size < numStaffPicks && !bestSellerIndices.has(index)) {
+      } else if (mod <= 2 && staffPickIndices.size < numStaffPicks && !bestSellerIndices.has(index) && isFromStaffPickBrand) {
         staffPickIndices.add(index);
       }
     });
