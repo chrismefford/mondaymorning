@@ -16,11 +16,10 @@ const FeaturedProducts = () => {
   });
   const scrollRef = useRef<HTMLDivElement>(null);
 
-  // Convert Shopify products to local format, filtering out sold out items
-  // Also ensure we only show products that are available for sale
-  const allProducts = shopifyProducts
+  // Convert Shopify products to local format, keeping vendor info for diversity check
+  const allProducts = (shopifyProducts
     ?.filter(isActiveProduct)
-    .map(shopifyToLocalProduct) || fallbackProducts;
+    .map(p => ({ ...shopifyToLocalProduct(p), vendor: p.vendor })) || fallbackProducts) as (ReturnType<typeof shopifyToLocalProduct> & { vendor?: string })[];
   
   // Filter out memberships, gift cards, non-beverage items, and sold out products
   const beverageProducts = allProducts.filter(p => 
@@ -29,11 +28,67 @@ const FeaturedProducts = () => {
     !p.name?.toLowerCase().includes('subscription')
   );
   
-  // Take top 5 best sellers (already sorted by BEST_SELLING from Shopify)
-  const bestSellers = beverageProducts.slice(0, 5);
+  // Target categories for diversity: Beer, Wine, Spirit, Functional
+  const targetCategories = [
+    { keywords: ['beer', 'lager', 'ale', 'ipa', 'stout', 'pilsner'], label: 'beer' },
+    { keywords: ['wine', 'sparkling', 'champagne', 'prosecco', 'rosé', 'rose'], label: 'wine' },
+    { keywords: ['spirit', 'whiskey', 'gin', 'rum', 'vodka', 'aperitif', 'vermouth', 'amaro'], label: 'spirit' },
+    { keywords: ['functional', 'adaptogen', 'nootropic', 'wellness', 'elixir', 'kava', 'tonic'], label: 'functional' },
+  ];
   
-  const featuredProduct = bestSellers[0];
-  const gridProducts = bestSellers.slice(1, 5);
+  // Find one best-selling product per category, ensuring different vendors
+  const diverseProducts: typeof beverageProducts = [];
+  const usedVendors = new Set<string>();
+  
+  for (const target of targetCategories) {
+    const categoryProducts = beverageProducts.filter(p => {
+      const catLower = p.category?.toLowerCase() || '';
+      const nameLower = p.name?.toLowerCase() || '';
+      return target.keywords.some(kw => catLower.includes(kw) || nameLower.includes(kw));
+    });
+    
+    // Find first product in this category from a vendor we haven't used yet
+    const product = categoryProducts.find(p => {
+      const vendor = (p.vendor || p.name?.split(' ')[0] || '').toLowerCase();
+      return !usedVendors.has(vendor);
+    });
+    
+    if (product) {
+      diverseProducts.push(product);
+      const vendor = (product.vendor || product.name?.split(' ')[0] || '').toLowerCase();
+      usedVendors.add(vendor);
+    }
+  }
+  
+  // If we don't have 4 products, fill with remaining best sellers from unused vendors
+  if (diverseProducts.length < 4) {
+    const usedIds = new Set(diverseProducts.map(p => p.id));
+    const remaining = beverageProducts.filter(p => {
+      if (usedIds.has(p.id)) return false;
+      const vendor = (p.vendor || p.name?.split(' ')[0] || '').toLowerCase();
+      return !usedVendors.has(vendor);
+    });
+    for (const p of remaining) {
+      if (diverseProducts.length >= 4) break;
+      diverseProducts.push(p);
+      const vendor = (p.vendor || p.name?.split(' ')[0] || '').toLowerCase();
+      usedVendors.add(vendor);
+    }
+  }
+  
+  // Add one more for the featured spot (5 total)
+  if (diverseProducts.length < 5) {
+    const usedIds = new Set(diverseProducts.map(p => p.id));
+    const extra = beverageProducts.find(p => {
+      if (usedIds.has(p.id)) return false;
+      const vendor = (p.vendor || p.name?.split(' ')[0] || '').toLowerCase();
+      return !usedVendors.has(vendor);
+    });
+    if (extra) diverseProducts.push(extra);
+  }
+  
+  const featuredProduct = diverseProducts[0];
+  const gridProducts = diverseProducts.slice(1, 5);
 
   return (
     <section id="shop" className="py-10 lg:py-24 bg-cream relative overflow-hidden">
