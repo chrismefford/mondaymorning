@@ -36,12 +36,37 @@ const FeaturedProducts = () => {
     { keywords: ['functional', 'adaptogen', 'nootropic', 'wellness', 'elixir', 'kava', 'tonic'], label: 'functional' },
   ];
   
-  // Find one best-selling product per category, ensuring different vendors
-  const diverseProducts: typeof beverageProducts = [];
-  const usedVendors = new Set<string>();
+  // Featured product is always the #1 best seller (first in the list)
+  const featuredProduct = beverageProducts[0];
+  const featuredVendor = (featuredProduct?.vendor || featuredProduct?.name?.split(' ')[0] || '').toLowerCase();
   
+  // Build diverse grid products (4 items) from different categories and vendors
+  const gridProducts: typeof beverageProducts = [];
+  const usedVendors = new Set<string>([featuredVendor]);
+  const usedIds = new Set<string>([featuredProduct?.id]);
+  
+  // Determine which category the featured product belongs to, so we can skip it
+  const getFeaturedCategory = () => {
+    if (!featuredProduct) return null;
+    const catLower = featuredProduct.category?.toLowerCase() || '';
+    const nameLower = featuredProduct.name?.toLowerCase() || '';
+    for (const target of targetCategories) {
+      if (target.keywords.some(kw => catLower.includes(kw) || nameLower.includes(kw))) {
+        return target.label;
+      }
+    }
+    return null;
+  };
+  const featuredCategory = getFeaturedCategory();
+  
+  // Find one best-selling product per category (excluding featured's category), ensuring different vendors
   for (const target of targetCategories) {
+    // Skip the category that the featured product belongs to
+    if (target.label === featuredCategory) continue;
+    if (gridProducts.length >= 4) break;
+    
     const categoryProducts = beverageProducts.filter(p => {
+      if (usedIds.has(p.id)) return false;
       const catLower = p.category?.toLowerCase() || '';
       const nameLower = p.name?.toLowerCase() || '';
       return target.keywords.some(kw => catLower.includes(kw) || nameLower.includes(kw));
@@ -54,41 +79,28 @@ const FeaturedProducts = () => {
     });
     
     if (product) {
-      diverseProducts.push(product);
+      gridProducts.push(product);
+      usedIds.add(product.id);
       const vendor = (product.vendor || product.name?.split(' ')[0] || '').toLowerCase();
       usedVendors.add(vendor);
     }
   }
   
-  // If we don't have 4 products, fill with remaining best sellers from unused vendors
-  if (diverseProducts.length < 4) {
-    const usedIds = new Set(diverseProducts.map(p => p.id));
+  // If we don't have 4 grid products, fill with remaining best sellers from unused vendors
+  if (gridProducts.length < 4) {
     const remaining = beverageProducts.filter(p => {
       if (usedIds.has(p.id)) return false;
       const vendor = (p.vendor || p.name?.split(' ')[0] || '').toLowerCase();
       return !usedVendors.has(vendor);
     });
     for (const p of remaining) {
-      if (diverseProducts.length >= 4) break;
-      diverseProducts.push(p);
+      if (gridProducts.length >= 4) break;
+      gridProducts.push(p);
+      usedIds.add(p.id);
       const vendor = (p.vendor || p.name?.split(' ')[0] || '').toLowerCase();
       usedVendors.add(vendor);
     }
   }
-  
-  // Add one more for the featured spot (5 total)
-  if (diverseProducts.length < 5) {
-    const usedIds = new Set(diverseProducts.map(p => p.id));
-    const extra = beverageProducts.find(p => {
-      if (usedIds.has(p.id)) return false;
-      const vendor = (p.vendor || p.name?.split(' ')[0] || '').toLowerCase();
-      return !usedVendors.has(vendor);
-    });
-    if (extra) diverseProducts.push(extra);
-  }
-  
-  const featuredProduct = diverseProducts[0];
-  const gridProducts = diverseProducts.slice(1, 5);
 
   return (
     <section id="shop" className="py-10 lg:py-24 bg-cream relative overflow-hidden">
