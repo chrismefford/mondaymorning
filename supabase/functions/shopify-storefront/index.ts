@@ -714,12 +714,151 @@ serve(async (req) => {
 
     switch (action) {
       case "products": {
-        // Use Admin API to filter out products with inventory not tracked
+        // IMPORTANT:
+        // - The UI uses this endpoint for "Best Sellers" (sortKey=BEST_SELLING).
+        // - We must preserve Shopify's sort order, BUT also enforce our global filter:
+        //   ACTIVE products with at least one variant where inventory tracking is enabled.
+
+        const hasSort = typeof sortKey === "string" && sortKey.length > 0;
+
+        // When a sort key is provided (e.g. BEST_SELLING), get the ordered list from Storefront,
+        // then fetch the same products from Admin by IDs to apply the inventory tracking filter.
+        if (hasSort) {
+          console.log("Fetching products with Storefront sort + inventory tracking filter", { sortKey, first });
+
+          const storefront = await shopifyFetch(PRODUCTS_QUERY, {
+            first,
+            after,
+            sortKey,
+            reverse,
+          }) as {
+            products: {
+              pageInfo: { hasNextPage: boolean; endCursor: string | null };
+              edges: Array<{ node: { id: string } }>;
+            };
+          };
+
+          const orderedIds = storefront.products.edges.map((e) => e.node.id).filter(Boolean);
+
+          if (orderedIds.length === 0) {
+            return new Response(
+              JSON.stringify({ products: [], pageInfo: storefront.products.pageInfo }),
+              { headers: { ...corsHeaders, "Content-Type": "application/json" } },
+            );
+          }
+
+          const ADMIN_PRODUCTS_BY_IDS_QUERY = `
+            query GetProductsByIds($ids: [ID!]!) {
+              nodes(ids: $ids) {
+                ... on Product {
+                  id
+                  title
+                  description
+                  handle
+                  featuredImage { url altText }
+                  status
+                  productType
+                  vendor
+                  tags
+                  variants(first: 10) {
+                    nodes {
+                      id
+                      title
+                      inventoryQuantity
+                      price
+                      compareAtPrice
+                      inventoryItem { tracked }
+                    }
+                  }
+                }
+              }
+            }
+          `;
+
+          const admin = await shopifyAdminFetch(ADMIN_PRODUCTS_BY_IDS_QUERY, { ids: orderedIds }) as {
+            nodes: Array<{
+              id: string;
+              title: string;
+              description: string;
+              handle: string;
+              featuredImage: { url: string; altText: string | null } | null;
+              status: string;
+              productType: string;
+              vendor: string;
+              tags: string[];
+              variants: {
+                nodes: Array<{
+                  id: string;
+                  title: string;
+                  inventoryQuantity: number;
+                  price: string;
+                  compareAtPrice: string | null;
+                  inventoryItem?: { tracked: boolean };
+                }>;
+              };
+            } | null>;
+          };
+
+          const byId = new Map((admin.nodes ?? []).filter(Boolean).map((p) => [p!.id, p!]));
+
+          const filteredProducts = orderedIds
+            .map((id) => byId.get(id))
+            .filter((p): p is NonNullable<typeof p> => !!p)
+            .filter((p) => {
+              if (p.status !== "ACTIVE") return false;
+              return p.variants.nodes.some((v) => v.inventoryItem?.tracked === true);
+            })
+            .map((product) => ({
+              id: product.id,
+              title: product.title,
+              description: product.description,
+              handle: product.handle,
+              featuredImage: product.featuredImage,
+              priceRange: {
+                minVariantPrice: {
+                  amount: product.variants.nodes[0]?.price || "0",
+                  currencyCode: "USD",
+                },
+              },
+              compareAtPriceRange: {
+                minVariantPrice: {
+                  amount: product.variants.nodes[0]?.compareAtPrice || "0",
+                  currencyCode: "USD",
+                },
+              },
+              tags: product.tags,
+              productType: product.productType,
+              vendor: product.vendor,
+              variants: {
+                edges: product.variants.nodes.map((v) => ({
+                  node: {
+                    id: v.id,
+                    title: v.title,
+                    availableForSale: (v.inventoryQuantity ?? 0) > 0,
+                    price: {
+                      amount: v.price,
+                      currencyCode: "USD",
+                    },
+                  },
+                })),
+              },
+            }));
+
+          return new Response(
+            JSON.stringify({
+              products: filteredProducts,
+              pageInfo: storefront.products.pageInfo,
+            }),
+            { headers: { ...corsHeaders, "Content-Type": "application/json" } },
+          );
+        }
+
+        // Default (no sortKey): keep existing behavior.
         console.log("Fetching products with inventory tracking filter");
-        
-        const productsData = await shopifyAdminFetch(ADMIN_PRODUCTS_QUERY, { 
-          first, 
-          after
+
+        const productsData = await shopifyAdminFetch(ADMIN_PRODUCTS_QUERY, {
+          first,
+          after,
         }) as {
           products: {
             pageInfo: { hasNextPage: boolean; endCursor: string | null };
@@ -746,12 +885,12 @@ serve(async (req) => {
             }>;
           };
         };
-        
+
         // Filter: ACTIVE status + has at least one variant with tracked inventory
         const filteredProducts = productsData.products.nodes
           .filter((p) => {
             if (p.status !== "ACTIVE") return false;
-            const hasAnyTrackedInventory = p.variants.nodes.some(v => v.inventoryItem?.tracked === true);
+            const hasAnyTrackedInventory = p.variants.nodes.some((v) => v.inventoryItem?.tracked === true);
             return hasAnyTrackedInventory;
           })
           .map((product) => ({
@@ -763,14 +902,14 @@ serve(async (req) => {
             priceRange: {
               minVariantPrice: {
                 amount: product.variants.nodes[0]?.price || "0",
-                currencyCode: "USD"
-              }
+                currencyCode: "USD",
+              },
             },
             compareAtPriceRange: {
               minVariantPrice: {
                 amount: product.variants.nodes[0]?.compareAtPrice || "0",
-                currencyCode: "USD"
-              }
+                currencyCode: "USD",
+              },
             },
             tags: product.tags,
             productType: product.productType,
@@ -783,19 +922,19 @@ serve(async (req) => {
                   availableForSale: (v.inventoryQuantity ?? 0) > 0,
                   price: {
                     amount: v.price,
-                    currencyCode: "USD"
-                  }
-                }
-              }))
-            }
+                    currencyCode: "USD",
+                  },
+                },
+              })),
+            },
           }));
-        
+
         return new Response(
           JSON.stringify({
             products: filteredProducts,
             pageInfo: productsData.products.pageInfo,
           }),
-          { headers: { ...corsHeaders, "Content-Type": "application/json" } }
+          { headers: { ...corsHeaders, "Content-Type": "application/json" } },
         );
       }
 
