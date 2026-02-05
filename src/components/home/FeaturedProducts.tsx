@@ -6,44 +6,34 @@ import { ArrowRight, ArrowUpRight, Loader2 } from "lucide-react";
 import { useRef } from "react";
 import textureCream from "@/assets/texture-cream.svg";
 import stampGold from "@/assets/stamp-gold.svg";
-import { useShopifyProducts, shopifyToLocalProduct } from "@/hooks/useShopifyProducts";
+import { useShopifyProducts, shopifyToLocalProduct, isActiveProduct } from "@/hooks/useShopifyProducts";
 
 const FeaturedProducts = () => {
-  // Fetch products - we'll curate the best mix ourselves
-  const { data: shopifyProducts, isLoading, error } = useShopifyProducts(50);
+  // Fetch best selling products, sorted by sales
+  const { data: shopifyProducts, isLoading, error } = useShopifyProducts(50, {
+    sortKey: "BEST_SELLING",
+    includeSoldOut: false,
+  });
   const scrollRef = useRef<HTMLDivElement>(null);
 
-  // Convert Shopify products to local format, or use fallback
-  const allProducts = shopifyProducts?.map(shopifyToLocalProduct) || fallbackProducts;
+  // Convert Shopify products to local format, filtering out sold out items
+  // Also ensure we only show products that are available for sale
+  const allProducts = shopifyProducts
+    ?.filter(isActiveProduct)
+    .map(shopifyToLocalProduct) || fallbackProducts;
   
-  // Create a diverse selection: prioritize different categories for variety
-  // Filter out memberships, gift cards, and non-beverage items
+  // Filter out memberships, gift cards, non-beverage items, and sold out products
   const beverageProducts = allProducts.filter(p => 
     !p.category?.toLowerCase().includes('membership') &&
     !p.name?.toLowerCase().includes('gift card') &&
     !p.name?.toLowerCase().includes('subscription')
   );
   
-  // Get one product from each unique category for variety
-  const categoryMap = new Map<string, typeof beverageProducts[0]>();
-  beverageProducts.forEach(product => {
-    if (!categoryMap.has(product.category)) {
-      categoryMap.set(product.category, product);
-    }
-  });
+  // Take top 5 best sellers (already sorted by BEST_SELLING from Shopify)
+  const bestSellers = beverageProducts.slice(0, 5);
   
-  // Convert to array and take first 5 for display
-  const diverseProducts = Array.from(categoryMap.values()).slice(0, 5);
-  
-  // If we don't have 5 different categories, fill with remaining products
-  if (diverseProducts.length < 5) {
-    const usedIds = new Set(diverseProducts.map(p => p.id));
-    const remaining = beverageProducts.filter(p => !usedIds.has(p.id));
-    diverseProducts.push(...remaining.slice(0, 5 - diverseProducts.length));
-  }
-  
-  const featuredProduct = diverseProducts[0];
-  const gridProducts = diverseProducts.slice(1, 5);
+  const featuredProduct = bestSellers[0];
+  const gridProducts = bestSellers.slice(1, 5);
 
   return (
     <section id="shop" className="py-10 lg:py-24 bg-cream relative overflow-hidden">
