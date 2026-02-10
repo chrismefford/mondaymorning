@@ -32,6 +32,7 @@ import Wholesale from "./pages/Wholesale";
 import WholesaleAuth from "./pages/WholesaleAuth";
 import WholesaleCatalog from "./pages/WholesaleCatalog";
 import Valentines from "./pages/Valentines";
+import Events from "./pages/Events";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -80,6 +81,7 @@ const AppContent = () => {
         <Route path="/wholesale-login" element={<WholesaleAuth />} />
         <Route path="/wholesale-catalog" element={<WholesaleCatalog />} />
         <Route path="/valentines" element={<Valentines />} />
+        <Route path="/events" element={<Events />} />
         {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
         <Route path="*" element={<NotFound />} />
       </Routes>
