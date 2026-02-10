@@ -65,17 +65,15 @@ const Header = () => {
     { name: "Shop", href: "/shop", number: "01", hasDropdown: true, dropdownType: "collections" },
     { name: "Story", href: "/about", number: "02" },
     { name: "Recipes", href: "/recipes", number: "03", hasDropdown: true, dropdownType: "recipes" },
-    { name: "Events", href: "/events", number: "04" },
-    { name: "Find Us", href: "/locations", number: "05" },
-    { name: "For Business", href: "/services", number: "06" },
+    { name: "Find Us", href: "/locations", number: "04" },
+    { name: "For Business", href: "/services", number: "05" },
   ];
 
   // Determine if we're on a dark hero page
   const isDarkHeroPage = typeof window !== 'undefined' && 
     (window.location.pathname === '/services' || 
      window.location.pathname === '/locations' ||
-     window.location.pathname === '/valentines' ||
-     window.location.pathname === '/events');
+     window.location.pathname === '/valentines');
 
   // Wholesale catalog needs solid header background always
   const isWholesaleCatalog = typeof window !== 'undefined' && 

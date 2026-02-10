@@ -81,7 +81,7 @@ const AppContent = () => {
         <Route path="/wholesale-login" element={<WholesaleAuth />} />
         <Route path="/wholesale-catalog" element={<WholesaleCatalog />} />
         <Route path="/valentines" element={<Valentines />} />
-        <Route path="/events" element={<Events />} />
+        {/* <Route path="/events" element={<Events />} /> */}
         {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
         <Route path="*" element={<NotFound />} />
       </Routes>
