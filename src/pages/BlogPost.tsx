@@ -8,6 +8,7 @@ import { Calendar, ArrowLeft } from "lucide-react";
 import { format } from "date-fns";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import BlogProductCard from "@/components/blog/BlogProductCard";
 
 interface BlogPost {
   id: string;
@@ -192,22 +193,34 @@ const BlogPost = () => {
                   <ArrowLeft className="w-4 h-4" />
                   Back to Blog
                 </Link>
-                <div className="prose prose-lg dark:prose-invert prose-headings:font-serif prose-headings:text-foreground prose-p:text-foreground/80 prose-a:text-secondary prose-a:no-underline hover:prose-a:underline prose-img:rounded-lg">
-                  <ReactMarkdown 
-                    remarkPlugins={[remarkGfm]}
-                    disallowedElements={['script', 'iframe', 'object', 'embed']}
-                    unwrapDisallowed={true}
-                    urlTransform={(url) => {
-                      // Block javascript: and data: URIs to prevent XSS
-                      if (url.startsWith('javascript:') || url.startsWith('data:')) {
-                        return '#blocked';
-                      }
-                      return url;
-                    }}
-                  >
-                    {post.content}
-                  </ReactMarkdown>
-                </div>
+                {/* Split content on {{PRODUCT:handle}} markers */}
+                {(() => {
+                  const parts = post.content.split(/\{\{PRODUCT:([^}]+)\}\}/);
+                  return parts.map((part, i) => {
+                    if (i % 2 === 1) {
+                      // Odd indices are product handles
+                      return <BlogProductCard key={`product-${i}`} handle={part.trim()} />;
+                    }
+                    // Even indices are markdown content
+                    return (
+                      <div key={`content-${i}`} className="prose prose-lg dark:prose-invert prose-headings:font-serif prose-headings:text-foreground prose-p:text-foreground/80 prose-a:text-secondary prose-a:no-underline hover:prose-a:underline prose-img:rounded-lg">
+                        <ReactMarkdown 
+                          remarkPlugins={[remarkGfm]}
+                          disallowedElements={['script', 'iframe', 'object', 'embed']}
+                          unwrapDisallowed={true}
+                          urlTransform={(url) => {
+                            if (url.startsWith('javascript:') || url.startsWith('data:')) {
+                              return '#blocked';
+                            }
+                            return url;
+                          }}
+                        >
+                          {part}
+                        </ReactMarkdown>
+                      </div>
+                    );
+                  });
+                })()}
               </div>
             </div>
           </div>
