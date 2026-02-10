@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, MapPin, Users, Sparkles } from "lucide-react";
+import { ArrowRight, Wine, Beer, ShoppingBag } from "lucide-react";
 import { Link } from "react-router-dom";
 import friendsDrinking from "@/assets/friends-drinking.jpg";
 import stampGreen from "@/assets/stamp-green.svg";
@@ -8,19 +8,19 @@ import textureCream from "@/assets/texture-cream.svg";
 const Story = () => {
   const pillars = [
     { 
-      icon: Sparkles,
+      icon: Wine,
       title: "Sip", 
       subtitle: "Free Tastings",
       description: "Walk in and try anything. We'll find what you love—no pressure, no judgment." 
     },
     { 
-      icon: Users,
+      icon: Beer,
       title: "Sit", 
       subtitle: "Tasting Room",
       description: "Stay a while. Our bar serves craft NA cocktails in a space built for community." 
     },
     { 
-      icon: MapPin,
+      icon: ShoppingBag,
       title: "Shop", 
       subtitle: "500+ Options",
       description: "Take your favorites home. The largest AF selection in America, curated for you." 
