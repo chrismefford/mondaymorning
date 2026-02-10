@@ -28,7 +28,7 @@ const events: Event[] = [
     location: "Monday Morning — Pacific Beach",
     description: "An intimate evening of curated NA wine pairings, chocolate tastings, and live acoustic music. The perfect date night without the hangover.",
     ticketUrl: "https://www.eventbrite.com/e/san-diego-valentines-day-experience-sips-sweethearts-tickets-1982235825715?aff=oddtdtcreator",
-    image: "https://images.unsplash.com/photo-1516594798947-e65505dbb29d?w=1200&q=80",
+    image: "https://images.unsplash.com/photo-1470338745628-171cf53de3a8?w=1200&q=80",
     isFeatured: true,
     tag: "Date Night",
   },
