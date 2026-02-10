@@ -98,6 +98,20 @@ const ProductPage = () => {
   }
 
   if (error || !product) {
+    return (
+      <div className="min-h-screen bg-cream">
+        <Header />
+        <main className="container mx-auto px-4 py-20 text-center">
+          <h1 className="font-serif text-3xl text-forest mb-4">Product not found</h1>
+          <Link to="/" className="text-gold hover:underline">
+            ← Back to shop
+          </Link>
+        </main>
+        <Footer />
+      </div>
+    );
+  }
+
   // SEO data
   const pageTitle = `${truncateForSEO(product.name, 50)} | ${SITE_NAME}`;
   const pageDescription = truncateForSEO(cleanMetaDescription(product.description), 155) || 
@@ -121,56 +135,6 @@ const ProductPage = () => {
     { name: product.name, url: canonicalUrl }
   ]);
 
-  return (
-    <div className="min-h-screen bg-cream">
-      <Helmet>
-        <title>{pageTitle}</title>
-        <meta name="description" content={pageDescription} />
-        <link rel="canonical" href={canonicalUrl} />
-        
-        {/* Open Graph */}
-        <meta property="og:title" content={pageTitle} />
-        <meta property="og:description" content={pageDescription} />
-        <meta property="og:type" content="product" />
-        <meta property="og:url" content={canonicalUrl} />
-        <meta property="og:image" content={ogImage} />
-        <meta property="og:image:width" content="1200" />
-        <meta property="og:image:height" content="630" />
-        <meta property="og:site_name" content={SITE_NAME} />
-        <meta property="product:price:amount" content={product.price.toFixed(2)} />
-        <meta property="product:price:currency" content="USD" />
-        
-        {/* Twitter */}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={pageTitle} />
-        <meta name="twitter:description" content={pageDescription} />
-        <meta name="twitter:image" content={ogImage} />
-        <meta name="twitter:site" content={TWITTER_HANDLE} />
-        <meta name="twitter:label1" content="Price" />
-        <meta name="twitter:data1" content={`$${product.price.toFixed(2)}`} />
-        <meta name="twitter:label2" content="Category" />
-        <meta name="twitter:data2" content={product.category || "Non-Alcoholic"} />
-        
-        {/* JSON-LD Structured Data */}
-        <script type="application/ld+json">
-          {JSON.stringify(productSchema)}
-        </script>
-        <script type="application/ld+json">
-          {JSON.stringify(breadcrumbSchema)}
-        </script>
-      </Helmet>
-
-      <Header />
-        <main className="container mx-auto px-4 py-20 text-center">
-          <h1 className="font-serif text-3xl text-forest mb-4">Product not found</h1>
-          <Link to="/" className="text-gold hover:underline">
-            ← Back to shop
-          </Link>
-        </main>
-        <Footer />
-      </div>
-    );
-  }
 
   return (
     <div className="min-h-screen bg-cream">
