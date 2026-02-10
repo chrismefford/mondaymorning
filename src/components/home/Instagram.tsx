@@ -1,30 +1,18 @@
 import { Instagram as InstagramIcon, MapPin } from "lucide-react";
+import igNews from "@/assets/instagram/ig-news.png";
+import igFriendsCheers from "@/assets/instagram/ig-friends-cheers.png";
+import igBeerShelf from "@/assets/instagram/ig-beer-shelf.png";
+import igStorefront from "@/assets/instagram/ig-storefront.png";
+import igAmethyst from "@/assets/instagram/ig-amethyst.png";
+import igShopInterior from "@/assets/instagram/ig-shop-interior.png";
 
 const instagramImages = [
-  {
-    src: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=400&q=80",
-    alt: "San Diego beach sunrise",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1551538827-9c037cb4f32a?w=400&q=80",
-    alt: "Cocktail at golden hour",
-  },
-  {
-    src: "/images/beach-bonfire.jpg",
-    alt: "Beach bonfire vibes",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1536935338788-846bb9981813?w=400&q=80",
-    alt: "Refreshing drinks",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1506929562872-bb421503ef21?w=400&q=80",
-    alt: "Ocean waves",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1544145945-f90425340c7e?w=400&q=80",
-    alt: "Morning wellness",
-  },
+  { src: igStorefront, alt: "Monday Morning Bottle Shop storefront" },
+  { src: igFriendsCheers, alt: "Friends cheersing with NA cocktails" },
+  { src: igBeerShelf, alt: "NA beer selection on shelves" },
+  { src: igAmethyst, alt: "Amethyst botanical spirits lineup" },
+  { src: igNews, alt: "NA industry news" },
+  { src: igShopInterior, alt: "Inside Monday Morning bottle shop" },
 ];
 
 const Instagram = () => {
