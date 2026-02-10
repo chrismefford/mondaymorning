@@ -57,7 +57,7 @@ import rooftop11 from "@/assets/lifestyle/rooftop-11.jpg";
 import beachSunset1 from "@/assets/lifestyle/beach-sunset-1.jpg";
 
 // Ready to drink - casual beach/poolside
-import rtdBeachPicnic from "@/assets/lifestyle/rtd-beach-picnic.jpg";
+import rtdBeachPicnic from "@/assets/lifestyle/kaviva-cans.webp";
 import tropicalPoolside from "@/assets/lifestyle/tropical-poolside.jpg";
 import lifestyleTropical from "@/assets/lifestyle/na-tropical-mocktails.jpg";
 import poolside4 from "@/assets/lifestyle/poolside-4.jpg";
