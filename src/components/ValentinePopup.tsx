@@ -7,8 +7,6 @@ import {
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 
-const TICKET_URL = "https://www.eventbrite.com/e/san-diego-valentines-day-experience-sips-sweethearts-tickets-1982235825715?aff=oddtdtcreator";
-
 const ValentinePopup = () => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -63,12 +61,12 @@ const ValentinePopup = () => {
           </p>
 
           <div className="flex flex-col gap-3">
-            <a href={TICKET_URL} target="_blank" rel="noopener noreferrer" onClick={handleClose}>
+            <a href="/valentines" onClick={handleClose}>
               <Button
                 size="lg"
                 className="w-full bg-rose-500 hover:bg-rose-400 text-cream font-sans text-xs font-semibold uppercase tracking-wider py-5"
               >
-                Get Tickets — $60/Couple
+                Learn More & Get Tickets
                 <ArrowRight className="w-4 h-4 ml-2" />
               </Button>
             </a>

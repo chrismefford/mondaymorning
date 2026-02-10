@@ -4,7 +4,6 @@ import Footer from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
 import { Heart, Calendar, Clock, Users, Wine, Gift, Film, Camera, UtensilsCrossed, MapPin, ArrowRight } from "lucide-react";
 import { SITE_NAME, SITE_URL } from "@/lib/seo";
-import ValentinePopup from "@/components/ValentinePopup";
 import dinnerCheers from "@/assets/lifestyle/dinner-cheers-intimate.jpg";
 import sparkling from "@/assets/lifestyle/sparkling-celebration.jpg";
 import wineToast from "@/assets/lifestyle/wine-dinner-toast.jpg";
@@ -35,7 +34,6 @@ const Valentines = () => {
 
       <Header />
 
-      <ValentinePopup />
       <main>
         {/* Hero Section */}
         <section className="relative min-h-[90vh] flex items-center overflow-hidden">
