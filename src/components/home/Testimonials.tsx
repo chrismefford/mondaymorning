@@ -4,25 +4,25 @@ import stampGreen from "@/assets/stamp-green.svg";
 
 const testimonials = [
   {
-    quote: "Finally found my post-surf drink. The Golden Hour Spritz hits different when you're watching the sun set over PB.",
-    author: "Mike T.",
-    location: "Pacific Beach, CA",
+    quote: "This place is great and the owner is super friendly and helpful. He helped me get very acquainted with non-alcoholic spirits, which I have never tried before.",
+    author: "Marcin M.",
+    location: "Google Review",
     rating: 5,
     image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&q=80"
   },
   {
-    quote: "Brought these to our beach bonfire and everyone was obsessed. No hangover for the dawn patrol the next morning!",
-    author: "Sarah K.",
-    location: "Encinitas, CA",
-    rating: 5,
-    image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&q=80"
-  },
-  {
-    quote: "As a bartender in the Gaslamp, I recommend Monday Morning to anyone wanting a sophisticated NA option. Game changer.",
-    author: "Carlos R.",
-    location: "San Diego, CA",
+    quote: "The management and staff here are wonderful people, every last one of 'em! They will help you find something in their store that you will love in their extensive and well curated collection of tasty beverages.",
+    author: "Ben B.",
+    location: "Google Review",
     rating: 5,
     image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&q=80"
+  },
+  {
+    quote: "I have shopped here multiple times already and I come out with plenty of exciting and new drinks to enjoy. From NA beers, wines, or the functional beverages, their curation is amazing. The lounge is calming and welcoming.",
+    author: "Christina B.",
+    location: "Google Review",
+    rating: 5,
+    image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&q=80"
   },
 ];
 
