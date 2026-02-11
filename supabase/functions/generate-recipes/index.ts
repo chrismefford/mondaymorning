@@ -32,6 +32,25 @@ interface GeneratedRecipe {
 
 const OCCASIONS = ["breakfast", "dinner", "relaxing", "beach", "celebration"];
 
+// Simple in-memory rate limiter for on-demand requests
+const onDemandRateLimit = new Map<string, { count: number; resetAt: number }>();
+const RATE_LIMIT_MAX = 5;
+const RATE_LIMIT_WINDOW_MS = 60 * 60 * 1000; // 1 hour
+
+function checkOnDemandRateLimit(ip: string): boolean {
+  const now = Date.now();
+  const entry = onDemandRateLimit.get(ip);
+  if (!entry || now > entry.resetAt) {
+    onDemandRateLimit.set(ip, { count: 1, resetAt: now + RATE_LIMIT_WINDOW_MS });
+    return true;
+  }
+  if (entry.count >= RATE_LIMIT_MAX) {
+    return false;
+  }
+  entry.count++;
+  return true;
+}
+
 const SYSTEM_PROMPT = `You are a professional mixologist creating non-alcoholic drink recipes.
 
 CRITICAL RULES - YOU MUST FOLLOW THESE EXACTLY:
@@ -264,9 +283,37 @@ serve(async (req) => {
     } 
     // Check for on-demand mode (single product recipe generation from product pages)
     else if (body.onDemand === true && body.products?.length === 1) {
+      // Rate limit on-demand requests by IP
+      const clientIp = req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || 
+                        req.headers.get("cf-connecting-ip") || "unknown";
+      if (!checkOnDemandRateLimit(clientIp)) {
+        console.log(`Rate limit exceeded for on-demand generation from IP: ${clientIp}`);
+        return new Response(JSON.stringify({ error: "Rate limit exceeded. Try again later." }), {
+          status: 429,
+          headers: { ...corsHeaders, "Content-Type": "application/json" },
+        });
+      }
+
+      // Check if recipe already exists before authorizing generation
+      const product = body.products[0];
+      const occasion = body.occasion || "celebration";
+      const { data: existing } = await supabase
+        .from("generated_recipes")
+        .select("id")
+        .eq("featured_product_handle", product.handle)
+        .eq("occasion", occasion)
+        .maybeSingle();
+
+      if (existing) {
+        console.log(`Recipe already exists for ${product.handle} (${occasion}), skipping generation`);
+        return new Response(JSON.stringify({ message: "Recipe already exists", results: { success: [], failed: [], skipped: [`${product.name} (${occasion})`] } }), {
+          headers: { ...corsHeaders, "Content-Type": "application/json" },
+        });
+      }
+
       isOnDemand = true;
       isAuthorized = true;
-      console.log("Running in on-demand mode for single product");
+      console.log("Running in on-demand mode for single product (rate-limited)");
     }
     else if (authHeader) {
       // Verify admin access for manual batch requests
