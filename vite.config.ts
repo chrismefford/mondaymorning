@@ -4,6 +4,8 @@ import path from "path";
 import { componentTagger } from "lovable-tagger";
 import Sitemap from "vite-plugin-sitemap";
 
+const SITE_URL = "https://mondaymorning-af.com";
+
 // Static routes for sitemap generation
 const staticRoutes = [
   "/",
@@ -34,7 +36,7 @@ export default defineConfig(({ mode }) => ({
     mode === "development" && componentTagger(),
     // Generate sitemap.xml for all routes
     Sitemap({
-      hostname: "https://mondaymorning-af.com",
+      hostname: SITE_URL,
       dynamicRoutes: staticRoutes,
       exclude: ["/admin", "/blog-import", "/wholesale-login", "/wholesale-catalog", "/auth", "/404"],
       changefreq: "weekly",
