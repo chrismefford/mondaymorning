@@ -1,2 +1,4 @@
-// Re-export from react-helmet-async directly (proper ESM named exports)
-export { Helmet, HelmetProvider } from 'react-helmet-async';
+// CJS-compatible import for SSG/ESM builds where named exports aren't available
+import pkg from 'react-helmet-async';
+const { Helmet, HelmetProvider } = pkg as any;
+export { Helmet, HelmetProvider };
