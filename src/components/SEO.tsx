@@ -1,4 +1,4 @@
-import { Helmet } from "react-helmet-async";
+import { Helmet } from "@/lib/helmet-compat";
 import { SITE_NAME, SITE_URL, truncateForSEO, cleanMetaDescription } from "@/lib/seo";
 
 interface SEOProps {
