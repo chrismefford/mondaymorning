@@ -13,7 +13,7 @@
     { "source": "/account", "destination": "/auth", "permanent": true },
     { "source": "/account/:path*", "destination": "/auth", "permanent": true },
     { "source": "/recipes/category/Margarita", "destination": "/recipes?occasion=cocktails", "permanent": true },
-    { "source": "/recipes/category/Old+Fashioned", "destination": "/recipes?occasion=cocktails", "permanent": true },
+    { "source": "/recipes/category/Old%2BFashioned", "destination": "/recipes?occasion=cocktails", "permanent": true },
     { "source": "/recipes/category/Negroni", "destination": "/recipes?occasion=cocktails", "permanent": true },
     { "source": "/recipes/category/:path*", "destination": "/recipes", "permanent": true },
     { "source": "/recipes/blog-post-title-:path*", "destination": "/recipes", "permanent": true },
