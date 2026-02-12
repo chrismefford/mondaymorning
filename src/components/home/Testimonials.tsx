@@ -8,21 +8,21 @@ const testimonials = [
     author: "Marcin M.",
     location: "Google Review",
     rating: 5,
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&q=80"
+    initials: "MM",
   },
   {
     quote: "The management and staff here are wonderful people, every last one of 'em! They will help you find something in their store that you will love in their extensive and well curated collection of tasty beverages.",
     author: "Ben B.",
     location: "Google Review",
     rating: 5,
-    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&q=80"
+    initials: "BB",
   },
   {
     quote: "I have shopped here multiple times already and I come out with plenty of exciting and new drinks to enjoy. From NA beers, wines, or the functional beverages, their curation is amazing. The lounge is calming and welcoming.",
     author: "Christina B.",
     location: "Google Review",
     rating: 5,
-    image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&q=80"
+    initials: "CB",
   },
 ];
 
@@ -95,12 +95,10 @@ const Testimonials = () => {
             </blockquote>
             
             <div className="flex items-center gap-3 pt-4 border-t border-forest/20">
-              <div className="w-10 h-10 border-2 border-forest overflow-hidden">
-                <img 
-                  src={testimonials[activeIndex].image}
-                  alt={testimonials[activeIndex].author}
-                  className="w-full h-full object-cover"
-                />
+              <div className="w-10 h-10 border-2 border-forest overflow-hidden bg-gold/20 flex items-center justify-center">
+                <span className="font-serif text-sm font-bold text-forest">
+                  {testimonials[activeIndex].initials}
+                </span>
               </div>
               <div>
                 <div className="font-sans text-sm font-semibold text-forest">
@@ -156,12 +154,10 @@ const Testimonials = () => {
               "{testimonials[activeIndex].quote}"
             </blockquote>
             <div className="flex items-center gap-4">
-              <div className="w-14 h-14 border-2 border-forest overflow-hidden">
-                <img 
-                  src={testimonials[activeIndex].image}
-                  alt={testimonials[activeIndex].author}
-                  className="w-full h-full object-cover"
-                />
+              <div className="w-14 h-14 border-2 border-forest overflow-hidden bg-gold/20 flex items-center justify-center">
+                <span className="font-serif text-lg font-bold text-forest">
+                  {testimonials[activeIndex].initials}
+                </span>
               </div>
               <div>
                 <div className="font-sans text-sm font-semibold uppercase tracking-wider text-forest">
