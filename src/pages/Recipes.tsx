@@ -1,6 +1,6 @@
 import { useState, useMemo } from "react";
 import { Link } from "react-router-dom";
-import { Helmet } from "react-helmet-async";
+import { Helmet } from "@/lib/helmet-compat";
 import { recipes, occasionLabels, Occasion, Recipe } from "@/data/recipes";
 import { getRecipeImage } from "@/data/recipeImages";
 import { Button } from "@/components/ui/button";

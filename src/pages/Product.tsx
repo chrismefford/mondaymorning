@@ -1,6 +1,6 @@
 import { useState, useMemo } from "react";
 import { useParams, Link } from "react-router-dom";
-import { Helmet } from "react-helmet-async";
+import { Helmet } from "@/lib/helmet-compat";
 import { useShopifyProduct } from "@/hooks/useShopifyProduct";
 import { useShopifyProducts, shopifyToLocalProduct } from "@/hooks/useShopifyProducts";
 import { useWholesaleProductPrice } from "@/hooks/useWholesaleProductPrice";
