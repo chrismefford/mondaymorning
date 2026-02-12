@@ -34,8 +34,8 @@ export default defineConfig(({ mode }) => ({
   plugins: [
     react(), 
     mode === "development" && componentTagger(),
-    // Generate sitemap.xml for all routes
-    Sitemap({
+    // Generate sitemap.xml only during production builds
+    mode === "production" && Sitemap({
       hostname: SITE_URL,
       dynamicRoutes: staticRoutes,
       exclude: ["/admin", "/blog-import", "/wholesale-login", "/wholesale-catalog", "/auth", "/404"],
