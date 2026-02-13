@@ -73,7 +73,8 @@ const Header = () => {
   const isDarkHeroPage = typeof window !== 'undefined' && 
     (window.location.pathname === '/services' || 
      window.location.pathname === '/locations' ||
-     window.location.pathname === '/valentines');
+     window.location.pathname === '/valentines' ||
+     window.location.pathname.startsWith('/blog/'));
 
   // Wholesale catalog needs solid header background always
   const isWholesaleCatalog = typeof window !== 'undefined' && 
