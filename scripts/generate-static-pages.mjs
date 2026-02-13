@@ -10,7 +10,7 @@
  * Runs automatically after `vite build` via the build command.
  */
 
-import { readFileSync, writeFileSync, mkdirSync, existsSync } from "fs";
+import { readFileSync, writeFileSync, mkdirSync, existsSync, cpSync } from "fs";
 import { join } from "path";
 import { fileURLToPath } from "url";
 import { dirname } from "path";
@@ -672,6 +672,66 @@ async function main() {
   console.log(`   📝 ${blogRoutes.length} blog pages`);
   console.log(`   📂 ${staticRoutes.filter((r) => r.path.startsWith("/collections/")).length} collection pages`);
   console.log(`   📄 ${staticRoutes.filter((r) => !r.path.startsWith("/collections/")).length} static pages`);
+
+  // ── Build Output API ─────────────────────────────────────────────
+  // Create .vercel/output/ directory structure so Vercel uses our
+  // routing config instead of auto-generating SPA fallback routes.
+  // This is the critical fix: without this, Vercel's Vite adapter
+  // adds a catch-all rewrite to /index.html that overrides our
+  // per-route static HTML files.
+
+  const VERCEL_OUTPUT = join(process.cwd(), ".vercel", "output");
+  const VERCEL_STATIC = join(VERCEL_OUTPUT, "static");
+
+  console.log(`\n🏗️  Creating Vercel Build Output API structure...`);
+
+  // Copy dist/ → .vercel/output/static/
+  mkdirSync(VERCEL_STATIC, { recursive: true });
+  cpSync(DIST, VERCEL_STATIC, { recursive: true });
+  console.log(`  📁 Copied dist/ → .vercel/output/static/`);
+
+  // Write config.json with NO SPA fallback.
+  // The "handle": "filesystem" route tells Vercel to serve matching
+  // static files from .vercel/output/static/.
+  // 
+  // IMPORTANT: cleanUrls, trailingSlash, redirects, and headers are
+  // configured in vercel.json (which Vercel merges with this config).
+  // The config.json only needs routes for the filesystem handler and
+  // 404 fallback. This is the critical difference from Vercel's
+  // auto-generated config which includes a catch-all SPA rewrite.
+  const vercelConfig = {
+    version: 3,
+    routes: [
+      // Handle static assets with long-term caching
+      {
+        src: "/assets/(.*)",
+        headers: { "Cache-Control": "public, max-age=31536000, immutable" },
+        continue: true,
+      },
+      // Serve static files from the filesystem
+      // This checks .vercel/output/static/ for matching files
+      // With cleanUrls from vercel.json, /blog/slug resolves to
+      // /blog/slug/index.html automatically
+      { handle: "filesystem" },
+      // For any route that doesn't match a static file,
+      // serve 404.html (which contains the SPA bootstrap code).
+      // This preserves client-side navigation for unknown routes
+      // while ensuring crawlers get proper 404 status codes.
+      {
+        src: "/(.*)",
+        status: 404,
+        dest: "/404.html",
+      },
+    ],
+  };
+
+  writeFileSync(
+    join(VERCEL_OUTPUT, "config.json"),
+    JSON.stringify(vercelConfig, null, 2),
+    "utf-8"
+  );
+  console.log(`  ⚙️  Created .vercel/output/config.json (no SPA fallback)`);
+  console.log(`\n✅ Build Output API structure ready for deployment.`);
 }
 
 main();
