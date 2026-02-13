@@ -34,7 +34,7 @@ const Hero = () => {
             <img 
               src={logoPrimaryWhite} 
               alt="Monday Morning" 
-              className="h-16 w-auto mb-4"
+              className="h-24 w-auto mb-4"
             />
           </div>
 
