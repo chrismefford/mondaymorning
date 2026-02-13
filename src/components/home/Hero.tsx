@@ -42,19 +42,20 @@ const Hero = () => {
             </span>
           </div>
 
-          {/* Large stacked headline - brand messaging */}
-          <h1 className="mb-4 animate-fade-up">
-            <span className="block font-serif text-[2.5rem] leading-[1] tracking-tight text-cream">
-              500+ Flavors.
-            </span>
-            <span className="block font-serif text-[2.5rem] leading-[1] tracking-tight text-cream">
-              Zero <span className="italic text-gold">Proof.</span>
-            </span>
-          </h1>
+          {/* H1 - SEO primary heading */}
+          {/* Visual heading - mirrors the single H1 in desktop for mobile styling */}
+          <p className="mb-2 font-serif text-[2.2rem] leading-[1.05] tracking-tight text-cream animate-fade-up" aria-hidden="true">
+            America's #1 Non-Alcoholic <span className="italic text-gold">Bottle Shop</span>
+          </p>
 
-          {/* Subtext - the challenge */}
+          {/* H2 - SEO secondary heading */}
+          <p className="mb-4 font-serif text-xl leading-tight tracking-tight text-cream/90 animate-fade-up delay-100" aria-hidden="true">
+            500+ Zero Proof Wines, Beers & Spirits
+          </p>
+
+          {/* Supporting paragraph */}
           <p className="font-sans text-sm text-cream/80 max-w-[300px] mb-6 animate-fade-up delay-200">
-            Think NA drinks can't taste good? Come in. We love proving skeptics wrong.
+            Think non-alcoholic drinks can't taste good? We love skeptics. Come in, try something, and we'll make you a believer.
           </p>
 
           {/* Stats row */}
@@ -136,19 +137,19 @@ const Hero = () => {
             </span>
           </div>
 
-          {/* Main headline */}
-          <h1 className="mb-6">
-            <span className="block font-serif text-5xl xl:text-6xl leading-[0.95] tracking-tight animate-fade-up">
-              500+ Flavors.
-            </span>
-            <span className="block font-serif text-5xl xl:text-6xl leading-[0.95] tracking-tight animate-fade-up delay-100">
-              Zero <span className="italic text-gold">Proof.</span>
-            </span>
+          {/* H1 - SEO primary heading (hidden on mobile where mobile H1 is shown) */}
+          <h1 className="mb-4 font-serif text-5xl xl:text-6xl leading-[0.95] tracking-tight animate-fade-up">
+            America's #1 Non-Alcoholic <span className="italic text-gold">Bottle Shop</span>
           </h1>
 
-          {/* Subtext - the challenge */}
+          {/* H2 - SEO secondary heading */}
+          <h2 className="mb-6 font-serif text-2xl xl:text-3xl leading-tight tracking-tight text-muted-foreground animate-fade-up delay-100">
+            500+ Zero Proof Wines, Beers & Spirits
+          </h2>
+
+          {/* Supporting paragraph */}
           <p className="font-sans text-lg text-muted-foreground max-w-md mb-8 animate-fade-up delay-200">
-            Think NA can't taste good? We love skeptics. Come in, try something, and we'll make you a believer. More flavors than any shop in America.
+            Think non-alcoholic drinks can't taste good? We love skeptics. Come in, try something, and we'll make you a believer. Shop over 500 alcohol-free wines, craft NA beers, zero-proof spirits, and functional drinks online or in San Diego.
           </p>
 
           {/* Stats row */}
