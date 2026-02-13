@@ -71,7 +71,7 @@ const BlogProductCard = ({ handle }: BlogProductCardProps) => {
               size="default"
               onClick={handleAddToCart}
               disabled={!available}
-              className="bg-brand-green hover:bg-brand-green/90 text-white font-sans"
+              className="bg-ocean hover:bg-ocean/90 text-white font-sans"
             >
               <ShoppingCart className="w-4 h-4 mr-2" />
               {available ? "Add to Cart" : "Sold Out"}
