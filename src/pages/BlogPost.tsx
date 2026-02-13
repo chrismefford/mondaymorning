@@ -183,7 +183,7 @@ const BlogPost = () => {
       <main>
         <article>
           {/* Hero Image */}
-          <div className="relative h-[55vh] min-h-[420px] overflow-hidden">
+          <div className="relative h-[65vh] min-h-[520px] overflow-hidden">
             <img
               src={post.featured_image || "/images/blog/na-red-wines-guide.jpg"}
               alt={post.title}
