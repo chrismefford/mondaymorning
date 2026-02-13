@@ -51,22 +51,66 @@ async function fetchAllProducts() {
     return [];
   }
 
+  const allProducts = [];
+  let cursor = null;
+  let hasNextPage = true;
+  let page = 1;
+
   try {
-    const url = `${supabaseUrl}/functions/v1/shopify-storefront?action=products&first=250&sortKey=BEST_SELLING`;
-    const res = await fetch(url, {
-      headers: { Authorization: `Bearer ${supabaseKey}` },
-    });
-    if (!res.ok) throw new Error(`Shopify API ${res.status}`);
-    const data = await res.json();
+    while (hasNextPage) {
+      let url = `${supabaseUrl}/functions/v1/shopify-storefront?action=products&first=250&sortKey=BEST_SELLING`;
+      if (cursor) {
+        url += `&after=${encodeURIComponent(cursor)}`;
+      }
+
+      const res = await fetch(url, {
+        headers: { Authorization: `Bearer ${supabaseKey}` },
+      });
+      if (!res.ok) throw new Error(`Shopify API ${res.status}`);
+      const data = await res.json();
+
+      const products = data.products || [];
+      allProducts.push(...products);
+
+      // Check for pagination info
+      hasNextPage = data.pageInfo?.hasNextPage || false;
+      if (hasNextPage && products.length > 0) {
+        // Use the cursor from pageInfo or derive from last product
+        cursor = data.pageInfo?.endCursor || data.endCursor || null;
+        if (!cursor) {
+          // Fallback: if no cursor in response, stop paginating
+          hasNextPage = false;
+        }
+      } else {
+        hasNextPage = false;
+      }
+
+      console.log(`  📦 Page ${page}: fetched ${products.length} products (total so far: ${allProducts.length})`);
+      page++;
+
+      // Safety: prevent infinite loops
+      if (page > 20) {
+        console.warn("⚠️  Reached max pagination limit (20 pages / ~5000 products)");
+        break;
+      }
+    }
 
     // Filter to active products (at least one variant available)
-    const products = (data.products || []).filter((p) =>
+    const activeProducts = allProducts.filter((p) =>
       p.variants?.edges?.some((e) => e.node.availableForSale)
     );
-    console.log(`  📦 Fetched ${products.length} active products from Shopify`);
-    return products;
+    console.log(`  📦 Total: ${allProducts.length} products fetched, ${activeProducts.length} active (in stock)`);
+    return activeProducts;
   } catch (err) {
     console.warn(`⚠️  Failed to fetch products: ${err.message}`);
+    // Return whatever we've collected so far
+    if (allProducts.length > 0) {
+      const activeProducts = allProducts.filter((p) =>
+        p.variants?.edges?.some((e) => e.node.availableForSale)
+      );
+      console.log(`  ⚠️  Returning ${activeProducts.length} products collected before error`);
+      return activeProducts;
+    }
     return [];
   }
 }
