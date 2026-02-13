@@ -308,6 +308,29 @@ const staticRoutes = [
     schema: [organizationSchema],
   },
 
+  // Cart & checkout (SPA-only, noIndex)
+  {
+    path: "/cart",
+    title: "Shopping Cart | Monday Morning Bottle Shop",
+    description: "Review your cart and checkout. Shop 500+ non-alcoholic drinks at Monday Morning Bottle Shop.",
+    noIndex: true,
+    schema: [],
+  },
+  {
+    path: "/checkout",
+    title: "Checkout | Monday Morning Bottle Shop",
+    description: "Complete your order for premium non-alcoholic beverages from Monday Morning Bottle Shop.",
+    noIndex: true,
+    schema: [],
+  },
+  {
+    path: "/order-confirmation",
+    title: "Order Confirmed | Monday Morning Bottle Shop",
+    description: "Thank you for your order from Monday Morning Bottle Shop.",
+    noIndex: true,
+    schema: [],
+  },
+
   // NoIndex pages
   {
     path: "/auth",
@@ -625,6 +648,19 @@ async function main() {
       : "✅";
     console.log(`  ${icon} ${route.path} → ${route.title.substring(0, 60)}...`);
   }
+
+  // Generate 404.html as SPA fallback for unknown routes
+  // Vercel serves 404.html automatically for routes without a static file
+  const notFoundRoute = {
+    path: "/404",
+    title: "Page Not Found | Monday Morning Bottle Shop",
+    description: "The page you are looking for does not exist. Browse our collection of 500+ non-alcoholic drinks at Monday Morning Bottle Shop.",
+    noIndex: true,
+    schema: [],
+  };
+  const notFoundHTML = generateHTML(notFoundRoute, templateHTML);
+  writeFileSync(join(DIST, "404.html"), notFoundHTML, "utf-8");
+  console.log(`\n  Generated 404.html (SPA fallback for unknown routes)`);
 
   // Generate comprehensive sitemap
   const sitemap = generateSitemap(allRoutes);
