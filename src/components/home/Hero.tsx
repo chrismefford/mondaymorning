@@ -38,7 +38,7 @@ const Hero = () => {
             />
             <span className="inline-flex items-center gap-2 font-sans text-[10px] font-bold uppercase tracking-[0.4em] text-cream/80">
               <span className="w-8 h-px bg-gold" />
-              America's #1 NA Bottle Shop
+              500+ Zero Proof Wines, Beers & Spirits
             </span>
           </div>
 
@@ -133,7 +133,7 @@ const Hero = () => {
               className="h-24 xl:h-28 w-auto mb-6"
             />
             <span className="inline-block font-sans text-xs font-semibold uppercase tracking-[0.3em] text-forest border-2 border-forest px-4 py-2">
-              America's #1 NA Bottle Shop
+              500+ Zero Proof Wines, Beers & Spirits
             </span>
           </div>
 
