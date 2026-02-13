@@ -36,10 +36,6 @@ const Hero = () => {
               alt="Monday Morning" 
               className="h-16 w-auto mb-4"
             />
-            <span className="inline-flex items-center gap-2 font-sans text-[10px] font-bold uppercase tracking-[0.4em] text-cream/80">
-              <span className="w-8 h-px bg-gold" />
-              500+ Zero Proof Wines, Beers & Spirits
-            </span>
           </div>
 
           {/* H1 - SEO primary heading */}
