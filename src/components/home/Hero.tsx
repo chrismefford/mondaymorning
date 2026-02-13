@@ -45,7 +45,7 @@ const Hero = () => {
           {/* H1 - SEO primary heading */}
           {/* Visual heading - mirrors the single H1 in desktop for mobile styling */}
           <p className="mb-2 font-serif text-[2.2rem] leading-[1.05] tracking-tight text-cream animate-fade-up" aria-hidden="true">
-            America's #1 Non-Alcoholic <span className="italic text-gold">Bottle Shop</span>
+            America's #1<br />Non-Alcoholic<br /><span className="italic text-gold">Bottle Shop</span>
           </p>
 
           {/* H2 - SEO secondary heading */}
