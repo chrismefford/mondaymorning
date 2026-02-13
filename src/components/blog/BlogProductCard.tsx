@@ -61,7 +61,7 @@ const BlogProductCard = ({ handle }: BlogProductCardProps) => {
           </div>
         )}
         <div className="flex-1 min-w-0 text-center sm:text-left">
-          <p className="text-xs font-sans uppercase tracking-widest text-ocean/50 mb-1">Shop This Wine</p>
+          <p className="text-xs font-sans uppercase tracking-widest text-ocean/50 mb-1">Shop This Product</p>
           <h4 className="font-serif text-xl sm:text-2xl text-ocean group-hover:text-brand-green transition-colors leading-tight mb-2">
             {product.name}
           </h4>

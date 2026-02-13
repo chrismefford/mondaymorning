@@ -256,6 +256,22 @@ const BlogPost = () => {
                             }
                             return url;
                           }}
+                          components={{
+                            a: ({ href, children, ...props }) => {
+                              if (href?.startsWith('/product/')) {
+                                return (
+                                  <Link
+                                    to={href}
+                                    className="text-brand-green hover:text-brand-green/80 underline underline-offset-2 font-semibold"
+                                    {...props}
+                                  >
+                                    {children}
+                                  </Link>
+                                );
+                              }
+                              return <a href={href} {...props}>{children}</a>;
+                            },
+                          }}
                         >
                           {part}
                         </ReactMarkdown>
