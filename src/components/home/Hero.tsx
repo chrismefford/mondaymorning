@@ -136,7 +136,7 @@ const Hero = () => {
 
           {/* H1 - SEO primary heading (hidden on mobile where mobile H1 is shown) */}
           <h1 className="mb-4 font-serif text-5xl xl:text-6xl leading-[0.95] tracking-tight animate-fade-up">
-            America's #1 Non-Alcoholic <span className="italic text-gold">Bottle Shop</span>
+            America's #1<br />Non-Alcoholic <span className="italic text-gold">Bottle Shop</span>
           </h1>
 
           {/* H2 - SEO secondary heading */}
