@@ -200,9 +200,14 @@ const BlogPost = () => {
                   <ArrowLeft className="w-4 h-4" />
                   Back to Blog
                 </Link>
-                <h1 className="font-serif text-3xl md:text-5xl lg:text-6xl text-white leading-tight mb-4">
+                <h1 className="font-serif text-3xl md:text-5xl lg:text-6xl text-white leading-tight mb-3">
                   {post.title}
                 </h1>
+                {post.excerpt && (
+                  <p className="text-white/80 text-lg md:text-xl font-sans leading-relaxed mb-4 max-w-2xl">
+                    {post.excerpt}
+                  </p>
+                )}
                 <div className="flex items-center gap-3 text-white/70 text-sm">
                   <Calendar className="w-4 h-4" />
                   <time>
