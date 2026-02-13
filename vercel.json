@@ -1,5 +1,7 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
+  "trailingSlash": false,
+  "cleanUrls": true,
   "redirects": [
     { "source": "/home", "destination": "/", "permanent": true },
     { "source": "/contact", "destination": "/locations", "permanent": true },
@@ -19,9 +21,6 @@
     { "source": "/recipes/blog-post-title-:path*", "destination": "/recipes", "permanent": true },
     { "source": "/recipes/fjxcgh8px72dd2z-:path*", "destination": "/recipes", "permanent": true },
     { "source": "/recipes/sdsx42rxyxamk9e", "destination": "/recipes", "permanent": true }
-  ],
-  "rewrites": [
-    { "source": "/((?!api/).*)", "destination": "/index.html" }
   ],
   "headers": [
     {
