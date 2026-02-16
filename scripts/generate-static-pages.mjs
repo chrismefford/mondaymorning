@@ -1,10 +1,14 @@
 /**
  * Post-build script: Generates static HTML files for every route
  * with unique <title>, <meta description>, <link canonical>, OG tags,
- * and JSON-LD structured data baked into the raw HTML.
+ * JSON-LD structured data, AND pre-rendered body content baked into
+ * the raw HTML so crawlers see real page content without JavaScript.
  *
  * Dynamically fetches all products from Shopify and blog posts from
- * Supabase so every page gets proper SEO tags for crawlers.
+ * Supabase so every page gets proper SEO tags AND visible content.
+ *
+ * The pre-rendered content inside <div id="root"> is replaced by React
+ * when the JavaScript bundle loads, providing full interactivity.
  *
  * Usage: node scripts/generate-static-pages.mjs
  * Runs automatically after `vite build` via the build command.
@@ -21,11 +25,8 @@ const SITE_URL = "https://www.mondaymorning-af.com";
 const DEFAULT_OG_IMAGE = `${SITE_URL}/og-image.png`;
 
 // ── Environment ─────────────────────────────────────────────────────
-// Vite exposes VITE_ vars during build; for the post-build Node script
-// we read them from .env or process.env (Vercel sets them automatically).
 
 function loadEnv() {
-  // Try reading .env file
   const envPath = join(process.cwd(), ".env");
   const env = {};
   if (existsSync(envPath)) {
@@ -72,15 +73,10 @@ async function fetchAllProducts() {
       const products = data.products || [];
       allProducts.push(...products);
 
-      // Check for pagination info
       hasNextPage = data.pageInfo?.hasNextPage || false;
       if (hasNextPage && products.length > 0) {
-        // Use the cursor from pageInfo or derive from last product
         cursor = data.pageInfo?.endCursor || data.endCursor || null;
-        if (!cursor) {
-          // Fallback: if no cursor in response, stop paginating
-          hasNextPage = false;
-        }
+        if (!cursor) hasNextPage = false;
       } else {
         hasNextPage = false;
       }
@@ -88,14 +84,12 @@ async function fetchAllProducts() {
       console.log(`  📦 Page ${page}: fetched ${products.length} products (total so far: ${allProducts.length})`);
       page++;
 
-      // Safety: prevent infinite loops
       if (page > 20) {
         console.warn("⚠️  Reached max pagination limit (20 pages / ~5000 products)");
         break;
       }
     }
 
-    // Filter to active products (at least one variant available)
     const activeProducts = allProducts.filter((p) =>
       p.variants?.edges?.some((e) => e.node.availableForSale)
     );
@@ -103,7 +97,6 @@ async function fetchAllProducts() {
     return activeProducts;
   } catch (err) {
     console.warn(`⚠️  Failed to fetch products: ${err.message}`);
-    // Return whatever we've collected so far
     if (allProducts.length > 0) {
       const activeProducts = allProducts.filter((p) =>
         p.variants?.edges?.some((e) => e.node.availableForSale)
@@ -275,10 +268,487 @@ function blogPostSchema(post) {
   };
 }
 
+// ── Pre-rendered Body Content Generators ────────────────────────────
+// These functions generate semantic HTML that crawlers can read.
+// React will replace this content when JS loads (hydration).
+
+function generateNavHTML() {
+  return `<nav aria-label="Main navigation">
+    <a href="/">Home</a>
+    <a href="/shop">Shop by Vibe</a>
+    <a href="/collections/all">All Products</a>
+    <a href="/collections/best-sellers">Best Sellers</a>
+    <a href="/collections/na-beer">NA Beer</a>
+    <a href="/collections/wine-alternatives">Wine Alternatives</a>
+    <a href="/collections/spirit-alternatives">Spirit Alternatives</a>
+    <a href="/collections/functional">Functional Drinks</a>
+    <a href="/about">About</a>
+    <a href="/recipes">Recipes</a>
+    <a href="/locations">Locations</a>
+    <a href="/blog">Blog</a>
+    <a href="/services">Wholesale</a>
+  </nav>`;
+}
+
+function generateFooterHTML() {
+  return `<footer>
+    <p>&copy; ${new Date().getFullYear()} ${SITE_NAME}. All rights reserved.</p>
+    <nav aria-label="Footer navigation">
+      <a href="/privacy">Privacy Policy</a>
+      <a href="/terms">Terms of Service</a>
+      <a href="/shipping">Shipping Policy</a>
+      <a href="/returns">Returns &amp; Refunds</a>
+      <a href="/locations">Store Locations</a>
+      <a href="/about">About Us</a>
+    </nav>
+    <p>Monday Morning Bottle Shop — 1854 Garnet Ave, San Diego, CA 92109 | 4967 Newport Ave, San Diego, CA 92107</p>
+  </footer>`;
+}
+
+function generateHomepageBody() {
+  return `<header>${generateNavHTML()}</header>
+  <main>
+    <section>
+      <h1>America's #1 Non-Alcoholic Bottle Shop &amp; Tasting Room</h1>
+      <h2>500+ Zero Proof Wines, Beers &amp; Spirits</h2>
+      <p>Think non-alcoholic drinks can't taste good? We love skeptics. Come in, try something, and we'll make you a believer. Shop over 500 alcohol-free wines, craft NA beers, zero-proof spirits, and functional drinks online or at our San Diego locations in Pacific Beach and Ocean Beach.</p>
+      <p>Monday Morning is San Diego's premier non-alcoholic bottle shop with 500+ flavors. Try before you buy at our Pacific Beach and Ocean Beach tasting rooms.</p>
+      <ul>
+        <li>500+ Flavors &amp; Styles</li>
+        <li>2 San Diego Locations — Pacific Beach &amp; Ocean Beach</li>
+        <li>#1 NA Bottle Shop in America</li>
+      </ul>
+      <a href="/locations">Come Try Something</a>
+      <a href="/collections/all">Start Shopping</a>
+    </section>
+    <section>
+      <h2>Featured Products</h2>
+      <p>Discover our curated selection of the best non-alcoholic beverages. From craft NA beers to dealcoholized wines and zero-proof spirits, find your new favorite drink.</p>
+    </section>
+    <section>
+      <h2>Shop by Vibe</h2>
+      <p>Whether it's a beach day, date night, golden hour, or cozy evening — we have the perfect alcohol-free drink for every moment.</p>
+      <a href="/collections/best-sellers">Best Sellers</a>
+      <a href="/collections/na-beer">NA Beer</a>
+      <a href="/collections/wine-alternatives">Wine Alternatives</a>
+      <a href="/collections/spirit-alternatives">Spirit Alternatives</a>
+      <a href="/collections/functional">Functional Drinks</a>
+      <a href="/collections/beach-bonfire">Beach Bonfire Vibes</a>
+      <a href="/collections/weddings">Weddings &amp; Events</a>
+      <a href="/collections/aperitifs">Aperitifs &amp; Digestifs</a>
+    </section>
+    <section>
+      <h2>Our Story</h2>
+      <p>Monday Morning was born from a simple realization: the best mornings start without a hangover. Founded by Zane in San Diego, we curate the world's finest non-alcoholic beverages so you can drink differently — without sacrificing taste or social experiences.</p>
+      <a href="/about">Read Our Story</a>
+    </section>
+    <section>
+      <h2>Why We Don't Drink</h2>
+      <p>Join the growing movement of mindful drinkers. 61% of Gen Z and 49% of Millennials are choosing to drink less. At Monday Morning, we make that choice delicious.</p>
+    </section>
+    <section>
+      <h2>NA Mocktail Recipes</h2>
+      <p>Discover delicious non-alcoholic cocktail recipes. Easy mocktails for breakfast, dinner, beach days, and celebrations — made with premium NA spirits, wine, and beer.</p>
+      <a href="/recipes">View All Recipes</a>
+    </section>
+    <section>
+      <h2>What Our Customers Say</h2>
+      <p>"Zane's knowledge of alcohol-free beverages is unmatched. He helped me find drinks I actually enjoy." — Jeff L., San Diego</p>
+      <p>"This place changed my relationship with drinking. I never thought I'd look forward to a night out sober." — Michael S., Pacific Beach</p>
+      <p>"Finally, a place that gets it. No judgment, incredible selection, and staff who actually care." — Sarah M., Ocean Beach</p>
+    </section>
+    <section>
+      <h2>Stay Connected</h2>
+      <p>Join our newsletter for exclusive deals, new product drops, and NA drink recipes delivered to your inbox.</p>
+    </section>
+  </main>
+  ${generateFooterHTML()}`;
+}
+
+function generateShopBody() {
+  return `<header>${generateNavHTML()}</header>
+  <main>
+    <section>
+      <h1>Shop by Vibe — Non-Alcoholic Drinks for Every Moment</h1>
+      <p>Explore 500+ non-alcoholic drinks organized by vibe. Beach Day, Date Night, Golden Hour, and more. Find the perfect NA beer, wine, or spirit for any moment at Monday Morning Bottle Shop.</p>
+    </section>
+    <section>
+      <h2>Beach Day</h2>
+      <p>Sun, sand, and good sips. Shop refreshing non-alcoholic drinks perfect for a day by the water.</p>
+      <a href="/collections/beach-day">Shop Beach Day</a>
+    </section>
+    <section>
+      <h2>Date Night</h2>
+      <p>Intimate moments, elevated. Shop sophisticated non-alcoholic wines, spirits, and cocktails for romantic evenings.</p>
+      <a href="/collections/date-night">Shop Date Night</a>
+    </section>
+    <section>
+      <h2>Golden Hour</h2>
+      <p>When the light hits just right. Shop non-alcoholic aperitifs and spritzes for sunset sipping.</p>
+      <a href="/collections/golden-hour">Shop Golden Hour</a>
+    </section>
+    <section>
+      <h2>Cozy Evening</h2>
+      <p>Unwind in your own way. Shop warming non-alcoholic spirits and botanical drinks for nights in.</p>
+      <a href="/collections/cozy-evening">Shop Cozy Evening</a>
+    </section>
+    <section>
+      <h2>Party Mode</h2>
+      <p>Toast without the hangover. Shop sparkling non-alcoholic wines and champagne alternatives for celebrations.</p>
+      <a href="/collections/party-mode">Shop Party Mode</a>
+    </section>
+    <section>
+      <h2>Morning Ritual</h2>
+      <p>Start with intention. Shop energizing non-alcoholic drinks and wellness elixirs for a mindful morning.</p>
+      <a href="/collections/morning-ritual">Shop Morning Ritual</a>
+    </section>
+  </main>
+  ${generateFooterHTML()}`;
+}
+
+function generateAboutBody() {
+  return `<header>${generateNavHTML()}</header>
+  <main>
+    <section>
+      <h1>Where You Can Drink Differently — Without Judgment or Sacrificing Taste</h1>
+      <p>About Monday Morning Bottle Shop &amp; Tasting Room</p>
+    </section>
+    <section>
+      <h2>Why Monday Morning?</h2>
+      <p>"I loved Monday mornings again." That's what our founder, Zane, realized after choosing to go alcohol-free. No more foggy Sundays. No more dreading the week ahead. Just clarity, energy, and a weird sense of excitement for Monday.</p>
+      <p>But there was a problem. Finding AF drinks that actually tasted good? Nearly impossible. Everything was either watery, packed with sugar, or tasted like an afterthought.</p>
+      <p>So Zane went on a mission. He traveled the world — tasting, testing, and curating the best alcohol-free beverages on the planet. The result? Monday Morning.</p>
+      <p>We opened our doors in San Diego to share what we discovered: that you don't have to sacrifice taste to live differently. That "alcohol-free" can mean sophisticated, complex, and genuinely delicious.</p>
+    </section>
+    <section>
+      <h2>Did You Know?</h2>
+      <p>61% of Gen Z and 49% of Millennials are trying to drink less. You're not alone. A massive cultural shift is underway, and we're here to make it delicious.</p>
+    </section>
+    <section>
+      <h2>Killer AF Brands</h2>
+      <p>We carry over 50 premium non-alcoholic brands including Atmos, Buzzkill, Pentire, Tenneyson, Three Spirit, Bauhaus, Pathfinder, Go Brewing, Dromme, Abstinence, and many more.</p>
+    </section>
+    <section>
+      <h2>Sip, Sit, Shop</h2>
+      <p><strong>Sip:</strong> Sample AF options until you find your favorite. Every bottle is available to try — no purchase necessary.</p>
+      <p><strong>Sit:</strong> Grab a seat at our tasting bar. Enjoy craft NA cocktails in a space built for connection.</p>
+      <p><strong>Shop:</strong> Take your favorites home. We ship nationwide or pick up in-store at OB or PB.</p>
+    </section>
+  </main>
+  ${generateFooterHTML()}`;
+}
+
+function generateRecipesBody() {
+  return `<header>${generateNavHTML()}</header>
+  <main>
+    <section>
+      <h1>NA Mocktail Recipes — Non-Alcoholic Cocktail Ideas</h1>
+      <p>Discover delicious non-alcoholic cocktail recipes. Easy mocktails for breakfast, dinner, beach days, and celebrations. Made with premium NA spirits, wine, and beer from Monday Morning Bottle Shop.</p>
+    </section>
+    <section>
+      <h2>Browse Recipes by Occasion</h2>
+      <p>Whether you're hosting brunch, planning a dinner party, or relaxing at home, we have the perfect NA cocktail recipe for you. All recipes use ingredients available at Monday Morning.</p>
+      <a href="/recipes?occasion=breakfast">Breakfast &amp; Brunch</a>
+      <a href="/recipes?occasion=cocktails">Classic Cocktails</a>
+      <a href="/recipes?occasion=dinner">Dinner Party</a>
+      <a href="/recipes?occasion=celebration">Celebrations</a>
+    </section>
+  </main>
+  ${generateFooterHTML()}`;
+}
+
+function generateLocationsBody() {
+  return `<header>${generateNavHTML()}</header>
+  <main>
+    <section>
+      <h1>Monday Morning Store Locations — San Diego NA Bottle Shop</h1>
+      <p>Visit our two San Diego locations to try before you buy. Sample from 500+ non-alcoholic beverages at our Pacific Beach and Ocean Beach tasting rooms.</p>
+    </section>
+    <section>
+      <h2>Pacific Beach Location</h2>
+      <p><strong>Address:</strong> 1854 Garnet Ave, San Diego, CA 92109</p>
+      <p><strong>Hours:</strong> Monday–Saturday 11 AM – 8 PM, Sunday 11 AM – 4 PM</p>
+      <a href="https://maps.google.com/?q=1854+Garnet+Ave+San+Diego+CA+92109">Get Directions</a>
+    </section>
+    <section>
+      <h2>Ocean Beach Location</h2>
+      <p><strong>Address:</strong> 4967 Newport Ave, San Diego, CA 92107</p>
+      <p><strong>Hours:</strong> Monday–Sunday 9 AM – 6 PM, Wednesday open until 8 PM</p>
+      <a href="https://maps.google.com/?q=4967+Newport+Ave+San+Diego+CA+92107">Get Directions</a>
+    </section>
+    <section>
+      <h2>Find Us at Partner Locations</h2>
+      <p>Monday Morning products are also available at select San Diego restaurants, bars, and cafes including Fall Brewing Company (North Park) and Selva Coffee House (Mission Valley).</p>
+    </section>
+  </main>
+  ${generateFooterHTML()}`;
+}
+
+function generateBlogIndexBody(blogPosts) {
+  let postsHTML = "";
+  for (const post of blogPosts.slice(0, 20)) {
+    const excerpt = post.excerpt ? escapeHTML(truncate(post.excerpt, 200)) : "";
+    postsHTML += `<article>
+      <h2><a href="/blog/${escapeHTML(post.slug)}">${escapeHTML(post.title)}</a></h2>
+      ${post.featured_image ? `<img src="${escapeHTML(post.featured_image)}" alt="${escapeHTML(post.title)}" loading="lazy" />` : ""}
+      ${excerpt ? `<p>${excerpt}</p>` : ""}
+      ${post.published_at ? `<time datetime="${post.published_at}">${new Date(post.published_at).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}</time>` : ""}
+      <a href="/blog/${escapeHTML(post.slug)}">Read More</a>
+    </article>`;
+  }
+
+  return `<header>${generateNavHTML()}</header>
+  <main>
+    <section>
+      <h1>Monday Morning Blog — Stories from the Alcohol-Free Lifestyle</h1>
+      <p>Stories, recipes, and insights from the alcohol-free lifestyle movement. Discover the joy of mindful drinking with Monday Morning.</p>
+    </section>
+    <section>
+      ${postsHTML || "<p>Check back soon for new blog posts about the alcohol-free lifestyle.</p>"}
+    </section>
+  </main>
+  ${generateFooterHTML()}`;
+}
+
+function generateServicesBody() {
+  return `<header>${generateNavHTML()}</header>
+  <main>
+    <section>
+      <h1>Wholesale &amp; B2B Services — Non-Alcoholic Beverages for Bars &amp; Restaurants</h1>
+      <p>Partner with Monday Morning for wholesale non-alcoholic beverages. Premium NA beer, wine, spirits, and mocktails for bars, restaurants, hotels, and retailers in San Diego and beyond.</p>
+    </section>
+    <section>
+      <h2>Why Partner with Monday Morning?</h2>
+      <p>The non-alcoholic beverage market is booming. 61% of Gen Z and 49% of Millennials are drinking less. Adding premium NA options to your menu captures this growing demand and increases revenue per guest.</p>
+      <ul>
+        <li>Curated selection of 500+ premium NA beverages</li>
+        <li>Staff training and menu development</li>
+        <li>Competitive wholesale pricing</li>
+        <li>Local San Diego delivery</li>
+        <li>Expert guidance on NA beverage programs</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Contact Us</h2>
+      <p>Ready to elevate your beverage program? Contact Monday Morning for wholesale pricing and partnership opportunities.</p>
+      <p>Email: hello@mondaymorning-af.com</p>
+      <p>Phone: (619) 555-0101</p>
+      <p>Address: 1854 Garnet Ave, San Diego, CA 92109</p>
+    </section>
+  </main>
+  ${generateFooterHTML()}`;
+}
+
+function generateValentinesBody() {
+  return `<header>${generateNavHTML()}</header>
+  <main>
+    <section>
+      <h1>Sips &amp; Sweethearts — Valentine's Date Night at Monday Morning</h1>
+      <p>Join us February 12th for an unforgettable Valentine's date night featuring handcrafted NA cocktails, chocolate pairings, charcuterie, and a cozy movie screening at Monday Morning Pacific Beach.</p>
+    </section>
+    <section>
+      <h2>What's Included</h2>
+      <ul>
+        <li>NA Cocktail Experience — Create two of our most loved cocktails with bartender DY</li>
+        <li>Chocolate Truffle Pairing — Artisan chocolates by Maya Moon paired with your drinks</li>
+        <li>Couples Love Portraits — Take home a custom couples caricature keepsake</li>
+        <li>Charcuterie for Two — A beautifully curated board to share</li>
+        <li>Cozy Movie Screening — End the night with a romantic film together</li>
+      </ul>
+    </section>
+  </main>
+  ${generateFooterHTML()}`;
+}
+
+function generatePrivacyBody() {
+  return `<header>${generateNavHTML()}</header>
+  <main>
+    <section>
+      <h1>Privacy Policy — Monday Morning Bottle Shop</h1>
+      <p>Last updated: January 2026</p>
+      <h2>Information We Collect</h2>
+      <p>We collect information you provide directly to us, such as when you create an account, make a purchase, sign up for our newsletter, or contact us for support. This may include your name, email address, shipping address, phone number, and payment information.</p>
+      <h2>How We Use Your Information</h2>
+      <p>We use the information we collect to process orders, communicate with you, improve our services, and send marketing communications with your consent.</p>
+    </section>
+  </main>
+  ${generateFooterHTML()}`;
+}
+
+function generateTermsBody() {
+  return `<header>${generateNavHTML()}</header>
+  <main>
+    <section>
+      <h1>Terms of Service — Monday Morning Bottle Shop</h1>
+      <p>Last updated: January 2026</p>
+      <h2>Acceptance of Terms</h2>
+      <p>By accessing and using the Monday Morning website and services, you accept and agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use our services.</p>
+      <h2>Age Requirement</h2>
+      <p>While our products are non-alcoholic, you must be at least 18 years of age to make purchases on our website.</p>
+    </section>
+  </main>
+  ${generateFooterHTML()}`;
+}
+
+function generateShippingBody() {
+  return `<header>${generateNavHTML()}</header>
+  <main>
+    <section>
+      <h1>Shipping Policy — Monday Morning Bottle Shop</h1>
+      <h2>Shipping Locations</h2>
+      <p>We currently ship to all 50 U.S. states. For local customers in San Diego, in-store pickup is available at both our Ocean Beach and Pacific Beach locations.</p>
+      <h2>Shipping Methods &amp; Timing</h2>
+      <ul>
+        <li>Standard Shipping: 5–7 business days — $8.99</li>
+        <li>Expedited Shipping: 2–3 business days — $14.99</li>
+        <li>Overnight Shipping: 1 business day — $24.99</li>
+        <li>Free Shipping: Orders over $75 qualify for free standard shipping</li>
+      </ul>
+    </section>
+  </main>
+  ${generateFooterHTML()}`;
+}
+
+function generateReturnsBody() {
+  return `<header>${generateNavHTML()}</header>
+  <main>
+    <section>
+      <h1>Returns &amp; Refunds — Monday Morning Bottle Shop</h1>
+      <p><strong>Our Promise:</strong> We want you to love what you drink. If you're not satisfied with your purchase, we'll make it right.</p>
+      <h2>Return Policy</h2>
+      <p>We accept returns within 30 days of purchase for unopened products in their original packaging. Due to the nature of consumable products, we cannot accept returns on opened items unless they are defective.</p>
+    </section>
+  </main>
+  ${generateFooterHTML()}`;
+}
+
+function generateCollectionBody(route) {
+  // Extract collection name from title (before the |)
+  const collectionName = route.title.split("|")[0].trim();
+  return `<header>${generateNavHTML()}</header>
+  <main>
+    <section>
+      <h1>${escapeHTML(collectionName)} — ${SITE_NAME}</h1>
+      <p>${escapeHTML(route.description)}</p>
+    </section>
+    <section>
+      <h2>Browse ${escapeHTML(collectionName)}</h2>
+      <p>Explore our curated selection of ${escapeHTML(collectionName.toLowerCase())} at Monday Morning. All products are available for nationwide shipping or in-store pickup at our Pacific Beach and Ocean Beach locations.</p>
+      <a href="/collections/all">View All Products</a>
+      <a href="/shop">Shop by Vibe</a>
+    </section>
+  </main>
+  ${generateFooterHTML()}`;
+}
+
+function generateProductBody(product) {
+  const price = product.priceRange?.minVariantPrice?.amount || "0";
+  const image = product.featuredImage?.url || "";
+  const vendor = product.vendor || "";
+  const category = product.productType || "Beverages";
+  const desc = truncate(product.description || "", 500);
+
+  return `<header>${generateNavHTML()}</header>
+  <main>
+    <nav aria-label="Breadcrumb">
+      <a href="/">Home</a> &gt; <a href="/shop">Shop</a> &gt; <span>${escapeHTML(product.title)}</span>
+    </nav>
+    <article>
+      <h1>${escapeHTML(product.title)}</h1>
+      ${image ? `<img src="${escapeHTML(image)}" alt="${escapeHTML(product.title)} — non-alcoholic ${escapeHTML(category.toLowerCase())} at ${SITE_NAME}" width="600" height="600" loading="lazy" />` : ""}
+      <p><strong>Category:</strong> ${escapeHTML(category)}</p>
+      ${vendor ? `<p><strong>Brand:</strong> ${escapeHTML(vendor)}</p>` : ""}
+      <p><strong>Price:</strong> $${parseFloat(price).toFixed(2)}</p>
+      <p>${escapeHTML(desc)}</p>
+      <p>Shop ${escapeHTML(product.title)} — premium non-alcoholic ${escapeHTML(category.toLowerCase())} at ${SITE_NAME}. ${vendor ? `By ${escapeHTML(vendor)}. ` : ""}Free shipping on orders over $75.</p>
+    </article>
+    <section>
+      <h2>More Non-Alcoholic Drinks to Explore</h2>
+      <p>Discover more premium non-alcoholic beverages at Monday Morning. Browse our full collection of 500+ NA beers, wines, spirits, and functional drinks.</p>
+      <a href="/collections/all">View All Products</a>
+      <a href="/shop">Shop by Vibe</a>
+    </section>
+  </main>
+  ${generateFooterHTML()}`;
+}
+
+function generateBlogPostBody(post) {
+  const excerpt = post.excerpt ? escapeHTML(truncate(post.excerpt, 300)) : "";
+  return `<header>${generateNavHTML()}</header>
+  <main>
+    <nav aria-label="Breadcrumb">
+      <a href="/">Home</a> &gt; <a href="/blog">Blog</a> &gt; <span>${escapeHTML(post.title)}</span>
+    </nav>
+    <article>
+      <h1>${escapeHTML(post.title)}</h1>
+      ${post.featured_image ? `<img src="${escapeHTML(post.featured_image)}" alt="${escapeHTML(post.title)}" width="1200" height="630" loading="lazy" />` : ""}
+      ${post.published_at ? `<time datetime="${post.published_at}">Published: ${new Date(post.published_at).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}</time>` : ""}
+      ${excerpt ? `<p>${excerpt}</p>` : ""}
+      <p>Read the full article on the Monday Morning blog. Stories and insights from the alcohol-free lifestyle movement.</p>
+    </article>
+    <section>
+      <h2>More from the Monday Morning Blog</h2>
+      <a href="/blog">View All Blog Posts</a>
+    </section>
+  </main>
+  ${generateFooterHTML()}`;
+}
+
+function generateNoIndexBody(route) {
+  // Minimal content for noindex pages (cart, checkout, auth)
+  return `<header>${generateNavHTML()}</header>
+  <main>
+    <h1>${escapeHTML(route.title.split("|")[0].trim())}</h1>
+    <p>${escapeHTML(route.description)}</p>
+  </main>
+  ${generateFooterHTML()}`;
+}
+
+// Map route paths to body content generators
+function getBodyContent(route, allProducts, allBlogPosts) {
+  const path = route.path;
+
+  if (path === "/") return generateHomepageBody();
+  if (path === "/shop") return generateShopBody();
+  if (path === "/about") return generateAboutBody();
+  if (path === "/recipes") return generateRecipesBody();
+  if (path === "/locations") return generateLocationsBody();
+  if (path === "/blog") return generateBlogIndexBody(allBlogPosts);
+  if (path === "/services") return generateServicesBody();
+  if (path === "/valentines") return generateValentinesBody();
+  if (path === "/privacy") return generatePrivacyBody();
+  if (path === "/terms") return generateTermsBody();
+  if (path === "/shipping") return generateShippingBody();
+  if (path === "/returns") return generateReturnsBody();
+
+  if (path.startsWith("/collections/")) return generateCollectionBody(route);
+
+  if (path.startsWith("/product/")) {
+    const handle = path.replace("/product/", "");
+    const product = allProducts.find((p) => p.handle === handle);
+    if (product) return generateProductBody(product);
+  }
+
+  if (path.startsWith("/blog/")) {
+    const slug = path.replace("/blog/", "");
+    const post = allBlogPosts.find((p) => p.slug === slug);
+    if (post) return generateBlogPostBody(post);
+  }
+
+  if (route.noIndex) return generateNoIndexBody(route);
+
+  // Fallback: minimal content
+  return `<header>${generateNavHTML()}</header>
+  <main>
+    <h1>${escapeHTML(route.title.split("|")[0].trim())}</h1>
+    <p>${escapeHTML(route.description)}</p>
+  </main>
+  ${generateFooterHTML()}`;
+}
+
 // ── Static Route Definitions ────────────────────────────────────────
 
 const staticRoutes = [
-  // Main pages
   {
     path: "/",
     title: "Monday Morning | America's #1 NA Bottle Shop & Tasting Room",
@@ -306,7 +776,7 @@ const staticRoutes = [
   {
     path: "/locations",
     title: "Store Locations | Monday Morning Bottle Shop",
-    description: "Visit Monday Morning's NA bottle shops in Pacific Beach & Ocean Beach, San Diego. Try 500+ non-alcoholic drinks before you buy. Plus find us at 17+ partner bars and restaurants.",
+    description: "Visit Monday Morning's two San Diego locations. Pacific Beach (1854 Garnet Ave) and Ocean Beach (4967 Newport Ave). Try before you buy — sample 500+ NA drinks.",
     schema: [organizationSchema, localBusinessSchema],
   },
   {
@@ -398,7 +868,7 @@ const staticRoutes = [
     schema: [],
   },
 
-  // Shopify-mapped collection pages
+  // Collection pages
   {
     path: "/collections/best-sellers",
     title: "Best Sellers | Non-Alcoholic Drinks | Monday Morning Bottle Shop",
@@ -447,8 +917,6 @@ const staticRoutes = [
     description: "Golden hour essentials. Shop non-alcoholic aperitifs, digestifs & liqueurs. Light, bitter, and perfect for pre-dinner sipping at Monday Morning.",
     schema: [organizationSchema, collectionPageSchema("Aperitifs & Digestifs", "Golden hour essentials. Light, bitter, and perfect for pre-dinner sipping.", "aperitifs")],
   },
-
-  // Vibe-based collection pages
   {
     path: "/collections/all",
     title: "All Products | 500+ Non-Alcoholic Drinks | Monday Morning Bottle Shop",
@@ -541,6 +1009,7 @@ function truncate(str, maxLen) {
 }
 
 function escapeHTML(str) {
+  if (!str) return "";
   return str
     .replace(/&/g, "&amp;")
     .replace(/"/g, "&quot;")
@@ -550,7 +1019,7 @@ function escapeHTML(str) {
 
 // ── HTML Generation ─────────────────────────────────────────────────
 
-function generateHTML(route, templateHTML) {
+function generateHTML(route, templateHTML, allProducts, allBlogPosts) {
   const canonicalUrl = `${SITE_URL}${route.path === "/" ? "" : route.path}`;
   const ogImage = route.ogImage || DEFAULT_OG_IMAGE;
 
@@ -591,13 +1060,19 @@ function generateHTML(route, templateHTML) {
   html = html.replace(/<meta\s+property="og:[^"]*"\s+content="[^"]*"\s*\/?>\s*/g, "");
   html = html.replace(/<meta\s+name="twitter:[^"]*"\s+content="[^"]*"\s*\/?>\s*/g, "");
   html = html.replace(/<meta\s+name="robots"\s+content="[^"]*"\s*\/?>\s*/g, "");
-  // Remove existing JSON-LD scripts
   html = html.replace(/<script\s+type="application\/ld\+json">[\s\S]*?<\/script>\s*/g, "");
 
   // Insert new meta tags after <meta charset="UTF-8" />
   html = html.replace(
     /(<meta\s+charset="UTF-8"\s*\/?>)/,
     `$1\n${metaTags}\n${jsonLd}`
+  );
+
+  // ── Inject pre-rendered body content into <div id="root"> ──────
+  const bodyContent = getBodyContent(route, allProducts, allBlogPosts);
+  html = html.replace(
+    '<div id="root"></div>',
+    `<div id="root">${bodyContent}</div>`
   );
 
   return html;
@@ -609,7 +1084,6 @@ function generateSitemap(allRoutes) {
   const now = new Date().toISOString();
   const indexableRoutes = allRoutes.filter((r) => !r.noIndex);
 
-  // Priority mapping
   function getPriority(path) {
     if (path === "/") return "1.0";
     if (["/shop", "/about", "/locations", "/recipes", "/blog", "/services"].includes(path)) return "0.9";
@@ -655,24 +1129,22 @@ async function main() {
 
   console.log("\n🔍 Fetching dynamic content for SEO pages...\n");
 
-  // Fetch dynamic data in parallel
   const [products, blogPosts] = await Promise.all([
     fetchAllProducts(),
     fetchAllBlogPosts(),
   ]);
 
-  // Build all routes
   const productRoutes = buildProductRoutes(products);
   const blogRoutes = buildBlogRoutes(blogPosts);
   const allRoutes = [...staticRoutes, ...productRoutes, ...blogRoutes];
 
-  console.log(`\n📄 Generating ${allRoutes.length} static HTML pages...\n`);
+  console.log(`\n📄 Generating ${allRoutes.length} static HTML pages with pre-rendered content...\n`);
 
   const templateHTML = readFileSync(templatePath, "utf-8");
   let count = 0;
 
   for (const route of allRoutes) {
-    const html = generateHTML(route, templateHTML);
+    const html = generateHTML(route, templateHTML, products, blogPosts);
 
     if (route.path === "/") {
       writeFileSync(templatePath, html, "utf-8");
@@ -693,8 +1165,7 @@ async function main() {
     console.log(`  ${icon} ${route.path} → ${route.title.substring(0, 60)}...`);
   }
 
-  // Generate 404.html as SPA fallback for unknown routes
-  // Vercel serves 404.html automatically for routes without a static file
+  // Generate 404.html
   const notFoundRoute = {
     path: "/404",
     title: "Page Not Found | Monday Morning Bottle Shop",
@@ -702,65 +1173,41 @@ async function main() {
     noIndex: true,
     schema: [],
   };
-  const notFoundHTML = generateHTML(notFoundRoute, templateHTML);
+  const notFoundHTML = generateHTML(notFoundRoute, templateHTML, products, blogPosts);
   writeFileSync(join(DIST, "404.html"), notFoundHTML, "utf-8");
   console.log(`\n  Generated 404.html (SPA fallback for unknown routes)`);
 
-  // Generate comprehensive sitemap
+  // Generate sitemap
   const sitemap = generateSitemap(allRoutes);
   writeFileSync(join(DIST, "sitemap.xml"), sitemap, "utf-8");
   console.log(`\n🗺️  Generated sitemap.xml with ${allRoutes.filter((r) => !r.noIndex).length} URLs`);
 
-  console.log(`\n🎉 Generated ${count} static HTML pages with unique meta tags.`);
-  console.log(`   📦 ${productRoutes.length} product pages`);
-  console.log(`   📝 ${blogRoutes.length} blog pages`);
+  console.log(`\n🎉 Generated ${count} static HTML pages with unique meta tags AND pre-rendered body content.`);
+  console.log(`   📦 ${productRoutes.length} product pages (with name, price, description, image)`);
+  console.log(`   📝 ${blogRoutes.length} blog pages (with title, excerpt, featured image)`);
   console.log(`   📂 ${staticRoutes.filter((r) => r.path.startsWith("/collections/")).length} collection pages`);
   console.log(`   📄 ${staticRoutes.filter((r) => !r.path.startsWith("/collections/")).length} static pages`);
+  console.log(`   🔍 All pages now have visible content for crawlers that don't execute JavaScript`);
 
   // ── Build Output API ─────────────────────────────────────────────
-  // Create .vercel/output/ directory structure so Vercel uses our
-  // routing config instead of auto-generating SPA fallback routes.
-  // This is the critical fix: without this, Vercel's Vite adapter
-  // adds a catch-all rewrite to /index.html that overrides our
-  // per-route static HTML files.
-
   const VERCEL_OUTPUT = join(process.cwd(), ".vercel", "output");
   const VERCEL_STATIC = join(VERCEL_OUTPUT, "static");
 
   console.log(`\n🏗️  Creating Vercel Build Output API structure...`);
 
-  // Copy dist/ → .vercel/output/static/
   mkdirSync(VERCEL_STATIC, { recursive: true });
   cpSync(DIST, VERCEL_STATIC, { recursive: true });
   console.log(`  📁 Copied dist/ → .vercel/output/static/`);
 
-  // Write config.json with NO SPA fallback.
-  // The "handle": "filesystem" route tells Vercel to serve matching
-  // static files from .vercel/output/static/.
-  // 
-  // IMPORTANT: cleanUrls, trailingSlash, redirects, and headers are
-  // configured in vercel.json (which Vercel merges with this config).
-  // The config.json only needs routes for the filesystem handler and
-  // 404 fallback. This is the critical difference from Vercel's
-  // auto-generated config which includes a catch-all SPA rewrite.
   const vercelConfig = {
     version: 3,
     routes: [
-      // Handle static assets with long-term caching
       {
         src: "/assets/(.*)",
         headers: { "Cache-Control": "public, max-age=31536000, immutable" },
         continue: true,
       },
-      // Serve static files from the filesystem
-      // This checks .vercel/output/static/ for matching files
-      // With cleanUrls from vercel.json, /blog/slug resolves to
-      // /blog/slug/index.html automatically
       { handle: "filesystem" },
-      // For any route that doesn't match a static file,
-      // serve 404.html (which contains the SPA bootstrap code).
-      // This preserves client-side navigation for unknown routes
-      // while ensuring crawlers get proper 404 status codes.
       {
         src: "/(.*)",
         status: 404,
