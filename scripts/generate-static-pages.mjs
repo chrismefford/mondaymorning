@@ -14,7 +14,7 @@
  * Runs automatically after `vite build` via the build command.
  */
 
-import { readFileSync, writeFileSync, mkdirSync, existsSync, cpSync } from "fs";
+import { readFileSync, writeFileSync, mkdirSync, existsSync, cpSync, readdirSync } from "fs";
 import { join } from "path";
 import { fileURLToPath } from "url";
 import { dirname } from "path";
@@ -23,6 +23,28 @@ const DIST = join(process.cwd(), "dist");
 const SITE_NAME = "Monday Morning Bottle Shop";
 const SITE_URL = "https://www.mondaymorning-af.com";
 const DEFAULT_OG_IMAGE = `${SITE_URL}/og-image.png`;
+
+// ── Asset Resolver ──────────────────────────────────────────────────
+// Vite hashes filenames during build (e.g., friends-drinking.jpg → friends-drinking-Cg7gA0oM.jpg).
+// This resolver finds the hashed filename so pre-rendered images use correct paths.
+
+let _assetFiles = null;
+function getAssetFiles() {
+  if (!_assetFiles) {
+    const assetsDir = join(DIST, "assets");
+    _assetFiles = existsSync(assetsDir) ? readdirSync(assetsDir) : [];
+  }
+  return _assetFiles;
+}
+
+function resolveAsset(baseName) {
+  // baseName like "friends-drinking" → finds "friends-drinking-Cg7gA0oM.jpg"
+  const files = getAssetFiles();
+  const match = files.find(f => f.startsWith(baseName + "-") || f.startsWith(baseName + "."));
+  return match ? `/assets/${match}` : null;
+}
+
+// img() helper is defined after escapeHTML below
 
 // ── Environment ─────────────────────────────────────────────────────
 
@@ -309,10 +331,14 @@ function generateHomepageBody() {
   return `<header>${generateNavHTML()}</header>
   <main>
     <section>
+      ${img("logo-primary-gold", "Monday Morning Bottle Shop logo", 'width="200" height="80" ')}
       <h1>America's #1 Non-Alcoholic Bottle Shop &amp; Tasting Room</h1>
       <h2>500+ Zero Proof Wines, Beers &amp; Spirits</h2>
       <p>Think non-alcoholic drinks can't taste good? We love skeptics. Come in, try something, and we'll make you a believer. Shop over 500 alcohol-free wines, craft NA beers, zero-proof spirits, and functional drinks online or at our San Diego locations in Pacific Beach and Ocean Beach.</p>
       <p>Monday Morning is San Diego's premier non-alcoholic bottle shop with 500+ flavors. Try before you buy at our Pacific Beach and Ocean Beach tasting rooms.</p>
+      ${img("kava-haven", "Kava Haven non-alcoholic kava drink at Monday Morning Bottle Shop", 'width="300" height="400" ')}
+      ${img("sentia-gold", "Sentia Gold non-alcoholic spirit with botanical ingredients", 'width="300" height="400" ')}
+      ${img("bolle-rose", "Bollé Rosé non-alcoholic sparkling wine", 'width="300" height="400" ')}
       <ul>
         <li>500+ Flavors &amp; Styles</li>
         <li>2 San Diego Locations — Pacific Beach &amp; Ocean Beach</li>
@@ -328,17 +354,24 @@ function generateHomepageBody() {
     <section>
       <h2>Shop by Vibe</h2>
       <p>Whether it's a beach day, date night, golden hour, or cozy evening — we have the perfect alcohol-free drink for every moment.</p>
+      ${img("aperitif-golden-hour", "Best-selling non-alcoholic aperitifs at golden hour — Monday Morning Bottle Shop", 'width="600" height="400" ')}
       <a href="/collections/best-sellers">Best Sellers</a>
-      <a href="/collections/na-beer">NA Beer</a>
-      <a href="/collections/wine-alternatives">Wine Alternatives</a>
-      <a href="/collections/spirit-alternatives">Spirit Alternatives</a>
-      <a href="/collections/functional">Functional Drinks</a>
+      ${img("beach-sunset-1", "Beach bonfire vibes with non-alcoholic drinks at sunset in San Diego", 'width="600" height="400" ')}
       <a href="/collections/beach-bonfire">Beach Bonfire Vibes</a>
+      ${img("functional-wellness-morning", "Functional wellness drinks with adaptogens and nootropics", 'width="600" height="400" ')}
+      <a href="/collections/functional">Functional Drinks</a>
+      ${img("wine-dinner-toast", "Non-alcoholic wine alternatives for dinner and date night", 'width="600" height="400" ')}
+      <a href="/collections/wine-alternatives">Wine Alternatives</a>
+      ${img("beer-patio-friends", "Friends enjoying non-alcoholic craft beer on a patio in San Diego", 'width="600" height="400" ')}
+      <a href="/collections/na-beer">NA Beer</a>
+      ${img("sparkling-celebration", "Non-alcoholic sparkling wine for weddings and celebrations", 'width="600" height="400" ')}
       <a href="/collections/weddings">Weddings &amp; Events</a>
+      <a href="/collections/spirit-alternatives">Spirit Alternatives</a>
       <a href="/collections/aperitifs">Aperitifs &amp; Digestifs</a>
     </section>
     <section>
       <h2>Our Story</h2>
+      ${img("friends-drinking", "Friends enjoying non-alcoholic drinks together at Monday Morning Bottle Shop San Diego", 'width="600" height="400" ')}
       <p>Monday Morning was born from a simple realization: the best mornings start without a hangover. Founded by Zane in San Diego, we curate the world's finest non-alcoholic beverages so you can drink differently — without sacrificing taste or social experiences.</p>
       <a href="/about">Read Our Story</a>
     </section>
@@ -349,6 +382,8 @@ function generateHomepageBody() {
     <section>
       <h2>NA Mocktail Recipes</h2>
       <p>Discover delicious non-alcoholic cocktail recipes. Easy mocktails for breakfast, dinner, beach days, and celebrations — made with premium NA spirits, wine, and beer.</p>
+      ${img("botanical-mocktail", "Botanical non-alcoholic mocktail recipe from Monday Morning", 'width="400" height="300" ')}
+      ${img("aperitif-spritz", "Non-alcoholic aperitif spritz recipe for golden hour", 'width="400" height="300" ')}
       <a href="/recipes">View All Recipes</a>
     </section>
     <section>
@@ -358,7 +393,17 @@ function generateHomepageBody() {
       <p>"Finally, a place that gets it. No judgment, incredible selection, and staff who actually care." — Sarah M., Ocean Beach</p>
     </section>
     <section>
+      <h2>Follow Us on Instagram</h2>
+      ${img("ig-storefront", "Monday Morning Bottle Shop storefront in Pacific Beach San Diego", 'width="300" height="300" ')}
+      ${img("ig-shop-interior", "Inside Monday Morning Bottle Shop — 500+ non-alcoholic drinks on display", 'width="300" height="300" ')}
+      ${img("ig-friends-cheers", "Friends cheering with non-alcoholic drinks at Monday Morning", 'width="300" height="300" ')}
+      ${img("ig-beer-shelf", "Non-alcoholic craft beer selection at Monday Morning Bottle Shop", 'width="300" height="300" ')}
+      ${img("ig-amethyst", "Amethyst non-alcoholic drink at Monday Morning Bottle Shop", 'width="300" height="300" ')}
+      ${img("ig-news", "Monday Morning Bottle Shop featured in the news", 'width="300" height="300" ')}
+    </section>
+    <section>
       <h2>Stay Connected</h2>
+      ${img("friends-cocktails", "Friends making non-alcoholic cocktails together — join the Monday Morning community", 'width="600" height="400" ')}
       <p>Join our newsletter for exclusive deals, new product drops, and NA drink recipes delivered to your inbox.</p>
     </section>
   </main>
@@ -374,31 +419,37 @@ function generateShopBody() {
     </section>
     <section>
       <h2>Beach Day</h2>
+      ${img("friends-beach-toast", "Friends toasting with non-alcoholic drinks on the beach in San Diego", 'width="600" height="400" ')}
       <p>Sun, sand, and good sips. Shop refreshing non-alcoholic drinks perfect for a day by the water.</p>
       <a href="/collections/beach-day">Shop Beach Day</a>
     </section>
     <section>
       <h2>Date Night</h2>
+      ${img("dinner-party-toast", "Couple enjoying non-alcoholic wine at a romantic dinner date night", 'width="600" height="400" ')}
       <p>Intimate moments, elevated. Shop sophisticated non-alcoholic wines, spirits, and cocktails for romantic evenings.</p>
       <a href="/collections/date-night">Shop Date Night</a>
     </section>
     <section>
       <h2>Golden Hour</h2>
+      ${img("rooftop-cheers", "Rooftop cheers with non-alcoholic aperitifs during golden hour", 'width="600" height="400" ')}
       <p>When the light hits just right. Shop non-alcoholic aperitifs and spritzes for sunset sipping.</p>
       <a href="/collections/golden-hour">Shop Golden Hour</a>
     </section>
     <section>
       <h2>Cozy Evening</h2>
+      ${img("patio-couple-beers", "Couple relaxing with non-alcoholic beers on a cozy patio evening", 'width="600" height="400" ')}
       <p>Unwind in your own way. Shop warming non-alcoholic spirits and botanical drinks for nights in.</p>
       <a href="/collections/cozy-evening">Shop Cozy Evening</a>
     </section>
     <section>
       <h2>Party Mode</h2>
+      ${img("sparkling-celebration", "Non-alcoholic sparkling wine toast at a party celebration", 'width="600" height="400" ')}
       <p>Toast without the hangover. Shop sparkling non-alcoholic wines and champagne alternatives for celebrations.</p>
       <a href="/collections/party-mode">Shop Party Mode</a>
     </section>
     <section>
       <h2>Morning Ritual</h2>
+      ${img("functional-wellness-morning", "Functional wellness elixir for a mindful morning ritual", 'width="600" height="400" ')}
       <p>Start with intention. Shop energizing non-alcoholic drinks and wellness elixirs for a mindful morning.</p>
       <a href="/collections/morning-ritual">Shop Morning Ritual</a>
     </section>
@@ -412,9 +463,11 @@ function generateAboutBody() {
     <section>
       <h1>Where You Can Drink Differently — Without Judgment or Sacrificing Taste</h1>
       <p>About Monday Morning Bottle Shop &amp; Tasting Room</p>
+      ${img("cheers-drinks", "Friends cheering with non-alcoholic drinks at Monday Morning Bottle Shop", 'width="800" height="500" ')}
     </section>
     <section>
       <h2>Why Monday Morning?</h2>
+      ${img("zane-founder", "Zane, founder of Monday Morning Bottle Shop, San Diego's premier non-alcoholic bottle shop", 'width="400" height="500" ')}
       <p>"I loved Monday mornings again." That's what our founder, Zane, realized after choosing to go alcohol-free. No more foggy Sundays. No more dreading the week ahead. Just clarity, energy, and a weird sense of excitement for Monday.</p>
       <p>But there was a problem. Finding AF drinks that actually tasted good? Nearly impossible. Everything was either watery, packed with sugar, or tasted like an afterthought.</p>
       <p>So Zane went on a mission. He traveled the world — tasting, testing, and curating the best alcohol-free beverages on the planet. The result? Monday Morning.</p>
@@ -430,6 +483,7 @@ function generateAboutBody() {
     </section>
     <section>
       <h2>Sip, Sit, Shop</h2>
+      ${img("ig-shop-interior", "Inside Monday Morning Bottle Shop — browse and sample 500+ non-alcoholic drinks", 'width="600" height="400" ')}
       <p><strong>Sip:</strong> Sample AF options until you find your favorite. Every bottle is available to try — no purchase necessary.</p>
       <p><strong>Sit:</strong> Grab a seat at our tasting bar. Enjoy craft NA cocktails in a space built for connection.</p>
       <p><strong>Shop:</strong> Take your favorites home. We ship nationwide or pick up in-store at OB or PB.</p>
@@ -444,10 +498,15 @@ function generateRecipesBody() {
     <section>
       <h1>NA Mocktail Recipes — Non-Alcoholic Cocktail Ideas</h1>
       <p>Discover delicious non-alcoholic cocktail recipes. Easy mocktails for breakfast, dinner, beach days, and celebrations. Made with premium NA spirits, wine, and beer from Monday Morning Bottle Shop.</p>
+      ${img("tropical-mocktail", "Tropical non-alcoholic mocktail recipe with fresh fruit garnish", 'width="600" height="400" ')}
     </section>
     <section>
       <h2>Browse Recipes by Occasion</h2>
       <p>Whether you're hosting brunch, planning a dinner party, or relaxing at home, we have the perfect NA cocktail recipe for you. All recipes use ingredients available at Monday Morning.</p>
+      ${img("na-old-fashioned-cocktail", "Non-alcoholic Old Fashioned cocktail recipe", 'width="400" height="300" ')}
+      ${img("rose-spritzer", "Non-alcoholic rosé spritzer recipe for brunch", 'width="400" height="300" ')}
+      ${img("na-ipa-beer", "Non-alcoholic IPA craft beer for beer cocktail recipes", 'width="400" height="300" ')}
+      ${img("botanical-mocktail", "Botanical non-alcoholic mocktail with herbs and citrus", 'width="400" height="300" ')}
       <a href="/recipes?occasion=breakfast">Breakfast &amp; Brunch</a>
       <a href="/recipes?occasion=cocktails">Classic Cocktails</a>
       <a href="/recipes?occasion=dinner">Dinner Party</a>
@@ -463,9 +522,11 @@ function generateLocationsBody() {
     <section>
       <h1>Monday Morning Store Locations — San Diego NA Bottle Shop</h1>
       <p>Visit our two San Diego locations to try before you buy. Sample from 500+ non-alcoholic beverages at our Pacific Beach and Ocean Beach tasting rooms.</p>
+      ${img("ig-storefront", "Monday Morning Bottle Shop storefront in Pacific Beach, San Diego", 'width="600" height="400" ')}
     </section>
     <section>
       <h2>Pacific Beach Location</h2>
+      ${img("ig-shop-interior", "Inside Monday Morning Pacific Beach — non-alcoholic bottle shop and tasting room", 'width="600" height="400" ')}
       <p><strong>Address:</strong> 1854 Garnet Ave, San Diego, CA 92109</p>
       <p><strong>Hours:</strong> Monday–Saturday 11 AM – 8 PM, Sunday 11 AM – 4 PM</p>
       <a href="https://maps.google.com/?q=1854+Garnet+Ave+San+Diego+CA+92109">Get Directions</a>
@@ -516,6 +577,7 @@ function generateServicesBody() {
     <section>
       <h1>Wholesale &amp; B2B Services — Non-Alcoholic Beverages for Bars &amp; Restaurants</h1>
       <p>Partner with Monday Morning for wholesale non-alcoholic beverages. Premium NA beer, wine, spirits, and mocktails for bars, restaurants, hotels, and retailers in San Diego and beyond.</p>
+      ${img("ig-beer-shelf", "Non-alcoholic beverage selection for wholesale — 500+ products available at Monday Morning", 'width="600" height="400" ')}
     </section>
     <section>
       <h2>Why Partner with Monday Morning?</h2>
@@ -625,11 +687,34 @@ function generateReturnsBody() {
 function generateCollectionBody(route) {
   // Extract collection name from title (before the |)
   const collectionName = route.title.split("|")[0].trim();
+  // Map collection slugs to lifestyle images
+  const collectionImages = {
+    "best-sellers": ["aperitif-golden-hour", "Best-selling non-alcoholic drinks at Monday Morning Bottle Shop"],
+    "na-beer": ["beer-patio-friends", "Non-alcoholic craft beer collection at Monday Morning"],
+    "wine-alternatives": ["wine-dinner-toast", "Non-alcoholic wine alternatives — red, white, rosé and sparkling"],
+    "spirit-alternatives": ["na-botanical-dark", "Non-alcoholic spirit alternatives for craft cocktails"],
+    "functional": ["functional-wellness-morning", "Functional wellness drinks with adaptogens and nootropics"],
+    "beach-bonfire": ["beach-sunset-1", "Beach bonfire vibes with non-alcoholic drinks at sunset"],
+    "weddings": ["sparkling-celebration", "Non-alcoholic sparkling wine for weddings and celebrations"],
+    "aperitifs": ["aperitif-golden-hour", "Non-alcoholic aperitifs and digestifs for golden hour"],
+    "all": ["ig-shop-interior", "Browse all 500+ non-alcoholic drinks at Monday Morning Bottle Shop"],
+    "beach-day": ["friends-beach-toast", "Non-alcoholic drinks for a perfect beach day in San Diego"],
+    "date-night": ["dinner-party-toast", "Sophisticated non-alcoholic drinks for date night"],
+    "golden-hour": ["rooftop-cheers", "Non-alcoholic aperitifs and spritzes for golden hour"],
+    "cozy-evening": ["patio-couple-beers", "Warming non-alcoholic drinks for a cozy evening"],
+    "party-mode": ["sparkling-celebration", "Non-alcoholic sparkling drinks for parties and celebrations"],
+    "morning-ritual": ["functional-wellness-morning", "Energizing non-alcoholic wellness drinks for morning rituals"],
+  };
+  const slug = route.path.replace("/collections/", "");
+  const imgData = collectionImages[slug];
+  const collectionImg = imgData ? img(imgData[0], imgData[1], 'width="600" height="400" ') : "";
+
   return `<header>${generateNavHTML()}</header>
   <main>
     <section>
       <h1>${escapeHTML(collectionName)} — ${SITE_NAME}</h1>
       <p>${escapeHTML(route.description)}</p>
+      ${collectionImg}
     </section>
     <section>
       <h2>Browse ${escapeHTML(collectionName)}</h2>
@@ -1015,6 +1100,12 @@ function escapeHTML(str) {
     .replace(/"/g, "&quot;")
     .replace(/</g, "&lt;")
     .replace(/>/g, "&gt;");
+}
+
+function img(baseName, alt, extra = "") {
+  const src = resolveAsset(baseName);
+  if (!src) return "";
+  return `<img src="${src}" alt="${escapeHTML(alt)}" loading="lazy" ${extra}/>`;
 }
 
 // ── HTML Generation ─────────────────────────────────────────────────
