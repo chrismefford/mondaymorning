@@ -17,7 +17,7 @@ import { dirname } from "path";
 
 const DIST = join(process.cwd(), "dist");
 const SITE_NAME = "Monday Morning Bottle Shop";
-const SITE_URL = "https://mondaymorning-af.com";
+const SITE_URL = "https://www.mondaymorning-af.com";
 const DEFAULT_OG_IMAGE = `${SITE_URL}/og-image.png`;
 
 // ── Environment ─────────────────────────────────────────────────────
