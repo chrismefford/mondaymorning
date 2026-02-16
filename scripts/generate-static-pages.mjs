@@ -684,6 +684,72 @@ function generateReturnsBody() {
   ${generateFooterHTML()}`;
 }
 
+function generateNADrinksSanDiegoBody() {
+  return `<header>${generateNavHTML()}</header>
+  <main>
+    <section>
+      <h1>Non-Alcoholic Drinks in San Diego</h1>
+      ${img("beach-bonfire-beers", "Friends enjoying non-alcoholic drinks at a San Diego beach bonfire", 'width="1200" height="600" ')}
+      <p>Monday Morning is San Diego's dedicated non-alcoholic bottle shop. We stock over 500 zero-proof beers, wines, spirits, and functional drinks. Walk into our Pacific Beach or Ocean Beach locations and try anything on the shelf before you buy. Prefer to shop from home? Our full catalog is available online with fast shipping.</p>
+      <a href="/collections/all">Shop Online</a>
+      <a href="/locations">Visit Our San Diego Locations</a>
+    </section>
+    <section>
+      <h2>Why San Diego Is Choosing Non-Alcoholic Drinks</h2>
+      <p>San Diego has always been a city that values health and quality of life. That mindset is driving a major shift in how people drink. More San Diegans are choosing non-alcoholic options without sacrificing flavor or social connection.</p>
+      <p>The sober-curious movement is not a trend. It is a lifestyle change. People want to wake up clear, train harder, and still enjoy a great drink at dinner. Non-alcoholic drinks make that possible.</p>
+      <p>Functional beverages are part of this shift. Adaptogens, nootropics, and botanical blends offer real benefits beyond hydration. Drinks that support focus, relaxation, or gut health are replacing alcohol for many San Diego professionals and athletes.</p>
+      <p>Social drinking no longer requires alcohol. Whether you are at a beach bonfire in Pacific Beach or dinner in Ocean Beach, non-alcoholic drinks let you participate fully without the hangover.</p>
+    </section>
+    <section>
+      <h2>Largest Selection of Non-Alcoholic Drinks in San Diego</h2>
+      ${img("na-wine-cheers", "Non-alcoholic wine tasting in San Diego at Monday Morning Bottle Shop", 'width="600" height="500" ')}
+      <p>No other store in San Diego comes close to our range. Over 500 products across every category. Here is what you will find:</p>
+      <ul>
+        <li><strong>Non-Alcoholic Beer</strong> — IPAs, lagers, stouts, sours, and wheat beers from Athletic Brewing, Bravus, Partake, and dozens more.</li>
+        <li><strong>Non-Alcoholic Wine</strong> — Reds, whites, ros\u00e9s, and sparkling wines that deliver real complexity. No compromise on taste.</li>
+        <li><strong>Non-Alcoholic Spirits</strong> — Gin, whiskey, tequila, and rum alternatives built for cocktails. Mix them exactly like the originals.</li>
+        <li><strong>Ready-to-Drink Mocktails</strong> — Grab-and-go options for picnics, parties, and weeknight dinners. Open and enjoy.</li>
+        <li><strong>Functional Beverages</strong> — Adaptogens, nootropics, CBD, and botanical blends. Drinks that do more than taste good.</li>
+      </ul>
+      <a href="/collections/all">Browse All 500+ Products</a>
+    </section>
+    <section>
+      <h2>Visit Our San Diego Bottle Shop</h2>
+      <h3>Pacific Beach</h3>
+      <p><strong>Address:</strong> 1854 Garnet Ave, San Diego, CA 92109</p>
+      <p><strong>Hours:</strong> Mon\u2013Sat: 11 AM \u2013 8 PM, Sun: 11 AM \u2013 4 PM</p>
+      <h3>Ocean Beach</h3>
+      <p><strong>Address:</strong> 4967 Newport Ave, San Diego, CA 92107</p>
+      <p><strong>Hours:</strong> Mon\u2013Sun: 9 AM \u2013 6 PM, Wed: Open until 8 PM</p>
+      <p>Both locations feature a full tasting bar. Walk in and sample anything before you commit. Our staff knows every product on the shelf and will match you with something you love.</p>
+      <p>We built these shops for anyone who wants better options. Athletes looking for post-workout drinks. Parents who want something special after bedtime. Professionals who refuse to sacrifice their mornings. And anyone who is simply curious about what non-alcoholic drinks can taste like in 2026.</p>
+      <p>No judgment. No pressure. Just great drinks and people who care about what they are drinking.</p>
+      <a href="/locations">Get Directions</a>
+    </section>
+    <section>
+      <h2>Frequently Asked Questions About Non-Alcoholic Drinks in San Diego</h2>
+      <h3>Where can I buy non-alcoholic drinks in San Diego?</h3>
+      <p>Monday Morning has two dedicated non-alcoholic bottle shops in San Diego. Visit us at 1854 Garnet Ave in Pacific Beach or 4967 Newport Ave in Ocean Beach. We carry over 500 zero-proof beers, wines, spirits, and functional drinks. You can also shop our full catalog online with shipping available.</p>
+      <h3>Do non-alcoholic drinks contain alcohol?</h3>
+      <p>Most non-alcoholic drinks contain less than 0.5% ABV, which is the legal threshold. Many of our products are completely 0.0% ABV. For reference, a ripe banana contains roughly the same amount of alcohol as a 0.5% drink. Our staff can help you find options that match your preferences.</p>
+      <h3>What are the best non-alcoholic beers in San Diego?</h3>
+      <p>We carry top-rated brands like Athletic Brewing, Bravus, Partake, and Best Day. Popular styles include IPAs, lagers, stouts, and wheat beers. Stop by our tasting bar to sample before you buy. Our staff stays current on every new release.</p>
+      <h3>Do you offer tastings?</h3>
+      <p>Yes. Both of our San Diego locations have a tasting bar. Walk in any time during business hours and sample anything on the shelf. No appointment needed. We rotate featured tastings weekly so there is always something new to try.</p>
+      <h3>Can I order non-alcoholic drinks online?</h3>
+      <p>Absolutely. Shop our full catalog at mondaymorning-af.com and get non-alcoholic drinks shipped directly to your door. We offer fast shipping across the US. Local San Diego customers can also arrange in-store pickup.</p>
+    </section>
+    <section>
+      <h2>Ready to Explore?</h2>
+      <p>San Diego's largest selection of non-alcoholic drinks is waiting. Shop online or stop by our Pacific Beach and Ocean Beach locations today.</p>
+      <a href="/collections/all">Shop Online</a>
+      <a href="/locations">Visit a Location</a>
+    </section>
+  </main>
+  ${generateFooterHTML()}`;
+}
+
 function generateCollectionBody(route) {
   // Extract collection name from title (before the |)
   const collectionName = route.title.split("|")[0].trim();
@@ -805,6 +871,7 @@ function getBodyContent(route, allProducts, allBlogPosts) {
   if (path === "/terms") return generateTermsBody();
   if (path === "/shipping") return generateShippingBody();
   if (path === "/returns") return generateReturnsBody();
+  if (path === "/non-alcoholic-drinks-san-diego") return generateNADrinksSanDiegoBody();
 
   if (path.startsWith("/collections/")) return generateCollectionBody(route);
 
@@ -905,6 +972,61 @@ const staticRoutes = [
     title: "Returns & Refunds | Monday Morning Bottle Shop",
     description: "Monday Morning's return and refund policy for non-alcoholic beverages. Learn about our satisfaction guarantee.",
     schema: [organizationSchema],
+  },
+  {
+    path: "/non-alcoholic-drinks-san-diego",
+    title: "Non-Alcoholic Drinks San Diego | 500+ Zero Proof Options",
+    description: "San Diego's largest non-alcoholic bottle shop. 500+ zero-proof beers, wines, spirits and functional drinks. Visit our Pacific Beach and Ocean Beach locations or shop online.",
+    schema: [
+      organizationSchema,
+      localBusinessSchema,
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: [
+          {
+            "@type": "Question",
+            name: "Where can I buy non-alcoholic drinks in San Diego?",
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: "Monday Morning has two dedicated non-alcoholic bottle shops in San Diego. Visit us at 1854 Garnet Ave in Pacific Beach or 4967 Newport Ave in Ocean Beach. We carry over 500 zero-proof beers, wines, spirits, and functional drinks. You can also shop our full catalog online with shipping available.",
+            },
+          },
+          {
+            "@type": "Question",
+            name: "Do non-alcoholic drinks contain alcohol?",
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: "Most non-alcoholic drinks contain less than 0.5% ABV, which is the legal threshold. Many of our products are completely 0.0% ABV. For reference, a ripe banana contains roughly the same amount of alcohol as a 0.5% drink.",
+            },
+          },
+          {
+            "@type": "Question",
+            name: "What are the best non-alcoholic beers in San Diego?",
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: "We carry top-rated brands like Athletic Brewing, Bravus, Partake, and Best Day. Popular styles include IPAs, lagers, stouts, and wheat beers. Stop by our tasting bar to sample before you buy.",
+            },
+          },
+          {
+            "@type": "Question",
+            name: "Do you offer tastings?",
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: "Yes. Both of our San Diego locations have a tasting bar. Walk in any time during business hours and sample anything on the shelf. No appointment needed.",
+            },
+          },
+          {
+            "@type": "Question",
+            name: "Can I order non-alcoholic drinks online?",
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: "Absolutely. Shop our full catalog at mondaymorning-af.com and get non-alcoholic drinks shipped directly to your door. We offer fast shipping across the US. Local San Diego customers can also arrange in-store pickup.",
+            },
+          },
+        ],
+      },
+    ],
   },
 
   // Cart & checkout (SPA-only, noIndex)
