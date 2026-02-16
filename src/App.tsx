@@ -33,6 +33,7 @@ import WholesaleAuth from "./pages/WholesaleAuth";
 import WholesaleCatalog from "./pages/WholesaleCatalog";
 import Valentines from "./pages/Valentines";
 import Events from "./pages/Events";
+import NonAlcoholicDrinksSanDiego from "./pages/NonAlcoholicDrinksSanDiego";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -82,6 +83,7 @@ const AppContent = () => {
         <Route path="/wholesale-catalog" element={<WholesaleCatalog />} />
         <Route path="/valentines" element={<Valentines />} />
         {/* <Route path="/events" element={<Events />} /> */}
+        <Route path="/non-alcoholic-drinks-san-diego" element={<NonAlcoholicDrinksSanDiego />} />
         {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
         <Route path="*" element={<NotFound />} />
       </Routes>
