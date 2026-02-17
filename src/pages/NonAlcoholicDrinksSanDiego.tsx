@@ -28,7 +28,7 @@ const faqs = [
   {
     question: "What are the best non-alcoholic beers in San Diego?",
     answer:
-      "We carry top-rated brands like Athletic Brewing, Bravus, Partake, and Best Day. Popular styles include IPAs, lagers, stouts, and wheat beers. Stop by our tasting bar to sample before you buy. Our staff stays current on every new release.",
+      "We carry top-rated craft brands like Beaglepuss, Below Brew Co., FLVR!, Mash Gang, Capacity, and UNLTD. Popular styles include West Coast pilsners, helles lagers, Mexican lagers, IPAs, stouts, and wheat beers. Stop by our tasting bar to sample before you buy. Our staff stays current on every new release.",
   },
   {
     question: "Do you offer tastings?",
