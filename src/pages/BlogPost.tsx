@@ -9,6 +9,7 @@ import { format } from "date-fns";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import BlogProductCard from "@/components/blog/BlogProductCard";
+import AdaptogenChart from "@/components/blog/AdaptogenChart";
 
 interface BlogPost {
   id: string;
@@ -230,10 +231,15 @@ const BlogPost = () => {
                   const contentWithoutH1 = post.content.replace(/^#\s+[^\n]+\n+/, '');
                   // Also strip the bold subtitle line right after
                   const cleanContent = contentWithoutH1.replace(/^\*\*[^*]+\*\*\n+/, '');
-                  const parts = cleanContent.split(/\{\{PRODUCT:([^}]+)\}\}/);
+                  // Split on both PRODUCT and special chart placeholders
+                  const parts = cleanContent.split(/(\{\{PRODUCT:[^}]+\}\}|\{\{ADAPTO_CHART\}\})/);
                   return parts.map((part, i) => {
-                    if (i % 2 === 1) {
-                      return <BlogProductCard key={`product-${i}`} handle={part.trim()} />;
+                    const productMatch = part.match(/^\{\{PRODUCT:([^}]+)\}\}$/);
+                    if (productMatch) {
+                      return <BlogProductCard key={`product-${i}`} handle={productMatch[1].trim()} />;
+                    }
+                    if (part === '{{ADAPTO_CHART}}') {
+                      return <AdaptogenChart key={`chart-${i}`} />;
                     }
                     return (
                       <div
