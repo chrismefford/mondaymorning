@@ -75,6 +75,10 @@ const Header = () => {
      window.location.pathname === '/locations' ||
      window.location.pathname === '/valentines' ||
      window.location.pathname === '/non-alcoholic-drinks-san-diego' ||
+     window.location.pathname === '/non-alcoholic-beer-guide' ||
+     window.location.pathname === '/best-non-alcoholic-drinks' ||
+     window.location.pathname === '/new-to-non-alcoholic-drinks' ||
+     window.location.pathname === '/alcohol-free-lifestyle-benefits' ||
      window.location.pathname.startsWith('/blog/'));
 
   // Wholesale catalog needs solid header background always
