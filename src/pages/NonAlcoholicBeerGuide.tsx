@@ -144,10 +144,10 @@ const NonAlcoholicBeerGuide = () => {
               </h2>
               <div className="space-y-5 font-sans text-base text-foreground/80 leading-relaxed">
                 <p>
-                  Non-alcoholic beer is brewed using the same ingredients and processes as regular beer — malted barley, hops, yeast, and water. The difference is in what happens after fermentation. Alcohol is either removed through vacuum distillation or arrested dealcoholization, or the beer is brewed using a process that limits alcohol production from the start.
+                  Non-alcoholic beer is brewed using the same ingredients and processes as regular beer: malted barley, hops, yeast, and water. The difference is in what happens after fermentation. Alcohol is either removed through vacuum distillation or arrested dealcoholization, or the beer is brewed using a process that limits alcohol production from the start.
                 </p>
                 <p>
-                  In the United States, any beverage with less than 0.5% ABV is legally classified as non-alcoholic. The best NA beers today clock in at 0.0% to 0.3% ABV. That is a trace amount — less than what occurs naturally in fermented fruit juice.
+                  In the United States, any beverage with less than 0.5% ABV is legally classified as non-alcoholic. The best NA beers today clock in at 0.0% to 0.3% ABV. That is a trace amount, less than what occurs naturally in fermented fruit juice.
                 </p>
                 <p>
                   The sober-curious movement has transformed the category. What was once limited to watery, flat-tasting options is now a thriving craft segment. Athletes, health-conscious drinkers, designated drivers, pregnant individuals, and anyone who wants great flavor without the effects of alcohol are fueling the fastest-growing segment in the beverage industry.

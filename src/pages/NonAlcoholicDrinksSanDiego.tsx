@@ -33,7 +33,7 @@ const faqs = [
   {
     question: "Do you offer tastings?",
     answer:
-      "Yes. Both of our San Diego locations have a tasting bar. Walk in any time during business hours and sample beers, spirits, and functional drinks on the shelf. For wines, tastings are available when we have a bottle already open that day — we don't always crack a new bottle just for a sample. We rotate featured tastings weekly so there is always something new to try.",
+      "Yes. Both of our San Diego locations have a tasting bar. Walk in any time during business hours and sample beers, spirits, and functional drinks on the shelf. For wines, tastings are available when we have a bottle already open that day. We don't always crack a new bottle just for a sample. We rotate featured tastings weekly so there is always something new to try.",
   },
   {
     question: "Can I order non-alcoholic drinks online?",

@@ -24,12 +24,12 @@ const faqs = [
   {
     question: "Is the sober-curious movement the same as sobriety?",
     answer:
-      "No. Sober-curious is not the same as sobriety. Sober-curious describes a deliberate, investigative approach to alcohol — questioning your relationship with it without committing to complete abstinence. Many sober-curious people still drink occasionally but have significantly reduced their consumption and become more intentional about when and why they drink.",
+      "No. Sober-curious is not the same as sobriety. Sober-curious describes a deliberate, investigative approach to alcohol, questioning your relationship with it without committing to complete abstinence. Many sober-curious people still drink occasionally but have significantly reduced their consumption and become more intentional about when and why they drink.",
   },
   {
     question: "How quickly will I see benefits from reducing alcohol?",
     answer:
-      "Many people notice improved sleep within the first week. Skin changes are often visible within two to four weeks. Mental clarity and energy improvements typically appear within the first month. Longer-term benefits — liver recovery, reduced cancer risk, cardiovascular improvements — compound over months and years of reduced consumption.",
+      "Many people notice improved sleep within the first week. Skin changes are often visible within two to four weeks. Mental clarity and energy improvements typically appear within the first month. Longer-term benefits like liver recovery, reduced cancer risk, and cardiovascular improvements compound over months and years of reduced consumption.",
   },
   {
     question: "Will I miss alcohol at social events?",
@@ -44,7 +44,7 @@ const faqs = [
   {
     question: "Can I maintain an alcohol-free lifestyle and still have a social life?",
     answer:
-      "Absolutely. The social dimension of drinking is about presence, ritual, and shared experience — none of which require alcohol. A great non-alcoholic drink in your hand at a party, a sparkling wine in a glass at a dinner toast, or a cold beer at a barbecue all support the same social function as their alcoholic equivalents.",
+      "Absolutely. The social dimension of drinking is about presence, ritual, and shared experience, none of which require alcohol. A great non-alcoholic drink in your hand at a party, a sparkling wine in a glass at a dinner toast, or a cold beer at a barbecue all support the same social function as their alcoholic equivalents.",
   },
   {
     question: "What are the best functional drinks for replacing alcohol's relaxing effect?",
@@ -66,7 +66,7 @@ const benefits = [
   { area: "Physical Performance", detail: "Alcohol impairs protein synthesis and recovery. Athletes and active people see immediate performance gains." },
   { area: "Skin & Appearance", detail: "Alcohol dehydrates and causes inflammation. Most people see visible skin improvement within three to four weeks." },
   { area: "Mood & Mental Health", detail: "Alcohol is a depressant. Many people find their baseline mood improves significantly after reducing or eliminating it." },
-  { area: "Weight & Metabolism", detail: "Alcohol calories are empty and numerous. Eliminating them — without changing anything else — often leads to weight loss." },
+  { area: "Weight & Metabolism", detail: "Alcohol calories are empty and numerous. Eliminating them, without changing anything else, often leads to weight loss." },
 ];
 
 const AlcoholFreeLifestyle = () => {
@@ -74,7 +74,7 @@ const AlcoholFreeLifestyle = () => {
     <div className="min-h-screen bg-background">
       <SEO
         title="Alcohol-Free Lifestyle Benefits | Health, Clarity & Balance"
-        description="Discover the real benefits of an alcohol-free lifestyle in 2026. From better sleep and mental clarity to the sober-curious movement — everything you need to know."
+        description="Discover the real benefits of an alcohol-free lifestyle in 2026. From better sleep and mental clarity to the sober-curious movement. Everything you need to know."
         path="/alcohol-free-lifestyle-benefits"
         schema={[faqSchema, websiteSchema]}
       />
@@ -97,7 +97,7 @@ const AlcoholFreeLifestyle = () => {
                 Alcohol-Free Lifestyle Benefits
               </h1>
               <p className="font-sans text-lg text-cream/80 max-w-2xl mb-4 leading-relaxed">
-                The alcohol-free lifestyle is one of the most impactful changes a person can make. Better sleep, sharper focus, improved physical performance, and a richer social life — without giving up the ritual of a great drink. This is what the sober-curious movement has unlocked.
+                The alcohol-free lifestyle is one of the most impactful changes a person can make. Better sleep, sharper focus, improved physical performance, and a richer social life, all without giving up the ritual of a great drink. This is what the sober-curious movement has unlocked.
               </p>
               <div className="flex flex-wrap gap-4 mt-8">
                 <Link to="/collections/functional">
@@ -125,13 +125,13 @@ const AlcoholFreeLifestyle = () => {
               </h2>
               <div className="space-y-5 font-sans text-base text-foreground/80 leading-relaxed">
                 <p>
-                  The sober-curious movement is not about abstinence ideology. It is about intentionality. It is about questioning whether alcohol is serving you — your health, your mornings, your relationships, your performance — and having the freedom to choose differently.
+                  The sober-curious movement is not about abstinence ideology. It is about intentionality. It is about questioning whether alcohol is serving you, your health, your mornings, your relationships, your performance, and having the freedom to choose differently.
                 </p>
                 <p>
                   In 2026, the culture around alcohol has shifted. Major research has surfaced showing there is no safe level of alcohol consumption. Athletes at the highest levels are publicly alcohol-free. Social circles that once built everything around drinking are adapting to include everyone. The stigma around not drinking has largely evaporated.
                 </p>
                 <p>
-                  What has replaced it is a genuine appreciation for the alcohol-free lifestyle — not as a compromise, but as an upgrade. The people living it are not giving something up. They are getting more back than they expected.
+                  What has replaced it is a genuine appreciation for the alcohol-free lifestyle, not as a compromise, but as an upgrade. The people living it are not giving something up. They are getting more back than they expected.
                 </p>
                 <p>
                   Non-alcoholic drinks are the bridge. They preserve the ritual, the flavor, and the social experience of drinking while eliminating the downsides entirely. At Monday Morning, we exist to make that bridge as good as possible.
@@ -173,7 +173,7 @@ const AlcoholFreeLifestyle = () => {
               </h2>
               <div className="space-y-5 font-sans text-base text-cream/80 leading-relaxed">
                 <p>
-                  The most common concern about going alcohol-free is social. What do you do at parties? At dinners? At celebrations? The answer is the same thing everyone else is doing — just without the impairment.
+                  The most common concern about going alcohol-free is social. What do you do at parties? At dinners? At celebrations? The answer is the same thing everyone else is doing, just without the impairment.
                 </p>
                 <p>
                   Non-alcoholic drinks have eliminated the visual distinction. A great non-alcoholic beer in your hand looks identical to a regular beer. A sparkling NA wine in a glass is indistinguishable at a toast. The social ritual is preserved completely.

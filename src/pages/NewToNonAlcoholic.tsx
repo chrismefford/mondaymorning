@@ -49,7 +49,7 @@ const faqs = [
   {
     question: "Can I drink non-alcoholic drinks every day?",
     answer:
-      "Yes. Unlike alcoholic beverages, non-alcoholic drinks carry none of the health risks associated with regular drinking. Many people incorporate NA drinks as a daily ritual — an evening wind-down drink, a beer with dinner, or a functional beverage in the afternoon — without any concern.",
+      "Yes. Unlike alcoholic beverages, non-alcoholic drinks carry none of the health risks associated with regular drinking. Many people incorporate NA drinks as a daily ritual: an evening wind-down drink, a beer with dinner, or a functional beverage in the afternoon, without any concern.",
   },
   {
     question: "How much do non-alcoholic drinks cost compared to regular drinks?",
@@ -115,7 +115,7 @@ const NewToNonAlcoholic = () => {
                 New to Non-Alcoholic Drinks?
               </h1>
               <p className="font-sans text-lg text-cream/80 max-w-2xl mb-4 leading-relaxed">
-                New to non-alcoholic drinks and not sure where to start? You are in the right place. This guide covers everything a beginner needs to know — what to expect, what to try first, and how to find drinks you will actually love.
+                New to non-alcoholic drinks and not sure where to start? You are in the right place. This guide covers everything a beginner needs to know: what to expect, what to try first, and how to find drinks you will actually love.
               </p>
               <div className="flex flex-wrap gap-4 mt-8">
                 <Link to="/collections/best-sellers">
@@ -143,13 +143,13 @@ const NewToNonAlcoholic = () => {
               </h2>
               <div className="space-y-5 font-sans text-base text-foreground/80 leading-relaxed">
                 <p>
-                  Most people arrive at non-alcoholic drinks from different directions. Some want to cut alcohol for health reasons. Others are pregnant, in recovery, or training seriously. Many are simply sober-curious — interested in what life with less alcohol looks and feels like without a full commitment to sobriety.
+                  Most people arrive at non-alcoholic drinks from different directions. Some want to cut alcohol for health reasons. Others are pregnant, in recovery, or training seriously. Many are simply sober-curious, interested in what life with less alcohol looks and feels like without a full commitment to sobriety.
                 </p>
                 <p>
                   Whatever brought you here, the good news is the same: the quality of non-alcoholic drinks in 2026 is extraordinary. You are not giving something up. You are gaining a new category of genuinely excellent drinks.
                 </p>
                 <p>
-                  The sober-curious movement has reshaped the entire beverage industry. Major breweries, spirit brands, and new dedicated NA companies have all invested heavily in this space. The result is a market full of options that meet you wherever you are — whether you want something that tastes exactly like beer, functions like a cocktail, or actively improves your wellbeing.
+                  The sober-curious movement has reshaped the entire beverage industry. Major breweries, spirit brands, and new dedicated NA companies have all invested heavily in this space. The result is a market full of options that meet you wherever you are, whether you want something that tastes exactly like beer, functions like a cocktail, or actively improves your wellbeing.
                 </p>
               </div>
             </div>
@@ -170,11 +170,11 @@ const NewToNonAlcoholic = () => {
                 {[
                   {
                     heading: "The first sip might surprise you",
-                    body: "Non-alcoholic drinks often taste different from what you expect — sometimes better. Many people assume NA beer will be flat and thin. A great craft NA IPA tends to change that assumption immediately.",
+                    body: "Non-alcoholic drinks often taste different from what you expect, sometimes better. Many people assume NA beer will be flat and thin. A great craft NA IPA tends to change that assumption immediately.",
                   },
                   {
                     heading: "You will not feel the same",
-                    body: "You will not feel alcohol's effects. That is the point. What you will feel depends on what you drink — refreshed, satisfied, and present. Functional beverages can add their own effects through botanicals and adaptogens.",
+                    body: "You will not feel alcohol's effects. That is the point. What you will feel depends on what you drink: refreshed, satisfied, and present. Functional beverages can add their own effects through botanicals and adaptogens.",
                   },
                   {
                     heading: "Some categories are better than others",
@@ -243,7 +243,7 @@ const NewToNonAlcoholic = () => {
                 {[
                   {
                     type: "Non-Alcoholic Beer",
-                    desc: "Brewed like regular beer, then dealcoholized. Every style exists — lagers, IPAs, stouts, sours, wheat beers. The most approachable and widely available category.",
+                    desc: "Brewed like regular beer, then dealcoholized. Every style exists: lagers, IPAs, stouts, sours, wheat beers. The most approachable and widely available category.",
                     link: "/collections/na-beer",
                   },
                   {

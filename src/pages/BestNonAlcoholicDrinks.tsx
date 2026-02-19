@@ -110,7 +110,7 @@ const BestNonAlcoholicDrinks = () => {
                 The Best Non-Alcoholic Drinks
               </h1>
               <p className="font-sans text-lg text-cream/80 max-w-2xl mb-4 leading-relaxed">
-                The best non-alcoholic drinks have arrived. Across every category — beer, wine, spirits, and functional beverages — the quality in 2026 is extraordinary. This guide covers what to drink, why it matters, and how to find your perfect match.
+                The best non-alcoholic drinks have arrived. Across every category, beer, wine, spirits, and functional beverages, the quality in 2026 is extraordinary. This guide covers what to drink, why it matters, and how to find your perfect match.
               </p>
               <div className="flex flex-wrap gap-4 mt-8">
                 <Link to="/shop">
