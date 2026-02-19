@@ -750,6 +750,369 @@ function generateNADrinksSanDiegoBody() {
   ${generateFooterHTML()}`;
 }
 
+function generateNABeerGuideBody() {
+  return `<header>${generateNavHTML()}</header>
+  <main>
+    <section>
+      <h1>The Complete Guide to Non-Alcoholic Beer</h1>
+      ${img("beach-bonfire-beers", "Non-alcoholic beer guide — friends enjoying craft NA beers at a San Diego beach bonfire", 'width="1200" height="600" ')}
+      <p>Non-alcoholic beer has undergone a revolution. The best non-alcoholic beers in 2026 are full-bodied, complex, and crafted with the same care as their alcoholic counterparts. This guide covers every style, the top brands, how to choose the right one, and where to find the best selection in San Diego.</p>
+      <a href="/collections/na-beer">Shop Non-Alcoholic Beer</a>
+      <a href="/locations">Visit Our Tasting Bar</a>
+    </section>
+    <section>
+      <h2>What Makes Non-Alcoholic Beer Great in 2026</h2>
+      <p>The technology behind non-alcoholic beer has advanced dramatically. Modern dealcoholization preserves the hop character, malt backbone, and aromatic complexity that define great beer. Vacuum distillation, arrested fermentation, and reverse osmosis have all improved to the point where the best NA beers are genuinely indistinguishable from their alcoholic equivalents in blind tastings.</p>
+      <p>Dedicated non-alcoholic breweries like Athletic Brewing, Bravus, and Mash Gang are not adapting existing recipes. They are building beers from the ground up for the non-alcoholic format, optimizing for flavor without alcohol rather than trying to subtract it.</p>
+      <p>The result is a category that has earned its place. Non-alcoholic beer is not a compromise. It is a legitimate choice for anyone who loves beer flavor and wants it without the alcohol.</p>
+    </section>
+    <section>
+      <h2>Non-Alcoholic Beer Styles Explained</h2>
+      <h3>IPA (India Pale Ale)</h3>
+      <p>The most popular NA beer style. Hop-forward, aromatic, and available in West Coast, hazy, and session variants. Athletic Brewing's Run Wild and Free Wave are category leaders.</p>
+      <h3>Lager &amp; Pilsner</h3>
+      <p>Clean, crisp, and universally approachable. The easiest entry point for anyone new to non-alcoholic beer. Perfect for hot days, barbecues, and casual drinking.</p>
+      <h3>Stout &amp; Porter</h3>
+      <p>Rich, roasty, and full-bodied. Non-alcoholic stouts deliver chocolate, coffee, and caramel notes. Best for cold evenings and slow sipping.</p>
+      <h3>Wheat Beer</h3>
+      <p>Light, slightly sweet, and often brewed with citrus or coriander. A refreshing style that works year-round and pairs well with lighter foods.</p>
+      <h3>Sour &amp; Wild Ale</h3>
+      <p>Tart, fruity, and complex. The most adventurous NA beer style. Sours offer a completely different drinking experience and are growing rapidly in popularity.</p>
+    </section>
+    <section>
+      <h2>How to Choose the Right Non-Alcoholic Beer</h2>
+      <p>Start with what you already know. If you drink IPAs, try a non-alcoholic IPA. If you prefer lagers, start there. Familiarity is the fastest path to finding something you love.</p>
+      <p>Consider the occasion. For sports, barbecues, and casual afternoons, a crisp lager works best. For dinner and food pairing, a darker ale or a sour offers more complexity. For cold evenings and slow sipping, a stout or porter is the move.</p>
+      <p>Pay attention to ABV. Most NA beers are 0.5% or under. If you need 0.0% exactly for medical, religious, or personal reasons, filter specifically for that.</p>
+      <p>When in doubt, come taste. Both our San Diego locations have a full tasting bar. Sample before you commit.</p>
+    </section>
+    <section>
+      <h2>Who Non-Alcoholic Beer Is Perfect For</h2>
+      ${img("beach-bonfire", "Friends enjoying non-alcoholic beer at a beach bonfire in San Diego", 'width="600" height="480" ')}
+      <ul>
+        <li><strong>Athletes &amp; Active People</strong> — Hydration and recovery without alcohol's performance penalties.</li>
+        <li><strong>Sober-Curious Drinkers</strong> — Explore the flavor experience of beer without the commitment to alcohol.</li>
+        <li><strong>Pregnant Individuals</strong> — Enjoy a cold beer without worrying about alcohol content.</li>
+        <li><strong>Designated Drivers</strong> — Never feel left out. Hold a great beer and enjoy the evening.</li>
+        <li><strong>Anyone In Recovery</strong> — The ritual and flavor of beer without any risk of relapse.</li>
+        <li><strong>Health-Conscious Drinkers</strong> — Fewer calories, no hangover, and real flavor. All upside.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Common Myths About Non-Alcoholic Beer</h2>
+      <p><strong>Myth: Non-alcoholic beer tastes flat and watery.</strong> Modern craft NA beers are full-bodied, aromatic, and complex. The brewing technology has advanced dramatically in the last five years.</p>
+      <p><strong>Myth: Non-alcoholic beer is only for people who can't drink.</strong> Most NA beer drinkers can drink alcohol. They choose not to for health, performance, or lifestyle reasons.</p>
+      <p><strong>Myth: All NA beers are the same.</strong> The category spans hundreds of brands, dozens of styles, and wildly different flavor profiles. There is as much variety in NA beer as in regular craft beer.</p>
+      <p><strong>Myth: Non-alcoholic beer is just for health fanatics.</strong> Non-alcoholic beer is for anyone who wants to drink something great. Athletes, parents, professionals, and casual drinkers all buy it for different reasons.</p>
+    </section>
+    <section>
+      <h2>Non-Alcoholic Beer in San Diego</h2>
+      <p>San Diego has one of the most active craft beer cultures in America. It also has one of the most health-conscious populations. Those two facts make it the perfect city for non-alcoholic beer to thrive.</p>
+      <p>Monday Morning Bottle Shop in Pacific Beach and Ocean Beach carries the largest non-alcoholic beer selection in San Diego. Walk in, hit the tasting bar, and let our staff guide you to your next favorite beer.</p>
+      <p>Whether you are heading to the beach, hosting a backyard gathering, or just want a cold beer after a long workout, we have the right non-alcoholic option for you.</p>
+      <a href="/locations">Find Our Locations</a>
+    </section>
+    <section>
+      <h2>Non-Alcoholic Beer: Frequently Asked Questions</h2>
+      <h3>What is the best non-alcoholic beer?</h3>
+      <p>The best non-alcoholic beer depends on your style preference. Athletic Brewing leads in IPAs and golden ales. Bravus excels in stouts and amber ales. Mash Gang and Untitled Art push boundaries with sours and experimental styles. The best way to find your favorite is to taste several.</p>
+      <h3>Does non-alcoholic beer have alcohol?</h3>
+      <p>Most non-alcoholic beers contain less than 0.5% ABV. Some are 0.0%. For reference, a ripe banana contains roughly the same amount of alcohol as a 0.5% NA beer.</p>
+      <h3>Is non-alcoholic beer good for you?</h3>
+      <p>Non-alcoholic beer has significantly fewer calories than regular beer and eliminates the negative health effects of alcohol. Some NA beers contain B vitamins, electrolytes, and polyphenols. It is a genuinely healthier choice.</p>
+      <h3>Can you drink non-alcoholic beer while pregnant?</h3>
+      <p>Many pregnant individuals choose 0.0% ABV beers. Consult your healthcare provider for personal guidance. We carry a wide selection of 0.0% options and always label them clearly.</p>
+      <h3>How many calories are in non-alcoholic beer?</h3>
+      <p>Most non-alcoholic beers range from 50 to 100 calories per can, compared to 150 to 250 for regular beer. The reduction comes primarily from the absence of alcohol, which is calorie-dense.</p>
+      <h3>Where can I buy non-alcoholic beer in San Diego?</h3>
+      <p>Monday Morning Bottle Shop has the largest selection in San Diego. Visit our Pacific Beach location at 1854 Garnet Ave or Ocean Beach at 4967 Newport Ave. Both locations have a tasting bar.</p>
+      <h3>What non-alcoholic beer tastes most like real beer?</h3>
+      <p>Athletic Brewing's Run Wild IPA and Free Wave Hazy IPA are consistently rated as the closest to their alcoholic counterparts. For lagers, Heineken 0.0 and Clausthaler are excellent. For stouts, Bravus Oatmeal Stout is outstanding.</p>
+    </section>
+    <section>
+      <h2>Ready to Find Your Beer?</h2>
+      <p>Shop our full non-alcoholic beer collection online or visit us in San Diego to taste before you buy.</p>
+      <a href="/collections/na-beer">Shop Non-Alcoholic Beer</a>
+      <a href="/locations">Visit a Location</a>
+    </section>
+  </main>
+  ${generateFooterHTML()}`;
+}
+
+function generateBestNADrinksBody() {
+  return `<header>${generateNavHTML()}</header>
+  <main>
+    <section>
+      <h1>The Best Non-Alcoholic Drinks</h1>
+      ${img("rooftop-cheers", "Friends enjoying the best non-alcoholic drinks at a rooftop celebration", 'width="1200" height="600" ')}
+      <p>The best non-alcoholic drinks have arrived. Across every category — beer, wine, spirits, and functional beverages — the quality in 2026 is extraordinary. This guide covers what to drink, why it matters, and how to find your perfect match.</p>
+      <a href="/shop">Shop All Drinks</a>
+      <a href="/collections/best-sellers">See Best Sellers</a>
+    </section>
+    <section>
+      <h2>Why Non-Alcoholic Drinks Have Changed Everything</h2>
+      <p>Five years ago, choosing a non-alcoholic drink at a bar or restaurant meant sparkling water or a sugary mocktail. That era is over. The non-alcoholic beverage industry has undergone a complete transformation, driven by consumer demand, investment in brewing technology, and a cultural shift in how people think about drinking.</p>
+      <p>The sober-curious movement is not fringe. According to industry data, over 40% of adults now actively reduce their alcohol consumption. The reasons vary: health, fitness, mental clarity, pregnancy, recovery, religion, or simply preference. What unites them is the demand for great-tasting alternatives.</p>
+      <p>Non-alcoholic beer, wine, spirits, and functional beverages have answered that demand. The best options today compete directly with their alcoholic counterparts on flavor, complexity, and experience. The only thing missing is the alcohol.</p>
+      <p>At Monday Morning Bottle Shop, we carry over 500 non-alcoholic products across every category. This guide is designed to help you navigate the best of what the category has to offer.</p>
+    </section>
+    <section>
+      <h2>Best Non-Alcoholic Drinks by Category</h2>
+      <p>Every major drink category now has outstanding non-alcoholic options. Here is what to know about each one.</p>
+      <h3>Non-Alcoholic Beer</h3>
+      <p>The largest and most developed NA category. IPAs, lagers, stouts, sours, and wheat beers from dedicated craft breweries. Best for anyone who loves beer flavor and wants nothing to change except the ABV.</p>
+      <a href="/collections/na-beer">Shop NA Beer</a>
+      <h3>Non-Alcoholic Wine</h3>
+      <p>Reds, whites, ros\u00e9s, and sparkling wines that deliver real complexity. Modern dealcoholization technology has closed the gap with alcoholic wine significantly. The best bottles pair beautifully with food.</p>
+      <a href="/collections/wine-alternatives">Shop NA Wine</a>
+      <h3>Non-Alcoholic Spirits</h3>
+      <p>Gin, whiskey, tequila, rum, and aperitif alternatives. Built for cocktails. Use them exactly like the originals in any recipe. The most versatile NA category for home bartenders.</p>
+      <a href="/collections/spirit-alternatives">Shop NA Spirits</a>
+      <h3>Functional Beverages</h3>
+      <p>Adaptogens, nootropics, CBD, kava, and botanical blends that do more than taste good. These drinks offer mood, focus, and relaxation benefits. The fastest-growing segment in the NA category.</p>
+      <a href="/collections/functional">Shop Functional Drinks</a>
+    </section>
+    <section>
+      <h2>Best Non-Alcoholic Drinks for Every Occasion</h2>
+      ${img("upscale-bar-toast", "Best non-alcoholic drinks for dinner parties and celebrations at an upscale bar", 'width="600" height="500" ')}
+      <h3>Dinner Parties &amp; Celebrations</h3>
+      <p>Non-alcoholic sparkling wine or a crafted NA cocktail using zero-proof spirits. Sparkling NA wines in particular create the right visual and sensory experience for toasts and special moments.</p>
+      <h3>Beach Days &amp; Outdoor Events</h3>
+      <p>Canned non-alcoholic beer or ready-to-drink mocktails. Easy to transport, cold and refreshing, and they fit perfectly into any outdoor social setting.</p>
+      <h3>Post-Workout Recovery</h3>
+      <p>Non-alcoholic beer with electrolytes, or functional drinks with adaptogens. Athletic Brewing was built specifically for this use case. Many NA beers now contain added B vitamins and minerals.</p>
+      <h3>Evening Wind-Down</h3>
+      <p>Functional beverages with calming botanicals, kava, or ashwagandha. Kin Euphorics, Apl\u00f3s, and similar brands create drinks specifically designed to replicate the relaxing effect of an evening drink.</p>
+      <h3>Home Cocktail Hour</h3>
+      <p>Non-alcoholic spirits paired with quality mixers. A zero-proof gin and tonic, NA Negroni, or a mocktail Old Fashioned give you the full cocktail-making experience without the alcohol.</p>
+    </section>
+    <section>
+      <h2>Finding the Best Non-Alcoholic Drink for Your Taste</h2>
+      <ul>
+        <li><strong>You like something crisp and refreshing</strong> — Non-alcoholic lager, pilsner, or sparkling water with botanicals.</li>
+        <li><strong>You like something complex and aromatic</strong> — Non-alcoholic gin, an amaro alternative, or a botanical spirit.</li>
+        <li><strong>You like something rich and satisfying</strong> — Non-alcoholic stout, porter, or a bold red wine alternative.</li>
+        <li><strong>You like something sweet and fruity</strong> — Ready-to-drink NA cocktails, sparkling ros\u00e9, or tropical mocktails.</li>
+        <li><strong>You want something that does something</strong> — Functional drinks with kava, adaptogens, or CBD for real effects.</li>
+        <li><strong>You want something easy to bring to a party</strong> — Canned NA beers or RTD non-alcoholic cocktails.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Frequently Asked Questions</h2>
+      <h3>What are the best non-alcoholic drinks in 2026?</h3>
+      <p>The best non-alcoholic drinks in 2026 span every category. In beer, Athletic Brewing, Bravus, and Mash Gang lead the pack. For spirits, Lyre's, Monday Distillery, and Seedlip are the standards. Non-alcoholic wines from Leitz, Giesen, and Luminara have redefined what zero-proof wine can be.</p>
+      <h3>What non-alcoholic drink tastes most like alcohol?</h3>
+      <p>Non-alcoholic spirits come closest to the experience of drinking alcohol. Brands like Monday Distillery, Lyre's, and Ritual Zero Proof create gin, whiskey, rum, and tequila alternatives that replicate the botanical complexity and warmth of the originals.</p>
+      <h3>What are the best non-alcoholic drinks for parties?</h3>
+      <p>For parties, ready-to-drink mocktails and canned non-alcoholic options are the most practical. Sparkling non-alcoholic wines are great for toasts. Non-alcoholic beer handles casual gatherings well.</p>
+      <h3>Are non-alcoholic drinks healthy?</h3>
+      <p>Many non-alcoholic drinks offer genuine health benefits. Functional beverages contain adaptogens, nootropics, CBD, and botanicals that support sleep, focus, and stress management. Non-alcoholic beer and wine have significantly fewer calories than alcoholic versions.</p>
+      <h3>What is the best non-alcoholic drink for someone who doesn't like sweet drinks?</h3>
+      <p>For those who prefer dry or bitter flavors, non-alcoholic spirits are ideal. A non-alcoholic gin and tonic, a zero-proof Negroni, or a NA Old Fashioned all deliver complexity without sweetness.</p>
+      <h3>What's the difference between non-alcoholic and alcohol-free drinks?</h3>
+      <p>Legally in the US, both terms refer to beverages under 0.5% ABV. In practice, some brands use 'alcohol-free' to specifically indicate 0.0% ABV products.</p>
+      <h3>Can I mix non-alcoholic spirits into cocktails?</h3>
+      <p>Absolutely. Non-alcoholic spirits are designed for mixing. Use them exactly as you would regular spirits in any cocktail recipe.</p>
+    </section>
+    <section>
+      <h2>Explore 500+ Non-Alcoholic Drinks</h2>
+      ${img("sparkling-celebration", "Sparkling non-alcoholic drinks for celebrations at Monday Morning Bottle Shop", 'width="600" height="500" ')}
+      <p>Shop our full catalog online or visit Monday Morning Bottle Shop in San Diego. Every category. Every style. Something for everyone.</p>
+      <a href="/shop">Shop All Drinks</a>
+      <a href="/collections/best-sellers">See Best Sellers</a>
+    </section>
+  </main>
+  ${generateFooterHTML()}`;
+}
+
+function generateNewToNABody() {
+  return `<header>${generateNavHTML()}</header>
+  <main>
+    <section>
+      <h1>New to Non-Alcoholic Drinks?</h1>
+      ${img("friends-beach-toast", "Friends discovering non-alcoholic drinks together at the beach", 'width="1200" height="600" ')}
+      <p>New to non-alcoholic drinks and not sure where to start? You are in the right place. This guide covers everything a beginner needs to know: what to expect, what to try first, and how to find drinks you will actually love.</p>
+      <a href="/collections/best-sellers">Start Your Journey</a>
+      <a href="/shop">Browse All Options</a>
+    </section>
+    <section>
+      <h2>Why People Are Making the Switch</h2>
+      <p>Most people arrive at non-alcoholic drinks from different directions. Some want to cut alcohol for health reasons. Others are pregnant, in recovery, or training seriously. Many are simply sober-curious, interested in what life with less alcohol looks and feels like without a full commitment to sobriety.</p>
+      <p>Whatever brought you here, the good news is the same: the quality of non-alcoholic drinks in 2026 is extraordinary. You are not giving something up. You are gaining a new category of genuinely excellent drinks.</p>
+      <p>The sober-curious movement has reshaped the entire beverage industry. Major breweries, spirit brands, and new dedicated NA companies have all invested heavily in this space. The result is a market full of options that meet you wherever you are.</p>
+    </section>
+    <section>
+      <h2>What to Expect When You Start</h2>
+      <p>Honest expectations make the transition easier. Here is what you need to know going in.</p>
+      <h3>The first sip might surprise you</h3>
+      <p>Non-alcoholic drinks often taste different from what you expect, sometimes better. Many people assume NA beer will be flat and thin. A great craft NA IPA tends to change that assumption immediately.</p>
+      <h3>You will not feel the same</h3>
+      <p>You will not feel alcohol's effects. That is the point. What you will feel depends on what you drink: refreshed, satisfied, and present.</p>
+      <h3>Some categories are better than others</h3>
+      <p>Non-alcoholic beer is the most advanced category. Wine is catching up fast. Spirits are very good in cocktails. Try a few before committing to a category.</p>
+      <h3>Quality varies significantly by brand</h3>
+      <p>Not all non-alcoholic drinks are created equal. The gap between a budget NA beer and a craft NA beer is noticeable. Start with well-reviewed brands.</p>
+      <h3>Social situations work fine</h3>
+      <p>A non-alcoholic beer looks like a beer. A sparkling wine in a glass looks like wine. You will rarely need to explain yourself.</p>
+      <h3>Your tastes will evolve</h3>
+      <p>Most people start with familiar styles and gradually explore more adventurous options. There is a lot to discover.</p>
+    </section>
+    <section>
+      <h2>Where to Start: New to Non-Alcoholic Drinks</h2>
+      <p>Match your current drinking preferences to the best non-alcoholic starting point.</p>
+      <h3>The Beer Starter</h3>
+      <p>A crisp non-alcoholic lager or pilsner. Familiar, refreshing, and instantly satisfying. A great first step for any beer drinker.</p>
+      <a href="/collections/na-beer">Shop NA Beer</a>
+      <h3>The Wine Starter</h3>
+      <p>A non-alcoholic sparkling white or ros\u00e9. Beautiful in a glass, great for dinner, and immediately recognizable as a wine experience.</p>
+      <a href="/collections/wine-alternatives">Shop NA Wine</a>
+      <h3>The Cocktail Starter</h3>
+      <p>A non-alcoholic gin or tequila alternative. Mix it exactly like the original spirit. Make a gin and tonic, a margarita, or whatever you love.</p>
+      <a href="/collections/spirit-alternatives">Shop NA Spirits</a>
+      <h3>The Functional Starter</h3>
+      <p>A botanical or adaptogen drink that offers a real effect. If you drink to unwind, these are built to deliver that same feeling through different chemistry.</p>
+      <a href="/collections/functional">Shop Functional</a>
+    </section>
+    <section>
+      <h2>Types of Non-Alcoholic Drinks Explained</h2>
+      <ul>
+        <li><strong>Non-Alcoholic Beer</strong> — Brewed like regular beer, then dealcoholized. Every style exists: lagers, IPAs, stouts, sours, wheat beers. The most approachable and widely available category.</li>
+        <li><strong>Non-Alcoholic Wine</strong> — Produced from real grapes, then dealcoholized through vacuum distillation. Reds, whites, ros\u00e9s, and sparkling wines.</li>
+        <li><strong>Non-Alcoholic Spirits</strong> — Botanical distillates designed to replicate gin, whiskey, rum, tequila, and more. Built for cocktails.</li>
+        <li><strong>Functional Beverages</strong> — Drinks that go beyond hydration. Adaptogens for stress, nootropics for focus, kava for relaxation, CBD for calm. The most innovative and fastest-growing segment.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Start with a Tasting in San Diego</h2>
+      ${img("morning-patio-couple", "Couple enjoying non-alcoholic morning drinks on a patio in San Diego", 'width="600" height="480" ')}
+      <p>The easiest way to start is to taste. At both of our San Diego locations, we have a full tasting bar where you can sample before you commit to anything. Walk in, tell us where you are in your non-alcoholic journey, and we will guide you.</p>
+      <p>No pressure. No judgment. No need to justify your reasons. Everyone walks out with something they love.</p>
+      <p>If you prefer to start online, our catalog is fully available with detailed product descriptions to help you choose. Every product we stock has been personally tasted and approved by our team.</p>
+      <a href="/locations">Find Our Locations</a>
+    </section>
+    <section>
+      <h2>Beginner Questions Answered</h2>
+      <h3>Where do I even start with non-alcoholic drinks?</h3>
+      <p>Start with what you already like. If you drink beer, try a non-alcoholic IPA or lager. If you prefer wine, start with a non-alcoholic sparkling wine. If you like cocktails, pick up a non-alcoholic spirit and mix it the same way.</p>
+      <h3>Do non-alcoholic drinks actually taste good?</h3>
+      <p>Yes. The quality has improved dramatically. The best non-alcoholic beers, wines, and spirits are genuinely excellent drinks that compete with alcoholic options on flavor, aroma, and complexity.</p>
+      <h3>Will I feel anything drinking non-alcoholic drinks?</h3>
+      <p>You will not feel the effects of alcohol. However, functional non-alcoholic beverages are designed to provide a real effect through adaptogens, kava, nootropics, or CBD.</p>
+      <h3>How do I explain it at social events?</h3>
+      <p>You do not need to explain anything. A great non-alcoholic beer in your hand looks identical to a regular beer. If someone asks, 'non-alcoholic' is a complete sentence.</p>
+      <h3>What should I buy first?</h3>
+      <p>For first-timers: start with a non-alcoholic lager or pilsner if you like beer, a sparkling non-alcoholic wine if you prefer wine, or a starter non-alcoholic spirit if you enjoy cocktails.</p>
+      <h3>Is non-alcoholic the same as alcohol-free?</h3>
+      <p>In the US, both terms apply to beverages under 0.5% ABV. 'Alcohol-free' sometimes specifically indicates 0.0% ABV products.</p>
+      <h3>Can I drink non-alcoholic drinks every day?</h3>
+      <p>Yes. Unlike alcoholic beverages, non-alcoholic drinks carry none of the health risks associated with regular drinking.</p>
+      <h3>How much do non-alcoholic drinks cost compared to regular drinks?</h3>
+      <p>Premium non-alcoholic drinks are priced comparably to their alcoholic equivalents. A great NA craft beer costs about what a craft beer costs. Non-alcoholic spirits range from $25 to $50 for a bottle.</p>
+    </section>
+    <section>
+      <h2>Ready to Take the First Sip?</h2>
+      <p>Shop our best-seller picks for beginners or visit us in San Diego and let our team guide your first tasting.</p>
+      <a href="/collections/best-sellers">Start with Best Sellers</a>
+      <a href="/locations">Visit a Location</a>
+    </section>
+  </main>
+  ${generateFooterHTML()}`;
+}
+
+function generateAlcoholFreeLifestyleBody() {
+  return `<header>${generateNavHTML()}</header>
+  <main>
+    <section>
+      <h1>Alcohol-Free Lifestyle Benefits</h1>
+      ${img("wellness-retreat-drinks", "Wellness-focused alcohol-free lifestyle with botanical drinks", 'width="1200" height="600" ')}
+      <p>The alcohol-free lifestyle is one of the most impactful changes a person can make. Better sleep, sharper focus, improved physical performance, and a richer social life — all without giving up the ritual of a great drink. This is what the sober-curious movement has unlocked.</p>
+      <a href="/collections/functional">Explore Zero Proof Drinks</a>
+      <a href="/shop">Shop All Categories</a>
+    </section>
+    <section>
+      <h2>The Sober-Curious Movement in 2026</h2>
+      <p>The sober-curious movement is not about abstinence ideology. It is about intentionality. It is about questioning whether alcohol is serving you — your health, your mornings, your relationships, your performance — and having the freedom to choose differently.</p>
+      <p>In 2026, the culture around alcohol has shifted. Major research has surfaced showing there is no safe level of alcohol consumption. Athletes at the highest levels are publicly alcohol-free. Social circles that once built everything around drinking are adapting to include everyone. The stigma around not drinking has largely evaporated.</p>
+      <p>What has replaced it is a genuine appreciation for the alcohol-free lifestyle — not as a compromise, but as an upgrade. The people living it are not giving something up. They are getting more back than they expected.</p>
+      <p>Non-alcoholic drinks are the bridge. They preserve the ritual, the flavor, and the social experience of drinking while eliminating the downsides entirely. At Monday Morning, we exist to make that bridge as good as possible.</p>
+    </section>
+    <section>
+      <h2>Health Benefits of Going Alcohol-Free</h2>
+      <p>The evidence is clear. Reducing or eliminating alcohol improves multiple dimensions of health simultaneously.</p>
+      <h3>Sleep</h3>
+      <p>Alcohol disrupts REM sleep. Without it, most people experience deeper, more restorative sleep within days.</p>
+      <h3>Mental Clarity</h3>
+      <p>Alcohol impairs cognition long after the effects wear off. Removing it sharpens focus, memory, and decision-making.</p>
+      <h3>Physical Performance</h3>
+      <p>Alcohol impairs protein synthesis and recovery. Athletes and active people see immediate performance gains.</p>
+      <h3>Skin &amp; Appearance</h3>
+      <p>Alcohol dehydrates and causes inflammation. Most people see visible skin improvement within three to four weeks.</p>
+      <h3>Mood &amp; Mental Health</h3>
+      <p>Alcohol is a depressant. Many people find their baseline mood improves significantly after reducing or eliminating it.</p>
+      <h3>Weight &amp; Metabolism</h3>
+      <p>Alcohol calories are empty and numerous. Eliminating them, without changing anything else, often leads to weight loss.</p>
+    </section>
+    <section>
+      <h2>The Social Benefits of the Alcohol-Free Lifestyle</h2>
+      <p>The most common concern about going alcohol-free is social. What do you do at parties? At dinners? At celebrations? The answer is the same thing everyone else is doing — just without the impairment.</p>
+      <p>Non-alcoholic drinks have eliminated the visual distinction. A great non-alcoholic beer in your hand looks identical to a regular beer. A sparkling NA wine in a glass is indistinguishable at a toast. The social ritual is preserved completely.</p>
+      <p>What changes is how you feel the next morning. And how you feel at 10 PM when the conversation is still good. And how you perform at 6 AM when you have not disrupted your sleep. The social experience stays. The downsides disappear.</p>
+    </section>
+    <section>
+      <h2>Who the Alcohol-Free Lifestyle Is Perfect For</h2>
+      ${img("functional-wellness-morning", "Functional wellness drinks as part of an alcohol-free morning routine", 'width="600" height="500" ')}
+      <ul>
+        <li><strong>Athletes &amp; Performance-Focused People</strong> — Alcohol impairs recovery, sleep, and performance. Going alcohol-free is one of the highest-leverage health decisions an active person can make.</li>
+        <li><strong>Anyone Prioritizing Mental Health</strong> — Alcohol is a depressant. Many people with anxiety, depression, or mood issues find significant improvement when alcohol is removed.</li>
+        <li><strong>The Sober-Curious</strong> — You do not need a reason beyond curiosity. Exploring life without alcohol is always worthwhile.</li>
+        <li><strong>Parents &amp; Caregivers</strong> — Clarity, presence, and consistent energy are invaluable when you are responsible for others.</li>
+        <li><strong>Professionals Who Need to Perform</strong> — Alcohol costs you mornings. Removing it gives them back, along with sharper thinking and better decision-making.</li>
+        <li><strong>Anyone in Recovery</strong> — High-quality non-alcoholic drinks make social situations entirely manageable without compromise.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>How to Start an Alcohol-Free Lifestyle</h2>
+      <p>You do not need a dramatic announcement or a formal commitment. The most effective approach is simply to start replacing. The next time you reach for an alcoholic drink, reach for a non-alcoholic one instead. Do it for a week. Notice what changes.</p>
+      <h3>Step 1: Pick a starting point</h3>
+      <p>Choose one occasion or habit where you will swap alcohol for a non-alcoholic alternative.</p>
+      <h3>Step 2: Stock good options</h3>
+      <p>Having quality non-alcoholic drinks in your fridge makes the swap effortless. Start with what you already like.</p>
+      <h3>Step 3: Let results speak</h3>
+      <p>Notice your sleep, your mornings, your mood. The benefits create their own momentum.</p>
+      <p>Monday Morning carries over 500 non-alcoholic drinks across every category. Whatever your starting point, we have something that will make the transition feel less like sacrifice and more like discovery.</p>
+      <a href="/shop">Start Shopping</a>
+      <a href="/recipes">Explore Recipes</a>
+    </section>
+    <section>
+      <h2>Alcohol-Free Lifestyle: Frequently Asked Questions</h2>
+      <h3>What are the health benefits of an alcohol-free lifestyle?</h3>
+      <p>Eliminating or significantly reducing alcohol leads to measurable improvements across multiple areas: better sleep quality, improved liver function, clearer skin, reduced anxiety and depression, sharper mental focus, better physical performance, and lower risk of multiple cancers.</p>
+      <h3>Is the sober-curious movement the same as sobriety?</h3>
+      <p>No. Sober-curious describes a deliberate, investigative approach to alcohol — questioning your relationship with it without committing to complete abstinence. Many sober-curious people still drink occasionally but have significantly reduced their consumption.</p>
+      <h3>How quickly will I see benefits from reducing alcohol?</h3>
+      <p>Many people notice improved sleep within the first week. Skin changes are often visible within two to four weeks. Mental clarity and energy improvements typically appear within the first month.</p>
+      <h3>Will I miss alcohol at social events?</h3>
+      <p>Most people are surprised by how little they miss alcohol when they have great alternatives in hand. The ritual of holding a drink, sipping something complex, and participating in a toast is entirely preserved with non-alcoholic options.</p>
+      <h3>What do I drink instead of alcohol?</h3>
+      <p>The best alcohol-free alternatives depend on what you love about drinking. If you love the flavor of beer, non-alcoholic craft beer is the answer. If you prefer cocktails, non-alcoholic spirits mixed the same way deliver a nearly identical experience.</p>
+      <h3>Can I maintain an alcohol-free lifestyle and still have a social life?</h3>
+      <p>Absolutely. The social dimension of drinking is about presence, ritual, and shared experience — none of which require alcohol.</p>
+      <h3>What are the best functional drinks for replacing alcohol's relaxing effect?</h3>
+      <p>Kava-based drinks, ashwagandha formulations, and drinks containing L-theanine or calming adaptogens are the closest functional replacements for alcohol's relaxing effect. Brands like Kin Euphorics, Apl\u00f3s, and Daytrip are specifically designed for this use case.</p>
+      <h3>Is it realistic to go alcohol-free long-term?</h3>
+      <p>Yes, and an increasing number of people are doing it permanently. The availability of high-quality non-alcoholic alternatives has made long-term alcohol-free living genuinely enjoyable rather than a sacrifice.</p>
+    </section>
+    <section>
+      <h2>Your Alcohol-Free Journey Starts Here</h2>
+      ${img("garden-party-toast", "Garden party toast with non-alcoholic drinks celebrating the alcohol-free lifestyle", 'width="600" height="500" ')}
+      <p>Explore 500+ non-alcoholic drinks that make the alcohol-free lifestyle easy, enjoyable, and genuinely satisfying.</p>
+      <a href="/shop">Shop All Drinks</a>
+      <a href="/blog">Read Our Blog</a>
+    </section>
+  </main>
+  ${generateFooterHTML()}`;
+}
+
 function generateCollectionBody(route) {
   // Extract collection name from title (before the |)
   const collectionName = route.title.split("|")[0].trim();
@@ -872,6 +1235,10 @@ function getBodyContent(route, allProducts, allBlogPosts) {
   if (path === "/shipping") return generateShippingBody();
   if (path === "/returns") return generateReturnsBody();
   if (path === "/non-alcoholic-drinks-san-diego") return generateNADrinksSanDiegoBody();
+  if (path === "/non-alcoholic-beer-guide") return generateNABeerGuideBody();
+  if (path === "/best-non-alcoholic-drinks") return generateBestNADrinksBody();
+  if (path === "/new-to-non-alcoholic-drinks") return generateNewToNABody();
+  if (path === "/alcohol-free-lifestyle-benefits") return generateAlcoholFreeLifestyleBody();
 
   if (path.startsWith("/collections/")) return generateCollectionBody(route);
 
@@ -1024,6 +1391,94 @@ const staticRoutes = [
               text: "Absolutely. Shop our full catalog at mondaymorning-af.com and get non-alcoholic drinks shipped directly to your door. We offer fast shipping across the US. Local San Diego customers can also arrange in-store pickup.",
             },
           },
+        ],
+      },
+    ],
+  },
+
+  // SEO Landing Pages
+  {
+    path: "/non-alcoholic-beer-guide",
+    title: "Non-Alcoholic Beer Guide 2026 | Styles, Brands & How to Choose",
+    description: "The complete guide to non-alcoholic beer in 2026. Every style explained, top brands reviewed, and how to choose the right NA beer. Visit Monday Morning in San Diego to taste before you buy.",
+    schema: [
+      organizationSchema,
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: [
+          { "@type": "Question", name: "What is the best non-alcoholic beer?", acceptedAnswer: { "@type": "Answer", text: "The best non-alcoholic beer depends on your style preference. Athletic Brewing leads in IPAs and golden ales. Bravus excels in stouts and amber ales. Mash Gang and Untitled Art push boundaries with sours and experimental styles." } },
+          { "@type": "Question", name: "Does non-alcoholic beer have alcohol?", acceptedAnswer: { "@type": "Answer", text: "Most non-alcoholic beers contain less than 0.5% ABV. Some are 0.0%. For reference, a ripe banana contains roughly the same amount of alcohol as a 0.5% NA beer." } },
+          { "@type": "Question", name: "Is non-alcoholic beer good for you?", acceptedAnswer: { "@type": "Answer", text: "Non-alcoholic beer has significantly fewer calories than regular beer and eliminates the negative health effects of alcohol. Some NA beers contain B vitamins, electrolytes, and polyphenols." } },
+          { "@type": "Question", name: "Can you drink non-alcoholic beer while pregnant?", acceptedAnswer: { "@type": "Answer", text: "Many pregnant individuals choose 0.0% ABV beers. Consult your healthcare provider for personal guidance. We carry a wide selection of 0.0% options." } },
+          { "@type": "Question", name: "How many calories are in non-alcoholic beer?", acceptedAnswer: { "@type": "Answer", text: "Most non-alcoholic beers range from 50 to 100 calories per can, compared to 150 to 250 for regular beer." } },
+          { "@type": "Question", name: "Where can I buy non-alcoholic beer in San Diego?", acceptedAnswer: { "@type": "Answer", text: "Monday Morning Bottle Shop has the largest selection in San Diego. Visit our Pacific Beach location at 1854 Garnet Ave or Ocean Beach at 4967 Newport Ave. Both locations have a tasting bar." } },
+          { "@type": "Question", name: "What non-alcoholic beer tastes most like real beer?", acceptedAnswer: { "@type": "Answer", text: "Athletic Brewing's Run Wild IPA and Free Wave Hazy IPA are consistently rated as the closest to their alcoholic counterparts. For lagers, Heineken 0.0 and Clausthaler are excellent. For stouts, Bravus Oatmeal Stout is outstanding." } },
+        ],
+      },
+    ],
+  },
+  {
+    path: "/best-non-alcoholic-drinks",
+    title: "Best Non-Alcoholic Drinks in 2026 | Complete Category Guide",
+    description: "Discover the best non-alcoholic drinks across every category — beer, wine, spirits, and functional beverages. Expert picks, occasion guides, and 500+ options at Monday Morning.",
+    schema: [
+      organizationSchema,
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: [
+          { "@type": "Question", name: "What are the best non-alcoholic drinks in 2026?", acceptedAnswer: { "@type": "Answer", text: "The best non-alcoholic drinks in 2026 span every category. In beer, Athletic Brewing, Bravus, and Mash Gang lead. For spirits, Lyre's, Monday Distillery, and Seedlip are the standards. Non-alcoholic wines from Leitz, Giesen, and Luminara have redefined what zero-proof wine can be." } },
+          { "@type": "Question", name: "What non-alcoholic drink tastes most like alcohol?", acceptedAnswer: { "@type": "Answer", text: "Non-alcoholic spirits come closest. Brands like Monday Distillery, Lyre's, and Ritual Zero Proof create gin, whiskey, rum, and tequila alternatives that replicate the botanical complexity and warmth of the originals." } },
+          { "@type": "Question", name: "What are the best non-alcoholic drinks for parties?", acceptedAnswer: { "@type": "Answer", text: "Ready-to-drink mocktails and canned non-alcoholic options are the most practical for parties. Sparkling non-alcoholic wines are great for toasts." } },
+          { "@type": "Question", name: "Are non-alcoholic drinks healthy?", acceptedAnswer: { "@type": "Answer", text: "Many non-alcoholic drinks offer genuine health benefits. Functional beverages contain adaptogens, nootropics, CBD, and botanicals. Non-alcoholic beer and wine have significantly fewer calories than alcoholic versions." } },
+          { "@type": "Question", name: "What is the best non-alcoholic drink for someone who doesn't like sweet drinks?", acceptedAnswer: { "@type": "Answer", text: "For dry or bitter flavors, non-alcoholic spirits are ideal. A non-alcoholic gin and tonic, a zero-proof Negroni, or a NA Old Fashioned all deliver complexity without sweetness." } },
+          { "@type": "Question", name: "What's the difference between non-alcoholic and alcohol-free drinks?", acceptedAnswer: { "@type": "Answer", text: "Legally in the US, both terms refer to beverages under 0.5% ABV. In practice, some brands use 'alcohol-free' to specifically indicate 0.0% ABV products." } },
+          { "@type": "Question", name: "Can I mix non-alcoholic spirits into cocktails?", acceptedAnswer: { "@type": "Answer", text: "Absolutely. Non-alcoholic spirits are designed for mixing. Use them exactly as you would regular spirits in any cocktail recipe." } },
+        ],
+      },
+    ],
+  },
+  {
+    path: "/new-to-non-alcoholic-drinks",
+    title: "New to Non-Alcoholic Drinks? Start Here | Beginner's Guide",
+    description: "Just getting into non-alcoholic drinks? This beginner's guide covers what to expect, what to try first, and how to find drinks you'll love. Visit Monday Morning in San Diego.",
+    schema: [
+      organizationSchema,
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: [
+          { "@type": "Question", name: "Where do I even start with non-alcoholic drinks?", acceptedAnswer: { "@type": "Answer", text: "Start with what you already like. If you drink beer, try a non-alcoholic IPA or lager. If you prefer wine, start with a non-alcoholic sparkling wine. If you like cocktails, pick up a non-alcoholic spirit and mix it the same way." } },
+          { "@type": "Question", name: "Do non-alcoholic drinks actually taste good?", acceptedAnswer: { "@type": "Answer", text: "Yes. The quality has improved dramatically. The best non-alcoholic beers, wines, and spirits are genuinely excellent drinks that compete with alcoholic options on flavor, aroma, and complexity." } },
+          { "@type": "Question", name: "Will I feel anything drinking non-alcoholic drinks?", acceptedAnswer: { "@type": "Answer", text: "You will not feel the effects of alcohol. However, functional non-alcoholic beverages are designed to provide a real effect through adaptogens, kava, nootropics, or CBD." } },
+          { "@type": "Question", name: "How do I explain it at social events?", acceptedAnswer: { "@type": "Answer", text: "You do not need to explain anything. A great non-alcoholic beer in your hand looks identical to a regular beer. If someone asks, 'non-alcoholic' is a complete sentence." } },
+          { "@type": "Question", name: "What should I buy first?", acceptedAnswer: { "@type": "Answer", text: "For first-timers: start with a non-alcoholic lager or pilsner if you like beer, a sparkling non-alcoholic wine if you prefer wine, or a starter non-alcoholic spirit if you enjoy cocktails." } },
+          { "@type": "Question", name: "Is non-alcoholic the same as alcohol-free?", acceptedAnswer: { "@type": "Answer", text: "In the US, both terms apply to beverages under 0.5% ABV. 'Alcohol-free' sometimes specifically indicates 0.0% ABV products." } },
+          { "@type": "Question", name: "Can I drink non-alcoholic drinks every day?", acceptedAnswer: { "@type": "Answer", text: "Yes. Unlike alcoholic beverages, non-alcoholic drinks carry none of the health risks associated with regular drinking." } },
+          { "@type": "Question", name: "How much do non-alcoholic drinks cost compared to regular drinks?", acceptedAnswer: { "@type": "Answer", text: "Premium non-alcoholic drinks are priced comparably to their alcoholic equivalents. A great NA craft beer costs about what a craft beer costs. Non-alcoholic spirits range from $25 to $50 for a bottle." } },
+        ],
+      },
+    ],
+  },
+  {
+    path: "/alcohol-free-lifestyle-benefits",
+    title: "Alcohol-Free Lifestyle Benefits | Health, Clarity & Balance",
+    description: "Discover the real benefits of an alcohol-free lifestyle in 2026. Better sleep, sharper focus, improved fitness, and a richer social life. Start your journey at Monday Morning.",
+    schema: [
+      organizationSchema,
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: [
+          { "@type": "Question", name: "What are the health benefits of an alcohol-free lifestyle?", acceptedAnswer: { "@type": "Answer", text: "Eliminating or significantly reducing alcohol leads to better sleep quality, improved liver function, clearer skin, reduced anxiety, sharper mental focus, better physical performance, and lower risk of multiple cancers." } },
+          { "@type": "Question", name: "Is the sober-curious movement the same as sobriety?", acceptedAnswer: { "@type": "Answer", text: "No. Sober-curious describes a deliberate, investigative approach to alcohol — questioning your relationship with it without committing to complete abstinence." } },
+          { "@type": "Question", name: "How quickly will I see benefits from reducing alcohol?", acceptedAnswer: { "@type": "Answer", text: "Many people notice improved sleep within the first week. Skin changes are often visible within two to four weeks. Mental clarity and energy improvements typically appear within the first month." } },
+          { "@type": "Question", name: "Will I miss alcohol at social events?", acceptedAnswer: { "@type": "Answer", text: "Most people are surprised by how little they miss alcohol when they have great alternatives in hand. The ritual of holding a drink and participating in a toast is entirely preserved with non-alcoholic options." } },
+          { "@type": "Question", name: "What do I drink instead of alcohol?", acceptedAnswer: { "@type": "Answer", text: "The best alcohol-free alternatives depend on what you love about drinking. Non-alcoholic craft beer, wine, spirits mixed the same way, and functional beverages all deliver excellent experiences." } },
+          { "@type": "Question", name: "Can I maintain an alcohol-free lifestyle and still have a social life?", acceptedAnswer: { "@type": "Answer", text: "Absolutely. The social dimension of drinking is about presence, ritual, and shared experience — none of which require alcohol." } },
+          { "@type": "Question", name: "What are the best functional drinks for replacing alcohol's relaxing effect?", acceptedAnswer: { "@type": "Answer", text: "Kava-based drinks, ashwagandha formulations, and drinks containing L-theanine or calming adaptogens are the closest functional replacements. Brands like Kin Euphorics, Aplos, and Daytrip are specifically designed for this use case." } },
+          { "@type": "Question", name: "Is it realistic to go alcohol-free long-term?", acceptedAnswer: { "@type": "Answer", text: "Yes. The availability of high-quality non-alcoholic alternatives has made long-term alcohol-free living genuinely enjoyable rather than a sacrifice." } },
         ],
       },
     ],
