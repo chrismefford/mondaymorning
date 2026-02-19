@@ -34,6 +34,10 @@ import WholesaleCatalog from "./pages/WholesaleCatalog";
 import Valentines from "./pages/Valentines";
 import Events from "./pages/Events";
 import NonAlcoholicDrinksSanDiego from "./pages/NonAlcoholicDrinksSanDiego";
+import NonAlcoholicBeerGuide from "./pages/NonAlcoholicBeerGuide";
+import BestNonAlcoholicDrinks from "./pages/BestNonAlcoholicDrinks";
+import NewToNonAlcoholic from "./pages/NewToNonAlcoholic";
+import AlcoholFreeLifestyle from "./pages/AlcoholFreeLifestyle";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -84,6 +88,10 @@ const AppContent = () => {
         <Route path="/valentines" element={<Valentines />} />
         {/* <Route path="/events" element={<Events />} /> */}
         <Route path="/non-alcoholic-drinks-san-diego" element={<NonAlcoholicDrinksSanDiego />} />
+        <Route path="/non-alcoholic-beer-guide" element={<NonAlcoholicBeerGuide />} />
+        <Route path="/best-non-alcoholic-drinks" element={<BestNonAlcoholicDrinks />} />
+        <Route path="/new-to-non-alcoholic-drinks" element={<NewToNonAlcoholic />} />
+        <Route path="/alcohol-free-lifestyle-benefits" element={<AlcoholFreeLifestyle />} />
         {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
         <Route path="*" element={<NotFound />} />
       </Routes>
