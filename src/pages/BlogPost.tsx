@@ -10,6 +10,7 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import BlogProductCard from "@/components/blog/BlogProductCard";
 import AdaptogenChart from "@/components/blog/AdaptogenChart";
+import NABeerCalorieChart from "@/components/blog/NABeerCalorieChart";
 
 interface BlogPost {
   id: string;
@@ -232,7 +233,7 @@ const BlogPost = () => {
                   // Also strip the bold subtitle line right after
                   const cleanContent = contentWithoutH1.replace(/^\*\*[^*]+\*\*\n+/, '');
                   // Split on both PRODUCT and special chart placeholders
-                  const parts = cleanContent.split(/(\{\{PRODUCT:[^}]+\}\}|\{\{ADAPTO_CHART\}\})/);
+                  const parts = cleanContent.split(/(\{\{PRODUCT:[^}]+\}\}|\{\{ADAPTO_CHART\}\}|\{\{CALORIE_CHART\}\})/);
                   return parts.map((part, i) => {
                     const productMatch = part.match(/^\{\{PRODUCT:([^}]+)\}\}$/);
                     if (productMatch) {
@@ -240,6 +241,9 @@ const BlogPost = () => {
                     }
                     if (part === '{{ADAPTO_CHART}}') {
                       return <AdaptogenChart key={`chart-${i}`} />;
+                    }
+                    if (part === '{{CALORIE_CHART}}') {
+                      return <NABeerCalorieChart key={`calorie-chart-${i}`} />;
                     }
                     return (
                       <div
