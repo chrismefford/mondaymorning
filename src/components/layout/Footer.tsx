@@ -21,7 +21,7 @@ const Footer = () => {
     }
   };
   return (
-    <footer className="bg-gold text-forest py-16 lg:py-24 relative overflow-hidden">
+    <footer className="bg-gold-warm text-forest py-16 lg:py-24 relative overflow-hidden">
       {/* Organic texture background */}
       <div 
         className="absolute inset-0 opacity-5 pointer-events-none"

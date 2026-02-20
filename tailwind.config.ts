@@ -71,6 +71,7 @@ export default {
           DEFAULT: "hsl(var(--gold))",
           light: "hsl(var(--gold-light))",
           muted: "hsl(var(--gold-muted))",
+          warm: "hsl(var(--gold-warm))",
         },
         terracotta: {
           DEFAULT: "hsl(var(--terracotta))",
