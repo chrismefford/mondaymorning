@@ -87,8 +87,8 @@ const Newsletter = () => {
 
       {/* DESKTOP LAYOUT - Split background */}
       <div className="hidden lg:grid lg:grid-cols-2">
-        {/* Left side - Forest Green */}
-        <div className="bg-forest text-cream py-24 lg:py-40 px-6 lg:px-16 relative">
+        {/* Left side - Gold */}
+        <div className="bg-gold text-forest py-24 lg:py-40 px-6 lg:px-16 relative">
           {/* Organic texture */}
           <div 
             className="absolute inset-0 opacity-10 pointer-events-none mix-blend-overlay"
@@ -102,15 +102,15 @@ const Newsletter = () => {
           </div>
           
           <div className="relative z-10 max-w-lg">
-            <span className="font-sans text-xs font-medium uppercase tracking-[0.2em] text-gold mb-6 block">
+            <span className="font-sans text-xs font-medium uppercase tracking-[0.2em] text-forest-deep mb-6 block">
               Become a Believer
             </span>
             
-            <h2 className="font-serif text-4xl lg:text-5xl xl:text-6xl leading-[1.1] mb-6">
-              Join the <span className="italic text-gold">movement</span>
+            <h2 className="font-serif text-4xl lg:text-5xl xl:text-6xl leading-[1.1] mb-6 text-forest">
+              Join the <span className="italic text-forest-deep">movement</span>
             </h2>
             
-            <p className="font-sans text-lg text-cream/70 mb-10">
+            <p className="font-sans text-lg text-forest/70 mb-10">
               New flavors drop weekly across our 500+ selection. Get first dibs on tastings at Ocean Beach & Pacific Beach, plus 10% off your first order.
             </p>
 
