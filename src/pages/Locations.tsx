@@ -219,7 +219,7 @@ const Locations = () => {
               Find Us
             </span>
             <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl text-cream mb-6">
-              Visit <span className="italic">Monday Morning</span>
+              Visit <span className="italic text-gold">Monday Morning</span>
             </h1>
             <p className="font-sans text-cream/70 max-w-2xl mx-auto text-lg">
               Stop by one of our two San Diego locations to explore 500+ flavors, or find us at your favorite local restaurant or bar.
@@ -240,7 +240,7 @@ const Locations = () => {
                 Our Shops
               </span>
               <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl text-forest">
-                America's #1 <span className="italic">NA Bottle Shops</span>
+                America's #1 <span className="italic text-gold">NA Bottle Shops</span>
               </h2>
               <p className="font-sans text-forest/70 max-w-xl mx-auto mt-4">
                 Try before you buy at our tasting bars. 500+ flavors waiting for you.

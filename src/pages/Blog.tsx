@@ -61,12 +61,16 @@ const Blog = () => {
       <Header />
       <main className="pt-24">
         {/* Hero Section */}
-        <section className="bg-cream py-16 md:py-24">
-          <div className="container mx-auto px-4 text-center">
-            <h1 className="font-serif text-4xl md:text-6xl text-ocean mb-4">
-              The Blog
+        <section className="bg-forest py-16 md:py-24 relative overflow-hidden">
+          <div className="grain absolute inset-0 pointer-events-none opacity-30" />
+          <div className="container mx-auto px-4 text-center relative z-10">
+            <span className="font-sans text-[10px] md:text-xs font-medium uppercase tracking-[0.3em] text-gold mb-4 block">
+              Stories & Insights
+            </span>
+            <h1 className="font-serif text-4xl md:text-6xl text-cream mb-4">
+              The <span className="italic text-gold">Blog</span>
             </h1>
-            <p className="text-ocean/70 text-lg md:text-xl max-w-2xl mx-auto">
+            <p className="font-sans text-cream/70 text-lg md:text-xl max-w-2xl mx-auto">
               Stories, recipes, and insights from the alcohol-free lifestyle movement
             </p>
           </div>

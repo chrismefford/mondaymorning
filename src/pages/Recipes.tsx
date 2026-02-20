@@ -348,7 +348,7 @@ const RecipesPage = () => {
           <div className="container mx-auto px-4 lg:px-8 relative z-10">
             <div className="max-w-3xl mx-auto text-center">
               <h2 className="font-serif text-3xl lg:text-5xl leading-[1.1] text-forest mb-6">
-                Need the <span className="italic">ingredients</span>?
+                Need the <span className="italic text-gold">ingredients</span>?
               </h2>
               <p className="font-sans text-lg text-forest/80 mb-8">
                 Visit our shops in Ocean Beach or Pacific Beach to pick up everything you need. We'll even help you find the perfect bottles.

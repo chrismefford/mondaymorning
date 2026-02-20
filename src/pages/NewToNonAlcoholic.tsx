@@ -112,7 +112,7 @@ const NewToNonAlcoholic = () => {
           <div className="container mx-auto px-4 lg:px-8 relative z-10">
             <div className="max-w-3xl">
               <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl text-cream mb-6 leading-tight">
-                New to Non-Alcoholic Drinks?
+                New to <span className="italic text-gold">Non-Alcoholic</span> Drinks?
               </h1>
               <p className="font-sans text-lg text-cream/80 max-w-2xl mb-4 leading-relaxed">
                 New to non-alcoholic drinks and not sure where to start? You are in the right place. This guide covers everything a beginner needs to know: what to expect, what to try first, and how to find drinks you will actually love.
