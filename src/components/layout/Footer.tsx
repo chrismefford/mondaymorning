@@ -42,7 +42,7 @@ const Footer = () => {
           <div className="lg:col-span-1">
             <div className="mb-6">
               <img 
-                src={logoSecondaryWhite} 
+                src={logoSecondaryGreen} 
                 alt="Monday Morning" 
                 className="h-24 w-auto"
               />
