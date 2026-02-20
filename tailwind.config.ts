@@ -91,6 +91,7 @@ export default {
           light: "hsl(var(--ocean-light))",
           deep: "hsl(var(--ocean-deep))",
         },
+        "teal-dark": "hsl(var(--teal-dark))",
         midnight: "hsl(var(--midnight))",
       },
       borderRadius: {
