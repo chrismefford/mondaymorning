@@ -115,7 +115,7 @@ const WhyWeDontDrink = () => {
                 key={i}
                 onClick={() => setActiveIndex(i)}
                 className={`w-2 h-2 rounded-full transition-all ${
-                  activeIndex % 6 === i ? "bg-gold w-6" : "bg-cream/30"
+                  activeIndex % 6 === i ? "bg-forest w-6" : "bg-forest/30"
                 }`}
                 aria-label={`Go to reason ${i + 1}`}
               />
