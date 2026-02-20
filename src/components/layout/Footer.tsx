@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useNewsletterSubscribe } from "@/hooks/useNewsletterSubscribe";
 import ContactFormDialog from "@/components/ContactFormDialog";
-import logoSecondaryWhite from "@/assets/logo-secondary-white.svg";
+import logoSecondaryGreen from "@/assets/logo-secondary-green.svg";
 import stampWhite from "@/assets/stamp-white.svg";
 import textureGreen from "@/assets/texture-green.svg";
 
