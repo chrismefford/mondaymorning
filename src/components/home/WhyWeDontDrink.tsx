@@ -163,12 +163,12 @@ const WhyWeDontDrink = () => {
 
         {/* CTA */}
         <div className="text-center mt-12 lg:mt-8">
-          <p className="font-sans text-sm text-cream/50 mb-4">
+          <p className="font-sans text-sm text-forest/50 mb-4">
             Got your own reason? We'd love to hear it.
           </p>
           <button
             onClick={() => setIsFormOpen(true)}
-            className="inline-flex items-center gap-2 font-sans text-sm font-bold uppercase tracking-wider text-gold border-b-2 border-gold pb-1 hover:text-cream hover:border-cream transition-colors"
+            className="inline-flex items-center gap-2 font-sans text-sm font-bold uppercase tracking-wider text-forest-deep border-b-2 border-forest-deep pb-1 hover:text-forest hover:border-forest transition-colors"
           >
             Share Your Story
             <span className="text-lg">→</span>
@@ -183,7 +183,7 @@ const WhyWeDontDrink = () => {
       />
 
       {/* Decorative blurs */}
-      <div className="absolute top-1/4 left-0 w-64 h-64 bg-gold/10 blur-3xl pointer-events-none" />
+      <div className="absolute top-1/4 left-0 w-64 h-64 bg-forest/10 blur-3xl pointer-events-none" />
       <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-terracotta/10 blur-3xl pointer-events-none" />
     </section>
   );
