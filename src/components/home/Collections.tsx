@@ -8,7 +8,7 @@ import textureGreen from "@/assets/texture-green.svg";
 
 const Collections = () => {
   return (
-    <section id="collections" className="py-16 lg:py-40 bg-forest text-cream relative overflow-hidden">
+    <section id="collections" className="py-16 lg:py-40 bg-gold text-forest relative overflow-hidden">
       {/* Organic texture background */}
       <div 
         className="absolute inset-0 opacity-10 pointer-events-none mix-blend-overlay"
