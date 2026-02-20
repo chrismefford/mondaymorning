@@ -135,25 +135,25 @@ const Story = () => {
       </div>
 
       {/* STATS SECTION */}
-      <div className="py-16 lg:py-24 mt-16 lg:mt-24 bg-forest text-cream relative">
-        <div className="grain absolute inset-0 pointer-events-none opacity-50" />
+      <div className="py-16 lg:py-24 mt-16 lg:mt-24 bg-gold text-forest relative">
+        <div className="grain absolute inset-0 pointer-events-none opacity-30" />
         <div className="container mx-auto px-4 lg:px-8 relative z-10">
           <div className="text-center mb-10 lg:mb-16">
-            <span className="font-sans text-[10px] lg:text-xs font-medium uppercase tracking-[0.3em] text-gold mb-4 block">
+            <span className="font-sans text-[10px] lg:text-xs font-medium uppercase tracking-[0.3em] text-forest-deep mb-4 block">
               The Movement
             </span>
-            <h3 className="font-serif text-2xl lg:text-4xl">
-              You're not alone in <span className="italic text-gold">drinking less</span>
+            <h3 className="font-serif text-2xl lg:text-4xl text-forest">
+              You're not alone in <span className="italic text-forest-deep">drinking less</span>
             </h3>
           </div>
 
           <div className="grid grid-cols-3 gap-4 lg:gap-8 max-w-3xl mx-auto">
             {stats.map((stat) => (
               <div key={stat.label} className="text-center">
-                <div className="font-serif text-3xl lg:text-6xl font-bold text-gold mb-2">
+                <div className="font-serif text-3xl lg:text-6xl font-bold text-forest mb-2">
                   {stat.value}
                 </div>
-                <p className="font-sans text-[10px] lg:text-sm text-cream/70 uppercase tracking-wider">
+                <p className="font-sans text-[10px] lg:text-sm text-forest/60 uppercase tracking-wider">
                   {stat.label}
                 </p>
               </div>

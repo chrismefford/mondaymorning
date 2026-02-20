@@ -70,7 +70,7 @@ const WhyWeDontDrink = () => {
   };
 
   return (
-    <section className="py-16 lg:py-32 bg-forest relative overflow-hidden">
+    <section className="py-16 lg:py-32 bg-gold relative overflow-hidden">
       {/* Grain overlay */}
       <div className="grain absolute inset-0 pointer-events-none" />
 
