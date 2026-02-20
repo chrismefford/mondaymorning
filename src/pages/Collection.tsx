@@ -324,10 +324,10 @@ const CollectionPage = () => {
       
       <main className="pt-20">
         {/* Hero Section */}
-        <section className="relative py-16 lg:py-24 bg-gold-warm text-forest-deep overflow-hidden">
-          {/* Background texture - subtle */}
+        <section className="relative py-16 lg:py-24 bg-forest text-cream overflow-hidden">
+          {/* Background texture */}
           <div 
-            className="absolute inset-0 opacity-[0.03] pointer-events-none"
+            className="absolute inset-0 opacity-10 pointer-events-none"
             style={{ backgroundImage: `url(${textureCream})`, backgroundSize: 'cover' }}
           />
           
@@ -340,27 +340,27 @@ const CollectionPage = () => {
             {/* Back link */}
             <Link 
               to={isBrandFilter ? "/about" : isVibeCollection ? "/shop" : "/#collections"} 
-              className="inline-flex items-center gap-2 font-sans text-sm text-forest/80 hover:text-forest-deep transition-colors mb-8"
+              className="inline-flex items-center gap-2 font-sans text-sm text-cream/70 hover:text-gold transition-colors mb-8"
             >
               <ArrowLeft className="h-4 w-4" />
               {isBrandFilter ? "Back to About" : isVibeCollection ? "Back to Shop" : "Back to Collections"}
             </Link>
             
             <div className="max-w-3xl">
-              <span className="font-sans text-xs font-medium uppercase tracking-[0.3em] text-forest/60 mb-4 block">
+              <span className="font-sans text-xs font-medium uppercase tracking-[0.3em] text-gold mb-4 block">
                 {isBrandFilter ? "Brand" : isVibeCollection ? "The Vibe" : "Collection"}
               </span>
-              <h1 className="font-serif text-4xl lg:text-6xl xl:text-7xl font-bold mb-6 capitalize text-forest-deep">
+              <h1 className="font-serif text-4xl lg:text-6xl xl:text-7xl font-normal mb-6 capitalize text-cream">
                 {isBrandFilter ? brandName : vibeInfo?.title || collectionInfo?.title || collectionMeta?.name || "Collection"}
               </h1>
-              <p className="font-sans text-lg lg:text-xl text-forest/90 max-w-2xl">
+              <p className="font-sans text-lg lg:text-xl text-cream/80 max-w-2xl">
                 {isBrandFilter 
                   ? `Explore all products from ${brandName}.`
                   : vibeInfo?.description || collectionInfo?.description || collectionMeta?.description || "Explore our curated selection."}
               </p>
               
               {!isLoading && displayProducts.length > 0 && (
-                <p className="font-sans text-sm text-forest/70 mt-4">
+                <p className="font-sans text-sm text-cream/60 mt-4">
                   {displayProducts.length} product{displayProducts.length !== 1 ? 's' : ''}
                 </p>
               )}
