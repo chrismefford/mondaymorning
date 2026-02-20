@@ -70,7 +70,7 @@ const WhyWeDontDrink = () => {
   };
 
   return (
-    <section className="py-16 lg:py-32 bg-forest relative overflow-hidden">
+    <section className="py-16 lg:py-32 bg-gold relative overflow-hidden">
       {/* Grain overlay */}
       <div className="grain absolute inset-0 pointer-events-none" />
 
@@ -82,13 +82,13 @@ const WhyWeDontDrink = () => {
       <div className="container mx-auto px-4 lg:px-8 relative z-10">
         {/* Header */}
         <div className="text-center mb-12 lg:mb-16">
-          <span className="font-sans text-[10px] lg:text-xs font-bold uppercase tracking-[0.3em] text-gold mb-4 block">
+          <span className="font-sans text-[10px] lg:text-xs font-bold uppercase tracking-[0.3em] text-forest-deep mb-4 block">
             Real Talk
           </span>
-          <h2 className="font-serif text-3xl lg:text-5xl xl:text-6xl text-cream leading-tight">
-            Why we <span className="italic text-gold">don't</span> drink
+          <h2 className="font-serif text-3xl lg:text-5xl xl:text-6xl text-forest leading-tight">
+            Why we <span className="italic text-forest-deep">don't</span> drink
           </h2>
-          <p className="font-sans text-sm lg:text-lg text-cream/60 mt-4 max-w-lg mx-auto">
+          <p className="font-sans text-sm lg:text-lg text-forest/60 mt-4 max-w-lg mx-auto">
             Everyone's got their reason. Here's what our community is saying.
           </p>
         </div>
@@ -115,7 +115,7 @@ const WhyWeDontDrink = () => {
                 key={i}
                 onClick={() => setActiveIndex(i)}
                 className={`w-2 h-2 rounded-full transition-all ${
-                  activeIndex % 6 === i ? "bg-gold w-6" : "bg-cream/30"
+                  activeIndex % 6 === i ? "bg-forest w-6" : "bg-forest/30"
                 }`}
                 aria-label={`Go to reason ${i + 1}`}
               />
@@ -163,12 +163,12 @@ const WhyWeDontDrink = () => {
 
         {/* CTA */}
         <div className="text-center mt-12 lg:mt-8">
-          <p className="font-sans text-sm text-cream/50 mb-4">
+          <p className="font-sans text-sm text-forest/50 mb-4">
             Got your own reason? We'd love to hear it.
           </p>
           <button
             onClick={() => setIsFormOpen(true)}
-            className="inline-flex items-center gap-2 font-sans text-sm font-bold uppercase tracking-wider text-gold border-b-2 border-gold pb-1 hover:text-cream hover:border-cream transition-colors"
+            className="inline-flex items-center gap-2 font-sans text-sm font-bold uppercase tracking-wider text-forest-deep border-b-2 border-forest-deep pb-1 hover:text-forest hover:border-forest transition-colors"
           >
             Share Your Story
             <span className="text-lg">→</span>
@@ -183,7 +183,7 @@ const WhyWeDontDrink = () => {
       />
 
       {/* Decorative blurs */}
-      <div className="absolute top-1/4 left-0 w-64 h-64 bg-gold/10 blur-3xl pointer-events-none" />
+      <div className="absolute top-1/4 left-0 w-64 h-64 bg-forest/10 blur-3xl pointer-events-none" />
       <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-terracotta/10 blur-3xl pointer-events-none" />
     </section>
   );

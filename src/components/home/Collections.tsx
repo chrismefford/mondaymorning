@@ -8,7 +8,7 @@ import textureGreen from "@/assets/texture-green.svg";
 
 const Collections = () => {
   return (
-    <section id="collections" className="py-16 lg:py-40 bg-forest text-cream relative overflow-hidden">
+    <section id="collections" className="py-16 lg:py-40 bg-gold text-forest relative overflow-hidden">
       {/* Organic texture background */}
       <div 
         className="absolute inset-0 opacity-10 pointer-events-none mix-blend-overlay"
@@ -31,14 +31,14 @@ const Collections = () => {
         <div className="container mx-auto px-4 lg:px-8">
           <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-4 lg:gap-8 mb-8 lg:mb-24">
             <div>
-              <span className="font-sans text-[10px] lg:text-xs font-medium uppercase tracking-[0.2em] text-gold mb-2 lg:mb-4 block">
+              <span className="font-sans text-[10px] lg:text-xs font-medium uppercase tracking-[0.2em] text-forest-deep mb-2 lg:mb-4 block">
                 500+ Options
               </span>
-              <h2 className="font-serif text-3xl lg:text-5xl xl:text-6xl leading-[1] text-cream">
-                Find your <span className="italic text-gold">vibe</span>
+              <h2 className="font-serif text-3xl lg:text-5xl xl:text-6xl leading-[1] text-forest">
+                Find your <span className="italic text-forest-deep">vibe</span>
               </h2>
             </div>
-            <p className="font-sans text-sm lg:text-lg text-cream/70 max-w-md">
+            <p className="font-sans text-sm lg:text-lg text-forest/70 max-w-md">
               Wines, beers, spirits, aperitifs—we've got it all. No guessing, just tasting.
             </p>
           </div>
@@ -50,7 +50,7 @@ const Collections = () => {
             <Link
               key={collection.id}
               to={`/collections/${collection.id}`}
-              className="group block relative overflow-hidden border-2 border-cream/20 aspect-[16/10]"
+              className="group block relative overflow-hidden border-2 border-forest/20 aspect-[16/10]"
             >
               <img
                 src={collection.image}
@@ -109,7 +109,7 @@ const Collections = () => {
               <Link
                 key={collection.id}
                 to={`/collections/${collection.id}`}
-                className={`group relative overflow-hidden border-2 border-cream/20 hover:border-gold transition-colors duration-300 ${
+                className={`group relative overflow-hidden border-2 border-forest/20 hover:border-forest transition-colors duration-300 ${
                   index === 0 || collection.id === 'na-beer' ? 'md:row-span-2 aspect-square md:aspect-auto' : 'aspect-[16/9]'
                 }`}
               >
@@ -155,7 +155,7 @@ const Collections = () => {
       </div>
 
       {/* Decorative elements */}
-      <div className="absolute top-1/4 right-0 w-64 h-64 bg-gold/10 blur-3xl pointer-events-none" />
+      <div className="absolute top-1/4 right-0 w-64 h-64 bg-forest/10 blur-3xl pointer-events-none" />
       <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-terracotta/10 blur-3xl pointer-events-none" />
     </section>
   );
