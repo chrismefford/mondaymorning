@@ -16,9 +16,9 @@
     --popover: 45 30% 96%;
     --popover-foreground: 150 35% 18%;
 
-    /* Sun-faded Gold - Primary action */
-    --primary: 42 75% 50%;
-    --primary-foreground: 150 35% 15%;
+    /* Brand Gold - Primary action (#E2A325) */
+    --primary: 40 77% 52%;
+    --primary-foreground: 150 35% 12%;
 
     /* Deep Forest Green - Brand color */
     --secondary: 150 35% 25%;
@@ -37,7 +37,7 @@
 
     --border: 40 20% 85%;
     --input: 40 20% 85%;
-    --ring: 42 75% 50%;
+    --ring: 40 77% 52%;
 
     --radius: 0rem;
 
@@ -45,16 +45,16 @@
     --forest: 150 35% 25%;
     --forest-light: 150 25% 35%;
     --forest-deep: 150 40% 15%;
-    --gold: 42 75% 50%;
-    --gold-light: 45 65% 70%;
-    --gold-muted: 42 40% 65%;
+    --gold: 40 77% 52%;
+    --gold-light: 40 75% 68%;
+    --gold-muted: 40 50% 65%;
     --terracotta: 18 65% 55%;
     --terracotta-light: 20 55% 70%;
     --cream: 45 30% 96%;
     --cream-warm: 40 35% 92%;
     --sand: 38 35% 88%;
     --sand-warm: 32 40% 82%;
-    --blog-gold: 40 77% 72%;
+    --blog-gold: 40 77% 70%;
     --ocean: 183 38% 47%;
     --ocean-light: 183 35% 65%;
     --ocean-deep: 183 42% 38%;
@@ -62,7 +62,7 @@
 
     /* Gradients */
     --gradient-forest: linear-gradient(135deg, hsl(150 35% 25%) 0%, hsl(150 40% 15%) 100%);
-    --gradient-sunset: linear-gradient(135deg, hsl(42 75% 50%) 0%, hsl(18 65% 55%) 100%);
+    --gradient-sunset: linear-gradient(135deg, hsl(40 77% 52%) 0%, hsl(18 65% 55%) 100%);
     --gradient-warm: linear-gradient(180deg, hsl(45 30% 96%) 0%, hsl(38 35% 88%) 100%);
 
     /* Shadows */
@@ -70,7 +70,7 @@
     --shadow-elevated: 0 20px 60px -15px hsl(150 35% 18% / 0.2);
     --shadow-card: 0 2px 12px -2px hsl(150 35% 18% / 0.08);
     --shadow-brutal: 6px 6px 0px hsl(150 35% 18%);
-    --shadow-glow: 0 0 60px -15px hsl(42 75% 50% / 0.4);
+    --shadow-glow: 0 0 60px -15px hsl(40 77% 52% / 0.4);
 
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
