@@ -125,26 +125,26 @@ const Newsletter = () => {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   disabled={isLoading}
-                  className="bg-transparent border-2 border-cream/30 text-cream placeholder:text-cream/50 focus:border-gold focus:ring-0 h-14 font-sans"
+                  className="bg-forest/10 border-2 border-forest/30 text-forest placeholder:text-forest/50 focus:border-forest-deep focus:ring-0 h-14 font-sans"
                 />
                 <Button 
                   type="submit"
                   size="lg"
                   disabled={isLoading}
-                  className="font-sans text-sm font-semibold uppercase tracking-wider shrink-0 bg-gold text-forest-deep hover:bg-gold/90 h-14 px-8"
+                  className="font-sans text-sm font-semibold uppercase tracking-wider shrink-0 bg-forest text-cream hover:bg-forest-deep h-14 px-8"
                 >
                   {isLoading ? "Joining..." : "Join"}
                   {!isLoading && <ArrowRight className="ml-2 h-4 w-4" />}
                 </Button>
               </div>
-              <p className="font-sans text-xs text-cream/50">
+              <p className="font-sans text-xs text-forest/50">
                 No spam, just good vibes. Unsubscribe anytime.
               </p>
             </form>
           </div>
 
           {/* Decorative text */}
-          <div className="absolute bottom-8 left-6 lg:left-16 font-serif text-6xl lg:text-8xl font-bold text-cream/5">
+          <div className="absolute bottom-8 left-6 lg:left-16 font-serif text-6xl lg:text-8xl font-bold text-forest/5">
             MMAF
           </div>
         </div>
