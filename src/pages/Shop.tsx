@@ -388,7 +388,7 @@ const ShopPage = () => {
       
       <main className="pt-20">
         {/* Hero Section */}
-        <section className="relative py-16 lg:py-24 bg-forest text-cream overflow-hidden">
+        <section className="relative py-16 lg:py-24 bg-gold-warm text-teal-dark overflow-hidden">
           {/* Texture */}
           <div 
             className="absolute inset-0 opacity-10 pointer-events-none mix-blend-overlay"
@@ -402,13 +402,13 @@ const ShopPage = () => {
           
           <div className="container mx-auto px-4 lg:px-8 relative z-10">
             <div className="max-w-4xl mx-auto text-center">
-              <span className="font-sans text-xs font-semibold uppercase tracking-[0.3em] text-gold mb-4 block">
+              <span className="font-sans text-xs font-semibold uppercase tracking-[0.3em] text-teal-dark/60 mb-4 block">
                 Shop by Vibe
               </span>
-              <h1 className="font-serif text-5xl lg:text-7xl xl:text-8xl mb-6">
-                Find Your <span className="italic text-gold">Moment</span>
+              <h1 className="font-serif text-5xl lg:text-7xl xl:text-8xl mb-6 text-teal-dark">
+                Find Your <span className="italic">Moment</span>
               </h1>
-              <p className="font-sans text-lg lg:text-xl text-cream/80 max-w-2xl mx-auto">
+              <p className="font-sans text-lg lg:text-xl text-teal-dark/80 max-w-2xl mx-auto">
                 Whether it's golden hour on the rooftop or a cozy night in—we've got 
                 the perfect pour for every vibe.
               </p>
@@ -416,16 +416,16 @@ const ShopPage = () => {
               {/* Fun stats */}
               <div className="flex flex-wrap justify-center gap-8 lg:gap-16 mt-12">
                 <div className="text-center">
-                  <span className="block font-serif text-4xl lg:text-5xl text-gold">500+</span>
-                  <span className="font-sans text-xs uppercase tracking-wider text-cream/60">Flavors</span>
+                  <span className="block font-serif text-4xl lg:text-5xl text-teal-dark">500+</span>
+                  <span className="font-sans text-xs uppercase tracking-wider text-teal-dark/60">Flavors</span>
                 </div>
                 <div className="text-center">
-                  <span className="block font-serif text-4xl lg:text-5xl text-gold">6</span>
-                  <span className="font-sans text-xs uppercase tracking-wider text-cream/60">Vibes</span>
+                  <span className="block font-serif text-4xl lg:text-5xl text-teal-dark">6</span>
+                  <span className="font-sans text-xs uppercase tracking-wider text-teal-dark/60">Vibes</span>
                 </div>
                 <div className="text-center">
-                  <span className="block font-serif text-4xl lg:text-5xl text-gold">∞</span>
-                  <span className="font-sans text-xs uppercase tracking-wider text-cream/60">Good Times</span>
+                  <span className="block font-serif text-4xl lg:text-5xl text-teal-dark">∞</span>
+                  <span className="font-sans text-xs uppercase tracking-wider text-teal-dark/60">Good Times</span>
                 </div>
               </div>
             </div>
