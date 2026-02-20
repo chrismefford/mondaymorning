@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { useShopifyProduct } from "@/hooks/useShopifyProduct";
 import { useCart } from "@/hooks/useCart";
 import { Button } from "@/components/ui/button";
-import { ShoppingCart, ExternalLink } from "lucide-react";
+import { ShoppingCart, ArrowRight } from "lucide-react";
 
 interface BlogProductCardProps {
   handle: string;
@@ -14,10 +14,11 @@ const BlogProductCard = ({ handle }: BlogProductCardProps) => {
 
   if (isLoading) {
     return (
-      <div className="my-10 animate-pulse rounded-2xl border-2 border-ocean/10 bg-white p-6">
+      <div className="my-10 animate-pulse rounded-none border-l-4 border-gold bg-sand/50 p-6">
         <div className="flex flex-col sm:flex-row gap-6 items-center">
-          <div className="w-36 h-36 rounded-xl bg-muted shrink-0" />
+          <div className="w-36 h-36 bg-muted shrink-0" />
           <div className="flex-1 space-y-3 w-full">
+            <div className="h-4 bg-muted rounded w-1/4" />
             <div className="h-6 bg-muted rounded w-2/3" />
             <div className="h-4 bg-muted rounded w-1/3" />
             <div className="h-10 bg-muted rounded w-40" />
@@ -45,48 +46,55 @@ const BlogProductCard = ({ handle }: BlogProductCardProps) => {
   };
 
   return (
-    <div className="my-10 not-prose">
-      <Link
-        to={`/product/${handle}`}
-        className="flex flex-col sm:flex-row gap-6 items-center rounded-2xl border-2 border-ocean/15 bg-white p-5 sm:p-6 hover:shadow-xl hover:border-ocean/30 transition-all duration-300 group no-underline"
-      >
-        {imageUrl && (
-          <div className="w-36 h-36 sm:w-40 sm:h-40 rounded-xl overflow-hidden bg-cream shrink-0 shadow-md">
-            <img
-              src={imageUrl}
-              alt={product.name}
-              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-              loading="lazy"
-            />
+    <div className="my-12 not-prose">
+      <div className="relative overflow-hidden bg-forest group">
+        {/* Gold top bar */}
+        <div className="h-1 w-full bg-gradient-to-r from-gold via-gold-light to-gold-warm absolute top-0 left-0 z-10" />
+
+        <Link
+          to={`/product/${handle}`}
+          className="flex flex-col sm:flex-row gap-0 items-stretch no-underline"
+        >
+          {/* Image panel */}
+          {imageUrl && (
+            <div className="sm:w-52 sm:h-auto h-48 bg-forest-deep shrink-0 overflow-hidden relative">
+              <div className="absolute inset-0 bg-gradient-to-br from-gold/20 to-transparent z-10 pointer-events-none" />
+              <img
+                src={imageUrl}
+                alt={product.name}
+                className="w-full h-full object-contain p-4 group-hover:scale-105 transition-transform duration-500"
+                loading="lazy"
+              />
+            </div>
+          )}
+
+          {/* Content panel */}
+          <div className="flex-1 p-6 sm:p-8 flex flex-col justify-center gap-3 pt-6">
+            <p className="text-gold text-[10px] font-sans uppercase tracking-[0.35em] font-semibold">
+              ✦ Featured at Monday Morning
+            </p>
+            <h4 className="font-serif text-2xl sm:text-3xl text-cream leading-tight group-hover:text-gold transition-colors duration-300">
+              {product.name}
+            </h4>
+            <p className="text-gold-light text-xl font-semibold font-sans">{price}</p>
+
+            <div className="flex flex-col sm:flex-row gap-3 mt-2">
+              <button
+                onClick={handleAddToCart}
+                disabled={!available}
+                className="inline-flex items-center justify-center gap-2 bg-gold hover:bg-gold-warm text-forest-deep font-sans font-semibold text-sm px-5 py-3 transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                <ShoppingCart className="w-4 h-4" />
+                {available ? "Add to Cart" : "Sold Out"}
+              </button>
+              <span className="inline-flex items-center justify-center gap-2 border border-cream/20 text-cream/70 hover:text-cream hover:border-cream/50 font-sans text-sm px-5 py-3 transition-colors duration-200 cursor-pointer">
+                View Details
+                <ArrowRight className="w-4 h-4" />
+              </span>
+            </div>
           </div>
-        )}
-        <div className="flex-1 min-w-0 text-center sm:text-left">
-          <p className="text-xs font-sans uppercase tracking-widest text-ocean/50 mb-1">Shop This Product</p>
-          <h4 className="font-serif text-xl sm:text-2xl text-ocean group-hover:text-brand-green transition-colors leading-tight mb-2">
-            {product.name}
-          </h4>
-          <p className="text-ocean/70 text-lg font-semibold mb-3">{price}</p>
-          <div className="flex flex-col sm:flex-row gap-2">
-            <Button
-              size="default"
-              onClick={handleAddToCart}
-              disabled={!available}
-              className="bg-ocean hover:bg-ocean/90 text-white font-sans"
-            >
-              <ShoppingCart className="w-4 h-4 mr-2" />
-              {available ? "Add to Cart" : "Sold Out"}
-            </Button>
-            <Button
-              size="default"
-              variant="outline"
-              className="border-ocean/20 text-ocean hover:bg-ocean/5 font-sans"
-            >
-              <ExternalLink className="w-4 h-4 mr-2" />
-              View Details
-            </Button>
-          </div>
-        </div>
-      </Link>
+        </Link>
+      </div>
     </div>
   );
 };

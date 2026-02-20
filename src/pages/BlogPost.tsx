@@ -224,8 +224,11 @@ const BlogPost = () => {
           </div>
 
           {/* Content */}
-          <div className="bg-cream">
-            <div className="container mx-auto px-4 py-12 md:py-20">
+          <div className="bg-gradient-to-b from-cream via-cream to-sand/40">
+            {/* Decorative top accent */}
+            <div className="h-1 w-full bg-gradient-to-r from-gold via-gold-light to-gold-warm" />
+
+            <div className="container mx-auto px-4 py-14 md:py-24">
               <div className="max-w-3xl mx-auto">
                 {(() => {
                   // Strip the first H1 since it's in the hero
@@ -248,18 +251,24 @@ const BlogPost = () => {
                     return (
                       <div
                         key={`content-${i}`}
-                        className="prose prose-lg dark:prose-invert max-w-none
-                          prose-headings:font-serif prose-headings:text-ocean
-                          prose-h2:text-3xl prose-h2:md:text-4xl prose-h2:mt-16 prose-h2:mb-6 prose-h2:border-b prose-h2:border-ocean/20 prose-h2:pb-4
-                          prose-h3:text-xl prose-h3:md:text-2xl prose-h3:text-ocean/80 prose-h3:italic prose-h3:mt-2 prose-h3:mb-4
-                          prose-p:text-foreground/85 prose-p:leading-relaxed prose-p:text-[17px]
-                          prose-strong:text-foreground prose-strong:font-semibold
-                          prose-a:text-brand-green prose-a:underline prose-a:underline-offset-2 hover:prose-a:text-brand-green/80
-                          prose-blockquote:border-l-4 prose-blockquote:border-brand-green prose-blockquote:bg-brand-green/5 prose-blockquote:px-6 prose-blockquote:py-4 prose-blockquote:rounded-r-lg prose-blockquote:not-italic
-                          prose-img:rounded-xl prose-img:shadow-lg prose-img:my-10
-                          prose-table:border prose-table:border-border prose-th:bg-ocean prose-th:text-white prose-th:font-sans prose-th:text-sm prose-th:px-3 prose-th:py-2
+                        className="prose prose-lg max-w-none
+                          prose-headings:font-serif
+                          prose-h2:text-3xl prose-h2:md:text-4xl prose-h2:text-forest prose-h2:mt-16 prose-h2:mb-6 prose-h2:pb-4
+                          prose-h2:border-b-2 prose-h2:border-gold/40
+                          prose-h3:text-xl prose-h3:md:text-2xl prose-h3:text-ocean prose-h3:mt-2 prose-h3:mb-4
+                          prose-p:text-forest/80 prose-p:leading-[1.9] prose-p:text-[17px]
+                          prose-strong:text-forest prose-strong:font-semibold
+                          prose-a:text-ocean prose-a:font-semibold prose-a:no-underline prose-a:border-b prose-a:border-ocean/40 hover:prose-a:border-ocean hover:prose-a:text-ocean-deep
+                          prose-blockquote:not-italic prose-blockquote:border-l-4 prose-blockquote:border-gold
+                          prose-blockquote:bg-gold/8 prose-blockquote:px-6 prose-blockquote:py-5 prose-blockquote:rounded-r-xl
+                          prose-blockquote:text-forest/90 prose-blockquote:text-lg
+                          prose-img:rounded-xl prose-img:shadow-elevated prose-img:my-10
+                          prose-ul:text-forest/80 prose-ol:text-forest/80
+                          prose-li:marker:text-gold
+                          prose-table:border prose-table:border-border
+                          prose-th:bg-forest prose-th:text-cream prose-th:font-sans prose-th:text-sm prose-th:px-3 prose-th:py-2
                           prose-td:px-3 prose-td:py-2 prose-td:text-sm prose-td:border-b prose-td:border-border
-                          prose-hr:border-ocean/20 prose-hr:my-12"
+                          prose-hr:border-gold/30 prose-hr:my-14"
                       >
                         <ReactMarkdown
                           remarkPlugins={[remarkGfm]}
@@ -277,7 +286,7 @@ const BlogPost = () => {
                                 return (
                                   <Link
                                     to={href}
-                                    className="text-brand-green hover:text-brand-green/80 underline underline-offset-2 font-semibold"
+                                    className="text-ocean hover:text-ocean-deep font-semibold border-b border-ocean/40 hover:border-ocean transition-colors no-underline"
                                     {...props}
                                   >
                                     {children}
@@ -296,6 +305,9 @@ const BlogPost = () => {
                 })()}
               </div>
             </div>
+
+            {/* Bottom accent */}
+            <div className="h-1 w-full bg-gradient-to-r from-gold-warm via-gold to-gold-light" />
           </div>
         </article>
       </main>
