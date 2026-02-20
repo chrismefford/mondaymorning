@@ -91,8 +91,8 @@ const Story = () => {
                 />
               </div>
               {/* Floating quote card - Mobile */}
-              <div className="lg:hidden absolute -bottom-6 left-4 right-4 bg-gold border-2 border-forest p-5 shadow-brutal">
-                <p className="font-serif text-lg italic leading-relaxed text-forest-deep">
+              <div className="lg:hidden absolute -bottom-6 left-4 right-4 bg-teal-dark border-2 border-teal-dark p-5 shadow-brutal">
+                <p className="font-serif text-lg italic leading-relaxed text-cream">
                   "Monday mornings don't suck anymore."
                 </p>
               </div>
@@ -123,11 +123,11 @@ const Story = () => {
               </div>
 
               {/* Desktop quote */}
-              <div className="hidden lg:block mt-10 p-6 bg-gold border-2 border-forest max-w-md">
-                <p className="font-serif text-xl italic leading-relaxed text-forest-deep">
+              <div className="hidden lg:block mt-10 p-6 bg-teal-dark border-2 border-teal-dark max-w-md">
+                <p className="font-serif text-xl italic leading-relaxed text-cream">
                   "Monday mornings don't suck anymore."
                 </p>
-                <p className="font-sans text-sm text-forest/70 mt-2">— Our founder, on going AF</p>
+                <p className="font-sans text-sm text-cream/60 mt-2">— Our founder, on going AF</p>
               </div>
             </div>
           </div>
