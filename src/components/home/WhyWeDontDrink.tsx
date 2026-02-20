@@ -82,13 +82,13 @@ const WhyWeDontDrink = () => {
       <div className="container mx-auto px-4 lg:px-8 relative z-10">
         {/* Header */}
         <div className="text-center mb-12 lg:mb-16">
-          <span className="font-sans text-[10px] lg:text-xs font-bold uppercase tracking-[0.3em] text-gold mb-4 block">
+          <span className="font-sans text-[10px] lg:text-xs font-bold uppercase tracking-[0.3em] text-forest-deep mb-4 block">
             Real Talk
           </span>
-          <h2 className="font-serif text-3xl lg:text-5xl xl:text-6xl text-cream leading-tight">
-            Why we <span className="italic text-gold">don't</span> drink
+          <h2 className="font-serif text-3xl lg:text-5xl xl:text-6xl text-forest leading-tight">
+            Why we <span className="italic text-forest-deep">don't</span> drink
           </h2>
-          <p className="font-sans text-sm lg:text-lg text-cream/60 mt-4 max-w-lg mx-auto">
+          <p className="font-sans text-sm lg:text-lg text-forest/60 mt-4 max-w-lg mx-auto">
             Everyone's got their reason. Here's what our community is saying.
           </p>
         </div>
