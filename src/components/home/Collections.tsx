@@ -109,7 +109,7 @@ const Collections = () => {
               <Link
                 key={collection.id}
                 to={`/collections/${collection.id}`}
-                className={`group relative overflow-hidden border-2 border-cream/20 hover:border-gold transition-colors duration-300 ${
+                className={`group relative overflow-hidden border-2 border-forest/20 hover:border-forest transition-colors duration-300 ${
                   index === 0 || collection.id === 'na-beer' ? 'md:row-span-2 aspect-square md:aspect-auto' : 'aspect-[16/9]'
                 }`}
               >
@@ -155,7 +155,7 @@ const Collections = () => {
       </div>
 
       {/* Decorative elements */}
-      <div className="absolute top-1/4 right-0 w-64 h-64 bg-gold/10 blur-3xl pointer-events-none" />
+      <div className="absolute top-1/4 right-0 w-64 h-64 bg-forest/10 blur-3xl pointer-events-none" />
       <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-terracotta/10 blur-3xl pointer-events-none" />
     </section>
   );
