@@ -30,20 +30,20 @@ const Newsletter = () => {
             alt="Friends enjoying drinks together"
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-forest-deep/90" />
+          <div className="absolute inset-0 bg-gold/90" />
         </div>
 
         {/* Content */}
-        <div className="relative z-10 px-6 py-16 text-cream">
-          <span className="font-sans text-[10px] font-medium uppercase tracking-[0.3em] text-gold mb-4 block">
+        <div className="relative z-10 px-6 py-16 text-forest">
+          <span className="font-sans text-[10px] font-medium uppercase tracking-[0.3em] text-forest-deep mb-4 block">
             Become a Believer
           </span>
           
-          <h2 className="font-serif text-3xl leading-[1.1] mb-4">
-            Join the <span className="italic text-gold">movement</span>
+          <h2 className="font-serif text-3xl leading-[1.1] mb-4 text-forest">
+            Join the <span className="italic text-forest-deep">movement</span>
           </h2>
           
-          <p className="font-sans text-sm text-cream/70 mb-8">
+          <p className="font-sans text-sm text-forest/70 mb-8">
             Be the first to know about new flavors hitting our 500+ selection, 
             tastings at OB & PB, and get 10% off your first order.
           </p>
@@ -58,26 +58,26 @@ const Newsletter = () => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               disabled={isLoading}
-              className="bg-transparent border-2 border-cream/30 text-cream placeholder:text-cream/50 focus:border-gold focus:ring-0 h-14 font-sans"
+              className="bg-forest/10 border-2 border-forest/30 text-forest placeholder:text-forest/50 focus:border-forest-deep focus:ring-0 h-14 font-sans"
             />
             <Button 
               type="submit"
               size="lg"
               disabled={isLoading}
-              className="w-full font-sans text-sm font-bold uppercase tracking-widest bg-gold text-forest-deep hover:bg-gold/90 h-14"
+              className="w-full font-sans text-sm font-bold uppercase tracking-widest bg-forest text-cream hover:bg-forest-deep h-14"
             >
               {isLoading ? "Joining..." : "Join"}
               {!isLoading && <ArrowRight className="ml-2 h-4 w-4" />}
             </Button>
-            <p className="font-sans text-[10px] text-cream/50 text-center">
+            <p className="font-sans text-[10px] text-forest/50 text-center">
               No spam, just good vibes. Unsubscribe anytime.
             </p>
           </form>
 
           {/* Discount badge */}
           <div className="mt-8 text-center">
-            <div className="inline-block bg-gold/20 border border-gold px-4 py-2">
-              <span className="font-sans text-xs uppercase tracking-wider text-gold font-semibold">
+            <div className="inline-block bg-forest/20 border border-forest px-4 py-2">
+              <span className="font-sans text-xs uppercase tracking-wider text-forest font-semibold">
                 Get 10% off your first order
               </span>
             </div>
