@@ -127,7 +127,7 @@ const Footer = () => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 disabled={isLoading}
-                className="bg-forest/10 border-forest/20 text-forest placeholder:text-forest/40 focus:border-forest-deep"
+                className="bg-white border-white text-forest placeholder:text-forest/40 focus:border-forest-deep"
               />
               <Button 
                 type="submit"
