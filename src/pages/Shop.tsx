@@ -388,10 +388,10 @@ const ShopPage = () => {
       
       <main className="pt-20">
         {/* Hero Section */}
-        <section className="relative py-16 lg:py-24 bg-gold-warm text-forest-deep overflow-hidden">
-          {/* Texture - subtle */}
+        <section className="relative py-16 lg:py-24 bg-forest text-cream overflow-hidden">
+          {/* Texture */}
           <div 
-            className="absolute inset-0 opacity-[0.03] pointer-events-none"
+            className="absolute inset-0 opacity-10 pointer-events-none mix-blend-overlay"
             style={{ backgroundImage: `url(${textureGreen})`, backgroundSize: 'cover' }}
           />
           {/* Decorative stamp */}
@@ -402,30 +402,30 @@ const ShopPage = () => {
           
           <div className="container mx-auto px-4 lg:px-8 relative z-10">
             <div className="max-w-4xl mx-auto text-center">
-              <span className="font-sans text-xs font-semibold uppercase tracking-[0.3em] text-forest/60 mb-4 block">
+              <span className="font-sans text-xs font-semibold uppercase tracking-[0.3em] text-gold mb-4 block">
                 Shop by Vibe
               </span>
-              <h1 className="font-serif text-5xl lg:text-7xl xl:text-8xl mb-6 text-forest-deep">
-                Find Your <span className="italic">Moment</span>
+              <h1 className="font-serif text-5xl lg:text-7xl xl:text-8xl font-normal mb-6 text-cream">
+                Find Your <span className="italic text-gold">Moment</span>
               </h1>
-              <p className="font-sans text-lg lg:text-xl text-forest/90 max-w-2xl mx-auto">
-                Whether it's golden hour on the rooftop or a cozy night in—we've got 
+              <p className="font-sans text-lg lg:text-xl text-cream/80 max-w-2xl mx-auto">
+                Whether it's golden hour on the rooftop or a cozy night in — we've got 
                 the perfect pour for every vibe.
               </p>
               
               {/* Fun stats */}
               <div className="flex flex-wrap justify-center gap-8 lg:gap-16 mt-12">
                 <div className="text-center">
-                  <span className="block font-serif text-4xl lg:text-5xl text-forest-deep">500+</span>
-                  <span className="font-sans text-xs uppercase tracking-wider text-forest/60">Flavors</span>
+                  <span className="block font-serif text-4xl lg:text-5xl text-gold">500+</span>
+                  <span className="font-sans text-xs uppercase tracking-wider text-cream/60">Flavors</span>
                 </div>
                 <div className="text-center">
-                  <span className="block font-serif text-4xl lg:text-5xl text-forest-deep">6</span>
-                  <span className="font-sans text-xs uppercase tracking-wider text-forest/60">Vibes</span>
+                  <span className="block font-serif text-4xl lg:text-5xl text-gold">6</span>
+                  <span className="font-sans text-xs uppercase tracking-wider text-cream/60">Vibes</span>
                 </div>
                 <div className="text-center">
-                  <span className="block font-serif text-4xl lg:text-5xl text-forest-deep">∞</span>
-                  <span className="font-sans text-xs uppercase tracking-wider text-forest/60">Good Times</span>
+                  <span className="block font-serif text-4xl lg:text-5xl text-gold">∞</span>
+                  <span className="font-sans text-xs uppercase tracking-wider text-cream/60">Good Times</span>
                 </div>
               </div>
             </div>
