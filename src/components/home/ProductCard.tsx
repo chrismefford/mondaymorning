@@ -162,7 +162,7 @@ const ProductCard = ({ product, variant = "default", useLifestyleImage = true, s
             {product.category}
           </span>
           
-          <h3 className={`font-serif font-semibold mt-1 leading-tight ${isFeatured ? "text-3xl lg:text-4xl" : "text-base lg:text-lg"}`}>
+          <h3 className={`font-serif font-normal mt-1 leading-tight ${isFeatured ? "text-3xl lg:text-4xl" : "text-base lg:text-lg"}`}>
             {product.name}
           </h3>
           
