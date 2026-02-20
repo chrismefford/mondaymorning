@@ -389,9 +389,9 @@ const ShopPage = () => {
       <main className="pt-20">
         {/* Hero Section */}
         <section className="relative py-16 lg:py-24 bg-gold-warm text-teal-dark overflow-hidden">
-          {/* Texture */}
+          {/* Texture - subtle */}
           <div 
-            className="absolute inset-0 opacity-10 pointer-events-none mix-blend-overlay"
+            className="absolute inset-0 opacity-[0.03] pointer-events-none"
             style={{ backgroundImage: `url(${textureGreen})`, backgroundSize: 'cover' }}
           />
           {/* Decorative stamp */}

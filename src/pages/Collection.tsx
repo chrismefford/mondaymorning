@@ -325,9 +325,9 @@ const CollectionPage = () => {
       <main className="pt-20">
         {/* Hero Section */}
         <section className="relative py-16 lg:py-24 bg-gold-warm text-teal-dark overflow-hidden">
-          {/* Background texture */}
+          {/* Background texture - subtle */}
           <div 
-            className="absolute inset-0 opacity-10 pointer-events-none"
+            className="absolute inset-0 opacity-[0.03] pointer-events-none"
             style={{ backgroundImage: `url(${textureCream})`, backgroundSize: 'cover' }}
           />
           
