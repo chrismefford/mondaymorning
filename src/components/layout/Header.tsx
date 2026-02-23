@@ -79,6 +79,7 @@ const Header = () => {
      window.location.pathname === '/best-non-alcoholic-drinks' ||
      window.location.pathname === '/new-to-non-alcoholic-drinks' ||
      window.location.pathname === '/alcohol-free-lifestyle-benefits' ||
+     window.location.pathname === '/zero-proof-meaning' ||
      window.location.pathname.startsWith('/blog/'));
 
   // Wholesale catalog needs solid header background always
