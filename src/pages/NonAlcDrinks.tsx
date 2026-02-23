@@ -4,7 +4,7 @@ import Footer from "@/components/layout/Footer";
 import SEO from "@/components/SEO";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { ArrowRight, CheckCircle, Info, Wine, Beer, Martini, Leaf, Sparkles, GlassWater, Cherry, Citrus, Coffee, Grape, Droplets, Heart } from "lucide-react";
+import { ArrowRight, CheckCircle, Info, Wine, Beer, Martini, Leaf, Sparkles, GlassWater, Cherry, Coffee, Droplets, Heart, ShoppingCart, ExternalLink } from "lucide-react";
 import {
   Accordion,
   AccordionContent,
@@ -12,6 +12,8 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { generateFAQSchema, generateBreadcrumbSchema, websiteSchema, SITE_URL } from "@/lib/seo";
+import { useShopifyProduct } from "@/hooks/useShopifyProduct";
+import { useCart } from "@/hooks/useCart";
 
 // Lifestyle images
 import naTropicalMocktails from "@/assets/lifestyle/na-tropical-mocktails.jpg";
@@ -19,13 +21,7 @@ import naSpiritCocktail from "@/assets/lifestyle/na-spirit-cocktail.jpg";
 import spiritBarCraft from "@/assets/lifestyle/spirit-bar-craft.jpg";
 import beachSunsetCocktails from "@/assets/lifestyle/beach-sunset-cocktails.jpg";
 import gardenPartyToast from "@/assets/lifestyle/garden-party-toast.jpg";
-import naWineCheers from "@/assets/lifestyle/na-wine-cheers.jpg";
-import rooftopCheers from "@/assets/lifestyle/rooftop-cheers.jpg";
-import functionalWellness from "@/assets/lifestyle/functional-wellness-morning.jpg";
-import poolsideFriends from "@/assets/lifestyle/poolside-friends-drinks.jpg";
 import upscaleBarToast from "@/assets/lifestyle/upscale-bar-toast.jpg";
-import dinnerPartyToast from "@/assets/lifestyle/dinner-party-toast.jpg";
-import brunchMimosas from "@/assets/lifestyle/brunch-mimosas-elegant.jpg";
 
 // Recipe images
 import virginMojito from "@/assets/recipes/virgin-mojito.jpg";
@@ -39,116 +35,183 @@ import darkStormy from "@/assets/recipes/dark-stormy.jpg";
 import passionFruit from "@/assets/recipes/passion-fruit.jpg";
 import aperitifSpritz from "@/assets/recipes/aperitif-spritz.jpg";
 
+// --- Recipe Product Card ---
+const RecipeProductCard = ({ handle }: { handle: string }) => {
+  const { data: product, isLoading } = useShopifyProduct(handle);
+  const { addToCart } = useCart();
+
+  if (isLoading) {
+    return (
+      <div className="mt-5 animate-pulse rounded-xl border border-border bg-card p-4">
+        <div className="flex gap-4 items-center">
+          <div className="w-16 h-16 rounded-lg bg-muted shrink-0" />
+          <div className="flex-1 space-y-2">
+            <div className="h-4 bg-muted rounded w-2/3" />
+            <div className="h-4 bg-muted rounded w-1/4" />
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (!product) return null;
+
+  const imageUrl = product.raw?.featuredImage?.url || product.image;
+  const price = product.raw?.priceRange?.minVariantPrice?.amount
+    ? `$${parseFloat(product.raw.priceRange.minVariantPrice.amount).toFixed(2)}`
+    : product.price;
+  const variantId = product.raw?.variants?.edges?.[0]?.node?.id;
+  const available = product.raw?.variants?.edges?.some((e: any) => e.node.availableForSale) !== false;
+
+  const handleAddToCart = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (variantId && available) {
+      addToCart(variantId, 1);
+    }
+  };
+
+  return (
+    <Link
+      to={`/product/${handle}`}
+      className="mt-5 flex gap-4 items-center rounded-xl border border-border bg-card p-4 hover:shadow-md hover:border-primary/30 transition-all group no-underline"
+    >
+      {imageUrl && (
+        <div className="w-16 h-16 rounded-lg overflow-hidden bg-muted shrink-0">
+          <img src={imageUrl} alt={product.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform" loading="lazy" />
+        </div>
+      )}
+      <div className="flex-1 min-w-0">
+        <p className="text-xs uppercase tracking-widest text-muted-foreground mb-0.5">Featured Product</p>
+        <p className="font-serif text-base text-foreground leading-tight truncate">{product.name}</p>
+        <p className="text-sm font-semibold text-foreground/70">{price}</p>
+      </div>
+      <div className="flex gap-2 shrink-0">
+        <Button
+          size="sm"
+          onClick={handleAddToCart}
+          disabled={!available}
+          className="bg-ocean hover:bg-ocean/90 text-white"
+        >
+          <ShoppingCart className="w-3.5 h-3.5 mr-1.5" />
+          {available ? "Add" : "Sold Out"}
+        </Button>
+      </div>
+    </Link>
+  );
+};
+
+// --- Recipe data with real product handles ---
 const recipes = [
   {
     id: 1,
     title: "Classic Non Alc Mojito",
-    description: "Fresh mint, lime, and sparkling soda create the perfect zero proof riff on this Cuban classic. Use a non alc rum alternative for authentic depth.",
+    description: "Fresh mint, lime, and sparkling soda paired with Abstinence Cape Spice for a warm, botanical take on the Cuban classic. The allspice and cassia notes add depth that traditional rum brings through aging.",
     image: virginMojito,
     prepTime: "5 min",
     servings: 1,
     difficulty: "Easy",
-    ingredients: ["2 oz non alc rum (Lyre's or Ritual Zero Proof)", "6 fresh mint leaves", "1 oz fresh lime juice", "0.75 oz simple syrup", "Sparkling water", "Lime wheel and mint sprig"],
-    keywords: ["non alc", "mocktail recipes", "NA cocktails"],
+    ingredients: ["2 oz Abstinence Cape Spice", "6 fresh mint leaves", "1 oz fresh lime juice", "0.75 oz simple syrup", "Sparkling water", "Lime wheel and mint sprig"],
+    productHandle: "abstinence-spirits-cape-spice",
   },
   {
     id: 2,
     title: "Spicy Non Alc Margarita",
-    description: "A jalape\u00f1o-spiked margarita using non alc tequila that brings the heat without the hangover. Perfect for taco night or backyard hangs.",
+    description: "Almave Blanco brings authentic blue agave flavor to this jalape\u00f1o-spiked margarita. Made from real agave in Jalisco, Mexico, it delivers the tequila-forward bite without the alcohol.",
     image: virginMargarita,
     prepTime: "5 min",
     servings: 1,
     difficulty: "Easy",
-    ingredients: ["2 oz non alc tequila (Ritual Zero Proof Tequila Alternative)", "1 oz fresh lime juice", "0.75 oz agave syrup", "2 jalape\u00f1o slices", "Tajin rim", "Lime wheel"],
-    keywords: ["non alc tequila", "zero proof drinks", "non alc cocktails"],
+    ingredients: ["2 oz Almave Blanco", "1 oz fresh lime juice", "0.75 oz agave syrup", "2 jalape\u00f1o slices", "Tajin rim", "Lime wheel"],
+    productHandle: "almave-blanco",
   },
   {
     id: 3,
     title: "Non Alc Ros\u00e9 Spritz",
-    description: "A breezy, effervescent spritz made with non alc ros\u00e9 wine and a splash of elderflower. Summer in a glass, no alcohol required.",
+    description: "A breezy, effervescent spritz using Abstinence Blood Orange Aperitivo Spritz as the base. The citrus-forward bitterness and sparkling finish make this feel like summer on the Amalfi coast.",
     image: roseSpritzerImg,
     prepTime: "3 min",
     servings: 1,
     difficulty: "Easy",
-    ingredients: ["4 oz non alc ros\u00e9 wine", "1 oz elderflower tonic", "Sparkling water", "Fresh strawberry", "Rosemary sprig"],
-    keywords: ["non alc rose", "non alc wine", "non alc sparkling wine"],
+    ingredients: ["4 oz Abstinence Blood Orange Aperitivo Spritz", "1 oz elderflower tonic", "Sparkling water", "Fresh strawberry", "Rosemary sprig"],
+    productHandle: "abstinence-spirits-blood-orange-aperitivo-spritz",
   },
   {
     id: 4,
     title: "Cucumber Gin Cooler",
-    description: "Cool, botanical, and impossibly refreshing. Non alc gin meets muddled cucumber and a whisper of elderflower for the ultimate warm-weather sipper.",
+    description: "Abstinence Cape Floral brings rose geranium, juniper, and coriander to this impossibly refreshing cooler. Muddled cucumber and elderflower syrup round it into the perfect warm-weather sipper.",
     image: cucumberCooler,
     prepTime: "5 min",
     servings: 1,
     difficulty: "Easy",
-    ingredients: ["2 oz non alc gin (Seedlip Garden 108 or Monday Zero)", "3 cucumber slices", "0.5 oz elderflower syrup", "0.75 oz fresh lime juice", "Tonic water", "Cucumber ribbon"],
-    keywords: ["non alc gin", "alcohol-free spirits", "non alc drinks"],
+    ingredients: ["2 oz Abstinence Cape Floral", "3 cucumber slices", "0.5 oz elderflower syrup", "0.75 oz fresh lime juice", "Tonic water", "Cucumber ribbon"],
+    productHandle: "abstinence-spirits-cape-floral",
   },
   {
     id: 5,
     title: "Non Alc Espresso Martini",
-    description: "Rich espresso, vanilla, and a non alc coffee liqueur alternative shake up into the most photogenic zero proof cocktail you will ever make.",
+    description: "Abstinence Epilogue X provides the smoky, oak-aged malt backbone for this espresso martini riff. Shaken with fresh espresso and vanilla syrup, it is the most photogenic zero proof cocktail you will make.",
     image: espressoMocktail,
     prepTime: "5 min",
     servings: 1,
     difficulty: "Medium",
-    ingredients: ["2 oz non alc vodka (Ritual Zero Proof)", "1 oz fresh espresso (chilled)", "0.5 oz non alc coffee liqueur", "0.5 oz vanilla simple syrup", "3 espresso beans"],
-    keywords: ["non alc vodka", "NA cocktails", "non alc spirits"],
+    ingredients: ["2 oz Abstinence Epilogue X", "1 oz fresh espresso (chilled)", "0.5 oz vanilla simple syrup", "Dash of All The Bitter New Orleans Bitters", "3 espresso beans"],
+    productHandle: "abstinence-spirits-epilogue-x",
   },
   {
     id: 6,
     title: "Peach Bellini Fizz",
-    description: "Sweet white peach puree meets non alc sparkling wine for a brunch-worthy Bellini that is just as celebratory without the alcohol.",
+    description: "Sweet white peach puree meets Abstinence Lemon Aperitivo Spritz for a brunch-worthy Bellini with a citrus twist. Bright, bubbly, and celebratory without a drop of alcohol.",
     image: peachBellini,
     prepTime: "3 min",
     servings: 1,
     difficulty: "Easy",
-    ingredients: ["4 oz non alc sparkling wine", "2 oz white peach puree", "Dash of peach bitters (non alc)", "Fresh peach slice"],
-    keywords: ["non alc champagne", "non alc sparkling wine", "best non alcoholic"],
+    ingredients: ["4 oz Abstinence Lemon Aperitivo Spritz", "2 oz white peach puree", "Dash of All The Bitter Aromatic Bitters", "Fresh peach slice"],
+    productHandle: "abstinence-spirits-lemon-aperitivo-spritz",
   },
   {
     id: 7,
-    title: "Lavender Vodka Lemonade",
-    description: "Floral, citrusy, and perfectly balanced. This non alc vodka cocktail is ideal for garden parties, patio sessions, or a quiet Tuesday evening.",
+    title: "Lavender Citrus Lemonade",
+    description: "Portland Syrups Lavender combined with Abstinence Cape Citrus creates a floral, sun-drenched lemonade. The grapefruit and buchu notes in the spirit lift the lavender into something truly special.",
     image: lavenderLemonade,
     prepTime: "5 min",
     servings: 1,
     difficulty: "Easy",
-    ingredients: ["2 oz non alc vodka", "1.5 oz fresh lemon juice", "0.75 oz lavender simple syrup", "Sparkling water", "Dried lavender sprig", "Lemon wheel"],
-    keywords: ["non alc vodka", "alcohol-free beverages", "non alc drinks"],
+    ingredients: ["2 oz Abstinence Cape Citrus", "0.75 oz Portland Syrups Lavender", "1.5 oz fresh lemon juice", "Sparkling water", "Dried lavender sprig", "Lemon wheel"],
+    productHandle: "abstinence-spirits-cape-citrus",
   },
   {
     id: 8,
     title: "Dark and Stormy (Zero Proof)",
-    description: "Spicy ginger beer and non alc dark rum create a bold, warming cocktail with serious depth. The lime cuts through for a perfectly balanced pour.",
+    description: "Abstinence Epilogue X stands in for dark rum with its smoked, peated malt character. Paired with Portland Syrups Ginger and fresh lime, it delivers a bold, warming cocktail with serious depth.",
     image: darkStormy,
     prepTime: "3 min",
     servings: 1,
     difficulty: "Easy",
-    ingredients: ["2 oz non alc dark rum (Lyre's Dark Cane)", "4 oz quality ginger beer", "0.5 oz fresh lime juice", "Lime wedge", "Candied ginger"],
-    keywords: ["non alc", "zero proof drinks", "non alcoholic spirits brands"],
+    ingredients: ["2 oz Abstinence Epilogue X", "0.75 oz Portland Syrups Ginger", "4 oz sparkling water", "0.5 oz fresh lime juice", "Lime wedge", "Candied ginger"],
+    productHandle: "portland-syrups-ginger",
   },
   {
     id: 9,
-    title: "Passion Fruit Functional Spritz",
-    description: "A vibrant, adaptogen-infused spritz combining passion fruit, sparkling water, and a functional tonic for a drink that looks incredible and supports your wellness goals.",
+    title: "Agave Old Fashioned",
+    description: "Almave \u00c1mbar, made from aged blue agave in Jalisco, brings the sweetness and body needed for a proper spirit-forward sipper. A few dashes of Cherry Coffee Blast bitters tie it all together.",
     image: passionFruit,
-    prepTime: "5 min",
+    prepTime: "3 min",
     servings: 1,
     difficulty: "Easy",
-    ingredients: ["3 oz functional adaptogen tonic (Kin Euphorics or Hiyo)", "1 oz passion fruit puree", "Sparkling water", "Fresh passion fruit half", "Edible flower"],
-    keywords: ["sober curious", "alcohol-free lifestyle", "best na beverages"],
+    ingredients: ["2.5 oz Almave \u00c1mbar", "0.25 oz Portland Syrups Brown Sugar", "3 dashes All The Bitter Cherry Coffee Blast Bitters", "Orange peel", "Luxardo cherry"],
+    productHandle: "almave-ambar",
   },
   {
     id: 10,
-    title: "Non Alc Aperol Spritz",
-    description: "The iconic Italian aperitivo, reimagined. A non alc bitter aperitif, sparkling wine alternative, and a splash of soda deliver the same golden-hour magic without the alcohol.",
+    title: "Blood Orange Aperol Spritz",
+    description: "The iconic Italian aperitivo, reimagined with Abstinence Blood Orange Aperitif. The African wormwood bitterness and blood orange citrus deliver golden-hour magic without the alcohol.",
     image: aperitifSpritz,
     prepTime: "3 min",
     servings: 1,
     difficulty: "Easy",
-    ingredients: ["2 oz non alc bitter aperitif (Wilfred's or Apertif)", "3 oz non alc sparkling wine", "Splash of soda water", "Orange slice", "Green olive"],
-    keywords: ["non alc spritz", "non alc cocktails", "alcohol-free spirits"],
+    ingredients: ["2 oz Abstinence Blood Orange Aperitif", "3 oz Abstinence Lemon Aperitivo Spritz", "Splash of soda water", "Orange slice", "Green olive"],
+    productHandle: "abstinence-spirits-blood-orange-aperitif",
   },
 ];
 
@@ -159,42 +222,36 @@ const categories = [
     title: "Non Alc Beer",
     description: "Craft lagers, IPAs, stouts, and wheat beers brewed to 0.0% or under 0.5% ABV. Brands like Athletic Brewing and Bravus have redefined what NA beer can taste like.",
     link: "/collections/na-beer",
-    keywords: "non alc beer, non alcoholic beer brands",
   },
   {
     icon: Wine,
     title: "Non Alc Wine",
     description: "Full-bodied reds, crisp whites, and sparkling ros\u00e9s made from real wine grapes with the alcohol gently removed. Perfect for dinner pairings and celebrations.",
     link: "/collections/wine-alternatives",
-    keywords: "non alc wine, non alc rose, non alc sparkling wine, best non alc wine",
   },
   {
     icon: Martini,
     title: "Zero Proof Spirits",
     description: "Non alc gin, tequila, vodka, whiskey, and rum alternatives designed for cocktail making. These are the backbone of the non alc cocktail movement.",
     link: "/collections/spirit-alternatives",
-    keywords: "non alc spirits, non alc gin, non alc tequila, non alc vodka, where to buy zero proof spirits",
   },
   {
     icon: Leaf,
     title: "Functional and Adaptogenic Drinks",
     description: "Beyond mimicking alcohol, functional beverages use adaptogens, nootropics, and botanicals to deliver a mood lift, calm, or focus without any alcohol.",
     link: "/collections/functional",
-    keywords: "sober curious, best na beverages, non alcoholic drink companies",
   },
   {
     icon: GlassWater,
     title: "Non Alcoholic Seltzers",
     description: "Crisp, flavored sparkling waters and non alcoholic hard seltzers that deliver refreshment without the buzz. Think White Claw vibes, 0.0% ABV reality.",
     link: "/shop",
-    keywords: "non alcoholic seltzer, non alcoholic seltzers, na seltzer, alcohol free seltzer, non alcoholic hard seltzer, na seltzer brands, zero alcohol seltzer",
   },
   {
     icon: Cherry,
     title: "Non Alc Cider and RTDs",
     description: "Ready-to-drink canned cocktails, non alc ciders, and grab-and-go options for when you want convenience without compromise.",
     link: "/shop",
-    keywords: "non alc cider, non alcoholic drinks for sale, non alc",
   },
 ];
 
@@ -218,7 +275,7 @@ const faqs = [
   },
   {
     question: "Do non alc drinks taste like the real thing?",
-    answer: "The best ones do, and the category has improved dramatically since 2020. Non alc beers from Athletic Brewing and Gruvi are nearly indistinguishable from their alcoholic counterparts. Non alc spirits like Ritual Zero Proof and Seedlip are designed specifically for cocktail making and deliver real complexity. The key is finding the right brands, which is exactly what our tasting room is for."
+    answer: "The best ones do, and the category has improved dramatically since 2020. Non alc beers from Athletic Brewing and Gruvi are nearly indistinguishable from their alcoholic counterparts. Non alc spirits like Abstinence and Almave are designed specifically for cocktail making and deliver real complexity. The key is finding the right brands, which is exactly what our tasting room is for."
   },
   {
     question: "Are non alc drinks healthier than alcoholic drinks?",
@@ -230,7 +287,7 @@ const faqs = [
   },
   {
     question: "What are the best non alc cocktail recipes for beginners?",
-    answer: "Start with recipes that use familiar flavors: a Non Alc Mojito, a Zero Proof Margarita, or a Non Alc Aperol Spritz. These use simple techniques (muddling, shaking, stirring) and widely available non alc spirits. The 10 recipes on this page are all beginner-friendly."
+    answer: "Start with recipes that use familiar flavors: a Non Alc Mojito with Abstinence Cape Spice, a Zero Proof Margarita with Almave Blanco, or a Blood Orange Spritz with Abstinence Aperitif. These use simple techniques and products available in our shop. The 10 recipes on this page are all beginner-friendly."
   },
   {
     question: "What is a non alcoholic hard seltzer?",
@@ -269,7 +326,7 @@ const breadcrumbSchema = generateBreadcrumbSchema([
   { name: "Non Alc Drinks", url: `${SITE_URL}/non-alc-drinks` },
 ]);
 
-const sections = [
+const tocSections = [
   { id: "what-is-non-alc", label: "What Is Non Alc?" },
   { id: "recipes", label: "10 Recipes" },
   { id: "categories", label: "Types of Non Alc" },
@@ -295,7 +352,7 @@ const NonAlcDrinks = () => {
       { rootMargin: "-20% 0px -70% 0px" }
     );
 
-    sections.forEach(({ id }) => {
+    tocSections.forEach(({ id }) => {
       const el = document.getElementById(id);
       if (el) observer.observe(el);
     });
@@ -347,19 +404,10 @@ const NonAlcDrinks = () => {
             Everything you need to know about non alc drinks, from craft cocktail recipes to the best non alcoholic seltzers, spirits, and wines on the market.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button
-              asChild
-              size="lg"
-              className="bg-ocean hover:bg-ocean/90 text-white rounded-full px-8"
-            >
+            <Button asChild size="lg" className="bg-ocean hover:bg-ocean/90 text-white rounded-full px-8">
               <Link to="/shop">Shop Non Alc Drinks <ArrowRight className="ml-2 h-4 w-4" /></Link>
             </Button>
-            <Button
-              asChild
-              variant="outline"
-              size="lg"
-              className="border-white/30 text-white hover:bg-white/10 rounded-full px-8"
-            >
+            <Button asChild variant="outline" size="lg" className="border-white/30 text-white hover:bg-white/10 rounded-full px-8">
               <Link to="/recipes">Browse All Recipes</Link>
             </Button>
           </div>
@@ -370,7 +418,7 @@ const NonAlcDrinks = () => {
       <div className="sticky top-0 z-40 bg-background/95 backdrop-blur-sm border-b border-border">
         <div className="max-w-7xl mx-auto px-4">
           <nav className="flex gap-1 overflow-x-auto py-3 scrollbar-hide">
-            {sections.map(({ id, label }) => (
+            {tocSections.map(({ id, label }) => (
               <button
                 key={id}
                 onClick={() => scrollToSection(id)}
@@ -420,12 +468,7 @@ const NonAlcDrinks = () => {
               </div>
 
               <div className="relative rounded-2xl overflow-hidden aspect-[4/5]">
-                <img
-                  src={spiritBarCraft}
-                  alt="Bartender crafting a non alc cocktail with premium spirits alternatives"
-                  className="w-full h-full object-cover"
-                  loading="lazy"
-                />
+                <img src={spiritBarCraft} alt="Bartender crafting a non alc cocktail with premium spirits alternatives" className="w-full h-full object-cover" loading="lazy" />
               </div>
             </div>
           </div>
@@ -439,7 +482,7 @@ const NonAlcDrinks = () => {
                 10 Non Alc Drink Recipes You Need to Try
               </h2>
               <p className="text-muted-foreground max-w-2xl mx-auto">
-                From classic cocktail remakes to original creations, these recipes prove that non alc drinks can be just as exciting, complex, and Instagram-worthy as their boozy counterparts.
+                Every recipe below features products we carry at Monday Morning Bottle Shop. Add them directly to your cart and start mixing.
               </p>
             </div>
 
@@ -447,17 +490,12 @@ const NonAlcDrinks = () => {
               {recipes.map((recipe, index) => (
                 <div
                   key={recipe.id}
-                  className={`grid md:grid-cols-2 gap-8 lg:gap-12 items-center ${
+                  className={`grid md:grid-cols-2 gap-8 lg:gap-12 items-start ${
                     index % 2 === 1 ? "md:[direction:rtl] md:*:[direction:ltr]" : ""
                   }`}
                 >
                   <div className="relative rounded-2xl overflow-hidden aspect-[4/3]">
-                    <img
-                      src={recipe.image}
-                      alt={recipe.title}
-                      className="w-full h-full object-cover"
-                      loading="lazy"
-                    />
+                    <img src={recipe.image} alt={recipe.title} className="w-full h-full object-cover" loading="lazy" />
                     <div className="absolute top-4 left-4 bg-black/70 text-white text-sm font-medium px-3 py-1 rounded-full">
                       #{index + 1}
                     </div>
@@ -467,9 +505,7 @@ const NonAlcDrinks = () => {
                     <h3 className="font-serif text-2xl md:text-3xl text-foreground mb-3">
                       {recipe.title}
                     </h3>
-                    <p className="text-muted-foreground mb-4">
-                      {recipe.description}
-                    </p>
+                    <p className="text-muted-foreground mb-4">{recipe.description}</p>
 
                     <div className="flex gap-4 text-sm text-muted-foreground mb-4">
                       <span>{recipe.prepTime}</span>
@@ -488,18 +524,17 @@ const NonAlcDrinks = () => {
                         ))}
                       </ul>
                     </div>
+
+                    {/* Product Card with Add to Cart */}
+                    <RecipeProductCard handle={recipe.productHandle} />
                   </div>
                 </div>
               ))}
             </div>
 
             <div className="text-center mt-16">
-              <Button
-                asChild
-                size="lg"
-                className="bg-ocean hover:bg-ocean/90 text-white rounded-full px-8"
-              >
-                <Link to="/recipes">Explore All Recipes <ArrowRight className="ml-2 h-4 w-4" /></Link>
+              <Button asChild size="lg" className="bg-ocean hover:bg-ocean/90 text-white rounded-full px-8">
+                <Link to="/shop">Shop All Products <ArrowRight className="ml-2 h-4 w-4" /></Link>
               </Button>
             </div>
           </div>
@@ -509,9 +544,7 @@ const NonAlcDrinks = () => {
         <section id="categories" className="py-16 md:py-24">
           <div className="max-w-7xl mx-auto px-6">
             <div className="text-center mb-16">
-              <h2 className="font-serif text-3xl md:text-4xl text-foreground mb-4">
-                Types of Non Alc Drinks
-              </h2>
+              <h2 className="font-serif text-3xl md:text-4xl text-foreground mb-4">Types of Non Alc Drinks</h2>
               <p className="text-muted-foreground max-w-2xl mx-auto">
                 The non alc world is massive and growing fast. Here is a breakdown of every major category, what to expect, and where to find the best options.
               </p>
@@ -519,18 +552,10 @@ const NonAlcDrinks = () => {
 
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {categories.map((cat) => (
-                <Link
-                  key={cat.title}
-                  to={cat.link}
-                  className="group bg-card border border-border rounded-2xl p-6 hover:shadow-lg transition-all hover:border-primary/30"
-                >
+                <Link key={cat.title} to={cat.link} className="group bg-card border border-border rounded-2xl p-6 hover:shadow-lg transition-all hover:border-primary/30">
                   <cat.icon className="h-8 w-8 text-primary mb-4" />
-                  <h3 className="font-serif text-xl text-foreground mb-2 group-hover:text-primary transition-colors">
-                    {cat.title}
-                  </h3>
-                  <p className="text-sm text-muted-foreground">
-                    {cat.description}
-                  </p>
+                  <h3 className="font-serif text-xl text-foreground mb-2 group-hover:text-primary transition-colors">{cat.title}</h3>
+                  <p className="text-sm text-muted-foreground">{cat.description}</p>
                 </Link>
               ))}
             </div>
@@ -542,18 +567,10 @@ const NonAlcDrinks = () => {
           <div className="max-w-7xl mx-auto px-6">
             <div className="grid md:grid-cols-2 gap-12 items-center">
               <div className="relative rounded-2xl overflow-hidden aspect-[4/5]">
-                <img
-                  src={beachSunsetCocktails}
-                  alt="Friends enjoying non alcoholic seltzers at sunset on the beach"
-                  className="w-full h-full object-cover"
-                  loading="lazy"
-                />
+                <img src={beachSunsetCocktails} alt="Friends enjoying non alcoholic seltzers at sunset on the beach" className="w-full h-full object-cover" loading="lazy" />
               </div>
-
               <div>
-                <h2 className="font-serif text-3xl md:text-4xl text-foreground mb-6">
-                  Non Alcoholic Seltzers: The Full Guide
-                </h2>
+                <h2 className="font-serif text-3xl md:text-4xl text-foreground mb-6">Non Alcoholic Seltzers: The Full Guide</h2>
                 <p className="text-muted-foreground mb-4">
                   Non alcoholic hard seltzers are one of the fastest-growing segments in the entire non alc category. They deliver the same crisp, flavored, sparkling experience as brands like White Claw and Truly, but with 0.0% alcohol content.
                 </p>
@@ -563,7 +580,6 @@ const NonAlcDrinks = () => {
                 <p className="text-muted-foreground mb-6">
                   Popular NA seltzer brands include Hoptea, Lagunitas Hoppy Refresher, and Boulevard's Quirk Non-Alcohol line. These are perfect for outdoor events, beach days, BBQs, and any situation where you want something light and crushable without the alcohol.
                 </p>
-
                 <div className="grid grid-cols-2 gap-4">
                   {[
                     { label: "Calories", value: "0-50 per can" },
@@ -587,31 +603,16 @@ const NonAlcDrinks = () => {
           <div className="max-w-7xl mx-auto px-6">
             <div className="grid md:grid-cols-2 gap-12 items-center">
               <div>
-                <h2 className="font-serif text-3xl md:text-4xl text-foreground mb-6">
-                  How Non Alc Drinks Are Made
-                </h2>
+                <h2 className="font-serif text-3xl md:text-4xl text-foreground mb-6">How Non Alc Drinks Are Made</h2>
                 <p className="text-muted-foreground mb-4">
                   There is no single method for making non alc beverages. The process depends entirely on the type of drink being produced, and each method has trade-offs in flavor, cost, and complexity.
                 </p>
-
                 <div className="space-y-6 mt-8">
                   {[
-                    {
-                      title: "Dealcoholization (Beer and Wine)",
-                      text: "The beverage is brewed or fermented normally, then the alcohol is removed through vacuum distillation, reverse osmosis, or spinning cone technology. This preserves the original flavor profile while reducing ABV to under 0.5%.",
-                    },
-                    {
-                      title: "Distillation Without Alcohol (Spirits)",
-                      text: "Non alc spirits are typically made by distilling or macerating botanicals, spices, and other flavor compounds without ever producing ethanol. The result is a complex, aromatic liquid designed for cocktail mixing.",
-                    },
-                    {
-                      title: "Functional Formulation (Adaptogens and Nootropics)",
-                      text: "Functional non alc drinks are formulated from scratch using ingredients like ashwagandha, reishi mushroom, L-theanine, and kava. These are blended with natural flavors and sparkling water to create mood-enhancing beverages.",
-                    },
-                    {
-                      title: "Arrested Fermentation (Seltzers and Ciders)",
-                      text: "Some non alc seltzers and ciders use arrested fermentation, where the fermentation process is stopped before significant alcohol is produced. This creates natural carbonation and subtle flavor complexity.",
-                    },
+                    { title: "Dealcoholization (Beer and Wine)", text: "The beverage is brewed or fermented normally, then the alcohol is removed through vacuum distillation, reverse osmosis, or spinning cone technology. This preserves the original flavor profile while reducing ABV to under 0.5%." },
+                    { title: "Distillation Without Alcohol (Spirits)", text: "Non alc spirits are typically made by distilling or macerating botanicals, spices, and other flavor compounds without ever producing ethanol. The result is a complex, aromatic liquid designed for cocktail mixing." },
+                    { title: "Functional Formulation (Adaptogens and Nootropics)", text: "Functional non alc drinks are formulated from scratch using ingredients like ashwagandha, reishi mushroom, L-theanine, and kava. These are blended with natural flavors and sparkling water to create mood-enhancing beverages." },
+                    { title: "Arrested Fermentation (Seltzers and Ciders)", text: "Some non alc seltzers and ciders use arrested fermentation, where the fermentation process is stopped before significant alcohol is produced. This creates natural carbonation and subtle flavor complexity." },
                   ].map((method) => (
                     <div key={method.title} className="border-l-2 border-primary/40 pl-5">
                       <h3 className="font-medium text-foreground mb-1">{method.title}</h3>
@@ -620,14 +621,8 @@ const NonAlcDrinks = () => {
                   ))}
                 </div>
               </div>
-
               <div className="relative rounded-2xl overflow-hidden aspect-[4/5]">
-                <img
-                  src={naSpiritCocktail}
-                  alt="Non alc spirit being poured into a cocktail glass"
-                  className="w-full h-full object-cover"
-                  loading="lazy"
-                />
+                <img src={naSpiritCocktail} alt="Non alc spirit being poured into a cocktail glass" className="w-full h-full object-cover" loading="lazy" />
               </div>
             </div>
           </div>
@@ -637,36 +632,17 @@ const NonAlcDrinks = () => {
         <section id="who-drinks-non-alc" className="py-16 md:py-24 bg-muted/30">
           <div className="max-w-7xl mx-auto px-6">
             <div className="text-center mb-16">
-              <h2 className="font-serif text-3xl md:text-4xl text-foreground mb-4">
-                Who Drinks Non Alc?
-              </h2>
+              <h2 className="font-serif text-3xl md:text-4xl text-foreground mb-4">Who Drinks Non Alc?</h2>
               <p className="text-muted-foreground max-w-2xl mx-auto">
                 The non alc customer is not a single demographic. It is a cross-section of people who want great drinks without the downsides of alcohol.
               </p>
             </div>
-
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
               {[
-                {
-                  icon: Heart,
-                  title: "Health-Conscious Drinkers",
-                  text: "People cutting alcohol for better sleep, fitness, mental clarity, or long-term health. The fastest growing segment.",
-                },
-                {
-                  icon: Sparkles,
-                  title: "Sober Curious",
-                  text: "Not necessarily sober, just questioning their relationship with alcohol and exploring what life looks like with less of it.",
-                },
-                {
-                  icon: Droplets,
-                  title: "Designated Drivers and Parents",
-                  text: "People who still want a sophisticated drink at social events but need to stay sharp. Non alc gives them a real option beyond soda.",
-                },
-                {
-                  icon: Coffee,
-                  title: "Professionals and Athletes",
-                  text: "Peak performers who treat their bodies like a competitive advantage. Eliminating alcohol is the easiest performance upgrade available.",
-                },
+                { icon: Heart, title: "Health-Conscious Drinkers", text: "People cutting alcohol for better sleep, fitness, mental clarity, or long-term health. The fastest growing segment." },
+                { icon: Sparkles, title: "Sober Curious", text: "Not necessarily sober, just questioning their relationship with alcohol and exploring what life looks like with less of it." },
+                { icon: Droplets, title: "Designated Drivers and Parents", text: "People who still want a sophisticated drink at social events but need to stay sharp. Non alc gives them a real option beyond soda." },
+                { icon: Coffee, title: "Professionals and Athletes", text: "Peak performers who treat their bodies like a competitive advantage. Eliminating alcohol is the easiest performance upgrade available." },
               ].map((persona) => (
                 <div key={persona.title} className="bg-card border border-border rounded-2xl p-6">
                   <persona.icon className="h-7 w-7 text-primary mb-4" />
@@ -675,14 +651,8 @@ const NonAlcDrinks = () => {
                 </div>
               ))}
             </div>
-
             <div className="mt-12 relative rounded-2xl overflow-hidden">
-              <img
-                src={gardenPartyToast}
-                alt="Friends toasting with non alc drinks at a garden party"
-                className="w-full h-64 md:h-80 object-cover"
-                loading="lazy"
-              />
+              <img src={gardenPartyToast} alt="Friends toasting with non alc drinks at a garden party" className="w-full h-64 md:h-80 object-cover" loading="lazy" />
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-8">
                 <p className="text-white text-lg md:text-xl font-serif max-w-2xl">
                   "52% of US adults are actively trying to reduce their alcohol consumption. Non alc is not a niche. It is the new normal."
@@ -697,18 +667,10 @@ const NonAlcDrinks = () => {
           <div className="max-w-7xl mx-auto px-6">
             <div className="grid md:grid-cols-2 gap-12 items-center">
               <div className="relative rounded-2xl overflow-hidden aspect-[4/5]">
-                <img
-                  src={upscaleBarToast}
-                  alt="Curated non alc drink selection at Monday Morning Bottle Shop"
-                  className="w-full h-full object-cover"
-                  loading="lazy"
-                />
+                <img src={upscaleBarToast} alt="Curated non alc drink selection at Monday Morning Bottle Shop" className="w-full h-full object-cover" loading="lazy" />
               </div>
-
               <div>
-                <h2 className="font-serif text-3xl md:text-4xl text-foreground mb-6">
-                  Where to Buy Non Alc Drinks
-                </h2>
+                <h2 className="font-serif text-3xl md:text-4xl text-foreground mb-6">Where to Buy Non Alc Drinks</h2>
                 <p className="text-muted-foreground mb-4">
                   Finding quality non alc drinks used to mean scouring grocery store aisles for a single dusty O'Doul's. That era is over. Dedicated non alc bottle shops, online retailers, and specialty bars have made it easier than ever to explore the category.
                 </p>
@@ -718,21 +680,11 @@ const NonAlcDrinks = () => {
                 <p className="text-muted-foreground mb-6">
                   For those outside San Diego, we ship nationwide through our online shop. We also stock non alc wine, non alc champagne, non alc beer, non alc spirits, functional drinks, and non alcoholic seltzers from the best brands in the world.
                 </p>
-
                 <div className="flex flex-col sm:flex-row gap-4">
-                  <Button
-                    asChild
-                    size="lg"
-                    className="bg-ocean hover:bg-ocean/90 text-white rounded-full px-8"
-                  >
+                  <Button asChild size="lg" className="bg-ocean hover:bg-ocean/90 text-white rounded-full px-8">
                     <Link to="/shop">Shop Online <ArrowRight className="ml-2 h-4 w-4" /></Link>
                   </Button>
-                  <Button
-                    asChild
-                    variant="outline"
-                    size="lg"
-                    className="rounded-full px-8"
-                  >
+                  <Button asChild variant="outline" size="lg" className="rounded-full px-8">
                     <Link to="/locations">Visit Our Tasting Rooms</Link>
                   </Button>
                 </div>
@@ -745,9 +697,7 @@ const NonAlcDrinks = () => {
         <section className="py-16 md:py-24 bg-muted/30">
           <div className="max-w-7xl mx-auto px-6">
             <div className="text-center mb-12">
-              <h2 className="font-serif text-3xl md:text-4xl text-foreground mb-4">
-                The Non Alc Market by the Numbers
-              </h2>
+              <h2 className="font-serif text-3xl md:text-4xl text-foreground mb-4">The Non Alc Market by the Numbers</h2>
             </div>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
               {[
@@ -773,20 +723,11 @@ const NonAlcDrinks = () => {
                 Frequently Asked Questions About Non Alc Drinks
               </h2>
             </div>
-
             <Accordion type="single" collapsible className="space-y-3">
               {faqs.map((faq, index) => (
-                <AccordionItem
-                  key={index}
-                  value={`faq-${index}`}
-                  className="bg-card border border-border rounded-xl px-6"
-                >
-                  <AccordionTrigger className="text-left font-medium text-foreground hover:no-underline">
-                    {faq.question}
-                  </AccordionTrigger>
-                  <AccordionContent className="text-muted-foreground">
-                    {faq.answer}
-                  </AccordionContent>
+                <AccordionItem key={index} value={`faq-${index}`} className="bg-card border border-border rounded-xl px-6">
+                  <AccordionTrigger className="text-left font-medium text-foreground hover:no-underline">{faq.question}</AccordionTrigger>
+                  <AccordionContent className="text-muted-foreground">{faq.answer}</AccordionContent>
                 </AccordionItem>
               ))}
             </Accordion>
@@ -796,26 +737,15 @@ const NonAlcDrinks = () => {
         {/* Final CTA */}
         <section className="py-16 md:py-24 bg-muted/30">
           <div className="max-w-4xl mx-auto px-6 text-center">
-            <h2 className="font-serif text-3xl md:text-4xl text-foreground mb-4">
-              Ready to Explore Non Alc?
-            </h2>
+            <h2 className="font-serif text-3xl md:text-4xl text-foreground mb-4">Ready to Explore Non Alc?</h2>
             <p className="text-muted-foreground max-w-2xl mx-auto mb-8">
               Whether you are mixing your first non alc cocktail at home or building out a full zero proof bar, we have the products, the recipes, and the expertise to help you make the switch.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button
-                asChild
-                size="lg"
-                className="bg-ocean hover:bg-ocean/90 text-white rounded-full px-8"
-              >
+              <Button asChild size="lg" className="bg-ocean hover:bg-ocean/90 text-white rounded-full px-8">
                 <Link to="/shop">Shop Non Alc Drinks <ArrowRight className="ml-2 h-4 w-4" /></Link>
               </Button>
-              <Button
-                asChild
-                variant="outline"
-                size="lg"
-                className="rounded-full px-8"
-              >
+              <Button asChild variant="outline" size="lg" className="rounded-full px-8">
                 <Link to="/locations">Visit Our San Diego Tasting Room</Link>
               </Button>
             </div>
