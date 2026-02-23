@@ -41,6 +41,7 @@ import AlcoholFreeLifestyle from "./pages/AlcoholFreeLifestyle";
 import ZeroProofMeaning from "./pages/ZeroProofMeaning";
 import CutwaterAlcoholContent from "./pages/CutwaterAlcoholContent";
 import NonAlcDrinks from "./pages/NonAlcDrinks";
+import ZeroProofNearby from "./pages/ZeroProofNearby";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -98,6 +99,7 @@ const AppContent = () => {
         <Route path="/zero-proof-meaning" element={<ZeroProofMeaning />} />
         <Route path="/cutwater-alcohol-content" element={<CutwaterAlcoholContent />} />
         <Route path="/non-alc-drinks" element={<NonAlcDrinks />} />
+        <Route path="/zero-proof-alcohol-nearby" element={<ZeroProofNearby />} />
         {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
         <Route path="*" element={<NotFound />} />
       </Routes>
