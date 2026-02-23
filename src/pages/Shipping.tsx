@@ -27,18 +27,21 @@ const Shipping = () => {
                 <div className="space-y-4">
                   <h2 className="font-serif text-2xl text-forest">Shipping Locations</h2>
                   <p>
-                    We currently ship to all 50 U.S. states. Unfortunately, we do not ship internationally at this time. For local customers in San Diego, in-store pickup is available at both our Ocean Beach and Pacific Beach locations.
+                    We ship to most U.S. states. Due to state regulations, some states restrict the shipment of non-alcoholic beverages. If your state is affected, we'll notify you at checkout. Unfortunately, we do not ship internationally at this time. For local customers in San Diego, in-store pickup is available at both our Ocean Beach and Pacific Beach locations.
                   </p>
                 </div>
 
                 <div className="space-y-4">
                   <h2 className="font-serif text-2xl text-forest">Shipping Methods & Timing</h2>
-                  <ul className="list-disc pl-6 space-y-2">
+                   <ul className="list-disc pl-6 space-y-2">
                     <li><strong className="text-forest">Standard Shipping:</strong> 5-7 business days - $8.99</li>
                     <li><strong className="text-forest">Expedited Shipping:</strong> 2-3 business days - $14.99</li>
                     <li><strong className="text-forest">Overnight Shipping:</strong> 1 business day - $24.99</li>
                     <li><strong className="text-forest">Free Shipping:</strong> Orders over $75 qualify for free standard shipping</li>
                   </ul>
+                  <p className="text-sm italic text-muted-foreground mt-3">
+                    *Shipping rates are estimated and determined by the carrier. Actual rates may vary and are subject to change without notice.
+                  </p>
                 </div>
 
                 <div className="space-y-4">
@@ -78,7 +81,7 @@ const Shipping = () => {
                   <p>
                     Questions about shipping? Reach out to us at:<br />
                     <strong className="text-forest">Monday Morning</strong><br />
-                    Email: hello@mondaymorning.com<br />
+                    Email: info@mondaymorning-af.com<br />
                     San Diego, California
                   </p>
                 </div>
