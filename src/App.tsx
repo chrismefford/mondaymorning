@@ -38,6 +38,7 @@ import NonAlcoholicBeerGuide from "./pages/NonAlcoholicBeerGuide";
 import BestNonAlcoholicDrinks from "./pages/BestNonAlcoholicDrinks";
 import NewToNonAlcoholic from "./pages/NewToNonAlcoholic";
 import AlcoholFreeLifestyle from "./pages/AlcoholFreeLifestyle";
+import ZeroProofMeaning from "./pages/ZeroProofMeaning";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -92,6 +93,7 @@ const AppContent = () => {
         <Route path="/best-non-alcoholic-drinks" element={<BestNonAlcoholicDrinks />} />
         <Route path="/new-to-non-alcoholic-drinks" element={<NewToNonAlcoholic />} />
         <Route path="/alcohol-free-lifestyle-benefits" element={<AlcoholFreeLifestyle />} />
+        <Route path="/zero-proof-meaning" element={<ZeroProofMeaning />} />
         {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
         <Route path="*" element={<NotFound />} />
       </Routes>
