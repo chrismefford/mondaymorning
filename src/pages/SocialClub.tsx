@@ -636,7 +636,7 @@ const SocialClub = () => {
             onClick={() => document.getElementById("apply")?.scrollIntoView({ behavior: "smooth" })}
             className="bg-forest text-cream hover:bg-forest-deep font-sans text-sm font-semibold uppercase tracking-wider px-10 py-6"
           >
-            Apply for Membership
+            Apply Now
           </Button>
         </div>
       </section>
