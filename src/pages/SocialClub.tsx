@@ -83,7 +83,7 @@ const comparisonFeatures = [
   { feature: "Bottle shop discount", founders: "10%", patron: "10%", table: "10%" },
   { feature: "Shipping cap", founders: "$10", patron: "$10", table: "$10" },
   { feature: "Early access to new products", founders: true, patron: true, table: true },
-  { feature: "Members Only releases", founders: true, patron: true, table: true },
+  { feature: "Founders Only releases", founders: true, patron: true, table: true },
   { feature: "Limited edition merch", founders: true, patron: true, table: true },
   { feature: "Guest passes to events", founders: "1", patron: "2", table: "2+" },
   { feature: "Community recognition", founders: true, patron: true, table: true },
