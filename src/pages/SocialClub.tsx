@@ -590,7 +590,7 @@ const SocialClub = () => {
       </section>
 
       {/* Founder Note */}
-      <section className="py-24 lg:py-32 bg-noir-deep">
+      <section className="py-24 lg:py-32 bg-forest-deep">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="max-w-3xl mx-auto flex flex-col md:flex-row gap-12 items-start">
             <div className="shrink-0">
