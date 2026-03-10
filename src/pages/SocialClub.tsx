@@ -67,7 +67,7 @@ const tiers = [
       { label: "Founder's Club + Founder's Circle Benefits", items: [...tiers_founders_benefits, "Two seats at all Founders Club events", "Private industry tastings with NA brand founders", "Annual curated premium NA beverage package", "Recognition as Founder's Circle supporter"] },
     ],
     benefits: [
-      { category: "Founding Table Privileges", items: ["Private dinners with NA brand founders and industry leaders", "Small private tastings and product previews", "Access to unreleased beverages", "One annual private bar buyout for a personal event", "VIP seating and recognition at major events"] },
+      { category: "Founder's Table Privileges", items: ["Private dinners with NA brand founders and industry leaders", "Small private tastings and product previews", "Access to unreleased beverages", "One annual private bar buyout for a personal event", "VIP seating and recognition at major events"] },
     ],
   },
 ];
