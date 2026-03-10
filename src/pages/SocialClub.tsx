@@ -189,8 +189,8 @@ const SocialClub = () => {
   return (
     <div className="min-h-screen bg-background">
       <SEO
-        title="Founders Club - San Diego's Non-Alcoholic Founders Club"
-        description="Join the Monday Morning Founders Club, an exclusive collective for those shaping San Diego's alcohol-free social culture. Three tiers, 130 founding members."
+        title="Founders Club - America's Non-Alcoholic Founders Club"
+        description="Join the Monday Morning Founders Club, an exclusive collective for those shaping America's alcohol-free social culture. Three tiers, 130 founding members."
         path="/social-club"
         schema={schema}
       />
@@ -211,7 +211,7 @@ const SocialClub = () => {
             <span className="italic text-gold">Founders Club</span>
           </h1>
           <p className="font-sans text-lg md:text-xl text-cream/70 max-w-2xl mx-auto mb-8 animate-fade-up delay-200 leading-relaxed">
-            San Diego's non-alcoholic founders club. Great drinks, vibrant community, and memorable nights out, without alcohol.
+            America's non-alcoholic founders club. Great drinks, vibrant community, and memorable experiences, without alcohol.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-up delay-300">
             <Button
