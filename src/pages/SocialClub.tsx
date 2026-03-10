@@ -56,7 +56,7 @@ const tiers = [
     ],
   },
   {
-    name: "The Founding Table",
+    name: "Founder's Table",
     icon: Gem,
     price: "$10,000",
     priceNote: "per year",
