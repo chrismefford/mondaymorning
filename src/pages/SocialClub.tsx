@@ -39,8 +39,10 @@ const tiers = [
     color: "terracotta",
     featured: true,
     description: "For individuals who want to support the growth of alcohol-free culture while gaining deeper access to the community.",
+    includedFrom: [
+      { label: "Founders Club Benefits", items: tiers_founders_benefits },
+    ],
     benefits: [
-      { category: "Everything in Founders Club, plus", items: [] },
       { category: "Patron Privileges", items: ["Two seats at all Social Club events", "Private industry tastings with NA brand founders", "Annual curated premium NA beverage package", "Recognition as Patron Circle supporter"] },
     ],
   },
@@ -52,8 +54,10 @@ const tiers = [
     spots: "10",
     color: "ocean",
     description: "A small group of supporters helping establish the long-term foundation of Monday Morning and the alcohol-free social movement.",
+    includedFrom: [
+      { label: "Founders Club + Patron Circle Benefits", items: [...tiers_founders_benefits, "Two seats at all Social Club events", "Private industry tastings with NA brand founders", "Annual curated premium NA beverage package", "Recognition as Patron Circle supporter"] },
+    ],
     benefits: [
-      { category: "Everything in Founders + Patron, plus", items: [] },
       { category: "Founding Table Privileges", items: ["Private dinners with NA brand founders and industry leaders", "Small private tastings and product previews", "Access to unreleased beverages", "One annual private bar buyout for a personal event", "VIP seating and recognition at major events"] },
     ],
   },
