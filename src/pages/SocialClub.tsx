@@ -40,7 +40,7 @@ const tiers = [
     ],
   },
   {
-    name: "Patron Circle",
+    name: "Founder's Circle",
     icon: Crown,
     price: "$5,000",
     priceNote: "per year",
