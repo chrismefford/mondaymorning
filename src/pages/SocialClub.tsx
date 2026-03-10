@@ -431,7 +431,7 @@ const SocialClub = () => {
               { q: "Does the bottle shop discount work online?", a: "Yes, bottle shop discounts apply to both in-store and online purchases." },
               { q: "Do I need to RSVP for events?", a: "Yes. Event invitations may require advance RSVP and are subject to capacity." },
               { q: "Is early access guaranteed for limited products?", a: "Early access to limited products does not guarantee availability, as quantities may be limited." },
-              { q: "Will benefits ever change?", a: "Monday Morning may occasionally adjust programming, events, or benefits as the Founders Club evolves." },
+              { q: "Will benefits ever change?", a: "Monday Morning will not change the benefits during the membership terms." },
             ].map((faq, i) => (
               <AccordionItem key={i} value={`faq-${i}`} className="border border-champagne/10 px-6 data-[state=open]:border-gold-rich/30 transition-colors">
                 <AccordionTrigger className="font-sans text-sm font-semibold text-cream hover:no-underline py-5">
