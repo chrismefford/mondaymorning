@@ -179,9 +179,9 @@ const SocialClub = () => {
       description: "America's premier non alcoholic founders club with three tiers.",
       brand: { "@type": "Brand", name: "Monday Morning" },
       offers: [
-        { "@type": "Offer", name: "Founders Club", price: "1000", priceCurrency: "USD", availability: "https://schema.org/LimitedAvailability" },
-        { "@type": "Offer", name: "Patron Circle", price: "5000", priceCurrency: "USD", availability: "https://schema.org/LimitedAvailability" },
-        { "@type": "Offer", name: "The Founding Table", price: "10000", priceCurrency: "USD", availability: "https://schema.org/LimitedAvailability" },
+        { "@type": "Offer", name: "Founder's Club", price: "1000", priceCurrency: "USD", availability: "https://schema.org/LimitedAvailability" },
+        { "@type": "Offer", name: "Founder's Circle", price: "5000", priceCurrency: "USD", availability: "https://schema.org/LimitedAvailability" },
+        { "@type": "Offer", name: "Founder's Table", price: "10000", priceCurrency: "USD", availability: "https://schema.org/LimitedAvailability" },
       ],
     },
   ];
