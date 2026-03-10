@@ -347,7 +347,7 @@ const SocialClub = () => {
                     onClick={() => document.getElementById("apply")?.scrollIntoView({ behavior: "smooth" })}
                     className={`mt-10 w-full font-sans text-[10px] font-semibold uppercase tracking-[0.25em] py-6 transition-all ${
                       tier.featured
-                        ? "shimmer-gold-bg text-noir hover:opacity-90"
+                        ? "shimmer-gold-bg text-forest-deep hover:opacity-90"
                         : "bg-transparent text-champagne/50 hover:text-champagne/80 border border-champagne/15 hover:border-champagne/30"
                     }`}
                   >
