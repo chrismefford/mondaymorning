@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Check, Crown, Star, Gem, Calendar, Gift, Users, Wine, ShoppingBag, Ticket, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -355,21 +356,33 @@ const SocialClub = () => {
       {/* Policies */}
       <section className="py-16 lg:py-20 bg-muted/50">
         <div className="container mx-auto px-4 lg:px-8 max-w-4xl">
-          <h2 className="font-serif text-3xl md:text-4xl text-foreground mb-8 text-center">
-            Club Details and Policies
-          </h2>
-          <div className="space-y-4 font-sans text-sm text-muted-foreground leading-relaxed">
-            <p>Founders Club membership is valid for 12 months from the date of purchase.</p>
-            <p>Club benefits are non-transferable and intended for use by the registered member.</p>
-            <p>Bar discounts apply to all drinks purchased by the member, including drinks purchased for guests. The member must be present at the time of purchase.</p>
-            <p>Founders receive six complimentary slushies per month. Complimentary slushies reset each calendar month, unused drinks do not roll over.</p>
-            <p>Founders Club discounts cannot be combined with other promotions or special offers. When multiple discounts are available, the greater discount will be applied.</p>
-            <p>Bottle shop discounts apply to both in-store and online purchases. Founders also receive complimentary shipping on online orders placed through the Monday Morning website.</p>
-            <p>Event invitations may require advance RSVP and are subject to capacity.</p>
-            <p>Early access to limited products does not guarantee availability, as quantities may be limited.</p>
-            <p>Monday Morning may occasionally adjust programming, events, or benefits as the Founders Club evolves.</p>
-            <p>Club fees are non-refundable and recur annually.</p>
+          <div className="text-center mb-12">
+            <p className="font-sans text-xs font-semibold uppercase tracking-[0.2em] text-primary mb-4">FAQ</p>
+            <h2 className="font-serif text-3xl md:text-5xl text-foreground mb-4">
+              Frequently Asked Questions
+            </h2>
           </div>
+          <Accordion type="single" collapsible className="space-y-3">
+            {[
+              { q: "How long does my membership last?", a: "Founders Club membership is valid for 12 months from the date of purchase. Club fees are non-refundable and recur annually." },
+              { q: "Can I share my membership benefits?", a: "Club benefits are non-transferable and intended for use by the registered member. However, bar discounts apply to all drinks purchased by the member, including drinks purchased for guests, as long as the member is present at the time of purchase." },
+              { q: "How do complimentary slushies work?", a: "Founders receive six complimentary slushies per month. Complimentary slushies reset each calendar month, unused drinks do not roll over." },
+              { q: "Can I combine my discount with other promotions?", a: "Founders Club discounts cannot be combined with other promotions or special offers. When multiple discounts are available, the greater discount will be applied." },
+              { q: "Does the bottle shop discount work online?", a: "Yes, bottle shop discounts apply to both in-store and online purchases. Founders also receive complimentary shipping on online orders placed through the Monday Morning website." },
+              { q: "Do I need to RSVP for events?", a: "Event invitations may require advance RSVP and are subject to capacity." },
+              { q: "Is early access guaranteed for limited products?", a: "Early access to limited products does not guarantee availability, as quantities may be limited." },
+              { q: "Will benefits ever change?", a: "Monday Morning may occasionally adjust programming, events, or benefits as the Founders Club evolves." },
+            ].map((faq, i) => (
+              <AccordionItem key={i} value={`faq-${i}`} className="border-2 border-border px-6 data-[state=open]:border-primary">
+                <AccordionTrigger className="font-sans text-base font-semibold text-foreground hover:no-underline py-5">
+                  {faq.q}
+                </AccordionTrigger>
+                <AccordionContent className="font-sans text-sm text-muted-foreground leading-relaxed pb-5">
+                  {faq.a}
+                </AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
         </div>
       </section>
 
