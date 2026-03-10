@@ -630,7 +630,7 @@ const SocialClub = () => {
             Building the Future of Alcohol-Free Social Culture
           </h2>
           <p className="font-sans text-base text-forest/80 max-w-2xl mx-auto mb-8">
-            With membership limited across all tiers, the Monday Morning Social Club represents the community helping define a new kind of nightlife in San Diego, one rooted in great drinks, inclusive experiences, and meaningful connection.
+            With spots limited across all tiers, the Monday Morning Founders Club represents the community helping define a new kind of nightlife in San Diego, one rooted in great drinks, inclusive experiences, and meaningful connection.
           </p>
           <Button
             onClick={() => document.getElementById("apply")?.scrollIntoView({ behavior: "smooth" })}
