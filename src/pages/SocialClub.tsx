@@ -52,7 +52,7 @@ const tiers = [
       { label: "Founders Club Benefits", items: tiers_founders_benefits },
     ],
     benefits: [
-      { category: "Patron Privileges", items: ["Two seats at all Social Club events", "Private industry tastings with NA brand founders", "Annual curated premium NA beverage package", "Recognition as Patron Circle supporter"] },
+      { category: "Patron Privileges", items: ["Two seats at all Founders Club events", "Private industry tastings with NA brand founders", "Annual curated premium NA beverage package", "Recognition as Patron Circle supporter"] },
     ],
   },
   {
@@ -64,7 +64,7 @@ const tiers = [
     color: "ocean",
     description: "A small group of supporters helping establish the long-term foundation of Monday Morning and the alcohol-free social movement.",
     includedFrom: [
-      { label: "Founders Club + Patron Circle Benefits", items: [...tiers_founders_benefits, "Two seats at all Social Club events", "Private industry tastings with NA brand founders", "Annual curated premium NA beverage package", "Recognition as Patron Circle supporter"] },
+      { label: "Founders Club + Patron Circle Benefits", items: [...tiers_founders_benefits, "Two seats at all Founders Club events", "Private industry tastings with NA brand founders", "Annual curated premium NA beverage package", "Recognition as Patron Circle supporter"] },
     ],
     benefits: [
       { category: "Founding Table Privileges", items: ["Private dinners with NA brand founders and industry leaders", "Small private tastings and product previews", "Access to unreleased beverages", "One annual private bar buyout for a personal event", "VIP seating and recognition at major events"] },
@@ -148,7 +148,7 @@ const SocialClub = () => {
 
       toast({
         title: "Application Received",
-        description: "Thank you for your interest in the Monday Morning Social Club. We will be in touch soon.",
+        description: "Thank you for your interest in the Monday Morning Founders Club. We will be in touch soon.",
       });
       setFormData({
         tier: "founders",
@@ -175,8 +175,8 @@ const SocialClub = () => {
     {
       "@context": "https://schema.org",
       "@type": "Product",
-      name: "Monday Morning Social Club Membership",
-      description: "San Diego's premier non-alcoholic social club with three membership tiers.",
+      name: "Monday Morning Founders Club",
+      description: "San Diego's premier non-alcoholic founders club with three tiers.",
       brand: { "@type": "Brand", name: "Monday Morning" },
       offers: [
         { "@type": "Offer", name: "Founders Club", price: "1000", priceCurrency: "USD", availability: "https://schema.org/LimitedAvailability" },
@@ -189,8 +189,8 @@ const SocialClub = () => {
   return (
     <div className="min-h-screen bg-background">
       <SEO
-        title="Social Club - San Diego's Non-Alcoholic Social Club"
-        description="Join the Monday Morning Social Club, a limited membership for those shaping San Diego's alcohol-free social culture. Three tiers, 130 founding members."
+        title="Founders Club - San Diego's Non-Alcoholic Founders Club"
+        description="Join the Monday Morning Founders Club, an exclusive collective for those shaping San Diego's alcohol-free social culture. Three tiers, 130 founding members."
         path="/social-club"
         schema={schema}
       />
@@ -211,7 +211,7 @@ const SocialClub = () => {
             <span className="italic text-gold">Founders Club</span>
           </h1>
           <p className="font-sans text-lg md:text-xl text-cream/70 max-w-2xl mx-auto mb-8 animate-fade-up delay-200 leading-relaxed">
-            San Diego's non-alcoholic social club. Great drinks, vibrant community, and memorable nights out, without alcohol.
+            San Diego's non-alcoholic founders club. Great drinks, vibrant community, and memorable nights out, without alcohol.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-up delay-300">
             <Button
@@ -248,7 +248,7 @@ const SocialClub = () => {
               In a city known for its nightlife and craft beverage culture, Monday Morning is building something different: a place where great drinks, vibrant community, and memorable nights out exist without alcohol.
             </p>
             <p>
-              The Monday Morning Social Club is an exclusive collective for those who want to be part of shaping the next chapter of San Diego's social culture. More than a title or a card, the Social Club is a gathering point for people who believe connection, creativity, and hospitality thrive without alcohol.
+              The Monday Morning Founders Club is an exclusive collective for those who want to be part of shaping the next chapter of San Diego's social culture. More than a title or a card, the Founders Club is a gathering point for people who believe connection, creativity, and hospitality thrive without alcohol.
             </p>
             <p>
               With a focus on experiences, discovery, and community, members receive access to private events, new drink releases, and the inside track on the evolving alcohol-free movement.
@@ -267,7 +267,7 @@ const SocialClub = () => {
               Choose Your Tier
             </h2>
             <p className="font-sans text-lg text-cream/60 max-w-2xl mx-auto">
-              The Social Club launches with a limited founding cohort of 130 members across three tiers.
+              The Founders Club launches with a limited founding cohort of 130 members across three tiers.
             </p>
           </div>
 
@@ -630,13 +630,13 @@ const SocialClub = () => {
             Building the Future of Alcohol-Free Social Culture
           </h2>
           <p className="font-sans text-base text-forest/80 max-w-2xl mx-auto mb-8">
-            With membership limited across all tiers, the Monday Morning Social Club represents the community helping define a new kind of nightlife in San Diego, one rooted in great drinks, inclusive experiences, and meaningful connection.
+            With spots limited across all tiers, the Monday Morning Founders Club represents the community helping define a new kind of nightlife in San Diego, one rooted in great drinks, inclusive experiences, and meaningful connection.
           </p>
           <Button
             onClick={() => document.getElementById("apply")?.scrollIntoView({ behavior: "smooth" })}
             className="bg-forest text-cream hover:bg-forest-deep font-sans text-sm font-semibold uppercase tracking-wider px-10 py-6"
           >
-            Apply for Membership
+            Apply Now
           </Button>
         </div>
       </section>
