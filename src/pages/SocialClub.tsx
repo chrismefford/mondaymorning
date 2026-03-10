@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { Check, Crown, Star, Gem, Calendar, Gift, Users, Wine, ShoppingBag, Ticket, ChevronDown } from "lucide-react";
+import { Check, Crown, Star, Gem, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -30,8 +30,8 @@ const tiers = [
     price: "$1,000",
     priceNote: "per year",
     spots: "100",
-    color: "gold",
-    description: "The core community behind Monday Morning and the individuals helping establish San Diego's alcohol-free social culture.",
+    color: "gold" as const,
+    description: "The core community behind Monday Morning and the individuals helping establish America's alcohol-free social culture.",
     benefits: [
       { category: "Events", items: ["Four exclusive events annually", "Founder tasting nights", "Private product launch events", "Founders Happy Hour with menu previews", "Annual Founders Celebration party"] },
       { category: "Bar Privileges", items: ["20% off drinks at the bar", "Six complimentary slushies per month", "Discounts apply to guest drinks too"] },
@@ -45,7 +45,7 @@ const tiers = [
     price: "$5,000",
     priceNote: "per year",
     spots: "20",
-    color: "terracotta",
+    color: "terracotta" as const,
     featured: true,
     description: "For individuals who want to support the growth of alcohol-free culture while gaining deeper access to the community.",
     includedFrom: [
@@ -61,7 +61,7 @@ const tiers = [
     price: "$10,000",
     priceNote: "per year",
     spots: "10",
-    color: "ocean",
+    color: "ocean" as const,
     description: "A small group of supporters helping establish the long-term foundation of Monday Morning and the alcohol-free social movement.",
     includedFrom: [
       { label: "Founders Club + Patron Circle Benefits", items: [...tiers_founders_benefits, "Two seats at all Founders Club events", "Private industry tastings with NA brand founders", "Annual curated premium NA beverage package", "Recognition as Patron Circle supporter"] },
@@ -96,6 +96,12 @@ const comparisonFeatures = [
   { feature: "VIP seating at major events", founders: false, patron: false, table: true },
 ];
 
+const tierColorMap = {
+  gold: { text: "text-gold-rich", check: "text-gold-rich", label: "text-gold-shimmer", border: "border-gold-rich" },
+  terracotta: { text: "text-terracotta", check: "text-terracotta", label: "text-terracotta-light", border: "border-terracotta" },
+  ocean: { text: "text-ocean", check: "text-ocean", label: "text-ocean-light", border: "border-ocean" },
+};
+
 const SocialClub = () => {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -115,7 +121,6 @@ const SocialClub = () => {
     setIsSubmitting(true);
 
     try {
-      // Save to database
       const { data: application, error: insertError } = await supabase
         .from("social_club_applications")
         .insert({
@@ -131,19 +136,14 @@ const SocialClub = () => {
         .select()
         .single();
 
-      if (insertError) {
-        console.error("Insert error:", insertError);
-        throw new Error("Failed to submit application");
-      }
+      if (insertError) throw insertError;
 
-      // Send email notification to operations
       try {
         await supabase.functions.invoke("send-social-club-notification", {
           body: { applicationId: application.id },
         });
       } catch (emailErr) {
         console.error("Email notification failed:", emailErr);
-        // Don't throw — application was saved successfully
       }
 
       toast({
@@ -187,7 +187,7 @@ const SocialClub = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-noir-deep">
       <SEO
         title="Founders Club - America's Non Alcoholic Founders Club"
         description="Join the Monday Morning Founders Club, an exclusive collective for those shaping America's alcohol-free social culture. Three tiers, 130 founding members."
@@ -197,58 +197,64 @@ const SocialClub = () => {
       <Header />
 
       {/* Hero */}
-      <section className="relative min-h-[90vh] flex items-center justify-center bg-forest overflow-hidden">
-        <div className="absolute inset-0 grain pointer-events-none opacity-40" />
-        <div className="absolute top-20 right-10 w-64 lg:w-96 opacity-[0.04] pointer-events-none">
+      <section className="relative min-h-[100vh] flex items-center justify-center bg-noir-deep overflow-hidden">
+        {/* Radial gold glow */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_hsl(42_80%_45%_/_0.08)_0%,_transparent_70%)]" />
+        <div className="absolute inset-0 grain pointer-events-none opacity-20" />
+        <div className="absolute top-20 right-10 w-64 lg:w-96 opacity-[0.03] pointer-events-none">
           <img src={stampGold} alt="" className="w-full animate-float" />
         </div>
+        {/* Top and bottom gold hairlines */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/3 h-px bg-gradient-to-r from-transparent via-gold-rich to-transparent" />
         <div className="container mx-auto px-4 lg:px-8 relative z-10 text-center py-32">
-          <p className="font-sans text-xs font-semibold uppercase tracking-[0.3em] text-gold mb-6 animate-fade-up">
-            Limited to 130 Founding Members
+          <p className="font-sans text-[10px] font-semibold uppercase tracking-[0.5em] text-gold-rich/70 mb-8 animate-fade-up">
+            By Invitation Only · 130 Founding Positions
           </p>
-          <h1 className="font-serif text-5xl md:text-7xl lg:text-8xl text-cream mb-6 animate-fade-up delay-100">
+          <h1 className="font-serif text-5xl md:text-7xl lg:text-[6.5rem] text-cream mb-8 animate-fade-up delay-100 leading-[0.9]">
             Monday Morning<br />
-            <span className="italic text-gold">Founders Club</span>
+            <span className="italic shimmer-gold">Founders Club</span>
           </h1>
-          <p className="font-sans text-lg md:text-xl text-cream/70 max-w-2xl mx-auto mb-8 animate-fade-up delay-200 leading-relaxed">
+          <div className="w-16 h-px bg-gold-rich/40 mx-auto mb-8 animate-fade-up delay-150" />
+          <p className="font-sans text-base md:text-lg text-champagne/60 max-w-xl mx-auto mb-10 animate-fade-up delay-200 leading-relaxed tracking-wide">
             America's non alcoholic founders club. Great drinks, vibrant community, and memorable experiences, without alcohol.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-up delay-300">
             <Button
               onClick={() => document.getElementById("tiers")?.scrollIntoView({ behavior: "smooth" })}
-              className="bg-gold text-forest hover:bg-gold-light font-sans text-sm font-semibold uppercase tracking-wider px-8 py-6"
+              className="shimmer-gold-bg text-noir font-sans text-xs font-semibold uppercase tracking-[0.2em] px-10 py-6 border-0 hover:opacity-90 transition-opacity"
             >
               View Tiers
             </Button>
             <Button
               onClick={() => document.getElementById("apply")?.scrollIntoView({ behavior: "smooth" })}
-              className="border-2 border-cream text-cream hover:bg-cream hover:text-forest font-sans text-sm font-semibold uppercase tracking-wider px-8 py-6 bg-transparent"
+              className="border border-gold-rich/30 text-gold-rich/80 hover:bg-gold-rich/10 hover:text-gold-rich font-sans text-xs font-semibold uppercase tracking-[0.2em] px-10 py-6 bg-transparent transition-all"
             >
               Apply Now
             </Button>
           </div>
-          <p className="font-sans text-sm text-cream/40 mt-8 animate-fade-up delay-400">
+          <p className="font-sans text-[10px] text-champagne/30 mt-12 uppercase tracking-[0.3em] animate-fade-up delay-400">
             Enrollment closes April 30, 2026
           </p>
         </div>
-        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background to-transparent" />
+        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-noir-deep to-transparent" />
       </section>
 
       {/* Intro Section */}
-      <section className="py-20 lg:py-28">
-        <div className="container mx-auto px-4 lg:px-8 max-w-4xl">
-          <div className="text-center mb-12">
-            <p className="font-sans text-xs font-semibold uppercase tracking-[0.2em] text-primary mb-4">The Movement</p>
-            <h2 className="font-serif text-3xl md:text-5xl text-foreground mb-8">
+      <section className="py-24 lg:py-32 bg-noir relative">
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/4 h-px bg-gradient-to-r from-transparent via-gold-rich/20 to-transparent" />
+        <div className="container mx-auto px-4 lg:px-8 max-w-3xl">
+          <div className="text-center mb-14">
+            <p className="font-sans text-[10px] font-semibold uppercase tracking-[0.4em] text-gold-rich/60 mb-6">The Movement</p>
+            <h2 className="font-serif text-3xl md:text-5xl text-cream mb-0">
               An Invitation to the Inner Circle
             </h2>
           </div>
-          <div className="space-y-6 font-sans text-lg text-muted-foreground leading-relaxed">
+          <div className="space-y-6 font-sans text-base text-champagne/50 leading-relaxed tracking-wide">
             <p>
               In a city known for its nightlife and craft beverage culture, Monday Morning is building something different: a place where great drinks, vibrant community, and memorable nights out exist without alcohol.
             </p>
             <p>
-              The Monday Morning Founders Club is an exclusive collective for those who want to be part of shaping the next chapter of San Diego's social culture. More than a title or a card, the Founders Club is a gathering point for people who believe connection, creativity, and hospitality thrive without alcohol.
+              The Monday Morning Founders Club is an exclusive collective for those who want to be part of shaping the next chapter of social culture. More than a title or a card, the Founders Club is a gathering point for people who believe connection, creativity, and hospitality thrive without alcohol.
             </p>
             <p>
               With a focus on experiences, discovery, and community, members receive access to private events, new drink releases, and the inside track on the evolving alcohol-free movement.
@@ -258,84 +264,79 @@ const SocialClub = () => {
       </section>
 
       {/* Tier Cards */}
-      <section id="tiers" className="py-20 lg:py-28 bg-forest relative overflow-hidden scroll-mt-20">
-        <div className="absolute inset-0 grain pointer-events-none opacity-30" />
+      <section id="tiers" className="py-24 lg:py-32 bg-noir-deep relative overflow-hidden scroll-mt-20">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_hsl(42_80%_45%_/_0.04)_0%,_transparent_60%)]" />
+        <div className="absolute inset-0 grain pointer-events-none opacity-15" />
         <div className="container mx-auto px-4 lg:px-8 relative z-10">
-          <div className="text-center mb-16">
-            <p className="font-sans text-xs font-semibold uppercase tracking-[0.2em] text-gold mb-4">Three Tiers</p>
-            <h2 className="font-serif text-3xl md:text-5xl text-cream mb-4">
+          <div className="text-center mb-20">
+            <p className="font-sans text-[10px] font-semibold uppercase tracking-[0.4em] text-gold-rich/60 mb-6">Three Tiers</p>
+            <h2 className="font-serif text-3xl md:text-5xl text-cream mb-5">
               Choose Your Tier
             </h2>
-            <p className="font-sans text-lg text-cream/60 max-w-2xl mx-auto">
+            <p className="font-sans text-sm text-champagne/40 max-w-xl mx-auto tracking-wide">
               The Founders Club launches with a limited founding cohort of 130 members across three tiers.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-4">
             {tiers.map((tier) => {
               const Icon = tier.icon;
+              const colors = tierColorMap[tier.color];
               return (
                 <div
                   key={tier.name}
-                  className={`relative border-2 p-8 lg:p-10 flex flex-col ${
+                  className={`relative border p-8 lg:p-10 flex flex-col transition-all duration-500 hover:border-gold-rich/30 ${
                     tier.featured
-                      ? "border-gold bg-forest-deep lg:scale-105 lg:-my-4"
-                      : "border-cream/15 bg-forest-deep/50"
+                      ? "border-gold-rich/40 bg-noir lg:scale-[1.03] lg:-my-4 shadow-[0_0_80px_-20px_hsl(42_80%_45%_/_0.15)]"
+                      : "border-champagne/10 bg-noir-deep"
                   }`}
                 >
                   {tier.featured && (
-                    <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-gold text-forest px-4 py-1 font-sans text-xs font-bold uppercase tracking-wider">
+                    <div className="absolute -top-3 left-1/2 -translate-x-1/2 shimmer-gold-bg text-noir px-5 py-1 font-sans text-[10px] font-bold uppercase tracking-[0.3em]">
                       Most Popular
                     </div>
                   )}
-                  <div className="flex items-center gap-3 mb-4">
-                    <Icon className={`h-6 w-6 ${
-                      tier.color === "gold" ? "text-gold" : tier.color === "terracotta" ? "text-terracotta" : "text-ocean"
-                    }`} />
-                    <h3 className="font-serif text-2xl text-cream">{tier.name}</h3>
+                  <div className="flex items-center gap-3 mb-5">
+                    <Icon className={`h-5 w-5 ${colors.text}`} />
+                    <h3 className="font-serif text-xl text-cream">{tier.name}</h3>
                   </div>
-                  <div className="mb-4">
-                    <span className="font-serif text-4xl text-gold">{tier.price}</span>
-                    <span className="font-sans text-sm text-cream/50 ml-2">/{tier.priceNote}</span>
+                  <div className="mb-5">
+                    <span className={`font-serif text-4xl gold-gradient-text`}>{tier.price}</span>
+                    <span className="font-sans text-xs text-champagne/30 ml-2 uppercase tracking-wider">/{tier.priceNote}</span>
                   </div>
-                  <p className="font-sans text-sm text-cream/50 mb-2">
-                    Limited to <span className="text-gold font-semibold">{tier.spots}</span> members
+                  <p className="font-sans text-xs text-champagne/40 mb-2 tracking-wide">
+                    Limited to <span className={`${colors.text} font-semibold`}>{tier.spots}</span> positions
                   </p>
-                  <p className="font-sans text-sm text-cream/70 mb-8 leading-relaxed">
+                  <p className="font-sans text-sm text-champagne/50 mb-8 leading-relaxed">
                     {tier.description}
                   </p>
                   <div className="space-y-6 flex-1">
                     {tier.benefits.map((group) => (
                       <div key={group.category}>
-                        <p className={`font-sans text-xs font-semibold uppercase tracking-wider mb-3 ${
-                          tier.color === "gold" ? "text-gold" : tier.color === "terracotta" ? "text-terracotta" : "text-ocean"
-                        }`}>
+                        <p className={`font-sans text-[10px] font-semibold uppercase tracking-[0.2em] mb-3 ${colors.label}`}>
                           {group.category}
                         </p>
-                        <ul className="space-y-2">
+                        <ul className="space-y-2.5">
                           {group.items.map((item) => (
-                            <li key={item} className="flex items-start gap-2">
-                              <Check className={`h-4 w-4 mt-0.5 shrink-0 ${
-                                tier.color === "gold" ? "text-gold" : tier.color === "terracotta" ? "text-terracotta" : "text-ocean"
-                              }`} />
-                              <span className="font-sans text-sm text-cream/80">{item}</span>
+                            <li key={item} className="flex items-start gap-2.5">
+                              <Check className={`h-3.5 w-3.5 mt-0.5 shrink-0 ${colors.check}`} />
+                              <span className="font-sans text-sm text-champagne/60">{item}</span>
                             </li>
                           ))}
                         </ul>
                       </div>
                     ))}
-                    {/* Collapsible included benefits from lower tiers */}
                     {'includedFrom' in tier && (tier as any).includedFrom?.map((inc: { label: string; items: string[] }) => (
-                      <details key={inc.label} className="group border border-cream/15">
-                        <summary className="flex items-center justify-between cursor-pointer px-4 py-3 font-sans text-xs font-semibold uppercase tracking-wider text-cream/60 hover:text-cream/80 transition-colors">
+                      <details key={inc.label} className="group border border-champagne/10">
+                        <summary className="flex items-center justify-between cursor-pointer px-4 py-3 font-sans text-[10px] font-semibold uppercase tracking-[0.2em] text-champagne/40 hover:text-champagne/60 transition-colors">
                           <span>{inc.label}</span>
-                          <ChevronDown className="h-4 w-4 transition-transform group-open:rotate-180" />
+                          <ChevronDown className="h-3.5 w-3.5 transition-transform group-open:rotate-180" />
                         </summary>
                         <ul className="space-y-2 px-4 pb-4 pt-1">
                           {inc.items.map((item: string) => (
-                            <li key={item} className="flex items-start gap-2">
-                              <Check className="h-4 w-4 mt-0.5 shrink-0 text-cream/40" />
-                              <span className="font-sans text-sm text-cream/60">{item}</span>
+                            <li key={item} className="flex items-start gap-2.5">
+                              <Check className="h-3.5 w-3.5 mt-0.5 shrink-0 text-champagne/25" />
+                              <span className="font-sans text-sm text-champagne/40">{item}</span>
                             </li>
                           ))}
                         </ul>
@@ -344,10 +345,10 @@ const SocialClub = () => {
                   </div>
                   <Button
                     onClick={() => document.getElementById("apply")?.scrollIntoView({ behavior: "smooth" })}
-                    className={`mt-8 w-full font-sans text-sm font-semibold uppercase tracking-wider py-6 ${
+                    className={`mt-10 w-full font-sans text-[10px] font-semibold uppercase tracking-[0.25em] py-6 transition-all ${
                       tier.featured
-                        ? "bg-gold text-forest hover:bg-gold-light"
-                        : "bg-cream/10 text-cream hover:bg-cream/20 border border-cream/20"
+                        ? "shimmer-gold-bg text-noir hover:opacity-90"
+                        : "bg-transparent text-champagne/50 hover:text-champagne/80 border border-champagne/15 hover:border-champagne/30"
                     }`}
                   >
                     Apply Now
@@ -360,47 +361,47 @@ const SocialClub = () => {
       </section>
 
       {/* Comparison Grid */}
-      <section className="py-20 lg:py-28">
+      <section className="py-24 lg:py-32 bg-noir">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="text-center mb-16">
-            <p className="font-sans text-xs font-semibold uppercase tracking-[0.2em] text-primary mb-4">At a Glance</p>
-            <h2 className="font-serif text-3xl md:text-5xl text-foreground mb-4">
+            <p className="font-sans text-[10px] font-semibold uppercase tracking-[0.4em] text-gold-rich/60 mb-6">At a Glance</p>
+            <h2 className="font-serif text-3xl md:text-5xl text-cream mb-4">
               Compare Benefits
             </h2>
           </div>
           <div className="overflow-x-auto">
             <table className="w-full min-w-[640px]">
               <thead>
-                <tr className="border-b-2 border-foreground">
-                  <th className="text-left py-4 pr-4 font-sans text-xs font-semibold uppercase tracking-wider text-muted-foreground w-2/5">
+                <tr className="border-b border-gold-rich/20">
+                  <th className="text-left py-5 pr-4 font-sans text-[10px] font-semibold uppercase tracking-[0.2em] text-champagne/40 w-2/5">
                     Benefit
                   </th>
-                  <th className="py-4 px-4 font-sans text-xs font-semibold uppercase tracking-wider text-gold text-center">
-                    <Star className="h-4 w-4 mx-auto mb-1 text-gold" />
+                  <th className="py-5 px-4 font-sans text-[10px] font-semibold uppercase tracking-[0.2em] text-gold-rich text-center">
+                    <Star className="h-3.5 w-3.5 mx-auto mb-1.5 text-gold-rich" />
                     Founders<br />$1,000/yr
                   </th>
-                  <th className="py-4 px-4 font-sans text-xs font-semibold uppercase tracking-wider text-terracotta text-center">
-                    <Crown className="h-4 w-4 mx-auto mb-1 text-terracotta" />
+                  <th className="py-5 px-4 font-sans text-[10px] font-semibold uppercase tracking-[0.2em] text-terracotta text-center">
+                    <Crown className="h-3.5 w-3.5 mx-auto mb-1.5 text-terracotta" />
                     Patron<br />$5,000/yr
                   </th>
-                  <th className="py-4 px-4 font-sans text-xs font-semibold uppercase tracking-wider text-ocean text-center">
-                    <Gem className="h-4 w-4 mx-auto mb-1 text-ocean" />
+                  <th className="py-5 px-4 font-sans text-[10px] font-semibold uppercase tracking-[0.2em] text-ocean text-center">
+                    <Gem className="h-3.5 w-3.5 mx-auto mb-1.5 text-ocean" />
                     Founding Table<br />$10,000/yr
                   </th>
                 </tr>
               </thead>
               <tbody>
                 {comparisonFeatures.map((row, i) => (
-                  <tr key={row.feature} className={`border-b border-border ${i % 2 === 0 ? "bg-muted/30" : ""}`}>
-                    <td className="py-3 pr-4 font-sans text-sm text-foreground">{row.feature}</td>
+                  <tr key={row.feature} className={`border-b border-champagne/5 ${i % 2 === 0 ? "bg-champagne/[0.02]" : ""}`}>
+                    <td className="py-3.5 pr-4 font-sans text-sm text-champagne/60">{row.feature}</td>
                     {[row.founders, row.patron, row.table].map((val, j) => (
-                      <td key={j} className="py-3 px-4 text-center">
+                      <td key={j} className="py-3.5 px-4 text-center">
                         {val === true ? (
-                          <Check className="h-4 w-4 mx-auto text-primary" />
+                          <Check className="h-3.5 w-3.5 mx-auto text-gold-rich" />
                         ) : val === false ? (
-                          <span className="text-muted-foreground/30">—</span>
+                          <span className="text-champagne/15">—</span>
                         ) : (
-                          <span className="font-sans text-sm font-semibold text-foreground">{val}</span>
+                          <span className="font-sans text-sm font-semibold text-champagne/70">{val}</span>
                         )}
                       </td>
                     ))}
@@ -413,15 +414,15 @@ const SocialClub = () => {
       </section>
 
       {/* Policies */}
-      <section className="py-16 lg:py-20 bg-muted/50">
-        <div className="container mx-auto px-4 lg:px-8 max-w-4xl">
-          <div className="text-center mb-12">
-            <p className="font-sans text-xs font-semibold uppercase tracking-[0.2em] text-primary mb-4">FAQ</p>
-            <h2 className="font-serif text-3xl md:text-5xl text-foreground mb-4">
+      <section className="py-20 lg:py-28 bg-noir-deep">
+        <div className="container mx-auto px-4 lg:px-8 max-w-3xl">
+          <div className="text-center mb-14">
+            <p className="font-sans text-[10px] font-semibold uppercase tracking-[0.4em] text-gold-rich/60 mb-6">FAQ</p>
+            <h2 className="font-serif text-3xl md:text-5xl text-cream mb-4">
               Frequently Asked Questions
             </h2>
           </div>
-          <Accordion type="single" collapsible className="space-y-3">
+          <Accordion type="single" collapsible className="space-y-2">
             {[
               { q: "How long does my membership last?", a: "Founders Club membership is valid for 12 months from the date of purchase. Club fees are non-refundable and recur annually." },
               { q: "Can I share my membership benefits?", a: "Club benefits are non-transferable and intended for use by the registered member. However, bar discounts apply to all drinks purchased by the member, including drinks purchased for guests, as long as the member is present at the time of purchase." },
@@ -432,11 +433,11 @@ const SocialClub = () => {
               { q: "Is early access guaranteed for limited products?", a: "Early access to limited products does not guarantee availability, as quantities may be limited." },
               { q: "Will benefits ever change?", a: "Monday Morning may occasionally adjust programming, events, or benefits as the Founders Club evolves." },
             ].map((faq, i) => (
-              <AccordionItem key={i} value={`faq-${i}`} className="border-2 border-border px-6 data-[state=open]:border-primary">
-                <AccordionTrigger className="font-sans text-base font-semibold text-foreground hover:no-underline py-5">
+              <AccordionItem key={i} value={`faq-${i}`} className="border border-champagne/10 px-6 data-[state=open]:border-gold-rich/30 transition-colors">
+                <AccordionTrigger className="font-sans text-sm font-semibold text-cream hover:no-underline py-5">
                   {faq.q}
                 </AccordionTrigger>
-                <AccordionContent className="font-sans text-sm text-muted-foreground leading-relaxed pb-5">
+                <AccordionContent className="font-sans text-sm text-champagne/50 leading-relaxed pb-5">
                   {faq.a}
                 </AccordionContent>
               </AccordionItem>
@@ -446,24 +447,25 @@ const SocialClub = () => {
       </section>
 
       {/* Application Form */}
-      <section id="apply" className="py-20 lg:py-28 bg-forest relative overflow-hidden scroll-mt-20">
-        <div className="absolute inset-0 grain pointer-events-none opacity-30" />
+      <section id="apply" className="py-24 lg:py-32 bg-noir relative overflow-hidden scroll-mt-20">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,_hsl(42_80%_45%_/_0.05)_0%,_transparent_60%)]" />
+        <div className="absolute inset-0 grain pointer-events-none opacity-15" />
         <div className="container mx-auto px-4 lg:px-8 relative z-10">
-          <div className="max-w-2xl mx-auto">
-            <div className="text-center mb-12">
-              <p className="font-sans text-xs font-semibold uppercase tracking-[0.2em] text-gold mb-4">Join the Club</p>
-              <h2 className="font-serif text-3xl md:text-5xl text-cream mb-4">
+          <div className="max-w-xl mx-auto">
+            <div className="text-center mb-14">
+              <p className="font-sans text-[10px] font-semibold uppercase tracking-[0.4em] text-gold-rich/60 mb-6">Join the Club</p>
+              <h2 className="font-serif text-3xl md:text-5xl text-cream mb-5">
                 Founder Questionnaire
               </h2>
-              <p className="font-sans text-lg text-cream/60">
+              <p className="font-sans text-sm text-champagne/40 tracking-wide">
                 Enrollment for the founding cohort closes April 30, 2026.
               </p>
             </div>
 
-            <form onSubmit={handleSubmit} className="space-y-8">
+            <form onSubmit={handleSubmit} className="space-y-10">
               {/* Tier Selection */}
               <div>
-                <Label className="font-sans text-xs font-semibold uppercase tracking-wider text-gold mb-4 block">
+                <Label className="font-sans text-[10px] font-semibold uppercase tracking-[0.2em] text-gold-rich/70 mb-4 block">
                   What tier would you like to join?
                 </Label>
                 <RadioGroup
@@ -478,16 +480,16 @@ const SocialClub = () => {
                   ].map((opt) => (
                     <label
                       key={opt.value}
-                      className={`flex items-center gap-3 border-2 p-4 cursor-pointer transition-all ${
+                      className={`flex items-center gap-3 border p-4 cursor-pointer transition-all ${
                         formData.tier === opt.value
-                          ? "border-gold bg-gold/10"
-                          : "border-cream/15 hover:border-cream/30"
+                          ? "border-gold-rich/50 bg-gold-rich/5"
+                          : "border-champagne/10 hover:border-champagne/20"
                       }`}
                     >
-                      <RadioGroupItem value={opt.value} className="border-cream text-gold" />
+                      <RadioGroupItem value={opt.value} className="border-champagne/30 text-gold-rich" />
                       <div>
                         <p className="font-sans text-sm font-semibold text-cream">{opt.label}</p>
-                        <p className="font-sans text-xs text-cream/50">{opt.price}</p>
+                        <p className="font-sans text-[10px] text-champagne/40 uppercase tracking-wider">{opt.price}</p>
                       </div>
                     </label>
                   ))}
@@ -496,58 +498,58 @@ const SocialClub = () => {
 
               {/* Basic Info */}
               <div className="space-y-4">
-                <Label className="font-sans text-xs font-semibold uppercase tracking-wider text-gold block">
+                <Label className="font-sans text-[10px] font-semibold uppercase tracking-[0.2em] text-gold-rich/70 block">
                   Basic Information
                 </Label>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <Label className="font-sans text-xs text-cream/60 mb-1 block">First Name</Label>
+                    <Label className="font-sans text-[10px] text-champagne/40 mb-1 block uppercase tracking-wider">First Name</Label>
                     <Input
                       required
                       value={formData.firstName}
                       onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
-                      className="bg-cream/5 border-cream/20 text-cream placeholder:text-cream/30 focus:border-gold"
+                      className="bg-champagne/[0.03] border-champagne/10 text-cream placeholder:text-champagne/20 focus:border-gold-rich/40"
                       placeholder="First name"
                     />
                   </div>
                   <div>
-                    <Label className="font-sans text-xs text-cream/60 mb-1 block">Last Name</Label>
+                    <Label className="font-sans text-[10px] text-champagne/40 mb-1 block uppercase tracking-wider">Last Name</Label>
                     <Input
                       required
                       value={formData.lastName}
                       onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
-                      className="bg-cream/5 border-cream/20 text-cream placeholder:text-cream/30 focus:border-gold"
+                      className="bg-champagne/[0.03] border-champagne/10 text-cream placeholder:text-champagne/20 focus:border-gold-rich/40"
                       placeholder="Last name"
                     />
                   </div>
                 </div>
                 <div>
-                  <Label className="font-sans text-xs text-cream/60 mb-1 block">Email</Label>
+                  <Label className="font-sans text-[10px] text-champagne/40 mb-1 block uppercase tracking-wider">Email</Label>
                   <Input
                     type="email"
                     required
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    className="bg-cream/5 border-cream/20 text-cream placeholder:text-cream/30 focus:border-gold"
+                    className="bg-champagne/[0.03] border-champagne/10 text-cream placeholder:text-champagne/20 focus:border-gold-rich/40"
                     placeholder="email@example.com"
                   />
                 </div>
                 <div>
-                  <Label className="font-sans text-xs text-cream/60 mb-1 block">Phone Number</Label>
+                  <Label className="font-sans text-[10px] text-champagne/40 mb-1 block uppercase tracking-wider">Phone Number</Label>
                   <Input
                     type="tel"
                     value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                    className="bg-cream/5 border-cream/20 text-cream placeholder:text-cream/30 focus:border-gold"
+                    className="bg-champagne/[0.03] border-champagne/10 text-cream placeholder:text-champagne/20 focus:border-gold-rich/40"
                     placeholder="(555) 555-5555"
                   />
                 </div>
                 <div>
-                  <Label className="font-sans text-xs text-cream/60 mb-1 block">Address</Label>
+                  <Label className="font-sans text-[10px] text-champagne/40 mb-1 block uppercase tracking-wider">Address</Label>
                   <Textarea
                     value={formData.address}
                     onChange={(e) => setFormData({ ...formData, address: e.target.value })}
-                    className="bg-cream/5 border-cream/20 text-cream placeholder:text-cream/30 focus:border-gold min-h-[80px]"
+                    className="bg-champagne/[0.03] border-champagne/10 text-cream placeholder:text-champagne/20 focus:border-gold-rich/40 min-h-[80px]"
                     placeholder="Street address, City, State, ZIP"
                   />
                 </div>
@@ -555,22 +557,22 @@ const SocialClub = () => {
 
               {/* Celebration Date */}
               <div className="space-y-4">
-                <Label className="font-sans text-xs font-semibold uppercase tracking-wider text-gold block">
+                <Label className="font-sans text-[10px] font-semibold uppercase tracking-[0.2em] text-gold-rich/70 block">
                   When would you like us to celebrate you?
                 </Label>
-                <p className="font-sans text-xs text-cream/50 -mt-2">
+                <p className="font-sans text-[10px] text-champagne/30 -mt-2 tracking-wide">
                   Sobriety date, birthday, wedding anniversary. Please provide month and day only.
                 </p>
                 <Input
                   value={formData.celebrationDate}
                   onChange={(e) => setFormData({ ...formData, celebrationDate: e.target.value })}
-                  className="bg-cream/5 border-cream/20 text-cream placeholder:text-cream/30 focus:border-gold"
+                  className="bg-champagne/[0.03] border-champagne/10 text-cream placeholder:text-champagne/20 focus:border-gold-rich/40"
                   placeholder="e.g. March 15"
                 />
                 <Input
                   value={formData.celebrationNote}
                   onChange={(e) => setFormData({ ...formData, celebrationNote: e.target.value })}
-                  className="bg-cream/5 border-cream/20 text-cream placeholder:text-cream/30 focus:border-gold"
+                  className="bg-champagne/[0.03] border-champagne/10 text-cream placeholder:text-champagne/20 focus:border-gold-rich/40"
                   placeholder="What are we celebrating? (optional)"
                 />
               </div>
@@ -578,7 +580,7 @@ const SocialClub = () => {
               <Button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full bg-gold text-forest hover:bg-gold-light font-sans text-sm font-semibold uppercase tracking-wider py-6"
+                className="w-full shimmer-gold-bg text-noir font-sans text-[10px] font-semibold uppercase tracking-[0.25em] py-6 hover:opacity-90 transition-opacity"
               >
                 {isSubmitting ? "Submitting..." : "Submit Application"}
               </Button>
@@ -588,19 +590,22 @@ const SocialClub = () => {
       </section>
 
       {/* Founder Note */}
-      <section className="py-20 lg:py-28">
+      <section className="py-24 lg:py-32 bg-noir-deep">
         <div className="container mx-auto px-4 lg:px-8">
-          <div className="max-w-3xl mx-auto flex flex-col md:flex-row gap-10 items-start">
+          <div className="max-w-3xl mx-auto flex flex-col md:flex-row gap-12 items-start">
             <div className="shrink-0">
-              <img
-                src={zaneFounder}
-                alt="Zane Curtis, Founder of Monday Morning"
-                className="w-32 h-32 md:w-40 md:h-40 object-cover border-2 border-foreground"
-              />
+              <div className="relative">
+                <img
+                  src={zaneFounder}
+                  alt="Zane Curtis, Founder of Monday Morning"
+                  className="w-32 h-32 md:w-40 md:h-40 object-cover grayscale"
+                />
+                <div className="absolute inset-0 border border-gold-rich/20" />
+              </div>
             </div>
             <div>
-              <p className="font-sans text-xs font-semibold uppercase tracking-[0.2em] text-primary mb-4">A Note from the Founder</p>
-              <div className="space-y-4 font-sans text-base text-muted-foreground leading-relaxed">
+              <p className="font-sans text-[10px] font-semibold uppercase tracking-[0.4em] text-gold-rich/60 mb-6">A Note from the Founder</p>
+              <div className="space-y-5 font-sans text-sm text-champagne/50 leading-relaxed tracking-wide">
                 <p>
                   When I stopped drinking, I realized something pretty quickly. People still want great drinks, great places, and great company. What they do not want is the pressure that alcohol often brings with it.
                 </p>
@@ -613,10 +618,10 @@ const SocialClub = () => {
                 <p>Thank you for being part of this with us.</p>
                 <p>Welcome to the club.</p>
               </div>
-              <div className="mt-6">
-                <p className="font-sans text-sm text-foreground font-semibold">Cheers,</p>
-                <p className="font-serif text-2xl text-foreground italic mt-1">Zane Curtis</p>
-                <p className="font-sans text-xs text-muted-foreground uppercase tracking-wider">Founder, Monday Morning</p>
+              <div className="mt-8 pt-6 border-t border-champagne/10">
+                <p className="font-sans text-[10px] text-champagne/50 uppercase tracking-[0.2em]">Cheers,</p>
+                <p className="font-serif text-2xl text-cream italic mt-2">Zane Curtis</p>
+                <p className="font-sans text-[10px] text-champagne/30 uppercase tracking-[0.3em] mt-1">Founder, Monday Morning</p>
               </div>
             </div>
           </div>
@@ -624,17 +629,19 @@ const SocialClub = () => {
       </section>
 
       {/* Final CTA */}
-      <section className="py-16 lg:py-20 bg-gold text-forest">
-        <div className="container mx-auto px-4 lg:px-8 text-center">
-          <h2 className="font-serif text-3xl md:text-4xl mb-4">
-            Building the Future of Alcohol-Free Social Culture
+      <section className="py-20 lg:py-24 bg-noir relative overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_hsl(42_80%_45%_/_0.06)_0%,_transparent_70%)]" />
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/3 h-px bg-gradient-to-r from-transparent via-gold-rich/20 to-transparent" />
+        <div className="container mx-auto px-4 lg:px-8 text-center relative z-10">
+          <h2 className="font-serif text-3xl md:text-4xl text-cream mb-5">
+            Building the Future of Alcohol-Free Culture
           </h2>
-          <p className="font-sans text-base text-forest/80 max-w-2xl mx-auto mb-8">
-            With spots limited across all tiers, the Monday Morning Founders Club represents the community helping define a new kind of nightlife in San Diego, one rooted in great drinks, inclusive experiences, and meaningful connection.
+          <p className="font-sans text-sm text-champagne/40 max-w-xl mx-auto mb-10 tracking-wide leading-relaxed">
+            With spots limited across all tiers, the Monday Morning Founders Club represents the community helping define a new kind of nightlife, one rooted in great drinks, inclusive experiences, and meaningful connection.
           </p>
           <Button
             onClick={() => document.getElementById("apply")?.scrollIntoView({ behavior: "smooth" })}
-            className="bg-forest text-cream hover:bg-forest-deep font-sans text-sm font-semibold uppercase tracking-wider px-10 py-6"
+            className="shimmer-gold-bg text-noir font-sans text-[10px] font-semibold uppercase tracking-[0.25em] px-12 py-6 hover:opacity-90 transition-opacity"
           >
             Apply Now
           </Button>
