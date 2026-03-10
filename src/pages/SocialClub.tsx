@@ -257,7 +257,7 @@ const SocialClub = () => {
               The Monday Morning Founders Club is an exclusive collective for those who want to be part of shaping the next chapter of social culture. More than a title or a card, the Founders Club is a gathering point for people who believe connection, creativity, and hospitality thrive without alcohol.
             </p>
             <p>
-              With a focus on experiences, discovery, and community, members receive access to private events, new drink releases, and the inside track on the evolving alcohol-free movement.
+              With a focus on experiences, discovery, and community, founders receive access to private events, new drink releases, and the inside track on the evolving alcohol-free movement.
             </p>
           </div>
         </div>
