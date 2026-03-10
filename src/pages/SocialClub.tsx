@@ -221,7 +221,7 @@ const SocialClub = () => {
           <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-up delay-300">
             <Button
               onClick={() => document.getElementById("tiers")?.scrollIntoView({ behavior: "smooth" })}
-              className="shimmer-gold-bg text-noir font-sans text-xs font-semibold uppercase tracking-[0.2em] px-10 py-6 border-0 hover:opacity-90 transition-opacity"
+              className="shimmer-gold-bg text-forest-deep font-sans text-xs font-semibold uppercase tracking-[0.2em] px-10 py-6 border-0 hover:opacity-90 transition-opacity"
             >
               View Tiers
             </Button>
