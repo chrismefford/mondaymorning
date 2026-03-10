@@ -218,7 +218,7 @@ const SocialClub = () => {
               onClick={() => document.getElementById("tiers")?.scrollIntoView({ behavior: "smooth" })}
               className="bg-gold text-forest hover:bg-gold-light font-sans text-sm font-semibold uppercase tracking-wider px-8 py-6"
             >
-              View Membership Tiers
+              View Tiers
             </Button>
             <Button
               onClick={() => document.getElementById("apply")?.scrollIntoView({ behavior: "smooth" })}
