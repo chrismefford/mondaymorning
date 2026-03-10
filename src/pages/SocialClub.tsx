@@ -211,7 +211,7 @@ const SocialClub = () => {
             <span className="italic text-gold">Founders Club</span>
           </h1>
           <p className="font-sans text-lg md:text-xl text-cream/70 max-w-2xl mx-auto mb-8 animate-fade-up delay-200 leading-relaxed">
-            San Diego's non-alcoholic social club. Great drinks, vibrant community, and memorable nights out, without alcohol.
+            San Diego's non-alcoholic founders club. Great drinks, vibrant community, and memorable nights out, without alcohol.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-up delay-300">
             <Button
