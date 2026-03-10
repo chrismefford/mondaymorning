@@ -197,7 +197,7 @@ const SocialClub = () => {
       <Header />
 
       {/* Hero */}
-      <section className="relative min-h-[100vh] flex items-center justify-center bg-noir-deep overflow-hidden">
+      <section className="relative min-h-[100vh] flex items-center justify-center bg-forest-deep overflow-hidden">
         {/* Radial gold glow */}
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_hsl(42_80%_45%_/_0.08)_0%,_transparent_70%)]" />
         <div className="absolute inset-0 grain pointer-events-none opacity-20" />
