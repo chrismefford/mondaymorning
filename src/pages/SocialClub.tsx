@@ -175,8 +175,8 @@ const SocialClub = () => {
     {
       "@context": "https://schema.org",
       "@type": "Product",
-      name: "Monday Morning Social Club Membership",
-      description: "San Diego's premier non-alcoholic social club with three membership tiers.",
+      name: "Monday Morning Founders Club",
+      description: "San Diego's premier non-alcoholic founders club with three tiers.",
       brand: { "@type": "Brand", name: "Monday Morning" },
       offers: [
         { "@type": "Offer", name: "Founders Club", price: "1000", priceCurrency: "USD", availability: "https://schema.org/LimitedAvailability" },
