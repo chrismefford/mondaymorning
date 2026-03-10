@@ -414,7 +414,7 @@ const SocialClub = () => {
       </section>
 
       {/* Policies */}
-      <section className="py-20 lg:py-28 bg-noir-deep">
+      <section className="py-20 lg:py-28 bg-forest-deep">
         <div className="container mx-auto px-4 lg:px-8 max-w-3xl">
           <div className="text-center mb-14">
             <p className="font-sans text-[10px] font-semibold uppercase tracking-[0.4em] text-gold-rich/60 mb-6">FAQ</p>
