@@ -25,7 +25,7 @@ const tiers_founders_benefits = [
 
 const tiers = [
   {
-    name: "Founders Club",
+    name: "Founder's Club",
     icon: Star,
     price: "$1,000",
     priceNote: "per year",
