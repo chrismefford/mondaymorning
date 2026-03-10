@@ -474,9 +474,9 @@ const SocialClub = () => {
                   className="grid grid-cols-1 sm:grid-cols-3 gap-3"
                 >
                   {[
-                    { value: "founders", label: "Founders Club", price: "$1,000/yr" },
-                    { value: "patron", label: "Patron Circle", price: "$5,000/yr" },
-                    { value: "table", label: "Founding Table", price: "$10,000/yr" },
+                    { value: "founders", label: "Founder's Club", price: "$1,000/yr" },
+                    { value: "patron", label: "Founder's Circle", price: "$5,000/yr" },
+                    { value: "table", label: "Founder's Table", price: "$10,000/yr" },
                   ].map((opt) => (
                     <label
                       key={opt.value}
