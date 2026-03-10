@@ -361,7 +361,7 @@ const SocialClub = () => {
       </section>
 
       {/* Comparison Grid */}
-      <section className="py-24 lg:py-32 bg-noir">
+      <section className="py-24 lg:py-32 bg-forest">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="text-center mb-16">
             <p className="font-sans text-[10px] font-semibold uppercase tracking-[0.4em] text-gold-rich/60 mb-6">At a Glance</p>
