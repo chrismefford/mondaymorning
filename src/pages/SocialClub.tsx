@@ -49,7 +49,7 @@ const tiers = [
     featured: true,
     description: "For individuals who want to support the growth of alcohol-free culture while gaining deeper access to the community.",
     includedFrom: [
-      { label: "Founders Club Benefits", items: tiers_founders_benefits },
+      { label: "Founder's Club Benefits", items: tiers_founders_benefits },
     ],
     benefits: [
       { category: "Patron Privileges", items: ["Two seats at all Founders Club events", "Private industry tastings with NA brand founders", "Annual curated premium NA beverage package", "Recognition as Patron Circle supporter"] },
