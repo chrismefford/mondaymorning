@@ -319,7 +319,6 @@ const SocialClub = () => {
                         <ul className="space-y-2.5">
                           {group.items.map((item) => (
                             <li key={item} className="flex items-start gap-2.5">
-                              <Check className={`h-3.5 w-3.5 mt-0.5 shrink-0 ${colors.check}`} />
                               <span className="font-sans text-sm text-champagne/60">{item}</span>
                             </li>
                           ))}
