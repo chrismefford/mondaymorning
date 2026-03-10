@@ -115,7 +115,37 @@ const SocialClub = () => {
     setIsSubmitting(true);
 
     try {
-      // For now, send via edge function or store in DB
+      // Save to database
+      const { data: application, error: insertError } = await supabase
+        .from("social_club_applications")
+        .insert({
+          tier: formData.tier,
+          first_name: formData.firstName,
+          last_name: formData.lastName,
+          email: formData.email,
+          phone: formData.phone || null,
+          address: formData.address || null,
+          celebration_date: formData.celebrationDate || null,
+          celebration_note: formData.celebrationNote || null,
+        })
+        .select()
+        .single();
+
+      if (insertError) {
+        console.error("Insert error:", insertError);
+        throw new Error("Failed to submit application");
+      }
+
+      // Send email notification to operations
+      try {
+        await supabase.functions.invoke("send-social-club-notification", {
+          body: { applicationId: application.id },
+        });
+      } catch (emailErr) {
+        console.error("Email notification failed:", emailErr);
+        // Don't throw — application was saved successfully
+      }
+
       toast({
         title: "Application Received",
         description: "Thank you for your interest in the Monday Morning Social Club. We will be in touch soon.",
