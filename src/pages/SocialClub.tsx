@@ -19,7 +19,7 @@ const tiers_founders_benefits = [
   "Founders Happy Hour with menu previews", "Annual Founders Celebration party",
   "20% off drinks at the bar", "Six complimentary slushies per month", "Discounts apply to guest drinks too",
   "10% off bottles and cans", "$10 cap on all shipping", "Early access to new products", "Priority access to limited drops",
-  "Personalized Founders Card", "Members Only product releases", "Bring one guest to Founders events",
+  "Personalized Founders Card", "Founders Only product releases", "Bring one guest to Founders events",
   "Limited edition Founders merch", "Recognition across social channels",
 ];
 
@@ -36,7 +36,7 @@ const tiers = [
       { category: "Events", items: ["Four exclusive events annually", "Founder tasting nights", "Private product launch events", "Founders Happy Hour with menu previews", "Annual Founders Celebration party"] },
       { category: "Bar Privileges", items: ["20% off drinks at the bar", "Six complimentary slushies per month", "Discounts apply to guest drinks too"] },
       { category: "Bottle Shop", items: ["10% off bottles and cans", "$10 cap on all shipping", "Early access to new products", "Priority access to limited drops"] },
-      { category: "Extras", items: ["Personalized Founders Card", "Members Only product releases", "Bring one guest to Founders events", "Limited edition Founders merch", "Recognition across social channels"] },
+      { category: "Extras", items: ["Personalized Founders Card", "Founders Only product releases", "Bring one guest to Founders events", "Limited edition Founders merch", "Recognition across social channels"] },
     ],
   },
   {
@@ -83,7 +83,7 @@ const comparisonFeatures = [
   { feature: "Bottle shop discount", founders: "10%", patron: "10%", table: "10%" },
   { feature: "Shipping cap", founders: "$10", patron: "$10", table: "$10" },
   { feature: "Early access to new products", founders: true, patron: true, table: true },
-  { feature: "Members Only releases", founders: true, patron: true, table: true },
+  { feature: "Founders Only releases", founders: true, patron: true, table: true },
   { feature: "Limited edition merch", founders: true, patron: true, table: true },
   { feature: "Guest passes to events", founders: "1", patron: "2", table: "2+" },
   { feature: "Community recognition", founders: true, patron: true, table: true },
@@ -190,7 +190,7 @@ const SocialClub = () => {
     <div className="min-h-screen bg-forest-deep">
       <SEO
         title="Founders Club - America's Non Alcoholic Founders Club"
-        description="Join the Monday Morning Founders Club, an exclusive collective for those shaping America's alcohol-free social culture. Three tiers, 130 founding members."
+        description="Join the Monday Morning Founders Club, an exclusive collective for those shaping America's alcohol-free social culture. Three tiers, 130 founding spots."
         path="/social-club"
         schema={schema}
       />
@@ -257,7 +257,7 @@ const SocialClub = () => {
               The Monday Morning Founders Club is an exclusive collective for those who want to be part of shaping the next chapter of social culture. More than a title or a card, the Founders Club is a gathering point for people who believe connection, creativity, and hospitality thrive without alcohol.
             </p>
             <p>
-              With a focus on experiences, discovery, and community, members receive access to private events, new drink releases, and the inside track on the evolving alcohol-free movement.
+              With a focus on experiences, discovery, and community, founders receive access to private events, new drink releases, and the inside track on the evolving alcohol-free movement.
             </p>
           </div>
         </div>
@@ -274,7 +274,7 @@ const SocialClub = () => {
               Choose Your Tier
             </h2>
             <p className="font-sans text-sm text-champagne/40 max-w-xl mx-auto tracking-wide">
-              The Founders Club launches with a limited founding cohort of 130 members across three tiers.
+              The Founders Club launches with a limited founding cohort of 130 founders across three tiers.
             </p>
           </div>
 
@@ -424,14 +424,14 @@ const SocialClub = () => {
           </div>
           <Accordion type="single" collapsible className="space-y-2">
             {[
-              { q: "How long does my membership last?", a: "Founders Club membership is valid from May 1, 2026 to April 30, 2027." },
-              { q: "Can I share my membership benefits?", a: "Club benefits are non-transferable and intended for use by the registered member." },
+              { q: "How long does my Founder's Club last?", a: "The Founder's Club is valid from May 1, 2026 to April 30, 2027." },
+              { q: "Can I share my Founder's Club benefits?", a: "Club benefits are non-transferable and intended for use by the registered founder." },
               { q: "How do complimentary slushies work?", a: "Founders receive six complimentary slushies per month. Complimentary slushies reset each calendar month, unused drinks do not roll over." },
               { q: "Can I combine my discount with other promotions?", a: "Founders Club discounts cannot be combined with other promotions or special offers. When multiple discounts are available, the greater discount will be applied." },
               { q: "Does the bottle shop discount work online?", a: "Yes, bottle shop discounts apply to both in-store and online purchases." },
               { q: "Do I need to RSVP for events?", a: "Yes. Event invitations may require advance RSVP and are subject to capacity." },
               { q: "Is early access guaranteed for limited products?", a: "Early access to limited products does not guarantee availability, as quantities may be limited." },
-              { q: "Will benefits ever change?", a: "Monday Morning will not change the benefits during the membership terms." },
+              { q: "Will benefits ever change?", a: "Monday Morning will not change the benefits during the Founder's Club term." },
             ].map((faq, i) => (
               <AccordionItem key={i} value={`faq-${i}`} className="border border-champagne/10 px-6 data-[state=open]:border-gold-rich/30 transition-colors">
                 <AccordionTrigger className="font-sans text-sm font-semibold text-cream hover:no-underline py-5">
