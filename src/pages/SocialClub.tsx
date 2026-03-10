@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Check, Crown, Star, Gem, Calendar, Gift, Users, Wine, ShoppingBag, Ticket, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
