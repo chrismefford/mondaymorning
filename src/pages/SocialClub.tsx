@@ -187,7 +187,7 @@ const SocialClub = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-noir-deep">
+    <div className="min-h-screen bg-forest-deep">
       <SEO
         title="Founders Club - America's Non Alcoholic Founders Club"
         description="Join the Monday Morning Founders Club, an exclusive collective for those shaping America's alcohol-free social culture. Three tiers, 130 founding members."
@@ -197,7 +197,7 @@ const SocialClub = () => {
       <Header />
 
       {/* Hero */}
-      <section className="relative min-h-[100vh] flex items-center justify-center bg-noir-deep overflow-hidden">
+      <section className="relative min-h-[100vh] flex items-center justify-center bg-forest-deep overflow-hidden">
         {/* Radial gold glow */}
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_hsl(42_80%_45%_/_0.08)_0%,_transparent_70%)]" />
         <div className="absolute inset-0 grain pointer-events-none opacity-20" />
@@ -221,7 +221,7 @@ const SocialClub = () => {
           <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-up delay-300">
             <Button
               onClick={() => document.getElementById("tiers")?.scrollIntoView({ behavior: "smooth" })}
-              className="shimmer-gold-bg text-noir font-sans text-xs font-semibold uppercase tracking-[0.2em] px-10 py-6 border-0 hover:opacity-90 transition-opacity"
+              className="shimmer-gold-bg text-forest-deep font-sans text-xs font-semibold uppercase tracking-[0.2em] px-10 py-6 border-0 hover:opacity-90 transition-opacity"
             >
               View Tiers
             </Button>
@@ -236,11 +236,11 @@ const SocialClub = () => {
             Enrollment closes April 30, 2026
           </p>
         </div>
-        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-noir-deep to-transparent" />
+        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-forest-deep to-transparent" />
       </section>
 
       {/* Intro Section */}
-      <section className="py-24 lg:py-32 bg-noir relative">
+      <section className="py-24 lg:py-32 bg-forest relative">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/4 h-px bg-gradient-to-r from-transparent via-gold-rich/20 to-transparent" />
         <div className="container mx-auto px-4 lg:px-8 max-w-3xl">
           <div className="text-center mb-14">
@@ -264,7 +264,7 @@ const SocialClub = () => {
       </section>
 
       {/* Tier Cards */}
-      <section id="tiers" className="py-24 lg:py-32 bg-noir-deep relative overflow-hidden scroll-mt-20">
+      <section id="tiers" className="py-24 lg:py-32 bg-forest-deep relative overflow-hidden scroll-mt-20">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_hsl(42_80%_45%_/_0.04)_0%,_transparent_60%)]" />
         <div className="absolute inset-0 grain pointer-events-none opacity-15" />
         <div className="container mx-auto px-4 lg:px-8 relative z-10">
@@ -287,12 +287,12 @@ const SocialClub = () => {
                   key={tier.name}
                   className={`relative border p-8 lg:p-10 flex flex-col transition-all duration-500 hover:border-gold-rich/30 ${
                     tier.featured
-                      ? "border-gold-rich/40 bg-noir lg:scale-[1.03] lg:-my-4 shadow-[0_0_80px_-20px_hsl(42_80%_45%_/_0.15)]"
-                      : "border-champagne/10 bg-noir-deep"
+                      ? "border-gold-rich/40 bg-forest lg:scale-[1.03] lg:-my-4 shadow-[0_0_80px_-20px_hsl(42_80%_45%_/_0.15)]"
+                      : "border-champagne/10 bg-forest-deep"
                   }`}
                 >
                   {tier.featured && (
-                    <div className="absolute -top-3 left-1/2 -translate-x-1/2 shimmer-gold-bg text-noir px-5 py-1 font-sans text-[10px] font-bold uppercase tracking-[0.3em]">
+                    <div className="absolute -top-3 left-1/2 -translate-x-1/2 shimmer-gold-bg text-forest-deep px-5 py-1 font-sans text-[10px] font-bold uppercase tracking-[0.3em]">
                       Most Popular
                     </div>
                   )}
@@ -347,7 +347,7 @@ const SocialClub = () => {
                     onClick={() => document.getElementById("apply")?.scrollIntoView({ behavior: "smooth" })}
                     className={`mt-10 w-full font-sans text-[10px] font-semibold uppercase tracking-[0.25em] py-6 transition-all ${
                       tier.featured
-                        ? "shimmer-gold-bg text-noir hover:opacity-90"
+                        ? "shimmer-gold-bg text-forest-deep hover:opacity-90"
                         : "bg-transparent text-champagne/50 hover:text-champagne/80 border border-champagne/15 hover:border-champagne/30"
                     }`}
                   >
@@ -361,7 +361,7 @@ const SocialClub = () => {
       </section>
 
       {/* Comparison Grid */}
-      <section className="py-24 lg:py-32 bg-noir">
+      <section className="py-24 lg:py-32 bg-forest">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="text-center mb-16">
             <p className="font-sans text-[10px] font-semibold uppercase tracking-[0.4em] text-gold-rich/60 mb-6">At a Glance</p>
@@ -414,7 +414,7 @@ const SocialClub = () => {
       </section>
 
       {/* Policies */}
-      <section className="py-20 lg:py-28 bg-noir-deep">
+      <section className="py-20 lg:py-28 bg-forest-deep">
         <div className="container mx-auto px-4 lg:px-8 max-w-3xl">
           <div className="text-center mb-14">
             <p className="font-sans text-[10px] font-semibold uppercase tracking-[0.4em] text-gold-rich/60 mb-6">FAQ</p>
@@ -447,7 +447,7 @@ const SocialClub = () => {
       </section>
 
       {/* Application Form */}
-      <section id="apply" className="py-24 lg:py-32 bg-noir relative overflow-hidden scroll-mt-20">
+      <section id="apply" className="py-24 lg:py-32 bg-forest relative overflow-hidden scroll-mt-20">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,_hsl(42_80%_45%_/_0.05)_0%,_transparent_60%)]" />
         <div className="absolute inset-0 grain pointer-events-none opacity-15" />
         <div className="container mx-auto px-4 lg:px-8 relative z-10">
@@ -580,7 +580,7 @@ const SocialClub = () => {
               <Button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full shimmer-gold-bg text-noir font-sans text-[10px] font-semibold uppercase tracking-[0.25em] py-6 hover:opacity-90 transition-opacity"
+                className="w-full shimmer-gold-bg text-forest-deep font-sans text-[10px] font-semibold uppercase tracking-[0.25em] py-6 hover:opacity-90 transition-opacity"
               >
                 {isSubmitting ? "Submitting..." : "Submit Application"}
               </Button>
@@ -590,7 +590,7 @@ const SocialClub = () => {
       </section>
 
       {/* Founder Note */}
-      <section className="py-24 lg:py-32 bg-noir-deep">
+      <section className="py-24 lg:py-32 bg-forest-deep">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="max-w-3xl mx-auto flex flex-col md:flex-row gap-12 items-start">
             <div className="shrink-0">
@@ -629,7 +629,7 @@ const SocialClub = () => {
       </section>
 
       {/* Final CTA */}
-      <section className="py-20 lg:py-24 bg-noir relative overflow-hidden">
+      <section className="py-20 lg:py-24 bg-forest relative overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_hsl(42_80%_45%_/_0.06)_0%,_transparent_70%)]" />
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/3 h-px bg-gradient-to-r from-transparent via-gold-rich/20 to-transparent" />
         <div className="container mx-auto px-4 lg:px-8 text-center relative z-10">
@@ -641,7 +641,7 @@ const SocialClub = () => {
           </p>
           <Button
             onClick={() => document.getElementById("apply")?.scrollIntoView({ behavior: "smooth" })}
-            className="shimmer-gold-bg text-noir font-sans text-[10px] font-semibold uppercase tracking-[0.25em] px-12 py-6 hover:opacity-90 transition-opacity"
+            className="shimmer-gold-bg text-forest-deep font-sans text-[10px] font-semibold uppercase tracking-[0.25em] px-12 py-6 hover:opacity-90 transition-opacity"
           >
             Apply Now
           </Button>
