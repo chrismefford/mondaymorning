@@ -386,7 +386,7 @@ const SocialClub = () => {
                   </th>
                   <th className="py-5 px-4 font-sans text-[10px] font-semibold uppercase tracking-[0.2em] text-ocean text-center">
                     <Gem className="h-3.5 w-3.5 mx-auto mb-1.5 text-ocean" />
-                    Founding Table<br />$10,000/yr
+                    Founder's Table<br />$10,000/yr
                   </th>
                 </tr>
               </thead>
