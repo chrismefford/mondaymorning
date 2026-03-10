@@ -179,8 +179,7 @@ const SocialClub = () => {
             </Button>
             <Button
               onClick={() => document.getElementById("apply")?.scrollIntoView({ behavior: "smooth" })}
-              variant="outline"
-              className="border-2 border-cream/30 text-cream hover:bg-cream/10 font-sans text-sm font-semibold uppercase tracking-wider px-8 py-6"
+              className="border-2 border-cream text-cream hover:bg-cream hover:text-forest font-sans text-sm font-semibold uppercase tracking-wider px-8 py-6 bg-transparent"
             >
               Apply Now
             </Button>
