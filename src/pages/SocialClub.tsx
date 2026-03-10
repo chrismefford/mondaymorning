@@ -275,6 +275,23 @@ const SocialClub = () => {
                     {tier.description}
                   </p>
                   <div className="space-y-6 flex-1">
+                    {/* Collapsible included benefits from lower tiers */}
+                    {'includedFrom' in tier && (tier as any).includedFrom?.map((inc: { label: string; items: string[] }) => (
+                      <details key={inc.label} className="group border border-cream/15">
+                        <summary className="flex items-center justify-between cursor-pointer px-4 py-3 font-sans text-xs font-semibold uppercase tracking-wider text-cream/60 hover:text-cream/80 transition-colors">
+                          <span>{inc.label}</span>
+                          <ChevronDown className="h-4 w-4 transition-transform group-open:rotate-180" />
+                        </summary>
+                        <ul className="space-y-2 px-4 pb-4 pt-1">
+                          {inc.items.map((item: string) => (
+                            <li key={item} className="flex items-start gap-2">
+                              <Check className="h-4 w-4 mt-0.5 shrink-0 text-cream/40" />
+                              <span className="font-sans text-sm text-cream/60">{item}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </details>
+                    ))}
                     {tier.benefits.map((group) => (
                       <div key={group.category}>
                         <p className={`font-sans text-xs font-semibold uppercase tracking-wider mb-3 ${
