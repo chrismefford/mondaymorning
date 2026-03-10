@@ -190,7 +190,7 @@ const SocialClub = () => {
     <div className="min-h-screen bg-forest-deep">
       <SEO
         title="Founders Club - America's Non Alcoholic Founders Club"
-        description="Join the Monday Morning Founders Club, an exclusive collective for those shaping America's alcohol-free social culture. Three tiers, 130 founding founders."
+        description="Join the Monday Morning Founders Club, an exclusive collective for those shaping America's alcohol-free social culture. Three tiers, 130 founding spots."
         path="/social-club"
         schema={schema}
       />
