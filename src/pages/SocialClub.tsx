@@ -52,7 +52,7 @@ const tiers = [
       { label: "Founder's Club Benefits", items: tiers_founders_benefits },
     ],
     benefits: [
-      { category: "Founder's Circle Privileges", items: ["Two seats at all Founders Club events", "Private industry tastings with NA brand founders", "Annual curated premium NA beverage package", "Recognition as Founder's Circle supporter"] },
+      { category: "Founder's Circle Privileges", items: ["Six complimentary slushies per month", "Two seats at all Founders Club events", "Private industry tastings with NA brand founders", "Annual curated premium NA beverage package", "Recognition as Founder's Circle supporter"] },
     ],
   },
   {
