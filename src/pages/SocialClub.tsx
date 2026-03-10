@@ -425,7 +425,7 @@ const SocialClub = () => {
             {[
               { q: "How long does my Founder's Club last?", a: "The Founder's Club is valid from May 1, 2026 to April 30, 2027." },
               { q: "Can I share my Founder's Club benefits?", a: "Club benefits are non-transferable and intended for use by the registered founder." },
-              { q: "How do complimentary slushies work?", a: "Founders receive six complimentary slushies per month. Complimentary slushies reset each calendar month, unused drinks do not roll over." },
+              { q: "How do complimentary slushies work?", a: "Founders receive four, six, or ten complimentary slushies per month depending on tier. Complimentary slushies reset each calendar month, unused drinks do not roll over." },
               { q: "Can I combine my discount with other promotions?", a: "Founders Club discounts cannot be combined with other promotions or special offers. When multiple discounts are available, the greater discount will be applied." },
               { q: "Does the bottle shop discount work online?", a: "Yes, bottle shop discounts apply to both in-store and online purchases." },
               { q: "Do I need to RSVP for events?", a: "Yes. Event invitations may require advance RSVP and are subject to capacity." },
