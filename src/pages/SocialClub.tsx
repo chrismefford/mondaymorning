@@ -292,7 +292,7 @@ const SocialClub = () => {
                   }`}
                 >
                   {tier.featured && (
-                    <div className="absolute -top-3 left-1/2 -translate-x-1/2 shimmer-gold-bg text-noir px-5 py-1 font-sans text-[10px] font-bold uppercase tracking-[0.3em]">
+                    <div className="absolute -top-3 left-1/2 -translate-x-1/2 shimmer-gold-bg text-forest-deep px-5 py-1 font-sans text-[10px] font-bold uppercase tracking-[0.3em]">
                       Most Popular
                     </div>
                   )}
