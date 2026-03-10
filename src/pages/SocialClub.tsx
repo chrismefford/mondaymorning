@@ -382,7 +382,7 @@ const SocialClub = () => {
                   </th>
                   <th className="py-5 px-4 font-sans text-[10px] font-semibold uppercase tracking-[0.2em] text-terracotta text-center">
                     <Crown className="h-3.5 w-3.5 mx-auto mb-1.5 text-terracotta" />
-                    Patron<br />$5,000/yr
+                    Founder's Circle<br />$5,000/yr
                   </th>
                   <th className="py-5 px-4 font-sans text-[10px] font-semibold uppercase tracking-[0.2em] text-ocean text-center">
                     <Gem className="h-3.5 w-3.5 mx-auto mb-1.5 text-ocean" />
