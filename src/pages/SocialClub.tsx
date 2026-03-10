@@ -287,8 +287,8 @@ const SocialClub = () => {
                   key={tier.name}
                   className={`relative border p-8 lg:p-10 flex flex-col transition-all duration-500 hover:border-gold-rich/30 ${
                     tier.featured
-                      ? "border-gold-rich/40 bg-noir lg:scale-[1.03] lg:-my-4 shadow-[0_0_80px_-20px_hsl(42_80%_45%_/_0.15)]"
-                      : "border-champagne/10 bg-noir-deep"
+                      ? "border-gold-rich/40 bg-forest lg:scale-[1.03] lg:-my-4 shadow-[0_0_80px_-20px_hsl(42_80%_45%_/_0.15)]"
+                      : "border-champagne/10 bg-forest-deep"
                   }`}
                 >
                   {tier.featured && (
