@@ -148,7 +148,7 @@ const SocialClub = () => {
 
       toast({
         title: "Application Received",
-        description: "Thank you for your interest in the Monday Morning Social Club. We will be in touch soon.",
+        description: "Thank you for your interest in the Monday Morning Founders Club. We will be in touch soon.",
       });
       setFormData({
         tier: "founders",
