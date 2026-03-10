@@ -424,7 +424,7 @@ const SocialClub = () => {
           </div>
           <Accordion type="single" collapsible className="space-y-2">
             {[
-              { q: "How long does my membership last?", a: "Founders Club membership is valid for 12 months from the date of purchase. Club fees are non-refundable and recur annually." },
+              { q: "How long does my membership last?", a: "Founders Club membership is valid from May 1, 2026 to April 30, 2027." },
               { q: "Can I share my membership benefits?", a: "Club benefits are non-transferable and intended for use by the registered member." },
               { q: "How do complimentary slushies work?", a: "Founders receive six complimentary slushies per month. Complimentary slushies reset each calendar month, unused drinks do not roll over." },
               { q: "Can I combine my discount with other promotions?", a: "Founders Club discounts cannot be combined with other promotions or special offers. When multiple discounts are available, the greater discount will be applied." },
