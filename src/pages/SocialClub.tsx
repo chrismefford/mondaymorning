@@ -608,7 +608,7 @@ const SocialClub = () => {
                   Monday Morning was built to create a new kind of space, one where great drinks, community, and culture exist without alcohol at the center of it.
                 </p>
                 <p>
-                  The Founders Club is about supporting that vision and helping us push it even further. Your support helps us expand events, bring in new products, and continue building the best nonalcoholic experience in San Diego.
+                  The Founders Club is about supporting that vision and helping us push it even further. Your support helps us expand events, bring in new products, and continue building the best non alcoholic experience in San Diego.
                 </p>
                 <p>Thank you for being part of this with us.</p>
                 <p>Welcome to the club.</p>
