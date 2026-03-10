@@ -240,7 +240,7 @@ const SocialClub = () => {
           <div className="text-center mb-12">
             <p className="font-sans text-xs font-semibold uppercase tracking-[0.2em] text-primary mb-4">The Movement</p>
             <h2 className="font-serif text-3xl md:text-5xl text-foreground mb-8">
-              More Than a Membership
+              An Invitation to the Inner Circle
             </h2>
           </div>
           <div className="space-y-6 font-sans text-lg text-muted-foreground leading-relaxed">
