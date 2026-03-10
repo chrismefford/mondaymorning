@@ -85,7 +85,7 @@ const comparisonFeatures = [
   { feature: "Early access to new products", founders: true, patron: true, table: true },
   { feature: "Founders Only releases", founders: true, patron: true, table: true },
   { feature: "Limited edition merch", founders: true, patron: true, table: true },
-  { feature: "Guest passes to events", founders: "1", patron: "2", table: "2+" },
+  { feature: "Guest passes to events", founders: "50%", patron: "2", table: "2+" },
   { feature: "Community recognition", founders: true, patron: true, table: true },
   { feature: "Annual Founders Celebration", founders: true, patron: true, table: true },
   { feature: "Private industry tastings", founders: false, patron: true, table: true },
