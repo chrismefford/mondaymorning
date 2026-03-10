@@ -580,7 +580,7 @@ const SocialClub = () => {
               <Button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full shimmer-gold-bg text-noir font-sans text-[10px] font-semibold uppercase tracking-[0.25em] py-6 hover:opacity-90 transition-opacity"
+                className="w-full shimmer-gold-bg text-forest-deep font-sans text-[10px] font-semibold uppercase tracking-[0.25em] py-6 hover:opacity-90 transition-opacity"
               >
                 {isSubmitting ? "Submitting..." : "Submit Application"}
               </Button>
