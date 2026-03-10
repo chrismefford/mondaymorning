@@ -230,6 +230,51 @@ export type Database = {
         }
         Relationships: []
       }
+      social_club_applications: {
+        Row: {
+          address: string | null
+          celebration_date: string | null
+          celebration_note: string | null
+          created_at: string
+          email: string
+          first_name: string
+          id: string
+          last_name: string
+          phone: string | null
+          status: string
+          tier: string
+          updated_at: string
+        }
+        Insert: {
+          address?: string | null
+          celebration_date?: string | null
+          celebration_note?: string | null
+          created_at?: string
+          email: string
+          first_name: string
+          id?: string
+          last_name: string
+          phone?: string | null
+          status?: string
+          tier: string
+          updated_at?: string
+        }
+        Update: {
+          address?: string | null
+          celebration_date?: string | null
+          celebration_note?: string | null
+          created_at?: string
+          email?: string
+          first_name?: string
+          id?: string
+          last_name?: string
+          phone?: string | null
+          status?: string
+          tier?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       story_submissions: {
         Row: {
           author_location: string | null
