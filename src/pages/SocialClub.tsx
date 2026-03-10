@@ -189,8 +189,8 @@ const SocialClub = () => {
   return (
     <div className="min-h-screen bg-background">
       <SEO
-        title="Social Club - San Diego's Non-Alcoholic Social Club"
-        description="Join the Monday Morning Social Club, a limited membership for those shaping San Diego's alcohol-free social culture. Three tiers, 130 founding members."
+        title="Founders Club - San Diego's Non-Alcoholic Founders Club"
+        description="Join the Monday Morning Founders Club, an exclusive collective for those shaping San Diego's alcohol-free social culture. Three tiers, 130 founding members."
         path="/social-club"
         schema={schema}
       />
