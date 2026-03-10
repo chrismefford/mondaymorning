@@ -240,7 +240,7 @@ const SocialClub = () => {
       </section>
 
       {/* Intro Section */}
-      <section className="py-24 lg:py-32 bg-noir relative">
+      <section className="py-24 lg:py-32 bg-forest relative">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/4 h-px bg-gradient-to-r from-transparent via-gold-rich/20 to-transparent" />
         <div className="container mx-auto px-4 lg:px-8 max-w-3xl">
           <div className="text-center mb-14">
