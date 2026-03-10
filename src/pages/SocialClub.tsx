@@ -264,7 +264,7 @@ const SocialClub = () => {
       </section>
 
       {/* Tier Cards */}
-      <section id="tiers" className="py-24 lg:py-32 bg-noir-deep relative overflow-hidden scroll-mt-20">
+      <section id="tiers" className="py-24 lg:py-32 bg-forest-deep relative overflow-hidden scroll-mt-20">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_hsl(42_80%_45%_/_0.04)_0%,_transparent_60%)]" />
         <div className="absolute inset-0 grain pointer-events-none opacity-15" />
         <div className="container mx-auto px-4 lg:px-8 relative z-10">
