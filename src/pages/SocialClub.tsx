@@ -25,7 +25,7 @@ const tiers_founders_benefits = [
 
 const tiers = [
   {
-    name: "Founders Club",
+    name: "Founder's Club",
     icon: Star,
     price: "$1,000",
     priceNote: "per year",
@@ -40,7 +40,7 @@ const tiers = [
     ],
   },
   {
-    name: "Patron Circle",
+    name: "Founder's Circle",
     icon: Crown,
     price: "$5,000",
     priceNote: "per year",
@@ -49,14 +49,14 @@ const tiers = [
     featured: true,
     description: "For individuals who want to support the growth of alcohol-free culture while gaining deeper access to the community.",
     includedFrom: [
-      { label: "Founders Club Benefits", items: tiers_founders_benefits },
+      { label: "Founder's Club Benefits", items: tiers_founders_benefits },
     ],
     benefits: [
-      { category: "Patron Privileges", items: ["Two seats at all Founders Club events", "Private industry tastings with NA brand founders", "Annual curated premium NA beverage package", "Recognition as Patron Circle supporter"] },
+      { category: "Founder's Circle Privileges", items: ["Two seats at all Founders Club events", "Private industry tastings with NA brand founders", "Annual curated premium NA beverage package", "Recognition as Founder's Circle supporter"] },
     ],
   },
   {
-    name: "The Founding Table",
+    name: "Founder's Table",
     icon: Gem,
     price: "$10,000",
     priceNote: "per year",
@@ -64,10 +64,10 @@ const tiers = [
     color: "ocean" as const,
     description: "A small group of supporters helping establish the long-term foundation of Monday Morning and the alcohol-free social movement.",
     includedFrom: [
-      { label: "Founders Club + Patron Circle Benefits", items: [...tiers_founders_benefits, "Two seats at all Founders Club events", "Private industry tastings with NA brand founders", "Annual curated premium NA beverage package", "Recognition as Patron Circle supporter"] },
+      { label: "Founder's Club + Founder's Circle Benefits", items: [...tiers_founders_benefits, "Two seats at all Founders Club events", "Private industry tastings with NA brand founders", "Annual curated premium NA beverage package", "Recognition as Founder's Circle supporter"] },
     ],
     benefits: [
-      { category: "Founding Table Privileges", items: ["Private dinners with NA brand founders and industry leaders", "Small private tastings and product previews", "Access to unreleased beverages", "One annual private bar buyout for a personal event", "VIP seating and recognition at major events"] },
+      { category: "Founder's Table Privileges", items: ["Private dinners with NA brand founders and industry leaders", "Small private tastings and product previews", "Access to unreleased beverages", "One annual private bar buyout for a personal event", "VIP seating and recognition at major events"] },
     ],
   },
 ];
@@ -179,9 +179,9 @@ const SocialClub = () => {
       description: "America's premier non alcoholic founders club with three tiers.",
       brand: { "@type": "Brand", name: "Monday Morning" },
       offers: [
-        { "@type": "Offer", name: "Founders Club", price: "1000", priceCurrency: "USD", availability: "https://schema.org/LimitedAvailability" },
-        { "@type": "Offer", name: "Patron Circle", price: "5000", priceCurrency: "USD", availability: "https://schema.org/LimitedAvailability" },
-        { "@type": "Offer", name: "The Founding Table", price: "10000", priceCurrency: "USD", availability: "https://schema.org/LimitedAvailability" },
+        { "@type": "Offer", name: "Founder's Club", price: "1000", priceCurrency: "USD", availability: "https://schema.org/LimitedAvailability" },
+        { "@type": "Offer", name: "Founder's Circle", price: "5000", priceCurrency: "USD", availability: "https://schema.org/LimitedAvailability" },
+        { "@type": "Offer", name: "Founder's Table", price: "10000", priceCurrency: "USD", availability: "https://schema.org/LimitedAvailability" },
       ],
     },
   ];
@@ -382,11 +382,11 @@ const SocialClub = () => {
                   </th>
                   <th className="py-5 px-4 font-sans text-[10px] font-semibold uppercase tracking-[0.2em] text-terracotta text-center">
                     <Crown className="h-3.5 w-3.5 mx-auto mb-1.5 text-terracotta" />
-                    Patron<br />$5,000/yr
+                    Founder's Circle<br />$5,000/yr
                   </th>
                   <th className="py-5 px-4 font-sans text-[10px] font-semibold uppercase tracking-[0.2em] text-ocean text-center">
                     <Gem className="h-3.5 w-3.5 mx-auto mb-1.5 text-ocean" />
-                    Founding Table<br />$10,000/yr
+                    Founder's Table<br />$10,000/yr
                   </th>
                 </tr>
               </thead>
@@ -474,9 +474,9 @@ const SocialClub = () => {
                   className="grid grid-cols-1 sm:grid-cols-3 gap-3"
                 >
                   {[
-                    { value: "founders", label: "Founders Club", price: "$1,000/yr" },
-                    { value: "patron", label: "Patron Circle", price: "$5,000/yr" },
-                    { value: "table", label: "Founding Table", price: "$10,000/yr" },
+                    { value: "founders", label: "Founder's Club", price: "$1,000/yr" },
+                    { value: "patron", label: "Founder's Circle", price: "$5,000/yr" },
+                    { value: "table", label: "Founder's Table", price: "$10,000/yr" },
                   ].map((opt) => (
                     <label
                       key={opt.value}
