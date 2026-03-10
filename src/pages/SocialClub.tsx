@@ -176,7 +176,7 @@ const SocialClub = () => {
       "@context": "https://schema.org",
       "@type": "Product",
       name: "Monday Morning Founders Club",
-      description: "San Diego's premier non-alcoholic founders club with three tiers.",
+      description: "America's premier nonalcoholic founders club with three tiers.",
       brand: { "@type": "Brand", name: "Monday Morning" },
       offers: [
         { "@type": "Offer", name: "Founders Club", price: "1000", priceCurrency: "USD", availability: "https://schema.org/LimitedAvailability" },
@@ -189,7 +189,7 @@ const SocialClub = () => {
   return (
     <div className="min-h-screen bg-background">
       <SEO
-        title="Founders Club - America's Non-Alcoholic Founders Club"
+        title="Founders Club - America's Nonalcoholic Founders Club"
         description="Join the Monday Morning Founders Club, an exclusive collective for those shaping America's alcohol-free social culture. Three tiers, 130 founding members."
         path="/social-club"
         schema={schema}
@@ -211,7 +211,7 @@ const SocialClub = () => {
             <span className="italic text-gold">Founders Club</span>
           </h1>
           <p className="font-sans text-lg md:text-xl text-cream/70 max-w-2xl mx-auto mb-8 animate-fade-up delay-200 leading-relaxed">
-            America's non-alcoholic founders club. Great drinks, vibrant community, and memorable experiences, without alcohol.
+            America's nonalcoholic founders club. Great drinks, vibrant community, and memorable experiences, without alcohol.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-up delay-300">
             <Button
@@ -608,7 +608,7 @@ const SocialClub = () => {
                   Monday Morning was built to create a new kind of space, one where great drinks, community, and culture exist without alcohol at the center of it.
                 </p>
                 <p>
-                  The Founders Club is about supporting that vision and helping us push it even further. Your support helps us expand events, bring in new products, and continue building the best non-alcoholic experience in San Diego.
+                  The Founders Club is about supporting that vision and helping us push it even further. Your support helps us expand events, bring in new products, and continue building the best nonalcoholic experience in San Diego.
                 </p>
                 <p>Thank you for being part of this with us.</p>
                 <p>Welcome to the club.</p>
