@@ -285,6 +285,41 @@
   .animate-bounce-subtle {
     animation: bounce-subtle 2s ease-in-out infinite;
   }
+
+  /* Luxury shimmer for Founders Club */
+  .shimmer-gold {
+    background: linear-gradient(
+      110deg,
+      hsl(42 80% 45%) 0%,
+      hsl(45 85% 62%) 40%,
+      hsl(42 80% 45%) 60%,
+      hsl(40 77% 52%) 100%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 3s ease-in-out infinite;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .shimmer-gold-bg {
+    background: linear-gradient(
+      110deg,
+      hsl(42 80% 45%) 0%,
+      hsl(45 85% 62%) 40%,
+      hsl(42 80% 45%) 60%,
+      hsl(40 77% 52%) 100%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 3s ease-in-out infinite;
+  }
+
+  .gold-gradient-text {
+    background: linear-gradient(135deg, hsl(42 80% 45%), hsl(45 85% 62%), hsl(40 77% 52%));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
 }
 
 @keyframes fadeUp {
