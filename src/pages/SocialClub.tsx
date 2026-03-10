@@ -14,6 +14,15 @@ import { useToast } from "@/hooks/use-toast";
 import stampGold from "@/assets/stamp-gold.svg";
 import zaneFounder from "@/assets/zane-founder.png";
 
+const tiers_founders_benefits = [
+  "Four exclusive events annually", "Founder tasting nights", "Private product launch events",
+  "Founders Happy Hour with menu previews", "Annual Founders Celebration party",
+  "20% off drinks at the bar", "Six complimentary slushies per month", "Discounts apply to guest drinks too",
+  "10% off bottles and cans", "$10 cap on all shipping", "Early access to new products", "Priority access to limited drops",
+  "Personalized Founders Card", "Members Only product releases", "Bring one guest to Founders events",
+  "Limited edition Founders merch", "Recognition across social channels",
+];
+
 const tiers = [
   {
     name: "Founders Club",
