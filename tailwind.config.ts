@@ -93,6 +93,13 @@ export default {
         },
         "teal-dark": "hsl(var(--teal-dark))",
         midnight: "hsl(var(--midnight))",
+        "gold-rich": "hsl(var(--gold-rich))",
+        "gold-shimmer": "hsl(var(--gold-shimmer))",
+        champagne: "hsl(var(--champagne))",
+        noir: {
+          DEFAULT: "hsl(var(--noir))",
+          deep: "hsl(var(--noir-deep))",
+        },
       },
       borderRadius: {
         lg: "var(--radius)",
