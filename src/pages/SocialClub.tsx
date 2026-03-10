@@ -425,7 +425,7 @@ const SocialClub = () => {
           <Accordion type="single" collapsible className="space-y-2">
             {[
               { q: "How long does my membership last?", a: "Founders Club membership is valid for 12 months from the date of purchase. Club fees are non-refundable and recur annually." },
-              { q: "Can I share my membership benefits?", a: "Club benefits are non-transferable and intended for use by the registered member. However, bar discounts apply to all drinks purchased by the member, including drinks purchased for guests, as long as the member is present at the time of purchase." },
+              { q: "Can I share my membership benefits?", a: "Club benefits are non-transferable and intended for use by the registered member." },
               { q: "How do complimentary slushies work?", a: "Founders receive six complimentary slushies per month. Complimentary slushies reset each calendar month, unused drinks do not roll over." },
               { q: "Can I combine my discount with other promotions?", a: "Founders Club discounts cannot be combined with other promotions or special offers. When multiple discounts are available, the greater discount will be applied." },
               { q: "Does the bottle shop discount work online?", a: "Yes, bottle shop discounts apply to both in-store and online purchases. Founders also receive complimentary shipping on online orders placed through the Monday Morning website." },
