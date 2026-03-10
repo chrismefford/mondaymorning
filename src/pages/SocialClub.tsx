@@ -14,6 +14,15 @@ import { useToast } from "@/hooks/use-toast";
 import stampGold from "@/assets/stamp-gold.svg";
 import zaneFounder from "@/assets/zane-founder.png";
 
+const tiers_founders_benefits = [
+  "Four exclusive events annually", "Founder tasting nights", "Private product launch events",
+  "Founders Happy Hour with menu previews", "Annual Founders Celebration party",
+  "20% off drinks at the bar", "Six complimentary slushies per month", "Discounts apply to guest drinks too",
+  "10% off bottles and cans", "$10 cap on all shipping", "Early access to new products", "Priority access to limited drops",
+  "Personalized Founders Card", "Members Only product releases", "Bring one guest to Founders events",
+  "Limited edition Founders merch", "Recognition across social channels",
+];
+
 const tiers = [
   {
     name: "Founders Club",
@@ -39,8 +48,10 @@ const tiers = [
     color: "terracotta",
     featured: true,
     description: "For individuals who want to support the growth of alcohol-free culture while gaining deeper access to the community.",
+    includedFrom: [
+      { label: "Founders Club Benefits", items: tiers_founders_benefits },
+    ],
     benefits: [
-      { category: "Everything in Founders Club, plus", items: [] },
       { category: "Patron Privileges", items: ["Two seats at all Social Club events", "Private industry tastings with NA brand founders", "Annual curated premium NA beverage package", "Recognition as Patron Circle supporter"] },
     ],
   },
@@ -52,8 +63,10 @@ const tiers = [
     spots: "10",
     color: "ocean",
     description: "A small group of supporters helping establish the long-term foundation of Monday Morning and the alcohol-free social movement.",
+    includedFrom: [
+      { label: "Founders Club + Patron Circle Benefits", items: [...tiers_founders_benefits, "Two seats at all Social Club events", "Private industry tastings with NA brand founders", "Annual curated premium NA beverage package", "Recognition as Patron Circle supporter"] },
+    ],
     benefits: [
-      { category: "Everything in Founders + Patron, plus", items: [] },
       { category: "Founding Table Privileges", items: ["Private dinners with NA brand founders and industry leaders", "Small private tastings and product previews", "Access to unreleased beverages", "One annual private bar buyout for a personal event", "VIP seating and recognition at major events"] },
     ],
   },
@@ -262,6 +275,23 @@ const SocialClub = () => {
                     {tier.description}
                   </p>
                   <div className="space-y-6 flex-1">
+                    {/* Collapsible included benefits from lower tiers */}
+                    {'includedFrom' in tier && (tier as any).includedFrom?.map((inc: { label: string; items: string[] }) => (
+                      <details key={inc.label} className="group border border-cream/15">
+                        <summary className="flex items-center justify-between cursor-pointer px-4 py-3 font-sans text-xs font-semibold uppercase tracking-wider text-cream/60 hover:text-cream/80 transition-colors">
+                          <span>{inc.label}</span>
+                          <ChevronDown className="h-4 w-4 transition-transform group-open:rotate-180" />
+                        </summary>
+                        <ul className="space-y-2 px-4 pb-4 pt-1">
+                          {inc.items.map((item: string) => (
+                            <li key={item} className="flex items-start gap-2">
+                              <Check className="h-4 w-4 mt-0.5 shrink-0 text-cream/40" />
+                              <span className="font-sans text-sm text-cream/60">{item}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </details>
+                    ))}
                     {tier.benefits.map((group) => (
                       <div key={group.category}>
                         <p className={`font-sans text-xs font-semibold uppercase tracking-wider mb-3 ${
