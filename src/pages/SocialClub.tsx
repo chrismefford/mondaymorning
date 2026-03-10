@@ -17,7 +17,7 @@ import zaneFounder from "@/assets/zane-founder.png";
 const tiers_founders_benefits = [
   "Four exclusive events annually", "Founder tasting nights", "Private product launch events",
   "Founders Happy Hour with menu previews", "Annual Founders Celebration party",
-  "20% off drinks at the bar", "Six complimentary slushies per month", "Discounts apply to guest drinks too",
+  "20% off drinks at the bar", "Four complimentary slushies per month", "Discounts apply to guest drinks too",
   "10% off bottles and cans", "$10 cap on all shipping", "Early access to new products",
   "Personalized Founders Card", "Founders Only product releases", "Bring one guest to Founders events",
   "Limited edition Founders merch", "Recognition across social channels",
@@ -34,7 +34,7 @@ const tiers = [
     description: "The core community behind Monday Morning and the individuals helping establish America's alcohol-free social culture.",
     benefits: [
       { category: "Events", items: ["Four exclusive events annually", "Founder tasting nights", "Private product launch events", "Founders Happy Hour with menu previews", "Annual Founders Celebration party"] },
-      { category: "Bar Privileges", items: ["20% off drinks at the bar", "Six complimentary slushies per month", "Discounts apply to guest drinks too"] },
+      { category: "Bar Privileges", items: ["20% off drinks at the bar", "Four complimentary slushies per month", "Discounts apply to guest drinks too"] },
       { category: "Bottle Shop", items: ["10% off bottles and cans", "$10 cap on all shipping", "Early access to new products"] },
       { category: "Extras", items: ["Personalized Founders Card", "Founders Only product releases", "Bring one guest to Founders events", "Limited edition Founders merch", "Recognition across social channels"] },
     ],
@@ -52,7 +52,7 @@ const tiers = [
       { label: "Founder's Club Benefits", items: tiers_founders_benefits },
     ],
     benefits: [
-      { category: "Founder's Circle Privileges", items: ["Two seats at all Founders Club events", "Private industry tastings with NA brand founders", "Annual curated premium NA beverage package", "Recognition as Founder's Circle supporter"] },
+      { category: "Founder's Circle Privileges", items: ["Six complimentary slushies per month", "Two seats at all Founders Club events", "Private industry tastings with NA brand founders", "Annual curated premium NA beverage package", "Recognition as Founder's Circle supporter"] },
     ],
   },
   {
@@ -67,7 +67,7 @@ const tiers = [
       { label: "Founder's Club + Founder's Circle Benefits", items: [...tiers_founders_benefits, "Two seats at all Founders Club events", "Private industry tastings with NA brand founders", "Annual curated premium NA beverage package", "Recognition as Founder's Circle supporter"] },
     ],
     benefits: [
-      { category: "Founder's Table Privileges", items: ["Private dinners with NA brand founders and industry leaders", "Small private tastings and product previews", "Access to unreleased beverages", "One annual private bar buyout for a personal event", "VIP seating and recognition at major events"] },
+      { category: "Founder's Table Privileges", items: ["Ten complimentary slushies per month", "Private dinners with NA brand founders and industry leaders", "Small private tastings and product previews", "Access to unreleased beverages", "One annual private bar buyout for a personal event", "VIP seating and recognition at major events"] },
     ],
   },
 ];
@@ -425,7 +425,7 @@ const SocialClub = () => {
             {[
               { q: "How long does my Founder's Club last?", a: "The Founder's Club is valid from May 1, 2026 to April 30, 2027." },
               { q: "Can I share my Founder's Club benefits?", a: "Club benefits are non-transferable and intended for use by the registered founder." },
-              { q: "How do complimentary slushies work?", a: "Founders receive six complimentary slushies per month. Complimentary slushies reset each calendar month, unused drinks do not roll over." },
+              { q: "How do complimentary slushies work?", a: "Founders receive four, six, or ten complimentary slushies per month depending on tier. Complimentary slushies reset each calendar month, unused drinks do not roll over." },
               { q: "Can I combine my discount with other promotions?", a: "Founders Club discounts cannot be combined with other promotions or special offers. When multiple discounts are available, the greater discount will be applied." },
               { q: "Does the bottle shop discount work online?", a: "Yes, bottle shop discounts apply to both in-store and online purchases." },
               { q: "Do I need to RSVP for events?", a: "Yes. Event invitations may require advance RSVP and are subject to capacity." },
