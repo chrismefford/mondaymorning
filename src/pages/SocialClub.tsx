@@ -428,7 +428,7 @@ const SocialClub = () => {
               { q: "Can I share my membership benefits?", a: "Club benefits are non-transferable and intended for use by the registered member." },
               { q: "How do complimentary slushies work?", a: "Founders receive six complimentary slushies per month. Complimentary slushies reset each calendar month, unused drinks do not roll over." },
               { q: "Can I combine my discount with other promotions?", a: "Founders Club discounts cannot be combined with other promotions or special offers. When multiple discounts are available, the greater discount will be applied." },
-              { q: "Does the bottle shop discount work online?", a: "Yes, bottle shop discounts apply to both in-store and online purchases. Founders also receive complimentary shipping on online orders placed through the Monday Morning website." },
+              { q: "Does the bottle shop discount work online?", a: "Yes, bottle shop discounts apply to both in-store and online purchases." },
               { q: "Do I need to RSVP for events?", a: "Event invitations may require advance RSVP and are subject to capacity." },
               { q: "Is early access guaranteed for limited products?", a: "Early access to limited products does not guarantee availability, as quantities may be limited." },
               { q: "Will benefits ever change?", a: "Monday Morning may occasionally adjust programming, events, or benefits as the Founders Club evolves." },
