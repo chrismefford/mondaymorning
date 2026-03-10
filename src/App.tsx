@@ -43,6 +43,7 @@ import CutwaterAlcoholContent from "./pages/CutwaterAlcoholContent";
 import NonAlcDrinks from "./pages/NonAlcDrinks";
 import ZeroProofNearby from "./pages/ZeroProofNearby";
 import AlcoholAlternatives from "./pages/AlcoholAlternatives";
+import SocialClub from "./pages/SocialClub";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -102,6 +103,7 @@ const AppContent = () => {
         <Route path="/non-alc-drinks" element={<NonAlcDrinks />} />
         <Route path="/zero-proof-alcohol-nearby" element={<ZeroProofNearby />} />
         <Route path="/alcohol-alternatives" element={<AlcoholAlternatives />} />
+        <Route path="/social-club" element={<SocialClub />} />
         {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
         <Route path="*" element={<NotFound />} />
       </Routes>
