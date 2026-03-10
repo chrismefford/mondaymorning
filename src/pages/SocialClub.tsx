@@ -447,7 +447,7 @@ const SocialClub = () => {
       </section>
 
       {/* Application Form */}
-      <section id="apply" className="py-24 lg:py-32 bg-noir relative overflow-hidden scroll-mt-20">
+      <section id="apply" className="py-24 lg:py-32 bg-forest relative overflow-hidden scroll-mt-20">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,_hsl(42_80%_45%_/_0.05)_0%,_transparent_60%)]" />
         <div className="absolute inset-0 grain pointer-events-none opacity-15" />
         <div className="container mx-auto px-4 lg:px-8 relative z-10">
