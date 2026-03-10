@@ -267,7 +267,7 @@ const SocialClub = () => {
               Choose Your Tier
             </h2>
             <p className="font-sans text-lg text-cream/60 max-w-2xl mx-auto">
-              The Social Club launches with a limited founding cohort of 130 members across three tiers.
+              The Founders Club launches with a limited founding cohort of 130 members across three tiers.
             </p>
           </div>
 
