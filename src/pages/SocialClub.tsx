@@ -454,7 +454,7 @@ const SocialClub = () => {
               </thead>
               <tbody>
                 {comparisonFeatures.map((row, i) => (
-                  <tr key={row.feature} className={`border-b border-border/50 ${i % 2 === 0 ? "bg-muted/30" : ""}`}>
+                  <tr key={row.feature} className={`border-b border-border/50 ${i % 2 === 0 ? "bg-muted/30" : ""} hover:bg-primary/10 transition-colors duration-200 cursor-default`}>
                     <td className="py-3.5 pr-4 font-sans text-sm text-foreground/70">{row.feature}</td>
                     {[row.founders, row.patron, row.table].map((val, j) => (
                       <td key={j} className="py-3.5 px-4 text-center">
