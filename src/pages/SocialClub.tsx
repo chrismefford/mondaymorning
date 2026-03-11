@@ -133,15 +133,6 @@ const comparisonFeatures = [
 ];
 
 
-    benefits: [
-      { category: "Events & Access", items: [
-        { text: "Four exclusive founders events per year", subItems: [
-          "Founder tasting nights with new products",
-          "Private product launch events",
-          "Founders Happy Hour with menu previews",
-          "Annual Founders Celebration party",
-        ]},
-        "Two seats at all founders events",
         "Two free guest passes to founders events",
         "Private industry tastings with NA brand founders",
       ]},
