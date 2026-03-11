@@ -35,7 +35,7 @@ const tiers = [
       ]},
       { category: "Bar & Bottle Shop", items: [
         "20% off drinks at the bar",
-        "Four complimentary slushies per month",
+        "Four Kava Haven slushies per month",
         "10% off bottles and cans",
       ]},
       { category: "Extras", items: [
@@ -68,7 +68,7 @@ const tiers = [
       { category: "Bar & Bottle Shop", items: [
         "20% off drinks at the bar",
         "Guest drink discount included",
-        "Six complimentary slushies per month",
+        "Six Kava Haven slushies per month",
         "10% off bottles and cans",
         "$10 cap on all shipping",
         "Early access to limited drops",
@@ -107,7 +107,7 @@ const tiers = [
       { category: "Bar & Bottle Shop", items: [
         "20% off drinks at the bar",
         "Guest drink discount included",
-        "Ten complimentary slushies per month",
+        "Ten Kava Haven slushies per month",
         "10% off bottles and cans",
         "$10 cap on all shipping",
         "Early access to limited drops",
@@ -132,7 +132,7 @@ const comparisonFeatures = [
   { feature: "Personalized Founders Card", founders: true, patron: true, table: true },
   { feature: "Bar drink discount", founders: "20%", patron: "20%", table: "20%" },
   { feature: "Guest drink discount", founders: false, patron: true, table: true },
-  { feature: "Complimentary slushies/month", founders: "4", patron: "6", table: "10" },
+  { feature: "Kava Haven slushies/month", founders: "4", patron: "6", table: "10" },
   { feature: "Bottle shop discount", founders: "10%", patron: "10%", table: "10%" },
   { feature: "Shipping cap", founders: false, patron: "$10", table: "$10" },
   { feature: "Early access to limited drops", founders: false, patron: true, table: true },
@@ -524,7 +524,7 @@ const SocialClub = () => {
             {[
               { q: "How long does my membership last?", a: "Your Founders Club membership is valid from May 1, 2026 to April 30, 2027. One full year of access, events, and perks." },
               { q: "Can I share my benefits with someone else?", a: "Benefits are tied to you as the registered founder. That said, every tier includes guest access so you can bring people along to events and share the experience." },
-              { q: "How do complimentary slushies work?", a: "Depending on your tier, you get four, six, or ten complimentary slushies per month. They reset at the beginning of each month and do not roll over, so make sure you use them." },
+              { q: "How do Kava Haven slushies work?", a: "Depending on your tier, you get four, six, or ten Kava Haven slushies per month. They reset at the beginning of each month and do not roll over, so make sure you use them." },
               { q: "Can I stack my discount with other promos?", a: "Founders Club discounts cannot be combined with other promotions. If multiple discounts apply, we will always give you the bigger one." },
               { q: "Does the bottle shop discount work online?", a: "Yes. Your 10% off applies to both in-store and online purchases." },
               { q: "Do I need to RSVP for events?", a: "Yes, most events require an RSVP in advance. We will always give founders priority, but spots can fill up so do not wait too long." },
