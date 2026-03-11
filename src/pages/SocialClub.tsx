@@ -302,13 +302,13 @@ const SocialClub = () => {
               In a city known for its nightlife and craft beverage culture, Monday Morning is building something different: a place where great drinks, vibrant community, and memorable nights out exist without alcohol.
             </p>
             <p>
-              The Monday Morning Social Club is a limited membership created for those who want to be part of shaping the next chapter of San Diego's social culture. More than a membership program, the Social Club is a gathering point for people who believe connection, creativity, and hospitality thrive without alcohol.
+              The Monday Morning Founder's Club is a limited founding collective created for those who want to be part of shaping the next chapter of San Diego's social culture. More than a program, the Founder's Club is a gathering point for people who believe connection, creativity, and hospitality thrive without alcohol.
             </p>
             <p>
-              With a focus on experiences, discovery, and community, members receive access to private events, new drink releases, and the inside track on the evolving alcohol-free movement.
+              With a focus on experiences, discovery, and community, founders receive access to private events, new drink releases, and the inside track on the evolving alcohol-free movement.
             </p>
             <p>
-              The Social Club launches with a limited founding cohort of 130 members across three tiers, each offering a different level of access and involvement in the growing alcohol-free movement.
+              The Founder's Club launches with a limited founding cohort of 130 spots across three tiers, each offering a different level of access and involvement in the growing alcohol-free movement.
             </p>
           </div>
         </div>
