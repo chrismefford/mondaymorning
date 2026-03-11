@@ -13,6 +13,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import stampGold from "@/assets/stamp-gold.svg";
 import zaneFounder from "@/assets/zane-founder.png";
+import foundersLogo from "@/assets/founders-club-logo.png";
 
 const tiers_founders_benefits = [
   "Four exclusive events annually", "Founder tasting nights", "Private product launch events",
