@@ -53,7 +53,7 @@ const tiers = [
       { label: "Founder's Club Benefits", items: tiers_founders_benefits },
     ],
     benefits: [
-      { category: "Founder's Circle Privileges", items: ["Six complimentary slushies per month", "Guest drink discount included", "$10 cap on all shipping", "Early access to limited drops", "Two seats at all Founders Club events", "Free guest passes to Founder's Events", "Private industry tastings with NA brand founders", "Annual curated premium NA beverage package", "Tote + exclusive limited-edition Founder's merch", "Recognition as Founder's Circle supporter"] },
+      { category: "Founder's Circle Privileges", items: ["Six complimentary slushies per month", "Guest drink discount included", "$10 cap on all shipping", "Early access to limited drops", "Two seats at all Founders Club events", "Free guest passes to Founder's Events", "Private industry tastings with NA brand founders", "Annual curated premium NA beverage package", "Tote + More", "Recognition as Founder's Circle supporter"] },
     ],
   },
   {
@@ -65,10 +65,10 @@ const tiers = [
     color: "ocean" as const,
     description: "A small group of supporters helping establish the long-term foundation of Monday Morning and the alcohol-free social movement.",
     includedFrom: [
-      { label: "Founder's Club + Founder's Circle Benefits", items: [...tiers_founders_benefits, "Guest drink discount included", "$10 cap on all shipping", "Early access to limited drops", "Two seats at all Founders Club events", "Free guest passes to Founder's Events", "Private industry tastings with NA brand founders", "Annual curated premium NA beverage package", "Tote + exclusive limited-edition Founder's merch", "Recognition as Founder's Circle supporter"] },
+      { label: "Founder's Club + Founder's Circle Benefits", items: [...tiers_founders_benefits, "Guest drink discount included", "$10 cap on all shipping", "Early access to limited drops", "Two seats at all Founders Club events", "Free guest passes to Founder's Events", "Private industry tastings with NA brand founders", "Annual curated premium NA beverage package", "Tote + More", "Recognition as Founder's Circle supporter"] },
     ],
     benefits: [
-      { category: "Founder's Table Privileges", items: ["Ten complimentary slushies per month", "Guest drink discount included", "$10 cap on all shipping", "Early access to limited drops", "Free guest passes to Founder's Events", "Private dinners with NA brand founders and industry leaders", "Small private tastings and product previews", "Access to unreleased beverages", "One annual private bar buyout for a personal event", "Tote + exclusive limited-edition Founder's merch", "VIP seating and recognition at major events"] },
+      { category: "Founder's Table Privileges", items: ["Ten complimentary slushies per month", "Guest drink discount included", "$10 cap on all shipping", "Early access to limited drops", "Free guest passes to Founder's Events", "Private dinners with NA brand founders and industry leaders", "Small private tastings and product previews", "Access to unreleased beverages", "One annual private bar buyout for a personal event", "Tote + More", "VIP seating and recognition at major events"] },
     ],
   },
 ];
@@ -86,7 +86,7 @@ const comparisonFeatures = [
   { feature: "Shipping cap", founders: false, patron: "$10", table: "$10" },
   { feature: "Early access to limited drops", founders: false, patron: true, table: true },
   { feature: "Founders Only releases", founders: true, patron: true, table: true },
-  { feature: "Founder merch", founders: "Tote", patron: "Tote + LE merch", table: "Tote + LE merch" },
+  { feature: "Founder merch", founders: "Tote", patron: "Tote + More", table: "Tote + More" },
   { feature: "Guest passes to events", founders: "1", patron: "2", table: "2+" },
   { feature: "Guest event tickets", founders: "50% off", patron: "Free", table: "Free" },
   { feature: "Community recognition", founders: true, patron: true, table: true },
