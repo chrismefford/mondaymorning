@@ -12,8 +12,16 @@ import Footer from "@/components/layout/Footer";
 import SEO from "@/components/SEO";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
+import { useCart } from "@/hooks/useCart";
 import stampGold from "@/assets/stamp-gold.svg";
 import foundersLogo from "@/assets/founders-club-logo.png";
+
+// Shopify product handles for each tier
+const tierToHandle: Record<string, string> = {
+  founders: "founders-club",    // Founders Chair
+  patron: "founders-circle",     // Founders Circle
+  table: "founders-table",       // Founders Table
+};
 
 const tiers = [
   {
