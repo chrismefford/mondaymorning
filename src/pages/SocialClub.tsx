@@ -65,7 +65,7 @@ const tiers = [
     color: "ocean" as const,
     description: "A small group of supporters helping establish the long-term foundation of Monday Morning and the alcohol-free social movement.",
     includedFrom: [
-      { label: "Founder's Club + Founder's Circle Benefits", items: [...tiers_founders_benefits, "Two seats at all Founders Club events", "Private industry tastings with NA brand founders", "Annual curated premium NA beverage package", "Recognition as Founder's Circle supporter"] },
+      { label: "Founder's Club + Founder's Circle Benefits", items: [...tiers_founders_benefits, "Guest drink discount included", "Early access to limited drops", "Two seats at all Founders Club events", "Private industry tastings with NA brand founders", "Annual curated premium NA beverage package", "Tote + exclusive limited-edition Founder's merch", "Recognition as Founder's Circle supporter"] },
     ],
     benefits: [
       { category: "Founder's Table Privileges", items: ["Ten complimentary slushies per month", "Guest drink discount included", "Early access to limited drops", "Private dinners with NA brand founders and industry leaders", "Small private tastings and product previews", "Access to unreleased beverages", "One annual private bar buyout for a personal event", "Tote + exclusive limited-edition Founder's merch", "VIP seating and recognition at major events"] },
