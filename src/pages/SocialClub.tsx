@@ -418,7 +418,9 @@ const SocialClub = () => {
                   </Button>
                 </div>
               </div>
-            ))}
+              );
+            })}
+
           </div>
         </div>
       </section>
