@@ -683,9 +683,8 @@ const SocialClub = () => {
       </section>
 
       {/* Final CTA */}
-      <section className="py-20 lg:py-24 bg-forest relative overflow-hidden">
+      <section className="py-20 lg:py-24 bg-forest relative overflow-hidden linen-texture">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_hsl(42_80%_45%_/_0.06)_0%,_transparent_70%)]" />
-        <div className="absolute inset-0 linen-texture pointer-events-none" />
         <div className="absolute inset-0 grain pointer-events-none opacity-15" />
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/3 h-px bg-gradient-to-r from-transparent via-gold-rich/20 to-transparent" />
         <div className="container mx-auto px-4 lg:px-8 text-center relative z-10">
