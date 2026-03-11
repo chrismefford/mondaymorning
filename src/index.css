@@ -340,22 +340,20 @@
     color: hsl(42 80% 50%);
     position: relative;
     display: inline-block;
-  }
-
-  .shimmer-gold::after {
-    content: '';
-    position: absolute;
-    inset: 0;
     background: linear-gradient(
       110deg,
-      transparent 0%,
-      hsl(45 85% 72% / 0.4) 40%,
-      transparent 60%
+      hsl(42 80% 45%) 0%,
+      hsl(45 85% 65%) 40%,
+      hsl(42 80% 45%) 60%,
+      hsl(40 77% 52%) 100%
     );
     background-size: 200% 100%;
     animation: shimmer 3s ease-in-out infinite;
-    mix-blend-mode: screen;
-    pointer-events: none;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
   }
 
   .shimmer-gold-bg {
