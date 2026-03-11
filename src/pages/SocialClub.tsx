@@ -134,6 +134,7 @@ const comparisonFeatures = [
 
 const SocialClub = () => {
   const { toast } = useToast();
+  const navigate = useNavigate();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     tier: "founders",
