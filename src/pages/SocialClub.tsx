@@ -30,8 +30,6 @@ const tiers = [
           "Founders Happy Hour with menu previews",
           "Annual Founders Celebration party",
         ]},
-        "Bring one guest to founders events",
-        "50% off event tickets for your guest",
       ]},
       { category: "Bar & Bottle Shop", items: [
         "20% off drinks at the bar",
