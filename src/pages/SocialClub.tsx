@@ -254,11 +254,21 @@ const SocialClub = () => {
               Apply Now
             </Button>
           </div>
-          <p className="font-sans text-[10px] text-champagne/30 mt-12 uppercase tracking-[0.3em] animate-fade-up delay-400">
-            Enrollment Ends April 30, 2026 · Benefits Start May 1, 2026
-          </p>
         </div>
-        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background to-transparent" />
+        {/* Enrollment banner */}
+        <div className="absolute bottom-0 left-0 right-0 z-20">
+          <div className="bg-gold-rich/10 backdrop-blur-sm border-t border-gold-rich/20">
+            <div className="container mx-auto px-4 py-3 flex items-center justify-center gap-6">
+              <p className="font-sans text-[11px] font-semibold uppercase tracking-[0.25em] text-gold-rich/80">
+                Enrollment Ends April 30, 2026
+              </p>
+              <span className="w-1 h-1 rounded-full bg-gold-rich/40" />
+              <p className="font-sans text-[11px] font-semibold uppercase tracking-[0.25em] text-gold-rich/80">
+                Benefits Start May 1, 2026
+              </p>
+            </div>
+          </div>
+        </div>
       </section>
 
       {/* Intro Section — light */}
