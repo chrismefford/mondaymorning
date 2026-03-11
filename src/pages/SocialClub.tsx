@@ -17,7 +17,7 @@ import foundersLogo from "@/assets/founders-club-logo.png";
 
 const tiers = [
   {
-    name: "Founder's Club",
+    name: "Founder's Chair",
     price: "$1,000",
     priceNote: "per year",
     spots: "100",
