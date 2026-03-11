@@ -105,6 +105,7 @@ const AppContent = () => {
         <Route path="/zero-proof-alcohol-nearby" element={<ZeroProofNearby />} />
         <Route path="/alcohol-alternatives" element={<AlcoholAlternatives />} />
         <Route path="/social-club" element={<SocialClub />} />
+        <Route path="/founders-welcome" element={<FoundersWelcome />} />
         {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
         <Route path="*" element={<NotFound />} />
       </Routes>
