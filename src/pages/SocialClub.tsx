@@ -18,7 +18,7 @@ const tiers_founders_benefits = [
   "Four exclusive events annually", "Founder tasting nights", "Private product launch events",
   "Founders Happy Hour with menu previews", "Annual Founders Celebration party",
   "20% off drinks at the bar", "Four complimentary slushies per month",
-  "10% off bottles and cans", "$10 cap on all shipping",
+  "10% off bottles and cans",
   "Personalized Founders Card", "Founders Only product releases", "Bring one guest to Founders events",
   "Monday Morning branded tote", "Recognition across social channels",
   "Guests receive 50% off Founder's Event tickets",
