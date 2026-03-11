@@ -13,6 +13,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import stampGold from "@/assets/stamp-gold.svg";
 import zaneFounder from "@/assets/zane-founder.png";
+import foundersLogo from "@/assets/founders-club-logo.png";
 
 const tiers_founders_benefits = [
   "Four exclusive events annually", "Founder tasting nights", "Private product launch events",
@@ -210,6 +211,7 @@ const SocialClub = () => {
         {/* Top and bottom gold hairlines */}
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/3 h-px bg-gradient-to-r from-transparent via-gold-rich to-transparent" />
         <div className="container mx-auto px-4 lg:px-8 relative z-10 text-center py-32">
+          <img src={foundersLogo} alt="Monday Morning Founders Club Est. 2026" className="w-32 md:w-40 mx-auto mb-10 animate-fade-up opacity-80" />
           <p className="font-sans text-[10px] font-semibold uppercase tracking-[0.5em] text-gold-rich/70 mb-8 animate-fade-up">
             By Invitation Only · 130 Founding Positions
           </p>
