@@ -412,6 +412,14 @@ const SocialClub = () => {
               </tbody>
             </table>
           </div>
+          <div className="text-center mt-14">
+            <Button
+              onClick={() => document.getElementById("apply")?.scrollIntoView({ behavior: "smooth" })}
+              className="shimmer-gold-bg text-forest-deep font-sans text-[10px] font-semibold uppercase tracking-[0.25em] px-12 py-6 hover:opacity-90 transition-opacity"
+            >
+              Apply Now
+            </Button>
+          </div>
         </div>
       </section>
 
@@ -445,6 +453,14 @@ const SocialClub = () => {
               </AccordionItem>
             ))}
           </Accordion>
+          <div className="text-center mt-14">
+            <Button
+              onClick={() => document.getElementById("apply")?.scrollIntoView({ behavior: "smooth" })}
+              className="shimmer-gold-bg text-forest-deep font-sans text-[10px] font-semibold uppercase tracking-[0.25em] px-12 py-6 hover:opacity-90 transition-opacity"
+            >
+              Apply Now
+            </Button>
+          </div>
         </div>
       </section>
 
