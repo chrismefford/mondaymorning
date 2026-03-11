@@ -34,9 +34,9 @@ const tiers = [
     color: "gold" as const,
     description: "The core community behind Monday Morning and the individuals helping establish America's alcohol-free social culture.",
     benefits: [
-      { category: "Events", items: ["Four exclusive events annually", "Founder tasting nights", "Private product launch events", "Founders Happy Hour with menu previews", "Annual Founders Celebration party", "Guests receive 50% off Founder's Event tickets"] },
+      { category: "Events", items: ["Four exclusive events annually", "Founder tasting nights", "Private product launch events", "Founders Happy Hour with menu previews", "Annual Founders Celebration party", "50% off Founder's Event tickets for guests"] },
       { category: "Bar Privileges", items: ["20% off drinks at the bar", "Four complimentary slushies per month"] },
-      { category: "Bottle Shop", items: ["10% off bottles and cans", "$10 cap on all shipping"] },
+      { category: "Bottle Shop", items: ["10% off bottles and cans"] },
       { category: "Extras", items: ["Personalized Founders Card", "Founders Only product releases", "Bring one guest to Founders events", "Monday Morning branded tote", "Recognition across social channels"] },
     ],
   },
