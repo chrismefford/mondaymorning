@@ -270,10 +270,9 @@ const SocialClub = () => {
       </section>
 
       {/* Tier Cards */}
-      <section id="tiers" className="py-24 lg:py-32 bg-forest-deep relative overflow-hidden scroll-mt-20">
+      <section id="tiers" className="py-24 lg:py-32 bg-forest-deep relative overflow-hidden scroll-mt-20 paper-texture">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_hsl(42_80%_45%_/_0.04)_0%,_transparent_60%)]" />
         <div className="absolute inset-0 grain pointer-events-none opacity-15" />
-        <div className="absolute inset-0 paper-texture pointer-events-none" />
         <div className="container mx-auto px-4 lg:px-8 relative z-10">
           <div className="text-center mb-20">
             <p className="font-sans text-[10px] font-semibold uppercase tracking-[0.4em] text-gold-rich/60 mb-6">Three Tiers</p>
