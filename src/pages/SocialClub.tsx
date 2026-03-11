@@ -84,7 +84,6 @@ const tiers = [
       ]},
       { category: "Additional Bottle Shop Benefits", items: [
         "$10 flat shipping on all online orders",
-        "10% off bottle shop sales (in-store and online)",
       ]},
       { category: "Founders Merch", items: [
         "Founder's tote + limited merch",
