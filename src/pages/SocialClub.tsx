@@ -397,8 +397,7 @@ const SocialClub = () => {
       </section>
 
       {/* Comparison Grid */}
-      <section className="py-24 lg:py-32 bg-forest relative overflow-hidden">
-        <div className="absolute inset-0 linen-texture pointer-events-none" />
+      <section className="py-24 lg:py-32 bg-forest relative overflow-hidden linen-texture">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_hsl(42_80%_45%_/_0.03)_0%,_transparent_50%)]" />
         <div className="container mx-auto px-4 lg:px-8">
           <div className="text-center mb-16">
