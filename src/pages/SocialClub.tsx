@@ -245,8 +245,7 @@ const SocialClub = () => {
       </section>
 
       {/* Intro Section */}
-      <section className="py-24 lg:py-32 bg-forest relative overflow-hidden">
-        <div className="absolute inset-0 linen-texture pointer-events-none" />
+      <section className="py-24 lg:py-32 bg-forest relative overflow-hidden linen-texture">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,_hsl(42_80%_45%_/_0.03)_0%,_transparent_50%)]" />
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/4 h-px bg-gradient-to-r from-transparent via-gold-rich/20 to-transparent" />
         <div className="container mx-auto px-4 lg:px-8 max-w-3xl">
