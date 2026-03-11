@@ -86,7 +86,7 @@ const comparisonFeatures = [
   { feature: "Shipping cap", founders: false, patron: "$10", table: "$10" },
   { feature: "Early access to limited drops", founders: false, patron: true, table: true },
   { feature: "Founders Only releases", founders: true, patron: true, table: true },
-  { feature: "Founder merch", founders: "Tote", patron: "Tote + LE merch", table: "Tote + LE merch" },
+  { feature: "Founder merch", founders: "Tote", patron: "Tote + More", table: "Tote + More" },
   { feature: "Guest passes to events", founders: "1", patron: "2", table: "2+" },
   { feature: "Guest event tickets", founders: "50% off", patron: "Free", table: "Free" },
   { feature: "Community recognition", founders: true, patron: true, table: true },
