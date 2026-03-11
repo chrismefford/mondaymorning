@@ -332,7 +332,7 @@ const SocialClub = () => {
                     </div>
                   )}
                   <div className="flex items-center gap-3 mb-5">
-                    <Icon className={`h-5 w-5 ${colors.text}`} />
+                    <img src={foundersLogo} alt="" className="h-7 w-7 object-contain opacity-80" />
                     <h3 className="font-serif text-xl text-cream">{tier.name}</h3>
                   </div>
                   <div className="mb-5">
