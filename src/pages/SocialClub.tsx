@@ -143,6 +143,7 @@ const comparisonFeatures = [
 const SocialClub = () => {
   const { toast } = useToast();
   const navigate = useNavigate();
+  const { addToCart } = useCart();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     tier: "founders",
@@ -155,7 +156,9 @@ const SocialClub = () => {
     celebrationNote: "",
   });
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  // Fetch variant ID for selected tier's Shopify product
+  const selectedHandle = tierToHandle[formData.tier] || "founders-club";
+  const { useShopifyProduct } = await import("@/hooks/useShopifyProduct");
     e.preventDefault();
     setIsSubmitting(true);
 
