@@ -24,11 +24,12 @@ const tiers = [
     description: "The starting point for anyone who wants to be part of this from the beginning. You get the perks, the access, and the bragging rights of being a founding member.",
     benefits: [
       { category: "Events & Access", items: [
-        "Four exclusive founders events per year",
-        "Founder tasting nights with new products",
-        "Private product launch events",
-        "Founders Happy Hour with menu previews",
-        "Annual Founders Celebration party",
+        { text: "Four exclusive founders events per year", subItems: [
+          "Founder tasting nights with new products",
+          "Private product launch events",
+          "Founders Happy Hour with menu previews",
+          "Annual Founders Celebration party",
+        ]},
         "Bring one guest to founders events",
         "50% off event tickets for your guest",
       ]},
