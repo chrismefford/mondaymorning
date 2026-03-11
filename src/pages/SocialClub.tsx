@@ -524,7 +524,7 @@ const SocialClub = () => {
             {[
               { q: "How long does my membership last?", a: "Your Founders Club membership is valid from May 1, 2026 to April 30, 2027. One full year of access, events, and perks." },
               { q: "Can I share my benefits with someone else?", a: "Benefits are tied to you as the registered founder. That said, every tier includes guest access so you can bring people along to events and share the experience." },
-              { q: "How do complimentary slushies work?", a: "Depending on your tier, you get four, six, or ten complimentary slushies per month. They reset at the beginning of each month and do not roll over, so make sure you use them." },
+              { q: "How do Kava Haven slushies work?", a: "Depending on your tier, you get four, six, or ten Kava Haven slushies per month. They reset at the beginning of each month and do not roll over, so make sure you use them." },
               { q: "Can I stack my discount with other promos?", a: "Founders Club discounts cannot be combined with other promotions. If multiple discounts apply, we will always give you the bigger one." },
               { q: "Does the bottle shop discount work online?", a: "Yes. Your 10% off applies to both in-store and online purchases." },
               { q: "Do I need to RSVP for events?", a: "Yes, most events require an RSVP in advance. We will always give founders priority, but spots can fill up so do not wait too long." },
