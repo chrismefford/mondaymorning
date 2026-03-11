@@ -182,20 +182,7 @@ const SocialClub = () => {
         console.error("Email notification failed:", emailErr);
       }
 
-      toast({
-        title: "Application Received",
-        description: "Thank you for your interest in the Monday Morning Founders Club. We will be in touch soon.",
-      });
-      setFormData({
-        tier: "founders",
-        firstName: "",
-        lastName: "",
-        email: "",
-        phone: "",
-        address: "",
-        celebrationDate: "",
-        celebrationNote: "",
-      });
+      navigate("/founders-welcome", { state: { firstName: formData.firstName } });
     } catch {
       toast({
         title: "Something went wrong",
