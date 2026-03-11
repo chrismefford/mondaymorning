@@ -41,7 +41,7 @@ const tiers = [
       { category: "Extras", items: [
         "Personalized Founders Card",
         "Access to Founders Only product releases",
-        "Branded founders merchandise",
+        "Branded founders tote",
         "Recognition across our social channels",
       ]},
     ],
