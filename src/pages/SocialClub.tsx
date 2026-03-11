@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Check, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -12,7 +13,6 @@ import SEO from "@/components/SEO";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import stampGold from "@/assets/stamp-gold.svg";
-import zaneFounder from "@/assets/zane-founder.png";
 import foundersLogo from "@/assets/founders-club-logo.png";
 
 const tiers = [
@@ -134,6 +134,7 @@ const comparisonFeatures = [
 
 const SocialClub = () => {
   const { toast } = useToast();
+  const navigate = useNavigate();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     tier: "founders",
@@ -181,20 +182,7 @@ const SocialClub = () => {
         console.error("Email notification failed:", emailErr);
       }
 
-      toast({
-        title: "Application Received",
-        description: "Thank you for your interest in the Monday Morning Founders Club. We will be in touch soon.",
-      });
-      setFormData({
-        tier: "founders",
-        firstName: "",
-        lastName: "",
-        email: "",
-        phone: "",
-        address: "",
-        celebrationDate: "",
-        celebrationNote: "",
-      });
+      navigate("/founders-welcome", { state: { firstName: formData.firstName } });
     } catch {
       toast({
         title: "Something went wrong",
@@ -672,65 +660,6 @@ const SocialClub = () => {
               </Button>
             </form>
           </div>
-        </div>
-      </section>
-
-      {/* Founder Note — light */}
-      <section className="py-24 lg:py-32 bg-background relative">
-        <div className="container mx-auto px-4 lg:px-8">
-          <div className="max-w-3xl mx-auto flex flex-col md:flex-row gap-12 items-start">
-            <div className="shrink-0">
-              <div className="relative">
-                <img
-                  src={zaneFounder}
-                  alt="Zane Curtis, Founder of Monday Morning"
-                  className="w-32 h-32 md:w-40 md:h-40 object-cover grayscale"
-                />
-                <div className="absolute inset-0 border border-primary/20" />
-              </div>
-            </div>
-            <div>
-              <p className="font-sans text-[10px] font-semibold uppercase tracking-[0.4em] text-primary/60 mb-6">A Note from the Founder</p>
-              <div className="space-y-5 font-sans text-sm text-muted-foreground leading-relaxed tracking-wide">
-                <p>
-                  When I stopped drinking, I noticed something right away. People still want great drinks, great places, and great company. What they do not want is the baggage that comes with alcohol.
-                </p>
-                <p>
-                  Monday Morning was built to give people exactly that: a place where you can go out, have an incredible time, and feel great the next day. No compromise on the drinks, the atmosphere, or the experience.
-                </p>
-                <p>
-                  The Founders Club is not just a membership. It is your way of saying "I believe in this" and helping us take it further. More events, more products, more of the experience that San Diego has been missing.
-                </p>
-                <p>Thank you for being part of this with us.</p>
-                <p>Welcome to the club.</p>
-              </div>
-              <div className="mt-8 pt-6 border-t border-border">
-                <p className="font-sans text-[10px] text-muted-foreground uppercase tracking-[0.2em]">Cheers,</p>
-                <p className="font-serif text-2xl text-foreground italic mt-2">Zane Curtis</p>
-                <p className="font-sans text-[10px] text-muted-foreground/60 uppercase tracking-[0.3em] mt-1">Founder, Monday Morning</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Final CTA — forest green accent */}
-      <section className="py-20 lg:py-24 bg-secondary relative overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_hsl(42_80%_45%_/_0.06)_0%,_transparent_70%)]" />
-        <div className="absolute inset-0 grain pointer-events-none opacity-15" />
-        <div className="container mx-auto px-4 lg:px-8 text-center relative z-10">
-          <h2 className="font-serif text-3xl md:text-4xl text-secondary-foreground mb-5">
-            130 Spots. One Founding Class.
-          </h2>
-          <p className="font-sans text-sm text-secondary-foreground/60 max-w-xl mx-auto mb-10 tracking-wide leading-relaxed">
-            Once the founding cohort fills up, that is it. There is no waitlist, no second round. If you want to be part of the group that helped build this from the ground up, now is the time.
-          </p>
-          <Button
-            onClick={() => document.getElementById("apply")?.scrollIntoView({ behavior: "smooth" })}
-            className="shimmer-gold-bg text-forest-deep font-sans text-[10px] font-semibold uppercase tracking-[0.25em] px-12 py-6 hover:opacity-90 transition-opacity"
-          >
-            Apply Now
-          </Button>
         </div>
       </section>
 
