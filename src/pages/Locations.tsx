@@ -163,6 +163,20 @@ const partners = [
     type: "restaurant",
     mapUrl: "https://www.google.com/maps/place/Queenstown+Village/@32.8489,-117.2739,17z/"
   },
+  { 
+    name: "The Polished Pigeon", 
+    address: "4906 Voltaire St, San Diego, CA 92107",
+    neighborhood: "Ocean Beach", 
+    type: "bar",
+    mapUrl: "https://www.google.com/maps/place/The+Polished+Pigeon/@32.7498,-117.2468,17z/"
+  },
+  { 
+    name: "Good News Bar", 
+    address: "3398 30th St, San Diego, CA 92104",
+    neighborhood: "North Park", 
+    type: "bar",
+    mapUrl: "https://www.google.com/maps/place/Good+News+Bar/@32.7446,-117.1298,17z/"
+  },
 ];
 
 const Locations = () => {
