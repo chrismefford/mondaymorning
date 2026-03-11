@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { Check, Crown, Star, Gem, ChevronDown } from "lucide-react";
+import { Check, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -15,61 +15,107 @@ import stampGold from "@/assets/stamp-gold.svg";
 import zaneFounder from "@/assets/zane-founder.png";
 import foundersLogo from "@/assets/founders-club-logo.png";
 
-const tiers_founders_benefits = [
-  "Four exclusive events annually", "Founder tasting nights", "Private product launch events",
-  "Founders Happy Hour with menu previews", "Annual Founders Celebration party",
-  "20% off drinks at the bar", "Four complimentary slushies per month",
-  "10% off bottles and cans",
-  "Personalized Founders Card", "Founders Only product releases", "Bring one guest to Founders events",
-  "Monday Morning branded tote", "Recognition across social channels",
-  "Guests receive 50% off Founder's Event tickets",
-];
-
 const tiers = [
   {
     name: "Founder's Club",
-    icon: Star,
     price: "$1,000",
     priceNote: "per year",
     spots: "100",
-    color: "gold" as const,
-    description: "The core community behind Monday Morning and the individuals helping establish America's alcohol-free social culture.",
+    description: "The starting point for anyone who wants to be part of this from the beginning. You get the perks, the access, and the bragging rights of being a founding member.",
     benefits: [
-      { category: "Events", items: ["Four exclusive events annually", "Founder tasting nights", "Private product launch events", "Founders Happy Hour with menu previews", "Annual Founders Celebration party", "50% off Founder's Event tickets for guests"] },
-      { category: "Bar Privileges", items: ["20% off drinks at the bar", "Four complimentary slushies per month"] },
-      { category: "Bottle Shop", items: ["10% off bottles and cans"] },
-      { category: "Extras", items: ["Personalized Founders Card", "Founders Only product releases", "Bring one guest to Founders events", "Monday Morning branded tote", "Recognition across social channels"] },
+      { category: "Events & Access", items: [
+        "Four exclusive founders events per year",
+        "Founder tasting nights with new products",
+        "Private product launch events",
+        "Founders Happy Hour with menu previews",
+        "Annual Founders Celebration party",
+        "Bring one guest to founders events",
+        "50% off event tickets for your guest",
+      ]},
+      { category: "Bar & Bottle Shop", items: [
+        "20% off drinks at the bar",
+        "Four complimentary slushies per month",
+        "10% off bottles and cans",
+      ]},
+      { category: "Extras", items: [
+        "Personalized Founders Card",
+        "Access to Founders Only product releases",
+        "Branded founders merchandise",
+        "Recognition across our social channels",
+      ]},
     ],
   },
   {
     name: "Founder's Circle",
-    icon: Crown,
     price: "$5,000",
     priceNote: "per year",
     spots: "20",
-    color: "terracotta" as const,
     featured: true,
-    description: "For individuals who want to support the growth of alcohol-free culture while gaining deeper access to the community.",
-    includedFrom: [
-      { label: "Founder's Club Benefits", items: tiers_founders_benefits },
-    ],
+    description: "Everything in the Founder's Club, turned up. More slushies, more access, and you are helping us grow this thing in a real way.",
     benefits: [
-      { category: "Founder's Circle Privileges", items: ["Six complimentary slushies per month", "Guest drink discount included", "$10 cap on all shipping", "Early access to limited drops", "Two seats at all Founders Club events", "Free guest passes to Founder's Events", "Private industry tastings with NA brand founders", "Annual curated premium NA beverage package", "Tote + More", "Recognition as Founder's Circle supporter"] },
+      { category: "Events & Access", items: [
+        "Four exclusive founders events per year",
+        "Founder tasting nights with new products",
+        "Private product launch events",
+        "Founders Happy Hour with menu previews",
+        "Annual Founders Celebration party",
+        "Two seats at all founders events",
+        "Two free guest passes to founders events",
+        "Private industry tastings with NA brand founders",
+      ]},
+      { category: "Bar & Bottle Shop", items: [
+        "20% off drinks at the bar",
+        "Guest drink discount included",
+        "Six complimentary slushies per month",
+        "10% off bottles and cans",
+        "$10 cap on all shipping",
+        "Early access to limited drops",
+      ]},
+      { category: "Extras", items: [
+        "Personalized Founders Card",
+        "Access to Founders Only product releases",
+        "Annual curated premium NA beverage package",
+        "Branded founders merchandise",
+        "Recognition as a Founder's Circle supporter",
+      ]},
     ],
   },
   {
     name: "Founder's Table",
-    icon: Gem,
     price: "$10,000",
     priceNote: "per year",
     spots: "10",
-    color: "ocean" as const,
-    description: "A small group of supporters helping establish the long-term foundation of Monday Morning and the alcohol-free social movement.",
-    includedFrom: [
-      { label: "Founder's Club + Founder's Circle Benefits", items: [...tiers_founders_benefits, "Guest drink discount included", "$10 cap on all shipping", "Early access to limited drops", "Two seats at all Founders Club events", "Free guest passes to Founder's Events", "Private industry tastings with NA brand founders", "Annual curated premium NA beverage package", "Tote + More", "Recognition as Founder's Circle supporter"] },
-    ],
+    description: "This is the inner circle of the inner circle. Private dinners, unreleased products, and a level of access that is genuinely one of a kind.",
     benefits: [
-      { category: "Founder's Table Privileges", items: ["Ten complimentary slushies per month", "Guest drink discount included", "$10 cap on all shipping", "Early access to limited drops", "Free guest passes to Founder's Events", "Private dinners with NA brand founders and industry leaders", "Small private tastings and product previews", "Access to unreleased beverages", "One annual private bar buyout for a personal event", "Tote + More", "VIP seating and recognition at major events"] },
+      { category: "Events & Access", items: [
+        "Four exclusive founders events per year",
+        "Founder tasting nights with new products",
+        "Private product launch events",
+        "Founders Happy Hour with menu previews",
+        "Annual Founders Celebration party",
+        "Two or more seats at all founders events",
+        "Free guest passes to all founders events",
+        "Private industry tastings with NA brand founders",
+        "Private dinners with NA brand founders and industry leaders",
+        "Small private tastings and product previews",
+        "One annual private bar buyout for a personal event",
+      ]},
+      { category: "Bar & Bottle Shop", items: [
+        "20% off drinks at the bar",
+        "Guest drink discount included",
+        "Ten complimentary slushies per month",
+        "10% off bottles and cans",
+        "$10 cap on all shipping",
+        "Early access to limited drops",
+        "Access to unreleased beverages",
+      ]},
+      { category: "Extras", items: [
+        "Personalized Founders Card",
+        "Access to Founders Only product releases",
+        "Annual curated premium NA beverage package",
+        "Branded founders merchandise",
+        "VIP seating and recognition at major events",
+      ]},
     ],
   },
 ];
@@ -87,9 +133,8 @@ const comparisonFeatures = [
   { feature: "Shipping cap", founders: false, patron: "$10", table: "$10" },
   { feature: "Early access to limited drops", founders: false, patron: true, table: true },
   { feature: "Founders Only releases", founders: true, patron: true, table: true },
-  { feature: "Founder merch", founders: "Tote", patron: "Tote + More", table: "Tote + More" },
-  { feature: "Guest passes to events", founders: "1", patron: "2", table: "2+" },
-  { feature: "Guest event tickets", founders: "50% off", patron: "Free", table: "Free" },
+  { feature: "Branded founders merchandise", founders: true, patron: true, table: true },
+  { feature: "Guest passes to events", founders: "1 at 50% off", patron: "2 free", table: "2+ free" },
   { feature: "Community recognition", founders: true, patron: true, table: true },
   { feature: "Annual Founders Celebration", founders: true, patron: true, table: true },
   { feature: "Private industry tastings", founders: false, patron: true, table: true },
@@ -99,12 +144,6 @@ const comparisonFeatures = [
   { feature: "Annual private bar buyout", founders: false, patron: false, table: true },
   { feature: "VIP seating at major events", founders: false, patron: false, table: true },
 ];
-
-const tierColorMap = {
-  gold: { text: "text-gold-rich", check: "text-gold-rich", label: "text-gold-shimmer", border: "border-gold-rich" },
-  terracotta: { text: "text-terracotta", check: "text-terracotta", label: "text-terracotta-light", border: "border-terracotta" },
-  ocean: { text: "text-ocean", check: "text-ocean", label: "text-ocean-light", border: "border-ocean" },
-};
 
 const SocialClub = () => {
   const { toast } = useToast();
@@ -191,7 +230,7 @@ const SocialClub = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-forest-deep">
+    <div className="min-h-screen bg-background">
       <SEO
         title="Founders Club - America's Non Alcoholic Founders Club"
         description="Join the Monday Morning Founders Club, an exclusive collective for those shaping America's alcohol-free social culture. Three tiers, 130 founding spots."
@@ -200,15 +239,13 @@ const SocialClub = () => {
       />
       <Header />
 
-      {/* Hero */}
+      {/* Hero — keeps the dark forest feel */}
       <section className="relative min-h-[100vh] flex items-center justify-center bg-forest-deep overflow-hidden">
-        {/* Radial gold glow */}
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_hsl(42_80%_45%_/_0.08)_0%,_transparent_70%)]" />
         <div className="absolute inset-0 grain pointer-events-none opacity-20" />
         <div className="absolute top-20 right-10 w-64 lg:w-96 opacity-[0.03] pointer-events-none">
           <img src={stampGold} alt="" className="w-full animate-float" />
         </div>
-        {/* Top and bottom gold hairlines */}
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/3 h-px bg-gradient-to-r from-transparent via-gold-rich to-transparent" />
         <div className="container mx-auto px-4 lg:px-8 relative z-10 text-center py-32">
           <img src={foundersLogo} alt="Monday Morning Founders Club Est. 2026" className="w-32 md:w-40 mx-auto mb-10 animate-fade-up opacity-80" />
@@ -221,7 +258,7 @@ const SocialClub = () => {
           </h1>
           <div className="w-16 h-px bg-gold-rich/40 mx-auto mb-8 animate-fade-up delay-150" />
           <p className="font-sans text-base md:text-lg text-champagne/60 max-w-xl mx-auto mb-10 animate-fade-up delay-200 leading-relaxed tracking-wide">
-            America's non alcoholic founders club. Great drinks, vibrant community, and memorable experiences, without alcohol.
+            Great drinks, real community, unforgettable nights out, all without alcohol. This is what we are building and we want you in on it from the start.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-up delay-300">
             <Button
@@ -241,92 +278,79 @@ const SocialClub = () => {
             Enrollment closes April 30, 2026
           </p>
         </div>
-        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-forest-deep to-transparent" />
+        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background to-transparent" />
       </section>
 
-      {/* Intro Section */}
-      <section className="py-24 lg:py-32 bg-forest relative overflow-hidden linen-texture">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,_hsl(42_80%_45%_/_0.03)_0%,_transparent_50%)]" />
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/4 h-px bg-gradient-to-r from-transparent via-gold-rich/20 to-transparent" />
+      {/* Intro Section — light */}
+      <section className="py-24 lg:py-32 bg-background relative">
         <div className="container mx-auto px-4 lg:px-8 max-w-3xl">
           <div className="text-center mb-14">
-            <p className="font-sans text-[10px] font-semibold uppercase tracking-[0.4em] text-gold-rich/60 mb-6">The Movement</p>
-            <h2 className="font-serif text-3xl md:text-5xl text-cream mb-0">
+            <p className="font-sans text-[10px] font-semibold uppercase tracking-[0.4em] text-primary/60 mb-6">The Movement</p>
+            <h2 className="font-serif text-3xl md:text-5xl text-foreground mb-0">
               An Invitation to the Inner Circle
             </h2>
           </div>
-          <div className="space-y-6 font-sans text-base text-champagne/50 leading-relaxed tracking-wide">
+          <div className="space-y-6 font-sans text-base text-muted-foreground leading-relaxed tracking-wide">
             <p>
-              In a city known for its nightlife and craft beverage culture, Monday Morning is building something different: a place where great drinks, vibrant community, and memorable nights out exist without alcohol.
+              San Diego has always been a city that knows how to have a good time. But somewhere along the way, "going out" started meaning the same thing every time. Monday Morning is changing that.
             </p>
             <p>
-              The Monday Morning Founders Club is an exclusive collective for those who want to be part of shaping the next chapter of social culture. More than a title or a card, the Founders Club is a gathering point for people who believe connection, creativity, and hospitality thrive without alcohol.
+              We are building a place where the drinks are incredible, the people are interesting, and nobody wakes up regretting anything. The Founders Club is how you get in on this from day one. Not just as a customer, but as someone who helped make it happen.
             </p>
             <p>
-              With a focus on experiences, discovery, and community, founders receive access to private events, new drink releases, and the inside track on the evolving alcohol-free movement.
+              Think of it as your backstage pass to everything we do: private events, first dibs on new products, founders-only nights, and a real community of people who are all in on this with you.
             </p>
           </div>
         </div>
       </section>
 
-      {/* Tier Cards */}
-      <section id="tiers" className="py-24 lg:py-32 bg-forest-deep relative overflow-hidden scroll-mt-20 paper-texture">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_hsl(42_80%_45%_/_0.04)_0%,_transparent_60%)]" />
-        <div className="absolute inset-0 grain pointer-events-none opacity-15" />
+      {/* Tier Cards — light background */}
+      <section id="tiers" className="py-24 lg:py-32 bg-muted/50 relative scroll-mt-20">
         <div className="container mx-auto px-4 lg:px-8 relative z-10">
           <div className="text-center mb-20">
-            <p className="font-sans text-[10px] font-semibold uppercase tracking-[0.4em] text-gold-rich/60 mb-6">Three Tiers</p>
-            <h2 className="font-serif text-3xl md:text-5xl text-cream mb-5">
-              Choose Your Tier
+            <p className="font-sans text-[10px] font-semibold uppercase tracking-[0.4em] text-primary/60 mb-6">Three Tiers</p>
+            <h2 className="font-serif text-3xl md:text-5xl text-foreground mb-5">
+              Pick Your Spot
             </h2>
-            <p className="font-sans text-sm text-champagne/40 max-w-xl mx-auto tracking-wide">
-              The Founders Club launches with a limited founding cohort of 130 founders across three tiers.
+            <p className="font-sans text-sm text-muted-foreground max-w-xl mx-auto tracking-wide">
+              130 founding positions across three tiers. Every tier includes a full year of benefits from May 1, 2026 through April 30, 2027.
             </p>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-4">
-            {tiers.map((tier) => {
-              const Icon = tier.icon;
-              const colors = tierColorMap[tier.color];
-              return (
-                <div
-                  key={tier.name}
-                  className={`relative p-[1px] flex flex-col transition-all duration-500 group/tier ${
-                    tier.featured
-                      ? "lg:scale-[1.03] lg:-my-4"
-                      : ""
-                  }`}
-                >
-                  {/* Gold ornamental frame */}
-                  <div className={`absolute inset-0 pointer-events-none ${
-                    tier.featured ? "opacity-100" : "opacity-50 group-hover/tier:opacity-80"
-                  } transition-opacity duration-500`}>
-                    {/* Corner ornaments */}
-                    <div className="absolute top-0 left-0 w-12 h-12 border-t-[3px] border-l-[3px] border-gold-rich" />
-                    <div className="absolute top-0 right-0 w-12 h-12 border-t-[3px] border-r-[3px] border-gold-rich" />
-                    <div className="absolute bottom-0 left-0 w-12 h-12 border-b-[3px] border-l-[3px] border-gold-rich" />
-                    <div className="absolute bottom-0 right-0 w-12 h-12 border-b-[3px] border-r-[3px] border-gold-rich" />
-                    {/* Edge lines */}
-                    <div className="absolute top-0 left-14 right-14 h-[1.5px] bg-gradient-to-r from-gold-rich via-gold-rich/30 to-gold-rich" />
-                    <div className="absolute bottom-0 left-14 right-14 h-[1.5px] bg-gradient-to-r from-gold-rich via-gold-rich/30 to-gold-rich" />
-                    <div className="absolute left-0 top-14 bottom-14 w-[1.5px] bg-gradient-to-b from-gold-rich via-gold-rich/30 to-gold-rich" />
-                    <div className="absolute right-0 top-14 bottom-14 w-[1.5px] bg-gradient-to-b from-gold-rich via-gold-rich/30 to-gold-rich" />
-                    {/* Inner corner diamonds */}
-                    <div className="absolute top-[9px] left-[9px] w-2 h-2 rotate-45 bg-gold-rich" />
-                    <div className="absolute top-[9px] right-[9px] w-2 h-2 rotate-45 bg-gold-rich" />
-                    <div className="absolute bottom-[9px] left-[9px] w-2 h-2 rotate-45 bg-gold-rich" />
-                    <div className="absolute bottom-[9px] right-[9px] w-2 h-2 rotate-45 bg-gold-rich" />
-                    {/* Center edge diamonds */}
-                    <div className="absolute top-[-3px] left-1/2 -translate-x-1/2 w-2 h-2 rotate-45 bg-gold-rich" />
-                    <div className="absolute bottom-[-3px] left-1/2 -translate-x-1/2 w-2 h-2 rotate-45 bg-gold-rich" />
-                    <div className="absolute left-[-3px] top-1/2 -translate-y-1/2 w-2 h-2 rotate-45 bg-gold-rich" />
-                    <div className="absolute right-[-3px] top-1/2 -translate-y-1/2 w-2 h-2 rotate-45 bg-gold-rich" />
-                  </div>
-                  <div className={`relative p-8 lg:p-10 flex flex-col flex-1 ${
-                    tier.featured
-                      ? "bg-forest shadow-[0_0_80px_-20px_hsl(42_80%_45%_/_0.15)]"
-                      : "bg-forest-deep"
-                  }`}>
+            {tiers.map((tier) => (
+              <div
+                key={tier.name}
+                className={`relative p-[1px] flex flex-col transition-all duration-500 group/tier ${
+                  tier.featured ? "lg:scale-[1.03] lg:-my-4" : ""
+                }`}
+              >
+                {/* Gold ornamental frame */}
+                <div className={`absolute inset-0 pointer-events-none ${
+                  tier.featured ? "opacity-100" : "opacity-50 group-hover/tier:opacity-80"
+                } transition-opacity duration-500`}>
+                  <div className="absolute top-0 left-0 w-12 h-12 border-t-[3px] border-l-[3px] border-primary" />
+                  <div className="absolute top-0 right-0 w-12 h-12 border-t-[3px] border-r-[3px] border-primary" />
+                  <div className="absolute bottom-0 left-0 w-12 h-12 border-b-[3px] border-l-[3px] border-primary" />
+                  <div className="absolute bottom-0 right-0 w-12 h-12 border-b-[3px] border-r-[3px] border-primary" />
+                  <div className="absolute top-0 left-14 right-14 h-[1.5px] bg-gradient-to-r from-primary via-primary/30 to-primary" />
+                  <div className="absolute bottom-0 left-14 right-14 h-[1.5px] bg-gradient-to-r from-primary via-primary/30 to-primary" />
+                  <div className="absolute left-0 top-14 bottom-14 w-[1.5px] bg-gradient-to-b from-primary via-primary/30 to-primary" />
+                  <div className="absolute right-0 top-14 bottom-14 w-[1.5px] bg-gradient-to-b from-primary via-primary/30 to-primary" />
+                  <div className="absolute top-[9px] left-[9px] w-2 h-2 rotate-45 bg-primary" />
+                  <div className="absolute top-[9px] right-[9px] w-2 h-2 rotate-45 bg-primary" />
+                  <div className="absolute bottom-[9px] left-[9px] w-2 h-2 rotate-45 bg-primary" />
+                  <div className="absolute bottom-[9px] right-[9px] w-2 h-2 rotate-45 bg-primary" />
+                  <div className="absolute top-[-3px] left-1/2 -translate-x-1/2 w-2 h-2 rotate-45 bg-primary" />
+                  <div className="absolute bottom-[-3px] left-1/2 -translate-x-1/2 w-2 h-2 rotate-45 bg-primary" />
+                  <div className="absolute left-[-3px] top-1/2 -translate-y-1/2 w-2 h-2 rotate-45 bg-primary" />
+                  <div className="absolute right-[-3px] top-1/2 -translate-y-1/2 w-2 h-2 rotate-45 bg-primary" />
+                </div>
+                <div className={`relative p-8 lg:p-10 flex flex-col flex-1 ${
+                  tier.featured
+                    ? "bg-card shadow-[0_0_60px_-20px_hsl(var(--primary)_/_0.12)]"
+                    : "bg-card"
+                }`}>
                   {tier.featured && (
                     <div className="absolute -top-3 left-1/2 -translate-x-1/2 shimmer-gold-bg text-forest-deep px-5 py-1 font-sans text-[10px] font-bold uppercase tracking-[0.3em]">
                       Most Popular
@@ -334,48 +358,33 @@ const SocialClub = () => {
                   )}
                   <div className="flex items-center gap-3 mb-5">
                     <img src={foundersLogo} alt="" className="h-7 w-7 object-contain opacity-80" />
-                    <h3 className="font-serif text-xl text-cream">{tier.name}</h3>
+                    <h3 className="font-serif text-xl text-foreground">{tier.name}</h3>
                   </div>
                   <div className="mb-5">
-                    <span className={`font-serif text-4xl gold-gradient-text`}>{tier.price}</span>
-                    <span className="font-sans text-xs text-champagne/30 ml-2 uppercase tracking-wider">/{tier.priceNote}</span>
+                    <span className="font-serif text-4xl text-primary">{tier.price}</span>
+                    <span className="font-sans text-xs text-muted-foreground ml-2 uppercase tracking-wider">/{tier.priceNote}</span>
                   </div>
-                  <p className="font-sans text-xs text-champagne/40 mb-2 tracking-wide">
-                    Limited to <span className={`${colors.text} font-semibold`}>{tier.spots}</span> positions
+                  <p className="font-sans text-xs text-muted-foreground mb-2 tracking-wide">
+                    Limited to <span className="text-primary font-semibold">{tier.spots}</span> positions
                   </p>
-                  <p className="font-sans text-sm text-champagne/50 mb-8 leading-relaxed">
+                  <p className="font-sans text-sm text-muted-foreground mb-8 leading-relaxed">
                     {tier.description}
                   </p>
                   <div className="space-y-6 flex-1">
                     {tier.benefits.map((group) => (
                       <div key={group.category}>
-                        <p className={`font-sans text-[10px] font-semibold uppercase tracking-[0.2em] mb-3 ${colors.label}`}>
+                        <p className="font-sans text-[10px] font-semibold uppercase tracking-[0.2em] mb-3 text-primary/70">
                           {group.category}
                         </p>
                         <ul className="space-y-2.5">
                           {group.items.map((item) => (
                             <li key={item} className="flex items-start gap-2.5">
-                              <span className="font-sans text-sm text-champagne/60">{item}</span>
+                              <Check className="h-3.5 w-3.5 mt-0.5 shrink-0 text-primary/60" />
+                              <span className="font-sans text-sm text-foreground/70">{item}</span>
                             </li>
                           ))}
                         </ul>
                       </div>
-                    ))}
-                    {'includedFrom' in tier && (tier as any).includedFrom?.map((inc: { label: string; items: string[] }) => (
-                      <details key={inc.label} className="group border border-champagne/10">
-                        <summary className="flex items-center justify-between cursor-pointer px-4 py-3 font-sans text-[10px] font-semibold uppercase tracking-[0.2em] text-champagne/40 hover:text-champagne/60 transition-colors">
-                          <span>{inc.label}</span>
-                          <ChevronDown className="h-3.5 w-3.5 transition-transform group-open:rotate-180" />
-                        </summary>
-                        <ul className="space-y-2 px-4 pb-4 pt-1">
-                          {inc.items.map((item: string) => (
-                            <li key={item} className="flex items-start gap-2.5">
-                              <Check className="h-3.5 w-3.5 mt-0.5 shrink-0 text-champagne/25" />
-                              <span className="font-sans text-sm text-champagne/40">{item}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      </details>
                     ))}
                   </div>
                   <Button
@@ -383,62 +392,57 @@ const SocialClub = () => {
                     className={`mt-10 w-full font-sans text-[10px] font-semibold uppercase tracking-[0.25em] py-6 transition-all ${
                       tier.featured
                         ? "shimmer-gold-bg text-forest-deep hover:opacity-90"
-                        : "bg-transparent text-champagne/50 hover:text-champagne/80 border border-champagne/15 hover:border-champagne/30"
+                        : "bg-transparent text-foreground/60 hover:text-foreground border border-border hover:border-primary/40"
                     }`}
                   >
                     Apply Now
                   </Button>
-                  </div>
                 </div>
-              );
-            })}
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Comparison Grid */}
-      <section className="py-24 lg:py-32 bg-forest relative overflow-hidden linen-texture">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_hsl(42_80%_45%_/_0.03)_0%,_transparent_50%)]" />
+      {/* Comparison Grid — light */}
+      <section className="py-24 lg:py-32 bg-background relative">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="text-center mb-16">
-            <p className="font-sans text-[10px] font-semibold uppercase tracking-[0.4em] text-gold-rich/60 mb-6">At a Glance</p>
-            <h2 className="font-serif text-3xl md:text-5xl text-cream mb-4">
+            <p className="font-sans text-[10px] font-semibold uppercase tracking-[0.4em] text-primary/60 mb-6">At a Glance</p>
+            <h2 className="font-serif text-3xl md:text-5xl text-foreground mb-4">
               Compare Benefits
             </h2>
           </div>
           <div className="overflow-x-auto">
             <table className="w-full min-w-[640px]">
               <thead>
-                <tr className="border-b border-gold-rich/20">
-                  <th className="text-left py-5 pr-4 font-sans text-[10px] font-semibold uppercase tracking-[0.2em] text-champagne/40 w-2/5">
+                <tr className="border-b border-primary/20">
+                  <th className="text-left py-5 pr-4 font-sans text-[10px] font-semibold uppercase tracking-[0.2em] text-muted-foreground w-2/5">
                     Benefit
                   </th>
-                  <th className="py-5 px-4 font-sans text-[10px] font-semibold uppercase tracking-[0.2em] text-gold-rich text-center">
-                    <Star className="h-3.5 w-3.5 mx-auto mb-1.5 text-gold-rich" />
+                  <th className="py-5 px-4 font-sans text-[10px] font-semibold uppercase tracking-[0.2em] text-primary text-center">
                     Founders<br />$1,000/yr
                   </th>
-                  <th className="py-5 px-4 font-sans text-[10px] font-semibold uppercase tracking-[0.2em] text-terracotta text-center">
-                    <Crown className="h-3.5 w-3.5 mx-auto mb-1.5 text-terracotta" />
-                    Founder's Circle<br />$5,000/yr
+                  <th className="py-5 px-4 font-sans text-[10px] font-semibold uppercase tracking-[0.2em] text-primary text-center">
+                    Circle<br />$5,000/yr
                   </th>
-                  <th className="py-5 px-4 font-sans text-[10px] font-semibold uppercase tracking-[0.2em] text-ocean text-center">
-                    <Gem className="h-3.5 w-3.5 mx-auto mb-1.5 text-ocean" />
-                    Founder's Table<br />$10,000/yr
+                  <th className="py-5 px-4 font-sans text-[10px] font-semibold uppercase tracking-[0.2em] text-primary text-center">
+                    Table<br />$10,000/yr
                   </th>
                 </tr>
               </thead>
               <tbody>
                 {comparisonFeatures.map((row, i) => (
-                  <tr key={row.feature} className={`border-b border-champagne/5 ${i % 2 === 0 ? "bg-champagne/[0.02]" : ""}`}>
-                    <td className="py-3.5 pr-4 font-sans text-sm text-champagne/60">{row.feature}</td>
+                  <tr key={row.feature} className={`border-b border-border/50 ${i % 2 === 0 ? "bg-muted/30" : ""}`}>
+                    <td className="py-3.5 pr-4 font-sans text-sm text-foreground/70">{row.feature}</td>
                     {[row.founders, row.patron, row.table].map((val, j) => (
                       <td key={j} className="py-3.5 px-4 text-center">
                         {val === true ? (
-                          <Check className="h-3.5 w-3.5 mx-auto text-gold-rich" />
+                          <Check className="h-3.5 w-3.5 mx-auto text-primary" />
                         ) : val === false ? (
-                          <span className="text-champagne/15">—</span>
+                          <span className="text-muted-foreground/30">—</span>
                         ) : (
-                          <span className="font-sans text-sm font-semibold text-champagne/70">{val}</span>
+                          <span className="font-sans text-sm font-semibold text-foreground/80">{val}</span>
                         )}
                       </td>
                     ))}
@@ -458,31 +462,31 @@ const SocialClub = () => {
         </div>
       </section>
 
-      {/* Policies */}
-      <section className="py-20 lg:py-28 bg-forest-deep">
+      {/* FAQ — light with subtle muted bg */}
+      <section className="py-20 lg:py-28 bg-muted/30">
         <div className="container mx-auto px-4 lg:px-8 max-w-3xl">
           <div className="text-center mb-14">
-            <p className="font-sans text-[10px] font-semibold uppercase tracking-[0.4em] text-gold-rich/60 mb-6">FAQ</p>
-            <h2 className="font-serif text-3xl md:text-5xl text-cream mb-4">
-              Frequently Asked Questions
+            <p className="font-sans text-[10px] font-semibold uppercase tracking-[0.4em] text-primary/60 mb-6">FAQ</p>
+            <h2 className="font-serif text-3xl md:text-5xl text-foreground mb-4">
+              Good Questions
             </h2>
           </div>
           <Accordion type="single" collapsible className="space-y-2">
             {[
-              { q: "How long does my Founder's Club last?", a: "The Founder's Club is valid from May 1, 2026 to April 30, 2027." },
-              { q: "Can I share my Founder's Club benefits?", a: "Club benefits are non-transferable and intended for use by the registered founder." },
-              { q: "How do complimentary slushies work?", a: "Founders receive four, six, or ten complimentary slushies per month depending on tier. Complimentary slushies reset each calendar month, unused drinks do not roll over." },
-              { q: "Can I combine my discount with other promotions?", a: "Founders Club discounts cannot be combined with other promotions or special offers. When multiple discounts are available, the greater discount will be applied." },
-              { q: "Does the bottle shop discount work online?", a: "Yes, bottle shop discounts apply to both in-store and online purchases." },
-              { q: "Do I need to RSVP for events?", a: "Yes. Event invitations may require advance RSVP and are subject to capacity." },
-              { q: "Is early access guaranteed for limited products?", a: "Early access to limited products does not guarantee availability, as quantities may be limited." },
-              { q: "Will benefits ever change?", a: "Monday Morning will not change the benefits during the Founder's Club term." },
+              { q: "How long does my membership last?", a: "Your Founders Club membership is valid from May 1, 2026 to April 30, 2027. One full year of access, events, and perks." },
+              { q: "Can I share my benefits with someone else?", a: "Benefits are tied to you as the registered founder. That said, every tier includes guest access so you can bring people along to events and share the experience." },
+              { q: "How do complimentary slushies work?", a: "Depending on your tier, you get four, six, or ten complimentary slushies per month. They reset at the beginning of each month and do not roll over, so make sure you use them." },
+              { q: "Can I stack my discount with other promos?", a: "Founders Club discounts cannot be combined with other promotions. If multiple discounts apply, we will always give you the bigger one." },
+              { q: "Does the bottle shop discount work online?", a: "Yes. Your 10% off applies to both in-store and online purchases." },
+              { q: "Do I need to RSVP for events?", a: "Yes, most events require an RSVP in advance. We will always give founders priority, but spots can fill up so do not wait too long." },
+              { q: "Is early access guaranteed for limited products?", a: "Early access means you get first look before the public, but quantities on limited drops are limited. If something is really special, move fast." },
+              { q: "Will benefits ever change during my membership?", a: "No. Whatever is included in your tier when you join is locked in for the full year. We will not change the deal on you." },
             ].map((faq, i) => (
-              <AccordionItem key={i} value={`faq-${i}`} className="border border-champagne/10 px-6 data-[state=open]:border-gold-rich/30 transition-colors">
-                <AccordionTrigger className="font-sans text-sm font-semibold text-cream hover:no-underline py-5">
+              <AccordionItem key={i} value={`faq-${i}`} className="border border-border px-6 data-[state=open]:border-primary/30 transition-colors">
+                <AccordionTrigger className="font-sans text-sm font-semibold text-foreground hover:no-underline py-5">
                   {faq.q}
                 </AccordionTrigger>
-                <AccordionContent className="font-sans text-sm text-champagne/50 leading-relaxed pb-5">
+                <AccordionContent className="font-sans text-sm text-muted-foreground leading-relaxed pb-5">
                   {faq.a}
                 </AccordionContent>
               </AccordionItem>
@@ -499,8 +503,8 @@ const SocialClub = () => {
         </div>
       </section>
 
-      {/* Application Form */}
-      <section id="apply" className="py-24 lg:py-32 bg-forest relative overflow-hidden scroll-mt-20">
+      {/* Application Form — forest green section for contrast */}
+      <section id="apply" className="py-24 lg:py-32 bg-forest-deep relative overflow-hidden scroll-mt-20">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,_hsl(42_80%_45%_/_0.05)_0%,_transparent_60%)]" />
         <div className="absolute inset-0 grain pointer-events-none opacity-15" />
         <div className="container mx-auto px-4 lg:px-8 relative z-10">
@@ -508,18 +512,17 @@ const SocialClub = () => {
             <div className="text-center mb-14">
               <p className="font-sans text-[10px] font-semibold uppercase tracking-[0.4em] text-gold-rich/60 mb-6">Join the Club</p>
               <h2 className="font-serif text-3xl md:text-5xl text-cream mb-5">
-                Founder Questionnaire
+                Let's Get You In
               </h2>
-              <p className="font-sans text-sm text-champagne/40 tracking-wide">
-                Enrollment for the founding cohort closes April 30, 2026.
+              <p className="font-sans text-sm text-champagne/50 tracking-wide">
+                Fill this out and we will be in touch. The founding cohort closes April 30, 2026.
               </p>
             </div>
 
             <form onSubmit={handleSubmit} className="space-y-10">
-              {/* Tier Selection */}
               <div>
                 <Label className="font-sans text-[10px] font-semibold uppercase tracking-[0.2em] text-gold-rich/70 mb-4 block">
-                  What tier would you like to join?
+                  What tier are you interested in?
                 </Label>
                 <RadioGroup
                   value={formData.tier}
@@ -549,10 +552,9 @@ const SocialClub = () => {
                 </RadioGroup>
               </div>
 
-              {/* Basic Info */}
               <div className="space-y-4">
                 <Label className="font-sans text-[10px] font-semibold uppercase tracking-[0.2em] text-gold-rich/70 block">
-                  Basic Information
+                  About You
                 </Label>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
@@ -608,13 +610,12 @@ const SocialClub = () => {
                 </div>
               </div>
 
-              {/* Celebration Date */}
               <div className="space-y-4">
                 <Label className="font-sans text-[10px] font-semibold uppercase tracking-[0.2em] text-gold-rich/70 block">
-                  When would you like us to celebrate you?
+                  When should we celebrate you?
                 </Label>
                 <p className="font-sans text-[10px] text-champagne/30 -mt-2 tracking-wide">
-                  Sobriety date, birthday, wedding anniversary. Please provide month and day only.
+                  Sobriety date, birthday, anniversary, anything. Just the month and day.
                 </p>
                 <Input
                   value={formData.celebrationDate}
@@ -642,9 +643,8 @@ const SocialClub = () => {
         </div>
       </section>
 
-      {/* Founder Note */}
-      <section className="py-24 lg:py-32 bg-forest-deep relative overflow-hidden paper-texture">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_hsl(42_80%_45%_/_0.03)_0%,_transparent_60%)]" />
+      {/* Founder Note — light */}
+      <section className="py-24 lg:py-32 bg-background relative">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="max-w-3xl mx-auto flex flex-col md:flex-row gap-12 items-start">
             <div className="shrink-0">
@@ -654,45 +654,44 @@ const SocialClub = () => {
                   alt="Zane Curtis, Founder of Monday Morning"
                   className="w-32 h-32 md:w-40 md:h-40 object-cover grayscale"
                 />
-                <div className="absolute inset-0 border border-gold-rich/20" />
+                <div className="absolute inset-0 border border-primary/20" />
               </div>
             </div>
             <div>
-              <p className="font-sans text-[10px] font-semibold uppercase tracking-[0.4em] text-gold-rich/60 mb-6">A Note from the Founder</p>
-              <div className="space-y-5 font-sans text-sm text-champagne/50 leading-relaxed tracking-wide">
+              <p className="font-sans text-[10px] font-semibold uppercase tracking-[0.4em] text-primary/60 mb-6">A Note from the Founder</p>
+              <div className="space-y-5 font-sans text-sm text-muted-foreground leading-relaxed tracking-wide">
                 <p>
-                  When I stopped drinking, I realized something pretty quickly. People still want great drinks, great places, and great company. What they do not want is the pressure that alcohol often brings with it.
+                  When I stopped drinking, I noticed something right away. People still want great drinks, great places, and great company. What they do not want is the baggage that comes with alcohol.
                 </p>
                 <p>
-                  Monday Morning was built to create a new kind of space, one where great drinks, community, and culture exist without alcohol at the center of it.
+                  Monday Morning was built to give people exactly that: a place where you can go out, have an incredible time, and feel great the next day. No compromise on the drinks, the atmosphere, or the experience.
                 </p>
                 <p>
-                  The Founders Club is about supporting that vision and helping us push it even further. Your support helps us expand events, bring in new products, and continue building the best non alcoholic experience in San Diego.
+                  The Founders Club is not just a membership. It is your way of saying "I believe in this" and helping us take it further. More events, more products, more of the experience that San Diego has been missing.
                 </p>
                 <p>Thank you for being part of this with us.</p>
                 <p>Welcome to the club.</p>
               </div>
-              <div className="mt-8 pt-6 border-t border-champagne/10">
-                <p className="font-sans text-[10px] text-champagne/50 uppercase tracking-[0.2em]">Cheers,</p>
-                <p className="font-serif text-2xl text-cream italic mt-2">Zane Curtis</p>
-                <p className="font-sans text-[10px] text-champagne/30 uppercase tracking-[0.3em] mt-1">Founder, Monday Morning</p>
+              <div className="mt-8 pt-6 border-t border-border">
+                <p className="font-sans text-[10px] text-muted-foreground uppercase tracking-[0.2em]">Cheers,</p>
+                <p className="font-serif text-2xl text-foreground italic mt-2">Zane Curtis</p>
+                <p className="font-sans text-[10px] text-muted-foreground/60 uppercase tracking-[0.3em] mt-1">Founder, Monday Morning</p>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Final CTA */}
-      <section className="py-20 lg:py-24 bg-forest relative overflow-hidden linen-texture">
+      {/* Final CTA — forest green accent */}
+      <section className="py-20 lg:py-24 bg-secondary relative overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_hsl(42_80%_45%_/_0.06)_0%,_transparent_70%)]" />
         <div className="absolute inset-0 grain pointer-events-none opacity-15" />
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/3 h-px bg-gradient-to-r from-transparent via-gold-rich/20 to-transparent" />
         <div className="container mx-auto px-4 lg:px-8 text-center relative z-10">
-          <h2 className="font-serif text-3xl md:text-4xl text-cream mb-5">
-            Building the Future of Alcohol-Free Culture
+          <h2 className="font-serif text-3xl md:text-4xl text-secondary-foreground mb-5">
+            130 Spots. One Founding Class.
           </h2>
-          <p className="font-sans text-sm text-champagne/40 max-w-xl mx-auto mb-10 tracking-wide leading-relaxed">
-            With spots limited across all tiers, the Monday Morning Founders Club represents the community helping define a new kind of nightlife, one rooted in great drinks, inclusive experiences, and meaningful connection.
+          <p className="font-sans text-sm text-secondary-foreground/60 max-w-xl mx-auto mb-10 tracking-wide leading-relaxed">
+            Once the founding cohort fills up, that is it. There is no waitlist, no second round. If you want to be part of the group that helped build this from the ground up, now is the time.
           </p>
           <Button
             onClick={() => document.getElementById("apply")?.scrollIntoView({ behavior: "smooth" })}
