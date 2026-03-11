@@ -85,6 +85,7 @@ const tiers = [
     price: "$10,000",
     priceNote: "per year",
     spots: "10",
+    isTable: true,
     description: "This is the inner circle of the inner circle. Private dinners, unreleased products, and a level of access that is genuinely one of a kind.",
     benefits: [
       { category: "Events & Access", items: [
