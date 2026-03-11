@@ -215,9 +215,9 @@ const SocialClub = () => {
           <p className="font-sans text-[10px] font-semibold uppercase tracking-[0.5em] text-gold-rich/70 mb-8 animate-fade-up">
             By Invitation Only · 130 Founding Positions
           </p>
-          <h1 className="font-serif text-5xl md:text-7xl lg:text-[6.5rem] text-cream mb-8 animate-fade-up delay-100 leading-[1.15] pb-4">
+          <h1 className="font-serif text-5xl md:text-7xl lg:text-[6.5rem] text-cream mb-8 animate-fade-up delay-100 leading-[1.15] overflow-visible">
             Monday Morning<br />
-            <span className="italic shimmer-gold inline-block pb-3">Founders Club</span>
+            <span className="italic shimmer-gold inline-block pb-4">Founders Club</span>
           </h1>
           <div className="w-16 h-px bg-gold-rich/40 mx-auto mb-8 animate-fade-up delay-150" />
           <p className="font-sans text-base md:text-lg text-champagne/60 max-w-xl mx-auto mb-10 animate-fade-up delay-200 leading-relaxed tracking-wide">
