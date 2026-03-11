@@ -349,6 +349,9 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    padding-bottom: 0.15em;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
   }
 
   .shimmer-gold-bg {
