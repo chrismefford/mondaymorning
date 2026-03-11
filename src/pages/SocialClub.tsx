@@ -165,9 +165,12 @@ const SocialClub = () => {
     setIsSubmitting(true);
 
     try {
-      const { data: application, error: insertError } = await supabase
+      const applicationId = crypto.randomUUID();
+
+      const { error: insertError } = await supabase
         .from("social_club_applications")
         .insert({
+          id: applicationId,
           tier: formData.tier,
           first_name: formData.firstName,
           last_name: formData.lastName,
@@ -176,16 +179,18 @@ const SocialClub = () => {
           address: formData.address || null,
           celebration_date: formData.celebrationDate || null,
           celebration_note: formData.celebrationNote || null,
-        })
-        .select()
-        .single();
+        });
 
       if (insertError) throw insertError;
 
       try {
-        await supabase.functions.invoke("send-social-club-notification", {
-          body: { applicationId: application.id },
+        const { error: notificationError } = await supabase.functions.invoke("send-social-club-notification", {
+          body: { applicationId },
         });
+
+        if (notificationError) {
+          console.error("Email notification failed:", notificationError);
+        }
       } catch (emailErr) {
         console.error("Email notification failed:", emailErr);
       }
