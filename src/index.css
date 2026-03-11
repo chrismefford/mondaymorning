@@ -338,22 +338,7 @@
   /* Luxury shimmer for Founders Club */
   .shimmer-gold {
     color: hsl(42 80% 50%);
-    position: relative;
-    display: inline-block;
-    background: linear-gradient(
-      110deg,
-      hsl(42 80% 45%) 0%,
-      hsl(45 85% 65%) 40%,
-      hsl(42 80% 45%) 60%,
-      hsl(40 77% 52%) 100%
-    );
-    background-size: 200% 100%;
-    animation: shimmer 3s ease-in-out infinite;
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    -webkit-box-decoration-break: clone;
-    box-decoration-break: clone;
+    animation: shimmer-color 3s ease-in-out infinite;
   }
 
   .shimmer-gold-bg {
@@ -447,6 +432,11 @@
 @keyframes shimmer {
   0% { background-position: 200% 0; }
   100% { background-position: -200% 0; }
+}
+
+@keyframes shimmer-color {
+  0%, 100% { color: hsl(42 80% 45%); }
+  50% { color: hsl(45 85% 62%); }
 }
 
 @keyframes loading-progress {
