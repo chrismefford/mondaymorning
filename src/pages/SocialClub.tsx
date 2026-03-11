@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
+import { useShopifyProduct } from "@/hooks/useShopifyProduct";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Check, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -12,8 +13,16 @@ import Footer from "@/components/layout/Footer";
 import SEO from "@/components/SEO";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
+import { useCart } from "@/hooks/useCart";
 import stampGold from "@/assets/stamp-gold.svg";
 import foundersLogo from "@/assets/founders-club-logo.png";
+
+// Shopify product handles for each tier
+const tierToHandle: Record<string, string> = {
+  founders: "founders-club",    // Founders Chair
+  patron: "founders-circle",     // Founders Circle
+  table: "founders-table",       // Founders Table
+};
 
 const tiers = [
   {
@@ -135,6 +144,7 @@ const comparisonFeatures = [
 const SocialClub = () => {
   const { toast } = useToast();
   const navigate = useNavigate();
+  const { addToCart } = useCart();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     tier: "founders",
@@ -147,42 +157,88 @@ const SocialClub = () => {
     celebrationNote: "",
   });
 
+  // Fetch variant IDs for all three tier products
+  const { data: chairProduct } = useShopifyProduct(tierToHandle.founders);
+  const { data: circleProduct } = useShopifyProduct(tierToHandle.patron);
+  const { data: tableProduct } = useShopifyProduct(tierToHandle.table);
+
+  const tierVariantMap = useMemo(() => ({
+    founders: chairProduct?.raw?.variants?.edges?.[0]?.node?.id,
+    patron: circleProduct?.raw?.variants?.edges?.[0]?.node?.id,
+    table: tableProduct?.raw?.variants?.edges?.[0]?.node?.id,
+  }), [chairProduct, circleProduct, tableProduct]);
+
+  const submitApplication = async () => {
+    const applicationId = crypto.randomUUID();
+
+    const { error: insertError } = await supabase
+      .from("social_club_applications")
+      .insert({
+        id: applicationId,
+        tier: formData.tier,
+        first_name: formData.firstName,
+        last_name: formData.lastName,
+        email: formData.email,
+        phone: formData.phone || null,
+        address: formData.address || null,
+        celebration_date: formData.celebrationDate || null,
+        celebration_note: formData.celebrationNote || null,
+      });
+
+    if (insertError) throw insertError;
+
+    try {
+      const { error: notificationError } = await supabase.functions.invoke("send-social-club-notification", {
+        body: { applicationId },
+      });
+      if (notificationError) console.error("Email notification failed:", notificationError);
+    } catch (emailErr) {
+      console.error("Email notification failed:", emailErr);
+    }
+
+    return applicationId;
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
 
     try {
-      const applicationId = crypto.randomUUID();
-
-      const { error: insertError } = await supabase
-        .from("social_club_applications")
-        .insert({
-          id: applicationId,
-          tier: formData.tier,
-          first_name: formData.firstName,
-          last_name: formData.lastName,
-          email: formData.email,
-          phone: formData.phone || null,
-          address: formData.address || null,
-          celebration_date: formData.celebrationDate || null,
-          celebration_note: formData.celebrationNote || null,
-        });
-
-      if (insertError) throw insertError;
-
-      try {
-        const { error: notificationError } = await supabase.functions.invoke("send-social-club-notification", {
-          body: { applicationId },
-        });
-
-        if (notificationError) {
-          console.error("Email notification failed:", notificationError);
-        }
-      } catch (emailErr) {
-        console.error("Email notification failed:", emailErr);
-      }
-
+      await submitApplication();
       navigate("/founders-welcome", { state: { firstName: formData.firstName } });
+    } catch {
+      toast({
+        title: "Something went wrong",
+        description: "Please try again or contact us directly.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const handlePayNow = async (e: React.MouseEvent) => {
+    e.preventDefault();
+    const form = (e.target as HTMLElement).closest("form");
+    if (form && !form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
+
+    const variantId = tierVariantMap[formData.tier as keyof typeof tierVariantMap];
+    if (!variantId) {
+      toast({
+        title: "Product not available",
+        description: "Unable to load this tier's product. Please try again.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    setIsSubmitting(true);
+    try {
+      await submitApplication();
+      await addToCart(variantId, 1);
     } catch {
       toast({
         title: "Something went wrong",
@@ -661,13 +717,24 @@ const SocialClub = () => {
                 />
               </div>
 
-              <Button
-                type="submit"
-                disabled={isSubmitting}
-                className="w-full shimmer-gold-bg text-forest-deep font-sans text-[10px] font-semibold uppercase tracking-[0.25em] py-6 hover:opacity-90 transition-opacity"
-              >
-                {isSubmitting ? "Submitting..." : "Submit Application"}
-              </Button>
+              <div className="space-y-3">
+                <Button
+                  type="button"
+                  disabled={isSubmitting}
+                  onClick={handlePayNow}
+                  className="w-full shimmer-gold-bg text-forest-deep font-sans text-[10px] font-semibold uppercase tracking-[0.25em] py-6 hover:opacity-90 transition-opacity"
+                >
+                  {isSubmitting ? "Processing..." : "Apply & Pay Now"}
+                </Button>
+                <Button
+                  type="submit"
+                  disabled={isSubmitting}
+                  variant="outline"
+                  className="w-full border-champagne/20 text-champagne/60 hover:text-cream hover:border-champagne/40 font-sans text-[10px] font-semibold uppercase tracking-[0.25em] py-6 transition-all"
+                >
+                  {isSubmitting ? "Submitting..." : "Submit Application Only"}
+                </Button>
+              </div>
             </form>
           </div>
         </div>
