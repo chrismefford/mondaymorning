@@ -91,11 +91,12 @@ const tiers = [
     description: "This is the inner circle of the inner circle. Private dinners, unreleased products, and a level of access that is genuinely one of a kind.",
     benefits: [
       { category: "Events & Access", items: [
-        "Four exclusive founders events per year",
-        "Founder tasting nights with new products",
-        "Private product launch events",
-        "Founders Happy Hour with menu previews",
-        "Annual Founders Celebration party",
+        { text: "Four exclusive founders events per year", subItems: [
+          "Founder tasting nights with new products",
+          "Private product launch events",
+          "Founders Happy Hour with menu previews",
+          "Annual Founders Celebration party",
+        ]},
         "Two or more seats at all founders events",
         "Free guest passes to all founders events",
         "Private industry tastings with NA brand founders",
