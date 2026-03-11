@@ -117,7 +117,7 @@ const tiers = [
         "Personalized Founders Card",
         "Access to Founders Only product releases",
         "Annual curated premium NA beverage package",
-        "Branded founders merchandise",
+        "Branded founders tote + limited merch",
         "VIP seating and recognition at major events",
       ]},
     ],
