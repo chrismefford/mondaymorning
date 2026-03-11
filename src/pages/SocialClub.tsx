@@ -255,7 +255,7 @@ const SocialClub = () => {
             </Button>
           </div>
           <p className="font-sans text-[10px] text-champagne/30 mt-12 uppercase tracking-[0.3em] animate-fade-up delay-400">
-            Enrollment closes April 30, 2026
+            Enrollment Ends April 30, 2026 · Benefits Start May 1, 2026
           </p>
         </div>
         <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background to-transparent" />
