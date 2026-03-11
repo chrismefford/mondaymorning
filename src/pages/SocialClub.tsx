@@ -380,6 +380,7 @@ const SocialClub = () => {
                   >
                     Apply Now
                   </Button>
+                  </div>
                 </div>
               );
             })}
