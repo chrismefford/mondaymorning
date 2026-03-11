@@ -10,6 +10,7 @@ import Recipes from "@/components/home/Recipes";
 import Testimonials from "@/components/home/Testimonials";
 import Newsletter from "@/components/home/Newsletter";
 import Instagram from "@/components/home/Instagram";
+import FoundersClubPopup from "@/components/FoundersClubPopup";
 import { 
   SITE_NAME, 
   SITE_URL, 
@@ -64,6 +65,7 @@ const Index = () => {
       </Helmet>
 
       <Header />
+      <FoundersClubPopup />
       <main>
         <Hero />
         <FeaturedProducts />
