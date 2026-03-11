@@ -17,7 +17,7 @@ import foundersLogo from "@/assets/founders-club-logo.png";
 
 const tiers = [
   {
-    name: "Founder's Club",
+    name: "Founder's Chair",
     price: "$1,000",
     priceNote: "per year",
     spots: "100",
@@ -51,7 +51,7 @@ const tiers = [
     priceNote: "per year",
     spots: "20",
     featured: true,
-    description: "Everything in the Founder's Club, turned up. More slushies, more access, and you are helping us grow this thing in a real way.",
+    description: "Everything in the Founder's Chair, turned up. More slushies, more access, and you are helping us grow this thing in a real way.",
     benefits: [
       { category: "Events & Access", items: [
         "Four exclusive founders events per year",
@@ -228,7 +228,7 @@ const SocialClub = () => {
       description: "America's premier non alcoholic founders club with three tiers.",
       brand: { "@type": "Brand", name: "Monday Morning" },
       offers: [
-        { "@type": "Offer", name: "Founder's Club", price: "1000", priceCurrency: "USD", availability: "https://schema.org/LimitedAvailability" },
+        { "@type": "Offer", name: "Founder's Chair", price: "1000", priceCurrency: "USD", availability: "https://schema.org/LimitedAvailability" },
         { "@type": "Offer", name: "Founder's Circle", price: "5000", priceCurrency: "USD", availability: "https://schema.org/LimitedAvailability" },
         { "@type": "Offer", name: "Founder's Table", price: "10000", priceCurrency: "USD", availability: "https://schema.org/LimitedAvailability" },
       ],
@@ -556,7 +556,7 @@ const SocialClub = () => {
                   className="grid grid-cols-1 sm:grid-cols-3 gap-3"
                 >
                   {[
-                    { value: "founders", label: "Founder's Club", price: "$1,000/yr" },
+                    { value: "founders", label: "Founder's Chair", price: "$1,000/yr" },
                     { value: "patron", label: "Founder's Circle", price: "$5,000/yr" },
                     { value: "table", label: "Founder's Table", price: "$10,000/yr" },
                   ].map((opt) => (
