@@ -288,12 +288,37 @@ const SocialClub = () => {
               return (
                 <div
                   key={tier.name}
-                  className={`relative border p-8 lg:p-10 flex flex-col transition-all duration-500 hover:border-gold-rich/30 ${
+                  className={`relative p-[1px] flex flex-col transition-all duration-500 group/tier ${
                     tier.featured
-                      ? "border-gold-rich/40 bg-forest lg:scale-[1.03] lg:-my-4 shadow-[0_0_80px_-20px_hsl(42_80%_45%_/_0.15)]"
-                      : "border-champagne/10 bg-forest-deep"
+                      ? "lg:scale-[1.03] lg:-my-4"
+                      : ""
                   }`}
                 >
+                  {/* Gold ornamental frame */}
+                  <div className={`absolute inset-0 pointer-events-none ${
+                    tier.featured ? "opacity-60" : "opacity-25 group-hover/tier:opacity-40"
+                  } transition-opacity duration-500`}>
+                    {/* Corner ornaments */}
+                    <div className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-gold-rich" />
+                    <div className="absolute top-0 right-0 w-8 h-8 border-t-2 border-r-2 border-gold-rich" />
+                    <div className="absolute bottom-0 left-0 w-8 h-8 border-b-2 border-l-2 border-gold-rich" />
+                    <div className="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-gold-rich" />
+                    {/* Edge lines */}
+                    <div className="absolute top-0 left-10 right-10 h-px bg-gradient-to-r from-gold-rich/80 via-gold-rich/20 to-gold-rich/80" />
+                    <div className="absolute bottom-0 left-10 right-10 h-px bg-gradient-to-r from-gold-rich/80 via-gold-rich/20 to-gold-rich/80" />
+                    <div className="absolute left-0 top-10 bottom-10 w-px bg-gradient-to-b from-gold-rich/80 via-gold-rich/20 to-gold-rich/80" />
+                    <div className="absolute right-0 top-10 bottom-10 w-px bg-gradient-to-b from-gold-rich/80 via-gold-rich/20 to-gold-rich/80" />
+                    {/* Inner corner diamonds */}
+                    <div className="absolute top-[7px] left-[7px] w-1.5 h-1.5 rotate-45 bg-gold-rich" />
+                    <div className="absolute top-[7px] right-[7px] w-1.5 h-1.5 rotate-45 bg-gold-rich" />
+                    <div className="absolute bottom-[7px] left-[7px] w-1.5 h-1.5 rotate-45 bg-gold-rich" />
+                    <div className="absolute bottom-[7px] right-[7px] w-1.5 h-1.5 rotate-45 bg-gold-rich" />
+                  </div>
+                  <div className={`relative p-8 lg:p-10 flex flex-col flex-1 ${
+                    tier.featured
+                      ? "bg-forest shadow-[0_0_80px_-20px_hsl(42_80%_45%_/_0.15)]"
+                      : "bg-forest-deep"
+                  }`}>
                   {tier.featured && (
                     <div className="absolute -top-3 left-1/2 -translate-x-1/2 shimmer-gold-bg text-forest-deep px-5 py-1 font-sans text-[10px] font-bold uppercase tracking-[0.3em]">
                       Most Popular
