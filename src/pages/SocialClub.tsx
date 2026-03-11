@@ -51,7 +51,7 @@ const tiers = [
     priceNote: "per year",
     spots: "20",
     featured: true,
-    description: "Everything in the Founder's Club, turned up. More slushies, more access, and you are helping us grow this thing in a real way.",
+    description: "Everything in the Founder's Chair, turned up. More slushies, more access, and you are helping us grow this thing in a real way.",
     benefits: [
       { category: "Events & Access", items: [
         "Four exclusive founders events per year",
