@@ -68,7 +68,7 @@ const tiers = [
       { category: "Bar & Bottle Shop", items: [
         "20% off drinks at the bar",
         "Guest drink discount included",
-        "Six complimentary slushies per month",
+        "Six Kava Haven slushies per month",
         "10% off bottles and cans",
         "$10 cap on all shipping",
         "Early access to limited drops",
