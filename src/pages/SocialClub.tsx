@@ -131,11 +131,8 @@ const comparisonFeatures = [
   { feature: "VIP seating at major events", founders: false, patron: false, table: true },
   { feature: "Specialty Founder's Drink Menu", founders: false, patron: false, table: true },
 ];
-    price: "$5,000",
-    priceNote: "per year",
-    spots: "20",
-    featured: true,
-    description: "Everything in the Founder's Chair, turned up. More slushies, more access, and you are helping us grow this thing in a real way.",
+
+
     benefits: [
       { category: "Events & Access", items: [
         { text: "Four exclusive founders events per year", subItems: [
