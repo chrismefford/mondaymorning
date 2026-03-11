@@ -17,10 +17,11 @@ import zaneFounder from "@/assets/zane-founder.png";
 const tiers_founders_benefits = [
   "Four exclusive events annually", "Founder tasting nights", "Private product launch events",
   "Founders Happy Hour with menu previews", "Annual Founders Celebration party",
-  "20% off drinks at the bar", "Four complimentary slushies per month", "Discounts apply to guest drinks too",
-  "10% off bottles and cans", "$10 cap on all shipping", "Early access to new products",
+  "20% off drinks at the bar", "Four complimentary slushies per month",
+  "10% off bottles and cans", "$10 cap on all shipping",
   "Personalized Founders Card", "Founders Only product releases", "Bring one guest to Founders events",
-  "Limited edition Founders merch", "Recognition across social channels",
+  "Monday Morning branded tote", "Recognition across social channels",
+  "Guests receive 50% off Founder's Event tickets",
 ];
 
 const tiers = [
@@ -33,10 +34,10 @@ const tiers = [
     color: "gold" as const,
     description: "The core community behind Monday Morning and the individuals helping establish America's alcohol-free social culture.",
     benefits: [
-      { category: "Events", items: ["Four exclusive events annually", "Founder tasting nights", "Private product launch events", "Founders Happy Hour with menu previews", "Annual Founders Celebration party"] },
-      { category: "Bar Privileges", items: ["20% off drinks at the bar", "Four complimentary slushies per month", "Discounts apply to guest drinks too"] },
-      { category: "Bottle Shop", items: ["10% off bottles and cans", "$10 cap on all shipping", "Early access to new products"] },
-      { category: "Extras", items: ["Personalized Founders Card", "Founders Only product releases", "Bring one guest to Founders events", "Limited edition Founders merch", "Recognition across social channels"] },
+      { category: "Events", items: ["Four exclusive events annually", "Founder tasting nights", "Private product launch events", "Founders Happy Hour with menu previews", "Annual Founders Celebration party", "Guests receive 50% off Founder's Event tickets"] },
+      { category: "Bar Privileges", items: ["20% off drinks at the bar", "Four complimentary slushies per month"] },
+      { category: "Bottle Shop", items: ["10% off bottles and cans", "$10 cap on all shipping"] },
+      { category: "Extras", items: ["Personalized Founders Card", "Founders Only product releases", "Bring one guest to Founders events", "Monday Morning branded tote", "Recognition across social channels"] },
     ],
   },
   {
@@ -52,7 +53,7 @@ const tiers = [
       { label: "Founder's Club Benefits", items: tiers_founders_benefits },
     ],
     benefits: [
-      { category: "Founder's Circle Privileges", items: ["Six complimentary slushies per month", "Two seats at all Founders Club events", "Private industry tastings with NA brand founders", "Annual curated premium NA beverage package", "Recognition as Founder's Circle supporter"] },
+      { category: "Founder's Circle Privileges", items: ["Six complimentary slushies per month", "Guest drink discount included", "Early access to limited drops", "Two seats at all Founders Club events", "Private industry tastings with NA brand founders", "Annual curated premium NA beverage package", "Tote + exclusive limited-edition Founder's merch", "Recognition as Founder's Circle supporter"] },
     ],
   },
   {
@@ -64,10 +65,10 @@ const tiers = [
     color: "ocean" as const,
     description: "A small group of supporters helping establish the long-term foundation of Monday Morning and the alcohol-free social movement.",
     includedFrom: [
-      { label: "Founder's Club + Founder's Circle Benefits", items: [...tiers_founders_benefits, "Two seats at all Founders Club events", "Private industry tastings with NA brand founders", "Annual curated premium NA beverage package", "Recognition as Founder's Circle supporter"] },
+      { label: "Founder's Club + Founder's Circle Benefits", items: [...tiers_founders_benefits, "Guest drink discount included", "Early access to limited drops", "Two seats at all Founders Club events", "Private industry tastings with NA brand founders", "Annual curated premium NA beverage package", "Tote + exclusive limited-edition Founder's merch", "Recognition as Founder's Circle supporter"] },
     ],
     benefits: [
-      { category: "Founder's Table Privileges", items: ["Ten complimentary slushies per month", "Private dinners with NA brand founders and industry leaders", "Small private tastings and product previews", "Access to unreleased beverages", "One annual private bar buyout for a personal event", "VIP seating and recognition at major events"] },
+      { category: "Founder's Table Privileges", items: ["Ten complimentary slushies per month", "Guest drink discount included", "Early access to limited drops", "Private dinners with NA brand founders and industry leaders", "Small private tastings and product previews", "Access to unreleased beverages", "One annual private bar buyout for a personal event", "Tote + exclusive limited-edition Founder's merch", "VIP seating and recognition at major events"] },
     ],
   },
 ];
@@ -79,13 +80,15 @@ const comparisonFeatures = [
   { feature: "Founders Happy Hour", founders: true, patron: true, table: true },
   { feature: "Personalized Founders Card", founders: true, patron: true, table: true },
   { feature: "Bar drink discount", founders: "20%", patron: "20%", table: "20%" },
+  { feature: "Guest drink discount", founders: false, patron: true, table: true },
   { feature: "Complimentary slushies/month", founders: "4", patron: "6", table: "10" },
   { feature: "Bottle shop discount", founders: "10%", patron: "10%", table: "10%" },
   { feature: "Shipping cap", founders: "$10", patron: "$10", table: "—" },
-  { feature: "Early access to new products", founders: true, patron: true, table: true },
+  { feature: "Early access to limited drops", founders: false, patron: true, table: true },
   { feature: "Founders Only releases", founders: true, patron: true, table: true },
-  { feature: "Limited edition merch", founders: true, patron: true, table: true },
-  { feature: "Guest passes to events", founders: "50%", patron: "2", table: "2+" },
+  { feature: "Founder merch", founders: "Tote", patron: "Tote + LE merch", table: "Tote + LE merch" },
+  { feature: "Guest passes to events", founders: "1", patron: "2", table: "2+" },
+  { feature: "Guests 50% off Event tickets", founders: true, patron: true, table: true },
   { feature: "Community recognition", founders: true, patron: true, table: true },
   { feature: "Annual Founders Celebration", founders: true, patron: true, table: true },
   { feature: "Private industry tastings", founders: false, patron: true, table: true },
