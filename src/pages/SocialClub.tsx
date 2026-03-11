@@ -132,7 +132,7 @@ const comparisonFeatures = [
   { feature: "Personalized Founders Card", founders: true, patron: true, table: true },
   { feature: "Bar drink discount", founders: "20%", patron: "20%", table: "20%" },
   { feature: "Guest drink discount", founders: false, patron: true, table: true },
-  { feature: "Complimentary slushies/month", founders: "4", patron: "6", table: "10" },
+  { feature: "Kava Haven slushies/month", founders: "4", patron: "6", table: "10" },
   { feature: "Bottle shop discount", founders: "10%", patron: "10%", table: "10%" },
   { feature: "Shipping cap", founders: false, patron: "$10", table: "$10" },
   { feature: "Early access to limited drops", founders: false, patron: true, table: true },
