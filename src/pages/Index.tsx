@@ -65,6 +65,7 @@ const Index = () => {
       </Helmet>
 
       <Header />
+      <FoundersClubPopup />
       <main>
         <Hero />
         <FeaturedProducts />
