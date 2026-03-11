@@ -24,11 +24,12 @@ const tiers = [
     description: "The starting point for anyone who wants to be part of this from the beginning. You get the perks, the access, and the bragging rights of being a founding member.",
     benefits: [
       { category: "Events & Access", items: [
-        "Four exclusive founders events per year",
-        "Founder tasting nights with new products",
-        "Private product launch events",
-        "Founders Happy Hour with menu previews",
-        "Annual Founders Celebration party",
+        { text: "Four exclusive founders events per year", subItems: [
+          "Founder tasting nights with new products",
+          "Private product launch events",
+          "Founders Happy Hour with menu previews",
+          "Annual Founders Celebration party",
+        ]},
         "Bring one guest to founders events",
         "50% off event tickets for your guest",
       ]},
@@ -54,11 +55,12 @@ const tiers = [
     description: "Everything in the Founder's Chair, turned up. More slushies, more access, and you are helping us grow this thing in a real way.",
     benefits: [
       { category: "Events & Access", items: [
-        "Four exclusive founders events per year",
-        "Founder tasting nights with new products",
-        "Private product launch events",
-        "Founders Happy Hour with menu previews",
-        "Annual Founders Celebration party",
+        { text: "Four exclusive founders events per year", subItems: [
+          "Founder tasting nights with new products",
+          "Private product launch events",
+          "Founders Happy Hour with menu previews",
+          "Annual Founders Celebration party",
+        ]},
         "Two seats at all founders events",
         "Two free guest passes to founders events",
         "Private industry tastings with NA brand founders",
@@ -89,11 +91,12 @@ const tiers = [
     description: "This is the inner circle of the inner circle. Private dinners, unreleased products, and a level of access that is genuinely one of a kind.",
     benefits: [
       { category: "Events & Access", items: [
-        "Four exclusive founders events per year",
-        "Founder tasting nights with new products",
-        "Private product launch events",
-        "Founders Happy Hour with menu previews",
-        "Annual Founders Celebration party",
+        { text: "Four exclusive founders events per year", subItems: [
+          "Founder tasting nights with new products",
+          "Private product launch events",
+          "Founders Happy Hour with menu previews",
+          "Annual Founders Celebration party",
+        ]},
         "Two or more seats at all founders events",
         "Free guest passes to all founders events",
         "Private industry tastings with NA brand founders",
@@ -402,12 +405,29 @@ const SocialClub = () => {
                           {group.category}
                         </p>
                         <ul className="space-y-2.5">
-                          {group.items.map((item) => (
-                            <li key={item} className="flex items-start gap-2.5">
-                              <Check className={`h-3.5 w-3.5 mt-0.5 shrink-0 ${isTable ? "text-gold-rich/70" : "text-primary/60"}`} />
-                              <span className={`font-sans text-sm ${isTable ? "text-champagne/70" : "text-foreground/70"}`}>{item}</span>
-                            </li>
-                          ))}
+                          {group.items.map((item, idx) => {
+                            const isNested = typeof item === 'object' && item !== null && 'text' in item;
+                            const text = isNested ? item.text : item;
+                            const subItems = isNested ? item.subItems : undefined;
+                            return (
+                              <li key={typeof text === 'string' ? text : idx}>
+                                <div className="flex items-start gap-2.5">
+                                  <Check className={`h-3.5 w-3.5 mt-0.5 shrink-0 ${isTable ? "text-gold-rich/70" : "text-primary/60"}`} />
+                                  <span className={`font-sans text-sm ${isTable ? "text-champagne/70" : "text-foreground/70"}`}>{text as string}</span>
+                                </div>
+                                {subItems && (
+                                  <ul className="ml-6 mt-1.5 space-y-1.5">
+                                    {subItems.map((sub: string) => (
+                                      <li key={sub} className="flex items-start gap-2">
+                                        <span className={`mt-1.5 h-1.5 w-1.5 rounded-full shrink-0 ${isTable ? "bg-gold-rich/40" : "bg-primary/30"}`} />
+                                        <span className={`font-sans text-xs ${isTable ? "text-champagne/50" : "text-foreground/50"}`}>{sub}</span>
+                                      </li>
+                                    ))}
+                                  </ul>
+                                )}
+                              </li>
+                            );
+                          })}
                         </ul>
                       </div>
                     ))}
