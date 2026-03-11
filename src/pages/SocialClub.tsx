@@ -34,7 +34,7 @@ const tiers = [
       { category: "Bar & Bottle Shop", items: [
         "20% off drinks at the bar",
         "Four Kava Haven slushies per month",
-        "10% off bottles and cans",
+        "10% discount",
       ]},
       { category: "Extras", items: [
         "Personalized Founders Card",
