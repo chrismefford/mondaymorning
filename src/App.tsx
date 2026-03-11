@@ -44,6 +44,7 @@ import NonAlcDrinks from "./pages/NonAlcDrinks";
 import ZeroProofNearby from "./pages/ZeroProofNearby";
 import AlcoholAlternatives from "./pages/AlcoholAlternatives";
 import SocialClub from "./pages/SocialClub";
+import FoundersWelcome from "./pages/FoundersWelcome";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
