@@ -70,7 +70,7 @@ serve(async (req) => {
 </head>
 <body>
   <div class="header">
-    <h1>New Social Club Application</h1>
+    <h1>New Founder's Club Application</h1>
     <p>Monday Morning</p>
   </div>
   <div class="container">
