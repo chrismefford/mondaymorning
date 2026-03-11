@@ -70,7 +70,7 @@ serve(async (req) => {
 </head>
 <body>
   <div class="header">
-    <h1>New Social Club Application</h1>
+    <h1>New Founder's Club Application</h1>
     <p>Monday Morning</p>
   </div>
   <div class="container">
@@ -106,7 +106,7 @@ serve(async (req) => {
     // Queue the email via the email queue RPC
     const { error: queueError } = await supabase.rpc('enqueue_transactional_email', {
       p_to: 'operations@mondaymorning-af.com',
-      p_subject: `New Social Club Application: ${app.first_name} ${app.last_name} — ${tierLabel}`,
+      p_subject: `New Founder's Club Application: ${app.first_name} ${app.last_name} — ${tierLabel}`,
       p_html: emailHtml,
       p_template_name: 'social-club-application',
     });
