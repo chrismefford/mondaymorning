@@ -296,23 +296,28 @@ const SocialClub = () => {
                 >
                   {/* Gold ornamental frame */}
                   <div className={`absolute inset-0 pointer-events-none ${
-                    tier.featured ? "opacity-60" : "opacity-25 group-hover/tier:opacity-40"
+                    tier.featured ? "opacity-100" : "opacity-50 group-hover/tier:opacity-80"
                   } transition-opacity duration-500`}>
                     {/* Corner ornaments */}
-                    <div className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-gold-rich" />
-                    <div className="absolute top-0 right-0 w-8 h-8 border-t-2 border-r-2 border-gold-rich" />
-                    <div className="absolute bottom-0 left-0 w-8 h-8 border-b-2 border-l-2 border-gold-rich" />
-                    <div className="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-gold-rich" />
+                    <div className="absolute top-0 left-0 w-12 h-12 border-t-[3px] border-l-[3px] border-gold-rich" />
+                    <div className="absolute top-0 right-0 w-12 h-12 border-t-[3px] border-r-[3px] border-gold-rich" />
+                    <div className="absolute bottom-0 left-0 w-12 h-12 border-b-[3px] border-l-[3px] border-gold-rich" />
+                    <div className="absolute bottom-0 right-0 w-12 h-12 border-b-[3px] border-r-[3px] border-gold-rich" />
                     {/* Edge lines */}
-                    <div className="absolute top-0 left-10 right-10 h-px bg-gradient-to-r from-gold-rich/80 via-gold-rich/20 to-gold-rich/80" />
-                    <div className="absolute bottom-0 left-10 right-10 h-px bg-gradient-to-r from-gold-rich/80 via-gold-rich/20 to-gold-rich/80" />
-                    <div className="absolute left-0 top-10 bottom-10 w-px bg-gradient-to-b from-gold-rich/80 via-gold-rich/20 to-gold-rich/80" />
-                    <div className="absolute right-0 top-10 bottom-10 w-px bg-gradient-to-b from-gold-rich/80 via-gold-rich/20 to-gold-rich/80" />
+                    <div className="absolute top-0 left-14 right-14 h-[1.5px] bg-gradient-to-r from-gold-rich via-gold-rich/30 to-gold-rich" />
+                    <div className="absolute bottom-0 left-14 right-14 h-[1.5px] bg-gradient-to-r from-gold-rich via-gold-rich/30 to-gold-rich" />
+                    <div className="absolute left-0 top-14 bottom-14 w-[1.5px] bg-gradient-to-b from-gold-rich via-gold-rich/30 to-gold-rich" />
+                    <div className="absolute right-0 top-14 bottom-14 w-[1.5px] bg-gradient-to-b from-gold-rich via-gold-rich/30 to-gold-rich" />
                     {/* Inner corner diamonds */}
-                    <div className="absolute top-[7px] left-[7px] w-1.5 h-1.5 rotate-45 bg-gold-rich" />
-                    <div className="absolute top-[7px] right-[7px] w-1.5 h-1.5 rotate-45 bg-gold-rich" />
-                    <div className="absolute bottom-[7px] left-[7px] w-1.5 h-1.5 rotate-45 bg-gold-rich" />
-                    <div className="absolute bottom-[7px] right-[7px] w-1.5 h-1.5 rotate-45 bg-gold-rich" />
+                    <div className="absolute top-[9px] left-[9px] w-2 h-2 rotate-45 bg-gold-rich" />
+                    <div className="absolute top-[9px] right-[9px] w-2 h-2 rotate-45 bg-gold-rich" />
+                    <div className="absolute bottom-[9px] left-[9px] w-2 h-2 rotate-45 bg-gold-rich" />
+                    <div className="absolute bottom-[9px] right-[9px] w-2 h-2 rotate-45 bg-gold-rich" />
+                    {/* Center edge diamonds */}
+                    <div className="absolute top-[-3px] left-1/2 -translate-x-1/2 w-2 h-2 rotate-45 bg-gold-rich" />
+                    <div className="absolute bottom-[-3px] left-1/2 -translate-x-1/2 w-2 h-2 rotate-45 bg-gold-rich" />
+                    <div className="absolute left-[-3px] top-1/2 -translate-y-1/2 w-2 h-2 rotate-45 bg-gold-rich" />
+                    <div className="absolute right-[-3px] top-1/2 -translate-y-1/2 w-2 h-2 rotate-45 bg-gold-rich" />
                   </div>
                   <div className={`relative p-8 lg:p-10 flex flex-col flex-1 ${
                     tier.featured
