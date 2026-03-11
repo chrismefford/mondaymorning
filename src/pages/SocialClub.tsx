@@ -717,24 +717,14 @@ const SocialClub = () => {
                 />
               </div>
 
-              <div className="space-y-3">
-                <Button
-                  type="button"
-                  disabled={isSubmitting}
-                  onClick={handlePayNow}
-                  className="w-full shimmer-gold-bg text-forest-deep font-sans text-[10px] font-semibold uppercase tracking-[0.25em] py-6 hover:opacity-90 transition-opacity"
-                >
-                  {isSubmitting ? "Processing..." : "Apply & Pay Now"}
-                </Button>
-                <Button
-                  type="submit"
-                  disabled={isSubmitting}
-                  variant="outline"
-                  className="w-full border-champagne/20 text-champagne/60 hover:text-cream hover:border-champagne/40 font-sans text-[10px] font-semibold uppercase tracking-[0.25em] py-6 transition-all"
-                >
-                  {isSubmitting ? "Submitting..." : "Submit Application Only"}
-                </Button>
-              </div>
+              <Button
+                type="button"
+                disabled={isSubmitting}
+                onClick={handlePayNow}
+                className="w-full shimmer-gold-bg text-forest-deep font-sans text-[10px] font-semibold uppercase tracking-[0.25em] py-6 hover:opacity-90 transition-opacity"
+              >
+                {isSubmitting ? "Processing..." : "Apply & Pay Now"}
+              </Button>
             </form>
           </div>
         </div>
