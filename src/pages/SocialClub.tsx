@@ -21,26 +21,38 @@ const tiers = [
     price: "$1,000",
     priceNote: "per year",
     spots: "100",
-    description: "The starting point for anyone who wants to be part of this from the beginning. You get the perks, the access, and the bragging rights of being a founding member.",
+    description: "The Founders Club represents the core community behind Monday Morning and the individuals helping establish San Diego's alcohol-free social culture. Each member receives a personalized Founders Card, granting access to a range of exclusive benefits and experiences at Monday Morning.",
     benefits: [
-      { category: "Events & Access", items: [
-        { text: "Four exclusive founders events per year", subItems: [
-          "Founder tasting nights with new products",
+      { category: "Social Club Privileges", items: [
+        { text: "At least four exclusive events annually", subItems: [
+          "Founder tasting nights",
           "Private product launch events",
-          "Founders Happy Hour with menu previews",
-          "Annual Founders Celebration party",
+          "Founders Happy Hour: preview the new seasonal drink menu, sample upcoming cocktails, slushies, and new bar offerings before public release",
         ]},
       ]},
-      { category: "Bar & Bottle Shop", items: [
+      { category: "Bar Privileges", items: [
         "20% off drinks at the bar",
-        "Four Kava Haven slushies per month",
-        "10% discount",
+        "Four complimentary slushies per month",
       ]},
-      { category: "Extras", items: [
-        "Personalized Founders Card",
-        "Access to Founders Only product releases",
-        "Branded founders tote",
-        "Recognition across our social channels",
+      { category: "Bottle Shop Benefits", items: [
+        "10% off bottle shop sales (in-store and online)",
+        "Early access to new products arriving in the shop",
+        "Priority access to limited product drops",
+      ]},
+      { category: "Members Only Releases", items: [
+        "First access to limited imports, experimental releases, and special Monday Morning collaborations",
+      ]},
+      { category: "Guest Privileges", items: [
+        "50% off additional tickets for Founder's events",
+      ]},
+      { category: "Founders Merch", items: [
+        "Founder's tote",
+      ]},
+      { category: "Founders Recognition", items: [
+        "Recognized across Monday Morning's social channels, newsletters, and media features",
+      ]},
+      { category: "Annual Founders Celebration", items: [
+        "Private Founders Party featuring special tastings, new drink releases, and collaborations with leading alcohol-free brands",
       ]},
     ],
   },
@@ -50,33 +62,23 @@ const tiers = [
     priceNote: "per year",
     spots: "20",
     featured: true,
-    description: "Everything in the Founder's Chair, turned up. More slushies, more access, and you are helping us grow this thing in a real way.",
+    description: "The Founder's Circle is designed for individuals who want to support the growth of alcohol-free culture in San Diego while gaining deeper access to the community behind Monday Morning. Founder's Circle members receive all Founder's Chair benefits, plus expanded access to private tastings, curated experiences, and early product discovery.",
     benefits: [
-      { category: "Events & Access", items: [
-        { text: "Four exclusive founders events per year", subItems: [
-          "Founder tasting nights with new products",
-          "Private product launch events",
-          "Founders Happy Hour with menu previews",
-          "Annual Founders Celebration party",
-        ]},
-        "Two seats at all founders events",
-        "Two free guest passes to founders events",
-        "Private industry tastings with NA brand founders",
+      { category: "All Founder's Chair Benefits, Plus", items: [
+        "Two seats at all Founder's Club events",
+        "Private industry tastings with non alcoholic brand founders",
+        "Annual curated package of premium non alcoholic beverages selected by Monday Morning",
+        "Recognition as a Founder's Circle supporter within the Monday Morning community",
       ]},
-      { category: "Bar & Bottle Shop", items: [
-        "20% off drinks at the bar",
-        "Guest drink discount included",
-        "Six Kava Haven slushies per month",
-        "10% discount",
-        "$10 cap on all shipping",
-        "Early access to limited drops",
+      { category: "Additional Bar Privileges", items: [
+        "Two additional Kava Haven slushies per month (6 total)",
       ]},
-      { category: "Extras", items: [
-        "Personalized Founders Card",
-        "Access to Founders Only product releases",
-        "Annual curated premium NA beverage package",
-        "Branded founders tote + limited merch",
-        "Recognition as a Founder's Circle supporter",
+      { category: "Additional Bottle Shop Benefits", items: [
+        "$10 flat shipping on all online orders",
+        "10% off bottle shop sales (in-store and online)",
+      ]},
+      { category: "Founders Merch", items: [
+        "Founder's tote + limited merch",
       ]},
     ],
   },
@@ -86,37 +88,18 @@ const tiers = [
     priceNote: "per year",
     spots: "10",
     isTable: true,
-    description: "This is the inner circle of the inner circle. Private dinners, unreleased products, and a level of access that is genuinely one of a kind.",
+    description: "The Founding Table represents a small group of supporters helping establish the long-term foundation of Monday Morning and the alcohol-free social movement in San Diego. Members receive all Founder's Club and Founder's Circle benefits, along with expanded access to private gatherings, experimental beverages, and the evolving creative direction of Monday Morning.",
     benefits: [
-      { category: "Events & Access", items: [
-        { text: "Four exclusive founders events per year", subItems: [
-          "Founder tasting nights with new products",
-          "Private product launch events",
-          "Founders Happy Hour with menu previews",
-          "Annual Founders Celebration party",
-        ]},
-        "Two or more seats at all founders events",
-        "Free guest passes to all founders events",
-        "Private industry tastings with NA brand founders",
-        "Private dinners with NA brand founders and industry leaders",
-        "Small private tastings and product previews",
-        "One annual private bar buyout for a personal event",
-      ]},
-      { category: "Bar & Bottle Shop", items: [
-        "20% off drinks at the bar",
-        "Guest drink discount included",
-        "Ten Kava Haven slushies per month",
-        "10% discount",
-        "$10 cap on all shipping",
-        "Early access to limited drops",
+      { category: "All Founder's Circle Benefits, Plus", items: [
+        "Private dinners with alcohol-free brand founders and industry leaders",
+        "Invitations to small private tastings and product previews",
         "Access to unreleased beverages",
-      ]},
-      { category: "Extras", items: [
-        "Personalized Founders Card",
-        "Access to Founders Only product releases",
-        "Annual curated premium NA beverage package",
-        "Branded founders tote + limited merch",
+        "One annual private Monday Morning bar buyout for a personal event",
         "VIP seating and recognition at major events",
+      ]},
+      { category: "Additional Bar Privileges", items: [
+        "Plus 4 more slushies per month (10 total)",
+        "Private exclusive drinks: Specialty Founder's Drink Menu",
       ]},
     ],
   },
@@ -127,24 +110,26 @@ const comparisonFeatures = [
   { feature: "Founder tasting nights", founders: true, patron: true, table: true },
   { feature: "Private product launches", founders: true, patron: true, table: true },
   { feature: "Founders Happy Hour", founders: true, patron: true, table: true },
+  { feature: "Annual Founders Celebration", founders: true, patron: true, table: true },
   { feature: "Personalized Founders Card", founders: true, patron: true, table: true },
   { feature: "Bar drink discount", founders: "20%", patron: "20%", table: "20%" },
-  { feature: "Guest drink discount", founders: false, patron: true, table: true },
-  { feature: "Kava Haven slushies/month", founders: "4", patron: "6", table: "10" },
-  { feature: "10% discount", founders: "10%", patron: "10%", table: "10%" },
-  { feature: "Shipping cap", founders: false, patron: "$10", table: "$10" },
-  { feature: "Early access to limited drops", founders: false, patron: true, table: true },
-  { feature: "Founders Only releases", founders: true, patron: true, table: true },
-  { feature: "Branded founders merchandise", founders: "Tote", patron: "Tote + Limited Merch", table: "Tote + Limited Merch" },
-  { feature: "Guest passes to events", founders: "1 at 50% off", patron: "2 free", table: "2+ free" },
-  { feature: "Community recognition", founders: true, patron: true, table: true },
-  { feature: "Annual Founders Celebration", founders: true, patron: true, table: true },
+  { feature: "Complimentary slushies/month", founders: "4", patron: "6", table: "10" },
+  { feature: "Bottle shop discount", founders: "10%", patron: "10%", table: "10%" },
+  { feature: "Early access to new products", founders: true, patron: true, table: true },
+  { feature: "Priority access to limited drops", founders: true, patron: true, table: true },
+  { feature: "Members Only releases", founders: true, patron: true, table: true },
+  { feature: "Guest event tickets (50% off)", founders: true, patron: true, table: true },
+  { feature: "Two seats at all events", founders: false, patron: true, table: true },
   { feature: "Private industry tastings", founders: false, patron: true, table: true },
   { feature: "Curated NA beverage package", founders: false, patron: true, table: true },
+  { feature: "$10 flat shipping", founders: false, patron: true, table: true },
+  { feature: "Branded founders merchandise", founders: "Tote", patron: "Tote + Limited Merch", table: "Tote + Limited Merch" },
+  { feature: "Community recognition", founders: true, patron: "Circle Supporter", table: "VIP" },
   { feature: "Private dinners with NA leaders", founders: false, patron: false, table: true },
   { feature: "Access to unreleased beverages", founders: false, patron: false, table: true },
   { feature: "Annual private bar buyout", founders: false, patron: false, table: true },
   { feature: "VIP seating at major events", founders: false, patron: false, table: true },
+  { feature: "Specialty Founder's Drink Menu", founders: false, patron: false, table: true },
 ];
 
 const SocialClub = () => {
