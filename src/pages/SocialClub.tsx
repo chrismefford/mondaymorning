@@ -106,7 +106,7 @@ const tiers = [
         "20% off drinks at the bar",
         "Guest drink discount included",
         "Ten Kava Haven slushies per month",
-        "10% off bottles and cans",
+        "10% discount",
         "$10 cap on all shipping",
         "Early access to limited drops",
         "Access to unreleased beverages",
