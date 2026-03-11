@@ -131,27 +131,6 @@ const comparisonFeatures = [
   { feature: "VIP seating at major events", founders: false, patron: false, table: true },
   { feature: "Specialty Founder's Drink Menu", founders: false, patron: false, table: true },
 ];
-          "Founder tasting nights with new products",
-          "Private product launch events",
-          "Founders Happy Hour with menu previews",
-          "Annual Founders Celebration party",
-        ]},
-      ]},
-      { category: "Bar & Bottle Shop", items: [
-        "20% off drinks at the bar",
-        "Four Kava Haven slushies per month",
-        "10% discount",
-      ]},
-      { category: "Extras", items: [
-        "Personalized Founders Card",
-        "Access to Founders Only product releases",
-        "Branded founders tote",
-        "Recognition across our social channels",
-      ]},
-    ],
-  },
-  {
-    name: "Founder's Circle",
     price: "$5,000",
     priceNote: "per year",
     spots: "20",
