@@ -319,69 +319,85 @@ const SocialClub = () => {
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-4">
-            {tiers.map((tier) => (
+            {tiers.map((tier) => {
+              const isTable = 'isTable' in tier && tier.isTable;
+              return (
               <div
                 key={tier.name}
                 className={`relative p-[1px] flex flex-col transition-all duration-500 group/tier ${
                   tier.featured ? "lg:scale-[1.03] lg:-my-4" : ""
-                }`}
+                } ${isTable ? "lg:scale-[1.01]" : ""}`}
               >
                 {/* Gold ornamental frame */}
                 <div className={`absolute inset-0 pointer-events-none ${
-                  tier.featured ? "opacity-100" : "opacity-50 group-hover/tier:opacity-80"
+                  tier.featured || isTable ? "opacity-100" : "opacity-50 group-hover/tier:opacity-80"
                 } transition-opacity duration-500`}>
-                  <div className="absolute top-0 left-0 w-12 h-12 border-t-[3px] border-l-[3px] border-primary" />
-                  <div className="absolute top-0 right-0 w-12 h-12 border-t-[3px] border-r-[3px] border-primary" />
-                  <div className="absolute bottom-0 left-0 w-12 h-12 border-b-[3px] border-l-[3px] border-primary" />
-                  <div className="absolute bottom-0 right-0 w-12 h-12 border-b-[3px] border-r-[3px] border-primary" />
-                  <div className="absolute top-0 left-14 right-14 h-[1.5px] bg-gradient-to-r from-primary via-primary/30 to-primary" />
-                  <div className="absolute bottom-0 left-14 right-14 h-[1.5px] bg-gradient-to-r from-primary via-primary/30 to-primary" />
-                  <div className="absolute left-0 top-14 bottom-14 w-[1.5px] bg-gradient-to-b from-primary via-primary/30 to-primary" />
-                  <div className="absolute right-0 top-14 bottom-14 w-[1.5px] bg-gradient-to-b from-primary via-primary/30 to-primary" />
-                  <div className="absolute top-[9px] left-[9px] w-2 h-2 rotate-45 bg-primary" />
-                  <div className="absolute top-[9px] right-[9px] w-2 h-2 rotate-45 bg-primary" />
-                  <div className="absolute bottom-[9px] left-[9px] w-2 h-2 rotate-45 bg-primary" />
-                  <div className="absolute bottom-[9px] right-[9px] w-2 h-2 rotate-45 bg-primary" />
-                  <div className="absolute top-[-3px] left-1/2 -translate-x-1/2 w-2 h-2 rotate-45 bg-primary" />
-                  <div className="absolute bottom-[-3px] left-1/2 -translate-x-1/2 w-2 h-2 rotate-45 bg-primary" />
-                  <div className="absolute left-[-3px] top-1/2 -translate-y-1/2 w-2 h-2 rotate-45 bg-primary" />
-                  <div className="absolute right-[-3px] top-1/2 -translate-y-1/2 w-2 h-2 rotate-45 bg-primary" />
+                  <div className={`absolute top-0 left-0 w-12 h-12 border-t-[3px] border-l-[3px] ${isTable ? "border-gold-rich" : "border-primary"}`} />
+                  <div className={`absolute top-0 right-0 w-12 h-12 border-t-[3px] border-r-[3px] ${isTable ? "border-gold-rich" : "border-primary"}`} />
+                  <div className={`absolute bottom-0 left-0 w-12 h-12 border-b-[3px] border-l-[3px] ${isTable ? "border-gold-rich" : "border-primary"}`} />
+                  <div className={`absolute bottom-0 right-0 w-12 h-12 border-b-[3px] border-r-[3px] ${isTable ? "border-gold-rich" : "border-primary"}`} />
+                  <div className={`absolute top-0 left-14 right-14 h-[1.5px] bg-gradient-to-r ${isTable ? "from-gold-rich via-gold-rich/30 to-gold-rich" : "from-primary via-primary/30 to-primary"}`} />
+                  <div className={`absolute bottom-0 left-14 right-14 h-[1.5px] bg-gradient-to-r ${isTable ? "from-gold-rich via-gold-rich/30 to-gold-rich" : "from-primary via-primary/30 to-primary"}`} />
+                  <div className={`absolute left-0 top-14 bottom-14 w-[1.5px] bg-gradient-to-b ${isTable ? "from-gold-rich via-gold-rich/30 to-gold-rich" : "from-primary via-primary/30 to-primary"}`} />
+                  <div className={`absolute right-0 top-14 bottom-14 w-[1.5px] bg-gradient-to-b ${isTable ? "from-gold-rich via-gold-rich/30 to-gold-rich" : "from-primary via-primary/30 to-primary"}`} />
+                  <div className={`absolute top-[9px] left-[9px] w-2 h-2 rotate-45 ${isTable ? "bg-gold-rich" : "bg-primary"}`} />
+                  <div className={`absolute top-[9px] right-[9px] w-2 h-2 rotate-45 ${isTable ? "bg-gold-rich" : "bg-primary"}`} />
+                  <div className={`absolute bottom-[9px] left-[9px] w-2 h-2 rotate-45 ${isTable ? "bg-gold-rich" : "bg-primary"}`} />
+                  <div className={`absolute bottom-[9px] right-[9px] w-2 h-2 rotate-45 ${isTable ? "bg-gold-rich" : "bg-primary"}`} />
+                  <div className={`absolute top-[-3px] left-1/2 -translate-x-1/2 w-2 h-2 rotate-45 ${isTable ? "bg-gold-rich" : "bg-primary"}`} />
+                  <div className={`absolute bottom-[-3px] left-1/2 -translate-x-1/2 w-2 h-2 rotate-45 ${isTable ? "bg-gold-rich" : "bg-primary"}`} />
+                  <div className={`absolute left-[-3px] top-1/2 -translate-y-1/2 w-2 h-2 rotate-45 ${isTable ? "bg-gold-rich" : "bg-primary"}`} />
+                  <div className={`absolute right-[-3px] top-1/2 -translate-y-1/2 w-2 h-2 rotate-45 ${isTable ? "bg-gold-rich" : "bg-primary"}`} />
                 </div>
                 <div className={`relative p-8 lg:p-10 flex flex-col flex-1 ${
-                  tier.featured
-                    ? "bg-card shadow-[0_0_60px_-20px_hsl(var(--primary)_/_0.12)]"
-                    : "bg-card"
+                  isTable
+                    ? "bg-forest-deep shadow-[0_0_80px_-20px_hsl(42_80%_45%_/_0.2)]"
+                    : tier.featured
+                      ? "bg-card shadow-[0_0_60px_-20px_hsl(var(--primary)_/_0.12)]"
+                      : "bg-card"
                 }`}>
-                  {tier.featured && (
+                  {/* Subtle gold radial glow for Table */}
+                  {isTable && (
+                    <>
+                      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_hsl(42_80%_45%_/_0.08)_0%,_transparent_60%)] pointer-events-none" />
+                      <div className="absolute inset-0 grain pointer-events-none opacity-15" />
+                      <div className="absolute -top-3 left-1/2 -translate-x-1/2 shimmer-gold-bg text-forest-deep px-5 py-1 font-sans text-[10px] font-bold uppercase tracking-[0.3em]">
+                        Limited to 10
+                      </div>
+                    </>
+                  )}
+                  {tier.featured && !isTable && (
                     <div className="absolute -top-3 left-1/2 -translate-x-1/2 shimmer-gold-bg text-forest-deep px-5 py-1 font-sans text-[10px] font-bold uppercase tracking-[0.3em]">
                       Most Popular
                     </div>
                   )}
-                  <div className="flex items-center gap-3 mb-5">
-                    <img src={foundersLogo} alt="" className="h-7 w-7 object-contain opacity-80" />
-                    <h3 className="font-serif text-xl text-foreground">{tier.name}</h3>
+                  <div className="flex items-center gap-3 mb-5 relative">
+                    <img src={foundersLogo} alt="" className={`h-7 w-7 object-contain ${isTable ? "opacity-90" : "opacity-80"}`} />
+                    <h3 className={`font-serif text-xl ${isTable ? "text-cream" : "text-foreground"}`}>{tier.name}</h3>
                   </div>
-                  <div className="mb-5">
-                    <span className="font-serif text-4xl text-primary">{tier.price}</span>
-                    <span className="font-sans text-xs text-muted-foreground ml-2 uppercase tracking-wider">/{tier.priceNote}</span>
+                  <div className="mb-5 relative">
+                    <span className={`font-serif text-4xl ${isTable ? "shimmer-gold" : "text-primary"}`}>{tier.price}</span>
+                    <span className={`font-sans text-xs ml-2 uppercase tracking-wider ${isTable ? "text-champagne/40" : "text-muted-foreground"}`}>/{tier.priceNote}</span>
                   </div>
-                  <p className="font-sans text-xs text-muted-foreground mb-2 tracking-wide">
-                    Limited to <span className="text-primary font-semibold">{tier.spots}</span> positions
-                  </p>
-                  <p className="font-sans text-sm text-muted-foreground mb-8 leading-relaxed">
+                  {!isTable && (
+                    <p className="font-sans text-xs text-muted-foreground mb-2 tracking-wide relative">
+                      Limited to <span className="text-primary font-semibold">{tier.spots}</span> positions
+                    </p>
+                  )}
+                  <p className={`font-sans text-sm mb-8 leading-relaxed relative ${isTable ? "text-champagne/60" : "text-muted-foreground"}`}>
                     {tier.description}
                   </p>
-                  <div className="space-y-6 flex-1">
+                  <div className="space-y-6 flex-1 relative">
                     {tier.benefits.map((group) => (
                       <div key={group.category}>
-                        <p className="font-sans text-[10px] font-semibold uppercase tracking-[0.2em] mb-3 text-primary/70">
+                        <p className={`font-sans text-[10px] font-semibold uppercase tracking-[0.2em] mb-3 ${isTable ? "text-gold-rich/80" : "text-primary/70"}`}>
                           {group.category}
                         </p>
                         <ul className="space-y-2.5">
                           {group.items.map((item) => (
                             <li key={item} className="flex items-start gap-2.5">
-                              <Check className="h-3.5 w-3.5 mt-0.5 shrink-0 text-primary/60" />
-                              <span className="font-sans text-sm text-foreground/70">{item}</span>
+                              <Check className={`h-3.5 w-3.5 mt-0.5 shrink-0 ${isTable ? "text-gold-rich/70" : "text-primary/60"}`} />
+                              <span className={`font-sans text-sm ${isTable ? "text-champagne/70" : "text-foreground/70"}`}>{item}</span>
                             </li>
                           ))}
                         </ul>
@@ -390,10 +406,12 @@ const SocialClub = () => {
                   </div>
                   <Button
                     onClick={() => document.getElementById("apply")?.scrollIntoView({ behavior: "smooth" })}
-                    className={`mt-10 w-full font-sans text-[10px] font-semibold uppercase tracking-[0.25em] py-6 transition-all ${
-                      tier.featured
+                    className={`mt-10 w-full font-sans text-[10px] font-semibold uppercase tracking-[0.25em] py-6 transition-all relative ${
+                      isTable
                         ? "shimmer-gold-bg text-forest-deep hover:opacity-90"
-                        : "bg-transparent text-foreground/60 hover:text-foreground border border-border hover:border-primary/40"
+                        : tier.featured
+                          ? "shimmer-gold-bg text-forest-deep hover:opacity-90"
+                          : "bg-transparent text-foreground/60 hover:text-foreground border border-border hover:border-primary/40"
                     }`}
                   >
                     Apply Now
