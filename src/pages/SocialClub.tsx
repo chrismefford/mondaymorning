@@ -506,7 +506,7 @@ const SocialClub = () => {
                     Benefit
                   </th>
                   <th className="py-5 px-4 font-sans text-[10px] font-semibold uppercase tracking-[0.2em] text-primary text-center">
-                    Founders<br />$1,000/yr
+                    Chair<br />$1,000/yr
                   </th>
                   <th className="py-5 px-4 font-sans text-[10px] font-semibold uppercase tracking-[0.2em] text-primary text-center">
                     Circle<br />$5,000/yr
