@@ -524,7 +524,7 @@ const SocialClub = () => {
               { q: "Can I share my benefits with someone else?", a: "Benefits are tied to you as the registered founder. That said, every tier includes guest access so you can bring people along to events and share the experience." },
               { q: "How do Kava Haven slushies work?", a: "Depending on your tier, you get four, six, or ten Kava Haven slushies per month. They reset at the beginning of each month and do not roll over, so make sure you use them." },
               { q: "Can I stack my discount with other promos?", a: "Founders Club discounts cannot be combined with other promotions. If multiple discounts apply, we will always give you the bigger one." },
-              { q: "Does the bottle shop discount work online?", a: "Yes. Your 10% off applies to both in-store and online purchases." },
+              { q: "Does the 10% discount work online?", a: "Yes. Your 10% off applies to both in-store and online purchases." },
               { q: "Do I need to RSVP for events?", a: "Yes, most events require an RSVP in advance. We will always give founders priority, but spots can fill up so do not wait too long." },
               { q: "Is early access guaranteed for limited products?", a: "Early access means you get first look before the public, but quantities on limited drops are limited. If something is really special, move fast." },
               { q: "Will benefits ever change during my membership?", a: "No. Whatever is included in your tier when you join is locked in for the full year. We will not change the deal on you." },
