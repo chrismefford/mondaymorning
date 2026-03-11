@@ -7,7 +7,7 @@ const corsHeaders = {
 };
 
 const tierLabels: Record<string, string> = {
-  founders: "Founders Club — $1,000/yr",
+  founders: "Founder's Chair — $1,000/yr",
   patron: "Patron Circle — $5,000/yr",
   table: "Founding Table — $10,000/yr",
 };
