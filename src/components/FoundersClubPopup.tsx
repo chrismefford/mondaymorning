@@ -80,7 +80,7 @@ const FoundersClubPopup = () => {
                 className="w-20 h-20 mx-auto mb-4 opacity-90"
               />
 
-              <p className="font-sans text-[10px] uppercase tracking-[0.3em] text-gold-warm mb-2">
+              <p className="font-sans text-[11px] uppercase tracking-[0.2em] text-forest-light mb-2 font-semibold">
                 Only 130 founding spots
               </p>
 
@@ -95,15 +95,15 @@ const FoundersClubPopup = () => {
 
             {/* Benefits section */}
             <div className="px-8 sm:px-10 pb-6 relative">
-              <div className="border-t border-gold/20 pt-5">
-                <p className="font-sans text-[10px] uppercase tracking-[0.2em] text-gold-warm mb-4 text-center">
+              <div className="border-t border-forest/10 pt-5">
+                <p className="font-sans text-[11px] uppercase tracking-[0.2em] text-forest-light mb-4 text-center font-semibold">
                   What you get as a founder
                 </p>
                 <div className="space-y-2.5 max-w-sm mx-auto">
                   {benefits.map((benefit, i) => (
                     <div key={i} className="flex items-start gap-3">
-                      <span className="text-gold text-sm mt-0.5 leading-none font-serif italic shrink-0">+</span>
-                      <span className="font-sans text-[13px] text-forest/80 leading-snug">{benefit}</span>
+                      <span className="text-gold text-base mt-0.5 leading-none font-serif italic shrink-0">+</span>
+                      <span className="font-sans text-sm text-forest/80 leading-snug">{benefit}</span>
                     </div>
                   ))}
                 </div>
@@ -118,12 +118,12 @@ const FoundersClubPopup = () => {
                     size="lg"
                     className="w-full bg-forest hover:bg-forest-deep text-cream font-sans text-xs font-semibold uppercase tracking-wider py-6 rounded-none border border-forest"
                   >
-                    See All Tiers and Apply
+                    Claim Your Founding Spot
                     <ArrowRight className="w-4 h-4 ml-2" />
                   </Button>
                 </a>
-                <p className="text-center font-sans text-[11px] text-forest/40">
-                  Starting at $1,000/yr. Three tiers. Limited spots remaining.
+                <p className="text-center font-sans text-xs text-forest/50">
+                  Starting at $1,000/yr. Spots are filling up.
                 </p>
                 <button
                   onClick={handleClose}
