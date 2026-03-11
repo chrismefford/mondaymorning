@@ -439,7 +439,7 @@
   50% { color: hsl(45 85% 62%); }
 }
 
-
+@keyframes loading-progress {
   0% { width: 0%; }
   50% { width: 100%; }
   100% { width: 0%; }
