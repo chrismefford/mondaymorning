@@ -1,5 +1,6 @@
 import { useState, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
+import { useShopifyProduct } from "@/hooks/useShopifyProduct";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Check, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
