@@ -405,12 +405,29 @@ const SocialClub = () => {
                           {group.category}
                         </p>
                         <ul className="space-y-2.5">
-                          {group.items.map((item) => (
-                            <li key={item} className="flex items-start gap-2.5">
-                              <Check className={`h-3.5 w-3.5 mt-0.5 shrink-0 ${isTable ? "text-gold-rich/70" : "text-primary/60"}`} />
-                              <span className={`font-sans text-sm ${isTable ? "text-champagne/70" : "text-foreground/70"}`}>{item}</span>
-                            </li>
-                          ))}
+                          {group.items.map((item, idx) => {
+                            const isNested = typeof item === 'object' && item !== null && 'text' in item;
+                            const text = isNested ? item.text : item;
+                            const subItems = isNested ? item.subItems : undefined;
+                            return (
+                              <li key={typeof text === 'string' ? text : idx}>
+                                <div className="flex items-start gap-2.5">
+                                  <Check className={`h-3.5 w-3.5 mt-0.5 shrink-0 ${isTable ? "text-gold-rich/70" : "text-primary/60"}`} />
+                                  <span className={`font-sans text-sm ${isTable ? "text-champagne/70" : "text-foreground/70"}`}>{text as string}</span>
+                                </div>
+                                {subItems && (
+                                  <ul className="ml-6 mt-1.5 space-y-1.5">
+                                    {subItems.map((sub: string) => (
+                                      <li key={sub} className="flex items-start gap-2">
+                                        <span className={`mt-1.5 h-1.5 w-1.5 rounded-full shrink-0 ${isTable ? "bg-gold-rich/40" : "bg-primary/30"}`} />
+                                        <span className={`font-sans text-xs ${isTable ? "text-champagne/50" : "text-foreground/50"}`}>{sub}</span>
+                                      </li>
+                                    ))}
+                                  </ul>
+                                )}
+                              </li>
+                            );
+                          })}
                         </ul>
                       </div>
                     ))}
