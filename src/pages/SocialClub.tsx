@@ -238,7 +238,7 @@ const SocialClub = () => {
           </h1>
           <div className="w-16 h-px bg-gold-rich/40 mx-auto mb-8 animate-fade-up delay-150" />
           <p className="font-sans text-base md:text-lg text-champagne/60 max-w-xl mx-auto mb-10 animate-fade-up delay-200 leading-relaxed tracking-wide">
-            Great drinks, real community, unforgettable nights out, all without alcohol. This is what we are building and we want you in on it from the start.
+            Great drinks, real community, unforgettable experiences, all without alcohol. This is what we are building and we want you in on it from the start.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-up delay-300">
             <Button
