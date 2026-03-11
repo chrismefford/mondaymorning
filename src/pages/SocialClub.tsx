@@ -55,11 +55,12 @@ const tiers = [
     description: "Everything in the Founder's Chair, turned up. More slushies, more access, and you are helping us grow this thing in a real way.",
     benefits: [
       { category: "Events & Access", items: [
-        "Four exclusive founders events per year",
-        "Founder tasting nights with new products",
-        "Private product launch events",
-        "Founders Happy Hour with menu previews",
-        "Annual Founders Celebration party",
+        { text: "Four exclusive founders events per year", subItems: [
+          "Founder tasting nights with new products",
+          "Private product launch events",
+          "Founders Happy Hour with menu previews",
+          "Annual Founders Celebration party",
+        ]},
         "Two seats at all founders events",
         "Two free guest passes to founders events",
         "Private industry tastings with NA brand founders",
