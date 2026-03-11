@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Check, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -12,7 +13,6 @@ import SEO from "@/components/SEO";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import stampGold from "@/assets/stamp-gold.svg";
-import zaneFounder from "@/assets/zane-founder.png";
 import foundersLogo from "@/assets/founders-club-logo.png";
 
 const tiers = [
