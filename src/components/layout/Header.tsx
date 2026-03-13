@@ -42,7 +42,7 @@ const hireUsItems = [
   { name: "Press", icon: Newspaper, href: "/press", isPress: true },
 ];
 
-
+const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isCollectionsOpen, setIsCollectionsOpen] = useState(false);
