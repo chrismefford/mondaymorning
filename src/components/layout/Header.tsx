@@ -30,6 +30,7 @@ const recipeItems = [
   { name: "Beach", icon: Umbrella, href: "/recipes?occasion=beach" },
   { name: "Celebration", icon: PartyPopper, href: "/recipes?occasion=celebration" },
   { name: "Blog", icon: BookOpen, href: "/blog", isBlog: true },
+  { name: "Press", icon: Newspaper, href: "/press", isPress: true },
 ];
 
 
