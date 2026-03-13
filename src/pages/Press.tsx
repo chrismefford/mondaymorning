@@ -69,6 +69,13 @@ const newspaperFeatures: PressItem[] = [
 
 const nationalFeatures: PressItem[] = [
   {
+    outlet: "Inc.",
+    title: "Why More People Are Embracing the Alcohol-Free Drinking Boom",
+    date: "Feb 22, 2025",
+    url: "https://www.inc.com/marcel-schwantes/why-more-people-are-embracing-the-alcohol-free-drinking-boom/91151053",
+    type: "national",
+  },
+  {
     outlet: "Associated Press",
     title: "Nonalcoholic beer and mocktails can help people stay sober or drink less, but are not for everyone",
     date: "Aug 27, 2025",
