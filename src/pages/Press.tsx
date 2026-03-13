@@ -72,7 +72,7 @@ const nationalFeatures: PressItem[] = [
     outlet: "Associated Press",
     title: "Nonalcoholic beer and mocktails can help people stay sober or drink less, but are not for everyone",
     date: "Aug 27, 2025",
-    url: "https://apnews.com/article/nonalcoholic-beer-mocktails-sober-curious",
+    url: "https://apnews.com/article/na-beer-alcohol-sober-drinking-mocktail-294a5de375fc7798c98a5b64691ed6f0",
     type: "national",
   },
   {
