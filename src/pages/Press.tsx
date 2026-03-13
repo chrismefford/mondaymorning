@@ -41,7 +41,7 @@ const newspaperFeatures: PressItem[] = [
     outlet: "San Diego Union-Tribune",
     title: "On the Menu: Monday Morning Bottle Shop offers spirits, without the alcohol, in Pacific Beach",
     date: "Aug 5, 2025",
-    url: "https://www.sandiegouniontribune.com/2025/08/05/on-the-menu-monday-morning-bottle-shop/",
+    url: "https://www.sandiegouniontribune.com/2025/08/05/on-the-menu-monday-morning-bottle-shop-offers-spirits-without-the-alcohol-in-pacific-beach/",
     type: "newspaper",
   },
   {
