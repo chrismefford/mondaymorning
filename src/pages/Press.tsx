@@ -322,12 +322,12 @@ const Press = () => {
               ].map((point, i) => (
                 <div
                   key={i}
-                  className="flex gap-4 bg-forest/10 border border-forest/15 p-6 lg:p-8 hover:border-forest/30 transition-colors duration-300"
+                  className="flex gap-4 bg-white p-6 lg:p-8 shadow-sm"
                 >
-                  <span className="font-serif text-3xl text-forest/60 leading-none flex-shrink-0">
+                  <span className="font-serif text-3xl text-gold leading-none flex-shrink-0">
                     {String(i + 1).padStart(2, "0")}
                   </span>
-                  <p className="font-sans text-forest/80 leading-relaxed text-sm lg:text-base">
+                  <p className="font-sans text-forest leading-relaxed text-sm lg:text-base">
                     {point}
                   </p>
                 </div>
