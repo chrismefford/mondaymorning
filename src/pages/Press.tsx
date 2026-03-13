@@ -65,6 +65,13 @@ const newspaperFeatures: PressItem[] = [
     url: "https://www.sandiegoville.com/2025/12/monday-morning-non-alcoholic-bottle-shop-second-location.html",
     type: "newspaper",
   },
+  {
+    outlet: "Hoodline",
+    title: "Sober Startup Monday Morning Grabs Downtown Warehouse in San Diego Power Play",
+    date: "Feb 2026",
+    url: "https://hoodline.com/2026/02/sober-startup-monday-morning-grabs-downtown-warehouse-in-san-diego-power-play/",
+    type: "newspaper",
+  },
 ];
 
 const nationalFeatures: PressItem[] = [
