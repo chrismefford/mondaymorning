@@ -46,6 +46,7 @@ import AlcoholAlternatives from "./pages/AlcoholAlternatives";
 import SocialClub from "./pages/SocialClub";
 import FoundersWelcome from "./pages/FoundersWelcome";
 import Press from "./pages/Press";
+import Consulting from "./pages/Consulting";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
