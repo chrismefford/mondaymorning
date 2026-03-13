@@ -67,7 +67,7 @@ const Header = () => {
     { name: "Story", href: "/about", number: "02" },
     { name: "Behind The Bar", href: "/recipes", number: "03", hasDropdown: true, dropdownType: "recipes" },
     { name: "Find Us", href: "/locations", number: "04" },
-    { name: "Businesses", href: "/services", number: "05" },
+    { name: "Hire Us", href: "/services", number: "05", hasDropdown: true, dropdownType: "hireus" },
   ];
 
   // Determine if we're on a dark hero page
