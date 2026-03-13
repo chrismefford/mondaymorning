@@ -199,18 +199,29 @@ const Consulting = () => {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-6 max-w-2xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-4 lg:gap-5 max-w-5xl mx-auto">
             {[
-              "Real retail data from 200+ NA products",
-              "Direct relationships with 50+ brands",
-              "Hospitality-focused training programs",
-              "Menu design rooted in actual customer behavior",
-              "Event & tasting programming expertise",
-              "San Diego market knowledge",
-            ].map((point) => (
-              <div key={point} className="flex items-start gap-3">
-                <CheckCircle2 className="h-5 w-5 text-gold mt-0.5 flex-shrink-0" />
-                <p className="font-sans text-sm text-cream/80">{point}</p>
+              "We operate two locations where partners can experience and taste products in a real hospitality environment.",
+              "We run a warehouse and distribution network, which means you can access product quickly and consistently.",
+              "We come from nightlife and hospitality culture. We understand what people want when they go out and still want the night to feel fun.",
+              "While many NA programs rely on juice, tea, and soda water, we focus on bold flavor, functionality, and drinks that feel like real cocktails.",
+              "Unlike traditional distributors, we do not push products simply because we carry them. We evaluate every drink and only recommend what meets our standards.",
+              "We are not trying to imitate alcohol culture. We are helping define what the next generation of social drinking looks like.",
+              "Every product and concept we recommend has been tested in real retail environments before it reaches your menu.",
+              "We help venues build systems, train staff, and design menus that work during real service.",
+              "Through our distribution network we provide access to some of the best alcohol free beverages in the world.",
+              "Most importantly, we understand that great NA programs are about experience, energy, and culture, not just ingredients.",
+            ].map((point, i) => (
+              <div
+                key={i}
+                className="flex gap-4 bg-cream/10 border border-cream/10 p-6 lg:p-8"
+              >
+                <span className="font-serif text-3xl text-gold leading-none flex-shrink-0">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <p className="font-sans text-cream/80 leading-relaxed text-sm lg:text-base">
+                  {point}
+                </p>
               </div>
             ))}
           </div>
