@@ -110,13 +110,14 @@ const Consulting = () => {
               expertise in non-alcoholic beverages to help restaurants, bars,
               hotels, and brands build programs that perform.
             </p>
-            <Button
-              onClick={() => setContactOpen(true)}
-              className="bg-gold text-forest hover:bg-gold-light font-sans text-sm font-bold uppercase tracking-widest px-10 py-6 border-0"
-            >
-              Get Started
-              <ArrowRight className="ml-2 h-4 w-4" />
-            </Button>
+            <ContactFormDialog
+              trigger={
+                <Button className="bg-gold text-forest hover:bg-gold-light font-sans text-sm font-bold uppercase tracking-widest px-10 py-6 border-0">
+                  Get Started
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Button>
+              }
+            />
           </div>
         </div>
       </section>
