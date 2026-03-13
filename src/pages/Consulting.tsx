@@ -243,7 +243,7 @@ const Consulting = () => {
 
       <Footer />
 
-      <ContactFormDialog open={contactOpen} onOpenChange={setContactOpen} />
+      
     </>
   );
 };
