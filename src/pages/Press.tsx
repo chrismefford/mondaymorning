@@ -296,43 +296,43 @@ const Press = () => {
         </section>
 
         {/* Why Monday Morning */}
-        <section>
-          <div className="flex items-center gap-4 mb-8">
-            <div className="w-10 h-10 bg-forest flex items-center justify-center">
-              <Globe className="w-5 h-5 text-cream" />
+        <section className="bg-forest text-cream p-10 lg:p-16 -mx-4 lg:-mx-8">
+          <div className="max-w-5xl mx-auto">
+            <p className="font-sans text-xs uppercase tracking-[0.25em] text-gold mb-4 text-center">
+              San Diego's NA Authority
+            </p>
+            <h2 className="font-serif text-3xl lg:text-5xl text-cream mb-4 text-center">
+              Why Monday Morning?
+            </h2>
+            <p className="font-sans text-cream/60 text-center max-w-2xl mx-auto mb-12 leading-relaxed">
+              The ideal consultant for the non alcoholic space in San Diego.
+            </p>
+            <div className="grid md:grid-cols-2 gap-4 lg:gap-5">
+              {[
+                "We operate two locations where partners can experience and taste products in a real hospitality environment.",
+                "We run a warehouse and distribution network, which means you can access product quickly and consistently.",
+                "We come from nightlife and hospitality culture. We understand what people want when they go out and still want the night to feel fun.",
+                "While many NA programs rely on juice, tea, and soda water, we focus on bold flavor, functionality, and drinks that feel like real cocktails.",
+                "Unlike traditional distributors, we do not push products simply because we carry them. We evaluate every drink and only recommend what meets our standards.",
+                "We are not trying to imitate alcohol culture. We are helping define what the next generation of social drinking looks like.",
+                "Every product and concept we recommend has been tested in real retail environments before it reaches your menu.",
+                "We help venues build systems, train staff, and design menus that work during real service.",
+                "Through our distribution network we provide access to some of the best alcohol free beverages in the world.",
+                "Most importantly, we understand that great NA programs are about experience, energy, and culture, not just ingredients.",
+              ].map((point, i) => (
+                <div
+                  key={i}
+                  className="flex gap-4 bg-cream/5 border border-cream/10 p-6 lg:p-8 hover:border-gold/30 transition-colors duration-300"
+                >
+                  <span className="font-serif text-3xl text-gold/80 leading-none flex-shrink-0">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <p className="font-sans text-cream/80 leading-relaxed text-sm lg:text-base">
+                    {point}
+                  </p>
+                </div>
+              ))}
             </div>
-            <div>
-              <h2 className="font-serif text-2xl lg:text-3xl text-forest">Why Monday Morning?</h2>
-              <p className="font-sans text-xs uppercase tracking-[0.15em] text-muted-foreground mt-1">
-                The ideal consultant for the NA space in San Diego
-              </p>
-            </div>
-          </div>
-          <div className="grid md:grid-cols-2 gap-4">
-            {[
-              "We operate two locations where partners can experience and taste products in a real hospitality environment.",
-              "We run a warehouse and distribution network, which means you can access product quickly and consistently.",
-              "We come from nightlife and hospitality culture. We understand what people want when they go out and still want the night to feel fun.",
-              "While many NA programs rely on juice, tea, and soda water, we focus on bold flavor, functionality, and drinks that feel like real cocktails.",
-              "Unlike traditional distributors, we do not push products simply because we carry them. We evaluate every drink and only recommend what meets our standards.",
-              "We are not trying to imitate alcohol culture. We are helping define what the next generation of social drinking looks like.",
-              "Every product and concept we recommend has been tested in real retail environments before it reaches your menu.",
-              "We help venues build systems, train staff, and design menus that work during real service.",
-              "Through our distribution network we provide access to some of the best alcohol free beverages in the world.",
-              "Most importantly, we understand that great NA programs are about experience, energy, and culture, not just ingredients.",
-            ].map((point, i) => (
-              <div
-                key={i}
-                className="flex gap-4 bg-cream/50 border border-sand/60 p-6 lg:p-8"
-              >
-                <span className="font-serif text-2xl text-gold leading-none flex-shrink-0">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <p className="font-sans text-forest/80 leading-relaxed text-sm lg:text-base">
-                  {point}
-                </p>
-              </div>
-            ))}
           </div>
         </section>
 
