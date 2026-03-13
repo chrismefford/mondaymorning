@@ -99,7 +99,7 @@ const blogFeatures: PressItem[] = [
     outlet: "LocallyWell",
     title: "From PB To OB: San Diego's First Non-Alcoholic Bottle Shop Is Expanding",
     date: "Dec 29, 2025",
-    url: "https://locallywell.com/san-diego-non-alcoholic-bottle-shop-expanding/",
+    url: "https://www.locallywell.com/monday-morning-af-san-diego-bottle-shop-expansion/",
     type: "blog",
   },
   {
