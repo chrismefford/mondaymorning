@@ -46,6 +46,7 @@ import AlcoholAlternatives from "./pages/AlcoholAlternatives";
 import SocialClub from "./pages/SocialClub";
 import FoundersWelcome from "./pages/FoundersWelcome";
 import Press from "./pages/Press";
+import Consulting from "./pages/Consulting";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -108,6 +109,7 @@ const AppContent = () => {
         <Route path="/social-club" element={<SocialClub />} />
         <Route path="/founders-welcome" element={<FoundersWelcome />} />
         <Route path="/press" element={<Press />} />
+        <Route path="/consulting" element={<Consulting />} />
         {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
         <Route path="*" element={<NotFound />} />
       </Routes>

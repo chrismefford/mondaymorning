@@ -33,6 +33,14 @@ const recipeItems = [
   { name: "Press", icon: Newspaper, href: "/press", isPress: true },
 ];
 
+const hireUsItems = [
+  { name: "Businesses", icon: Building2, href: "/services" },
+  { name: "Consulting", icon: Sparkles, href: "/consulting" },
+  { name: "Restaurants", icon: UtensilsCrossed, href: "/services" },
+  { name: "Bars", icon: Martini, href: "/services" },
+  { name: "Distribution", icon: Package, href: "/services" },
+  { name: "Press", icon: Newspaper, href: "/press", isPress: true },
+];
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -67,7 +75,7 @@ const Header = () => {
     { name: "Story", href: "/about", number: "02" },
     { name: "Behind The Bar", href: "/recipes", number: "03", hasDropdown: true, dropdownType: "recipes" },
     { name: "Find Us", href: "/locations", number: "04" },
-    { name: "Businesses", href: "/services", number: "05" },
+    { name: "Hire Us", href: "/services", number: "05", hasDropdown: true, dropdownType: "hireus" },
   ];
 
   // Determine if we're on a dark hero page
@@ -87,6 +95,7 @@ const Header = () => {
      window.location.pathname === '/alcohol-alternatives' ||
      window.location.pathname === '/social-club' ||
      window.location.pathname === '/press' ||
+     window.location.pathname === '/consulting' ||
      window.location.pathname.startsWith('/blog/'));
 
   // Wholesale catalog needs solid header background always
@@ -118,7 +127,7 @@ const Header = () => {
             {/* Desktop Navigation - Center */}
             <nav className="hidden md:flex items-center gap-1">
               {navLinks.map((link) => {
-                const dropdownItems = link.dropdownType === "recipes" ? recipeItems : categoryItems;
+                const dropdownItems = link.dropdownType === "recipes" ? recipeItems : link.dropdownType === "hireus" ? hireUsItems : categoryItems;
                 return link.hasDropdown ? (
                   <DropdownMenu key={link.name} modal={false}>
                     <DropdownMenuTrigger asChild>
@@ -321,7 +330,7 @@ const Header = () => {
             {navLinks.map((link, index) => {
               const isOpen = link.dropdownType === "collections" ? isCollectionsOpen : isRecipesOpen;
               const setIsOpen = link.dropdownType === "collections" ? setIsCollectionsOpen : setIsRecipesOpen;
-              const dropdownItems = link.dropdownType === "recipes" ? recipeItems : categoryItems;
+              const dropdownItems = link.dropdownType === "recipes" ? recipeItems : link.dropdownType === "hireus" ? hireUsItems : categoryItems;
               
               return link.hasDropdown ? (
                 <div key={link.name}>
