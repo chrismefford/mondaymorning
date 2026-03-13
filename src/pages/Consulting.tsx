@@ -66,8 +66,6 @@ const stats = [
 ];
 
 const Consulting = () => {
-  const [contactOpen, setContactOpen] = useState(false);
-
   return (
     <>
       <Helmet>
