@@ -2,7 +2,7 @@ import { ExternalLink, Tv, Newspaper, Globe, Podcast, BookOpen, Play } from "luc
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import SEO from "@/components/SEO";
-import pressHero from "@/assets/lifestyle/press-hero.jpg";
+import pressHero from "@/assets/lifestyle/press-hero.png";
 
 interface PressItem {
   outlet: string;
