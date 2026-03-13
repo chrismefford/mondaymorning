@@ -79,7 +79,7 @@ const nationalFeatures: PressItem[] = [
     outlet: "EIN Presswire",
     title: "Monday Morning Bottle Shop Unveils Chic Lounge as Its Non-Alcohol Sales Explode 400%",
     date: "Jun 12, 2025",
-    url: "https://www.einpresswire.com/article/monday-morning-bottle-shop-lounge-non-alcohol-sales",
+    url: "https://www.einpresswire.com/article/821681940/monday-morning-bottle-shop-unveils-chic-lounge-as-its-non-alcohol-sales-explode-400",
     type: "national",
   },
 ];
