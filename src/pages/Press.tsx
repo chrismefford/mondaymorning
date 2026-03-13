@@ -17,7 +17,7 @@ const tvFeatures: PressItem[] = [
     outlet: "CBS 8",
     title: "Non-Alcoholic Bottle Shop Aids 'Dry January' Participants in San Diego",
     date: "Jan 5, 2025",
-    url: "https://www.cbs8.com/article/life/food/non-alcoholic-bottle-shop-aids-dry-january-participants-in-san-diego/509-97c9e9b2-3f5e-4e14-8c1e-bf1c7d7e3c5a",
+    url: "https://www.cbs8.com/article/news/local/non-alcoholic-bottle-shop-aids-dry-january-participants-in-san-diego/509-466a9201-d527-485b-bdbf-01674b7ce3db",
     type: "tv",
   },
   {
@@ -31,7 +31,7 @@ const tvFeatures: PressItem[] = [
     outlet: "KUSI News",
     title: "Monday Morning Bottle Shop on KUSI's Good Business San Diego",
     date: "Dec 17, 2024",
-    url: "https://www.kusi.com/good-business-san-diego/monday-morning-bottle-shop/",
+    url: "https://www.youtube.com/watch?v=eplcMcJF2vg",
     type: "tv",
   },
 ];
@@ -41,14 +41,14 @@ const newspaperFeatures: PressItem[] = [
     outlet: "San Diego Union-Tribune",
     title: "On the Menu: Monday Morning Bottle Shop offers spirits, without the alcohol, in Pacific Beach",
     date: "Aug 5, 2025",
-    url: "https://www.sandiegouniontribune.com/2025/08/05/on-the-menu-monday-morning-bottle-shop/",
+    url: "https://www.sandiegouniontribune.com/2025/08/05/on-the-menu-monday-morning-bottle-shop-offers-spirits-without-the-alcohol-in-pacific-beach/",
     type: "newspaper",
   },
   {
     outlet: "Times of San Diego",
     title: "Monday Morning Bottle Shop serves non-alcoholic wines, cocktails",
     date: "Jan 6, 2026",
-    url: "https://timesofsandiego.com/business/2026/01/06/monday-morning-bottle-shop/",
+    url: "https://timesofsandiego.com/business/2026/01/06/monday-morning-bottle-shop-non-alcoholic-wines-cocktails-ob/",
     type: "newspaper",
   },
   {
@@ -72,14 +72,14 @@ const nationalFeatures: PressItem[] = [
     outlet: "Associated Press",
     title: "Nonalcoholic beer and mocktails can help people stay sober or drink less, but are not for everyone",
     date: "Aug 27, 2025",
-    url: "https://apnews.com/article/nonalcoholic-beer-mocktails-sober-curious",
+    url: "https://apnews.com/article/na-beer-alcohol-sober-drinking-mocktail-294a5de375fc7798c98a5b64691ed6f0",
     type: "national",
   },
   {
     outlet: "EIN Presswire",
     title: "Monday Morning Bottle Shop Unveils Chic Lounge as Its Non-Alcohol Sales Explode 400%",
     date: "Jun 12, 2025",
-    url: "https://www.einpresswire.com/article/monday-morning-bottle-shop-lounge-non-alcohol-sales",
+    url: "https://www.einpresswire.com/article/821681940/monday-morning-bottle-shop-unveils-chic-lounge-as-its-non-alcohol-sales-explode-400",
     type: "national",
   },
 ];
@@ -99,14 +99,14 @@ const blogFeatures: PressItem[] = [
     outlet: "LocallyWell",
     title: "From PB To OB: San Diego's First Non-Alcoholic Bottle Shop Is Expanding",
     date: "Dec 29, 2025",
-    url: "https://locallywell.com/san-diego-non-alcoholic-bottle-shop-expanding/",
+    url: "https://www.locallywell.com/monday-morning-af-san-diego-bottle-shop-expansion/",
     type: "blog",
   },
   {
     outlet: "NA Beer Club",
     title: "Monday Morning Bottle Shop Expands San Diego Footprint",
     date: "Jan 14, 2026",
-    url: "https://nabeerclub.com/monday-morning-bottle-shop-san-diego/",
+    url: "https://nabeerclub.com/monday-morning-bottle-shop-expands-san-diego-footprint/",
     type: "blog",
   },
   {
