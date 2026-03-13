@@ -118,7 +118,7 @@ const Header = () => {
             {/* Desktop Navigation - Center */}
             <nav className="hidden md:flex items-center gap-1">
               {navLinks.map((link) => {
-                const dropdownItems = link.dropdownType === "recipes" ? recipeItems : categoryItems;
+                const dropdownItems = link.dropdownType === "recipes" ? recipeItems : link.dropdownType === "hireus" ? hireUsItems : categoryItems;
                 return link.hasDropdown ? (
                   <DropdownMenu key={link.name} modal={false}>
                     <DropdownMenuTrigger asChild>
