@@ -106,7 +106,7 @@ const blogFeatures: PressItem[] = [
     outlet: "NA Beer Club",
     title: "Monday Morning Bottle Shop Expands San Diego Footprint",
     date: "Jan 14, 2026",
-    url: "https://nabeerclub.com/monday-morning-bottle-shop-san-diego/",
+    url: "https://nabeerclub.com/monday-morning-bottle-shop-expands-san-diego-footprint/",
     type: "blog",
   },
   {
