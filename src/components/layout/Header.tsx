@@ -33,8 +33,16 @@ const recipeItems = [
   { name: "Press", icon: Newspaper, href: "/press", isPress: true },
 ];
 
+const hireUsItems = [
+  { name: "Businesses", icon: Building2, href: "/services" },
+  { name: "Consulting", icon: Sparkles, href: "/consulting" },
+  { name: "Restaurants", icon: UtensilsCrossed, href: "/services" },
+  { name: "Bars", icon: Martini, href: "/services" },
+  { name: "Distribution", icon: Package, href: "/services" },
+  { name: "Press", icon: Newspaper, href: "/press", isPress: true },
+];
 
-const Header = () => {
+
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isCollectionsOpen, setIsCollectionsOpen] = useState(false);
