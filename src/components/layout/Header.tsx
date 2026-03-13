@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Menu, X, ShoppingBag, ArrowUpRight, Sparkles, Beer, Wine, Martini, Star, Leaf, Package, ChevronDown, Sunrise, UtensilsCrossed, Sofa, Umbrella, PartyPopper, Search, BookOpen, User, Building2 } from "lucide-react";
+import { Menu, X, ShoppingBag, ArrowUpRight, Sparkles, Beer, Wine, Martini, Star, Leaf, Package, ChevronDown, Sunrise, UtensilsCrossed, Sofa, Umbrella, PartyPopper, Search, BookOpen, User, Building2, Newspaper } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useCart } from "@/hooks/useCart";
 import logoGold from "@/assets/logo-primary-gold.svg";
