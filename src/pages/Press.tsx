@@ -24,7 +24,7 @@ const tvFeatures: PressItem[] = [
     outlet: "FOX 5 San Diego",
     title: "Alcohol free bottle shop, lounge welcomes guests in Ocean Beach",
     date: "Jan 8, 2026",
-    url: "https://fox5sandiego.com/news/local-news/alcohol-free-bottle-shop-lounge-welcomes-guests-in-ocean-beach/",
+    url: "https://www.youtube.com/watch?v=ZPQ0O6rEnCI",
     type: "tv",
   },
   {
