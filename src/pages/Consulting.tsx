@@ -59,8 +59,8 @@ const services = [
 ];
 
 const stats = [
-  { value: "200+", label: "Products Tested" },
-  { value: "2", label: "Retail Locations" },
+  { value: "500+", label: "Products Tested" },
+  { value: "30+", label: "Bars & Restaurants" },
   { value: "50+", label: "Brands Carried" },
   { value: "1000s", label: "Customers Served" },
 ];
