@@ -229,13 +229,14 @@ const Consulting = () => {
               Whether you're launching a new NA program or elevating an existing
               one, we'd love to help. Reach out for a free consultation.
             </p>
-            <Button
-              onClick={() => setContactOpen(true)}
-              className="bg-foreground text-background hover:bg-gold hover:text-foreground font-sans text-sm font-bold uppercase tracking-widest px-12 py-6 border-2 border-foreground"
-            >
-              Contact Us
-              <ArrowRight className="ml-2 h-4 w-4" />
-            </Button>
+            <ContactFormDialog
+              trigger={
+                <Button className="bg-foreground text-background hover:bg-gold hover:text-foreground font-sans text-sm font-bold uppercase tracking-widest px-12 py-6 border-2 border-foreground">
+                  Contact Us
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Button>
+              }
+            />
           </div>
         </div>
       </section>
