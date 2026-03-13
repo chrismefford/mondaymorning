@@ -45,6 +45,7 @@ import ZeroProofNearby from "./pages/ZeroProofNearby";
 import AlcoholAlternatives from "./pages/AlcoholAlternatives";
 import SocialClub from "./pages/SocialClub";
 import FoundersWelcome from "./pages/FoundersWelcome";
+import Press from "./pages/Press";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -106,6 +107,7 @@ const AppContent = () => {
         <Route path="/alcohol-alternatives" element={<AlcoholAlternatives />} />
         <Route path="/social-club" element={<SocialClub />} />
         <Route path="/founders-welcome" element={<FoundersWelcome />} />
+        <Route path="/press" element={<Press />} />
         {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
         <Route path="*" element={<NotFound />} />
       </Routes>
