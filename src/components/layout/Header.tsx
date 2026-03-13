@@ -321,7 +321,7 @@ const Header = () => {
             {navLinks.map((link, index) => {
               const isOpen = link.dropdownType === "collections" ? isCollectionsOpen : isRecipesOpen;
               const setIsOpen = link.dropdownType === "collections" ? setIsCollectionsOpen : setIsRecipesOpen;
-              const dropdownItems = link.dropdownType === "recipes" ? recipeItems : categoryItems;
+              const dropdownItems = link.dropdownType === "recipes" ? recipeItems : link.dropdownType === "hireus" ? hireUsItems : categoryItems;
               
               return link.hasDropdown ? (
                 <div key={link.name}>

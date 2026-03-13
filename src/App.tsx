@@ -109,6 +109,7 @@ const AppContent = () => {
         <Route path="/social-club" element={<SocialClub />} />
         <Route path="/founders-welcome" element={<FoundersWelcome />} />
         <Route path="/press" element={<Press />} />
+        <Route path="/consulting" element={<Consulting />} />
         {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
         <Route path="*" element={<NotFound />} />
       </Routes>
