@@ -296,15 +296,15 @@ const Press = () => {
         </section>
 
         {/* Why Monday Morning */}
-        <section className="bg-forest text-cream p-10 lg:p-16 -mx-4 lg:-mx-8">
+        <section className="bg-gold text-forest p-10 lg:p-16 -mx-4 lg:-mx-8">
           <div className="max-w-5xl mx-auto">
-            <p className="font-sans text-xs uppercase tracking-[0.25em] text-gold mb-4 text-center">
+            <p className="font-sans text-xs uppercase tracking-[0.25em] text-forest-deep mb-4 text-center">
               San Diego's NA Authority
             </p>
-            <h2 className="font-serif text-3xl lg:text-5xl text-cream mb-4 text-center">
+            <h2 className="font-serif text-3xl lg:text-5xl text-forest mb-4 text-center">
               Why Monday Morning?
             </h2>
-            <p className="font-sans text-cream/60 text-center max-w-2xl mx-auto mb-12 leading-relaxed">
+            <p className="font-sans text-forest/60 text-center max-w-2xl mx-auto mb-12 leading-relaxed">
               The ideal consultant for the non alcoholic space in San Diego.
             </p>
             <div className="grid md:grid-cols-2 gap-4 lg:gap-5">
