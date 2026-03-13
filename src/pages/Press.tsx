@@ -31,7 +31,7 @@ const tvFeatures: PressItem[] = [
     outlet: "KUSI News",
     title: "Monday Morning Bottle Shop on KUSI's Good Business San Diego",
     date: "Dec 17, 2024",
-    url: "https://www.kusi.com/good-business-san-diego/monday-morning-bottle-shop/",
+    url: "https://www.youtube.com/watch?v=eplcMcJF2vg",
     type: "tv",
   },
 ];
