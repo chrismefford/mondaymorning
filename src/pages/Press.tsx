@@ -48,7 +48,7 @@ const newspaperFeatures: PressItem[] = [
     outlet: "Times of San Diego",
     title: "Monday Morning Bottle Shop serves non-alcoholic wines, cocktails",
     date: "Jan 6, 2026",
-    url: "https://timesofsandiego.com/business/2026/01/06/monday-morning-bottle-shop/",
+    url: "https://timesofsandiego.com/business/2026/01/06/monday-morning-bottle-shop-non-alcoholic-wines-cocktails-ob/",
     type: "newspaper",
   },
   {
