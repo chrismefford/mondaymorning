@@ -17,7 +17,7 @@ const tvFeatures: PressItem[] = [
     outlet: "CBS 8",
     title: "Non-Alcoholic Bottle Shop Aids 'Dry January' Participants in San Diego",
     date: "Jan 5, 2025",
-    url: "https://www.cbs8.com/article/life/food/non-alcoholic-bottle-shop-aids-dry-january-participants-in-san-diego/509-97c9e9b2-3f5e-4e14-8c1e-bf1c7d7e3c5a",
+    url: "https://www.cbs8.com/article/news/local/non-alcoholic-bottle-shop-aids-dry-january-participants-in-san-diego/509-466a9201-d527-485b-bdbf-01674b7ce3db",
     type: "tv",
   },
   {
