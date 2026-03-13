@@ -69,6 +69,13 @@ const newspaperFeatures: PressItem[] = [
 
 const nationalFeatures: PressItem[] = [
   {
+    outlet: "Inc.",
+    title: "Why More People Are Embracing the Alcohol-Free Drinking Boom",
+    date: "Feb 22, 2025",
+    url: "https://www.inc.com/marcel-schwantes/why-more-people-are-embracing-the-alcohol-free-drinking-boom/91151053",
+    type: "national",
+  },
+  {
     outlet: "Associated Press",
     title: "Nonalcoholic beer and mocktails can help people stay sober or drink less, but are not for everyone",
     date: "Aug 27, 2025",
@@ -219,7 +226,7 @@ const Press = () => {
       <section className="bg-forest py-6 border-b border-forest-light/20">
         <div className="container mx-auto px-4">
           <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-3">
-            {["Associated Press", "CBS 8", "FOX 5", "KUSI", "San Diego Union-Tribune", "SD Business Journal"].map((name) => (
+            {["Associated Press", "Inc.", "CBS 8", "FOX 5", "KUSI", "San Diego Union-Tribune", "SD Business Journal"].map((name) => (
               <span key={name} className="font-serif text-sm lg:text-base text-cream/60 italic whitespace-nowrap">
                 {name}
               </span>
