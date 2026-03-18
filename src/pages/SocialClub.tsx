@@ -821,7 +821,6 @@ const SocialClub = () => {
 
       <Footer />
     </div>
-    </div>
   );
 };
 
