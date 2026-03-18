@@ -30,7 +30,7 @@ const tiers = [
     price: "$1,000",
     priceNote: "per year",
     spots: "100",
-    description: "The Founders Club represents the core community behind Monday Morning and the individuals helping establish San Diego's alcohol-free social culture. Each member receives a personalized Founders Card, granting access to a range of exclusive benefits and experiences at Monday Morning.",
+    description: "The Founder's Chair represents the core community behind Monday Morning and the individuals helping establish San Diego's alcohol-free social culture. Each member receives a personalized Founders Card, granting access to a range of exclusive benefits and experiences at Monday Morning.",
     benefits: [
       { category: "Founders Club Privileges", items: [
         { text: "At least four exclusive events annually", subItems: [
