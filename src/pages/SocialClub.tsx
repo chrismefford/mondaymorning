@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { useShopifyProduct } from "@/hooks/useShopifyProduct";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
@@ -32,7 +32,7 @@ const tiers = [
     spots: "100",
     description: "The Founders Club represents the core community behind Monday Morning and the individuals helping establish San Diego's alcohol-free social culture. Each member receives a personalized Founders Card, granting access to a range of exclusive benefits and experiences at Monday Morning.",
     benefits: [
-      { category: "Social Club Privileges", items: [
+      { category: "Founders Club Privileges", items: [
         { text: "At least four exclusive events annually", subItems: [
           "Founder tasting nights",
           "Private product launch events",
@@ -139,6 +139,93 @@ const comparisonFeatures = [
   { feature: "VIP seating at major events", founders: false, patron: false, table: true },
   { feature: "Specialty Founder's Drink Menu", founders: false, patron: false, table: true },
 ];
+
+const QuestionsSection = () => {
+  const [questionForm, setQuestionForm] = useState({ name: "", email: "", message: "" });
+  const [isSending, setIsSending] = useState(false);
+  const [sent, setSent] = useState(false);
+  const { toast } = useToast();
+
+  const handleQuestionSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSending(true);
+    try {
+      const { error } = await supabase.functions.invoke("founders-club-inquiry", {
+        body: questionForm,
+      });
+      if (error) throw error;
+      setSent(true);
+      toast({ title: "Message sent!", description: "We'll get back to you soon." });
+    } catch {
+      toast({ title: "Something went wrong", description: "Please try again or email us directly.", variant: "destructive" });
+    } finally {
+      setIsSending(false);
+    }
+  };
+
+  return (
+    <section className="py-24 lg:py-32 bg-muted/30 relative">
+      <div className="container mx-auto px-4 lg:px-8 max-w-xl text-center">
+        <p className="font-sans text-[10px] font-semibold uppercase tracking-[0.4em] text-primary/60 mb-6">Questions?</p>
+        <h2 className="font-serif text-3xl md:text-4xl text-foreground mb-4">We're Here to Help</h2>
+        <p className="font-sans text-sm text-muted-foreground mb-10 tracking-wide">
+          Curious about the Founder's Club? Ask us anything and we'll get back to you personally.
+        </p>
+
+        {sent ? (
+          <div className="py-12">
+            <Check className="w-10 h-10 text-gold-rich mx-auto mb-4" />
+            <p className="font-serif text-xl text-foreground">Message received!</p>
+            <p className="font-sans text-sm text-muted-foreground mt-2">We'll be in touch soon.</p>
+          </div>
+        ) : (
+          <form onSubmit={handleQuestionSubmit} className="space-y-4 text-left">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <Label className="font-sans text-[10px] text-muted-foreground mb-1 block uppercase tracking-wider">Name</Label>
+                <Input
+                  required
+                  value={questionForm.name}
+                  onChange={(e) => setQuestionForm({ ...questionForm, name: e.target.value })}
+                  className="border-border/50 focus:border-primary/40"
+                  placeholder="Your name"
+                />
+              </div>
+              <div>
+                <Label className="font-sans text-[10px] text-muted-foreground mb-1 block uppercase tracking-wider">Email</Label>
+                <Input
+                  type="email"
+                  required
+                  value={questionForm.email}
+                  onChange={(e) => setQuestionForm({ ...questionForm, email: e.target.value })}
+                  className="border-border/50 focus:border-primary/40"
+                  placeholder="email@example.com"
+                />
+              </div>
+            </div>
+            <div>
+              <Label className="font-sans text-[10px] text-muted-foreground mb-1 block uppercase tracking-wider">Message</Label>
+              <Textarea
+                required
+                value={questionForm.message}
+                onChange={(e) => setQuestionForm({ ...questionForm, message: e.target.value })}
+                className="border-border/50 focus:border-primary/40 min-h-[120px]"
+                placeholder="What would you like to know about the Founder's Club?"
+              />
+            </div>
+            <Button
+              type="submit"
+              disabled={isSending}
+              className="w-full shimmer-gold-bg text-forest-deep font-sans text-[10px] font-semibold uppercase tracking-[0.25em] py-6 hover:opacity-90 transition-opacity"
+            >
+              {isSending ? "Sending..." : "Send Message"}
+            </Button>
+          </form>
+        )}
+      </div>
+    </section>
+  );
+};
 
 const SocialClub = () => {
   const { toast } = useToast();
@@ -728,6 +815,9 @@ const SocialClub = () => {
           </div>
         </div>
       </section>
+
+      {/* Have Questions? */}
+      <QuestionsSection />
 
       <Footer />
     </div>
