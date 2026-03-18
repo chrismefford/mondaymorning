@@ -729,7 +729,11 @@ const SocialClub = () => {
         </div>
       </section>
 
+      {/* Have Questions? */}
+      <QuestionsSection />
+
       <Footer />
+    </div>
     </div>
   );
 };
