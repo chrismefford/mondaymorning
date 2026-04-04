@@ -335,6 +335,37 @@ const Locations = () => {
                 </div>
               ))}
             </div>
+
+            {/* Coming Soon Location */}
+            <div className="mt-8 lg:mt-12">
+              <div className="relative bg-gradient-to-br from-gold/10 to-gold/5 border-2 border-gold/30 border-dashed overflow-hidden group">
+                <div className="absolute inset-0 opacity-[0.03] pointer-events-none">
+                  <img src={stampGold} alt="" className="absolute -bottom-16 -right-16 w-64 opacity-50" />
+                </div>
+                <div className="p-8 lg:p-12 flex flex-col lg:flex-row items-center gap-8 relative z-10">
+                  <div className="flex-shrink-0 w-16 h-16 bg-gold/20 border-2 border-gold/40 flex items-center justify-center">
+                    <Sparkles className="h-8 w-8 text-gold" />
+                  </div>
+                  <div className="text-center lg:text-left flex-1">
+                    <span className="font-sans text-xs font-bold uppercase tracking-[0.3em] text-gold mb-2 block">
+                      Coming May 2026
+                    </span>
+                    <h3 className="font-serif text-2xl md:text-3xl italic text-forest mb-2">
+                      New Monday Morning Location
+                    </h3>
+                    <div className="flex items-center gap-2 justify-center lg:justify-start">
+                      <MapPin className="h-4 w-4 text-gold flex-shrink-0" />
+                      <p className="font-sans text-sm font-semibold uppercase tracking-wide text-forest">
+                        1784 La Costa Meadows Dr.
+                      </p>
+                    </div>
+                    <p className="font-sans text-sm text-forest/60 mt-3 max-w-lg">
+                      Something big is brewing (without the alcohol). Stay tuned for our newest location.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </section>
 
