@@ -22,8 +22,8 @@ const stores = [
     address: "1854 Garnet Ave.",
     city: "San Diego, CA 92109",
     hours: [
-      { days: "Mon - Sat", time: "11 AM - 8 PM" },
-      { days: "Sunday", time: "11 AM - 4 PM", special: true },
+      { days: "Tue - Sun", time: "11 AM - 8 PM" },
+      { days: "Monday", time: "Closed (Open by appointment for industry leaders)", special: true },
     ],
     phone: "(619) 555-0101",
     mapUrl: "https://maps.google.com/?q=1854+Garnet+Ave+San+Diego+CA+92109",
