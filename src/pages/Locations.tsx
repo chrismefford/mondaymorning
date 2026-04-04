@@ -34,8 +34,8 @@ const stores = [
     address: "4967 Newport Ave",
     city: "San Diego, CA 92107",
     hours: [
-      { days: "Mon - Sunday", time: "9 AM - 6 PM" },
-      { days: "Wednesday", time: "Open until 8 PM", special: true },
+      { days: "Tue - Sun", time: "11 AM - 8 PM" },
+      { days: "Monday", time: "Closed", special: true },
     ],
     phone: "(619) 555-0102",
     mapUrl: "https://maps.google.com/?q=4967+Newport+Ave+San+Diego+CA+92107",
