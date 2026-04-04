@@ -2,7 +2,7 @@ import { Helmet } from "@/lib/helmet-compat";
 import { Link } from "react-router-dom";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
-import { MapPin, Clock, Phone, ExternalLink, Wine, Beer, UtensilsCrossed } from "lucide-react";
+import { MapPin, Clock, Phone, ExternalLink, Wine, Beer, UtensilsCrossed, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import stampGold from "@/assets/stamp-gold.svg";
 import textureBlue from "@/assets/texture-blue.svg";
