@@ -106,7 +106,7 @@ const Footer = () => {
                   Tue - Sun  11 AM - 8 PM
                 </p>
                 <p className="font-sans text-sm text-forest-deep font-bold uppercase tracking-wide">
-                  *Monday Closed (Open by appointment for industry leaders)
+                  *Monday Closed
                 </p>
               </div>
             </div>
