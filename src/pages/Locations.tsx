@@ -2,7 +2,7 @@ import { Helmet } from "@/lib/helmet-compat";
 import { Link } from "react-router-dom";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
-import { MapPin, Clock, Phone, ExternalLink, Wine, Beer, UtensilsCrossed } from "lucide-react";
+import { MapPin, Clock, Phone, ExternalLink, Wine, Beer, UtensilsCrossed, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import stampGold from "@/assets/stamp-gold.svg";
 import textureBlue from "@/assets/texture-blue.svg";
@@ -22,8 +22,8 @@ const stores = [
     address: "1854 Garnet Ave.",
     city: "San Diego, CA 92109",
     hours: [
-      { days: "Mon - Sat", time: "11 AM - 8 PM" },
-      { days: "Sunday", time: "11 AM - 4 PM", special: true },
+      { days: "Tue - Sun", time: "11 AM - 8 PM" },
+      { days: "Monday", time: "Closed (Open by appointment for industry leaders)", special: true },
     ],
     phone: "(619) 555-0101",
     mapUrl: "https://maps.google.com/?q=1854+Garnet+Ave+San+Diego+CA+92109",
@@ -34,8 +34,8 @@ const stores = [
     address: "4967 Newport Ave",
     city: "San Diego, CA 92107",
     hours: [
-      { days: "Mon - Sunday", time: "9 AM - 6 PM" },
-      { days: "Wednesday", time: "Open until 8 PM", special: true },
+      { days: "Tue - Sun", time: "11 AM - 8 PM" },
+      { days: "Monday", time: "Closed", special: true },
     ],
     phone: "(619) 555-0102",
     mapUrl: "https://maps.google.com/?q=4967+Newport+Ave+San+Diego+CA+92107",
@@ -334,6 +334,37 @@ const Locations = () => {
                   </div>
                 </div>
               ))}
+            </div>
+
+            {/* Coming Soon Location */}
+            <div className="mt-8 lg:mt-12">
+              <div className="relative bg-gradient-to-br from-gold/10 to-gold/5 border-2 border-gold/30 border-dashed overflow-hidden group">
+                <div className="absolute inset-0 opacity-[0.03] pointer-events-none">
+                  <img src={stampGold} alt="" className="absolute -bottom-16 -right-16 w-64 opacity-50" />
+                </div>
+                <div className="p-8 lg:p-12 flex flex-col lg:flex-row items-center gap-8 relative z-10">
+                  <div className="flex-shrink-0 w-16 h-16 bg-gold/20 border-2 border-gold/40 flex items-center justify-center">
+                    <Sparkles className="h-8 w-8 text-gold" />
+                  </div>
+                  <div className="text-center lg:text-left flex-1">
+                    <span className="font-sans text-xs font-bold uppercase tracking-[0.3em] text-gold mb-2 block">
+                      Coming May 2026
+                    </span>
+                    <h3 className="font-serif text-2xl md:text-3xl italic text-forest mb-2">
+                      New Monday Morning Location
+                    </h3>
+                    <div className="flex items-center gap-2 justify-center lg:justify-start">
+                      <MapPin className="h-4 w-4 text-gold flex-shrink-0" />
+                      <p className="font-sans text-sm font-semibold uppercase tracking-wide text-forest">
+                        1784 La Costa Meadows Dr.
+                      </p>
+                    </div>
+                    <p className="font-sans text-sm text-forest/60 mt-3 max-w-lg">
+                      Something big is brewing (without the alcohol). Stay tuned for our newest location.
+                    </p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </section>
