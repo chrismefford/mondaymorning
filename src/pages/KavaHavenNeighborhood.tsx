@@ -102,7 +102,7 @@ const KavaHavenNeighborhood = () => {
                 <Link to="/locations">
                   <Button
                     variant="outline"
-                    className="font-sans text-xs font-bold uppercase tracking-widest border-cream/30 text-cream hover:bg-cream/10 px-8 py-6"
+                    className="font-sans text-xs font-bold uppercase tracking-widest border-gold/60 text-gold hover:bg-gold/10 px-8 py-6"
                   >
                     Find a Store
                     <MapPin className="ml-2 h-4 w-4" />
