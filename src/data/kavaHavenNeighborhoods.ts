@@ -19,6 +19,7 @@ export interface KavaNeighborhood {
   whyKava: string;
   localAngle: string;
   faqs: { question: string; answer: string }[];
+  peopleAlsoAsk: { question: string; answer: string }[];
 }
 
 export const kavaNeighborhoods: KavaNeighborhood[] = [
