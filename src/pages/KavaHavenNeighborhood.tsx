@@ -154,6 +154,9 @@ const KavaHavenNeighborhood = () => {
           </div>
         </section>
 
+        {/* Shop Kava Haven */}
+        <KavaHavenShopSection />
+
         {/* Local Angle / Where to Find */}
         <section className="py-16 lg:py-24 bg-cream relative overflow-hidden">
           <div
