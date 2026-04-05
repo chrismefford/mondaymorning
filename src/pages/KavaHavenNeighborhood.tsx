@@ -271,6 +271,40 @@ const KavaHavenNeighborhood = () => {
           </div>
         </section>
 
+        {/* People Also Ask */}
+        <section className="py-16 lg:py-24 bg-cream relative overflow-hidden">
+          <div
+            className="absolute inset-0 opacity-[0.02] pointer-events-none"
+            style={{ backgroundImage: `url(${textureCream})`, backgroundSize: "cover" }}
+          />
+          <div className="container mx-auto px-4 lg:px-8 relative z-10">
+            <div className="max-w-3xl mx-auto">
+              <span className="font-sans text-xs font-semibold uppercase tracking-[0.3em] text-gold mb-4 block">
+                People Also Ask
+              </span>
+              <h2 className="font-serif text-3xl md:text-4xl text-forest mb-8">
+                More About <span className="italic">Kava</span>
+              </h2>
+              <Accordion type="single" collapsible className="space-y-3">
+                {data.peopleAlsoAsk.map((item, i) => (
+                  <AccordionItem
+                    key={i}
+                    value={`paa-${i}`}
+                    className="bg-forest/5 border border-forest/10 px-6"
+                  >
+                    <AccordionTrigger className="font-sans text-sm font-semibold text-forest hover:text-gold text-left py-5">
+                      {item.question}
+                    </AccordionTrigger>
+                    <AccordionContent className="font-sans text-sm text-forest/70 leading-relaxed pb-5">
+                      {item.answer}
+                    </AccordionContent>
+                  </AccordionItem>
+                ))}
+              </Accordion>
+            </div>
+          </div>
+        </section>
+
         {/* CTA */}
         <section className="py-16 lg:py-20 bg-gold relative overflow-hidden">
           <div className="container mx-auto px-4 lg:px-8 text-center relative z-10">
