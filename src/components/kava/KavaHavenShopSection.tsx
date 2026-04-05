@@ -80,7 +80,7 @@ const KavaHavenShopSection = () => {
 
                 {price && (
                   <p className="font-sans text-2xl font-bold text-forest mb-6">
-                    ${parseFloat(price).toFixed(2)}
+                    ${parseFloat(String(price)).toFixed(2)}
                   </p>
                 )}
 
