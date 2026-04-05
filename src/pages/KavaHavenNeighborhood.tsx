@@ -10,6 +10,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { ArrowRight, MapPin, UtensilsCrossed, Wine, Beer, ExternalLink, Leaf } from "lucide-react";
+import KavaHavenShopSection from "@/components/kava/KavaHavenShopSection";
 import { generateFAQSchema, localBusinessSchema, SITE_URL } from "@/lib/seo";
 import { getNeighborhoodBySlug } from "@/data/kavaHavenNeighborhoods";
 import stampGold from "@/assets/stamp-gold.svg";
