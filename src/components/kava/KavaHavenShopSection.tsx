@@ -5,7 +5,7 @@ import { useShopifyProduct } from "@/hooks/useShopifyProduct";
 import { useCart } from "@/hooks/useCart";
 import textureCream from "@/assets/texture-cream.svg";
 
-const KAVA_HANDLE = "kava-haven";
+const KAVA_HANDLE = "kava-haven-kava-infused-spirit";
 
 const KavaHavenShopSection = () => {
   const { data: product, isLoading: productLoading } = useShopifyProduct(KAVA_HANDLE);
