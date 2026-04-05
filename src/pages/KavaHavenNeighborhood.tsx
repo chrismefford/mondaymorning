@@ -25,7 +25,8 @@ const KavaHavenNeighborhood = () => {
     return <Navigate to="/locations" replace />;
   }
 
-  const faqSchema = generateFAQSchema(data.faqs);
+  const allFaqItems = [...data.faqs, ...data.peopleAlsoAsk];
+  const faqSchema = generateFAQSchema(allFaqItems);
   const articleSchema = {
     "@context": "https://schema.org",
     "@type": "Article",
