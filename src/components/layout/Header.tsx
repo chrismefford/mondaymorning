@@ -96,7 +96,8 @@ const Header = () => {
      window.location.pathname === '/social-club' ||
      window.location.pathname === '/press' ||
      window.location.pathname === '/consulting' ||
-     window.location.pathname.startsWith('/blog/'));
+     window.location.pathname.startsWith('/blog/') ||
+     window.location.pathname.startsWith('/kava-haven/'));
 
   // Wholesale catalog needs solid header background always
   const isWholesaleCatalog = typeof window !== 'undefined' && 

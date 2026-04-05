@@ -47,6 +47,7 @@ import SocialClub from "./pages/SocialClub";
 import FoundersWelcome from "./pages/FoundersWelcome";
 import Press from "./pages/Press";
 import Consulting from "./pages/Consulting";
+import KavaHavenNeighborhood from "./pages/KavaHavenNeighborhood";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -110,6 +111,7 @@ const AppContent = () => {
         <Route path="/founders-welcome" element={<FoundersWelcome />} />
         <Route path="/press" element={<Press />} />
         <Route path="/consulting" element={<Consulting />} />
+        <Route path="/kava-haven/:neighborhood" element={<KavaHavenNeighborhood />} />
         {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
         <Route path="*" element={<NotFound />} />
       </Routes>
