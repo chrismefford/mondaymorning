@@ -10,6 +10,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { ArrowRight, MapPin, UtensilsCrossed, Wine, Beer, ExternalLink, Leaf } from "lucide-react";
+import KavaHavenShopSection from "@/components/kava/KavaHavenShopSection";
 import { generateFAQSchema, localBusinessSchema, SITE_URL } from "@/lib/seo";
 import { getNeighborhoodBySlug } from "@/data/kavaHavenNeighborhoods";
 import stampGold from "@/assets/stamp-gold.svg";
@@ -152,6 +153,9 @@ const KavaHavenNeighborhood = () => {
             </div>
           </div>
         </section>
+
+        {/* Shop Kava Haven */}
+        <KavaHavenShopSection />
 
         {/* Local Angle / Where to Find */}
         <section className="py-16 lg:py-24 bg-cream relative overflow-hidden">
