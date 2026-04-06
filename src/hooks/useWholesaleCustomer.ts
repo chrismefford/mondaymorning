@@ -24,9 +24,8 @@ export function useWholesaleCustomer() {
       }
 
       const { data } = await supabase
-        .from("wholesale_customers")
+        .from("wholesale_customer_profile" as any)
         .select("id, company_name, discount_tier, payment_terms, is_active")
-        .eq("user_id", session.user.id)
         .maybeSingle();
 
       if (data?.is_active) {
