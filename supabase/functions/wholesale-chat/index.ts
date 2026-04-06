@@ -7,19 +7,17 @@ const corsHeaders = {
 
 // Simple in-memory rate limiting (resets on function cold start)
 const rateLimitMap = new Map<string, { count: number; resetTime: number }>();
-const RATE_LIMIT_WINDOW_MS = 60000; // 1 minute window
-const RATE_LIMIT_MAX_REQUESTS = 10; // 10 requests per minute per IP
 
-function checkRateLimit(clientId: string): boolean {
+function checkRateLimit(clientId: string, maxRequests: number, windowMs: number): boolean {
   const now = Date.now();
   const record = rateLimitMap.get(clientId);
   
   if (!record || now > record.resetTime) {
-    rateLimitMap.set(clientId, { count: 1, resetTime: now + RATE_LIMIT_WINDOW_MS });
+    rateLimitMap.set(clientId, { count: 1, resetTime: now + windowMs });
     return true;
   }
   
-  if (record.count >= RATE_LIMIT_MAX_REQUESTS) {
+  if (record.count >= maxRequests) {
     return false;
   }
   
@@ -72,12 +70,12 @@ serve(async (req) => {
   }
 
   try {
-    // Rate limiting using client IP or a fallback identifier
     const clientId = req.headers.get("x-forwarded-for") || 
                      req.headers.get("x-real-ip") || 
                      "unknown";
     
-    if (!checkRateLimit(clientId)) {
+    // Stricter rate limiting: 5 requests per minute for anonymous users
+    if (!checkRateLimit(`ip-${clientId}`, 5, 60000)) {
       console.log(`Rate limit exceeded for client: ${clientId}`);
       return new Response(JSON.stringify({ error: "Too many requests. Please wait a moment before trying again." }), {
         status: 429,
@@ -85,11 +83,30 @@ serve(async (req) => {
       });
     }
 
-    const { messages } = await req.json();
+    const body = await req.json();
+    const { messages } = body;
+
+    // Input validation
+    if (!Array.isArray(messages) || messages.length === 0 || messages.length > 50) {
+      return new Response(JSON.stringify({ error: "Invalid messages format." }), {
+        status: 400,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
+
+    for (const msg of messages) {
+      if (!msg.role || !msg.content || typeof msg.content !== 'string' || msg.content.length > 2000) {
+        return new Response(JSON.stringify({ error: "Invalid message format or content too long." }), {
+          status: 400,
+          headers: { ...corsHeaders, "Content-Type": "application/json" },
+        });
+      }
+    }
+
     const LOVABLE_API_KEY = Deno.env.get("LOVABLE_API_KEY");
     
     if (!LOVABLE_API_KEY) {
-      throw new Error("LOVABLE_API_KEY is not configured");
+      throw new Error("AI service is not configured");
     }
 
     const response = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
@@ -121,8 +138,7 @@ serve(async (req) => {
           headers: { ...corsHeaders, "Content-Type": "application/json" },
         });
       }
-      const errorText = await response.text();
-      console.error("AI gateway error:", response.status, errorText);
+      console.error("AI gateway error:", response.status);
       return new Response(JSON.stringify({ error: "Something went wrong. Please try again." }), {
         status: 500,
         headers: { ...corsHeaders, "Content-Type": "application/json" },
@@ -133,8 +149,8 @@ serve(async (req) => {
       headers: { ...corsHeaders, "Content-Type": "text/event-stream" },
     });
   } catch (error) {
-    console.error("Chat error:", error);
-    return new Response(JSON.stringify({ error: error instanceof Error ? error.message : "Unknown error" }), {
+    console.error("Chat error:", error instanceof Error ? error.message : "Unknown error");
+    return new Response(JSON.stringify({ error: "Something went wrong. Please try again." }), {
       status: 500,
       headers: { ...corsHeaders, "Content-Type": "application/json" },
     });
