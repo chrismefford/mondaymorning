@@ -486,7 +486,42 @@ export type Database = {
       }
     }
     Views: {
-      [_ in never]: never
+      wholesale_customer_profile: {
+        Row: {
+          business_type: string | null
+          company_name: string | null
+          created_at: string | null
+          discount_tier: string | null
+          id: string | null
+          is_active: boolean | null
+          payment_terms: string | null
+          updated_at: string | null
+          user_id: string | null
+        }
+        Insert: {
+          business_type?: string | null
+          company_name?: string | null
+          created_at?: string | null
+          discount_tier?: string | null
+          id?: string | null
+          is_active?: boolean | null
+          payment_terms?: string | null
+          updated_at?: string | null
+          user_id?: string | null
+        }
+        Update: {
+          business_type?: string | null
+          company_name?: string | null
+          created_at?: string | null
+          discount_tier?: string | null
+          id?: string | null
+          is_active?: boolean | null
+          payment_terms?: string | null
+          updated_at?: string | null
+          user_id?: string | null
+        }
+        Relationships: []
+      }
     }
     Functions: {
       delete_email: {
