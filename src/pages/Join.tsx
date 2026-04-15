@@ -24,6 +24,7 @@ const Join = () => {
   const locationLabel = LOCATION_LABELS[location] || location;
 
   const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
@@ -32,7 +33,7 @@ const Join = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!email.trim() || !firstName.trim()) {
+    if (!email.trim() || !firstName.trim() || !lastName.trim()) {
       toast({
         title: "Missing info",
         description: "Please enter your name and email.",
@@ -50,6 +51,7 @@ const Join = () => {
         body: {
           email: email.trim(),
           firstName: firstName.trim(),
+          lastName: lastName.trim(),
           tags,
         },
       });
@@ -113,20 +115,37 @@ const Join = () => {
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-4">
-          <div className="space-y-2">
-            <Label htmlFor="firstName" className="text-secondary-foreground">
-              First Name
-            </Label>
-            <Input
-              id="firstName"
-              type="text"
-              placeholder="Your first name"
-              value={firstName}
-              onChange={(e) => setFirstName(e.target.value)}
-              className="bg-secondary-foreground/10 border-secondary-foreground/20 text-secondary-foreground placeholder:text-secondary-foreground/40"
-              maxLength={100}
-              required
-            />
+          <div className="grid grid-cols-2 gap-3">
+            <div className="space-y-2">
+              <Label htmlFor="firstName" className="text-secondary-foreground">
+                First Name
+              </Label>
+              <Input
+                id="firstName"
+                type="text"
+                placeholder="First name"
+                value={firstName}
+                onChange={(e) => setFirstName(e.target.value)}
+                className="bg-secondary-foreground/10 border-secondary-foreground/20 text-secondary-foreground placeholder:text-secondary-foreground/40"
+                maxLength={100}
+                required
+              />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="lastName" className="text-secondary-foreground">
+                Last Name
+              </Label>
+              <Input
+                id="lastName"
+                type="text"
+                placeholder="Last name"
+                value={lastName}
+                onChange={(e) => setLastName(e.target.value)}
+                className="bg-secondary-foreground/10 border-secondary-foreground/20 text-secondary-foreground placeholder:text-secondary-foreground/40"
+                maxLength={100}
+                required
+              />
+            </div>
           </div>
 
           <div className="space-y-2">
