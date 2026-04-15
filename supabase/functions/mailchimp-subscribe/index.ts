@@ -12,7 +12,7 @@ serve(async (req) => {
   }
 
   try {
-    const { email } = await req.json();
+    const { email, firstName, lastName, tags } = await req.json();
 
     if (!email || typeof email !== 'string') {
       return new Response(
@@ -46,16 +46,28 @@ serve(async (req) => {
 
     console.log(`Subscribing email to Mailchimp list ${listId}`);
 
+    const mergeFields: Record<string, string> = {};
+    if (firstName) mergeFields.FNAME = String(firstName).slice(0, 100);
+    if (lastName) mergeFields.LNAME = String(lastName).slice(0, 100);
+
+    const mailchimpBody: Record<string, unknown> = {
+      email_address: email,
+      status: 'subscribed',
+    };
+    if (Object.keys(mergeFields).length > 0) {
+      mailchimpBody.merge_fields = mergeFields;
+    }
+    if (tags && Array.isArray(tags) && tags.length > 0) {
+      mailchimpBody.tags = tags.map((t: string) => String(t).slice(0, 100));
+    }
+
     const response = await fetch(url, {
       method: 'POST',
       headers: {
         'Authorization': `Basic ${btoa(`anystring:${apiKey}`)}`,
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({
-        email_address: email,
-        status: 'subscribed',
-      }),
+      body: JSON.stringify(mailchimpBody),
     });
 
     const data = await response.json();
