@@ -46,7 +46,7 @@ const Join = () => {
       const tags: string[] = ["QR Signup"];
       if (location) tags.push(location);
 
-      const { data, error } = await supabase.functions.invoke("mailchimp-subscribe", {
+      const { error } = await supabase.functions.invoke("mailchimp-subscribe", {
         body: {
           email: email.trim(),
           firstName: firstName.trim(),
@@ -70,7 +70,7 @@ const Join = () => {
   if (isSuccess) {
     return (
       <div className="min-h-screen bg-secondary flex items-center justify-center px-4">
-        <SEO title="Welcome! | Monday Morning" description="Thanks for joining the Monday Morning community." />
+        <SEO title="Welcome! | Monday Morning" description="Thanks for joining the Monday Morning community." path="/join" />
         <div className="max-w-md w-full text-center space-y-6">
           <img src={logoGold} alt="Monday Morning" className="h-16 mx-auto" />
           <h1 className="font-serif text-3xl md:text-4xl text-secondary-foreground">
@@ -94,6 +94,7 @@ const Join = () => {
       <SEO
         title="Join the Community | Monday Morning"
         description="Sign up for Monday Morning updates — new products, events, and exclusive offers."
+        path="/join"
       />
       <div className="max-w-md w-full space-y-8">
         <div className="text-center space-y-4">
