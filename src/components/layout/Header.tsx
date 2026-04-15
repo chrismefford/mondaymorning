@@ -96,6 +96,7 @@ const Header = () => {
      window.location.pathname === '/social-club' ||
      window.location.pathname === '/press' ||
      window.location.pathname === '/consulting' ||
+     window.location.pathname === '/join' ||
      window.location.pathname.startsWith('/blog/') ||
      window.location.pathname.startsWith('/kava-haven/'));
 
