@@ -21,7 +21,7 @@ const passwordSchema = z.string().min(6, "Password must be at least 6 characters
 export default function WholesaleAuth() {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
-  const [justSignedUp, setJustSignedUp] = useState(false);
+  const justSignedUpRef = useRef(false);
   const [isGoogleLoading, setIsGoogleLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [activeTab, setActiveTab] = useState<"login" | "signup">("login");
