@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { Helmet } from "@/lib/helmet-compat";
 import Header from "@/components/layout/Header";
@@ -21,6 +21,7 @@ const passwordSchema = z.string().min(6, "Password must be at least 6 characters
 export default function WholesaleAuth() {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
+  const justSignedUpRef = useRef(false);
   const [isGoogleLoading, setIsGoogleLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [activeTab, setActiveTab] = useState<"login" | "signup">("login");
@@ -70,7 +71,11 @@ export default function WholesaleAuth() {
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
       (event, session) => {
         if (event === 'SIGNED_IN' && session?.user) {
-          // Defer the check to prevent deadlock
+          // Skip wholesale check if user just registered — they won't be a wholesale customer yet
+          if (justSignedUpRef.current) {
+            justSignedUpRef.current = false;
+            return;
+          }
           setTimeout(() => {
             checkWholesaleStatus(session.user.id);
           }, 0);
@@ -178,6 +183,9 @@ export default function WholesaleAuth() {
     setIsLoading(true);
 
     try {
+      // Flag to prevent onAuthStateChange from running wholesale check
+      justSignedUpRef.current = true;
+
       const { data, error } = await supabase.auth.signUp({
         email,
         password,
@@ -187,6 +195,7 @@ export default function WholesaleAuth() {
       });
 
       if (error) {
+        justSignedUpRef.current = false;
         if (error.message.includes("User already registered")) {
           toast.error("An account with this email already exists. Please sign in instead.");
           setActiveTab("login");
@@ -197,8 +206,11 @@ export default function WholesaleAuth() {
       }
 
       if (data.user) {
+        // Sign out immediately so the session doesn't trigger wholesale checks
+        await supabase.auth.signOut();
+
         toast.success(
-          "Account created! Our team will review your B2B application and activate your wholesale access. You'll receive an email once approved.",
+          "Account created! Our team will review your application and activate your wholesale access. You will receive an email once approved.",
           { duration: 8000 }
         );
         
