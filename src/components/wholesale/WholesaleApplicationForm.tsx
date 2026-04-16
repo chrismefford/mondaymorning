@@ -56,7 +56,7 @@ export default function WholesaleApplicationForm({ trigger }: WholesaleApplicati
 
     try {
       // Save to database first
-      const { data: application, error: insertError } = await supabase
+      const { error: insertError } = await supabase
         .from("wholesale_applications")
         .insert({
           company_name: formData.companyName,
@@ -66,9 +66,7 @@ export default function WholesaleApplicationForm({ trigger }: WholesaleApplicati
           business_type: "Wholesale Inquiry",
           tax_id: formData.taxId || null,
           status: "pending",
-        })
-        .select()
-        .single();
+        });
 
       if (insertError) {
         console.error("Insert error:", insertError);
