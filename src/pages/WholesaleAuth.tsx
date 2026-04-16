@@ -183,6 +183,9 @@ export default function WholesaleAuth() {
     setIsLoading(true);
 
     try {
+      // Flag to prevent onAuthStateChange from running wholesale check
+      justSignedUpRef.current = true;
+
       const { data, error } = await supabase.auth.signUp({
         email,
         password,
@@ -192,6 +195,7 @@ export default function WholesaleAuth() {
       });
 
       if (error) {
+        justSignedUpRef.current = false;
         if (error.message.includes("User already registered")) {
           toast.error("An account with this email already exists. Please sign in instead.");
           setActiveTab("login");
@@ -202,8 +206,11 @@ export default function WholesaleAuth() {
       }
 
       if (data.user) {
+        // Sign out immediately so the session doesn't trigger wholesale checks
+        await supabase.auth.signOut();
+
         toast.success(
-          "Account created! Our team will review your B2B application and activate your wholesale access. You'll receive an email once approved.",
+          "Account created! Our team will review your application and activate your wholesale access. You will receive an email once approved.",
           { duration: 8000 }
         );
         
