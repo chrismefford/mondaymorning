@@ -71,7 +71,11 @@ export default function WholesaleAuth() {
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
       (event, session) => {
         if (event === 'SIGNED_IN' && session?.user) {
-          // Defer the check to prevent deadlock
+          // Skip wholesale check if user just registered — they won't be a wholesale customer yet
+          if (justSignedUpRef.current) {
+            justSignedUpRef.current = false;
+            return;
+          }
           setTimeout(() => {
             checkWholesaleStatus(session.user.id);
           }, 0);
