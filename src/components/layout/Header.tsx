@@ -119,10 +119,14 @@ const Header = () => {
           <div className="flex items-center justify-between h-16 lg:h-20">
             {/* Logo */}
             <a href="/" className="group flex items-center relative z-50">
-              <img 
-                src={isMenuOpen || showLightText ? logoWhite : logoGold} 
-                alt="Monday Morning" 
-                className="h-8 lg:h-10 w-auto transition-all"
+              <span className="inline-flex items-start">
+                <img 
+                  src={isMenuOpen || showLightText ? logoWhite : logoGold} 
+                  alt="Monday Morning" 
+                  className="h-8 lg:h-10 w-auto transition-all"
+                />
+                <span className={`font-sans text-[8px] leading-none select-none ml-0.5 mt-0.5 ${isMenuOpen || showLightText ? 'text-cream' : 'text-gold'}`}>™</span>
+              </span>
               />
             </a>
 
