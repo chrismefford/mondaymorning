@@ -3,7 +3,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { HelmetProvider } from "@/lib/helmet-compat";
 import { AuthProvider } from "@/hooks/useAuth";
 import { CartProvider } from "@/hooks/useCart";
@@ -94,6 +94,7 @@ const AppContent = () => {
         <Route path="/shipping" element={<Shipping />} />
         <Route path="/returns" element={<Returns />} />
         <Route path="/services" element={<Wholesale />} />
+        <Route path="/wholesale" element={<Navigate to="/services" replace />} />
         <Route path="/wholesale-login" element={<WholesaleAuth />} />
         <Route path="/wholesale-catalog" element={<WholesaleCatalog />} />
         <Route path="/valentines" element={<Valentines />} />

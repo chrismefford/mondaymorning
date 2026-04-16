@@ -56,7 +56,7 @@ export default function WholesaleApplicationForm({ trigger }: WholesaleApplicati
 
     try {
       // Save to database first
-      const { data: application, error: insertError } = await supabase
+      const { error: insertError } = await supabase
         .from("wholesale_applications")
         .insert({
           company_name: formData.companyName,
@@ -66,29 +66,14 @@ export default function WholesaleApplicationForm({ trigger }: WholesaleApplicati
           business_type: "Wholesale Inquiry",
           tax_id: formData.taxId || null,
           status: "pending",
-        })
-        .select()
-        .single();
+        });
 
       if (insertError) {
         console.error("Insert error:", insertError);
         throw new Error("Failed to submit application");
       }
 
-      // Sync to Shopify (will create as Draft - ordering not approved)
-      try {
-        const { error: syncError } = await supabase.functions.invoke("sync-wholesale-shopify", {
-          body: { applicationId: application.id },
-        });
-
-        if (syncError) {
-          console.error("Shopify sync error:", syncError);
-          // Don't throw - application was saved successfully
-        }
-      } catch (syncErr) {
-        console.error("Shopify sync failed:", syncErr);
-        // Don't throw - application was saved successfully
-      }
+      // Note: Shopify sync will be handled by admin when reviewing the application
 
       setIsSuccess(true);
       toast.success("Application submitted successfully!");
