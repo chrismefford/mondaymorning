@@ -127,7 +127,6 @@ const Header = () => {
                 />
                 <span className={`font-sans text-[8px] leading-none select-none ml-0.5 mt-0.5 ${isMenuOpen || showLightText ? 'text-cream' : 'text-gold'}`}>™</span>
               </span>
-              />
             </a>
 
             {/* Desktop Navigation - Center */}
