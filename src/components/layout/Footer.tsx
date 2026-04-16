@@ -41,11 +41,14 @@ const Footer = () => {
           {/* Brand Column */}
           <div className="lg:col-span-1">
             <div className="mb-6">
-              <img 
-                src={logoSecondaryGreen} 
-                alt="Monday Morning" 
-                className="h-24 w-auto"
-              />
+              <span className="inline-flex items-start">
+                <img 
+                  src={logoSecondaryGreen} 
+                  alt="Monday Morning" 
+                  className="h-24 w-auto"
+                />
+                <span className="font-sans text-[10px] leading-none select-none ml-0.5 mt-1 text-forest">™</span>
+              </span>
             </div>
             <div className="flex items-center gap-2 text-forest mb-4">
               <MapPin className="h-4 w-4" />

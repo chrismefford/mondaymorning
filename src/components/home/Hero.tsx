@@ -31,11 +31,14 @@ const Hero = () => {
         <div className="relative z-20 mt-auto px-6 pb-8 pt-32 text-cream">
           {/* Logo above headline - Mobile */}
           <div className="mb-6 animate-fade-up">
-            <img 
-              src={logoPrimaryWhite} 
-              alt="Monday Morning" 
-              className="h-24 w-auto mb-4"
-            />
+            <span className="inline-flex items-start">
+              <img 
+                src={logoPrimaryWhite} 
+                alt="Monday Morning" 
+                className="h-24 w-auto mb-4"
+              />
+              <span className="font-sans text-xs leading-none select-none ml-1 mt-1 text-cream">™</span>
+            </span>
           </div>
 
           {/* H1 - SEO primary heading */}
@@ -123,11 +126,14 @@ const Hero = () => {
         <div className="w-1/2 flex flex-col justify-center px-16 py-32 relative z-20">
           {/* Logo above headline - Desktop */}
           <div className="mb-8 animate-fade-up">
-            <img 
-              src={logoPrimaryGold} 
-              alt="Monday Morning" 
-              className="h-24 xl:h-28 w-auto mb-6"
-            />
+            <span className="inline-flex items-start">
+              <img 
+                src={logoPrimaryGold} 
+                alt="Monday Morning" 
+                className="h-24 xl:h-28 w-auto mb-6"
+              />
+              <span className="font-sans text-xs leading-none select-none ml-1 mt-1 text-gold">™</span>
+            </span>
           </div>
 
           {/* H1 - SEO primary heading (hidden on mobile where mobile H1 is shown) */}
