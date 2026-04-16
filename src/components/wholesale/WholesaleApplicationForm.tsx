@@ -73,20 +73,7 @@ export default function WholesaleApplicationForm({ trigger }: WholesaleApplicati
         throw new Error("Failed to submit application");
       }
 
-      // Sync to Shopify (will create as Draft - ordering not approved)
-      try {
-        const { error: syncError } = await supabase.functions.invoke("sync-wholesale-shopify", {
-          body: { applicationId: application.id },
-        });
-
-        if (syncError) {
-          console.error("Shopify sync error:", syncError);
-          // Don't throw - application was saved successfully
-        }
-      } catch (syncErr) {
-        console.error("Shopify sync failed:", syncErr);
-        // Don't throw - application was saved successfully
-      }
+      // Note: Shopify sync will be handled by admin when reviewing the application
 
       setIsSuccess(true);
       toast.success("Application submitted successfully!");
