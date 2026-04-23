@@ -73,7 +73,7 @@ const Join = () => {
   if (isSuccess) {
     return (
       <div className="min-h-screen bg-secondary flex flex-col">
-        <SEO title="Welcome! | Monday Morning" description="Thanks for joining the Monday Morning community." path="/join" />
+        <SEO title="Join The Revolution | Monday Morning" description="Thanks for joining the Monday Morning community." path="/join" />
         <Header />
         <div className="flex-1 flex items-center justify-center px-4">
         <div className="max-w-md w-full text-center space-y-6">
@@ -98,8 +98,8 @@ const Join = () => {
   return (
     <div className="min-h-screen bg-secondary flex flex-col">
       <SEO
-        title="Join the Community | Monday Morning"
-        description="Sign up for Monday Morning updates — new products, events, and exclusive offers."
+        title="Join The Revolution | Monday Morning"
+        description="Sign up for Monday Morning updates, new products, events, and exclusive offers."
         path="/join"
       />
       <Header />
