@@ -1195,7 +1195,7 @@ function generateBlogPostBody(post) {
     </nav>
     <article>
       <h1>${escapeHTML(post.title)}</h1>
-      ${post.featured_image ? `<img src="${escapeHTML(post.featured_image)}" alt="${escapeHTML(post.title)}" width="1200" height="630" loading="lazy" />` : ""}
+      ${post.featured_image ? `<img src="${escapeHTML(post.featured_image)}" alt="${escapeHTML(post.title)}" width="1200" height="630" loading="eager" fetchpriority="high" decoding="async" />` : ""}
       ${post.published_at ? `<time datetime="${post.published_at}">Published: ${new Date(post.published_at).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}</time>` : ""}
       ${excerpt ? `<p>${excerpt}</p>` : ""}
       <p>Read the full article on the Monday Morning blog. Stories and insights from the alcohol-free lifestyle movement.</p>
