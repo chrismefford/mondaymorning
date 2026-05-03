@@ -216,7 +216,6 @@ const UltimateNABeerGuide2026 = () => {
         path={path}
         type="article"
         image="/og-ultimate-na-beer-guide-2026.jpg"
-        type="article"
         schema={[articleSchema, itemListSchema, generateFAQSchema(faqs)]}
       />
 
