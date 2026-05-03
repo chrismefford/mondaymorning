@@ -24,6 +24,7 @@ import Admin from "./pages/Admin";
 import Blog from "./pages/Blog";
 import BlogPostPage from "./pages/BlogPost";
 import CuriousAFDictionary from "./pages/CuriousAFDictionary";
+import UltimateNABeerGuide2026 from "./pages/UltimateNABeerGuide2026";
 import BlogImport from "./pages/BlogImport";
 import Privacy from "./pages/Privacy";
 import Terms from "./pages/Terms";
