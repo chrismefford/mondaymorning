@@ -341,7 +341,7 @@ const CuriousAFDictionary = () => {
       />
 
       <Header />
-      <main className="pt-24">
+      <main>
         {/* Hero */}
         <section className="bg-forest py-16 md:py-24 relative overflow-hidden">
           <div className="grain absolute inset-0 pointer-events-none opacity-30" />
