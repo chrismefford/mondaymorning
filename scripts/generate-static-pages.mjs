@@ -1484,6 +1484,22 @@ const staticRoutes = [
     ],
   },
 
+  // Custom long-form blog pages (coded as React routes, not in Supabase)
+  {
+    path: "/blog/curious-af-dictionary",
+    title: "The Curious AF Dictionary | Monday Morning Bottle Shop",
+    description: "The vocabulary of drinking less, defined. Every term you need to navigate the non alcoholic, sober curious, and zero proof world.",
+    ogImage: `${SITE_URL}/og-curious-af-dictionary.jpg`,
+    schema: [organizationSchema],
+  },
+  {
+    path: "/blog/ultimate-non-alcoholic-beer-guide-2026",
+    title: "The Ultimate Non-Alcoholic Beer Guide for 2026 | Monday Morning",
+    description: "Every NA beer worth drinking, side by side. Compare 80+ alcohol-free beers across IPA, lager, stout, and Belgian styles. Curated by Monday Morning Bottle Shop.",
+    ogImage: `${SITE_URL}/og-ultimate-na-beer-guide-2026.jpg`,
+    schema: [organizationSchema],
+  },
+
   // Cart & checkout (SPA-only, noIndex)
   {
     path: "/cart",
