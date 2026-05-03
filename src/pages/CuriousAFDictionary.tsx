@@ -336,6 +336,7 @@ const CuriousAFDictionary = () => {
         description="The vocabulary of drinking less, defined. From sober curious to zero proof, the complete glossary of alcohol free terms updated quarterly by Monday Morning."
         path={path}
         type="article"
+        image="/og-curious-af-dictionary.jpg"
         schema={[definedTermSetSchema, generateFAQSchema(faqs), articleSchema]}
       />
 
