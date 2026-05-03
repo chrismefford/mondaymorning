@@ -215,6 +215,8 @@ const UltimateNABeerGuide2026 = () => {
         description="Every NA beer worth drinking, side by side. Compare 80+ alcohol-free beers across IPA, lager, stout, and Belgian styles. Curated by Monday Morning Bottle Shop."
         path={path}
         type="article"
+        image="/og-ultimate-na-beer-guide-2026.jpg"
+        type="article"
         schema={[articleSchema, itemListSchema, generateFAQSchema(faqs)]}
       />
 
