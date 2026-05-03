@@ -76,24 +76,41 @@ const Blog = () => {
           </div>
         </section>
 
-        {/* Featured Resource */}
+        {/* Featured Resources */}
         <section className="pt-12 md:pt-16">
-          <div className="container mx-auto px-4">
+          <div className="container mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-6">
             <Link
               to="/blog/curious-af-dictionary"
-              className="group block border border-forest/20 bg-forest text-cream rounded-lg p-8 md:p-12 hover:border-gold transition-colors"
+              className="group block border border-forest/20 bg-forest text-cream rounded-lg p-8 md:p-10 hover:border-gold transition-colors"
             >
               <span className="font-sans text-[10px] md:text-xs font-medium uppercase tracking-[0.3em] text-gold mb-3 block">
                 Featured Resource
               </span>
-              <h2 className="font-serif text-3xl md:text-5xl mb-3">
+              <h2 className="font-serif text-3xl md:text-4xl mb-3">
                 The Curious <span className="italic text-gold">AF</span> Dictionary
               </h2>
-              <p className="font-sans text-cream/75 text-base md:text-lg max-w-2xl mb-4">
+              <p className="font-sans text-cream/75 text-base md:text-lg mb-4">
                 The vocabulary of drinking less, defined. From sober curious to zero proof, updated quarterly.
               </p>
               <span className="font-sans text-sm uppercase tracking-widest text-gold group-hover:underline">
                 Read the dictionary &rarr;
+              </span>
+            </Link>
+            <Link
+              to="/blog/ultimate-non-alcoholic-beer-guide-2026"
+              className="group block border border-forest/20 bg-forest text-cream rounded-lg p-8 md:p-10 hover:border-gold transition-colors"
+            >
+              <span className="font-sans text-[10px] md:text-xs font-medium uppercase tracking-[0.3em] text-gold mb-3 block">
+                Featured Guide
+              </span>
+              <h2 className="font-serif text-3xl md:text-4xl mb-3">
+                The Ultimate <span className="italic text-gold">NA Beer</span> Guide for 2026
+              </h2>
+              <p className="font-sans text-cream/75 text-base md:text-lg mb-4">
+                Every brand worth drinking, side by side. 80+ alcohol-free beers from our shelf, organized by style.
+              </p>
+              <span className="font-sans text-sm uppercase tracking-widest text-gold group-hover:underline">
+                Read the guide &rarr;
               </span>
             </Link>
           </div>

@@ -24,6 +24,7 @@ import Admin from "./pages/Admin";
 import Blog from "./pages/Blog";
 import BlogPostPage from "./pages/BlogPost";
 import CuriousAFDictionary from "./pages/CuriousAFDictionary";
+import UltimateNABeerGuide2026 from "./pages/UltimateNABeerGuide2026";
 import BlogImport from "./pages/BlogImport";
 import Privacy from "./pages/Privacy";
 import Terms from "./pages/Terms";
@@ -89,6 +90,7 @@ const AppContent = () => {
         <Route path="/admin" element={<Admin />} />
         <Route path="/blog" element={<Blog />} />
         <Route path="/blog/curious-af-dictionary" element={<CuriousAFDictionary />} />
+        <Route path="/blog/ultimate-non-alcoholic-beer-guide-2026" element={<UltimateNABeerGuide2026 />} />
         <Route path="/blog/:slug" element={<BlogPostPage />} />
         <Route path="/blog-import" element={<BlogImport />} />
         <Route path="/privacy" element={<Privacy />} />
