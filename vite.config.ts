@@ -14,6 +14,8 @@ const staticRoutes = [
   "/recipes",
   "/locations",
   "/blog",
+  "/blog/curious-af-dictionary",
+  "/blog/ultimate-non-alcoholic-beer-guide-2026",
   "/privacy",
   "/terms",
   "/shipping",
