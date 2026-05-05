@@ -94,7 +94,7 @@ const NonAlcoholicBeerGuide = () => {
       <SEO
         title="Non-Alcoholic Beer Guide | Styles, Brands & How to Choose"
         description="The complete guide to non alcoholic beer in 2026. Explore every style, top brands, flavor profiles, and how to choose the right NA beer for any occasion."
-        path="/non alcoholic-beer-guide"
+        path="/non-alcoholic-beer-guide"
         schema={[faqSchema, websiteSchema]}
       />
 
