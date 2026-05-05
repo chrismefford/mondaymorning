@@ -16,7 +16,7 @@ interface Beer {
 // Curated from in-stock Monday Morning NA beer inventory.
 const beers: Beer[] = [
   // IPA
-  { handle: "athletic-brewing-fancy-like", brand: "Athletic Brewing", name: "Fancy Like", style: "IPA", abv: "<0.5%", bestFor: "First-time NA drinker" },
+  
   { handle: "untitled-art-juicy-ipa", brand: "FLVR! (Untitled Art)", name: "Juicy IPA", style: "Hazy IPA", abv: "<0.5%", bestFor: "Hop heads" },
   { handle: "untitled-art-citra-haze", brand: "FLVR! (Untitled Art)", name: "Citra Haze", style: "Hazy IPA", abv: "<0.5%", bestFor: "Citrus-forward hops" },
   { handle: "untitled-art-west-coast-ipa", brand: "FLVR! (Untitled Art)", name: "West Coast IPA", style: "West Coast IPA", abv: "<0.5%", bestFor: "Bitter & dry finish" },
