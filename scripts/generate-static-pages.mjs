@@ -1500,6 +1500,78 @@ const staticRoutes = [
     schema: [organizationSchema],
   },
 
+  // SEO cluster pages (pillar + cluster hubs + supporting articles)
+  {
+    path: "/non-alcoholic-drinks",
+    title: "Non Alcoholic Drinks: The Complete 2026 Guide | Monday Morning",
+    description: "Everything you need to know about non alcoholic drinks in 2026. Beer, wine, spirits, functional drinks, and where to buy them.",
+    ogImage: `${SITE_URL}/og-non-alcoholic-drinks.jpg`,
+    schema: [organizationSchema],
+  },
+  {
+    path: "/non-alcoholic-spirits",
+    title: "Non Alcoholic Spirits: The 2026 Buyer's Guide | Monday Morning",
+    description: "The complete guide to non alcoholic spirits. NA gin, whiskey, tequila, agave, aperitifs and the bottles worth your money.",
+    ogImage: `${SITE_URL}/og-non-alcoholic-spirits.jpg`,
+    schema: [organizationSchema],
+  },
+  {
+    path: "/non-alcoholic-wine",
+    title: "Non Alcoholic Wine: The 2026 Guide | Monday Morning",
+    description: "The complete guide to non alcoholic wine. Sparkling, rosé, red, and white. How dealcoholization works and the bottles worth pouring.",
+    ogImage: `${SITE_URL}/og-non-alcoholic-wine.jpg`,
+    schema: [organizationSchema],
+  },
+  {
+    path: "/sober-curious-guide",
+    title: "The Sober Curious Guide: How to Drink Less in 2026 | Monday Morning",
+    description: "A practical, judgment free guide to the sober curious lifestyle. What it means, how to start, and what to drink instead.",
+    ogImage: `${SITE_URL}/og-sober-curious-guide.jpg`,
+    schema: [organizationSchema],
+  },
+  {
+    path: "/best-non-alcoholic-ipas",
+    title: "The Best Non Alcoholic IPAs of 2026, Ranked | Monday Morning",
+    description: "The best non alcoholic IPAs in 2026. West Coast, hazy, double, and tropical NA IPAs ranked by our tasting room staff.",
+    ogImage: `${SITE_URL}/og-best-non-alcoholic-ipas.jpg`,
+    schema: [organizationSchema],
+  },
+  {
+    path: "/zero-proof-home-bar",
+    title: "The Zero Proof Home Bar: 2026 Setup Guide | Monday Morning",
+    description: "Build a non alcoholic home bar with four bottles, ten cocktails, and zero compromise. The complete setup guide.",
+    ogImage: `${SITE_URL}/og-zero-proof-home-bar.jpg`,
+    schema: [organizationSchema],
+  },
+  {
+    path: "/dry-january-guide",
+    title: "Dry January 2026: The Complete Playbook | Monday Morning",
+    description: "The complete Dry January guide for 2026. What to drink instead, how to handle social events, how to make changes stick.",
+    ogImage: `${SITE_URL}/og-dry-january-guide.jpg`,
+    schema: [organizationSchema],
+  },
+  {
+    path: "/white-claw-alcohol-content",
+    title: "White Claw Alcohol Content: How Much Alcohol Is in a White Claw? | Monday Morning",
+    description: "White Claw alcohol content explained. ABV, calorie comparison, and the best non alcoholic seltzer alternatives.",
+    ogImage: `${SITE_URL}/og-white-claw-alcohol-content.jpg`,
+    schema: [organizationSchema],
+  },
+  {
+    path: "/best-non-alcoholic-bars-san-diego",
+    title: "The Best Non Alcoholic Bars in San Diego (2026) | Monday Morning",
+    description: "The best non alcoholic bars and bottle shops in San Diego. Where to drink zero proof cocktails, NA beer, and dealcoholized wine.",
+    ogImage: `${SITE_URL}/og-best-na-bars-san-diego.jpg`,
+    schema: [organizationSchema],
+  },
+  {
+    path: "/non-alcoholic-beer-pregnancy",
+    title: "Non Alcoholic Beer and Pregnancy: What's Safe in 2026 | Monday Morning",
+    description: "A clear, evidence based look at non alcoholic beer during pregnancy. ABV thresholds, what doctors say, and 0.0% brands to know.",
+    ogImage: `${SITE_URL}/og-non-alcoholic-beer-pregnancy.jpg`,
+    schema: [organizationSchema],
+  },
+
   // Cart & checkout (SPA-only, noIndex)
   {
     path: "/cart",

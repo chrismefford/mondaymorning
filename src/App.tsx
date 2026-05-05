@@ -51,6 +51,16 @@ import Press from "./pages/Press";
 import Consulting from "./pages/Consulting";
 import KavaHavenNeighborhood from "./pages/KavaHavenNeighborhood";
 import Join from "./pages/Join";
+import NonAlcoholicDrinks from "./pages/seo/NonAlcoholicDrinks";
+import NonAlcoholicSpirits from "./pages/seo/NonAlcoholicSpirits";
+import NonAlcoholicWine from "./pages/seo/NonAlcoholicWine";
+import SoberCuriousGuide from "./pages/seo/SoberCuriousGuide";
+import BestNonAlcoholicIPAs from "./pages/seo/BestNonAlcoholicIPAs";
+import ZeroProofHomeBar from "./pages/seo/ZeroProofHomeBar";
+import DryJanuaryGuide from "./pages/seo/DryJanuaryGuide";
+import WhiteClawAlcoholContent from "./pages/seo/WhiteClawAlcoholContent";
+import BestNABarsSanDiego from "./pages/seo/BestNABarsSanDiego";
+import NonAlcoholicBeerPregnancy from "./pages/seo/NonAlcoholicBeerPregnancy";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -119,6 +129,17 @@ const AppContent = () => {
         <Route path="/consulting" element={<Consulting />} />
         <Route path="/kava-haven/:neighborhood" element={<KavaHavenNeighborhood />} />
         <Route path="/join" element={<Join />} />
+        {/* SEO cluster pages */}
+        <Route path="/non-alcoholic-drinks" element={<NonAlcoholicDrinks />} />
+        <Route path="/non-alcoholic-spirits" element={<NonAlcoholicSpirits />} />
+        <Route path="/non-alcoholic-wine" element={<NonAlcoholicWine />} />
+        <Route path="/sober-curious-guide" element={<SoberCuriousGuide />} />
+        <Route path="/best-non-alcoholic-ipas" element={<BestNonAlcoholicIPAs />} />
+        <Route path="/zero-proof-home-bar" element={<ZeroProofHomeBar />} />
+        <Route path="/dry-january-guide" element={<DryJanuaryGuide />} />
+        <Route path="/white-claw-alcohol-content" element={<WhiteClawAlcoholContent />} />
+        <Route path="/best-non-alcoholic-bars-san-diego" element={<BestNABarsSanDiego />} />
+        <Route path="/non-alcoholic-beer-pregnancy" element={<NonAlcoholicBeerPregnancy />} />
         {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
         <Route path="*" element={<NotFound />} />
       </Routes>
