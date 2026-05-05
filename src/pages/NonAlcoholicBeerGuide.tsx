@@ -17,9 +17,9 @@ import patioBeer from "@/assets/lifestyle/patio-beer-6.jpg";
 
 const faqs = [
   {
-    question: "What is non-alcoholic beer?",
+    question: "What is non alcoholic beer?",
     answer:
-      "Non-alcoholic beer is brewed just like regular beer, then either has the alcohol removed or is fermented in a way that produces minimal alcohol. Most non-alcoholic beers contain less than 0.5% ABV. The best examples are virtually indistinguishable from their full-strength counterparts in aroma, flavor, and appearance.",
+      "Non-alcoholic beer is brewed just like regular beer, then either has the alcohol removed or is fermented in a way that produces minimal alcohol. Most non alcoholic beers contain less than 0.5% ABV. The best examples are virtually indistinguishable from their full-strength counterparts in aroma, flavor, and appearance.",
   },
   {
     question: "Does non alcoholic beer taste like real beer?",
@@ -27,17 +27,17 @@ const faqs = [
       "The best non alcoholic beers absolutely taste like beer. The craft NA beer category has advanced dramatically since 2020. Brands we carry like Bravus, Mash Gang, Beaglepuss, Go Brewing, and Force Majeure produce IPAs, lagers, stouts, and sours that rival top craft breweries. The gap between alcoholic and non alcoholic beer has never been smaller.",
   },
   {
-    question: "What styles of non-alcoholic beer are available?",
+    question: "What styles of non alcoholic beer are available?",
     answer:
-      "Every major beer style now has a non-alcoholic version. Lagers, pilsners, IPAs, pale ales, wheat beers, stouts, porters, sours, hefeweizens, and even barrel-aged styles. If you love a specific beer style, there is almost certainly a great non-alcoholic version of it available.",
+      "Every major beer style now has a non alcoholic version. Lagers, pilsners, IPAs, pale ales, wheat beers, stouts, porters, sours, hefeweizens, and even barrel-aged styles. If you love a specific beer style, there is almost certainly a great non alcoholic version of it available.",
   },
   {
-    question: "How many calories are in non-alcoholic beer?",
+    question: "How many calories are in non alcoholic beer?",
     answer:
-      "Most non-alcoholic beers have significantly fewer calories than their alcoholic equivalents. Many range from 25 to 80 calories per can, compared to 150+ for a standard beer. Since alcohol is calorie-dense, removing it naturally lowers the calorie count. Light non-alcoholic options can go as low as 15 calories.",
+      "Most non alcoholic beers have significantly fewer calories than their alcoholic equivalents. Many range from 25 to 80 calories per can, compared to 150+ for a standard beer. Since alcohol is calorie-dense, removing it naturally lowers the calorie count. Light non alcoholic options can go as low as 15 calories.",
   },
   {
-    question: "Can I drink non-alcoholic beer if I'm pregnant or in recovery?",
+    question: "Can I drink non alcoholic beer if I'm pregnant or in recovery?",
     answer:
       "Non-alcoholic beer with 0.5% ABV or less is generally considered safe for most people avoiding alcohol. However, if you are pregnant, in recovery, or have medical reasons for complete abstinence, consult your doctor. We carry several 0.0% ABV options that contain zero alcohol whatsoever if you need certainty.",
   },
@@ -47,14 +47,14 @@ const faqs = [
       "For beginners, we recommend starting with a crisp lager or a light golden ale. These styles are approachable and familiar. A Bravus or Go Brewing pale ale is an easy starting point, and a hazy IPA from Mash Gang or Beaglepuss is a great next step. If you prefer something lighter, a non alcoholic pilsner is always a safe first choice.",
   },
   {
-    question: "Where can I buy non-alcoholic beer in San Diego?",
+    question: "Where can I buy non alcoholic beer in San Diego?",
     answer:
-      "Monday Morning carries the largest selection of non-alcoholic beer in San Diego. Visit us at 1854 Garnet Ave in Pacific Beach or 4967 Newport Ave in Ocean Beach. You can sample anything at our tasting bar before buying. We also ship our full catalog online across the US.",
+      "Monday Morning carries the largest selection of non alcoholic beer in San Diego. Visit us at 1854 Garnet Ave in Pacific Beach or 4967 Newport Ave in Ocean Beach. You can sample anything at our tasting bar before buying. We also ship our full catalog online across the US.",
   },
   {
-    question: "How should I store non-alcoholic beer?",
+    question: "How should I store non alcoholic beer?",
     answer:
-      "Store non-alcoholic beer the same way you store regular beer: refrigerated or in a cool, dark place. Because NA beer has no alcohol preservative, it can sometimes have a shorter shelf life than alcoholic beer. Check the best-by date and try to consume within a few months of purchase for best flavor.",
+      "Store non alcoholic beer the same way you store regular beer: refrigerated or in a cool, dark place. Because NA beer has no alcohol preservative, it can sometimes have a shorter shelf life than alcoholic beer. Check the best-by date and try to consume within a few months of purchase for best flavor.",
   },
 ];
 
@@ -63,12 +63,12 @@ const faqSchema = generateFAQSchema(faqs);
 const beerStyles = [
   {
     style: "Lagers & Pilsners",
-    desc: "Clean, crisp, and refreshing. The most approachable non-alcoholic style. Perfect for hot days and casual drinking.",
+    desc: "Clean, crisp, and refreshing. The most approachable non alcoholic style. Perfect for hot days and casual drinking.",
     perfect: "Everyday drinking, beach days, sporting events",
   },
   {
     style: "IPAs & Pale Ales",
-    desc: "Hop-forward with citrus, pine, and tropical notes. The most popular craft beer style now fully available in non-alcoholic versions.",
+    desc: "Hop-forward with citrus, pine, and tropical notes. The most popular craft beer style now fully available in non alcoholic versions.",
     perfect: "Craft beer lovers, food pairing, evening drinks",
   },
   {
@@ -93,8 +93,8 @@ const NonAlcoholicBeerGuide = () => {
     <div className="min-h-screen bg-background">
       <SEO
         title="Non-Alcoholic Beer Guide | Styles, Brands & How to Choose"
-        description="The complete guide to non-alcoholic beer in 2026. Explore every style, top brands, flavor profiles, and how to choose the right NA beer for any occasion."
-        path="/non-alcoholic-beer-guide"
+        description="The complete guide to non alcoholic beer in 2026. Explore every style, top brands, flavor profiles, and how to choose the right NA beer for any occasion."
+        path="/non alcoholic-beer-guide"
         schema={[faqSchema, websiteSchema]}
       />
 
@@ -147,13 +147,13 @@ const NonAlcoholicBeerGuide = () => {
                   Non-alcoholic beer is brewed using the same ingredients and processes as regular beer: malted barley, hops, yeast, and water. The difference is in what happens after fermentation. Alcohol is either removed through vacuum distillation or arrested dealcoholization, or the beer is brewed using a process that limits alcohol production from the start.
                 </p>
                 <p>
-                  In the United States, any beverage with less than 0.5% ABV is legally classified as non-alcoholic. The best NA beers today clock in at 0.0% to 0.3% ABV. That is a trace amount, less than what occurs naturally in fermented fruit juice.
+                  In the United States, any beverage with less than 0.5% ABV is legally classified as non alcoholic. The best NA beers today clock in at 0.0% to 0.3% ABV. That is a trace amount, less than what occurs naturally in fermented fruit juice.
                 </p>
                 <p>
                   The sober-curious movement has transformed the category. What was once limited to watery, flat-tasting options is now a thriving craft segment. Athletes, health-conscious drinkers, designated drivers, pregnant individuals, and anyone who wants great flavor without the effects of alcohol are fueling the fastest-growing segment in the beverage industry.
                 </p>
                 <p>
-                  In 2026, the non-alcoholic beer market is projected to exceed $40 billion globally. Independent craft breweries dedicated exclusively to NA beer are opening across the US. The quality bar is higher than it has ever been.
+                  In 2026, the non alcoholic beer market is projected to exceed $40 billion globally. Independent craft breweries dedicated exclusively to NA beer are opening across the US. The quality bar is higher than it has ever been.
                 </p>
               </div>
             </div>
@@ -168,7 +168,7 @@ const NonAlcoholicBeerGuide = () => {
                 Non-Alcoholic Beer Styles Explained
               </h2>
               <p className="font-sans text-base text-foreground/70 mb-12 leading-relaxed">
-                Every major beer style exists in non-alcoholic form. Here is what to expect from each category.
+                Every major beer style exists in non alcoholic form. Here is what to expect from each category.
               </p>
               <div className="grid md:grid-cols-2 gap-6">
                 {beerStyles.map((item) => (
@@ -203,7 +203,7 @@ const NonAlcoholicBeerGuide = () => {
               </h2>
               <div className="space-y-5 font-sans text-base text-cream/80 leading-relaxed">
                 <p>
-                  Start with what you already like. If you drink light lagers, begin with a non-alcoholic pilsner. If you are a craft IPA drinker, hop-forward NA IPAs will feel immediately familiar. The styles translate.
+                  Start with what you already like. If you drink light lagers, begin with a non alcoholic pilsner. If you are a craft IPA drinker, hop-forward NA IPAs will feel immediately familiar. The styles translate.
                 </p>
                 <p>
                   Consider the occasion. For sports, barbecues, and casual afternoons, a crisp lager works best. For dinner and food pairing, a darker ale or a sour offers more complexity. For cold evenings and slow sipping, a stout or porter is the move.
@@ -262,7 +262,7 @@ const NonAlcoholicBeerGuide = () => {
               <div className="relative hidden lg:block">
                 <img
                   src={beachBonfire}
-                  alt="Friends enjoying non-alcoholic beer at a beach bonfire"
+                  alt="Friends enjoying non alcoholic beer at a beach bonfire"
                   className="w-full h-[480px] object-cover border-2 border-forest/10"
                 />
                 <div className="absolute -bottom-4 -right-4 w-full h-full border-2 border-gold/30 -z-10" />
@@ -316,13 +316,13 @@ const NonAlcoholicBeerGuide = () => {
               </h2>
               <div className="space-y-5 font-sans text-base text-foreground/80 leading-relaxed">
                 <p>
-                  San Diego has one of the most active craft beer cultures in America. It also has one of the most health-conscious populations. Those two facts make it the perfect city for non-alcoholic beer to thrive.
+                  San Diego has one of the most active craft beer cultures in America. It also has one of the most health-conscious populations. Those two facts make it the perfect city for non alcoholic beer to thrive.
                 </p>
                 <p>
-                  Monday Morning Bottle Shop in Pacific Beach and Ocean Beach carries the largest non-alcoholic beer selection in San Diego. Walk in, hit the tasting bar, and let our staff guide you to your next favorite beer.
+                  Monday Morning Bottle Shop in Pacific Beach and Ocean Beach carries the largest non alcoholic beer selection in San Diego. Walk in, hit the tasting bar, and let our staff guide you to your next favorite beer.
                 </p>
                 <p>
-                  Whether you are heading to the beach, hosting a backyard gathering, or just want a cold beer after a long workout, we have the right non-alcoholic option for you.
+                  Whether you are heading to the beach, hosting a backyard gathering, or just want a cold beer after a long workout, we have the right non alcoholic option for you.
                 </p>
               </div>
               <div className="mt-8">
@@ -367,7 +367,7 @@ const NonAlcoholicBeerGuide = () => {
               Ready to Find Your Beer?
             </h2>
             <p className="font-sans text-forest/70 mb-8 max-w-lg mx-auto">
-              Shop our full non-alcoholic beer collection online or visit us in San Diego to taste before you buy.
+              Shop our full non alcoholic beer collection online or visit us in San Diego to taste before you buy.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <Link to="/collections/na-beer">
