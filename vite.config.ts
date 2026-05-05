@@ -35,6 +35,17 @@ const staticRoutes = [
   "/non-alc-drinks",
   "/zero-proof-alcohol-nearby",
   "/alcohol-alternatives",
+  // SEO cluster pages
+  "/non-alcoholic-drinks",
+  "/non-alcoholic-spirits",
+  "/non-alcoholic-wine",
+  "/sober-curious-guide",
+  "/best-non-alcoholic-ipas",
+  "/zero-proof-home-bar",
+  "/dry-january-guide",
+  "/white-claw-alcohol-content",
+  "/best-non-alcoholic-bars-san-diego",
+  "/non-alcoholic-beer-pregnancy",
   // Kava Haven neighborhood pages
   "/kava-haven/north-park",
   "/kava-haven/pacific-beach",
