@@ -1592,7 +1592,27 @@ const staticRoutes = [
     ogImage: `${SITE_URL}/og-best-non-alcoholic-gin.jpg`,
     schema: [organizationSchema],
   },
-
+  {
+    path: "/best-non-alcoholic-stouts",
+    title: "The Best Non Alcoholic Stouts & Porters of 2026 | Monday Morning",
+    description: "The best non alcoholic stouts and porters in 2026. Roasty, full bodied dark NA beers from Bravus, Mash Gang, and Go Brewing.",
+    ogImage: `${SITE_URL}/og-best-non-alcoholic-stouts.jpg`,
+    schema: [organizationSchema],
+  },
+  {
+    path: "/best-non-alcoholic-lagers",
+    title: "The Best Non Alcoholic Lagers & Pilsners of 2026 | Monday Morning",
+    description: "The best non alcoholic lagers and pilsners in 2026. Crisp Mexican lagers, Italian pils, and German style helles, ranked.",
+    ogImage: `${SITE_URL}/og-best-non-alcoholic-lagers.jpg`,
+    schema: [organizationSchema],
+  },
+  {
+    path: "/best-non-alcoholic-sparkling-wine",
+    title: "The Best Non Alcoholic Sparkling Wine of 2026 | Monday Morning",
+    description: "The best non alcoholic sparkling wine in 2026. Bolle Rosé, Bolle Bianco, Sovi, and how to choose for weddings, holidays, and dinner.",
+    ogImage: `${SITE_URL}/og-best-non-alcoholic-sparkling-wine.jpg`,
+    schema: [organizationSchema],
+  },
 
   {
     path: "/cart",

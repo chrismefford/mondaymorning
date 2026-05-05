@@ -64,6 +64,9 @@ import NonAlcoholicBeerPregnancy from "./pages/seo/NonAlcoholicBeerPregnancy";
 import BestNonAlcoholicTequila from "./pages/seo/BestNonAlcoholicTequila";
 import BestNonAlcoholicWhiskey from "./pages/seo/BestNonAlcoholicWhiskey";
 import BestNonAlcoholicGin from "./pages/seo/BestNonAlcoholicGin";
+import BestNonAlcoholicStouts from "./pages/seo/BestNonAlcoholicStouts";
+import BestNonAlcoholicLagers from "./pages/seo/BestNonAlcoholicLagers";
+import BestNonAlcoholicSparklingWine from "./pages/seo/BestNonAlcoholicSparklingWine";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -146,6 +149,9 @@ const AppContent = () => {
         <Route path="/best-non-alcoholic-tequila" element={<BestNonAlcoholicTequila />} />
         <Route path="/best-non-alcoholic-whiskey" element={<BestNonAlcoholicWhiskey />} />
         <Route path="/best-non-alcoholic-gin" element={<BestNonAlcoholicGin />} />
+        <Route path="/best-non-alcoholic-stouts" element={<BestNonAlcoholicStouts />} />
+        <Route path="/best-non-alcoholic-lagers" element={<BestNonAlcoholicLagers />} />
+        <Route path="/best-non-alcoholic-sparkling-wine" element={<BestNonAlcoholicSparklingWine />} />
         {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
         <Route path="*" element={<NotFound />} />
       </Routes>

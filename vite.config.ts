@@ -49,6 +49,9 @@ const staticRoutes = [
   "/best-non-alcoholic-tequila",
   "/best-non-alcoholic-whiskey",
   "/best-non-alcoholic-gin",
+  "/best-non-alcoholic-stouts",
+  "/best-non-alcoholic-lagers",
+  "/best-non-alcoholic-sparkling-wine",
   // Kava Haven neighborhood pages
   "/kava-haven/north-park",
   "/kava-haven/pacific-beach",

@@ -124,9 +124,10 @@ const NonAlcoholicWine = () => (
       { question: "Where can I buy non alcoholic wine?", answer: "Monday Morning carries 50+ NA wines, in store at our San Diego locations and online with national shipping. Specialty grocery stores increasingly carry sparkling NA wine, but selection is narrow." },
     ]}
     relatedLinks={[
+      { label: "Best Non Alcoholic Sparkling Wine", href: "/best-non-alcoholic-sparkling-wine", description: "Bolle, Sovi, and the bubbles for weddings and holidays." },
       { label: "Pillar: Non alcoholic drinks", href: "/non-alcoholic-drinks", description: "The complete category overview." },
       { label: "Non alcoholic spirits hub", href: "/non-alcoholic-spirits", description: "Real cocktails without alcohol." },
-      { label: "Best non alcoholic drinks 2026", href: "/best-non-alcoholic-drinks", description: "Editorial picks across categories." },
+      { label: "Best Non Alcoholic Gin", href: "/best-non-alcoholic-gin", description: "Botanical bottles for tonics, sours, and martinis." },
       { label: "Sober curious guide", href: "/sober-curious-guide", description: "Why people are switching." },
     ]}
   />
