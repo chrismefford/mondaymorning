@@ -64,6 +64,9 @@ import NonAlcoholicBeerPregnancy from "./pages/seo/NonAlcoholicBeerPregnancy";
 import BestNonAlcoholicTequila from "./pages/seo/BestNonAlcoholicTequila";
 import BestNonAlcoholicWhiskey from "./pages/seo/BestNonAlcoholicWhiskey";
 import BestNonAlcoholicGin from "./pages/seo/BestNonAlcoholicGin";
+import BestNonAlcoholicStouts from "./pages/seo/BestNonAlcoholicStouts";
+import BestNonAlcoholicLagers from "./pages/seo/BestNonAlcoholicLagers";
+import BestNonAlcoholicSparklingWine from "./pages/seo/BestNonAlcoholicSparklingWine";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
