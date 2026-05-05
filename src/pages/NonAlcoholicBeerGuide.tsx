@@ -19,7 +19,7 @@ const faqs = [
   {
     question: "What is non alcoholic beer?",
     answer:
-      "Non-alcoholic beer is brewed just like regular beer, then either has the alcohol removed or is fermented in a way that produces minimal alcohol. Most non alcoholic beers contain less than 0.5% ABV. The best examples are virtually indistinguishable from their full-strength counterparts in aroma, flavor, and appearance.",
+      "Non alcoholic beer is brewed just like regular beer, then either has the alcohol removed or is fermented in a way that produces minimal alcohol. Most non alcoholic beers contain less than 0.5% ABV. The best examples are virtually indistinguishable from their full-strength counterparts in aroma, flavor, and appearance.",
   },
   {
     question: "Does non alcoholic beer taste like real beer?",
@@ -39,7 +39,7 @@ const faqs = [
   {
     question: "Can I drink non alcoholic beer if I'm pregnant or in recovery?",
     answer:
-      "Non-alcoholic beer with 0.5% ABV or less is generally considered safe for most people avoiding alcohol. However, if you are pregnant, in recovery, or have medical reasons for complete abstinence, consult your doctor. We carry several 0.0% ABV options that contain zero alcohol whatsoever if you need certainty.",
+      "Non alcoholic beer with 0.5% ABV or less is generally considered safe for most people avoiding alcohol. However, if you are pregnant, in recovery, or have medical reasons for complete abstinence, consult your doctor. We carry several 0.0% ABV options that contain zero alcohol whatsoever if you need certainty.",
   },
   {
     question: "What's the best non alcoholic beer for beginners?",
@@ -106,7 +106,7 @@ const NonAlcoholicBeerGuide = () => {
           <div className="absolute inset-0">
             <img
               src={patioBeer}
-              alt="Non-alcoholic beer enjoyed on a sunny patio"
+              alt="Non alcoholic beer enjoyed on a sunny patio"
               className="w-full h-full object-cover opacity-20"
             />
           </div>
@@ -116,7 +116,7 @@ const NonAlcoholicBeerGuide = () => {
                 The Non-Alcoholic Beer Guide
               </h1>
               <p className="font-sans text-lg text-cream/80 max-w-2xl mb-4 leading-relaxed">
-                Non-alcoholic beer is no longer a compromise. In 2026, craft NA beer rivals the best full-strength breweries in the world. This guide covers every style, what to expect, and how to find the right beer for you.
+                Non alcoholic beer is no longer a compromise. In 2026, craft NA beer rivals the best full-strength breweries in the world. This guide covers every style, what to expect, and how to find the right beer for you.
               </p>
               <div className="flex flex-wrap gap-4 mt-8">
                 <Link to="/collections/na-beer">
@@ -144,7 +144,7 @@ const NonAlcoholicBeerGuide = () => {
               </h2>
               <div className="space-y-5 font-sans text-base text-foreground/80 leading-relaxed">
                 <p>
-                  Non-alcoholic beer is brewed using the same ingredients and processes as regular beer: malted barley, hops, yeast, and water. The difference is in what happens after fermentation. Alcohol is either removed through vacuum distillation or arrested dealcoholization, or the beer is brewed using a process that limits alcohol production from the start.
+                  Non alcoholic beer is brewed using the same ingredients and processes as regular beer: malted barley, hops, yeast, and water. The difference is in what happens after fermentation. Alcohol is either removed through vacuum distillation or arrested dealcoholization, or the beer is brewed using a process that limits alcohol production from the start.
                 </p>
                 <p>
                   In the United States, any beverage with less than 0.5% ABV is legally classified as non alcoholic. The best NA beers today clock in at 0.0% to 0.3% ABV. That is a trace amount, less than what occurs naturally in fermented fruit juice.
@@ -220,7 +220,7 @@ const NonAlcoholicBeerGuide = () => {
                 {[
                   { label: "Beginner Pick", rec: "Crisp lager or golden pilsner", link: "/collections/na-beer" },
                   { label: "Craft Beer Lover", rec: "West Coast IPA or hazy pale ale", link: "/collections/na-beer" },
-                  { label: "Dark Beer Fan", rec: "Non-alcoholic stout or porter", link: "/collections/na-beer" },
+                  { label: "Dark Beer Fan", rec: "Non alcoholic stout or porter", link: "/collections/na-beer" },
                 ].map((pick) => (
                   <Link to={pick.link} key={pick.label} className="block bg-cream/10 border border-cream/20 p-5 hover:bg-cream/20 transition-colors">
                     <p className="font-sans text-xs font-bold uppercase tracking-widest text-gold mb-2">{pick.label}</p>
@@ -281,11 +281,11 @@ const NonAlcoholicBeerGuide = () => {
               <div className="space-y-6">
                 {[
                   {
-                    myth: "Myth: Non-alcoholic beer tastes flat and watery.",
+                    myth: "Myth: Non alcoholic beer tastes flat and watery.",
                     truth: "Modern craft NA beers are full-bodied, aromatic, and complex. The brewing technology has advanced dramatically in the last five years.",
                   },
                   {
-                    myth: "Myth: Non-alcoholic beer is only for people who can't drink.",
+                    myth: "Myth: Non alcoholic beer is only for people who can't drink.",
                     truth: "Most NA beer drinkers can drink alcohol. They choose not to for health, performance, or lifestyle reasons. It is a preference, not a restriction.",
                   },
                   {
@@ -293,8 +293,8 @@ const NonAlcoholicBeerGuide = () => {
                     truth: "The category spans hundreds of brands, dozens of styles, and wildly different flavor profiles. There is as much variety in NA beer as in regular craft beer.",
                   },
                   {
-                    myth: "Myth: Non-alcoholic beer is just for health fanatics.",
-                    truth: "Non-alcoholic beer is for anyone who wants to drink something great. Athletes, parents, professionals, and casual drinkers all buy it for different reasons.",
+                    myth: "Myth: Non alcoholic beer is just for health fanatics.",
+                    truth: "Non alcoholic beer is for anyone who wants to drink something great. Athletes, parents, professionals, and casual drinkers all buy it for different reasons.",
                   },
                 ].map((item, i) => (
                   <div key={i} className="border-l-4 border-gold pl-6">
