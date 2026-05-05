@@ -152,7 +152,7 @@ const AuthorityPage = ({
                     asChild
                     size="lg"
                     variant="outline"
-                    className="border-cream/40 text-cream hover:bg-cream/10"
+                    className="bg-transparent border-2 border-cream text-cream hover:bg-cream hover:text-forest"
                   >
                     <Link to={ctaSecondary.href}>{ctaSecondary.label}</Link>
                   </Button>
