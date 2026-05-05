@@ -1571,8 +1571,29 @@ const staticRoutes = [
     ogImage: `${SITE_URL}/og-non-alcoholic-beer-pregnancy.jpg`,
     schema: [organizationSchema],
   },
+  {
+    path: "/best-non-alcoholic-tequila",
+    title: "The Best Non Alcoholic Tequila & Agave Spirits of 2026 | Monday Morning",
+    description: "The best non alcoholic tequila and agave spirits in 2026. Almave Blanco, Almave Ámbar, and how to use them in palomas, margaritas, and ranch waters.",
+    ogImage: `${SITE_URL}/og-best-non-alcoholic-tequila.jpg`,
+    schema: [organizationSchema],
+  },
+  {
+    path: "/best-non-alcoholic-whiskey",
+    title: "The Best Non Alcoholic Whiskey of 2026 | Monday Morning",
+    description: "The best non alcoholic whiskey in 2026. Glen Dochus, how to use it in old fashioneds and highballs, and why NA whiskey is the hardest spirit to fake.",
+    ogImage: `${SITE_URL}/og-best-non-alcoholic-whiskey.jpg`,
+    schema: [organizationSchema],
+  },
+  {
+    path: "/best-non-alcoholic-gin",
+    title: "The Best Non Alcoholic Gin of 2026 | Monday Morning",
+    description: "The best non alcoholic gin in 2026. Abstinence Cape Citrus, Cape Spice, and how to use them in tonics, sours, and martinis.",
+    ogImage: `${SITE_URL}/og-best-non-alcoholic-gin.jpg`,
+    schema: [organizationSchema],
+  },
 
-  // Cart & checkout (SPA-only, noIndex)
+
   {
     path: "/cart",
     title: "Shopping Cart | Monday Morning Bottle Shop",
