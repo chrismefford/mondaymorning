@@ -141,9 +141,11 @@ const NonAlcoholicSpirits = () => (
       { question: "Can I order NA spirits online?", answer: "Yes. Monday Morning ships our full catalog of NA spirits across the US. Local San Diego customers can shop in store at our Pacific Beach or Ocean Beach locations." },
     ]}
     relatedLinks={[
+      { label: "Best Non Alcoholic Tequila", href: "/best-non-alcoholic-tequila", description: "Almave Blanco and Ámbar, ranked and explained." },
+      { label: "Best Non Alcoholic Whiskey", href: "/best-non-alcoholic-whiskey", description: "Glen Dochus, old fashioneds, and slow sipping." },
+      { label: "Best Non Alcoholic Gin", href: "/best-non-alcoholic-gin", description: "Abstinence Cape Citrus and Cape Spice for tonics and sours." },
       { label: "Pillar: Non alcoholic drinks", href: "/non-alcoholic-drinks", description: "The complete category overview." },
       { label: "Zero proof home bar", href: "/zero-proof-home-bar", description: "Four bottles, ten cocktails, full setup." },
-      { label: "Best non alcoholic drinks 2026", href: "/best-non-alcoholic-drinks", description: "Editorial picks across categories." },
       { label: "Cutwater alcohol content", href: "/cutwater-alcohol-content", description: "What Cutwater actually contains, vs the NA alternatives." },
     ]}
   />
