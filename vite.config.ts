@@ -46,6 +46,9 @@ const staticRoutes = [
   "/white-claw-alcohol-content",
   "/best-non-alcoholic-bars-san-diego",
   "/non-alcoholic-beer-pregnancy",
+  "/best-non-alcoholic-tequila",
+  "/best-non-alcoholic-whiskey",
+  "/best-non-alcoholic-gin",
   // Kava Haven neighborhood pages
   "/kava-haven/north-park",
   "/kava-haven/pacific-beach",

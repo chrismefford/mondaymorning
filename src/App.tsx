@@ -61,6 +61,9 @@ import DryJanuaryGuide from "./pages/seo/DryJanuaryGuide";
 import WhiteClawAlcoholContent from "./pages/seo/WhiteClawAlcoholContent";
 import BestNABarsSanDiego from "./pages/seo/BestNABarsSanDiego";
 import NonAlcoholicBeerPregnancy from "./pages/seo/NonAlcoholicBeerPregnancy";
+import BestNonAlcoholicTequila from "./pages/seo/BestNonAlcoholicTequila";
+import BestNonAlcoholicWhiskey from "./pages/seo/BestNonAlcoholicWhiskey";
+import BestNonAlcoholicGin from "./pages/seo/BestNonAlcoholicGin";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -140,6 +143,9 @@ const AppContent = () => {
         <Route path="/white-claw-alcohol-content" element={<WhiteClawAlcoholContent />} />
         <Route path="/best-non-alcoholic-bars-san-diego" element={<BestNABarsSanDiego />} />
         <Route path="/non-alcoholic-beer-pregnancy" element={<NonAlcoholicBeerPregnancy />} />
+        <Route path="/best-non-alcoholic-tequila" element={<BestNonAlcoholicTequila />} />
+        <Route path="/best-non-alcoholic-whiskey" element={<BestNonAlcoholicWhiskey />} />
+        <Route path="/best-non-alcoholic-gin" element={<BestNonAlcoholicGin />} />
         {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
         <Route path="*" element={<NotFound />} />
       </Routes>
