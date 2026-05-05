@@ -22,9 +22,9 @@ const faqs = [
       "Non-alcoholic beer is brewed just like regular beer, then either has the alcohol removed or is fermented in a way that produces minimal alcohol. Most non-alcoholic beers contain less than 0.5% ABV. The best examples are virtually indistinguishable from their full-strength counterparts in aroma, flavor, and appearance.",
   },
   {
-    question: "Does non-alcoholic beer taste like real beer?",
+    question: "Does non alcoholic beer taste like real beer?",
     answer:
-      "The best non-alcoholic beers absolutely taste like beer. The craft NA beer category has advanced dramatically since 2020. Brands like Athletic Brewing, Bravus, Partake, Mash Gang, and Beaglepuss produce IPAs, lagers, stouts, and sours that rival top craft breweries. The gap between alcoholic and non-alcoholic beer has never been smaller.",
+      "The best non alcoholic beers absolutely taste like beer. The craft NA beer category has advanced dramatically since 2020. Brands we carry like Bravus, Mash Gang, Beaglepuss, Go Brewing, and Force Majeure produce IPAs, lagers, stouts, and sours that rival top craft breweries. The gap between alcoholic and non alcoholic beer has never been smaller.",
   },
   {
     question: "What styles of non-alcoholic beer are available?",
@@ -42,9 +42,9 @@ const faqs = [
       "Non-alcoholic beer with 0.5% ABV or less is generally considered safe for most people avoiding alcohol. However, if you are pregnant, in recovery, or have medical reasons for complete abstinence, consult your doctor. We carry several 0.0% ABV options that contain zero alcohol whatsoever if you need certainty.",
   },
   {
-    question: "What's the best non-alcoholic beer for beginners?",
+    question: "What's the best non alcoholic beer for beginners?",
     answer:
-      "For beginners, we recommend starting with a crisp lager or a light golden ale. These styles are approachable and familiar. Athletic Brewing's Run Wild IPA and Free Wave Hazy IPA are popular starting points. If you prefer something lighter, a non-alcoholic pilsner is always a safe first choice.",
+      "For beginners, we recommend starting with a crisp lager or a light golden ale. These styles are approachable and familiar. A Bravus or Go Brewing pale ale is an easy starting point, and a hazy IPA from Mash Gang or Beaglepuss is a great next step. If you prefer something lighter, a non alcoholic pilsner is always a safe first choice.",
   },
   {
     question: "Where can I buy non-alcoholic beer in San Diego?",
