@@ -107,7 +107,7 @@ const AuthorityPage = ({
       <Header />
       <main>
         {/* Hero */}
-        <section className="relative bg-forest text-cream py-16 md:py-24 overflow-hidden">
+        <section className="relative bg-forest text-cream pt-32 md:pt-40 pb-16 md:pb-24 overflow-hidden">
           {heroImage && (
             <div
               className="absolute inset-0 opacity-25"
@@ -119,6 +119,11 @@ const AuthorityPage = ({
               aria-hidden="true"
             />
           )}
+          {/* Top scrim so the cream header nav stays legible over the hero */}
+          <div
+            className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-forest-deep/90 to-transparent pointer-events-none"
+            aria-hidden="true"
+          />
           <div className="container relative mx-auto px-4 lg:px-8 max-w-4xl">
             {eyebrow && (
               <p className="font-sans uppercase tracking-[0.2em] text-xs text-gold-warm mb-4">
