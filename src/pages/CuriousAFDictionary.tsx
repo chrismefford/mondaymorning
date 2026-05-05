@@ -366,7 +366,7 @@ const CuriousAFDictionary = () => {
           <div className="container mx-auto px-4 max-w-3xl">
             <div className="prose prose-lg max-w-none font-sans text-foreground/90 space-y-5">
               <p>
-                "Tired AF" means something specific. Drinking "AF" means
+                "Excited AF" means something specific. Drinking "AF" means
                 something else specific. When those two meanings collide, you
                 get a vocabulary that did not exist ten years ago: a way of
                 talking about drinking less that is blunt, useful, and actually
