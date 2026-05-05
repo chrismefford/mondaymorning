@@ -42,7 +42,11 @@ const hireUsItems = [
   { name: "Press", icon: Newspaper, href: "/press", isPress: true },
 ];
 
-const Header = () => {
+interface HeaderProps {
+  forceSolid?: boolean;
+}
+
+const Header = ({ forceSolid = false }: HeaderProps) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isCollectionsOpen, setIsCollectionsOpen] = useState(false);
@@ -104,13 +108,13 @@ const Header = () => {
   const isWholesaleCatalog = typeof window !== 'undefined' && 
     window.location.pathname === '/wholesale-catalog';
 
-  const showLightText = !isScrolled && isDarkHeroPage;
+  const showLightText = !forceSolid && !isScrolled && isDarkHeroPage;
 
   return (
     <>
       <header 
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-          isScrolled || isWholesaleCatalog
+          isScrolled || isWholesaleCatalog || forceSolid
             ? "bg-background/95 backdrop-blur-md border-b-2 border-foreground" 
             : "bg-transparent"
         }`}

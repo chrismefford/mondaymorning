@@ -104,7 +104,7 @@ const AuthorityPage = ({
         type="article"
         schema={schemas}
       />
-      <Header />
+      <Header forceSolid />
       <main>
         {/* Hero */}
         <section className="relative bg-forest text-cream pt-32 md:pt-40 pb-16 md:pb-24 overflow-hidden">
