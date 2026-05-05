@@ -352,6 +352,8 @@ const NonAlcoholicBeerGuide = () => {
                   { to: "/non-alcoholic-drinks", label: "The Non Alcoholic Drinks Pillar", desc: "Every category, every use case, all in one place." },
                   { to: "/blog/ultimate-non-alcoholic-beer-guide-2026", label: "Ultimate NA Beer Guide 2026", desc: "Our annual deep dive on the best NA beer of the year." },
                   { to: "/best-non-alcoholic-ipas", label: "Best Non Alcoholic IPAs", desc: "Hop-forward picks from Bravus, Mash Gang, Beaglepuss, and more." },
+                  { to: "/best-non-alcoholic-lagers", label: "Best Non Alcoholic Lagers", desc: "Crisp Mexican lagers, Italian pils, and German helles." },
+                  { to: "/best-non-alcoholic-stouts", label: "Best Non Alcoholic Stouts", desc: "Roasty, full bodied dark NA beers for cold nights." },
                   { to: "/non-alcoholic-spirits", label: "Non Alcoholic Spirits Guide", desc: "Almave, Sentia, Abstinence, Glen Dochus, and how to use them." },
                   { to: "/non-alcoholic-wine", label: "Non Alcoholic Wine & Bubbles", desc: "Sovi, Bolle, and what actually drinks like wine." },
                   { to: "/sober-curious-guide", label: "The Sober Curious Guide", desc: "Why people drink less, without quitting forever." },
