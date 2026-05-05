@@ -121,7 +121,7 @@ const AuthorityPage = ({
           )}
           {/* Top scrim so the cream header nav stays legible over the hero */}
           <div
-            className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-forest-deep/90 to-transparent pointer-events-none"
+            className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-forest-deep via-forest-deep/80 to-transparent pointer-events-none z-[1]"
             aria-hidden="true"
           />
           <div className="container relative mx-auto px-4 lg:px-8 max-w-4xl">
