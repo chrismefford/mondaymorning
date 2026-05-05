@@ -337,7 +337,49 @@ const NonAlcoholicBeerGuide = () => {
           </div>
         </section>
 
+        {/* Cluster: Explore the rest of the NA world */}
+        <section className="py-16 lg:py-24 bg-background">
+          <div className="container mx-auto px-4 lg:px-8">
+            <div className="max-w-4xl mx-auto">
+              <h2 className="font-serif text-3xl md:text-4xl text-forest mb-4">
+                Beyond Beer: Explore the Rest of the NA World
+              </h2>
+              <p className="font-sans text-base text-foreground/70 mb-10 leading-relaxed">
+                Beer is one doorway into drinking less. There are several others, and each one has its own depth. Start with our pillar guide or jump straight into the category that fits the night you're planning.
+              </p>
+              <div className="grid sm:grid-cols-2 gap-4">
+                {[
+                  { to: "/non-alcoholic-drinks", label: "The Non Alcoholic Drinks Pillar", desc: "Every category, every use case, all in one place." },
+                  { to: "/blog/ultimate-non-alcoholic-beer-guide-2026", label: "Ultimate NA Beer Guide 2026", desc: "Our annual deep dive on the best NA beer of the year." },
+                  { to: "/best-non-alcoholic-ipas", label: "Best Non Alcoholic IPAs", desc: "Hop-forward picks from Bravus, Mash Gang, Beaglepuss, and more." },
+                  { to: "/non-alcoholic-spirits", label: "Non Alcoholic Spirits Guide", desc: "Almave, Sentia, Abstinence, Glen Dochus, and how to use them." },
+                  { to: "/non-alcoholic-wine", label: "Non Alcoholic Wine & Bubbles", desc: "Sovi, Bolle, and what actually drinks like wine." },
+                  { to: "/sober-curious-guide", label: "The Sober Curious Guide", desc: "Why people drink less, without quitting forever." },
+                  { to: "/zero-proof-home-bar", label: "Build a Zero Proof Home Bar", desc: "The five-bottle starter kit and how to use it." },
+                  { to: "/dry-january-guide", label: "Dry January Guide", desc: "How to do the month without white-knuckling it." },
+                  { to: "/white-claw-alcohol-content", label: "White Claw Alcohol Content", desc: "And the NA seltzers that scratch the same itch." },
+                  { to: "/non-alcoholic-beer-pregnancy", label: "NA Beer & Pregnancy", desc: "What 0.5% actually means, and which 0.0% options we carry." },
+                  { to: "/best-na-bars-san-diego", label: "Best NA Bars in San Diego", desc: "Where to drink less in our home city." },
+                  { to: "/blog/curious-af-dictionary", label: "The Curious AF Dictionary", desc: "The vocabulary of drinking less, defined." },
+                ].map((link) => (
+                  <Link
+                    to={link.to}
+                    key={link.to}
+                    className="block border-2 border-forest/10 bg-cream p-5 hover:border-gold transition-colors group"
+                  >
+                    <p className="font-sans text-sm font-semibold text-forest mb-1 group-hover:text-gold transition-colors">
+                      {link.label}
+                    </p>
+                    <p className="font-sans text-xs text-foreground/60 leading-relaxed">{link.desc}</p>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* FAQ */}
+
         <section className="py-16 lg:py-24 bg-background">
           <div className="container mx-auto px-4 lg:px-8">
             <div className="max-w-3xl mx-auto">
