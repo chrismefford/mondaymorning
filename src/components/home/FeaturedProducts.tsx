@@ -289,7 +289,7 @@ const FeaturedProducts = () => {
                   key={product.id} 
                   className={`${index % 2 === 1 ? 'lg:translate-y-12' : ''}`}
                 >
-                  <ProductCard product={product} />
+                  <ProductCard product={product} showProductOnly />
                 </div>
               ))}
             </div>
