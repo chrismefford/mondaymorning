@@ -172,16 +172,16 @@ const FeaturedProducts = () => {
                 to={featuredProduct.handle ? `/product/${featuredProduct.handle}` : `/product/${featuredProduct.name.toLowerCase().replace(/\s+/g, '-')}`}
                 className="flex-shrink-0 w-[85vw] snap-center block"
               >
-                <div className="relative bg-cream border-2 border-forest overflow-hidden">
+                <div className="relative bg-sand border-2 border-forest overflow-hidden">
                   <div className="aspect-[3/4]">
                     <img
-                      src={featuredProduct.lifestyleImage || getLifestyleImage(featuredProduct.category)}
+                      src={featuredProduct.image}
                       alt={featuredProduct.name}
                       loading="eager"
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-contain p-8"
                     />
                   </div>
-                  <div className="absolute inset-0 bg-gradient-to-t from-forest-deep/80 via-transparent to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-forest-deep/80 via-transparent to-transparent pointer-events-none" />
                   <div className="absolute bottom-0 left-0 right-0 p-5 text-cream">
                     <span className="font-sans text-[10px] uppercase tracking-[0.3em] text-gold">Bestseller</span>
                     <h3 className="font-serif text-2xl font-bold mt-1">{featuredProduct.name}</h3>
