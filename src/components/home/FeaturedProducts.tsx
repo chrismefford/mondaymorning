@@ -199,7 +199,7 @@ const FeaturedProducts = () => {
               {/* Other products */}
               {gridProducts.map((product) => (
                 <div key={product.id} className="flex-shrink-0 w-[70vw] snap-center">
-                  <ProductCard product={product} />
+                  <ProductCard product={product} showProductOnly />
                 </div>
               ))}
             </div>
