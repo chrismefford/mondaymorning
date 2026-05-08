@@ -201,9 +201,15 @@ const Hero = () => {
           {/* Main image */}
           <div className="absolute inset-0">
             <img
-              src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1200&q=80"
+              src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1200&q=75&auto=format&fm=webp"
+              srcSet="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=900&q=75&auto=format&fm=webp 900w, https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1400&q=75&auto=format&fm=webp 1400w"
+              sizes="50vw"
               alt="San Diego beach at golden hour"
               className="w-full h-full object-cover"
+              width="1200"
+              height="1400"
+              fetchPriority="high"
+              decoding="async"
             />
             {/* Color overlay */}
             <div className="absolute inset-0 bg-gradient-to-l from-transparent via-background/30 to-background" />
