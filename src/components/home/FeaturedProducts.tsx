@@ -172,16 +172,16 @@ const FeaturedProducts = () => {
                 to={featuredProduct.handle ? `/product/${featuredProduct.handle}` : `/product/${featuredProduct.name.toLowerCase().replace(/\s+/g, '-')}`}
                 className="flex-shrink-0 w-[85vw] snap-center block"
               >
-                <div className="relative bg-cream border-2 border-forest overflow-hidden">
+                <div className="relative bg-sand border-2 border-forest overflow-hidden">
                   <div className="aspect-[3/4]">
                     <img
-                      src={featuredProduct.lifestyleImage || getLifestyleImage(featuredProduct.category)}
+                      src={featuredProduct.image}
                       alt={featuredProduct.name}
                       loading="eager"
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-contain p-8"
                     />
                   </div>
-                  <div className="absolute inset-0 bg-gradient-to-t from-forest-deep/80 via-transparent to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-forest-deep/80 via-transparent to-transparent pointer-events-none" />
                   <div className="absolute bottom-0 left-0 right-0 p-5 text-cream">
                     <span className="font-sans text-[10px] uppercase tracking-[0.3em] text-gold">Bestseller</span>
                     <h3 className="font-serif text-2xl font-bold mt-1">{featuredProduct.name}</h3>
@@ -199,7 +199,7 @@ const FeaturedProducts = () => {
               {/* Other products */}
               {gridProducts.map((product) => (
                 <div key={product.id} className="flex-shrink-0 w-[70vw] snap-center">
-                  <ProductCard product={product} />
+                  <ProductCard product={product} showProductOnly />
                 </div>
               ))}
             </div>
@@ -240,12 +240,12 @@ const FeaturedProducts = () => {
               <div className="grid lg:grid-cols-12 gap-8 items-center">
                 {/* Image - Takes 7 columns */}
                 <div className="lg:col-span-7 relative">
-                  <div className="aspect-[4/3] overflow-hidden border-2 border-forest">
+                  <div className="aspect-[4/3] overflow-hidden border-2 border-forest bg-sand">
                     <img
-                      src={featuredProduct.lifestyleImage || getLifestyleImage(featuredProduct.category)}
+                      src={featuredProduct.image}
                       alt={featuredProduct.name}
                       loading="eager"
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                      className="w-full h-full object-contain p-12 transition-transform duration-700 group-hover:scale-105"
                     />
                   </div>
                   {/* Offset accent - Gold */}
@@ -289,7 +289,7 @@ const FeaturedProducts = () => {
                   key={product.id} 
                   className={`${index % 2 === 1 ? 'lg:translate-y-12' : ''}`}
                 >
-                  <ProductCard product={product} />
+                  <ProductCard product={product} showProductOnly />
                 </div>
               ))}
             </div>
