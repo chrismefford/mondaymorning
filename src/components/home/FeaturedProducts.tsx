@@ -240,12 +240,12 @@ const FeaturedProducts = () => {
               <div className="grid lg:grid-cols-12 gap-8 items-center">
                 {/* Image - Takes 7 columns */}
                 <div className="lg:col-span-7 relative">
-                  <div className="aspect-[4/3] overflow-hidden border-2 border-forest">
+                  <div className="aspect-[4/3] overflow-hidden border-2 border-forest bg-sand">
                     <img
-                      src={featuredProduct.lifestyleImage || getLifestyleImage(featuredProduct.category)}
+                      src={featuredProduct.image}
                       alt={featuredProduct.name}
                       loading="eager"
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                      className="w-full h-full object-contain p-12 transition-transform duration-700 group-hover:scale-105"
                     />
                   </div>
                   {/* Offset accent - Gold */}
