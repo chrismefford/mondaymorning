@@ -33,8 +33,8 @@ const Blog = () => {
     },
   });
 
-  const pageTitle = "Blog | Monday Morning Bottle Shop";
-  const pageDescription = "Stories, recipes, and insights from the alcohol-free lifestyle movement. Discover the joy of mindful drinking with Monday Morning.";
+  const pageTitle = "Non Alcoholic Drinks Blog: Reviews, Recipes & Guides | Monday Morning";
+  const pageDescription = "Honest NA beer reviews, zero proof cocktail recipes, buyer guides and sober curious stories from San Diego's biggest non alcoholic bottle shop.";
   const ogImage = "/og-image.png";
 
   return (
