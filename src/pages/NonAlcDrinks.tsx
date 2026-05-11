@@ -367,8 +367,8 @@ const NonAlcDrinks = () => {
   return (
     <>
       <SEO
-        title="10 Exciting Non Alc Drink Recipes to Delight Your Taste Buds"
-        description="Discover 10 delicious non alc drink recipes that will tantalize your taste buds and elevate your gatherings without alcohol. Learn more now!"
+        title="10 Best Non Alcoholic Drink Recipes: Easy NA Cocktails | Monday Morning"
+        description="10 non alcoholic drink recipes that actually taste great. Easy zero proof cocktails for parties, dinners and weeknights, built with bottles we stock in San Diego."
         path="/non-alc-drinks"
         type="article"
         schema={[articleSchema, faqSchema, breadcrumbSchema, websiteSchema]}

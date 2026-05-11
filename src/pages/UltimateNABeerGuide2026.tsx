@@ -211,8 +211,8 @@ const UltimateNABeerGuide2026 = () => {
   return (
     <div className="min-h-screen bg-background">
       <SEO
-        title="The Ultimate Non-Alcoholic Beer Guide for 2026"
-        description="Every NA beer worth drinking, side by side. Compare 80+ alcohol-free beers across IPA, lager, stout, and Belgian styles. Curated by Monday Morning Bottle Shop."
+        title="The Ultimate Non Alcoholic Beer Guide 2026: 80+ NA Beers Ranked | Monday Morning"
+        description="Every NA beer worth drinking, side by side. 80+ non alcoholic beers across IPA, lager, stout and Belgian styles, ranked by Monday Morning's tasting room staff."
         path={path}
         type="article"
         image="/og-ultimate-na-beer-guide-2026.jpg"

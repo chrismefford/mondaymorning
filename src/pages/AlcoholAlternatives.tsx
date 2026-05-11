@@ -195,8 +195,8 @@ const AlcoholAlternatives = () => {
   return (
     <>
       <SEO
-        title="Alcohol Alternatives: 10 Creative Choices for Every Occasion"
-        description="Discover the world of alcohol alternatives! Explore creative options and learn about non-alcoholic beers, wines, and mocktail recipes for every occasion."
+        title="Alcohol Alternatives: 10 NA Drinks Worth Drinking in 2026 | Monday Morning"
+        description="The 10 best alcohol alternatives for every occasion. NA beer, wine, spirits, functional drinks and mocktail recipes from San Diego's biggest NA bottle shop."
         path="/alcohol-alternatives"
         type="article"
         schema={[articleSchema, faqSchema, breadcrumbSchema, websiteSchema, localBusinessSchema]}
