@@ -17,39 +17,39 @@ import sparkling from "@/assets/lifestyle/sparkling-celebration.jpg";
 
 const faqs = [
   {
-    question: "What are the best non-alcoholic drinks in 2026?",
+    question: "What are the best non alcoholic drinks in 2026?",
     answer:
-      "The best non-alcoholic drinks in 2026 span every category. In beer, Athletic Brewing, Bravus, and Mash Gang lead the pack. For spirits, Lyre's, Monday Distillery, and Seedlip are the standards. Non-alcoholic wines from Leitz, Giesen, and Luminara have redefined what zero-proof wine can be. Functional beverages from Kin Euphorics, Aplós, and Daytrip offer mood-shifting drinks without alcohol.",
+      "The strongest bottles in 2026 span every category. In NA beer, Go Brewing, Mash Gang, Bravus, and Force Majeure lead the pack. For NA spirits, Almave (tequila), Abstinence (gin), and Glen Dochus (whiskey) are the standards. For NA wine, Bolle and Sovi have redefined what dealcoholized wine can be. For functional drinks, Leilo, Kavaly, Sentia, Soul Hum Elixirs, and Curious Elixirs offer real mood and relaxation effects.",
   },
   {
-    question: "What non-alcoholic drink tastes most like alcohol?",
+    question: "What non alcoholic drink tastes most like alcohol?",
     answer:
-      "Non-alcoholic spirits come closest to the experience of drinking alcohol. Brands like Monday Distillery, Lyre's, and Ritual Zero Proof create gin, whiskey, rum, and tequila alternatives that replicate the botanical complexity and warmth of the originals. Used in cocktails, they are nearly indistinguishable from alcoholic versions.",
+      "Non alcoholic spirits come closest to the cocktail experience. Almave for margaritas, Abstinence for gin and tonics, and Glen Dochus for whiskey-style sippers replicate the warmth and botanical complexity of the originals. Used in cocktails, they are nearly indistinguishable from the alcoholic versions.",
   },
   {
-    question: "What are the best non-alcoholic drinks for parties?",
+    question: "What are the best non alcoholic drinks for parties?",
     answer:
-      "For parties, ready-to-drink mocktails and canned non-alcoholic options are the most practical. Sparkling non-alcoholic wines are great for toasts. Non-alcoholic beer handles casual gatherings well. For a crafted bar setup, non-alcoholic spirits paired with good mixers let you serve sophisticated cocktails to every guest.",
+      "For parties, ready-to-pour bottles like Curious Elixirs and canned options from Trip or FLVR! are the most practical. Sparkling NA wines from Bolle work for toasts. NA beer covers casual gatherings. For a built bar setup, an NA spirit (Almave, Abstinence) plus quality mixers lets you serve cocktails all night.",
   },
   {
-    question: "Are non-alcoholic drinks healthy?",
+    question: "Are non alcoholic drinks healthy?",
     answer:
-      "Many non-alcoholic drinks offer genuine health benefits. Functional beverages contain adaptogens, nootropics, CBD, and botanicals that support sleep, focus, and stress management. Non-alcoholic beer and wine have significantly fewer calories than alcoholic versions. The absence of alcohol itself removes the negative health impacts associated with regular drinking.",
+      "Many offer real benefits. Functional drinks from Leilo, Soul Hum Elixirs, and Alice Mushrooms contain adaptogens, kava, and botanicals that support sleep, focus, and stress balance. NA beer and wine have significantly fewer calories than alcoholic versions. Removing the alcohol removes the negative health impacts of regular drinking.",
   },
   {
-    question: "What is the best non-alcoholic drink for someone who doesn't like sweet drinks?",
+    question: "What is the best non alcoholic drink for someone who doesn't like sweet drinks?",
     answer:
-      "For those who prefer dry or bitter flavors, non-alcoholic spirits are ideal. A non-alcoholic gin and tonic, a zero-proof Negroni, or a NA Old Fashioned all deliver complexity without sweetness. Dry-style non-alcoholic wines and bitter botanical seltzers are also excellent choices.",
+      "If you prefer dry or bitter flavors, NA spirits are ideal. A gin and tonic with Abstinence, a Negroni-style sipper with Curious Elixirs No. 1, or an NA Old Fashioned with Glen Dochus all deliver complexity without sweetness. Dry NA wines from Sovi and bitter botanical seltzers like Sentia are also excellent.",
   },
   {
-    question: "What's the difference between non-alcoholic and alcohol-free drinks?",
+    question: "What's the difference between non alcoholic and alcohol-free drinks?",
     answer:
-      "Legally in the US, both terms refer to beverages under 0.5% ABV. In practice, some brands use 'alcohol-free' to specifically indicate 0.0% ABV products, while 'non-alcoholic' may include traces up to 0.5%. Always check the product label if you need certainty about ABV content.",
+      "Legally in the US, both terms refer to beverages under 0.5% ABV. In practice, some brands use 'alcohol-free' to signal 0.0% specifically, while 'non alcoholic' may include traces up to 0.5%. Always check the label if you need zero certainty.",
   },
   {
-    question: "Can I mix non-alcoholic spirits into cocktails?",
+    question: "Can I mix non alcoholic spirits into cocktails?",
     answer:
-      "Absolutely. Non-alcoholic spirits are designed for mixing. Use them exactly as you would regular spirits in any cocktail recipe. A NA gin and tonic, a zero-proof margarita, or a non-alcoholic whiskey sour all work the same way mechanically. The flavor profiles are built to stand up to mixers.",
+      "Yes, and that is exactly what they are built for. Use Almave wherever you'd use tequila, Abstinence wherever you'd use gin, Glen Dochus for whiskey. The flavor profiles stand up to mixers, citrus, and bitters the same way regular spirits do.",
   },
 ];
 
@@ -204,13 +204,13 @@ const BestNonAlcoholicDrinks = () => {
                   },
                   {
                     occasion: "Post-Workout Recovery",
-                    pick: "Non-alcoholic beer with electrolytes, or functional drinks with adaptogens. Athletic Brewing was built specifically for this use case. Many NA beers now contain added B vitamins and minerals.",
+                    pick: "Non alcoholic beer with electrolytes, or functional drinks with adaptogens. Many NA beers from Go Brewing and Bravus now contain added B vitamins and minerals built for the post-workout window.",
                     link: "/collections/na-beer",
                   },
                   {
                     occasion: "Evening Wind-Down",
-                    pick: "Functional beverages with calming botanicals, kava, or ashwagandha. Kin Euphorics, Aplós, and similar brands create drinks specifically designed to replicate the relaxing effect of an evening drink.",
-                    link: "/collections/functional",
+                    pick: "Functional drinks with calming botanicals, kava, or adaptogens. Leilo, Kavaly, Sentia, and Soul Hum Elixirs are built specifically to replicate the relaxing feeling of an evening drink.",
+                    link: "/na-drinks-for-relaxation",
                   },
                   {
                     occasion: "Home Cocktail Hour",
