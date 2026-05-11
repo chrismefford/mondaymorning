@@ -22,7 +22,7 @@ import {
 
 const Index = () => {
   const pageTitle = "Non Alcoholic Drinks: 500+ NA Beer, Wine & Spirits | Monday Morning";
-  const pageDescription = "Shop 500+ non alcoholic beers, wines, spirits and mocktails. Free San Diego delivery, fast US shipping, taste before you buy at our PB and OB tasting rooms.";
+  const pageDescription = "Shop 500+ non alcoholic beers, wines, spirits and mocktails. Fast local delivery in San Diego, taste before you buy at our PB and OB tasting rooms.";
   const canonicalUrl = SITE_URL;
 
   return (
