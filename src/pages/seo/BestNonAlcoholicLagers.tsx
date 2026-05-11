@@ -4,8 +4,8 @@ import heroImg from "@/assets/lifestyle/na-beer-beach.jpg";
 
 const BestNonAlcoholicLagers = () => (
   <AuthorityPage
-    title="The Best Non Alcoholic Lagers & Pilsners of 2026 | Monday Morning"
-    description="The best non alcoholic lagers and pilsners in 2026. Crisp Mexican lagers, Italian pils, and German style helles, ranked by our tasting room staff."
+    title="Best Non Alcoholic Lagers & Pilsners of 2026: Ranked | Monday Morning"
+    description="The best non alcoholic lagers and pilsners of 2026. Crisp Mexican lagers, Italian pils and German helles, ranked by Monday Morning's San Diego tasting room staff."
     path="/best-non-alcoholic-lagers"
     ogImage={`${SITE_URL}/og-best-non-alcoholic-lagers.jpg`}
     eyebrow="Beer Cluster"

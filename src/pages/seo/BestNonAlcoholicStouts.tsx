@@ -4,8 +4,8 @@ import heroImg from "@/assets/lifestyle/fireplace-cozy-drinks.jpg";
 
 const BestNonAlcoholicStouts = () => (
   <AuthorityPage
-    title="The Best Non Alcoholic Stouts & Porters of 2026 | Monday Morning"
-    description="The best non alcoholic stouts and porters in 2026. Roasty, full bodied dark NA beers from Bravus, Mash Gang, and Go Brewing, ranked and explained."
+    title="Best Non Alcoholic Stouts & Porters of 2026: Ranked | Monday Morning"
+    description="The best non alcoholic stouts and porters of 2026. Roasty, full bodied dark NA beers from Bravus, Mash Gang and Go Brewing, ranked and explained by Monday Morning."
     path="/best-non-alcoholic-stouts"
     ogImage={`${SITE_URL}/og-best-non-alcoholic-stouts.jpg`}
     eyebrow="Beer Cluster"
