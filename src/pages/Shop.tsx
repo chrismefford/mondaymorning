@@ -403,14 +403,13 @@ const ShopPage = () => {
           <div className="container mx-auto px-4 lg:px-8 relative z-10">
             <div className="max-w-4xl mx-auto text-center">
               <span className="font-sans text-xs font-semibold uppercase tracking-[0.3em] text-gold mb-4 block">
-                Shop by Vibe
+                Shop by Vibe, America's #1 NA Bottle Shop
               </span>
               <h1 className="font-serif text-5xl lg:text-7xl xl:text-8xl font-normal mb-6 text-cream">
-                Find Your <span className="italic text-gold">Moment</span>
+                Shop Non Alcoholic <span className="italic text-gold">Drinks</span>
               </h1>
               <p className="font-sans text-lg lg:text-xl text-cream/80 max-w-2xl mx-auto">
-                Whether it's golden hour on the rooftop or a cozy night in — we've got 
-                the perfect pour for every vibe.
+                500+ non alcoholic beers, wines, spirits, and functional drinks, hand-picked by our San Diego tasting room. Taste before you buy, get fast local delivery, or ship nationwide.
               </p>
               
               {/* Fun stats */}

@@ -294,6 +294,40 @@ const CollectionPage = () => {
     { name: collectionTitle, url: canonicalUrl }
   ]);
 
+  // Keyword-rich intro paragraph for SEO + engagement
+  const introParagraph = isBrandFilter
+    ? `Browse every ${brandName} non alcoholic drink we stock at Monday Morning, America's #1 NA bottle shop. Each bottle is hand-picked by our tasting room team in San Diego, so you can taste before you buy at our Pacific Beach and Ocean Beach shops, get fast local delivery, or ship nationwide.`
+    : `Discover the best ${collectionTitle.toLowerCase()} non alcoholic drinks at Monday Morning, ranked America's #1 NA bottle shop. We've curated ${productCount > 0 ? `${productCount} bottles` : "a tasting-room favorite lineup"} you can sip before you buy at our Pacific Beach and Ocean Beach tasting rooms, with fast local delivery and nationwide shipping.`;
+
+  // FAQ schema for "People Also Ask" block
+  const faqItems = [
+    {
+      q: `What is the best ${collectionTitle.toLowerCase()} non alcoholic drink?`,
+      a: `Our top-rated picks in ${collectionTitle.toLowerCase()} are curated by the Monday Morning tasting team based on flavor, ingredient quality, and what our San Diego customers reorder most. Look for the Staff Pick and Best Seller badges above.`,
+    },
+    {
+      q: `Do these non alcoholic drinks taste like the real thing?`,
+      a: `Most of our top sellers are blind-tested against their alcoholic counterparts. We only stock bottles our team would pour for friends, so flavor, mouthfeel, and finish are taken seriously.`,
+    },
+    {
+      q: `Can I try ${collectionTitle.toLowerCase()} before I buy?`,
+      a: `Yes. Visit our Pacific Beach or Ocean Beach tasting rooms in San Diego and our team will pour samples so you can taste before you commit to a full bottle.`,
+    },
+    {
+      q: `Do you ship non alcoholic drinks nationwide?`,
+      a: `Yes, we ship across the United States. San Diego customers can also choose fast local delivery at checkout.`,
+    },
+  ];
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqItems.map((f) => ({
+      "@type": "Question",
+      name: f.q,
+      acceptedAnswer: { "@type": "Answer", text: f.a },
+    })),
+  };
+
   return (
     <div className="min-h-screen bg-cream">
       <Helmet>
@@ -323,6 +357,9 @@ const CollectionPage = () => {
         <script type="application/ld+json">
           {JSON.stringify(breadcrumbSchema)}
         </script>
+        <script type="application/ld+json">
+          {JSON.stringify(faqSchema)}
+        </script>
       </Helmet>
 
       <Header />
@@ -342,6 +379,17 @@ const CollectionPage = () => {
           </div>
           
           <div className="container mx-auto px-4 lg:px-8 relative z-10">
+            {/* Visible breadcrumbs */}
+            <nav aria-label="breadcrumb" className="mb-6">
+              <ol className="flex flex-wrap items-center gap-2 font-sans text-xs uppercase tracking-wider text-cream/60">
+                <li><Link to="/" className="hover:text-gold transition-colors">Home</Link></li>
+                <li aria-hidden="true">/</li>
+                <li><Link to="/shop" className="hover:text-gold transition-colors">{isBrandFilter ? "Brands" : "Collections"}</Link></li>
+                <li aria-hidden="true">/</li>
+                <li aria-current="page" className="text-gold">{collectionTitle}</li>
+              </ol>
+            </nav>
+
             {/* Back link */}
             <Link 
               to={isBrandFilter ? "/about" : isVibeCollection ? "/shop" : "/#collections"} 
@@ -356,12 +404,15 @@ const CollectionPage = () => {
                 {isBrandFilter ? "Brand" : isVibeCollection ? "The Vibe" : "Collection"}
               </span>
               <h1 className="font-serif text-4xl lg:text-6xl xl:text-7xl font-normal mb-6 capitalize text-cream">
-                {isBrandFilter ? brandName : vibeInfo?.title || collectionInfo?.title || collectionMeta?.name || "Collection"}
+                {isBrandFilter ? `${brandName} Non Alcoholic Drinks` : `${vibeInfo?.title || collectionInfo?.title || collectionMeta?.name || "Collection"}`}
               </h1>
-              <p className="font-sans text-lg lg:text-xl text-cream/80 max-w-2xl">
+              <p className="font-sans text-lg lg:text-xl text-cream/80 max-w-2xl mb-4">
                 {isBrandFilter 
                   ? `Explore all products from ${brandName}.`
                   : vibeInfo?.description || collectionInfo?.description || collectionMeta?.description || "Explore our curated selection."}
+              </p>
+              <p className="font-sans text-sm lg:text-base text-cream/70 max-w-2xl leading-relaxed">
+                {introParagraph}
               </p>
               
               {!isLoading && displayProducts.length > 0 && (
@@ -423,6 +474,26 @@ const CollectionPage = () => {
                 ))}
               </div>
             )}
+          </div>
+        </section>
+
+        {/* People Also Ask / FAQ */}
+        <section className="py-12 lg:py-16 bg-cream border-t border-forest/10">
+          <div className="container mx-auto px-4 lg:px-8 max-w-3xl">
+            <span className="font-sans text-xs font-semibold uppercase tracking-[0.3em] text-gold block mb-3">
+              People Also Ask
+            </span>
+            <h2 className="font-serif text-3xl lg:text-4xl text-forest mb-8">
+              Common questions about {collectionTitle.toLowerCase()}
+            </h2>
+            <div className="space-y-6">
+              {faqItems.map((item) => (
+                <div key={item.q} className="border-b border-forest/10 pb-6">
+                  <h3 className="font-serif text-lg lg:text-xl text-forest mb-2">{item.q}</h3>
+                  <p className="font-sans text-sm lg:text-base text-forest/80 leading-relaxed">{item.a}</p>
+                </div>
+              ))}
+            </div>
           </div>
         </section>
 
