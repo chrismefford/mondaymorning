@@ -3,8 +3,8 @@ import { SITE_URL } from "@/lib/seo";
 
 const BestNonAlcoholicTequila = () => (
   <AuthorityPage
-    title="The Best Non Alcoholic Tequila & Agave Spirits of 2026 | Monday Morning"
-    description="The best non alcoholic tequila and agave spirits in 2026. Almave Blanco, Almave Ámbar, and how to use them in palomas, margaritas, and rancho waters."
+    title="Best Non Alcoholic Tequila & Agave Spirits of 2026 | Monday Morning"
+    description="The best non alcoholic tequila and agave spirits of 2026. Almave Blanco, Almave Ámbar and how to use them in palomas, margaritas and ranch waters. Ranked by Monday Morning."
     path="/best-non-alcoholic-tequila"
     ogImage={`${SITE_URL}/og-best-non-alcoholic-tequila.jpg`}
     eyebrow="Spirits Cluster"

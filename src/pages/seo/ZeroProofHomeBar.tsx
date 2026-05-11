@@ -4,8 +4,8 @@ import { SITE_URL } from "@/lib/seo";
 
 const ZeroProofHomeBar = () => (
   <AuthorityPage
-    title="The Zero Proof Home Bar: A 2026 Setup Guide"
-    description="Build a non alcoholic home bar with four bottles, ten cocktails, and zero compromise. The complete setup guide from Monday Morning Bottle Shop."
+    title="Zero Proof Home Bar: 4 Bottles, 10 Cocktails, Full Setup Guide | Monday Morning"
+    description="Build a non alcoholic home bar with 4 bottles and 10 cocktails. The complete zero proof home bar setup guide from Monday Morning Bottle Shop in San Diego."
     path="/zero-proof-home-bar"
     ogImage={`${SITE_URL}/og-zero-proof-home-bar.jpg`}
     eyebrow="Spirits Cluster"

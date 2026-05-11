@@ -4,8 +4,8 @@ import { SITE_URL } from "@/lib/seo";
 
 const WhiteClawAlcoholContent = () => (
   <AuthorityPage
-    title="White Claw Alcohol Content: How Much Alcohol Is in a White Claw?"
-    description="White Claw alcohol content explained. How much alcohol in a White Claw, calorie comparison, and the best non alcoholic seltzer alternatives."
+    title="White Claw Alcohol Content: ABV, Calories & NA Alternatives | Monday Morning"
+    description="How much alcohol is in a White Claw? ABV, calories, and the best non alcoholic seltzer alternatives, ranked by Monday Morning Bottle Shop."
     path="/white-claw-alcohol-content"
     ogImage={`${SITE_URL}/og-white-claw-alcohol-content.jpg`}
     eyebrow="Comparison Cluster"

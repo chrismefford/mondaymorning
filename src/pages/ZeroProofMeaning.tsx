@@ -172,8 +172,8 @@ const ZeroProofMeaning = () => {
   return (
     <div className="min-h-screen bg-background">
       <SEO
-        title="What Does Zero Proof Mean? Complete Guide to Alcohol-Free Drinks"
-        description="Learn what zero proof means, how it differs from non-alcoholic and alcohol-free, types of zero proof drinks, and how to start. The definitive 2026 guide."
+        title="What Does Zero Proof Mean? The 2026 Guide to NA Drinks | Monday Morning"
+        description="Zero proof, alcohol free, NA: what they mean, how they differ, and the best zero proof drinks to try first. From San Diego's biggest non alcoholic bottle shop."
         path="/zero-proof-meaning"
         type="article"
         schema={[faqSchema, articleSchema, breadcrumbSchema, websiteSchema]}

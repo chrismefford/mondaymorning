@@ -4,8 +4,8 @@ import { SITE_URL } from "@/lib/seo";
 
 const BestNonAlcoholicIPAs = () => (
   <AuthorityPage
-    title="The Best Non Alcoholic IPAs of 2026, Tasted and Ranked"
-    description="The best non alcoholic IPAs in 2026. West Coast, hazy, double, session, and tropical NA IPAs ranked by our tasting room staff."
+    title="Best Non Alcoholic IPAs of 2026: 20+ NA IPAs Ranked | Monday Morning"
+    description="The best non alcoholic IPAs of 2026, tasted and ranked. West Coast, hazy, double and tropical NA IPAs from the San Diego bottle shop that pours every NA IPA on the market."
     path="/best-non-alcoholic-ipas"
     ogImage={`${SITE_URL}/og-best-non-alcoholic-ipas.jpg`}
     eyebrow="NA Beer Cluster"

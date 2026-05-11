@@ -86,8 +86,8 @@ const BestNonAlcoholicDrinks = () => {
   return (
     <div className="min-h-screen bg-background">
       <SEO
-        title="Best Non-Alcoholic Drinks in 2026 | Complete Category Guide"
-        description="Discover the best non-alcoholic drinks across every category: beer, wine, spirits, and functional beverages. Expert picks, flavor guides, and buying advice for 2026."
+        title="Best Non Alcoholic Drinks of 2026: Top NA Beers, Wines & Spirits | Monday Morning"
+        description="The best non alcoholic drinks of 2026, tasted and ranked. Top NA beers, wines, spirits and functional drinks from the bottle shop that carries 500+ flavors."
         path="/best-non-alcoholic-drinks"
         schema={[faqSchema, websiteSchema]}
       />

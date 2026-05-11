@@ -4,8 +4,8 @@ import { SITE_URL } from "@/lib/seo";
 
 const DryJanuaryGuide = () => (
   <AuthorityPage
-    title="Dry January 2026: The Complete Playbook"
-    description="The complete Dry January guide for 2026. What to drink instead, how to handle social events, and how to make the changes stick after January 31."
+    title="Dry January 2026: NA Drinks Playbook & Best Bottles | Monday Morning"
+    description="The complete Dry January 2026 playbook. What to drink instead of alcohol, the best NA bottles to stock, and how to make it stick. From Monday Morning Bottle Shop."
     path="/dry-january-guide"
     ogImage={`${SITE_URL}/og-dry-january-guide.jpg`}
     eyebrow="Sober Curious Cluster"

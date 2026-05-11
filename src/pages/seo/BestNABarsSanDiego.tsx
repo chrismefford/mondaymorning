@@ -4,8 +4,9 @@ import { SITE_URL } from "@/lib/seo";
 
 const BestNABarsSanDiego = () => (
   <AuthorityPage
-    title="The Best Non Alcoholic Bars in San Diego (2026)"
-    description="The best non alcoholic bars and bottle shops in San Diego. Where to drink zero proof cocktails, NA beer, and dealcoholized wine across the city."
+    title="Best Non Alcoholic Bars in San Diego (2026): NA Tasting Rooms & Bars | Monday Morning"
+    description="The best non alcoholic bars and tasting rooms in San Diego for 2026. Where to drink zero proof in PB, OB, North Park and beyond, picked by Monday Morning Bottle Shop."
+    
     path="/best-non-alcoholic-bars-san-diego"
     ogImage={`${SITE_URL}/og-best-na-bars-san-diego.jpg`}
     eyebrow="San Diego Local"

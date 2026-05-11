@@ -180,8 +180,8 @@ const partners = [
 ];
 
 const Locations = () => {
-  const pageTitle = "Store Locations | Monday Morning Bottle Shop";
-  const pageDescription = "Visit Monday Morning's NA bottle shops in Pacific Beach & Ocean Beach, San Diego. Try 500+ non-alcoholic drinks before you buy. Plus find us at 17+ partner bars and restaurants.";
+  const pageTitle = "Non Alcoholic Bottle Shop San Diego: PB & OB Tasting Rooms | Monday Morning";
+  const pageDescription = "Two San Diego tasting rooms with 500+ non alcoholic drinks. Sample any NA beer, wine or spirit before you buy. Open 7 days in Pacific Beach and Ocean Beach.";
   const canonicalUrl = getCanonicalUrl("/locations");
 
   return (

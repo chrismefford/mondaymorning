@@ -4,8 +4,8 @@ import { SITE_URL } from "@/lib/seo";
 
 const NonAlcoholicWine = () => (
   <AuthorityPage
-    title="Non Alcoholic Wine: The 2026 Guide to Dealcoholized Bottles"
-    description="The complete guide to non alcoholic wine. Sparkling, rosé, red, and white. How dealcoholization works and the bottles worth pouring at dinner."
+    title="Non Alcoholic Wine: Best NA Reds, Whites & Sparklings 2026 | Monday Morning"
+    description="The 2026 guide to non alcoholic wine. Best dealcoholized reds, whites, rosés and sparklings, plus how to choose. From San Diego's biggest non alcoholic bottle shop."
     path="/non-alcoholic-wine"
     ogImage={`${SITE_URL}/og-non-alcoholic-wine.jpg`}
     eyebrow="Cluster Hub"

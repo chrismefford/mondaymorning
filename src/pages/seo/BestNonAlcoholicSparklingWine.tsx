@@ -4,8 +4,8 @@ import heroImg from "@/assets/lifestyle/sparkling-celebration.jpg";
 
 const BestNonAlcoholicSparklingWine = () => (
   <AuthorityPage
-    title="The Best Non Alcoholic Sparkling Wine of 2026 | Monday Morning"
-    description="The best non alcoholic sparkling wine in 2026. Bolle Rosé, Bolle Bianco, Sovi sparklings, and how to choose for weddings, holidays, and everyday celebrations."
+    title="Best Non Alcoholic Sparkling Wine of 2026: Ranked | Monday Morning"
+    description="The best non alcoholic sparkling wine of 2026. Bolle Rosé, Bolle Bianco and Sovi sparklings for weddings, holidays and everyday celebrations. Ranked by Monday Morning."
     path="/best-non-alcoholic-sparkling-wine"
     ogImage={`${SITE_URL}/og-best-non-alcoholic-sparkling-wine.jpg`}
     eyebrow="Wine Cluster"

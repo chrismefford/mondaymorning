@@ -92,8 +92,8 @@ const NonAlcoholicBeerGuide = () => {
   return (
     <div className="min-h-screen bg-background">
       <SEO
-        title="Non-Alcoholic Beer Guide | Styles, Brands & How to Choose"
-        description="The complete guide to non alcoholic beer in 2026. Explore every style, top brands, flavor profiles, and how to choose the right NA beer for any occasion."
+        title="Non Alcoholic Beer Guide 2026: Best NA Beers, Styles & How to Choose | Monday Morning"
+        description="The complete non alcoholic beer guide. 80+ NA beers ranked by style, plus how to choose, what to skip, and where to buy. Curated by Monday Morning Bottle Shop."
         path="/non-alcoholic-beer-guide"
         schema={[faqSchema, websiteSchema]}
       />

@@ -357,8 +357,8 @@ const ShopPage = () => {
     return allProducts.slice(0, 4);
   }, [allProducts]);
 
-  const pageTitle = "Shop by Vibe | Monday Morning Bottle Shop";
-  const pageDescription = "Explore 500+ non-alcoholic drinks organized by vibe. Beach Day, Date Night, Golden Hour & more. Find the perfect NA beer, wine, or spirit for any moment.";
+  const pageTitle = "Shop Non Alcoholic Drinks: 500+ NA Beer, Wine & Spirits | Monday Morning";
+  const pageDescription = "Shop the largest curated NA drinks selection in San Diego. 500+ non alcoholic beers, wines, spirits, mocktails and functional drinks. Free local delivery, fast US shipping.";
   const canonicalUrl = getCanonicalUrl("/shop");
 
   return (

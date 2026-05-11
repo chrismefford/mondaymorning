@@ -332,8 +332,8 @@ const CuriousAFDictionary = () => {
   return (
     <div className="min-h-screen bg-background">
       <SEO
-        title="The Curious AF Dictionary"
-        description="The vocabulary of drinking less, defined. From sober curious to zero proof, the complete glossary of alcohol free terms updated quarterly by Monday Morning."
+        title="Curious AF Dictionary: NA Drinks Terms Explained | Monday Morning"
+        description="Sober curious, zero proof, dealcoholized, NA: the complete glossary of non alcoholic drinks terms, defined plainly. Updated quarterly by Monday Morning."
         path={path}
         type="article"
         image="/og-curious-af-dictionary.jpg"

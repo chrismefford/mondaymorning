@@ -191,8 +191,8 @@ const ZeroProofNearby = () => {
   return (
     <>
       <SEO
-        title="Discover the Best Places for Zero Proof Alcohol Nearby"
-        description="Discover the best places for zero proof alcohol nearby and enjoy refreshing non-alcoholic drinks. Learn more about sober bars and creative mocktails!"
+        title="Zero Proof Drinks Near Me: Where to Buy NA Drinks Locally | Monday Morning"
+        description="Looking for zero proof drinks nearby? Two San Diego tasting rooms with 500+ NA beers, wines and spirits, free local delivery, plus 17 partner bars and restaurants."
         path="/zero-proof-alcohol-nearby"
         type="article"
         schema={[articleSchema, faqSchema, breadcrumbSchema, websiteSchema, localBusinessSchema]}

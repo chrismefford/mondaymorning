@@ -21,8 +21,8 @@ import {
 } from "@/lib/seo";
 
 const Index = () => {
-  const pageTitle = "Monday Morning | America's #1 NA Bottle Shop & Tasting Room";
-  const pageDescription = "San Diego's premier non-alcoholic bottle shop with 500+ flavors. Shop NA beer, wine, spirits & mocktails. Try before you buy at our Pacific Beach & Ocean Beach locations.";
+  const pageTitle = "Non Alcoholic Drinks: 500+ NA Beer, Wine & Spirits | Monday Morning";
+  const pageDescription = "Shop 500+ non alcoholic beers, wines, spirits and mocktails. Free San Diego delivery, fast US shipping, taste before you buy at our PB and OB tasting rooms.";
   const canonicalUrl = SITE_URL;
 
   return (

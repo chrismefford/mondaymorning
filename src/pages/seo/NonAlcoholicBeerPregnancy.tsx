@@ -4,8 +4,8 @@ import { SITE_URL } from "@/lib/seo";
 
 const NonAlcoholicBeerPregnancy = () => (
   <AuthorityPage
-    title="Non Alcoholic Beer and Pregnancy: What's Safe in 2026"
-    description="A clear, evidence based look at non alcoholic beer during pregnancy. ABV thresholds, what doctors say, and the brands worth knowing about."
+    title="Non Alcoholic Beer & Pregnancy: Is NA Beer Safe? 2026 Guide | Monday Morning"
+    description="Is non alcoholic beer safe during pregnancy? A clear, evidence based answer plus the NA beer brands worth knowing. From Monday Morning Bottle Shop."
     path="/non-alcoholic-beer-pregnancy"
     ogImage={`${SITE_URL}/og-non-alcoholic-beer-pregnancy.jpg`}
     eyebrow="NA Beer Cluster"

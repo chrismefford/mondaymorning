@@ -3,8 +3,8 @@ import { SITE_URL } from "@/lib/seo";
 
 const BestNonAlcoholicGin = () => (
   <AuthorityPage
-    title="The Best Non Alcoholic Gin of 2026 | Monday Morning"
-    description="The best non alcoholic gin in 2026. Abstinence Cape Citrus, Cape Spice, and how to use them in tonics, sours, and martinis. The most developed category in NA spirits."
+    title="Best Non Alcoholic Gin of 2026: NA Gin Brands Ranked | Monday Morning"
+    description="The best non alcoholic gin of 2026, ranked. Abstinence Cape Citrus, Cape Spice and how to use them in tonics, sours and martinis. From San Diego's biggest NA bottle shop."
     path="/best-non-alcoholic-gin"
     ogImage={`${SITE_URL}/og-best-non-alcoholic-gin.jpg`}
     eyebrow="Spirits Cluster"

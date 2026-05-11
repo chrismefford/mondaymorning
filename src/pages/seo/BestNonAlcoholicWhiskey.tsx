@@ -3,8 +3,8 @@ import { SITE_URL } from "@/lib/seo";
 
 const BestNonAlcoholicWhiskey = () => (
   <AuthorityPage
-    title="The Best Non Alcoholic Whiskey of 2026 | Monday Morning"
-    description="The best non alcoholic whiskey in 2026. Glen Dochus, how to use it in old fashioneds and highballs, and why NA whiskey is the hardest spirit to fake."
+    title="Best Non Alcoholic Whiskey of 2026: NA Whiskey Brands Ranked | Monday Morning"
+    description="The best non alcoholic whiskey of 2026. Glen Dochus and how to use it in old fashioneds and highballs, plus what to skip. Ranked by Monday Morning's tasting room staff."
     path="/best-non-alcoholic-whiskey"
     ogImage={`${SITE_URL}/og-best-non-alcoholic-whiskey.jpg`}
     eyebrow="Spirits Cluster"

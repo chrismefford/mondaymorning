@@ -4,8 +4,8 @@ import { SITE_URL } from "@/lib/seo";
 
 const SoberCuriousGuide = () => (
   <AuthorityPage
-    title="The Sober Curious Guide: How to Drink Less in 2026"
-    description="A practical, judgment free guide to the sober curious lifestyle. What it means, how to start, what to drink instead, and how to navigate social life."
+    title="Sober Curious Guide 2026: How to Drink Less Without Quitting | Monday Morning"
+    description="A practical, judgment free sober curious guide. How to drink less, what to drink instead, and the NA bottles worth trying first. From Monday Morning Bottle Shop."
     path="/sober-curious-guide"
     ogImage={`${SITE_URL}/og-sober-curious-guide.jpg`}
     eyebrow="Cluster Hub"

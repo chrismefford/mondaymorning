@@ -73,8 +73,8 @@ const AlcoholFreeLifestyle = () => {
   return (
     <div className="min-h-screen bg-background">
       <SEO
-        title="Alcohol-Free Lifestyle Benefits | Health, Clarity & Balance"
-        description="Discover the real benefits of an alcohol-free lifestyle in 2026. From better sleep and mental clarity to the sober-curious movement. Everything you need to know."
+        title="Alcohol Free Lifestyle: Real Benefits, Better Sleep & Clarity | Monday Morning"
+        description="The honest case for an alcohol free lifestyle. Better sleep, sharper mornings, and the NA drinks that make it easy. From San Diego's biggest non alcoholic bottle shop."
         path="/alcohol-free-lifestyle-benefits"
         schema={[faqSchema, websiteSchema]}
       />

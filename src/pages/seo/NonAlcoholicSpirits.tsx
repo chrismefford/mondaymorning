@@ -4,8 +4,8 @@ import { SITE_URL } from "@/lib/seo";
 
 const NonAlcoholicSpirits = () => (
   <AuthorityPage
-    title="Non Alcoholic Spirits: The 2026 Buyer's Guide"
-    description="The complete guide to non alcoholic spirits. NA gin, whiskey, tequila, agave, aperitifs and more, with the brands and bottles worth your money."
+    title="Non Alcoholic Spirits: Best NA Gin, Whiskey & Tequila 2026 | Monday Morning"
+    description="The 2026 buyer's guide to non alcoholic spirits. Best NA gin, whiskey, tequila, agave and aperitifs, ranked by Monday Morning's San Diego tasting room staff."
     path="/non-alcoholic-spirits"
     ogImage={`${SITE_URL}/og-non-alcoholic-spirits.jpg`}
     eyebrow="Cluster Hub"

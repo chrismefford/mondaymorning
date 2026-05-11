@@ -264,11 +264,16 @@ const CollectionPage = () => {
   const collectionTitle = isBrandFilter 
     ? brandName 
     : vibeInfo?.title || collectionInfo?.title || collectionMeta?.name || "Collection";
+  const productCount = displayProducts.length;
+  const countPhrase = productCount > 0 ? `${productCount}+ bottles, ` : "";
   const collectionDescription = isBrandFilter
-    ? `Explore all ${brandName} products at ${SITE_NAME}. Premium non-alcoholic beverages shipped nationwide.`
-    : vibeInfo?.description || collectionInfo?.description || collectionMeta?.description || "Explore our curated selection of non-alcoholic beverages.";
+    ? `Shop every ${brandName} non alcoholic drink at Monday Morning. ${countPhrase}taste before you buy in San Diego, fast US shipping, expert picks from our tasting room staff.`
+    : vibeInfo?.description || collectionInfo?.description || collectionMeta?.description 
+      || `Shop ${collectionTitle.toLowerCase()} non alcoholic drinks at Monday Morning. ${countPhrase}taste before you buy in San Diego, free local delivery, fast US shipping.`;
   
-  const pageTitle = `${truncateForSEO(collectionTitle, 50)} | ${SITE_NAME}`;
+  const pageTitle = isBrandFilter
+    ? `${brandName} Non Alcoholic Drinks: Shop Every Bottle | Monday Morning`
+    : `${truncateForSEO(collectionTitle, 45)}: Top NA Picks & Reviews | ${SITE_NAME}`;
   const pageDescription = truncateForSEO(collectionDescription, 155);
   const canonicalUrl = getCanonicalUrl(isBrandFilter ? `/collections/brand/${brand}` : `/collections/${slug}`);
   
