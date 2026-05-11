@@ -477,6 +477,26 @@ const CollectionPage = () => {
           </div>
         </section>
 
+        {/* People Also Ask / FAQ */}
+        <section className="py-12 lg:py-16 bg-cream border-t border-forest/10">
+          <div className="container mx-auto px-4 lg:px-8 max-w-3xl">
+            <span className="font-sans text-xs font-semibold uppercase tracking-[0.3em] text-gold block mb-3">
+              People Also Ask
+            </span>
+            <h2 className="font-serif text-3xl lg:text-4xl text-forest mb-8">
+              Common questions about {collectionTitle.toLowerCase()}
+            </h2>
+            <div className="space-y-6">
+              {faqItems.map((item) => (
+                <div key={item.q} className="border-b border-forest/10 pb-6">
+                  <h3 className="font-serif text-lg lg:text-xl text-forest mb-2">{item.q}</h3>
+                  <p className="font-sans text-sm lg:text-base text-forest/80 leading-relaxed">{item.a}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* Related Collections */}
         <section className="py-12 lg:py-16 bg-sand/50">
           <div className="container mx-auto px-4 lg:px-8">
