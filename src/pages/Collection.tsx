@@ -269,7 +269,7 @@ const CollectionPage = () => {
   const collectionDescription = isBrandFilter
     ? `Shop every ${brandName} non alcoholic drink at Monday Morning. ${countPhrase}taste before you buy in San Diego, fast US shipping, expert picks from our tasting room staff.`
     : vibeInfo?.description || collectionInfo?.description || collectionMeta?.description 
-      || `Shop ${collectionTitle.toLowerCase()} non alcoholic drinks at Monday Morning. ${countPhrase}taste before you buy in San Diego, free local delivery, fast US shipping.`;
+      || `Shop ${collectionTitle.toLowerCase()} non alcoholic drinks at Monday Morning. ${countPhrase}taste before you buy in San Diego, fast local delivery, nationwide shipping.`;
   
   const pageTitle = isBrandFilter
     ? `${brandName} Non Alcoholic Drinks: Shop Every Bottle | Monday Morning`

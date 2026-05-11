@@ -358,7 +358,7 @@ const ShopPage = () => {
   }, [allProducts]);
 
   const pageTitle = "Shop Non Alcoholic Drinks: 500+ NA Beer, Wine & Spirits | Monday Morning";
-  const pageDescription = "Shop the largest curated NA drinks selection in San Diego. 500+ non alcoholic beers, wines, spirits, mocktails and functional drinks. Free local delivery, fast US shipping.";
+  const pageDescription = "Shop the largest curated NA drinks selection in San Diego. 500+ non alcoholic beers, wines, spirits, mocktails and functional drinks. Fast local delivery, nationwide shipping.";
   const canonicalUrl = getCanonicalUrl("/shop");
 
   return (
