@@ -258,13 +258,57 @@ const BestNonAlcoholicDrinks = () => {
           </div>
         </section>
 
-        {/* FAQ */}
-        <section className="py-16 lg:py-24 bg-background">
+        {/* Comparison Table */}
+        <section className="py-16 lg:py-24 bg-background border-t border-forest/10">
           <div className="container mx-auto px-4 lg:px-8">
-            <div className="max-w-3xl mx-auto">
-              <h2 className="font-serif text-3xl md:text-4xl text-forest mb-10 text-center">
-                Frequently Asked Questions
+            <div className="max-w-4xl mx-auto">
+              <h2 className="font-serif text-3xl md:text-4xl text-forest mb-4 text-center">
+                Quick Comparison: NA Categories at a Glance
               </h2>
+              <p className="font-sans text-base text-foreground/70 mb-10 text-center leading-relaxed max-w-2xl mx-auto">
+                Use this table to pick the right category for the moment.
+              </p>
+              <div className="overflow-x-auto border-2 border-forest/15">
+                <table className="w-full font-sans text-sm">
+                  <thead>
+                    <tr className="bg-forest text-cream">
+                      <th className="p-4 text-left">Category</th>
+                      <th className="p-4 text-left">Best For</th>
+                      <th className="p-4 text-left">Typical Price</th>
+                      <th className="p-4 text-left">Top Brands We Stock</th>
+                    </tr>
+                  </thead>
+                  <tbody className="bg-cream">
+                    <tr className="border-b border-forest/10">
+                      <td className="p-4 font-semibold text-forest">NA Beer</td>
+                      <td className="p-4 text-foreground/80">Casual nights, sports, the grill</td>
+                      <td className="p-4 text-foreground/80">$12 to $18 per 6-pack</td>
+                      <td className="p-4 text-foreground/80">Go Brewing, Mash Gang, Bravus, Force Majeure</td>
+                    </tr>
+                    <tr className="border-b border-forest/10">
+                      <td className="p-4 font-semibold text-forest">NA Wine</td>
+                      <td className="p-4 text-foreground/80">Dinner, brunch, celebrations</td>
+                      <td className="p-4 text-foreground/80">$18 to $30 per bottle</td>
+                      <td className="p-4 text-foreground/80">Bolle, Sovi</td>
+                    </tr>
+                    <tr className="border-b border-forest/10">
+                      <td className="p-4 font-semibold text-forest">NA Spirits</td>
+                      <td className="p-4 text-foreground/80">Cocktails, the home bar</td>
+                      <td className="p-4 text-foreground/80">$25 to $40 per bottle</td>
+                      <td className="p-4 text-foreground/80">Almave, Abstinence, Glen Dochus</td>
+                    </tr>
+                    <tr>
+                      <td className="p-4 font-semibold text-forest">Functional</td>
+                      <td className="p-4 text-foreground/80">Wind-down, focus, sleep</td>
+                      <td className="p-4 text-foreground/80">$5 to $9 per serving</td>
+                      <td className="p-4 text-foreground/80">Leilo, Kavaly, Sentia, Soul Hum, Alice Mushrooms</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
               <Accordion type="single" collapsible className="space-y-2">
                 {faqs.map((faq, index) => (
                   <AccordionItem key={index} value={`faq-${index}`} className="bg-cream border-2 border-forest/10 px-6">
