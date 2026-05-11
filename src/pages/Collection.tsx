@@ -294,6 +294,40 @@ const CollectionPage = () => {
     { name: collectionTitle, url: canonicalUrl }
   ]);
 
+  // Keyword-rich intro paragraph for SEO + engagement
+  const introParagraph = isBrandFilter
+    ? `Browse every ${brandName} non alcoholic drink we stock at Monday Morning, America's #1 NA bottle shop. Each bottle is hand-picked by our tasting room team in San Diego, so you can taste before you buy at our Pacific Beach and Ocean Beach shops, get fast local delivery, or ship nationwide.`
+    : `Discover the best ${collectionTitle.toLowerCase()} non alcoholic drinks at Monday Morning, ranked America's #1 NA bottle shop. We've curated ${productCount > 0 ? `${productCount} bottles` : "a tasting-room favorite lineup"} you can sip before you buy at our Pacific Beach and Ocean Beach tasting rooms, with fast local delivery and nationwide shipping.`;
+
+  // FAQ schema for "People Also Ask" block
+  const faqItems = [
+    {
+      q: `What is the best ${collectionTitle.toLowerCase()} non alcoholic drink?`,
+      a: `Our top-rated picks in ${collectionTitle.toLowerCase()} are curated by the Monday Morning tasting team based on flavor, ingredient quality, and what our San Diego customers reorder most. Look for the Staff Pick and Best Seller badges above.`,
+    },
+    {
+      q: `Do these non alcoholic drinks taste like the real thing?`,
+      a: `Most of our top sellers are blind-tested against their alcoholic counterparts. We only stock bottles our team would pour for friends, so flavor, mouthfeel, and finish are taken seriously.`,
+    },
+    {
+      q: `Can I try ${collectionTitle.toLowerCase()} before I buy?`,
+      a: `Yes. Visit our Pacific Beach or Ocean Beach tasting rooms in San Diego and our team will pour samples so you can taste before you commit to a full bottle.`,
+    },
+    {
+      q: `Do you ship non alcoholic drinks nationwide?`,
+      a: `Yes, we ship across the United States. San Diego customers can also choose fast local delivery at checkout.`,
+    },
+  ];
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqItems.map((f) => ({
+      "@type": "Question",
+      name: f.q,
+      acceptedAnswer: { "@type": "Answer", text: f.a },
+    })),
+  };
+
   return (
     <div className="min-h-screen bg-cream">
       <Helmet>
