@@ -379,6 +379,17 @@ const CollectionPage = () => {
           </div>
           
           <div className="container mx-auto px-4 lg:px-8 relative z-10">
+            {/* Visible breadcrumbs */}
+            <nav aria-label="breadcrumb" className="mb-6">
+              <ol className="flex flex-wrap items-center gap-2 font-sans text-xs uppercase tracking-wider text-cream/60">
+                <li><Link to="/" className="hover:text-gold transition-colors">Home</Link></li>
+                <li aria-hidden="true">/</li>
+                <li><Link to="/shop" className="hover:text-gold transition-colors">{isBrandFilter ? "Brands" : "Collections"}</Link></li>
+                <li aria-hidden="true">/</li>
+                <li aria-current="page" className="text-gold">{collectionTitle}</li>
+              </ol>
+            </nav>
+
             {/* Back link */}
             <Link 
               to={isBrandFilter ? "/about" : isVibeCollection ? "/shop" : "/#collections"} 
@@ -393,12 +404,15 @@ const CollectionPage = () => {
                 {isBrandFilter ? "Brand" : isVibeCollection ? "The Vibe" : "Collection"}
               </span>
               <h1 className="font-serif text-4xl lg:text-6xl xl:text-7xl font-normal mb-6 capitalize text-cream">
-                {isBrandFilter ? brandName : vibeInfo?.title || collectionInfo?.title || collectionMeta?.name || "Collection"}
+                {isBrandFilter ? `${brandName} Non Alcoholic Drinks` : `${vibeInfo?.title || collectionInfo?.title || collectionMeta?.name || "Collection"}`}
               </h1>
-              <p className="font-sans text-lg lg:text-xl text-cream/80 max-w-2xl">
+              <p className="font-sans text-lg lg:text-xl text-cream/80 max-w-2xl mb-4">
                 {isBrandFilter 
                   ? `Explore all products from ${brandName}.`
                   : vibeInfo?.description || collectionInfo?.description || collectionMeta?.description || "Explore our curated selection."}
+              </p>
+              <p className="font-sans text-sm lg:text-base text-cream/70 max-w-2xl leading-relaxed">
+                {introParagraph}
               </p>
               
               {!isLoading && displayProducts.length > 0 && (
