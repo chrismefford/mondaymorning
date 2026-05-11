@@ -4,8 +4,8 @@ import { SITE_URL } from "@/lib/seo";
 
 const NonAlcoholicDrinks = () => (
   <AuthorityPage
-    title="Non Alcoholic Drinks: The Complete 2026 Guide"
-    description="Everything you need to know about non alcoholic drinks in 2026. Beer, wine, spirits, functional drinks, and where to buy them. Curated by Monday Morning."
+    title="Non Alcoholic Drinks: The Complete 2026 Guide to NA Beer, Wine & Spirits | Monday Morning"
+    description="Everything to know about non alcoholic drinks in 2026. Best NA beer, wine, spirits and functional drinks, plus where to buy. Curated by Monday Morning Bottle Shop."
     path="/non-alcoholic-drinks"
     ogImage={`${SITE_URL}/og-non-alcoholic-drinks.jpg`}
     eyebrow="The Pillar Guide"
