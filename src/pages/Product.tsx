@@ -115,7 +115,7 @@ const ProductPage = () => {
   // SEO data
   const pageTitle = `${truncateForSEO(product.name, 50)} | ${SITE_NAME}`;
   const pageDescription = truncateForSEO(cleanMetaDescription(product.description), 155) || 
-    `Shop ${product.name} - premium non-alcoholic ${product.category || 'beverage'} at ${SITE_NAME}. Free shipping on orders over $75.`;
+    `Shop ${product.name} - premium non-alcoholic ${product.category || 'beverage'} at ${SITE_NAME}. In-store pickup and nationwide shipping available.`;
   const canonicalUrl = getCanonicalUrl(`/product/${handle}`);
   const ogImage = product.image || `${SITE_URL}/og-image.png`;
 
