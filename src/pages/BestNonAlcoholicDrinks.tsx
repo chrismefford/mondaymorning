@@ -309,6 +309,14 @@ const BestNonAlcoholicDrinks = () => {
             </div>
           </div>
         </section>
+
+        {/* FAQ */}
+        <section className="py-16 lg:py-24 bg-background">
+          <div className="container mx-auto px-4 lg:px-8">
+            <div className="max-w-3xl mx-auto">
+              <h2 className="font-serif text-3xl md:text-4xl text-forest mb-10 text-center">
+                Frequently Asked Questions
+              </h2>
               <Accordion type="single" collapsible className="space-y-2">
                 {faqs.map((faq, index) => (
                   <AccordionItem key={index} value={`faq-${index}`} className="bg-cream border-2 border-forest/10 px-6">
