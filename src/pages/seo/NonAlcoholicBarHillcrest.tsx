@@ -48,17 +48,22 @@ const NonAlcoholicBarHillcrest = () => (
         ),
       },
       {
-        heading: "Monday Morning Bottle Shop: 10 minutes west in Pacific Beach",
+        heading: "Monday Morning Bottle Shop: the deepest selection a short drive from Hillcrest",
         body: (
           <>
             <p>
-              For the deepest non alcoholic selection in San Diego, drive 10 minutes west to Pacific Beach. <Link to="/locations">Monday Morning Bottle Shop</Link> at 1854 Garnet Ave carries 500+ non alcoholic drinks across beer, wine, spirits, and functional categories. The tasting bar pours every craft NA beer, NA spirit, and functional drink on the shelf so you can taste before you buy. Wine tastings are available when a bottle is already open that day.
+              For the widest non alcoholic selection in San Diego, Hillcrest locals drive to one of our two flagship locations. <Link to="/locations">Monday Morning Bottle Shop</Link> carries 500+ non alcoholic drinks across beer, wine, spirits, and functional categories, with a full tasting bar at both stores that pours every craft NA beer, NA spirit, and functional drink on the shelf. Wine tastings happen any time a bottle is already open that day.
+            </p>
+            <h3>Pacific Beach, 1854 Garnet Ave</h3>
+            <p>
+              About 10 minutes west of Hillcrest. The flagship room with the busiest tasting bar in the city. Easy to combine with a beach walk, brunch on Garnet, or a stop on the way to or from the airport. Open Tuesday to Sunday, 11am to 8pm.
+            </p>
+            <h3>Ocean Beach, 4967 Newport Ave</h3>
+            <p>
+              Same selection, same tasting program, more local crowd, easier parking. The OB room has its own personality and is worth the slightly longer drive when you want a quieter visit. Open Tuesday to Sunday, 11am to 8pm.
             </p>
             <p>
-              We are the only spot in the city where you can sample brands like Almave, Sentia, Glen Dochus, Abstinence, and Ceybon side by side in one room, then take home whatever you fall in love with. Open Tuesday to Sunday, 11am to 8pm. Closed Monday, except by appointment for industry.
-            </p>
-            <p>
-              Hillcrest locals build their home bar with us, then use Good News and the Hillcrest restaurant programs for nights out. It is the easiest pattern for living alcohol free in this part of town.
+              Both stores are the only places in San Diego where you can sample brands like Almave, Sentia, Glen Dochus, Abstinence, and Ceybon side by side in one room, then take home whatever you fall in love with. Most Hillcrest locals build their home bar with us, then use Good News and the Hillcrest restaurant programs for nights out.
             </p>
           </>
         ),
