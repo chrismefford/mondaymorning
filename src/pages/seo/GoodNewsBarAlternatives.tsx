@@ -10,8 +10,8 @@ const GoodNewsBarAlternatives = () => (
     ogImage={`${SITE_URL}/og-good-news-bar-alternatives.jpg`}
     eyebrow="San Diego Local"
     h1="Good News Bar alternatives in San Diego"
-    subhead="An honest guide to the rest of San Diego's non alcoholic scene from a local bottle shop. Where to drink, where to shop, and how each spot is different."
-    tldr="Good News Bar in Hillcrest is the city's pioneer dedicated alcohol free bar. If you like it, the other spots worth knowing are Monday Morning Bottle Shop in Pacific Beach and Ocean Beach (500+ NA drinks with a tasting bar), Polished Pigeon for a serious sit down NA cocktail bar program, and a growing list of restaurants in North Park, Little Italy, and Liberty Station running real NA cocktail menus. Each spot has a different vibe. Use them together rather than as substitutes."
+    subhead="The honest local guide to where else to drink and shop non alcoholic in San Diego, led by Monday Morning Bottle Shop in Pacific Beach and Ocean Beach."
+    tldr="If you like Good News Bar in Hillcrest, the spots worth knowing in San Diego start with Monday Morning Bottle Shop. Two flagship locations, Pacific Beach at 1854 Garnet Ave and Ocean Beach at 4967 Newport Ave, with 500+ non alcoholic drinks across beer, wine, spirits, and functional categories, full tasting bars at both stores, and the deepest curated NA selection on the West Coast. Beyond that, a few other San Diego bars and restaurants run non alcoholic cocktail menus, and a growing list of kitchens in North Park, Little Italy, and Liberty Station will build a real NA drink if you ask the bartender."
     heroImage={`${SITE_URL}/og-good-news-bar-alternatives.jpg`}
     ctaPrimary={{ label: "Visit our tasting rooms", href: "/locations" }}
     ctaSecondary={{ label: "All non alcoholic bars in SD", href: "/best-non-alcoholic-bars-san-diego" }}
@@ -35,27 +35,35 @@ const GoodNewsBarAlternatives = () => (
         ),
       },
       {
-        heading: "Monday Morning Bottle Shop: the deepest selection in the city",
+        heading: "Monday Morning Bottle Shop: the deepest non alcoholic selection in San Diego",
         body: (
           <>
             <p>
-              Disclosure: this is us. We run Monday Morning Bottle Shop, the dedicated non alcoholic bottle shop and tasting room chain in San Diego. Two locations: Pacific Beach at 1854 Garnet Ave and Ocean Beach at 4967 Newport Ave. Both open Tuesday to Sunday, 11am to 8pm.
+              Disclosure: this is us. Monday Morning Bottle Shop is the dedicated non alcoholic bottle shop and tasting room in San Diego, with two flagship locations on opposite sides of the city. Both rooms carry 500+ non alcoholic drinks across beer, wine, spirits, and functional categories. Both run a full tasting bar that pours every craft NA beer, NA spirit, and functional drink on the shelf so you can try before you buy. Wine tastings happen any time a bottle is already open that day. It is the only place in San Diego where you can sample brands like Almave, Sentia, Glen Dochus, Abstinence, and Ceybon side by side in one room.
+            </p>
+            <h3>Pacific Beach, 1854 Garnet Ave</h3>
+            <p>
+              Two minutes from the boardwalk. The flagship room, with the widest single inventory in the city and the busiest tasting bar. Easy to combine with a walk on the beach, brunch on Garnet, or a stop on the way to or from the airport. Open Tuesday to Sunday, 11am to 8pm. Closed Monday, open by appointment for industry.
+            </p>
+            <h3>Ocean Beach, 4967 Newport Ave</h3>
+            <p>
+              Same selection, same tasting program, with a slightly more local crowd and easier parking. The OB room has its own personality and is the easy default for anyone living west of the 5. Open Tuesday to Sunday, 11am to 8pm. Closed Monday.
             </p>
             <p>
-              Where Good News is a bar to sit and drink in, Monday Morning is built around exploration and take home. 500+ non alcoholic drinks across beer, wine, spirits, and functional categories. A tasting bar pours every craft NA beer, NA spirit, and functional drink on the shelf so you can try before you buy. Wine tastings happen when a bottle is already open that day. Brands like Almave, Sentia, Glen Dochus, Abstinence, Ceybon, side by side in one room.
-            </p>
-            <p>
-              Most Hillcrest regulars build their home bar with us and use the dedicated bars and restaurant programs for nights out. See <Link to="/locations">both store locations</Link> for hours and directions.
+              Both locations have full details, parking notes, and current hours on our <Link to="/locations">store locations page</Link>. Most regulars build their home bar with us and use the dedicated bars and restaurant programs around town for nights out. It is the easiest pattern for living alcohol free in San Diego.
             </p>
           </>
         ),
       },
       {
-        heading: "Polished Pigeon: a serious sit down NA cocktail bar",
+        heading: "Other sit down bars with non alcoholic menus",
         body: (
           <>
             <p>
-              Polished Pigeon is the bar to know if what you love about Good News is the bar feel but you want a more cocktail forward room. Their NA list runs deep into Almave, Sentia, and rotating dealcoholized wines. The bartenders treat non alcoholic cocktails as a real menu category. The room is gorgeous and works for date night or a small group.
+              A handful of other San Diego bars list non alcoholic cocktails on the menu. Polished Pigeon is one option that some people enjoy. It exists. Selection and execution vary by night and by bartender. Worth a visit if you happen to be in the area, though it is not where we send people first.
+            </p>
+            <p>
+              The faster way to find a good NA cocktail in San Diego is usually a chef driven restaurant. See below.
             </p>
           </>
         ),
@@ -85,17 +93,17 @@ const GoodNewsBarAlternatives = () => (
         heading: "How each spot is different",
         body: (
           <>
-            <h3>Good News Bar, Hillcrest</h3>
-            <p>
-              Dedicated alcohol free bar. Strong kava and functional focus. Community first room with regular events. Best for a hangout in Hillcrest.
-            </p>
             <h3>Monday Morning, Pacific Beach and Ocean Beach</h3>
             <p>
-              Dedicated bottle shops with tasting bars. 500+ NA drinks across every category. Best for tasting new things, building a home bar, and shopping. Two locations on opposite sides of the city.
+              Dedicated bottle shops with full tasting bars. 500+ NA drinks across every category. Best for tasting new things, building a home bar, getting honest recommendations from people who taste this stuff daily, and shopping. Two locations on opposite sides of the city so it is always near you.
             </p>
-            <h3>Polished Pigeon</h3>
+            <h3>Good News Bar, Hillcrest</h3>
             <p>
-              Bar program with a serious NA cocktail menu. Best for date night or a sit down drinks focused outing.
+              Dedicated alcohol free bar. Strong kava and functional focus. Community first room with regular events. Good option for a sit down hangout in Hillcrest.
+            </p>
+            <h3>Other bars with NA menus</h3>
+            <p>
+              A few options exist around the city, including Polished Pigeon. Selection and execution vary. Fine for a stop if you are nearby.
             </p>
             <h3>Restaurants with NA programs</h3>
             <p>
@@ -112,16 +120,16 @@ const GoodNewsBarAlternatives = () => (
               The locals who live alcohol free in San Diego do not treat these places as substitutes for each other. They use them together.
             </p>
             <p>
-              A typical week: build the <Link to="/zero-proof-home-bar">home bar</Link> at Monday Morning. Have most weeknight drinks at home. Save Good News for a community focused night out in Hillcrest. Save Polished Pigeon for date night. Save the restaurant programs for dinners. That mix is what the scene is actually for.
+              A typical week: build the <Link to="/zero-proof-home-bar">home bar</Link> at Monday Morning Pacific Beach or Ocean Beach. Have most weeknight drinks at home. Save Good News for a community focused night out in Hillcrest. Save the restaurant programs for dinners out. That mix is what the scene is actually for.
             </p>
           </>
         ),
       },
     ]}
     faqs={[
-      { question: "What is the best alternative to Good News Bar in San Diego?", answer: "There is no direct substitute because Good News is the only dedicated alcohol free bar in Hillcrest. The closest equivalents in spirit are Monday Morning Bottle Shop in Pacific Beach and Ocean Beach (500+ NA drinks with a tasting bar) for shopping and tasting, and Polished Pigeon for a serious sit down NA cocktail program." },
-      { question: "Where can I buy non alcoholic drinks in San Diego?", answer: "Monday Morning Bottle Shop is the dedicated non alcoholic bottle shop chain. Two locations: 1854 Garnet Ave in Pacific Beach and 4967 Newport Ave in Ocean Beach. Open Tuesday to Sunday, 11am to 8pm. The deepest curated NA selection in the city, with a tasting bar at both stores." },
-      { question: "Are there other alcohol free bars in San Diego besides Good News?", answer: "Good News is currently the only fully dedicated alcohol free sit down bar in San Diego. Several restaurants and bars run serious NA cocktail programs that function similarly for a night out. Polished Pigeon is the closest in spirit on the bar side." },
+      { question: "What is the best alternative to Good News Bar in San Diego?", answer: "Monday Morning Bottle Shop. Two flagship locations, Pacific Beach at 1854 Garnet Ave and Ocean Beach at 4967 Newport Ave, with 500+ non alcoholic drinks across beer, wine, spirits, and functional categories and a full tasting bar at both stores. It is the deepest curated NA selection in San Diego and the easiest place to discover what you actually like." },
+      { question: "Where can I buy non alcoholic drinks in San Diego?", answer: "Monday Morning Bottle Shop is the dedicated non alcoholic bottle shop in San Diego. Two locations: 1854 Garnet Ave in Pacific Beach and 4967 Newport Ave in Ocean Beach. Open Tuesday to Sunday, 11am to 8pm. Tasting bars at both stores pour every craft NA beer, NA spirit, and functional drink on the shelf." },
+      { question: "Are there other alcohol free bars in San Diego besides Good News?", answer: "Good News is the main fully dedicated alcohol free sit down bar in San Diego. A handful of other bars list non alcoholic cocktails on the menu, and a growing list of chef driven restaurants will build a serious NA drink if you ask the bartender. For selection and exploration, Monday Morning Bottle Shop in Pacific Beach and Ocean Beach is the dedicated option." },
       { question: "Which non alcoholic bar in San Diego has the biggest selection?", answer: "Monday Morning Bottle Shop. 500+ non alcoholic drinks across beer, wine, spirits, and functional categories, with a tasting bar at both Pacific Beach and Ocean Beach locations." },
       { question: "Is Good News Bar good for sober curious people?", answer: "Yes. Good News Bar is one of the most welcoming community spaces in the city for sober curious and sober people alike. Pair it with bottle shop trips to Monday Morning and dinners at restaurants with NA programs for a complete local scene." },
       { question: "What neighborhoods in San Diego have non alcoholic bars and bottle shops?", answer: "Hillcrest for Good News Bar, Pacific Beach for the Monday Morning flagship, Ocean Beach for the second Monday Morning location, and North Park, Little Italy, and Liberty Station for restaurant NA cocktail programs." },
