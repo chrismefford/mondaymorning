@@ -129,7 +129,40 @@ const NonAlcoholicBarHillcrest = () => (
           </>
         ),
       },
+      {
+        heading: "Shop the bottles Hillcrest locals stock at home",
+        body: (
+          <>
+            <p>
+              The Hillcrest crowd that lives alcohol free does most of the actual drinking at home, then uses Good News and the neighborhood restaurants for nights out. Here is the short list of categories worth stocking, with the curated picks we keep in store and ship anywhere in California.
+            </p>
+            <ul>
+              <li><Link to="/collections/best-sellers">Best sellers</Link>: the safest starting point if you do not know where to begin. The drinks our regulars buy on repeat.</li>
+              <li><Link to="/collections/spirit-alternatives">Non alcoholic spirits</Link>: Almave, Sentia, Glen Dochus, Abstinence, Ceybon. The base for any real NA cocktail at home.</li>
+              <li><Link to="/collections/na-beer">Non alcoholic beer</Link>: craft IPAs, lagers, stouts, and pilsners that hold up next to the alcoholic version.</li>
+              <li><Link to="/collections/wine-alternatives">Non alcoholic wine</Link>: dealcoholized still and sparkling bottles built for dinner, not for show.</li>
+              <li><Link to="/collections/functional">Functional and adaptogen drinks</Link>: the kava, nootropic, and adaptogen end of the spectrum. Pairs well with the Good News vibe.</li>
+              <li><Link to="/collections/beach-bonfire">Beach bonfire pack</Link>: our curated mix for an alcohol free night with friends, designed for sharing.</li>
+            </ul>
+            <p>
+              Not sure where to start? Browse the full <Link to="/shop">Monday Morning shop</Link>, or visit one of our <Link to="/locations">tasting rooms</Link> in Pacific Beach or Ocean Beach and we will pour you whatever you want to try.
+            </p>
+          </>
+        ),
+      },
     ]}
+    extraSchema={{
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      name: "Top non alcoholic drink categories at Monday Morning",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Best sellers", url: `${SITE_URL}/collections/best-sellers` },
+        { "@type": "ListItem", position: 2, name: "Non alcoholic spirits", url: `${SITE_URL}/collections/spirit-alternatives` },
+        { "@type": "ListItem", position: 3, name: "Non alcoholic beer", url: `${SITE_URL}/collections/na-beer` },
+        { "@type": "ListItem", position: 4, name: "Non alcoholic wine", url: `${SITE_URL}/collections/wine-alternatives` },
+        { "@type": "ListItem", position: 5, name: "Functional and adaptogen", url: `${SITE_URL}/collections/functional` },
+      ],
+    }}
     faqs={[
       { question: "Is there a non alcoholic bar in Hillcrest, San Diego?", answer: "Yes. Good News Bar on Park Blvd is Hillcrest's dedicated alcohol free bar, with a zero proof cocktail menu, kava program, and rotating events. For the deepest selection in the city, Monday Morning Bottle Shop is a 10 minute drive west in Pacific Beach with a tasting bar pouring 500+ non alcoholic drinks." },
       { question: "Where can I buy non alcoholic drinks near Hillcrest?", answer: "Monday Morning Bottle Shop at 1854 Garnet Ave in Pacific Beach is the closest dedicated non alcoholic bottle shop. We carry 500+ NA beers, wines, spirits, and functional drinks and run a tasting bar. About a 10 minute drive from Hillcrest." },
@@ -140,9 +173,14 @@ const NonAlcoholicBarHillcrest = () => (
     ]}
     relatedLinks={[
       { label: "Best non alcoholic bars in San Diego", href: "/best-non-alcoholic-bars-san-diego", description: "The full citywide guide." },
+      { label: "Good News Bar alternatives", href: "/good-news-bar-alternatives-san-diego", description: "The conquesting comparison guide." },
       { label: "San Diego non alcoholic drinks", href: "/non-alcoholic-drinks-san-diego", description: "The local pillar guide." },
       { label: "Monday Morning locations", href: "/locations", description: "Pacific Beach and Ocean Beach details." },
       { label: "Zero proof home bar", href: "/zero-proof-home-bar", description: "Build the bar at home first." },
+      { label: "Best non alcoholic spirits", href: "/non-alcoholic-spirits", description: "Cluster page on NA spirits." },
+      { label: "Best non alcoholic beer", href: "/non-alcoholic-beer-guide", description: "The full NA beer guide." },
+      { label: "Best non alcoholic wine", href: "/non-alcoholic-wine", description: "Cluster page on NA wine." },
+      { label: "Shop best sellers", href: "/collections/best-sellers", description: "The drinks our regulars reorder." },
     ]}
   />
 );
