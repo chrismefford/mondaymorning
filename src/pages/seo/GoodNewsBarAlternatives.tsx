@@ -170,8 +170,13 @@ const GoodNewsBarAlternatives = () => (
     relatedLinks={[
       { label: "Best non alcoholic bars in San Diego", href: "/best-non-alcoholic-bars-san-diego", description: "Full citywide guide." },
       { label: "Non alcoholic bar Hillcrest", href: "/non-alcoholic-bar-hillcrest", description: "The Hillcrest neighborhood guide." },
-      { label: "Monday Morning locations", href: "/locations", description: "Pacific Beach and Ocean Beach details." },
       { label: "San Diego NA drinks", href: "/non-alcoholic-drinks-san-diego", description: "The local pillar guide." },
+      { label: "Monday Morning locations", href: "/locations", description: "Pacific Beach and Ocean Beach details." },
+      { label: "Zero proof home bar", href: "/zero-proof-home-bar", description: "Build the bar at home first." },
+      { label: "Best non alcoholic spirits", href: "/non-alcoholic-spirits", description: "Cluster page on NA spirits." },
+      { label: "Best non alcoholic beer", href: "/non-alcoholic-beer-guide", description: "The full NA beer guide." },
+      { label: "Best non alcoholic wine", href: "/non-alcoholic-wine", description: "Cluster page on NA wine." },
+      { label: "Shop best sellers", href: "/collections/best-sellers", description: "The drinks our regulars reorder." },
     ]}
   />
 );
