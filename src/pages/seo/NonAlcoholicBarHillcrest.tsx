@@ -173,9 +173,14 @@ const NonAlcoholicBarHillcrest = () => (
     ]}
     relatedLinks={[
       { label: "Best non alcoholic bars in San Diego", href: "/best-non-alcoholic-bars-san-diego", description: "The full citywide guide." },
+      { label: "Good News Bar alternatives", href: "/good-news-bar-alternatives-san-diego", description: "The conquesting comparison guide." },
       { label: "San Diego non alcoholic drinks", href: "/non-alcoholic-drinks-san-diego", description: "The local pillar guide." },
       { label: "Monday Morning locations", href: "/locations", description: "Pacific Beach and Ocean Beach details." },
       { label: "Zero proof home bar", href: "/zero-proof-home-bar", description: "Build the bar at home first." },
+      { label: "Best non alcoholic spirits", href: "/non-alcoholic-spirits", description: "Cluster page on NA spirits." },
+      { label: "Best non alcoholic beer", href: "/non-alcoholic-beer-guide", description: "The full NA beer guide." },
+      { label: "Best non alcoholic wine", href: "/non-alcoholic-wine", description: "Cluster page on NA wine." },
+      { label: "Shop best sellers", href: "/collections/best-sellers", description: "The drinks our regulars reorder." },
     ]}
   />
 );

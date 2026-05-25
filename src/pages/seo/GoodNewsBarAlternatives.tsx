@@ -125,7 +125,40 @@ const GoodNewsBarAlternatives = () => (
           </>
         ),
       },
+      {
+        heading: "Shop our top picks: the bottles San Diego locals stock at home",
+        body: (
+          <>
+            <p>
+              The honest answer to "where else should I drink?" is usually "at home, more often, with better bottles." Here is what San Diego locals who live alcohol free actually buy from us, ready to ship anywhere in California or pick up at Pacific Beach or Ocean Beach.
+            </p>
+            <ul>
+              <li><Link to="/collections/best-sellers">Best sellers</Link>: the safest start. The drinks our regulars reorder.</li>
+              <li><Link to="/collections/spirit-alternatives">Non alcoholic spirits</Link>: Almave, Sentia, Glen Dochus, Abstinence, Ceybon. Build real cocktails at home.</li>
+              <li><Link to="/collections/na-beer">Non alcoholic beer</Link>: craft IPAs, lagers, stouts, pilsners. Side by side comparable to alcoholic versions.</li>
+              <li><Link to="/collections/wine-alternatives">Non alcoholic wine</Link>: dealcoholized still and sparkling for dinner, gifting, and date night.</li>
+              <li><Link to="/collections/functional">Functional and adaptogen drinks</Link>: the kava, nootropic, and adaptogen end of the menu.</li>
+              <li><Link to="/collections/beach-bonfire">Beach bonfire pack</Link>: a curated alcohol free mix designed for sharing with friends.</li>
+            </ul>
+            <p>
+              Browse the full <Link to="/shop">Monday Morning shop</Link>, or come into a <Link to="/locations">tasting room</Link> and we will pour you whatever you want to try.
+            </p>
+          </>
+        ),
+      },
     ]}
+    extraSchema={{
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      name: "Top non alcoholic drink categories at Monday Morning",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Best sellers", url: `${SITE_URL}/collections/best-sellers` },
+        { "@type": "ListItem", position: 2, name: "Non alcoholic spirits", url: `${SITE_URL}/collections/spirit-alternatives` },
+        { "@type": "ListItem", position: 3, name: "Non alcoholic beer", url: `${SITE_URL}/collections/na-beer` },
+        { "@type": "ListItem", position: 4, name: "Non alcoholic wine", url: `${SITE_URL}/collections/wine-alternatives` },
+        { "@type": "ListItem", position: 5, name: "Functional and adaptogen", url: `${SITE_URL}/collections/functional` },
+      ],
+    }}
     faqs={[
       { question: "What is the best alternative to Good News Bar in San Diego?", answer: "Monday Morning Bottle Shop. Two flagship locations, Pacific Beach at 1854 Garnet Ave and Ocean Beach at 4967 Newport Ave, with 500+ non alcoholic drinks across beer, wine, spirits, and functional categories and a full tasting bar at both stores. It is the deepest curated NA selection in San Diego and the easiest place to discover what you actually like." },
       { question: "Where can I buy non alcoholic drinks in San Diego?", answer: "Monday Morning Bottle Shop is the dedicated non alcoholic bottle shop in San Diego. Two locations: 1854 Garnet Ave in Pacific Beach and 4967 Newport Ave in Ocean Beach. Open Tuesday to Sunday, 11am to 8pm. Tasting bars at both stores pour every craft NA beer, NA spirit, and functional drink on the shelf." },
