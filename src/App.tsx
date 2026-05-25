@@ -70,6 +70,8 @@ import BestNonAlcoholicSparklingWine from "./pages/seo/BestNonAlcoholicSparkling
 import NADrinksForRelaxation from "./pages/seo/NADrinksForRelaxation";
 import BeginnersGuideNA from "./pages/seo/BeginnersGuideNA";
 import FunctionalMocktailsAdaptogens from "./pages/seo/FunctionalMocktailsAdaptogens";
+import NonAlcoholicBarHillcrest from "./pages/seo/NonAlcoholicBarHillcrest";
+import GoodNewsBarAlternatives from "./pages/seo/GoodNewsBarAlternatives";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -158,6 +160,8 @@ const AppContent = () => {
         <Route path="/na-drinks-for-relaxation" element={<NADrinksForRelaxation />} />
         <Route path="/beginners-guide-non-alcoholic-drinks" element={<BeginnersGuideNA />} />
         <Route path="/functional-mocktails-adaptogens" element={<FunctionalMocktailsAdaptogens />} />
+        <Route path="/non-alcoholic-bar-hillcrest" element={<NonAlcoholicBarHillcrest />} />
+        <Route path="/good-news-bar-alternatives-san-diego" element={<GoodNewsBarAlternatives />} />
         {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
         <Route path="*" element={<NotFound />} />
       </Routes>
