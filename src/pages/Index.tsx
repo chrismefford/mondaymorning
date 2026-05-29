@@ -72,13 +72,15 @@ const Index = () => {
       <main>
         <Hero />
         <FeaturedProducts />
-        <Collections />
-        <Story />
-        <WhyWeDontDrink />
-        <Recipes />
-        <Testimonials />
-        <Newsletter />
-        <Instagram />
+        <Suspense fallback={<div className="min-h-[200px]" />}>
+          <Collections />
+          <Story />
+          <WhyWeDontDrink />
+          <Recipes />
+          <Testimonials />
+          <Newsletter />
+          <Instagram />
+        </Suspense>
       </main>
       <Footer />
     </div>
