@@ -118,6 +118,8 @@ const Collections = () => {
                 <img
                   src={collection.image}
                   alt={collection.name}
+                  loading="lazy"
+                  decoding="async"
                   onError={(e) => {
                     e.currentTarget.src = "/placeholder.svg";
                   }}
