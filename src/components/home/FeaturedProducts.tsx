@@ -245,7 +245,8 @@ const FeaturedProducts = () => {
                     <img
                       src={featuredProduct.image}
                       alt={featuredProduct.name}
-                      loading="eager"
+                      loading="lazy"
+                      decoding="async"
                       className="w-full h-full object-contain p-12 transition-transform duration-700 group-hover:scale-105"
                     />
                   </div>
