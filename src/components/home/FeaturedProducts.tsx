@@ -175,7 +175,7 @@ const FeaturedProducts = () => {
                 <div className="relative bg-sand border-2 border-forest overflow-hidden">
                   <div className="aspect-[3/4]">
                     <img
-                      src={optimizeShopifyImage(featuredProduct.image, 700)}
+                      src={featuredProduct.image}
                       alt={featuredProduct.name}
                       loading="lazy"
                       decoding="async"
@@ -243,7 +243,7 @@ const FeaturedProducts = () => {
                 <div className="lg:col-span-7 relative">
                   <div className="aspect-[4/3] overflow-hidden border-2 border-forest bg-sand">
                     <img
-                      src={optimizeShopifyImage(featuredProduct.image, 900)}
+                      src={featuredProduct.image}
                       alt={featuredProduct.name}
                       loading="lazy"
                       decoding="async"
