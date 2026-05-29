@@ -38,7 +38,10 @@
 
     <!-- Fonts are self-hosted via @fontsource imports in src/main.tsx -->
 
-    <!-- Hero image is bundled and uses fetchpriority="high" on the <img> tag -->
+    <!-- Preload LCP hero image (responsive: mobile vs desktop) -->
+    <link rel="preload" as="image" href="/hero/beach-mobile.webp" media="(max-width: 767px)" fetchpriority="high" />
+    <link rel="preload" as="image" href="/hero/beach.webp" media="(min-width: 768px)" fetchpriority="high" />
+
 
 
 
