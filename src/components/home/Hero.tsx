@@ -7,8 +7,8 @@ import logoPrimaryWhite from "@/assets/logo-primary-white.svg";
 import kavaHaven from "@/assets/products/kava-haven.png";
 import sentiaGold from "@/assets/products/sentia-gold.png";
 import bolleRose from "@/assets/products/bolle-rose.png";
-import heroBeach from "@/assets/hero-beach.webp";
-import heroBeachMobile from "@/assets/hero-beach-mobile.webp";
+const heroBeach = "/hero/beach.webp";
+const heroBeachMobile = "/hero/beach-mobile.webp";
 
 
 const Hero = () => {
