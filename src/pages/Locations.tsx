@@ -5,8 +5,8 @@ import Footer from "@/components/layout/Footer";
 import { MapPin, Clock, Phone, ExternalLink, Wine, Beer, UtensilsCrossed, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import stampGold from "@/assets/stamp-gold.svg";
-import textureBlue from "@/assets/texture-blue.svg";
-import textureCream from "@/assets/texture-cream.svg";
+import textureBlue from "@/assets/texture-blue.webp";
+import textureCream from "@/assets/texture-cream.webp";
 import { 
   SITE_NAME, 
   SITE_URL, 

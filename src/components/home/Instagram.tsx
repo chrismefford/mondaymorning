@@ -1,10 +1,10 @@
 import { Instagram as InstagramIcon, MapPin } from "lucide-react";
-import igNews from "@/assets/instagram/ig-news.png";
-import igFriendsCheers from "@/assets/instagram/ig-friends-cheers.png";
-import igBeerShelf from "@/assets/instagram/ig-beer-shelf.png";
-import igStorefront from "@/assets/instagram/ig-storefront.png";
-import igAmethyst from "@/assets/instagram/ig-amethyst.png";
-import igShopInterior from "@/assets/instagram/ig-shop-interior.png";
+import igNews from "@/assets/instagram/ig-news.webp";
+import igFriendsCheers from "@/assets/instagram/ig-friends-cheers.webp";
+import igBeerShelf from "@/assets/instagram/ig-beer-shelf.webp";
+import igStorefront from "@/assets/instagram/ig-storefront.webp";
+import igAmethyst from "@/assets/instagram/ig-amethyst.webp";
+import igShopInterior from "@/assets/instagram/ig-shop-interior.webp";
 
 const instagramImages = [
   { src: igStorefront, alt: "Monday Morning Bottle Shop storefront" },
@@ -58,6 +58,8 @@ const Instagram = () => {
                 <img
                   src={image.src}
                   alt={image.alt}
+                  loading="lazy"
+                  decoding="async"
                   onError={(e) => {
                     e.currentTarget.src = "/placeholder.svg";
                   }}
@@ -84,6 +86,8 @@ const Instagram = () => {
               <img
                 src={image.src}
                 alt={image.alt}
+                loading="lazy"
+                decoding="async"
                 onError={(e) => {
                   e.currentTarget.src = "/placeholder.svg";
                 }}

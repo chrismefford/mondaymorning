@@ -4,7 +4,7 @@ import { products as fallbackProducts, getLifestyleImage } from "@/data/products
 import { Button } from "@/components/ui/button";
 import { ArrowRight, ArrowUpRight, Loader2 } from "lucide-react";
 import { useRef } from "react";
-import textureCream from "@/assets/texture-cream.svg";
+import textureCream from "@/assets/texture-cream.webp";
 import stampGold from "@/assets/stamp-gold.svg";
 import { useShopifyProducts, shopifyToLocalProduct, isActiveProduct } from "@/hooks/useShopifyProducts";
 
@@ -177,7 +177,8 @@ const FeaturedProducts = () => {
                     <img
                       src={featuredProduct.image}
                       alt={featuredProduct.name}
-                      loading="eager"
+                      loading="lazy"
+                      decoding="async"
                       className="w-full h-full object-contain p-8"
                     />
                   </div>
@@ -244,7 +245,8 @@ const FeaturedProducts = () => {
                     <img
                       src={featuredProduct.image}
                       alt={featuredProduct.name}
-                      loading="eager"
+                      loading="lazy"
+                      decoding="async"
                       className="w-full h-full object-contain p-12 transition-transform duration-700 group-hover:scale-105"
                     />
                   </div>

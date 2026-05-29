@@ -4,8 +4,8 @@ import { Input } from "@/components/ui/input";
 import { ArrowRight } from "lucide-react";
 import { useNewsletterSubscribe } from "@/hooks/useNewsletterSubscribe";
 import stampGold from "@/assets/stamp-gold.svg";
-import textureGreen from "@/assets/texture-green.svg";
-import friendsCocktails from "@/assets/friends-cocktails.jpg";
+import textureGreen from "@/assets/texture-green.webp";
+import friendsCocktails from "@/assets/friends-cocktails.webp";
 
 const Newsletter = () => {
   const [email, setEmail] = useState("");

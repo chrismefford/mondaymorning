@@ -12,7 +12,7 @@ import ProductRecipes from "@/components/product/ProductRecipes";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ArrowLeft, ShoppingBag, Loader2, ChevronLeft, ChevronRight } from "lucide-react";
-import textureCream from "@/assets/texture-cream.svg";
+import textureCream from "@/assets/texture-cream.webp";
 import stampGold from "@/assets/stamp-gold.svg";
 import logoSecondaryGold from "@/assets/logo-secondary-gold.svg";
 import { 

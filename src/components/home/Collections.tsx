@@ -4,7 +4,7 @@ import { ArrowUpRight, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import stampGold from "@/assets/stamp-gold.svg";
 import stampBlue from "@/assets/stamp-blue.svg";
-import textureGreen from "@/assets/texture-green.svg";
+import textureGreen from "@/assets/texture-green.webp";
 
 const Collections = () => {
   return (
@@ -55,6 +55,8 @@ const Collections = () => {
               <img
                 src={collection.image}
                 alt={collection.name}
+                loading="lazy"
+                decoding="async"
                 onError={(e) => {
                   e.currentTarget.src = "/placeholder.svg";
                 }}
@@ -116,6 +118,8 @@ const Collections = () => {
                 <img
                   src={collection.image}
                   alt={collection.name}
+                  loading="lazy"
+                  decoding="async"
                   onError={(e) => {
                     e.currentTarget.src = "/placeholder.svg";
                   }}

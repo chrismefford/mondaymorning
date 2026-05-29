@@ -1,9 +1,9 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Wine, Beer, ShoppingBag } from "lucide-react";
 import { Link } from "react-router-dom";
-import friendsDrinking from "@/assets/friends-drinking.jpg";
+import friendsDrinking from "@/assets/friends-drinking.webp";
 import stampGreen from "@/assets/stamp-green.svg";
-import textureCream from "@/assets/texture-cream.svg";
+import textureCream from "@/assets/texture-cream.webp";
 
 const Story = () => {
   const pillars = [
@@ -87,6 +87,8 @@ const Story = () => {
                 <img
                   src={friendsDrinking}
                   alt="Friends enjoying NA drinks together"
+                  loading="lazy"
+                  decoding="async"
                   className="w-full h-full object-cover"
                 />
               </div>

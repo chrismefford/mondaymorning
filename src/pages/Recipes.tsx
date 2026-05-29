@@ -8,7 +8,7 @@ import { ArrowRight, Clock, Users, ChefHat, ShoppingCart, Plus, ShoppingBag } fr
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import stampGold from "@/assets/stamp-gold.svg";
-import textureCream from "@/assets/texture-cream.svg";
+import textureCream from "@/assets/texture-cream.webp";
 import {
   Dialog,
   DialogContent,

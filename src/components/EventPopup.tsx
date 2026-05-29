@@ -5,7 +5,7 @@ import {
   DialogContent,
   DialogClose,
 } from "@/components/ui/dialog";
-import stringsEventImage from "@/assets/events/strings-jan-31.png";
+import stringsEventImage from "@/assets/events/strings-jan-31.webp";
 
 const EventPopup = () => {
   const [isOpen, setIsOpen] = useState(false);

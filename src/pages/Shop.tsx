@@ -7,9 +7,9 @@ import Footer from "@/components/layout/Footer";
 import ProductCard from "@/components/home/ProductCard";
 import { Button } from "@/components/ui/button";
 import { useShopifyAllProducts, shopifyToLocalProduct } from "@/hooks/useShopifyProducts";
-import textureCream from "@/assets/texture-cream.svg";
-import textureGreen from "@/assets/texture-green.svg";
-import textureBlue from "@/assets/texture-blue.svg";
+import textureCream from "@/assets/texture-cream.webp";
+import textureGreen from "@/assets/texture-green.webp";
+import textureBlue from "@/assets/texture-blue.webp";
 import stampGold from "@/assets/stamp-gold.svg";
 import stampBlue from "@/assets/stamp-blue.svg";
 import { 

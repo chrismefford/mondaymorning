@@ -39,8 +39,8 @@ import {
   Star
 } from "lucide-react";
 import stampGold from "@/assets/stamp-gold.svg";
-import textureBlue from "@/assets/texture-blue.svg";
-import textureCream from "@/assets/texture-cream.svg";
+import textureBlue from "@/assets/texture-blue.webp";
+import textureCream from "@/assets/texture-cream.webp";
 import logoSecondaryGold from "@/assets/logo-secondary-gold.svg";
 import { cn } from "@/lib/utils";
 import { 
