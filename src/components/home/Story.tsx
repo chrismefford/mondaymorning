@@ -87,6 +87,8 @@ const Story = () => {
                 <img
                   src={friendsDrinking}
                   alt="Friends enjoying NA drinks together"
+                  loading="lazy"
+                  decoding="async"
                   className="w-full h-full object-cover"
                 />
               </div>
