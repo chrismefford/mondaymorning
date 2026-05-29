@@ -177,7 +177,8 @@ const FeaturedProducts = () => {
                     <img
                       src={featuredProduct.image}
                       alt={featuredProduct.name}
-                      loading="eager"
+                      loading="lazy"
+                      decoding="async"
                       className="w-full h-full object-contain p-8"
                     />
                   </div>
