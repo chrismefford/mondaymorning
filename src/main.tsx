@@ -2,13 +2,8 @@ import "./ssr-polyfill"; // Must be first - provides localStorage/sessionStorage
 import { createRoot } from "react-dom/client";
 import App from "./App.tsx";
 
-// Self-hosted fonts (no Google Fonts network roundtrip)
-import "@fontsource/dm-sans/400.css";
-import "@fontsource/dm-sans/500.css";
-import "@fontsource/dm-sans/600.css";
-import "@fontsource/dm-sans/700.css";
-import "@fontsource/dm-serif-display/400.css";
-import "@fontsource/dm-serif-display/400-italic.css";
+// Fonts are declared in index.html via @font-face on self-hosted /fonts/*.woff2
+// (kept out of the JS/CSS bundle so they don't bloat render-blocking CSS)
 
 import "./index.css";
 
