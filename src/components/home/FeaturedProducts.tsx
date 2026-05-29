@@ -8,13 +8,6 @@ import textureCream from "@/assets/texture-cream.webp";
 import stampGold from "@/assets/stamp-gold.svg";
 import { useShopifyProducts, shopifyToLocalProduct, isActiveProduct } from "@/hooks/useShopifyProducts";
 
-// Optimize Shopify CDN image URLs with width + quality params
-const optimizeShopifyImage = (url: string | undefined, width = 600) => {
-  if (!url || !url.includes('cdn.shopify.com')) return url || '';
-  const sep = url.includes('?') ? '&' : '?';
-  return `${url}${sep}width=${width}&quality=80`;
-};
-
 const FeaturedProducts = () => {
   // Fetch best selling products, sorted by sales
   const { data: shopifyProducts, isLoading, error } = useShopifyProducts(50, {
