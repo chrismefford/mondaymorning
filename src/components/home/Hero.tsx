@@ -4,9 +4,9 @@ import { Link } from "react-router-dom";
 import stampGold from "@/assets/stamp-gold.svg";
 import logoPrimaryGold from "@/assets/logo-primary-gold.svg";
 import logoPrimaryWhite from "@/assets/logo-primary-white.svg";
-import kavaHaven from "@/assets/products/kava-haven.png";
-import sentiaGold from "@/assets/products/sentia-gold.png";
-import bolleRose from "@/assets/products/bolle-rose.png";
+import kavaHaven from "@/assets/products/kava-haven.webp";
+import sentiaGold from "@/assets/products/sentia-gold.webp";
+import bolleRose from "@/assets/products/bolle-rose.webp";
 const heroBeach = "/hero/beach.webp";
 const heroBeachMobile = "/hero/beach-mobile.webp";
 
