@@ -58,6 +58,8 @@ const Instagram = () => {
                 <img
                   src={image.src}
                   alt={image.alt}
+                  loading="lazy"
+                  decoding="async"
                   onError={(e) => {
                     e.currentTarget.src = "/placeholder.svg";
                   }}
