@@ -8,7 +8,7 @@ import ProductCard from "@/components/home/ProductCard";
 import { Button } from "@/components/ui/button";
 import { collections } from "@/data/products";
 import { useShopifyCollectionProducts, useShopifyProducts, useShopifyAllProducts, shopifyToLocalProduct } from "@/hooks/useShopifyProducts";
-import textureCream from "@/assets/texture-cream.svg";
+import textureCream from "@/assets/texture-cream.webp";
 import stampGold from "@/assets/stamp-gold.svg";
 import { 
   SITE_NAME, 

@@ -5,7 +5,7 @@ import { getRecipeImage } from "@/data/recipeImages";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, ArrowUpRight, Clock, Users, ChefHat } from "lucide-react";
 import stampGold from "@/assets/stamp-gold.svg";
-import textureBlue from "@/assets/texture-blue.svg";
+import textureBlue from "@/assets/texture-blue.webp";
 
 const occasions: Occasion[] = ["breakfast", "dinner", "relaxing", "beach", "celebration"];
 

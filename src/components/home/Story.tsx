@@ -3,7 +3,7 @@ import { ArrowRight, Wine, Beer, ShoppingBag } from "lucide-react";
 import { Link } from "react-router-dom";
 import friendsDrinking from "@/assets/friends-drinking.webp";
 import stampGreen from "@/assets/stamp-green.svg";
-import textureCream from "@/assets/texture-cream.svg";
+import textureCream from "@/assets/texture-cream.webp";
 
 const Story = () => {
   const pillars = [

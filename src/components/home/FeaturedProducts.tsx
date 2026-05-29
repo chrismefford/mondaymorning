@@ -4,7 +4,7 @@ import { products as fallbackProducts, getLifestyleImage } from "@/data/products
 import { Button } from "@/components/ui/button";
 import { ArrowRight, ArrowUpRight, Loader2 } from "lucide-react";
 import { useRef } from "react";
-import textureCream from "@/assets/texture-cream.svg";
+import textureCream from "@/assets/texture-cream.webp";
 import stampGold from "@/assets/stamp-gold.svg";
 import { useShopifyProducts, shopifyToLocalProduct, isActiveProduct } from "@/hooks/useShopifyProducts";
 

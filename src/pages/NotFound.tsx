@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { Search, Home, ShoppingBag, BookOpen, MapPin } from "lucide-react";
 import SEO from "@/components/SEO";
-import textureCream from "@/assets/texture-cream.svg";
+import textureCream from "@/assets/texture-cream.webp";
 
 const NotFound = () => {
   return (

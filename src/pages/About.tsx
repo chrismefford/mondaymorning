@@ -5,8 +5,8 @@ import { Link } from "react-router-dom";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import stampGold from "@/assets/stamp-gold.svg";
-import textureCream from "@/assets/texture-cream.svg";
-import textureGreen from "@/assets/texture-green.svg";
+import textureCream from "@/assets/texture-cream.webp";
+import textureGreen from "@/assets/texture-green.webp";
 import zaneFounder from "@/assets/zane-founder.webp";
 import cheersDrinks from "@/assets/cheers-drinks.webp";
 import { 

@@ -4,7 +4,7 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import SEO from "@/components/SEO";
 import stampGold from "@/assets/stamp-gold.svg";
-import textureBlue from "@/assets/texture-blue.svg";
+import textureBlue from "@/assets/texture-blue.webp";
 
 interface Event {
   id: string;

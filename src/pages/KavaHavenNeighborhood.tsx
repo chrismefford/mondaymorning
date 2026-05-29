@@ -14,8 +14,8 @@ import KavaHavenShopSection from "@/components/kava/KavaHavenShopSection";
 import { generateFAQSchema, localBusinessSchema, SITE_URL } from "@/lib/seo";
 import { getNeighborhoodBySlug } from "@/data/kavaHavenNeighborhoods";
 import stampGold from "@/assets/stamp-gold.svg";
-import textureBlue from "@/assets/texture-blue.svg";
-import textureCream from "@/assets/texture-cream.svg";
+import textureBlue from "@/assets/texture-blue.webp";
+import textureCream from "@/assets/texture-cream.webp";
 
 const KavaHavenNeighborhood = () => {
   const { neighborhood } = useParams<{ neighborhood: string }>();

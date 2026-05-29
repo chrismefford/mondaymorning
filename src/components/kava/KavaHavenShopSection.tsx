@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { ShoppingBag, Loader2, ArrowRight } from "lucide-react";
 import { useShopifyProduct } from "@/hooks/useShopifyProduct";
 import { useCart } from "@/hooks/useCart";
-import textureCream from "@/assets/texture-cream.svg";
+import textureCream from "@/assets/texture-cream.webp";
 
 const KAVA_HANDLE = "kava-haven-kava-infused-spirit";
 
