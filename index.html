@@ -36,7 +36,17 @@
     <!-- Preconnect for hero image source (kept for any remaining Unsplash assets in app) -->
     <link rel="preconnect" href="https://images.unsplash.com" crossorigin />
 
-    <!-- Fonts are self-hosted via @fontsource imports in src/main.tsx -->
+    <!-- Self-hosted fonts: preload the LCP-critical serif so the H1 paints without waiting for CSS bundle -->
+    <link rel="preload" as="font" type="font/woff2" href="/fonts/dm-serif-display-latin-400-normal.woff2" crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href="/fonts/dm-sans-latin-400-normal.woff2" crossorigin />
+    <style>
+      @font-face { font-family: 'DM Serif Display'; font-style: normal; font-weight: 400; font-display: swap; src: url('/fonts/dm-serif-display-latin-400-normal.woff2') format('woff2'); }
+      @font-face { font-family: 'DM Serif Display'; font-style: italic; font-weight: 400; font-display: swap; src: url('/fonts/dm-serif-display-latin-400-italic.woff2') format('woff2'); }
+      @font-face { font-family: 'DM Sans'; font-style: normal; font-weight: 400; font-display: swap; src: url('/fonts/dm-sans-latin-400-normal.woff2') format('woff2'); }
+      @font-face { font-family: 'DM Sans'; font-style: normal; font-weight: 500; font-display: swap; src: url('/fonts/dm-sans-latin-500-normal.woff2') format('woff2'); }
+      @font-face { font-family: 'DM Sans'; font-style: normal; font-weight: 600; font-display: swap; src: url('/fonts/dm-sans-latin-600-normal.woff2') format('woff2'); }
+      @font-face { font-family: 'DM Sans'; font-style: normal; font-weight: 700; font-display: swap; src: url('/fonts/dm-sans-latin-700-normal.woff2') format('woff2'); }
+    </style>
 
     <!-- Preload LCP hero image (responsive: mobile vs desktop) -->
     <link rel="preload" as="image" href="/hero/beach-mobile.webp" media="(max-width: 767px)" fetchpriority="high" />
