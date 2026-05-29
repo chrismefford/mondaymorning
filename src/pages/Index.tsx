@@ -1,15 +1,18 @@
+import { lazy, Suspense } from "react";
 import { Helmet } from "@/lib/helmet-compat";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import Hero from "@/components/home/Hero";
 import FeaturedProducts from "@/components/home/FeaturedProducts";
-import Collections from "@/components/home/Collections";
-import Story from "@/components/home/Story";
-import WhyWeDontDrink from "@/components/home/WhyWeDontDrink";
-import Recipes from "@/components/home/Recipes";
-import Testimonials from "@/components/home/Testimonials";
-import Newsletter from "@/components/home/Newsletter";
-import Instagram from "@/components/home/Instagram";
+
+// Below-the-fold sections lazy load to keep initial paint fast
+const Collections = lazy(() => import("@/components/home/Collections"));
+const Story = lazy(() => import("@/components/home/Story"));
+const WhyWeDontDrink = lazy(() => import("@/components/home/WhyWeDontDrink"));
+const Recipes = lazy(() => import("@/components/home/Recipes"));
+const Testimonials = lazy(() => import("@/components/home/Testimonials"));
+const Newsletter = lazy(() => import("@/components/home/Newsletter"));
+const Instagram = lazy(() => import("@/components/home/Instagram"));
 
 import { 
   SITE_NAME, 
@@ -69,13 +72,15 @@ const Index = () => {
       <main>
         <Hero />
         <FeaturedProducts />
-        <Collections />
-        <Story />
-        <WhyWeDontDrink />
-        <Recipes />
-        <Testimonials />
-        <Newsletter />
-        <Instagram />
+        <Suspense fallback={<div className="min-h-[200px]" />}>
+          <Collections />
+          <Story />
+          <WhyWeDontDrink />
+          <Recipes />
+          <Testimonials />
+          <Newsletter />
+          <Instagram />
+        </Suspense>
       </main>
       <Footer />
     </div>
