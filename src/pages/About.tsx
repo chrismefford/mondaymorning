@@ -7,8 +7,8 @@ import Footer from "@/components/layout/Footer";
 import stampGold from "@/assets/stamp-gold.svg";
 import textureCream from "@/assets/texture-cream.svg";
 import textureGreen from "@/assets/texture-green.svg";
-import zaneFounder from "@/assets/zane-founder.png";
-import cheersDrinks from "@/assets/cheers-drinks.jpg";
+import zaneFounder from "@/assets/zane-founder.webp";
+import cheersDrinks from "@/assets/cheers-drinks.webp";
 import { 
   SITE_NAME, 
   SITE_URL, 

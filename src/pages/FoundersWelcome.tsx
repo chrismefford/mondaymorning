@@ -4,7 +4,7 @@ import SEO from "@/components/SEO";
 import { Button } from "@/components/ui/button";
 import { Link, useLocation } from "react-router-dom";
 import { CheckCircle2 } from "lucide-react";
-import zaneFounder from "@/assets/zane-founder.png";
+import zaneFounder from "@/assets/zane-founder.webp";
 import foundersLogo from "@/assets/founders-club-logo.png";
 import stampGold from "@/assets/stamp-gold.svg";
 

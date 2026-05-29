@@ -13,7 +13,7 @@ import rooftopSunsetFriends from "@/assets/lifestyle/rooftop-sunset-friends.jpg"
 import vineyardCoupleWine from "@/assets/lifestyle/vineyard-couple-wine.jpg";
 import beachBonfireBeers from "@/assets/lifestyle/beach-bonfire-beers.jpg";
 import upscaleBarToast from "@/assets/lifestyle/upscale-bar-toast.jpg";
-import poolsideCabanaFriends from "@/assets/lifestyle/poolside-cabana-friends.jpg";
+import poolsideCabanaFriends from "@/assets/lifestyle/poolside-cabana-friends.webp";
 import morningPatioCouple from "@/assets/lifestyle/morning-patio-couple.jpg";
 import gardenPartyToast from "@/assets/lifestyle/garden-party-toast.jpg";
 import breweryPatioFriends from "@/assets/lifestyle/brewery-patio-friends.jpg";
