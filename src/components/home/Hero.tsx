@@ -7,6 +7,9 @@ import logoPrimaryWhite from "@/assets/logo-primary-white.svg";
 import kavaHaven from "@/assets/products/kava-haven.png";
 import sentiaGold from "@/assets/products/sentia-gold.png";
 import bolleRose from "@/assets/products/bolle-rose.png";
+import heroBeach from "@/assets/hero-beach.webp";
+import heroBeachMobile from "@/assets/hero-beach-mobile.webp";
+
 
 const Hero = () => {
   return (
@@ -19,8 +22,8 @@ const Hero = () => {
         {/* Full-screen image background */}
         <div className="absolute inset-0">
           <img
-            src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=70&auto=format&fm=webp"
-            srcSet="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&q=70&auto=format&fm=webp 600w, https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=900&q=70&auto=format&fm=webp 900w"
+            src={heroBeachMobile}
+            srcSet={`${heroBeachMobile} 800w, ${heroBeach} 1400w`}
             sizes="100vw"
             alt="San Diego beach at golden hour"
             className="w-full h-full object-cover"
@@ -29,6 +32,7 @@ const Hero = () => {
             fetchPriority="high"
             decoding="async"
           />
+
           {/* Forest green gradient overlay - brand color */}
           <div className="absolute inset-0 bg-gradient-to-t from-forest-deep via-forest-deep/70 to-forest-deep/20" />
         </div>
@@ -201,8 +205,8 @@ const Hero = () => {
           {/* Main image */}
           <div className="absolute inset-0">
             <img
-              src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1200&q=75&auto=format&fm=webp"
-              srcSet="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=900&q=75&auto=format&fm=webp 900w, https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1400&q=75&auto=format&fm=webp 1400w"
+              src={heroBeach}
+              srcSet={`${heroBeachMobile} 800w, ${heroBeach} 1400w`}
               sizes="50vw"
               alt="San Diego beach at golden hour"
               className="w-full h-full object-cover"
@@ -211,6 +215,7 @@ const Hero = () => {
               fetchPriority="high"
               decoding="async"
             />
+
             {/* Color overlay */}
             <div className="absolute inset-0 bg-gradient-to-l from-transparent via-background/30 to-background" />
           </div>
