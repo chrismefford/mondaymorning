@@ -33,34 +33,14 @@
     <!-- Theme color -->
     <meta name="theme-color" content="#1a3a2f" />
     
-    <!-- Preconnect to external domains for performance -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- Preconnect for hero image source (kept for any remaining Unsplash assets in app) -->
     <link rel="preconnect" href="https://images.unsplash.com" crossorigin />
 
-    <!-- Non-blocking font load -->
-    <link
-      rel="preload"
-      as="style"
-      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Serif+Display:ital@0;1&display=swap"
-    />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Serif+Display:ital@0;1&display=swap"
-      media="print"
-      onload="this.media='all'"
-    />
-    <noscript>
-      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Serif+Display:ital@0;1&display=swap" />
-    </noscript>
-    <link
-      rel="preload"
-      as="image"
-      href="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=70&auto=format&fm=webp"
-      imagesrcset="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&q=70&auto=format&fm=webp 600w, https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=900&q=70&auto=format&fm=webp 900w, https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1400&q=75&auto=format&fm=webp 1400w"
-      imagesizes="(max-width: 768px) 100vw, 50vw"
-      fetchpriority="high"
-    />
+    <!-- Fonts are self-hosted via @fontsource imports in src/main.tsx -->
+
+    <!-- Hero image is bundled and uses fetchpriority="high" on the <img> tag -->
+
+
 
     <!-- Google Tag Manager (deferred until after page load to protect LCP/INP) -->
     <script>
