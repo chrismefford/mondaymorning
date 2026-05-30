@@ -33,6 +33,7 @@ const Privacy = lazy(() => import("./pages/Privacy"));
 const Terms = lazy(() => import("./pages/Terms"));
 const Shipping = lazy(() => import("./pages/Shipping"));
 const Returns = lazy(() => import("./pages/Returns"));
+const CCPA = lazy(() => import("./pages/CCPA"));
 const Wholesale = lazy(() => import("./pages/Wholesale"));
 const WholesaleAuth = lazy(() => import("./pages/WholesaleAuth"));
 const WholesaleCatalog = lazy(() => import("./pages/WholesaleCatalog"));
@@ -108,6 +109,8 @@ const AppContent = () => {
           <Route path="/terms" element={<Terms />} />
           <Route path="/shipping" element={<Shipping />} />
           <Route path="/returns" element={<Returns />} />
+          <Route path="/ccpa" element={<CCPA />} />
+          <Route path="/california-privacy" element={<Navigate to="/ccpa" replace />} />
           <Route path="/services" element={<Wholesale />} />
           <Route path="/wholesale" element={<Navigate to="/services" replace />} />
           <Route path="/wholesale-login" element={<WholesaleAuth />} />
