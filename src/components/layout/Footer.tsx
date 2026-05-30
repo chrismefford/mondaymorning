@@ -151,6 +151,7 @@ const Footer = () => {
               { label: "Terms", path: "/terms" },
               { label: "Shipping", path: "/shipping" },
               { label: "Returns", path: "/returns" },
+              { label: "California Privacy", path: "/ccpa" },
               { label: "Services", path: "/services" },
             ].map((item) => (
               <Link 
