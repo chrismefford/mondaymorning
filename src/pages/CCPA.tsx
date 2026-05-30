@@ -24,7 +24,7 @@ const CCPA = () => {
               </h1>
 
               <div className="prose prose-lg max-w-none font-sans text-muted-foreground space-y-8">
-                <p className="text-lg leading-relaxed">Last updated: January 2026</p>
+                <p className="text-lg leading-relaxed">Last updated: May 2026</p>
 
                 <p>
                   This notice supplements our Privacy Policy and applies solely to California residents under the California Consumer Privacy Act (CCPA), as amended by the California Privacy Rights Act (CPRA).
