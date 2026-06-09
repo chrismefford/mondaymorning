@@ -157,6 +157,13 @@ const Admin = () => {
               Recipe Generator
             </TabsTrigger>
             <TabsTrigger 
+              value="applications"
+              className="data-[state=active]:bg-cream data-[state=active]:text-forest text-cream"
+            >
+              <ClipboardList className="w-4 h-4 mr-2" />
+              Applications
+            </TabsTrigger>
+            <TabsTrigger 
               value="wholesale"
               className="data-[state=active]:bg-cream data-[state=active]:text-forest text-cream"
             >
