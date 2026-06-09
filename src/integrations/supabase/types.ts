@@ -577,15 +577,26 @@ export type Database = {
         Args: { payload: Json; queue_name: string }
         Returns: number
       }
-      enqueue_transactional_email: {
-        Args: {
-          p_html: string
-          p_subject: string
-          p_template_name: string
-          p_to: string
-        }
-        Returns: number
-      }
+      enqueue_transactional_email:
+        | {
+            Args: {
+              p_html: string
+              p_subject: string
+              p_template_name: string
+              p_to: string
+            }
+            Returns: number
+          }
+        | {
+            Args: {
+              p_html: string
+              p_subject: string
+              p_template_name: string
+              p_text?: string
+              p_to: string
+            }
+            Returns: number
+          }
       has_role: {
         Args: {
           _role: Database["public"]["Enums"]["app_role"]
