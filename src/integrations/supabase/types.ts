@@ -203,6 +203,51 @@ export type Database = {
         }
         Relationships: []
       }
+      inquiries: {
+        Row: {
+          company: string | null
+          created_at: string
+          crm_synced: boolean
+          detail: Json | null
+          email: string
+          id: string
+          message: string | null
+          name: string
+          offering: string
+          phone: string | null
+          source: string
+          status: string
+        }
+        Insert: {
+          company?: string | null
+          created_at?: string
+          crm_synced?: boolean
+          detail?: Json | null
+          email: string
+          id?: string
+          message?: string | null
+          name: string
+          offering: string
+          phone?: string | null
+          source?: string
+          status?: string
+        }
+        Update: {
+          company?: string | null
+          created_at?: string
+          crm_synced?: boolean
+          detail?: Json | null
+          email?: string
+          id?: string
+          message?: string | null
+          name?: string
+          offering?: string
+          phone?: string | null
+          source?: string
+          status?: string
+        }
+        Relationships: []
+      }
       processed_image_cache: {
         Row: {
           created_at: string
