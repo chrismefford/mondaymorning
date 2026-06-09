@@ -76,10 +76,35 @@ export default function WholesaleApplicationsManager() {
     if (error) {
       toast.error(`Failed to update: ${error.message}`);
       console.error(error);
-    } else {
-      toast.success(`Marked as ${status}`);
-      setApps((prev) => prev.map((a) => (a.id === id ? { ...a, status } : a)));
-      if (selected?.id === id) setSelected({ ...selected, status });
+      setSavingId(null);
+      return;
+    }
+    toast.success(`Marked as ${status}`);
+    setApps((prev) => prev.map((a) => (a.id === id ? { ...a, status } : a)));
+    if (selected?.id === id) setSelected({ ...selected, status });
+
+    if (status === "approved") {
+      const { error: syncError } = await supabase.functions.invoke(
+        "sync-wholesale-shopify",
+        { body: { applicationId: id } }
+      );
+      if (syncError) {
+        toast.error(`Shopify sync failed: ${syncError.message}`);
+        console.error(syncError);
+      } else {
+        toast.success("Synced to Shopify B2B");
+      }
+
+      const { error: emailError } = await supabase.functions.invoke(
+        "send-wholesale-approval",
+        { body: { applicationId: id } }
+      );
+      if (emailError) {
+        toast.error(`Welcome email failed: ${emailError.message}`);
+        console.error(emailError);
+      } else {
+        toast.success("Welcome email sent");
+      }
     }
     setSavingId(null);
   };
