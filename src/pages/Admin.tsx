@@ -237,6 +237,12 @@ const Admin = () => {
             <RecipeGenerator />
           </TabsContent>
 
+          <TabsContent value="applications">
+            <div className="bg-cream rounded-lg p-6">
+              <WholesaleApplicationsManager />
+            </div>
+          </TabsContent>
+
           <TabsContent value="wholesale">
             <div className="bg-cream rounded-lg p-6">
               <WholesaleCustomerManager />
