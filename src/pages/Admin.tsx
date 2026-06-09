@@ -6,9 +6,10 @@ import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { toast } from 'sonner';
 import logoWhite from '@/assets/logo-primary-white.svg';
-import { Check, X, Trash2, LogOut, MessageSquare, ChefHat, Building2, DollarSign } from 'lucide-react';
+import { Check, X, Trash2, LogOut, MessageSquare, ChefHat, Building2, DollarSign, ClipboardList } from 'lucide-react';
 import { RecipeGenerator } from '@/components/admin/RecipeGenerator';
 import WholesaleCustomerManager from '@/components/admin/WholesaleCustomerManager';
+import WholesaleApplicationsManager from '@/components/admin/WholesaleApplicationsManager';
 import WholesalePriceManager from '@/components/admin/WholesalePriceManager';
 
 interface StorySubmission {
