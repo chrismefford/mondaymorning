@@ -173,10 +173,10 @@ Deno.serve(async (req) => {
             subject: payload.subject,
             html: payload.html,
             text: payload.text,
-            purpose: payload.purpose,
+            purpose: payload.purpose ?? (queue === "auth_emails" ? "auth" : "transactional"),
             label: payload.label,
             external_id: payload.external_id,
-            idempotency_key: payload.idempotency_key,
+            idempotency_key: payload.idempotency_key ?? `${queue}:${msg.msg_id}`,
             unsubscribe_token: payload.unsubscribe_token,
           },
           // sendUrl is optional — when LOVABLE_SEND_URL is not set, the library
