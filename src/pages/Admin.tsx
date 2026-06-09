@@ -6,9 +6,10 @@ import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { toast } from 'sonner';
 import logoWhite from '@/assets/logo-primary-white.svg';
-import { Check, X, Trash2, LogOut, MessageSquare, ChefHat, Building2, DollarSign } from 'lucide-react';
+import { Check, X, Trash2, LogOut, MessageSquare, ChefHat, Building2, DollarSign, ClipboardList } from 'lucide-react';
 import { RecipeGenerator } from '@/components/admin/RecipeGenerator';
 import WholesaleCustomerManager from '@/components/admin/WholesaleCustomerManager';
+import WholesaleApplicationsManager from '@/components/admin/WholesaleApplicationsManager';
 import WholesalePriceManager from '@/components/admin/WholesalePriceManager';
 
 interface StorySubmission {
@@ -156,6 +157,13 @@ const Admin = () => {
               Recipe Generator
             </TabsTrigger>
             <TabsTrigger 
+              value="applications"
+              className="data-[state=active]:bg-cream data-[state=active]:text-forest text-cream"
+            >
+              <ClipboardList className="w-4 h-4 mr-2" />
+              Applications
+            </TabsTrigger>
+            <TabsTrigger 
               value="wholesale"
               className="data-[state=active]:bg-cream data-[state=active]:text-forest text-cream"
             >
@@ -227,6 +235,12 @@ const Admin = () => {
           <TabsContent value="recipes">
             <h1 className="font-display text-4xl text-cream mb-8">AI Recipe Generator</h1>
             <RecipeGenerator />
+          </TabsContent>
+
+          <TabsContent value="applications">
+            <div className="bg-cream rounded-lg p-6">
+              <WholesaleApplicationsManager />
+            </div>
           </TabsContent>
 
           <TabsContent value="wholesale">
