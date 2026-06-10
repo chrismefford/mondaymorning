@@ -329,7 +329,7 @@ const CollectionPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-cream">
+    <div className="min-h-screen bg-cream brand-type">
       <Helmet>
         <title>{pageTitle}</title>
         <meta name="description" content={pageDescription} />
@@ -366,22 +366,22 @@ const CollectionPage = () => {
       
       <main className="pt-20">
         {/* Hero Section */}
-        <section className="relative py-16 lg:py-24 bg-forest text-cream overflow-hidden">
+        <section className="relative py-16 lg:py-24 bg-cream text-forest overflow-hidden">
           {/* Background texture */}
-          <div 
-            className="absolute inset-0 opacity-10 pointer-events-none"
+          <div
+            className="absolute inset-0 opacity-40 pointer-events-none"
             style={{ backgroundImage: `url(${textureCream})`, backgroundSize: 'cover' }}
           />
-          
+
           {/* Decorative stamp */}
-          <div className="absolute -top-20 -right-20 w-64 lg:w-96 opacity-10 pointer-events-none">
+          <div className="absolute -top-20 -right-20 w-64 lg:w-96 opacity-[0.05] pointer-events-none">
             <img src={stampGold} alt="" className="w-full h-full" />
           </div>
           
           <div className="container mx-auto px-4 lg:px-8 relative z-10">
             {/* Visible breadcrumbs */}
             <nav aria-label="breadcrumb" className="mb-6">
-              <ol className="flex flex-wrap items-center gap-2 font-sans text-xs uppercase tracking-wider text-cream/60">
+              <ol className="flex flex-wrap items-center gap-2 font-sans text-xs uppercase tracking-wider text-forest/50">
                 <li><Link to="/" className="hover:text-gold transition-colors">Home</Link></li>
                 <li aria-hidden="true">/</li>
                 <li><Link to="/shop" className="hover:text-gold transition-colors">{isBrandFilter ? "Brands" : "Collections"}</Link></li>
@@ -393,7 +393,7 @@ const CollectionPage = () => {
             {/* Back link */}
             <Link 
               to={isBrandFilter ? "/about" : isVibeCollection ? "/shop" : "/#collections"} 
-              className="inline-flex items-center gap-2 font-sans text-sm text-cream/70 hover:text-gold transition-colors mb-8"
+              className="inline-flex items-center gap-2 font-sans text-sm text-forest/60 hover:text-gold transition-colors mb-8"
             >
               <ArrowLeft className="h-4 w-4" />
               {isBrandFilter ? "Back to About" : isVibeCollection ? "Back to Shop" : "Back to Collections"}
@@ -403,20 +403,20 @@ const CollectionPage = () => {
               <span className="font-sans text-xs font-medium uppercase tracking-[0.3em] text-gold mb-4 block">
                 {isBrandFilter ? "Brand" : isVibeCollection ? "The Vibe" : "Collection"}
               </span>
-              <h1 className="font-serif text-4xl lg:text-6xl xl:text-7xl font-normal mb-6 capitalize text-cream">
+              <h1 className="font-serif text-4xl lg:text-6xl xl:text-7xl font-normal mb-6 capitalize text-forest">
                 {isBrandFilter ? `${brandName} Non Alcoholic Drinks` : `${vibeInfo?.title || collectionInfo?.title || collectionMeta?.name || "Collection"}`}
               </h1>
-              <p className="font-sans text-lg lg:text-xl text-cream/80 max-w-2xl mb-4">
+              <p className="font-sans text-lg lg:text-xl text-forest/70 max-w-2xl mb-4">
                 {isBrandFilter 
                   ? `Explore all products from ${brandName}.`
                   : vibeInfo?.description || collectionInfo?.description || collectionMeta?.description || "Explore our curated selection."}
               </p>
-              <p className="font-sans text-sm lg:text-base text-cream/70 max-w-2xl leading-relaxed">
+              <p className="font-sans text-sm lg:text-base text-forest/60 max-w-2xl leading-relaxed">
                 {introParagraph}
               </p>
               
               {!isLoading && displayProducts.length > 0 && (
-                <p className="font-sans text-sm text-cream/60 mt-4">
+                <p className="font-sans text-sm text-forest/50 mt-4">
                   {displayProducts.length} product{displayProducts.length !== 1 ? 's' : ''}
                 </p>
               )}

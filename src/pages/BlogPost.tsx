@@ -74,7 +74,7 @@ const BlogPost = () => {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-background">
+      <div className="min-h-screen bg-background brand-type">
         <Header />
         <main className="pt-24">
           <div className="container mx-auto px-4 py-16">
@@ -99,7 +99,7 @@ const BlogPost = () => {
 
   if (error || !post) {
     return (
-      <div className="min-h-screen bg-background">
+      <div className="min-h-screen bg-background brand-type">
         <Header />
         <main className="pt-24">
           <div className="container mx-auto px-4 py-16 text-center">
@@ -109,7 +109,7 @@ const BlogPost = () => {
             </p>
             <Link
               to="/blog"
-              className="inline-flex items-center gap-2 text-brand-green hover:underline"
+              className="inline-flex items-center gap-2 text-gold hover:underline"
             >
               <ArrowLeft className="w-4 h-4" />
               Back to Blog
@@ -122,7 +122,7 @@ const BlogPost = () => {
   }
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background brand-type">
       <Helmet>
         <title>{pageTitle}</title>
         <meta name="description" content={pageDescription} />
@@ -194,7 +194,7 @@ const BlogPost = () => {
               fetchPriority="high"
               decoding="async"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-ocean via-ocean/50 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-forest-deep via-forest-deep/60 to-transparent" />
             <div className="absolute bottom-0 left-0 right-0 p-6 md:p-12">
               <div className="container mx-auto max-w-3xl">
                 <Link
@@ -251,17 +251,17 @@ const BlogPost = () => {
                       <div
                         key={`content-${i}`}
                         className="prose prose-lg dark:prose-invert max-w-none
-                          prose-headings:font-serif prose-headings:text-ocean
-                          prose-h2:text-3xl prose-h2:md:text-4xl prose-h2:mt-16 prose-h2:mb-6 prose-h2:border-b prose-h2:border-ocean/20 prose-h2:pb-4
-                          prose-h3:text-xl prose-h3:md:text-2xl prose-h3:text-ocean/80 prose-h3:italic prose-h3:mt-2 prose-h3:mb-4
+                          prose-headings:font-serif prose-headings:text-forest
+                          prose-h2:text-3xl prose-h2:md:text-4xl prose-h2:mt-16 prose-h2:mb-6 prose-h2:border-b prose-h2:border-forest/20 prose-h2:pb-4
+                          prose-h3:text-xl prose-h3:md:text-2xl prose-h3:text-forest/80 prose-h3:italic prose-h3:mt-2 prose-h3:mb-4
                           prose-p:text-foreground/85 prose-p:leading-relaxed prose-p:text-[17px]
                           prose-strong:text-foreground prose-strong:font-semibold
-                          prose-a:text-brand-green prose-a:underline prose-a:underline-offset-2 hover:prose-a:text-brand-green/80
-                          prose-blockquote:border-l-4 prose-blockquote:border-brand-green prose-blockquote:bg-brand-green/5 prose-blockquote:px-6 prose-blockquote:py-4 prose-blockquote:rounded-r-lg prose-blockquote:not-italic
+                          prose-a:text-forest prose-a:underline prose-a:underline-offset-2 hover:prose-a:text-gold
+                          prose-blockquote:border-l-4 prose-blockquote:border-gold prose-blockquote:bg-gold/5 prose-blockquote:px-6 prose-blockquote:py-4 prose-blockquote:rounded-r-lg prose-blockquote:not-italic
                           prose-img:rounded-xl prose-img:shadow-lg prose-img:my-10
-                          prose-table:border prose-table:border-border prose-th:bg-ocean prose-th:text-white prose-th:font-sans prose-th:text-sm prose-th:px-3 prose-th:py-2
+                          prose-table:border prose-table:border-border prose-th:bg-forest prose-th:text-white prose-th:font-sans prose-th:text-sm prose-th:px-3 prose-th:py-2
                           prose-td:px-3 prose-td:py-2 prose-td:text-sm prose-td:border-b prose-td:border-border
-                          prose-hr:border-ocean/20 prose-hr:my-12"
+                          prose-hr:border-forest/20 prose-hr:my-12"
                       >
                         <ReactMarkdown
                           remarkPlugins={[remarkGfm]}
@@ -279,7 +279,7 @@ const BlogPost = () => {
                                 return (
                                   <Link
                                     to={href}
-                                    className="text-brand-green hover:text-brand-green/80 underline underline-offset-2 font-semibold"
+                                    className="text-forest hover:text-gold underline underline-offset-2 font-semibold"
                                     {...props}
                                   >
                                     {children}

@@ -120,9 +120,9 @@ export default function WholesaleApplicationsManager() {
   });
 
   const statusVariant = (status: string) => {
-    if (status === "approved") return "bg-green-600 text-white";
-    if (status === "rejected") return "bg-red-600 text-white";
-    return "bg-amber-500 text-white";
+    if (status === "approved") return "bg-forest text-cream";
+    if (status === "rejected") return "bg-destructive text-destructive-foreground";
+    return "bg-gold text-forest-deep";
   };
 
   if (isLoading) {
@@ -196,7 +196,7 @@ export default function WholesaleApplicationsManager() {
                       {app.status !== "approved" && (
                         <Button
                           size="sm"
-                          className="bg-green-600 hover:bg-green-700 text-white"
+                          className="bg-forest hover:bg-forest-deep text-cream"
                           disabled={savingId === app.id}
                           onClick={() => updateStatus(app.id, "approved")}
                         >
@@ -207,7 +207,7 @@ export default function WholesaleApplicationsManager() {
                         <Button
                           variant="outline"
                           size="sm"
-                          className="border-red-500/50 text-red-600"
+                          className="border-destructive/50 text-destructive"
                           disabled={savingId === app.id}
                           onClick={() => updateStatus(app.id, "rejected")}
                         >
@@ -264,7 +264,7 @@ export default function WholesaleApplicationsManager() {
             {selected && selected.status !== "rejected" && (
               <Button
                 variant="outline"
-                className="border-red-500/50 text-red-600"
+                className="border-destructive/50 text-destructive"
                 onClick={() => updateStatus(selected.id, "rejected")}
                 disabled={savingId === selected.id}
               >

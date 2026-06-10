@@ -1,757 +1,450 @@
-import { useState, useEffect, useRef, useCallback } from "react";
-import { Link } from "react-router-dom";
 import { Helmet } from "@/lib/helmet-compat";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import ContactFormDialog from "@/components/ContactFormDialog";
+import InquiryDialog from "@/components/InquiryDialog";
 import TastingFormDialog from "@/components/TastingFormDialog";
 import WholesaleApplicationForm from "@/components/wholesale/WholesaleApplicationForm";
 import {
-  TrendingUp, 
-  DollarSign, 
-  Users, 
-  Sparkles, 
-  Wine, 
-  GraduationCap, 
-  Truck, 
-  CheckCircle2, 
+  Truck,
+  GraduationCap,
+  Sparkles,
+  FlaskConical,
+  Martini,
+  Wine,
+  CheckCircle2,
   XCircle,
-  MapPin,
-  Phone,
-  Mail,
-  Instagram,
-  Linkedin,
-  Facebook,
   ArrowRight,
-  MessageCircle,
-  Send,
-  X,
-  Trash2,
-  ExternalLink,
-  AlertTriangle,
-  Zap,
-  Target,
-  TrendingDown,
-  Award,
-  Clock,
-  Star
+  Store,
+  Building2,
+  Beer,
 } from "lucide-react";
 import stampGold from "@/assets/stamp-gold.svg";
-import textureBlue from "@/assets/texture-blue.webp";
 import textureCream from "@/assets/texture-cream.webp";
-import logoSecondaryGold from "@/assets/logo-secondary-gold.svg";
-import { cn } from "@/lib/utils";
-import { 
-  SITE_NAME, 
-  SITE_URL, 
-  DEFAULT_OG_IMAGE,
-  TWITTER_HANDLE,
-  getCanonicalUrl
-} from "@/lib/seo";
+import textureGreen from "@/assets/texture-green.webp";
+import { SITE_NAME, DEFAULT_OG_IMAGE, TWITTER_HANDLE, getCanonicalUrl } from "@/lib/seo";
 
-// Partner locations data with context
+// The five ways we work with businesses. Each maps to a real agreement
+// (B2B Supply / Consulting / Retail Curation / Lab Brewing / Vibations).
+const offerings = [
+  {
+    id: "b2b",
+    icon: Truck,
+    eyebrow: "B2B & Distribution",
+    title: "Stock your bar with",
+    accent: "better.",
+    who: "For bars, restaurants, hotels, and shops.",
+    body: "We supply curated non-alcoholic beer, wine, spirits, and functional drinks, then help you build a menu that actually moves. No liquor license, no guesswork.",
+    points: [
+      "A curated set chosen to sell, not sit on the shelf",
+      "Staff training so your team recommends with confidence",
+      "Seasonal rotations that keep regulars curious",
+      "Fast local delivery and easy reordering",
+    ],
+    cta: "wholesale",
+    ctaLabel: "Apply for wholesale",
+  },
+  {
+    id: "consulting",
+    icon: GraduationCap,
+    eyebrow: "Consulting",
+    title: "Build a program that",
+    accent: "actually sells.",
+    who: "For venues and brands growing alcohol-free the right way.",
+    body: "We built our own AF program from the floor up, across two shops and a tasting bar. We'll do the same for you: menu design, staff training, product strategy, and launch.",
+    points: [
+      "Menu curation tailored to your venue and price point",
+      "Staff training and tasting notes for the NA category",
+      "Product strategy backed by real retail sales data",
+      "Soft launch to full rollout support",
+    ],
+    cta: "contact",
+    ctaLabel: "Book a consult",
+  },
+  {
+    id: "popups",
+    icon: Store,
+    eyebrow: "Retail Pop-Ups",
+    title: "Bring the bottle shop",
+    accent: "to you.",
+    who: "For stores, markets, offices, and events.",
+    body: "We set up a curated Monday Morning pop-up inside your space, a full bottle shop experience or a featured set, staffed and stocked by us.",
+    points: [
+      "Turnkey pop-up bottle shops",
+      "Curated retail sets and featured-brand displays",
+      "On-site tastings that drive sales",
+      "Flexible, from a single weekend to a full season",
+    ],
+    cta: "contact",
+    ctaLabel: "Plan a pop-up",
+  },
+  {
+    id: "brewing",
+    icon: FlaskConical,
+    eyebrow: "Contract Brewing",
+    title: "Brew it at",
+    accent: "The Lab.",
+    who: "For emerging and established alcohol-free brands.",
+    body: "Our San Marcos facility is one of the only NA-focused production partners in Southern California. We brew, can, and white-label non-alcoholic beer, functional drinks, and ready-to-drink products.",
+    points: [
+      "Non-alcoholic brewing and co-packing",
+      "Recipe development and small-batch trials",
+      "White-label and private-label production",
+      "Scale from first run to full distribution",
+    ],
+    cta: "contact",
+    ctaLabel: "Talk brewing",
+  },
+  {
+    id: "events",
+    icon: Martini,
+    eyebrow: "Events & Vibations",
+    title: "Vibations for",
+    accent: "every occasion.",
+    who: "For weddings, parties, and corporate events.",
+    body: "Our Vibations bartending team and tasting space bring craft alcohol-free service anywhere, so everyone has something good in hand.",
+    points: [
+      "Vibations bartending and mobile service",
+      "Private events in our tasting space",
+      "Weddings and celebrations",
+      "Brand activations and guided tastings",
+    ],
+    cta: "contact",
+    ctaLabel: "Inquire about events",
+  },
+];
+
+// Category / industry figures (not Monday Morning guarantees).
+const marketStats = [
+  { value: "30%+", label: "annual growth in NA beverage sales" },
+  { value: "1 in 3", label: "adults are drinking less, across every generation" },
+  { value: "80%+", label: "typical gross margin on a craft NA drink" },
+  { value: "$0", label: "alcohol tax or liquor license needed" },
+];
+
+// Notable venues we already supply.
 const partners = [
-  { name: "BoujieMana", accolade: "Yelp's #8 Best New Restaurant in USA", type: "restaurant" },
-  { name: "Miss B's Coconut Club", type: "bar" },
-  { name: "Bare Back Grill", type: "restaurant" },
-  { name: "Raglan Public House", type: "bar" },
-  { name: "Queenstown Village", type: "restaurant" },
-  { name: "Paradisaea", type: "restaurant" },
-  { name: "Queenstown Public House", type: "bar" },
-  { name: "Moniker General Outpost", type: "restaurant" },
-  { name: "Boney's Bayside Market", type: "market" },
+  { name: "BoujieMana", note: "Yelp's #8 Best New Restaurant in the USA" },
+  { name: "Miss B's Coconut Club", note: "Mission Beach" },
+  { name: "Bare Back Grill", note: "Pacific Beach" },
+  { name: "Queenstown Village", note: "La Jolla" },
+  { name: "Paradisaea", note: "Bird Rock" },
+  { name: "The Lodge at Torrey Pines", note: "La Jolla" },
+  { name: "Good News Bar", note: "University Heights" },
+  { name: "Boney's Bayside Market", note: "Coronado" },
 ];
 
-// What they get
-const programIncludes = [
-  { 
-    icon: Wine, 
-    title: "Curated Menu", 
-    desc: "Flavor-forward cocktails and functional elixirs designed to sell" 
-  },
-  { 
-    icon: GraduationCap, 
-    title: "Staff Training", 
-    desc: "Your team learns to recommend with confidence" 
-  },
-  { 
-    icon: Sparkles, 
-    title: "Seasonal Rotations", 
-    desc: "Fresh recipes that keep guests coming back" 
-  },
-  { 
-    icon: Truck, 
-    title: "Fast Delivery", 
-    desc: "No alcohol license headaches, just great drinks" 
-  },
+const comparison = [
+  { feature: "Tastes syrupy and sweet", them: true, us: false },
+  { feature: "Genuine craft-cocktail quality", them: false, us: true },
+  { feature: "Functional benefits (adaptogens, nootropics)", them: false, us: true },
+  { feature: "On-trend, pulls new guests in", them: false, us: true },
+  { feature: "Margins worth building a program on", them: false, us: true },
 ];
 
-// Comparison table data
-const comparisonFeatures = [
-  { feature: "Syrupy & sweet", traditional: true, mondayMorning: false },
-  { feature: "Craft cocktail experience", traditional: false, mondayMorning: true },
-  { feature: "Functional benefits (adaptogens, nootropics)", traditional: false, mondayMorning: true },
-  { feature: "On-trend, Gen Z appeal", traditional: false, mondayMorning: true },
-  { feature: "Profit margins", traditional: "😐", mondayMorning: "🚀" },
-];
-
-// Wholesale Chat Hook
-type Message = { role: "user" | "assistant"; content: string };
-
-const useWholesaleChat = () => {
-  const [messages, setMessages] = useState<Message[]>([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-
-  const CHAT_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/wholesale-chat`;
-
-  const sendMessage = useCallback(async (input: string) => {
-    const userMsg: Message = { role: "user", content: input };
-    setMessages(prev => [...prev, userMsg]);
-    setIsLoading(true);
-    setError(null);
-
-    let assistantSoFar = "";
-    
-    const upsertAssistant = (nextChunk: string) => {
-      assistantSoFar += nextChunk;
-      setMessages(prev => {
-        const last = prev[prev.length - 1];
-        if (last?.role === "assistant") {
-          return prev.map((m, i) => (i === prev.length - 1 ? { ...m, content: assistantSoFar } : m));
-        }
-        return [...prev, { role: "assistant", content: assistantSoFar }];
-      });
-    };
-
-    try {
-      const resp = await fetch(CHAT_URL, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY}`,
-        },
-        body: JSON.stringify({ messages: [...messages, userMsg] }),
-      });
-
-      if (!resp.ok) {
-        const errorData = await resp.json().catch(() => ({}));
-        throw new Error(errorData.error || "Failed to get response");
-      }
-
-      if (!resp.body) throw new Error("No response body");
-
-      const reader = resp.body.getReader();
-      const decoder = new TextDecoder();
-      let textBuffer = "";
-      let streamDone = false;
-
-      while (!streamDone) {
-        const { done, value } = await reader.read();
-        if (done) break;
-        textBuffer += decoder.decode(value, { stream: true });
-
-        let newlineIndex: number;
-        while ((newlineIndex = textBuffer.indexOf("\n")) !== -1) {
-          let line = textBuffer.slice(0, newlineIndex);
-          textBuffer = textBuffer.slice(newlineIndex + 1);
-
-          if (line.endsWith("\r")) line = line.slice(0, -1);
-          if (line.startsWith(":") || line.trim() === "") continue;
-          if (!line.startsWith("data: ")) continue;
-
-          const jsonStr = line.slice(6).trim();
-          if (jsonStr === "[DONE]") {
-            streamDone = true;
-            break;
-          }
-
-          try {
-            const parsed = JSON.parse(jsonStr);
-            const content = parsed.choices?.[0]?.delta?.content as string | undefined;
-            if (content) upsertAssistant(content);
-          } catch {
-            textBuffer = line + "\n" + textBuffer;
-            break;
-          }
-        }
-      }
-
-      if (textBuffer.trim()) {
-        for (let raw of textBuffer.split("\n")) {
-          if (!raw) continue;
-          if (raw.endsWith("\r")) raw = raw.slice(0, -1);
-          if (raw.startsWith(":") || raw.trim() === "") continue;
-          if (!raw.startsWith("data: ")) continue;
-          const jsonStr = raw.slice(6).trim();
-          if (jsonStr === "[DONE]") continue;
-          try {
-            const parsed = JSON.parse(jsonStr);
-            const content = parsed.choices?.[0]?.delta?.content as string | undefined;
-            if (content) upsertAssistant(content);
-          } catch { /* ignore */ }
-        }
-      }
-    } catch (e) {
-      console.error("Chat error:", e);
-      setError(e instanceof Error ? e.message : "Something went wrong");
-      setMessages(prev => prev.slice(0, -1));
-    } finally {
-      setIsLoading(false);
-    }
-  }, [messages]);
-
-  const clearChat = useCallback(() => {
-    setMessages([]);
-    setError(null);
-  }, []);
-
-  return { messages, isLoading, error, sendMessage, clearChat };
-};
-
-// Wholesale Chat Component
-const WholesaleChat = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [inputValue, setInputValue] = useState("");
-  const { messages, isLoading, error, sendMessage, clearChat } = useWholesaleChat();
-  const messagesEndRef = useRef<HTMLDivElement>(null);
-  const inputRef = useRef<HTMLInputElement>(null);
-
-  useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [messages]);
-
-  useEffect(() => {
-    if (isOpen) {
-      inputRef.current?.focus();
-    }
-  }, [isOpen]);
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!inputValue.trim() || isLoading) return;
-    sendMessage(inputValue.trim());
-    setInputValue("");
-  };
-
-  return (
-    <>
-      <button
-        onClick={() => setIsOpen(true)}
-        className={cn(
-          "fixed bottom-6 right-6 z-50 flex items-center gap-2 px-4 py-3 bg-gold text-forest-deep font-semibold rounded-full shadow-xl hover:bg-gold/90 transition-all duration-300",
-          isOpen && "hidden"
-        )}
-      >
-        <MessageCircle className="w-5 h-5" />
-        <span>Wholesale Questions Answered Here</span>
-      </button>
-
-      {isOpen && (
-        <div className="fixed bottom-6 right-6 z-50 w-[380px] max-w-[calc(100vw-3rem)] h-[500px] max-h-[calc(100vh-6rem)] bg-cream border-2 border-forest/20 rounded-2xl shadow-2xl flex flex-col overflow-hidden">
-          <div className="bg-forest text-cream p-4 flex items-center justify-between shrink-0">
-            <div>
-              <h3 className="font-serif text-lg">Talk to Our Team</h3>
-              <p className="text-xs text-cream/70">Get answers about wholesale partnerships</p>
-            </div>
-            <div className="flex items-center gap-2">
-              <button
-                onClick={clearChat}
-                className="p-2 hover:bg-cream/10 rounded-lg transition-colors"
-                title="Clear chat"
-              >
-                <Trash2 className="w-4 h-4" />
-              </button>
-              <button
-                onClick={() => setIsOpen(false)}
-                className="p-2 hover:bg-cream/10 rounded-lg transition-colors"
-              >
-                <X className="w-4 h-4" />
-              </button>
-            </div>
-          </div>
-
-          <div className="flex-1 overflow-y-auto p-4 space-y-3 bg-cream/50">
-            {messages.length === 0 && (
-              <div className="text-center py-8 text-forest/60">
-                <MessageCircle className="w-12 h-12 mx-auto mb-3 opacity-40" />
-                <p className="font-sans text-sm mb-4">Ask me anything about partnering with Monday Morning</p>
-                <div className="space-y-2">
-                  {["What's the minimum order?", "How does pricing work?", "Do you do staff training?"].map((q) => (
-                    <button
-                      key={q}
-                      onClick={() => sendMessage(q)}
-                      className="block w-full text-left text-sm bg-white p-3 rounded-lg border border-forest/10 hover:border-gold transition-colors"
-                    >
-                      {q}
-                    </button>
-                  ))}
-                </div>
-              </div>
-            )}
-            {messages.map((msg, i) => (
-              <div
-                key={i}
-                className={cn(
-                  "max-w-[85%] p-3 rounded-2xl",
-                  msg.role === "user"
-                    ? "ml-auto bg-forest text-cream rounded-br-md"
-                    : "mr-auto bg-white text-forest border border-forest/10 rounded-bl-md"
-                )}
-              >
-                <p className="text-sm whitespace-pre-wrap">{msg.content}</p>
-              </div>
-            ))}
-            {isLoading && (
-              <div className="mr-auto bg-white text-forest border border-forest/10 rounded-2xl rounded-bl-md p-3">
-                <div className="flex gap-1">
-                  <span className="w-2 h-2 bg-forest/40 rounded-full animate-bounce" style={{ animationDelay: "0ms" }} />
-                  <span className="w-2 h-2 bg-forest/40 rounded-full animate-bounce" style={{ animationDelay: "150ms" }} />
-                  <span className="w-2 h-2 bg-forest/40 rounded-full animate-bounce" style={{ animationDelay: "300ms" }} />
-                </div>
-              </div>
-            )}
-            {error && (
-              <div className="mr-auto bg-red-50 text-red-600 border border-red-200 rounded-2xl p-3">
-                <p className="text-sm">{error}</p>
-              </div>
-            )}
-            <div ref={messagesEndRef} />
-          </div>
-
-          <form onSubmit={handleSubmit} className="p-3 bg-white border-t border-forest/10 shrink-0">
-            <div className="flex gap-2">
-              <Input
-                ref={inputRef}
-                value={inputValue}
-                onChange={(e) => setInputValue(e.target.value)}
-                placeholder="Ask about wholesale..."
-                disabled={isLoading}
-                className="flex-1 border-forest/20 focus:border-gold"
-              />
-              <Button
-                type="submit"
-                disabled={isLoading || !inputValue.trim()}
-                className="bg-gold hover:bg-gold/90 text-forest-deep shrink-0"
-              >
-                <Send className="w-4 h-4" />
-              </Button>
-            </div>
-          </form>
-        </div>
-      )}
-    </>
+const OfferingCTA = ({ type, offering, label }: { type: string; offering: string; label: string }) => {
+  const btn = (
+    <Button className="font-sans text-sm font-bold uppercase tracking-widest bg-forest text-cream hover:bg-forest-deep px-7 py-5 group">
+      {label}
+      <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+    </Button>
+  );
+  // B2B still routes through the wholesale form (Shopify-aware). Everything
+  // else captures into the unified inquiries table, tagged by offering.
+  return type === "wholesale" ? (
+    <WholesaleApplicationForm trigger={btn} />
+  ) : (
+    <InquiryDialog offering={offering as never} trigger={btn} />
   );
 };
 
 const Wholesale = () => {
+  const pageTitle = "How We Can Help | Monday Morning Bottle Shop";
+  const pageDescription =
+    "Work with Monday Morning: non-alcoholic wholesale and distribution, consulting, retail pop-ups, contract brewing at The Lab, and Vibations event service. Operators, not just consultants.";
+  const canonicalUrl = getCanonicalUrl("/services");
+
   return (
-    <div className="min-h-screen bg-cream">
+    <div className="min-h-screen bg-background brand-type">
+      <Helmet>
+        <title>{pageTitle}</title>
+        <meta name="description" content={pageDescription} />
+        <link rel="canonical" href={canonicalUrl} />
+        <meta property="og:title" content={pageTitle} />
+        <meta property="og:description" content={pageDescription} />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={canonicalUrl} />
+        <meta property="og:image" content={DEFAULT_OG_IMAGE} />
+        <meta property="og:site_name" content={SITE_NAME} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={pageTitle} />
+        <meta name="twitter:description" content={pageDescription} />
+        <meta name="twitter:image" content={DEFAULT_OG_IMAGE} />
+        <meta name="twitter:site" content={TWITTER_HANDLE} />
+      </Helmet>
+
       <Header />
-      
+
       <main>
-        {/* SECTION 1: The Hook - Create Urgency */}
-        <section className="relative bg-forest text-cream py-20 lg:py-28 overflow-hidden">
-          <div 
-            className="absolute inset-0 opacity-5 pointer-events-none"
-            style={{ backgroundImage: `url(${textureBlue})`, backgroundSize: 'cover' }}
+        {/* HERO */}
+        <section className="relative pt-28 lg:pt-32 pb-12 lg:pb-16 overflow-hidden">
+          <div
+            className="absolute inset-0 opacity-30 pointer-events-none"
+            style={{ backgroundImage: `url(${textureCream})`, backgroundSize: "cover" }}
           />
-          <div className="grain absolute inset-0 pointer-events-none opacity-20" />
-          
-          <div className="container mx-auto px-4 lg:px-8 relative z-10">
-            <div className="max-w-4xl mx-auto">
-              {/* Warning badge */}
-              <div className="flex justify-center mb-8">
-                <div className="inline-flex items-center gap-2 bg-gold/20 text-gold px-4 py-2 rounded-full text-sm font-sans">
-                  <AlertTriangle className="w-4 h-4" />
-                  <span>Your NA menu is losing you money</span>
-                </div>
-              </div>
-              
-              <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl text-center mb-6 leading-tight">
-                Every week you wait,<br />
-                <span className="text-gold italic">you're leaving $3K+ on the table.</span>
-              </h1>
-              
-              <p className="font-sans text-lg md:text-xl text-cream/80 text-center max-w-2xl mx-auto mb-10">
-                Your competitors are already serving premium NA cocktails. Your guests are noticing. Let's fix that.
-              </p>
-              
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                <WholesaleApplicationForm 
-                  trigger={
-                    <Button size="lg" className="bg-gold hover:bg-gold/90 text-forest-deep font-semibold px-8">
-                      Apply for Wholesale
-                      <ArrowRight className="w-4 h-4 ml-2" />
-                    </Button>
-                  }
-                />
-                <TastingFormDialog 
-                  trigger={
-                    <Button size="lg" variant="outline" className="border-gold text-gold hover:bg-gold hover:text-forest">
-                      Come Taste First
-                      <MapPin className="w-4 h-4 ml-2" />
-                    </Button>
-                  }
-                />
-              </div>
-              
-              {/* Existing Partner Login */}
-              <div className="mt-6 text-center">
-                <Link 
-                  to="/wholesale-login"
-                  className="text-sm text-cream/70 hover:text-gold transition-colors inline-flex items-center gap-1"
-                >
-                  Already a partner? Sign in to your B2B account
-                  <ArrowRight className="w-3 h-3" />
-                </Link>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* SECTION 2: The Problem - Make It Real */}
-        <section className="py-20 bg-cream relative overflow-hidden">
-          <div 
-            className="absolute inset-0 opacity-[0.03] pointer-events-none"
-            style={{ backgroundImage: `url(${textureCream})`, backgroundSize: 'cover' }}
-          />
-          
-          <div className="container mx-auto px-4 lg:px-8 relative z-10">
-            <div className="max-w-4xl mx-auto">
-              <h2 className="font-serif text-3xl md:text-4xl text-forest text-center mb-6">
-                Here's what's happening<br />
-                <span className="italic text-gold">while you're not watching:</span>
-              </h2>
-              
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
-                {/* Problem Card 1 */}
-                <div className="bg-white p-6 rounded-2xl border border-forest/10 text-center">
-                  <div className="w-12 h-12 bg-coral/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <TrendingDown className="w-6 h-6 text-coral" />
-                  </div>
-                  <h3 className="font-serif text-xl text-forest mb-2">Tables Turning Faster</h3>
-                  <p className="font-sans text-sm text-forest/70">
-                    Non-drinkers leave early when there's nothing good to order. That's lost covers.
-                  </p>
-                </div>
-                
-                {/* Problem Card 2 */}
-                <div className="bg-white p-6 rounded-2xl border border-forest/10 text-center">
-                  <div className="w-12 h-12 bg-coral/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Users className="w-6 h-6 text-coral" />
-                  </div>
-                  <h3 className="font-serif text-xl text-forest mb-2">Groups Going Elsewhere</h3>
-                  <p className="font-sans text-sm text-forest/70">
-                    One sober person in the group picks the spot. If you can't serve them, you lose the whole party.
-                  </p>
-                </div>
-                
-                {/* Problem Card 3 */}
-                <div className="bg-white p-6 rounded-2xl border border-forest/10 text-center">
-                  <div className="w-12 h-12 bg-coral/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <DollarSign className="w-6 h-6 text-coral" />
-                  </div>
-                  <h3 className="font-serif text-xl text-forest mb-2">"Just Water, Thanks"</h3>
-                  <p className="font-sans text-sm text-forest/70">
-                    Every time someone orders water instead of a $14 drink, that's pure margin walking out the door.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* SECTION 3: The Shift - Customer Quote */}
-        <section className="py-16 bg-forest text-cream relative overflow-hidden">
-          <div className="grain absolute inset-0 pointer-events-none opacity-20" />
-          
-          <div className="container mx-auto px-4 lg:px-8 relative z-10">
-            <div className="max-w-3xl mx-auto text-center">
-              <blockquote className="font-serif text-2xl md:text-3xl lg:text-4xl italic leading-relaxed">
-                "They're not avoiding <span className="text-gold">drinking.</span><br />
-                They're avoiding <span className="text-gold">alcohol.</span>"
-              </blockquote>
-              <p className="mt-8 font-sans text-cream/70 max-w-xl mx-auto">
-                Gen Z and Millennials still want the ritual, the experience, and the vibe of going out—just without the hangover. They're spending more than ever. Are you capturing it?
-              </p>
-            </div>
-          </div>
-        </section>
-
-        {/* SECTION 4: The Opportunity - Show the Math */}
-        <section className="py-20 bg-cream relative overflow-hidden">
-          <div className="container mx-auto px-4 lg:px-8">
-            <div className="max-w-4xl mx-auto">
-              <h2 className="font-serif text-3xl md:text-4xl text-forest text-center mb-4">
-                Let's do the math.
-              </h2>
-              <p className="font-sans text-forest/70 text-center mb-12 max-w-xl mx-auto">
-                This isn't wishful thinking. These are real numbers from real venues.
-              </p>
-              
-              {/* The Math Grid */}
-              <div className="bg-forest rounded-3xl p-8 md:p-12 text-cream relative overflow-hidden">
-                <div className="absolute top-4 right-4 w-32 h-32 opacity-5">
-                  <img src={stampGold} alt="" className="w-full h-full" />
-                </div>
-                
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-10">
-                  <div className="text-center">
-                    <div className="font-serif text-3xl md:text-4xl text-gold mb-2">$14</div>
-                    <p className="font-sans text-xs text-cream/70">Average NA cocktail price</p>
-                  </div>
-                  <div className="text-center">
-                    <div className="font-serif text-3xl md:text-4xl text-gold mb-2">$2</div>
-                    <p className="font-sans text-xs text-cream/70">Your cost to make it</p>
-                  </div>
-                  <div className="text-center">
-                    <div className="font-serif text-3xl md:text-4xl text-gold mb-2">85%</div>
-                    <p className="font-sans text-xs text-cream/70">Gross margin per drink</p>
-                  </div>
-                  <div className="text-center">
-                    <div className="font-serif text-3xl md:text-4xl text-gold mb-2">$0</div>
-                    <p className="font-sans text-xs text-cream/70">Alcohol tax</p>
-                  </div>
-                </div>
-                
-                <div className="border-t border-cream/20 pt-8 text-center">
-                  <p className="font-sans text-xs uppercase tracking-wider text-gold mb-3">Monthly revenue opportunity</p>
-                  <div className="font-serif text-5xl md:text-6xl lg:text-7xl">$15K–$25K</div>
-                  <p className="font-sans text-cream/60 mt-3">for venues with a real NA program</p>
-                </div>
-              </div>
-              
-              {/* Growth callout */}
-              <div className="mt-8 flex items-center justify-center gap-4 p-4 bg-gold/10 rounded-2xl">
-                <TrendingUp className="w-8 h-8 text-gold" />
-                <p className="font-sans text-forest">
-                  <span className="font-semibold">30% year-over-year growth</span> in NA beverage sales. This isn't a trend—it's a shift.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* SECTION 5: Social Proof - Who's Already Doing This */}
-        <section className="py-20 bg-forest-light relative overflow-hidden">
-          <div className="container mx-auto px-4 lg:px-8">
-            <div className="max-w-4xl mx-auto">
-              <div className="text-center mb-12">
-                <p className="font-sans text-xs uppercase tracking-wider text-gold mb-3">You'll be in good company</p>
-                <h2 className="font-serif text-3xl md:text-4xl text-forest">
-                  San Diego's best spots<br />
-                  <span className="italic text-gold">already figured this out.</span>
-                </h2>
-              </div>
-              
-              <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-                {partners.map((partner, index) => (
-                  <div 
-                    key={index}
-                    className="bg-cream p-5 rounded-xl text-center hover:shadow-lg transition-shadow border border-forest/5"
-                  >
-                    <p className="font-serif text-lg text-forest">{partner.name}</p>
-                    {partner.accolade && (
-                      <div className="mt-2 inline-flex items-center gap-1 text-xs bg-gold/20 text-gold px-2 py-1 rounded-full">
-                        <Award className="w-3 h-3" />
-                        <span>{partner.accolade}</span>
-                      </div>
-                    )}
-                  </div>
-                ))}
-              </div>
-              
-              <div className="text-center mt-10">
-                <Link to="/locations">
-                  <Button variant="outline" className="border-forest text-forest hover:bg-forest hover:text-cream">
-                    See All Partner Locations
-                    <ArrowRight className="w-4 h-4 ml-2" />
-                  </Button>
-                </Link>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* SECTION 6: The Solution - What You Get */}
-        <section className="py-20 bg-cream relative overflow-hidden">
-          <div className="container mx-auto px-4 lg:px-8">
-            <div className="max-w-4xl mx-auto">
-              <div className="text-center mb-12">
-                <h2 className="font-serif text-3xl md:text-4xl text-forest mb-4">
-                  We make this <span className="italic text-gold">embarrassingly easy.</span>
-                </h2>
-                <p className="font-sans text-forest/70 max-w-xl mx-auto">
-                  You don't need to become an NA expert. That's our job. Here's what you get:
-                </p>
-              </div>
-              
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {programIncludes.map((item, index) => (
-                  <div 
-                    key={index}
-                    className="flex gap-4 bg-white p-6 rounded-2xl border border-forest/10"
-                  >
-                    <div className="w-12 h-12 bg-gold/10 rounded-xl flex items-center justify-center shrink-0">
-                      <item.icon className="w-6 h-6 text-gold" />
-                    </div>
-                    <div>
-                      <h3 className="font-serif text-xl text-forest mb-1">{item.title}</h3>
-                      <p className="font-sans text-sm text-forest/70">{item.desc}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-              
-              <div className="mt-12 text-center p-8 bg-forest rounded-2xl text-cream">
-                <Zap className="w-10 h-10 text-gold mx-auto mb-4" />
-                <p className="font-serif text-2xl md:text-3xl italic">
-                  Zero effort. Maximum upside.
-                </p>
-                <p className="font-sans text-cream/70 mt-2">No alcohol license needed. No complicated setup.</p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* SECTION 7: Differentiation - We're Not Mocktails */}
-        <section className="py-20 bg-forest text-cream relative overflow-hidden">
-          <div className="grain absolute inset-0 pointer-events-none opacity-20" />
-          
-          <div className="container mx-auto px-4 lg:px-8">
-            <div className="max-w-4xl mx-auto">
-              <div className="text-center mb-12">
-                <h2 className="font-serif text-3xl md:text-4xl mb-4">
-                  We don't sell <span className="line-through opacity-50">mocktails.</span>
-                </h2>
-                <p className="font-sans text-cream/70 max-w-xl mx-auto">
-                  "Mocktail" implies fake. There's nothing fake about what we do. These are premium, functional, craft-quality alcohol-free cocktails.
-                </p>
-              </div>
-              
-              {/* Comparison Table */}
-              <div className="bg-cream/10 backdrop-blur rounded-2xl overflow-hidden">
-                <div className="grid grid-cols-3 bg-cream/10">
-                  <div className="p-4 font-sans text-sm uppercase tracking-wider"></div>
-                  <div className="p-4 font-sans text-sm uppercase tracking-wider text-center text-cream/60">Traditional NA</div>
-                  <div className="p-4 font-sans text-sm uppercase tracking-wider text-center text-gold">Monday Morning</div>
-                </div>
-                {comparisonFeatures.map((row, index) => (
-                  <div 
-                    key={index}
-                    className={cn(
-                      "grid grid-cols-3 border-t border-cream/10",
-                    )}
-                  >
-                    <div className="p-4 font-sans text-cream/90">{row.feature}</div>
-                    <div className="p-4 flex justify-center items-center">
-                      {typeof row.traditional === "boolean" ? (
-                        row.traditional ? (
-                          <CheckCircle2 className="w-5 h-5 text-cream/40" />
-                        ) : (
-                          <XCircle className="w-5 h-5 text-cream/20" />
-                        )
-                      ) : (
-                        <span className="text-2xl">{row.traditional}</span>
-                      )}
-                    </div>
-                    <div className="p-4 flex justify-center items-center">
-                      {typeof row.mondayMorning === "boolean" ? (
-                        row.mondayMorning ? (
-                          <CheckCircle2 className="w-5 h-5 text-gold" />
-                        ) : (
-                          <XCircle className="w-5 h-5 text-cream/20" />
-                        )
-                      ) : (
-                        <span className="text-2xl">{row.mondayMorning}</span>
-                      )}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* SECTION 8: CTA - Make It Easy */}
-        <section className="py-24 bg-cream relative overflow-hidden">
-          <div className="absolute -bottom-32 -right-32 w-80 opacity-[0.03] pointer-events-none">
+          <div className="absolute top-20 right-6 lg:right-16 w-28 lg:w-44 opacity-[0.1] pointer-events-none rotate-6">
             <img src={stampGold} alt="" className="w-full h-full" />
           </div>
-          
-          <div className="container mx-auto px-4 lg:px-8 relative z-10">
-            <div className="max-w-3xl mx-auto text-center">
-              <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl text-forest mb-6">
-                Ready to stop leaving<br />
-                <span className="italic text-gold">money on the table?</span>
-              </h2>
-              <p className="font-sans text-forest/70 mb-10 max-w-xl mx-auto">
-                Come by the shop for a tasting. See what your guests have been missing. No pressure, just great drinks.
-              </p>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-2xl mx-auto mb-12">
-                {/* Tasting Room */}
-                <div className="bg-forest text-cream rounded-2xl p-6 text-center">
-                  <MapPin className="w-8 h-8 text-gold mx-auto mb-4" />
-                  <h3 className="font-serif text-xl italic mb-2">Visit the Tasting Room</h3>
-                  <p className="font-sans text-sm text-cream/70 mb-4">Experience the full range in person</p>
-                  <a 
-                    href="https://maps.google.com/?q=1854+Garnet+Ave,+San+Diego,+CA+92109"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <Button className="w-full bg-gold hover:bg-gold/90 text-forest-deep">
-                      Get Directions
-                      <ExternalLink className="w-3 h-3 ml-2" />
+          <div className="container mx-auto px-4 lg:px-8 relative z-10">
+            <div className="max-w-4xl">
+              <span className="font-sans text-[10px] lg:text-xs font-bold uppercase tracking-[0.3em] text-gold mb-5 block">
+                Work With Us
+              </span>
+              <h1 className="font-serif text-5xl lg:text-7xl xl:text-8xl leading-[0.95] mb-6">
+                Let's build the alcohol-free shift <span className="font-script text-gold text-[1.15em] leading-none whitespace-nowrap">together.</span>
+              </h1>
+              <p className="font-sans text-lg lg:text-2xl text-muted-foreground leading-relaxed max-w-3xl">
+                We help bars, restaurants, retailers, and brands win the fastest-growing category in beverage. Five ways to work with us, all run by people who do this for a living.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 mt-8">
+                <InquiryDialog
+                  offering="general"
+                  trigger={
+                    <Button size="lg" className="font-sans text-sm font-bold uppercase tracking-widest bg-forest text-cream hover:bg-forest-deep px-8 py-6 group">
+                      Start a conversation
+                      <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
                     </Button>
-                  </a>
+                  }
+                />
+                <TastingFormDialog
+                  trigger={
+                    <Button size="lg" variant="outline" className="font-sans text-sm font-bold uppercase tracking-widest border-2 border-forest text-forest hover:bg-forest hover:text-cream px-8 py-6">
+                      Come taste first
+                    </Button>
+                  }
+                />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* WHY US */}
+        <section className="py-12 lg:py-16 bg-gold-warm text-forest relative overflow-hidden">
+          <div className="grain absolute inset-0 pointer-events-none opacity-30" />
+          <div
+            className="absolute inset-0 opacity-[0.06] pointer-events-none"
+            style={{ backgroundImage: `url(${textureGreen})`, backgroundSize: "cover" }}
+          />
+          <div className="container mx-auto px-4 lg:px-8 relative z-10">
+            <div className="max-w-3xl mb-10">
+              <span className="font-sans text-[10px] lg:text-xs font-bold uppercase tracking-[0.3em] text-forest-deep mb-4 block">
+                Why Hire Us
+              </span>
+              <h2 className="font-serif text-3xl lg:text-5xl leading-[1.05] text-forest">
+                Not just consultants, <span className="font-script text-forest-deep text-[1.2em] leading-none">operators.</span>
+              </h2>
+              <p className="font-sans text-base lg:text-lg text-forest/70 leading-relaxed mt-4">
+                We don't theorize about the alcohol-free category. We run it: two bottle shops, a tasting bar, a brewery, and a wholesale program supplying San Diego's best venues. Everything we'd advise, we've already done ourselves.
+              </p>
+            </div>
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+              {[
+                { icon: Store, value: "2 shops", label: "Pacific Beach & Ocean Beach" },
+                { icon: Beer, value: "The Lab", label: "Our NA brewery in San Marcos" },
+                { icon: Building2, value: "50+ accounts", label: "Bars, restaurants & markets served" },
+                { icon: Sparkles, value: "Inc · AP · Fox", label: "Featured nationally" },
+              ].map((s) => (
+                <div key={s.label}>
+                  <s.icon className="h-6 w-6 text-forest-deep mb-3" />
+                  <div className="font-serif text-2xl lg:text-3xl text-forest mb-1">{s.value}</div>
+                  <p className="font-sans text-xs lg:text-sm text-forest/60 leading-snug">{s.label}</p>
                 </div>
-                
-                {/* Contact */}
-                <div className="bg-forest text-cream rounded-2xl p-6 text-center">
-                  <Mail className="w-8 h-8 text-gold mx-auto mb-4" />
-                  <h3 className="font-serif text-xl italic mb-2">Let's Talk</h3>
-                  <p className="font-sans text-sm text-cream/70 mb-4">Email or call us directly</p>
-                  <a href="mailto:sales@mondaymorning-af.com">
-                    <Button className="w-full bg-gold hover:bg-gold/90 text-forest-deep">
-                      sales@mondaymorning-af.com
-                    </Button>
-                  </a>
-                  <a href="tel:8584123253" className="block mt-3 font-sans text-sm text-cream/70 hover:text-gold transition-colors">
-                    (858) 412-3253
-                  </a>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* OFFERINGS QUICK NAV */}
+        <section className="py-10 lg:py-12 bg-cream relative overflow-hidden border-b border-forest/10">
+          <div className="container mx-auto px-4 lg:px-8 relative z-10">
+            <p className="text-center font-sans text-[10px] lg:text-xs font-bold uppercase tracking-[0.3em] text-gold mb-6">
+              Five Ways We Help
+            </p>
+            <div className="flex flex-wrap justify-center gap-3 lg:gap-4">
+              {offerings.map((o) => (
+                <a
+                  key={o.id}
+                  href={`#${o.id}`}
+                  className="inline-flex items-center gap-2 border-2 border-forest/20 px-5 py-3 font-sans text-sm font-semibold uppercase tracking-wider text-forest hover:border-gold hover:bg-gold/10 transition-colors"
+                >
+                  <o.icon className="h-4 w-4 text-gold" />
+                  {o.eyebrow}
+                </a>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* OFFERING BLOCKS */}
+        {offerings.map((o, i) => (
+          <section
+            key={o.id}
+            id={o.id}
+            className={`scroll-mt-28 py-12 lg:py-16 relative overflow-hidden ${i % 2 === 0 ? "bg-cream" : "bg-sand"}`}
+          >
+            <div className="container mx-auto px-4 lg:px-8 relative z-10">
+              <div className="lg:grid lg:grid-cols-12 gap-10 lg:gap-16 items-start">
+                {/* Left: intro + CTA */}
+                <div className="lg:col-span-5 mb-8 lg:mb-0">
+                  <div className="inline-flex items-center justify-center w-14 h-14 bg-gold/15 border-2 border-gold/40 mb-5">
+                    <o.icon className="h-7 w-7 text-forest" />
+                  </div>
+                  <span className="font-sans text-[10px] lg:text-xs font-bold uppercase tracking-[0.3em] text-gold mb-3 block">
+                    {o.eyebrow}
+                  </span>
+                  <h2 className="font-serif text-3xl lg:text-4xl xl:text-5xl leading-[1.05] mb-4">
+                    {o.title} <span className="font-script text-gold text-[1.2em] leading-none">{o.accent}</span>
+                  </h2>
+                  <p className="font-sans text-sm font-semibold uppercase tracking-wider text-forest/60 mb-6">
+                    {o.who}
+                  </p>
+                  <OfferingCTA type={o.cta} offering={o.id} label={o.ctaLabel} />
+                </div>
+
+                {/* Right: detail */}
+                <div className="lg:col-span-7">
+                  <p className="font-sans text-lg lg:text-xl text-muted-foreground leading-relaxed mb-6">
+                    {o.body}
+                  </p>
+                  <ul className="space-y-3">
+                    {o.points.map((p) => (
+                      <li key={p} className="flex items-start gap-3">
+                        <CheckCircle2 className="h-5 w-5 text-gold shrink-0 mt-0.5" />
+                        <span className="font-sans text-base text-forest/80">{p}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
               </div>
+            </div>
+          </section>
+        ))}
 
-              {/* Social Links */}
-              <div className="flex items-center justify-center gap-4">
-                <a 
-                  href="https://www.instagram.com/mondaymorning.af/" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="w-10 h-10 border border-forest/30 flex items-center justify-center text-forest/70 hover:text-gold hover:border-gold transition-colors rounded-full"
-                >
-                  <Instagram className="w-5 h-5" />
-                </a>
-                <a 
-                  href="https://www.linkedin.com/company/monday-morning-af/" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="w-10 h-10 border border-forest/30 flex items-center justify-center text-forest/70 hover:text-gold hover:border-gold transition-colors rounded-full"
-                >
-                  <Linkedin className="w-5 h-5" />
-                </a>
-                <a 
-                  href="https://www.facebook.com/mondaymorningaf/" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="w-10 h-10 border border-forest/30 flex items-center justify-center text-forest/70 hover:text-gold hover:border-gold transition-colors rounded-full"
-                >
-                  <Facebook className="w-5 h-5" />
-                </a>
+        {/* THE OPPORTUNITY */}
+        <section className="py-12 lg:py-16 bg-forest text-cream relative overflow-hidden">
+          <div className="grain absolute inset-0 pointer-events-none opacity-40" />
+          <div className="container mx-auto px-4 lg:px-8 relative z-10">
+            <div className="max-w-3xl mx-auto text-center mb-10">
+              <span className="font-sans text-[10px] lg:text-xs font-bold uppercase tracking-[0.3em] text-gold mb-4 block">
+                Why Now
+              </span>
+              <h2 className="font-serif text-3xl lg:text-5xl leading-[1.05] text-cream">
+                They're not avoiding drinking. They're avoiding <span className="font-script text-gold text-[1.15em] leading-none">alcohol.</span>
+              </h2>
+              <p className="font-sans text-base lg:text-lg text-cream/80 leading-relaxed mt-4">
+                People still want the ritual, the night out, the drink in hand, just without the hangover. The numbers behind the shift:
+              </p>
+            </div>
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 max-w-4xl mx-auto">
+              {marketStats.map((s) => (
+                <div key={s.label} className="text-center">
+                  <div className="font-serif text-3xl lg:text-5xl text-gold mb-2">{s.value}</div>
+                  <p className="font-sans text-[11px] lg:text-sm text-cream/60 leading-snug">{s.label}</p>
+                </div>
+              ))}
+            </div>
+            <p className="text-center font-sans text-[11px] text-cream/40 mt-8">
+              Category and industry estimates, shown to size the opportunity.
+            </p>
+          </div>
+        </section>
+
+        {/* NOT MOCKTAILS */}
+        <section className="py-12 lg:py-16 bg-cream relative overflow-hidden">
+          <div className="container mx-auto px-4 lg:px-8 relative z-10">
+            <div className="max-w-3xl mx-auto text-center mb-10">
+              <span className="font-sans text-[10px] lg:text-xs font-bold uppercase tracking-[0.3em] text-gold mb-4 block">
+                The Difference
+              </span>
+              <h2 className="font-serif text-3xl lg:text-5xl leading-[1.05] text-forest">
+                We don't do <span className="font-script text-gold text-[1.15em] leading-none">mocktails.</span>
+              </h2>
+              <p className="font-sans text-base lg:text-lg text-muted-foreground leading-relaxed mt-4">
+                The word says it all: a "mocktail" is a mockery of the real thing. What we pour is craft, functional, and alcohol-free, the kind of drink your guests actually order again.
+              </p>
+            </div>
+            <div className="max-w-3xl mx-auto border-2 border-forest">
+              <div className="grid grid-cols-3 bg-forest text-cream">
+                <div className="p-4" />
+                <div className="p-4 font-sans text-[10px] lg:text-xs font-bold uppercase tracking-wider text-center text-cream/60">The usual NA</div>
+                <div className="p-4 font-sans text-[10px] lg:text-xs font-bold uppercase tracking-wider text-center text-gold">Monday Morning</div>
+              </div>
+              {comparison.map((row, i) => (
+                <div key={row.feature} className={`grid grid-cols-3 ${i % 2 === 1 ? "bg-sand" : "bg-cream"} border-t border-forest/15`}>
+                  <div className="p-4 font-sans text-sm text-forest/80">{row.feature}</div>
+                  <div className="p-4 flex justify-center items-center">
+                    {row.them ? <CheckCircle2 className="h-5 w-5 text-forest/25" /> : <XCircle className="h-5 w-5 text-forest/15" />}
+                  </div>
+                  <div className="p-4 flex justify-center items-center">
+                    {row.us ? <CheckCircle2 className="h-5 w-5 text-gold" /> : <XCircle className="h-5 w-5 text-forest/15" />}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* PARTNERS */}
+        <section className="py-12 lg:py-16 bg-sand relative overflow-hidden">
+          <div className="container mx-auto px-4 lg:px-8 relative z-10">
+            <div className="text-center mb-10 max-w-2xl mx-auto">
+              <span className="font-sans text-[10px] lg:text-xs font-bold uppercase tracking-[0.3em] text-gold mb-4 block">
+                In Good Company
+              </span>
+              <h2 className="font-serif text-3xl lg:text-5xl leading-[1.1] text-forest">
+                San Diego's best already <span className="font-script text-gold text-[1.2em] leading-none">pour with us.</span>
+              </h2>
+            </div>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 lg:gap-6 max-w-5xl mx-auto">
+              {partners.map((p) => (
+                <div key={p.name} className="bg-cream border-2 border-forest/15 p-5 text-center">
+                  <h3 className="font-serif text-lg lg:text-xl text-forest leading-tight">{p.name}</h3>
+                  <p className="font-sans text-[11px] text-forest/50 mt-1">{p.note}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* CTA */}
+        <section className="py-14 lg:py-20 bg-gold relative overflow-hidden">
+          <div className="grain absolute inset-0 pointer-events-none opacity-30" />
+          <div className="container mx-auto px-4 lg:px-8 relative z-10">
+            <div className="max-w-3xl mx-auto text-center">
+              <h2 className="font-serif text-4xl lg:text-6xl leading-[1.02] text-forest mb-5">
+                Tell us what you're <span className="font-script text-forest-deep text-[1.15em] leading-none">building.</span>
+              </h2>
+              <p className="font-sans text-lg text-forest/80 mb-8">
+                One conversation and we'll point you to the right fit, whether that's a wholesale account, a consult, a pop-up, a brew run, or an event. Or just come taste first.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <InquiryDialog
+                  offering="general"
+                  trigger={
+                    <Button size="lg" className="font-sans text-sm font-bold uppercase tracking-widest bg-forest text-cream hover:bg-forest-deep px-8 py-6 group">
+                      Start a conversation
+                      <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                    </Button>
+                  }
+                />
+                <TastingFormDialog
+                  trigger={
+                    <Button size="lg" variant="outline" className="font-sans text-sm font-bold uppercase tracking-widest border-2 border-forest text-forest hover:bg-forest hover:text-cream px-8 py-6">
+                      Come taste first
+                    </Button>
+                  }
+                />
               </div>
             </div>
           </div>
@@ -759,7 +452,6 @@ const Wholesale = () => {
       </main>
 
       <Footer />
-      <WholesaleChat />
     </div>
   );
 };

@@ -6,6 +6,7 @@ import Footer from "@/components/layout/Footer";
 import { supabase } from "@/integrations/supabase/client";
 import { Calendar } from "lucide-react";
 import { format } from "date-fns";
+import textureCream from "@/assets/texture-cream.webp";
 
 interface BlogPost {
   id: string;
@@ -38,7 +39,7 @@ const Blog = () => {
   const ogImage = "/og-image.png";
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background brand-type">
       <Helmet>
         <title>{pageTitle}</title>
         <meta name="description" content={pageDescription} />
@@ -61,16 +62,20 @@ const Blog = () => {
       <Header />
       <main className="pt-24">
         {/* Hero Section */}
-        <section className="bg-forest py-16 md:py-24 relative overflow-hidden">
-          <div className="grain absolute inset-0 pointer-events-none opacity-30" />
+        <section className="bg-cream py-16 md:py-24 relative overflow-hidden">
+          <div
+            className="absolute inset-0 opacity-40 pointer-events-none"
+            style={{ backgroundImage: `url(${textureCream})`, backgroundSize: 'cover', backgroundPosition: 'center' }}
+          />
+          <div className="grain absolute inset-0 pointer-events-none opacity-20" />
           <div className="container mx-auto px-4 text-center relative z-10">
             <span className="font-sans text-[10px] md:text-xs font-medium uppercase tracking-[0.3em] text-gold mb-4 block">
               Stories & Insights
             </span>
-            <h1 className="font-serif text-4xl md:text-6xl text-cream mb-4">
-              The <span className="italic text-gold">Blog</span>
+            <h1 className="font-serif text-4xl md:text-6xl text-forest mb-4">
+              The <span className="font-script text-gold text-[1.2em] leading-none">Blog</span>
             </h1>
-            <p className="font-sans text-cream/70 text-lg md:text-xl max-w-2xl mx-auto">
+            <p className="font-sans text-forest/60 text-lg md:text-xl max-w-2xl mx-auto">
               Stories, recipes, and insights from the alcohol-free lifestyle movement
             </p>
           </div>
@@ -161,8 +166,8 @@ const Blog = () => {
                           />
                         </div>
                       ) : (
-                        <div className="aspect-[16/10] rounded-lg mb-4 bg-brand-green/10 flex items-center justify-center">
-                          <span className="font-serif text-4xl text-brand-green/30">MM</span>
+                        <div className="aspect-[16/10] rounded-lg mb-4 bg-forest/10 flex items-center justify-center">
+                          <span className="font-serif text-4xl text-forest/30">MM</span>
                         </div>
                       )}
                       <div className="flex items-center gap-2 text-sm text-muted-foreground mb-2">
@@ -174,7 +179,7 @@ const Blog = () => {
                           )}
                         </time>
                       </div>
-                      <h2 className="font-serif text-xl md:text-2xl text-foreground group-hover:text-brand-green transition-colors mb-2">
+                      <h2 className="font-serif text-xl md:text-2xl text-foreground group-hover:text-gold transition-colors mb-2">
                         {post.title}
                       </h2>
                       {post.excerpt && (

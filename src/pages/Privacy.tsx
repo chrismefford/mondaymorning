@@ -4,7 +4,7 @@ import textureCream from "@/assets/texture-cream.webp";
 
 const Privacy = () => {
   return (
-    <div className="min-h-screen bg-cream">
+    <div className="min-h-screen bg-cream brand-type">
       <Header />
       
       <main>
@@ -66,7 +66,7 @@ const Privacy = () => {
                 <div className="space-y-4">
                   <h2 className="font-serif text-2xl text-forest">Your Rights</h2>
                   <p>
-                    You have the right to access, correct, or delete your personal information. You may also opt out of promotional communications at any time. To exercise these rights, please contact us at hello@mondaymorning.com.
+                    You have the right to access, correct, or delete your personal information. You may also opt out of promotional communications at any time. To exercise these rights, please contact us at info@mondaymorning-af.com.
                   </p>
                 </div>
 
@@ -75,7 +75,7 @@ const Privacy = () => {
                   <p>
                     If you have any questions about this Privacy Policy, please contact us at:<br />
                     <strong className="text-forest">Monday Morning</strong><br />
-                    Email: hello@mondaymorning.com<br />
+                    Email: info@mondaymorning-af.com<br />
                     San Diego, California
                   </p>
                 </div>

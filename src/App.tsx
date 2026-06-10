@@ -30,13 +30,12 @@ const CuriousAFDictionary = lazy(() => import("./pages/CuriousAFDictionary"));
 const UltimateNABeerGuide2026 = lazy(() => import("./pages/UltimateNABeerGuide2026"));
 const BlogImport = lazy(() => import("./pages/BlogImport"));
 const Privacy = lazy(() => import("./pages/Privacy"));
+const Accessibility = lazy(() => import("./pages/Accessibility"));
 const Terms = lazy(() => import("./pages/Terms"));
 const Shipping = lazy(() => import("./pages/Shipping"));
 const Returns = lazy(() => import("./pages/Returns"));
 const CCPA = lazy(() => import("./pages/CCPA"));
 const Wholesale = lazy(() => import("./pages/Wholesale"));
-const WholesaleAuth = lazy(() => import("./pages/WholesaleAuth"));
-const WholesaleCatalog = lazy(() => import("./pages/WholesaleCatalog"));
 const Valentines = lazy(() => import("./pages/Valentines"));
 const NonAlcoholicDrinksSanDiego = lazy(() => import("./pages/NonAlcoholicDrinksSanDiego"));
 const NonAlcoholicBeerGuide = lazy(() => import("./pages/NonAlcoholicBeerGuide"));
@@ -106,6 +105,7 @@ const AppContent = () => {
           <Route path="/blog/:slug" element={<BlogPostPage />} />
           <Route path="/blog-import" element={<BlogImport />} />
           <Route path="/privacy" element={<Privacy />} />
+          <Route path="/accessibility" element={<Accessibility />} />
           <Route path="/terms" element={<Terms />} />
           <Route path="/shipping" element={<Shipping />} />
           <Route path="/returns" element={<Returns />} />
@@ -113,8 +113,9 @@ const AppContent = () => {
           <Route path="/california-privacy" element={<Navigate to="/ccpa" replace />} />
           <Route path="/services" element={<Wholesale />} />
           <Route path="/wholesale" element={<Navigate to="/services" replace />} />
-          <Route path="/wholesale-login" element={<WholesaleAuth />} />
-          <Route path="/wholesale-catalog" element={<WholesaleCatalog />} />
+          {/* B2B portal retired (duplicated the CRM/Shopify B2B flow) — redirect to Work With Us */}
+          <Route path="/wholesale-login" element={<Navigate to="/services" replace />} />
+          <Route path="/wholesale-catalog" element={<Navigate to="/services" replace />} />
           <Route path="/valentines" element={<Valentines />} />
           <Route path="/non-alcoholic-drinks-san-diego" element={<NonAlcoholicDrinksSanDiego />} />
           <Route path="/non-alcoholic-beer-guide" element={<NonAlcoholicBeerGuide />} />

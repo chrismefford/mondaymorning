@@ -5,7 +5,7 @@ import { ArrowRight } from "lucide-react";
 import { useNewsletterSubscribe } from "@/hooks/useNewsletterSubscribe";
 import stampGold from "@/assets/stamp-gold.svg";
 import textureGreen from "@/assets/texture-green.webp";
-import friendsCocktails from "@/assets/friends-cocktails.webp";
+import beachCheers from "@/assets/brand/beach-beers.webp";
 
 const Newsletter = () => {
   const [email, setEmail] = useState("");
@@ -26,26 +26,26 @@ const Newsletter = () => {
         {/* Background image */}
         <div className="absolute inset-0">
           <img
-            src={friendsCocktails}
-            alt="Friends enjoying drinks together"
+            src={beachCheers}
+            alt="Friends toasting alcohol-free beers at the beach"
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-gold/90" />
         </div>
 
         {/* Content */}
-        <div className="relative z-10 px-6 py-16 text-forest">
+        <div className="relative z-10 px-6 py-12 text-forest">
           <span className="font-sans text-[10px] font-medium uppercase tracking-[0.3em] text-forest-deep mb-4 block">
-            Become a Believer
+            The Sunrise Club
           </span>
           
           <h2 className="font-serif text-3xl leading-[1.1] mb-4 text-forest">
-            Join the <span className="italic text-forest-deep">movement</span>
+            Mondays don't have to <span className="font-script text-forest-deep text-[1.2em] leading-none">suck</span>
           </h2>
           
           <p className="font-sans text-sm text-forest/70 mb-8">
-            Be the first to know about new flavors hitting our 500+ selection, 
-            tastings at OB & PB, and get 10% off your first order.
+            Be the first to know about new flavors hitting our 500+ selection
+            and tastings at OB & PB.
           </p>
 
           <form 
@@ -73,22 +73,13 @@ const Newsletter = () => {
               No spam, just good vibes. Unsubscribe anytime.
             </p>
           </form>
-
-          {/* Discount badge */}
-          <div className="mt-8 text-center">
-            <div className="inline-block bg-forest/20 border border-forest px-4 py-2">
-              <span className="font-sans text-xs uppercase tracking-wider text-forest font-semibold">
-                Get 10% off your first order
-              </span>
-            </div>
-          </div>
         </div>
       </div>
 
       {/* DESKTOP LAYOUT - Split background */}
       <div className="hidden lg:grid lg:grid-cols-2">
         {/* Left side - Gold */}
-        <div className="bg-gold text-forest py-24 lg:py-40 px-6 lg:px-16 relative">
+        <div className="bg-gold text-forest py-12 lg:py-20 px-6 lg:px-16 relative">
           {/* Organic texture */}
           <div 
             className="absolute inset-0 opacity-10 pointer-events-none mix-blend-overlay"
@@ -103,15 +94,15 @@ const Newsletter = () => {
           
           <div className="relative z-10 max-w-lg">
             <span className="font-sans text-xs font-medium uppercase tracking-[0.2em] text-forest-deep mb-6 block">
-              Become a Believer
+              The Sunrise Club
             </span>
             
             <h2 className="font-serif text-4xl lg:text-5xl xl:text-6xl leading-[1.1] mb-6 text-forest">
-              Join the <span className="italic text-forest-deep">movement</span>
+              Mondays don't have to <span className="font-script text-forest-deep text-[1.2em] leading-none">suck</span>
             </h2>
             
             <p className="font-sans text-lg text-forest/70 mb-10">
-              New flavors drop weekly across our 500+ selection. Get first dibs on tastings at Ocean Beach & Pacific Beach, plus 10% off your first order.
+              Because Monday Mornings don't have to suck anymore. New flavors drop weekly across our 500+ selection, and you get first dibs on tastings at Ocean Beach & Pacific Beach.
             </p>
 
             <form 
@@ -152,8 +143,8 @@ const Newsletter = () => {
         {/* Right side - Image */}
         <div className="relative h-[50vh] lg:h-auto">
           <img
-            src={friendsCocktails}
-            alt="Friends enjoying drinks together"
+            src={beachCheers}
+            alt="Friends toasting alcohol-free beers at the beach"
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-l from-transparent to-forest/30" />
@@ -161,7 +152,7 @@ const Newsletter = () => {
           {/* Floating element */}
           <div className="absolute bottom-8 right-8 lg:bottom-16 lg:right-16 bg-cream border-2 border-forest p-6 max-w-xs shadow-brutal hidden lg:block">
             <p className="font-sans text-sm uppercase tracking-wider mb-2 font-semibold text-forest">Early Access</p>
-            <p className="font-serif text-2xl text-forest">Get 10% off your first order</p>
+            <p className="font-serif text-2xl text-forest">First dibs on every new drop</p>
           </div>
         </div>
       </div>
@@ -178,7 +169,7 @@ const Newsletter = () => {
             <span className="text-teal-dark/40">✦</span>
             <span className="mx-8 lg:mx-12">Try Before You Buy</span>
             <span className="text-teal-dark/40">✦</span>
-            <span className="mx-8 lg:mx-12">America's #1 NA Shop</span>
+            <span className="mx-8 lg:mx-12">Drink Differently</span>
             <span className="text-teal-dark/40">✦</span>
             <span className="mx-8 lg:mx-12">Ocean Beach</span>
             <span className="text-teal-dark/40">✦</span>
@@ -188,7 +179,7 @@ const Newsletter = () => {
             <span className="text-teal-dark/40">✦</span>
             <span className="mx-8 lg:mx-12">Try Before You Buy</span>
             <span className="text-teal-dark/40">✦</span>
-            <span className="mx-8 lg:mx-12">America's #1 NA Shop</span>
+            <span className="mx-8 lg:mx-12">Drink Differently</span>
             <span className="text-teal-dark/40">✦</span>
           </span>
         </div>

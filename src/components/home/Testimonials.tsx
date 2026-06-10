@@ -38,7 +38,7 @@ const Testimonials = () => {
   };
 
   return (
-    <section className="py-16 lg:py-40 bg-sand relative overflow-hidden">
+    <section className="py-12 lg:py-16 bg-sand relative overflow-hidden">
       {/* Grain texture */}
       <div className="grain absolute inset-0 pointer-events-none" />
 
@@ -54,26 +54,28 @@ const Testimonials = () => {
 
       <div className="container mx-auto px-4 lg:px-8 relative z-10">
         {/* Header */}
-        <div className="flex items-end justify-between gap-4 mb-8 lg:mb-24">
+        <div className="flex items-end justify-between gap-4 mb-6 lg:mb-12">
           <div>
             <span className="font-sans text-[10px] lg:text-xs font-medium uppercase tracking-[0.2em] text-forest mb-2 lg:mb-4 block">
               Testimonials
             </span>
             <h2 className="font-serif text-3xl lg:text-5xl leading-[1.1] text-forest">
-              From the <span className="italic text-gold">SD fam</span>
+              From the <span className="font-script text-gold text-[1.2em] leading-none">SD fam</span>
             </h2>
           </div>
 
           {/* Navigation arrows - Desktop */}
           <div className="hidden lg:flex gap-3">
-            <button 
+            <button
               onClick={prevTestimonial}
+              aria-label="Previous testimonial"
               className="w-12 h-12 border-2 border-forest flex items-center justify-center hover:bg-forest hover:text-cream transition-colors"
             >
               <ArrowLeft className="h-5 w-5" />
             </button>
-            <button 
+            <button
               onClick={nextTestimonial}
+              aria-label="Next testimonial"
               className="w-12 h-12 border-2 border-forest flex items-center justify-center hover:bg-forest hover:text-cream transition-colors"
             >
               <ArrowRight className="h-5 w-5" />
@@ -118,6 +120,7 @@ const Testimonials = () => {
                 <button
                   key={i}
                   onClick={() => setActiveIndex(i)}
+                  aria-label={`Go to testimonial ${i + 1}`}
                   className={`h-2 rounded-full transition-all ${
                     i === activeIndex ? 'w-6 bg-gold' : 'w-2 bg-forest/20'
                   }`}
@@ -125,14 +128,16 @@ const Testimonials = () => {
               ))}
             </div>
             <div className="flex gap-2">
-              <button 
+              <button
                 onClick={prevTestimonial}
+                aria-label="Previous testimonial"
                 className="w-10 h-10 border-2 border-forest flex items-center justify-center"
               >
                 <ArrowLeft className="h-4 w-4" />
               </button>
-              <button 
+              <button
                 onClick={nextTestimonial}
+                aria-label="Next testimonial"
                 className="w-10 h-10 border-2 border-forest flex items-center justify-center"
               >
                 <ArrowRight className="h-4 w-4" />

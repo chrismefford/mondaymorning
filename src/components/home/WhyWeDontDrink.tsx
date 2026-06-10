@@ -1,76 +1,42 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import stampGold from "@/assets/stamp-gold.svg";
+import worldMap from "@/assets/brand/world-map-forest.png";
 import StorySubmissionForm from "./StorySubmissionForm";
-import { supabase } from "@/integrations/supabase/client";
 
-interface Story {
+interface Reason {
   id: string;
   text: string;
   author: string;
 }
 
-// Fallback stories when no approved stories exist
-const fallbackReasons: Story[] = [
-  { id: "1", text: "Hangovers were stealing my weekends.", author: "Mike, 34" },
-  { id: "2", text: "I wanted to actually remember the concert.", author: "Jess, 28" },
-  { id: "3", text: "My skin has never looked better.", author: "Taylor, 31" },
-  { id: "4", text: "Training for a marathon. Still want to be social.", author: "Carlos, 29" },
-  { id: "5", text: "Pregnant, not boring.", author: "Sarah, 32" },
-  { id: "6", text: "Realized I was only drinking because everyone else was.", author: "Alex, 26" },
+// Real reasons, summarized from our Google reviews (kept distinct from the
+// verbatim quotes in the Testimonials section). Named entries map to real
+// reviewers; "Google review" entries are paraphrased from real un-named reviews.
+const reasons: Reason[] = [
+  { id: "1", text: "Changed my whole relationship with going out. I actually look forward to a night sober now.", author: "Michael S. · Pacific Beach" },
+  { id: "2", text: "Turns out the good stuff doesn't have to come with a hangover.", author: "Google review" },
+  { id: "3", text: "Sober, but I still want something real in my hand. No risk, no rough morning.", author: "Google review" },
+  { id: "4", text: "Finally, a place that gets it. No judgment, just better options.", author: "Sarah M. · Ocean Beach" },
+  { id: "5", text: "Zane found me drinks I actually enjoy. Didn't think that was possible.", author: "Jeff L. · San Diego" },
 ];
 
 const WhyWeDontDrink = () => {
-  const [stories, setStories] = useState<Story[]>(fallbackReasons);
-  const [activeIndex, setActiveIndex] = useState(0);
-  const [isAnimating, setIsAnimating] = useState(false);
   const [isFormOpen, setIsFormOpen] = useState(false);
 
-  // Fetch approved stories from database
-  useEffect(() => {
-    const fetchStories = async () => {
-      const { data, error } = await supabase
-        .from('story_submissions')
-        .select('id, text, author_name, author_location')
-        .eq('is_approved', true)
-        .order('created_at', { ascending: false });
-
-      if (!error && data && data.length > 0) {
-        const formattedStories: Story[] = data.map((s) => ({
-          id: s.id,
-          text: s.text,
-          author: s.author_location ? `${s.author_name}, ${s.author_location}` : s.author_name,
-        }));
-        setStories(formattedStories);
-      }
-    };
-    
-    fetchStories();
-  }, []);
-
-  // Auto-rotate through stories
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setIsAnimating(true);
-      setTimeout(() => {
-        setActiveIndex((prev) => (prev + 1) % stories.length);
-        setIsAnimating(false);
-      }, 300);
-    }, 4000);
-
-    return () => clearInterval(interval);
-  }, [stories.length]);
-
-  // Get visible cards (current + next few for carousel effect)
-  const getVisibleReasons = () => {
-    const visible = [];
-    for (let i = 0; i < Math.min(5, stories.length); i++) {
-      visible.push(stories[(activeIndex + i) % stories.length]);
-    }
-    return visible;
-  };
-
   return (
-    <section className="py-16 lg:py-32 bg-gold relative overflow-hidden">
+    <section className="py-12 lg:py-16 bg-gold relative overflow-hidden">
+      {/* Hand-drawn world map watermark - breaks up the gold, on-brand */}
+      <div
+        className="absolute inset-0 flex items-center justify-center pointer-events-none"
+        aria-hidden="true"
+      >
+        <img
+          src={worldMap}
+          alt=""
+          className="w-[112%] max-w-none opacity-[0.13] mix-blend-multiply"
+        />
+      </div>
+
       {/* Grain overlay */}
       <div className="grain absolute inset-0 pointer-events-none" />
 
@@ -81,84 +47,31 @@ const WhyWeDontDrink = () => {
 
       <div className="container mx-auto px-4 lg:px-8 relative z-10">
         {/* Header */}
-        <div className="text-center mb-12 lg:mb-16">
+        <div className="text-center mb-8 lg:mb-12">
           <span className="font-sans text-[10px] lg:text-xs font-bold uppercase tracking-[0.3em] text-forest-deep mb-4 block">
             Real Talk
           </span>
           <h2 className="font-serif text-3xl lg:text-5xl xl:text-6xl text-forest leading-tight">
-            Why we <span className="italic text-forest-deep">don't</span> drink
+            Why we <span className="font-script text-forest-deep text-[1.2em] leading-none">don't</span> drink
           </h2>
           <p className="font-sans text-sm lg:text-lg text-forest/60 mt-4 max-w-lg mx-auto">
-            Everyone's got their reason. Here's what our community is saying.
+            No judgment, just better options. Everyone's got their reason, find your version of AF. Here's what our community is saying.
           </p>
         </div>
 
-        {/* MOBILE: Single rotating card */}
-        <div className="lg:hidden">
-          <div
-            className={`bg-cream border-2 border-forest-deep p-6 shadow-brutal transition-all duration-300 ${
-              isAnimating ? "opacity-0 scale-95" : "opacity-100 scale-100"
-            }`}
-          >
-            <p className="font-serif text-xl italic text-forest leading-relaxed mb-4">
-              "{stories[activeIndex]?.text}"
-            </p>
-            <p className="font-sans text-sm text-forest/60">
-              — {stories[activeIndex]?.author}
-            </p>
-          </div>
-
-          {/* Dots indicator */}
-          <div className="flex justify-center gap-2 mt-6">
-            {stories.slice(0, 6).map((_, i) => (
-              <button
-                key={i}
-                onClick={() => setActiveIndex(i)}
-                className={`w-2 h-2 rounded-full transition-all ${
-                  activeIndex % 6 === i ? "bg-forest w-6" : "bg-forest/30"
-                }`}
-                aria-label={`Go to reason ${i + 1}`}
-              />
-            ))}
-          </div>
-        </div>
-
-        {/* DESKTOP: Scattered rotating cards */}
-        <div className="hidden lg:block relative h-[500px] max-w-6xl mx-auto">
-          {getVisibleReasons().map((reason, index) => {
-            // Position cards in a centered scattered pattern
-            const positions = [
-              { left: "2%", top: "15%", rotate: "-6deg", scale: 1 },
-              { left: "18%", top: "55%", rotate: "3deg", scale: 0.95 },
-              { left: "38%", top: "8%", rotate: "-2deg", scale: 1.05 },
-              { left: "55%", top: "50%", rotate: "5deg", scale: 0.9 },
-              { left: "72%", top: "18%", rotate: "-4deg", scale: 1 },
-            ];
-
-            const pos = positions[index];
-            const isCenter = index === 2;
-
-            return (
-              <div
-                key={reason.id}
-                className={`absolute w-64 bg-cream border-2 border-forest-deep p-6 shadow-brutal transition-all duration-700 hover:scale-105 hover:z-20 ${
-                  isCenter ? "z-10" : "z-0"
-                }`}
-                style={{
-                  left: pos.left,
-                  top: pos.top,
-                  transform: `rotate(${pos.rotate}) scale(${pos.scale})`,
-                }}
-              >
-                <p className="font-serif text-lg italic text-forest leading-relaxed mb-3">
-                  "{reason.text}"
-                </p>
-                <p className="font-sans text-sm text-forest/60">
-                  — {reason.author}
-                </p>
-              </div>
-            );
-          })}
+        {/* Soft, typographic quotes - spread across a grid (keeps the section short) */}
+        <div className="max-w-6xl mx-auto grid gap-x-10 gap-y-9 sm:grid-cols-2 lg:grid-cols-3">
+          {reasons.map((reason) => (
+            <blockquote key={reason.id} className="text-center sm:text-left">
+              <span className="block text-xl text-forest-deep/30 mb-2 select-none" aria-hidden="true">✦</span>
+              <p className="font-serif italic text-forest-deep text-xl lg:text-2xl leading-snug mb-3">
+                “{reason.text}”
+              </p>
+              <p className="font-sans text-[11px] uppercase tracking-[0.22em] text-forest/55">
+                {reason.author}
+              </p>
+            </blockquote>
+          ))}
         </div>
 
         {/* CTA */}

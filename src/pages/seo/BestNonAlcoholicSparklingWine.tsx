@@ -118,7 +118,7 @@ const BestNonAlcoholicSparklingWine = () => (
         body: (
           <>
             <p>
-              Monday Morning carries Bolle Rosé, Bolle Bianco, and Sovi at our Pacific Beach and Ocean Beach tasting rooms. We will pour you a half ounce sample before you commit, and we keep cases on hand for wedding and event orders. Email us at hello@mondaymorning.com if you need bulk for a wedding.
+              Monday Morning carries Bolle Rosé, Bolle Bianco, and Sovi at our Pacific Beach and Ocean Beach tasting rooms. We will pour you a half ounce sample before you commit, and we keep cases on hand for wedding and event orders. Email us at info@mondaymorning-af.com if you need bulk for a wedding.
             </p>
             <p>
               We ship the full NA sparkling lineup nationally. <a href="/collections/non-alcoholic-wine">Shop the NA wine collection</a>, or read our <a href="/non-alcoholic-wine">complete NA wine guide</a> for context on still wines, dessert wines, and the rest of the category.

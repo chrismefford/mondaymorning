@@ -4,7 +4,7 @@ import textureCream from "@/assets/texture-cream.webp";
 
 const Shipping = () => {
   return (
-    <div className="min-h-screen bg-cream">
+    <div className="min-h-screen bg-cream brand-type">
       <Header />
       
       <main>
@@ -72,7 +72,7 @@ const Shipping = () => {
                 <div className="space-y-4">
                   <h2 className="font-serif text-2xl text-forest">Damaged or Lost Packages</h2>
                   <p>
-                    If your order arrives damaged or is lost in transit, please contact us within 48 hours of delivery (or expected delivery). We'll work with you to resolve the issue promptly—whether that means a replacement or refund.
+                    If your order arrives damaged or is lost in transit, please contact us within 48 hours of delivery (or expected delivery). We'll work with you to resolve the issue promptly, whether that means a replacement or refund.
                   </p>
                 </div>
 

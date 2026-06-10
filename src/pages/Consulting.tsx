@@ -16,7 +16,7 @@ import {
   Star,
 } from "lucide-react";
 import stampGold from "@/assets/stamp-gold.svg";
-import logoSecondaryGold from "@/assets/logo-secondary-gold.svg";
+import logoSecondaryGold from "@/assets/logo-mm-stacked-gold.png";
 import { SITE_NAME, SITE_URL, DEFAULT_OG_IMAGE } from "@/lib/seo";
 
 const services = [
@@ -24,7 +24,7 @@ const services = [
     icon: Wine,
     title: "Menu Curation",
     description:
-      "We design non-alcoholic menus tailored to your venue, audience, and price point — from craft cocktail bars to fine dining.",
+      "We design non-alcoholic menus tailored to your venue, audience, and price point, from craft cocktail bars to fine dining.",
   },
   {
     icon: GraduationCap,
@@ -42,7 +42,7 @@ const services = [
     icon: TrendingUp,
     title: "Launch & Growth",
     description:
-      "From soft launch to full rollout — we help you introduce non-alcoholic options that actually sell.",
+      "From soft launch to full rollout, we help you introduce non-alcoholic options that actually sell.",
   },
   {
     icon: BookOpen,
@@ -106,7 +106,7 @@ const Consulting = () => {
               <span className="text-gold">Non-Alc.</span>
             </h1>
             <p className="font-sans text-lg text-cream/70 max-w-xl mb-10 leading-relaxed">
-              From our retail floor to your venue — we bring real-world
+              From our retail floor to your venue, we bring real-world
               expertise in non-alcoholic beverages to help restaurants, bars,
               hotels, and brands build programs that perform.
             </p>
@@ -192,7 +192,7 @@ const Consulting = () => {
               Why Monday Morning?
             </h2>
             <p className="font-sans text-cream/60 leading-relaxed">
-              We're not just consultants — we're operators. Every product we
+              We're not just consultants, we're operators. Every product we
               recommend has been tested on our retail floor, every strategy has
               been validated by real customers, and every insight comes from
               running San Diego's first non-alcoholic bottle shops.

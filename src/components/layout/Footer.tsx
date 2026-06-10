@@ -1,11 +1,12 @@
 import { useState } from "react";
-import { Instagram, MapPin, Settings } from "lucide-react";
+import { Instagram, Settings } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useNewsletterSubscribe } from "@/hooks/useNewsletterSubscribe";
 import ContactFormDialog from "@/components/ContactFormDialog";
-import logoSecondaryGreen from "@/assets/logo-secondary-green.svg";
+import logoSecondaryGreen from "@/assets/logo-mm-stacked-green.png";
+import daybreakerIcon from "@/assets/brand/daybreaker-app-icon.png";
 import stampWhite from "@/assets/stamp-white.svg";
 import textureGreen from "@/assets/texture-green.webp";
 
@@ -21,7 +22,7 @@ const Footer = () => {
     }
   };
   return (
-    <footer className="bg-gold-warm text-forest py-16 lg:py-24 relative overflow-hidden">
+    <footer className="brand-type bg-gold-warm text-forest py-8 lg:py-9 relative overflow-hidden">
       {/* Organic texture background */}
       <div 
         className="absolute inset-0 opacity-5 pointer-events-none"
@@ -36,26 +37,17 @@ const Footer = () => {
         <img src={stampWhite} alt="" className="w-full h-full" />
       </div>
 
-      <div className="container mx-auto px-4 lg:px-8 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-12 lg:gap-8">
+      <div className="mx-auto max-w-[1700px] px-6 lg:px-16 relative z-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-10">
           {/* Brand Column */}
-          <div className="lg:col-span-1">
-            <div className="mb-6">
-              <span className="inline-flex items-start">
-                <img 
-                  src={logoSecondaryGreen} 
-                  alt="Monday Morning" 
-                  className="h-24 w-auto"
-                />
-                <span className="font-sans text-[10px] leading-none select-none ml-0.5 mt-1 text-forest">™</span>
-              </span>
-            </div>
-            <div className="flex items-center gap-2 text-forest mb-4">
-              <MapPin className="h-4 w-4" />
-              <span className="font-sans text-sm">San Diego, California</span>
-            </div>
-            <p className="font-sans text-sm text-forest leading-relaxed mb-6">
-              Premium non-alcoholic beverages for those who choose sunrise over hangover. Born on the coast, made for every moment.
+          <div className="lg:col-span-3">
+            <img
+              src={logoSecondaryGreen}
+              alt="Monday Morning"
+              className="h-12 w-auto mb-3"
+            />
+            <p className="font-sans text-sm text-forest leading-relaxed mb-4 max-w-xs">
+              Born on the coast, made for every moment. San Diego, California.
             </p>
             <div className="flex items-center gap-4">
               <a 
@@ -69,15 +61,34 @@ const Footer = () => {
               </a>
               <ContactFormDialog />
             </div>
+
+            {/* Get the Daybreaker app (PWA) */}
+            <a
+              href="https://daybreaker.life"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-5 inline-flex items-center gap-3 group"
+            >
+              <img
+                src={daybreakerIcon}
+                alt="Daybreaker app icon"
+                className="w-11 h-11 rounded-xl border border-forest/15 shadow-sm"
+              />
+              <span className="leading-tight">
+                <span className="block font-sans text-[10px] uppercase tracking-[0.15em] text-forest/55">
+                  Get the app
+                </span>
+                <span className="block font-sans text-sm font-bold text-forest group-hover:text-forest-deep transition-colors">
+                  Monday Morning
+                </span>
+              </span>
+            </a>
           </div>
 
           {/* Pacific Beach Location */}
-          <div>
-            <h4 className="font-serif text-xl italic text-forest mb-2 relative inline-block">
-              Pacific Beach
-              <span className="absolute bottom-0 left-0 w-full h-0.5 bg-forest-deep"></span>
-            </h4>
-            <div className="mt-4 space-y-3">
+          <div className="lg:col-span-2">
+            <h4 className="font-script text-2xl text-forest-deep mb-1">Pacific Beach</h4>
+            <div className="mt-3 space-y-1.5">
               <p className="font-sans text-sm text-forest/90 uppercase tracking-wide">
                 1854 Garnet Ave.<br />
                 San Diego, CA 92109
@@ -87,19 +98,16 @@ const Footer = () => {
                   Tue - Sun  11 AM - 8 PM
                 </p>
                 <p className="font-sans text-sm text-forest-deep font-bold uppercase tracking-wide">
-                  *Monday Closed (Open by appointment for industry leaders)
+                  *Monday Closed
                 </p>
               </div>
             </div>
           </div>
 
           {/* Ocean Beach Location */}
-          <div>
-            <h4 className="font-serif text-xl italic text-forest mb-2 relative inline-block">
-              Ocean Beach
-              <span className="absolute bottom-0 left-0 w-full h-0.5 bg-forest-deep"></span>
-            </h4>
-            <div className="mt-4 space-y-3">
+          <div className="lg:col-span-2">
+            <h4 className="font-script text-2xl text-forest-deep mb-1">Ocean Beach</h4>
+            <div className="mt-3 space-y-1.5">
               <p className="font-sans text-sm text-forest/90 uppercase tracking-wide">
                 4967 Newport Ave<br />
                 San Diego, CA 92107
@@ -115,17 +123,32 @@ const Footer = () => {
             </div>
           </div>
 
+          {/* The Lab Location */}
+          <div className="lg:col-span-2">
+            <h4 className="font-script text-2xl text-forest-deep mb-1">The Lab</h4>
+            <div className="mt-3 space-y-1.5">
+              <p className="font-sans text-sm text-forest/90 uppercase tracking-wide">
+                1784 La Costa Meadows Dr, Ste 103<br />
+                San Marcos, CA 92078
+              </p>
+              <p className="font-sans text-sm text-forest uppercase tracking-wide">
+                By appointment
+              </p>
+            </div>
+          </div>
+
           {/* Newsletter Column */}
-          <div>
+          <div className="lg:col-span-3">
             <h4 className="font-sans text-xs font-semibold uppercase tracking-wider mb-4 text-forest-deep">
               Stay Connected
             </h4>
             <p className="font-sans text-sm text-forest mb-4">
-              Join the sunrise crew for local events, new flavors, and good vibes.
+              Join The Sunrise Club for local events, new flavors, and good vibes.
             </p>
             <form className="flex gap-2" onSubmit={handleSubmit}>
-              <Input 
-                type="email" 
+              <Input
+                type="email"
+                aria-label="Email address"
                 placeholder="Your email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
@@ -144,7 +167,7 @@ const Footer = () => {
         </div>
 
         {/* Bottom Bar */}
-        <div className="mt-16 pt-8 border-t border-forest/30 flex flex-col items-center gap-4">
+        <div className="mt-6 pt-5 border-t border-forest/30 flex flex-col items-center gap-3">
           <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2">
             {[
               { label: "Privacy", path: "/privacy" },
@@ -152,7 +175,9 @@ const Footer = () => {
               { label: "Shipping", path: "/shipping" },
               { label: "Returns", path: "/returns" },
               { label: "California Privacy", path: "/ccpa" },
-              { label: "Services", path: "/services" },
+              { label: "Accessibility", path: "/accessibility" },
+              { label: "Work With Us", path: "/services" },
+              { label: "Press", path: "/press" },
             ].map((item) => (
               <Link 
                 key={item.label}

@@ -2,7 +2,7 @@ import { Helmet } from "@/lib/helmet-compat";
 import { Link } from "react-router-dom";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
-import { MapPin, Clock, Phone, ExternalLink, Wine, Beer, UtensilsCrossed, Sparkles } from "lucide-react";
+import { MapPin, Clock, Phone, ExternalLink, Wine, Beer, UtensilsCrossed, Sparkles, Store } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import stampGold from "@/assets/stamp-gold.svg";
 import textureBlue from "@/assets/texture-blue.webp";
@@ -43,140 +43,28 @@ const stores = [
   },
 ];
 
+// Partner venues that carry Monday Morning, pulled from our Shopify B2B
+// company accounts (holding companies flattened to their actual venues).
 const partners = [
-  { 
-    name: "Fall Brewing Company", 
-    address: "4542 30th St, San Diego, CA 92116",
-    neighborhood: "North Park", 
-    type: "brewery",
-    mapUrl: "https://www.google.com/maps/place/Fall+Brewing+Company/@32.760023,-117.1304411,17z/"
-  },
-  { 
-    name: "Selva Coffee House", 
-    address: "3535 Camino del Rio W, San Diego, CA 92110",
-    neighborhood: "Mission Valley", 
-    type: "restaurant",
-    mapUrl: "https://www.google.com/maps/place/Selva+Coffee+House/@32.7562493,-117.2042902,17z/"
-  },
-  { 
-    name: "Maya Moon Collective", 
-    address: "3349 Adams Ave, San Diego, CA 92116",
-    neighborhood: "Normal Heights", 
-    type: "restaurant",
-    mapUrl: "https://www.google.com/maps/place/Maya+Moon+Collective/@32.7655,-117.1283,17z/"
-  },
-  { 
-    name: "Moniker General", 
-    address: "2860 Sims Rd, San Diego, CA 92106",
-    neighborhood: "Liberty Station", 
-    type: "restaurant",
-    mapUrl: "https://www.google.com/maps/place/Moniker+General/@32.7428,-117.2108,17z/"
-  },
-  { 
-    name: "Boney's Bayside Market", 
-    address: "155 Orange Ave, Coronado, CA 92118",
-    neighborhood: "Coronado", 
-    type: "restaurant",
-    mapUrl: "https://www.google.com/maps/place/Boney's+Bayside+Market/@32.6855,-117.1765,17z/"
-  },
-  { 
-    name: "Collins & Coupe", 
-    address: "2876 El Cajon Blvd #100, San Diego, CA 92104",
-    neighborhood: "North Park", 
-    type: "bar",
-    mapUrl: "https://www.google.com/maps/place/Collins+%26+Coupe/@32.7476,-117.1272,17z/"
-  },
-  { 
-    name: "Miss B's Coconut Club", 
-    address: "3704 Mission Blvd, San Diego, CA 92109",
-    neighborhood: "Mission Beach", 
-    type: "bar",
-    mapUrl: "https://www.google.com/maps/place/Miss+B's+Coconut+Club/@32.7892,-117.2539,17z/"
-  },
-  { 
-    name: "Park 101", 
-    address: "3040 Carlsbad Blvd, Carlsbad, CA 92008",
-    neighborhood: "Carlsbad", 
-    type: "bar",
-    mapUrl: "https://www.google.com/maps/place/PRK101/@33.1252,-117.3389,17z/"
-  },
-  { 
-    name: "Louisiana Purchase", 
-    address: "2305 University Ave, San Diego, CA 92104",
-    neighborhood: "North Park", 
-    type: "restaurant",
-    mapUrl: "https://www.google.com/maps/place/Louisiana+Purchase/@32.7497,-117.1291,17z/"
-  },
-  { 
-    name: "Coco Maya by Miss B's", 
-    address: "1660 India St, San Diego, CA 92101",
-    neighborhood: "Little Italy", 
-    type: "bar",
-    mapUrl: "https://www.google.com/maps/place/Coco+Maya+by+Miss+B's/@32.7225,-117.1686,17z/"
-  },
-  { 
-    name: "The Lobby Tiki Bar", 
-    address: "408 Pier View Wy, Oceanside, CA 92054",
-    neighborhood: "Oceanside", 
-    type: "bar",
-    mapUrl: "https://www.google.com/maps/place/The+Lobby+Tiki+Bar/@33.1954,-117.3795,17z/"
-  },
-  { 
-    name: "Cococabana", 
-    address: "408 Pier View Wy Suite 401, Oceanside, CA 92054",
-    neighborhood: "Oceanside", 
-    type: "bar",
-    mapUrl: "https://www.google.com/maps/place/Cococabana/@33.1954,-117.3795,17z/"
-  },
-  { 
-    name: "Dunedin New Zealand Eats", 
-    address: "3501 30th St, San Diego, CA 92104",
-    neighborhood: "North Park", 
-    type: "restaurant",
-    mapUrl: "https://www.google.com/maps/place/Dunedin+New+Zealand+Eats/@32.7506,-117.1298,17z/"
-  },
-  { 
-    name: "Queenstown Public House", 
-    address: "1557 Columbia St, San Diego, CA 92101",
-    neighborhood: "Little Italy", 
-    type: "bar",
-    mapUrl: "https://www.google.com/maps/place/Queenstown+Public+House/@32.7206,-117.1686,17z/"
-  },
-  { 
-    name: "Bare Back Grill", 
-    address: "4640 Mission Blvd, San Diego, CA 92109",
-    neighborhood: "Pacific Beach", 
-    type: "restaurant",
-    mapUrl: "https://www.google.com/maps/place/Bare+Back+Grill/@32.7935,-117.2535,17z/"
-  },
-  { 
-    name: "Raglan Public House", 
-    address: "1851 Bacon St, San Diego, CA 92107",
-    neighborhood: "Ocean Beach", 
-    type: "bar",
-    mapUrl: "https://www.google.com/maps/place/Raglan+Public+House/@32.7486,-117.2502,17z/"
-  },
-  { 
-    name: "Queenstown Village", 
-    address: "1044 Wall St, La Jolla, CA 92037",
-    neighborhood: "La Jolla", 
-    type: "restaurant",
-    mapUrl: "https://www.google.com/maps/place/Queenstown+Village/@32.8489,-117.2739,17z/"
-  },
-  { 
-    name: "The Polished Pigeon", 
-    address: "4906 Voltaire St, San Diego, CA 92107",
-    neighborhood: "Ocean Beach", 
-    type: "bar",
-    mapUrl: "https://maps.app.goo.gl/5XNhBmSVKdpfiQXAA"
-  },
-  { 
-    name: "Good News Bar", 
-    address: "3076 University Ave, San Diego, CA 92104",
-    neighborhood: "North Park", 
-    type: "bar",
-    mapUrl: "https://maps.app.goo.gl/eY6yKMPK63jwF34U6"
-  },
+  { name: "Boney's Bayside Market", address: "155 Orange Ave, Coronado, CA 92118", neighborhood: "Coronado", type: "market" },
+  { name: "Heights Market", address: "3355 Adams Ave, San Diego, CA 92116", neighborhood: "Normal Heights", type: "market" },
+  { name: "Catch Brewing", address: "7889 Ostrow St, San Diego, CA 92111", neighborhood: "Kearny Mesa", type: "brewery" },
+  { name: "Collins & Coupe", address: "2876 El Cajon Blvd #100, San Diego, CA 92104", neighborhood: "North Park", type: "bar" },
+  { name: "Good News Bar", address: "3821 Park Blvd, San Diego, CA 92103", neighborhood: "University Heights", type: "bar" },
+  { name: "Polished Pigeon", address: "1450 Market St, San Diego, CA 92101", neighborhood: "East Village", type: "bar" },
+  { name: "Miss B's Coconut Club", address: "3704 Mission Blvd, San Diego, CA 92109", neighborhood: "Mission Beach", type: "bar" },
+  { name: "Coco Maya by Miss B's", address: "1660 India St, San Diego, CA 92101", neighborhood: "Little Italy", type: "bar" },
+  { name: "PRK101", address: "3040 Carlsbad Blvd, Carlsbad, CA 92008", neighborhood: "Carlsbad", type: "bar" },
+  { name: "Louisiana Purchase", address: "2305 University Ave, San Diego, CA 92104", neighborhood: "North Park", type: "restaurant" },
+  { name: "The Lobby Tiki", address: "408 Pier View Way, Oceanside, CA 92054", neighborhood: "Oceanside", type: "bar" },
+  { name: "Cocoacabana", address: "408 Pier View Wy Ste 401, Oceanside, CA 92054", neighborhood: "Oceanside", type: "bar" },
+  { name: "Queenstown Village", address: "1044 Wall St, La Jolla, CA 92037", neighborhood: "La Jolla", type: "restaurant" },
+  { name: "Queenstown Public House", address: "1557 Columbia St, San Diego, CA 92101", neighborhood: "Little Italy", type: "bar" },
+  { name: "Raglan House", address: "1851 Bacon St, San Diego, CA 92107", neighborhood: "Ocean Beach", type: "bar" },
+  { name: "Bare Back Grill", address: "4640 Mission Blvd, San Diego, CA 92109", neighborhood: "Pacific Beach", type: "restaurant" },
+  { name: "Maya Moon", address: "3349 Adams Ave, San Diego, CA 92116", neighborhood: "Normal Heights", type: "restaurant" },
+  { name: "Paradisaea", address: "5680 La Jolla Blvd, La Jolla, CA 92037", neighborhood: "Bird Rock", type: "restaurant" },
+  { name: "The Lodge at Torrey Pines", address: "11480 N Torrey Pines Rd, La Jolla, CA 92037", neighborhood: "La Jolla", type: "restaurant" },
 ];
 
 const Locations = () => {
@@ -185,7 +73,7 @@ const Locations = () => {
   const canonicalUrl = getCanonicalUrl("/locations");
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background brand-type">
       <Helmet>
         <title>{pageTitle}</title>
         <meta name="description" content={pageDescription} />
@@ -215,16 +103,15 @@ const Locations = () => {
       <Header />
       <main>
         {/* Hero Section */}
-        <section className="relative bg-forest py-20 lg:py-32 overflow-hidden">
+        <section className="relative pt-28 lg:pt-32 pb-14 lg:pb-20 overflow-hidden">
           {/* Texture background */}
-          <div 
-            className="absolute inset-0 opacity-5 pointer-events-none"
-            style={{ backgroundImage: `url(${textureBlue})`, backgroundSize: 'cover' }}
+          <div
+            className="absolute inset-0 opacity-30 pointer-events-none"
+            style={{ backgroundImage: `url(${textureCream})`, backgroundSize: 'cover' }}
           />
-          <div className="grain absolute inset-0 pointer-events-none opacity-30" />
-          
+
           {/* Decorative stamp */}
-          <div className="absolute -bottom-20 -right-20 w-64 lg:w-96 opacity-[0.03] pointer-events-none">
+          <div className="absolute -bottom-20 -right-20 w-64 lg:w-96 opacity-[0.06] pointer-events-none">
             <img src={stampGold} alt="" className="w-full h-full" />
           </div>
 
@@ -232,35 +119,23 @@ const Locations = () => {
             <span className="font-sans text-xs font-semibold uppercase tracking-[0.3em] text-gold mb-4 block">
               Find Us
             </span>
-            <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl text-cream mb-6">
-              Visit <span className="italic text-gold">Monday Morning</span>
+            <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl text-forest mb-6">
+              Visit <span className="font-script text-gold text-[1.15em] leading-none">Monday Morning</span>
             </h1>
-            <p className="font-sans text-cream/70 max-w-2xl mx-auto text-lg">
-              Stop by one of our two San Diego locations to explore 500+ flavors, or find us at your favorite local restaurant or bar.
+            <p className="font-sans text-muted-foreground max-w-2xl mx-auto text-lg">
+              Stop by one of our locations to explore 500+ flavors, or find us at your favorite local restaurant or bar.
             </p>
           </div>
         </section>
 
         {/* Our Stores Section */}
-        <section className="py-16 lg:py-24 bg-cream relative overflow-hidden">
-          <div 
+        <section className="pb-12 lg:pb-16 bg-cream relative overflow-hidden">
+          <div
             className="absolute inset-0 opacity-[0.02] pointer-events-none"
             style={{ backgroundImage: `url(${textureCream})`, backgroundSize: 'cover' }}
           />
-          
-          <div className="container mx-auto px-4 lg:px-8 relative z-10">
-            <div className="text-center mb-12 lg:mb-16">
-              <span className="font-sans text-xs font-semibold uppercase tracking-[0.3em] text-gold mb-4 block">
-                Our Shops
-              </span>
-              <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl text-forest">
-                America's #1 <span className="italic text-gold">NA Bottle Shops</span>
-              </h2>
-              <p className="font-sans text-forest/70 max-w-xl mx-auto mt-4">
-                Try before you buy at our tasting bars. 500+ flavors waiting for you.
-              </p>
-            </div>
 
+          <div className="container mx-auto px-4 lg:px-8 relative z-10">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
               {stores.map((store) => (
                 <div 
@@ -275,7 +150,7 @@ const Locations = () => {
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-forest/60 to-transparent" />
-                    <h3 className="absolute bottom-6 left-6 font-serif text-3xl italic text-cream">
+                    <h3 className="absolute bottom-5 left-6 font-script text-4xl text-cream">
                       {store.name}
                     </h3>
                   </div>
@@ -338,7 +213,7 @@ const Locations = () => {
 
             {/* Coming Soon Location */}
             <div className="mt-8 lg:mt-12">
-              <div className="relative bg-gradient-to-br from-gold/10 to-gold/5 border-2 border-gold/30 border-dashed overflow-hidden group">
+              <div className="relative bg-gradient-to-br from-gold/10 to-gold/5 border-2 border-gold/40 overflow-hidden group">
                 <div className="absolute inset-0 opacity-[0.03] pointer-events-none">
                   <img src={stampGold} alt="" className="absolute -bottom-16 -right-16 w-64 opacity-50" />
                 </div>
@@ -348,19 +223,19 @@ const Locations = () => {
                   </div>
                   <div className="text-center lg:text-left flex-1">
                     <span className="font-sans text-xs font-bold uppercase tracking-[0.3em] text-gold mb-2 block">
-                      Coming May 2026
+                      Now Brewing · By Appointment
                     </span>
-                    <h3 className="font-serif text-2xl md:text-3xl italic text-forest mb-2">
-                      New Monday Morning Location
+                    <h3 className="font-script text-3xl md:text-4xl text-forest mb-2">
+                      The Lab
                     </h3>
                     <div className="flex items-center gap-2 justify-center lg:justify-start">
                       <MapPin className="h-4 w-4 text-gold flex-shrink-0" />
                       <p className="font-sans text-sm font-semibold uppercase tracking-wide text-forest">
-                        1784 La Costa Meadows Dr.
+                        1784 La Costa Meadows Dr, Ste 103, San Marcos, CA 92078
                       </p>
                     </div>
                     <p className="font-sans text-sm text-forest/60 mt-3 max-w-lg">
-                      Something big is brewing (without the alcohol). Stay tuned for our newest location.
+                      Our non-alcoholic brewing and innovation facility, and home of Haymaker N/A IPA. Visits by appointment.
                     </p>
                   </div>
                 </div>
@@ -370,7 +245,7 @@ const Locations = () => {
         </section>
 
         {/* Partners Section */}
-        <section className="py-16 lg:py-24 bg-forest relative overflow-hidden">
+        <section className="py-12 lg:py-16 bg-forest relative overflow-hidden">
           <div 
             className="absolute inset-0 opacity-5 pointer-events-none"
             style={{ backgroundImage: `url(${textureBlue})`, backgroundSize: 'cover' }}
@@ -378,12 +253,12 @@ const Locations = () => {
           <div className="grain absolute inset-0 pointer-events-none opacity-30" />
 
           <div className="container mx-auto px-4 lg:px-8 relative z-10">
-            <div className="text-center mb-12 lg:mb-16">
+            <div className="text-center mb-8 lg:mb-12">
               <span className="font-sans text-xs font-semibold uppercase tracking-[0.3em] text-gold mb-4 block">
                 Partner Locations
               </span>
               <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl text-cream">
-                Find Us at <span className="italic">{partners.length}+ Spots</span>
+                Find Us at <span className="font-script text-gold text-[1.2em] leading-none">{partners.length}+ Spots</span>
               </h2>
               <p className="font-sans text-cream/70 max-w-xl mx-auto mt-4">
                 Enjoy Monday Morning drinks at these San Diego restaurants and bars.
@@ -393,16 +268,16 @@ const Locations = () => {
             {/* Grid of partners */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {partners.map((partner, index) => (
-                <a 
+                <a
                   key={index}
-                  href={partner.mapUrl}
+                  href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${partner.name}, ${partner.address}`)}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="bg-cream/5 border border-cream/10 p-5 hover:bg-cream/10 hover:border-gold/30 transition-all group block"
                 >
                   <div className="flex items-start justify-between gap-3">
                     <div>
-                      <h3 className="font-sans text-sm font-semibold text-cream group-hover:text-gold transition-colors">
+                      <h3 className="font-serif text-base font-semibold text-cream group-hover:text-gold transition-colors">
                         {partner.name}
                       </h3>
                       <p className="font-sans text-xs text-cream/70 mt-1">
@@ -417,6 +292,8 @@ const Locations = () => {
                         <UtensilsCrossed className="h-4 w-4 text-gold/60" />
                       ) : partner.type === "bar" ? (
                         <Wine className="h-4 w-4 text-gold/60" />
+                      ) : partner.type === "market" ? (
+                        <Store className="h-4 w-4 text-gold/60" />
                       ) : (
                         <Beer className="h-4 w-4 text-gold/60" />
                       )}
@@ -439,7 +316,7 @@ const Locations = () => {
         </section>
 
         {/* CTA Section */}
-        <section className="py-16 lg:py-20 bg-gold relative overflow-hidden">
+        <section className="py-12 lg:py-16 bg-gold relative overflow-hidden">
           <div className="container mx-auto px-4 lg:px-8 text-center relative z-10">
             <h2 className="font-serif text-3xl md:text-4xl text-forest mb-4">
               Can't visit in person?

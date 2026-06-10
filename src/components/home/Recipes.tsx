@@ -1,380 +1,78 @@
-import { useState, useRef } from "react";
 import { Link } from "react-router-dom";
-import { recipes, occasionLabels, Occasion } from "@/data/recipes";
-import { getRecipeImage } from "@/data/recipeImages";
+import { recipes, RECIPE_BOTTLE } from "@/data/recipes";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, ArrowUpRight, Clock, Users, ChefHat } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import stampGold from "@/assets/stamp-gold.svg";
-import textureBlue from "@/assets/texture-blue.webp";
 
-const occasions: Occasion[] = ["breakfast", "dinner", "relaxing", "beach", "celebration"];
+// A teaser of our staff-pick recipes, each shown as the single bottle it's built on
+// (matches the Behind the Bar page).
+const featured = recipes.filter((r) => r.featured).slice(0, 5);
 
 const Recipes = () => {
-  const [activeOccasion, setActiveOccasion] = useState<Occasion>("breakfast");
-  const scrollRef = useRef<HTMLDivElement>(null);
-
-  const filteredRecipes = recipes.filter((r) => r.occasion === activeOccasion);
-  const featuredRecipe = filteredRecipes.find((r) => r.featured) || filteredRecipes[0];
-  const carouselRecipes = filteredRecipes.filter((r) => r.id !== featuredRecipe?.id);
-
-  const scrollLeft = () => {
-    if (scrollRef.current) {
-      scrollRef.current.scrollBy({ left: -320, behavior: "smooth" });
-    }
-  };
-
-  const scrollRight = () => {
-    if (scrollRef.current) {
-      scrollRef.current.scrollBy({ left: 320, behavior: "smooth" });
-    }
-  };
-
   return (
-    <section id="recipes" className="py-16 lg:py-40 bg-cream relative overflow-hidden">
-      {/* Organic texture background */}
-      <div
-        className="absolute inset-0 opacity-20 pointer-events-none"
-        style={{
-          backgroundImage: `url(${textureBlue})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }}
-      />
-
+    <section id="recipes" className="py-12 lg:py-16 bg-cream relative overflow-hidden">
       {/* Decorative stamp */}
       <div className="absolute -bottom-20 -left-20 w-64 lg:w-80 opacity-[0.04] pointer-events-none rotate-12">
         <img src={stampGold} alt="" className="w-full h-full" />
       </div>
 
-      {/* Grain overlay */}
-      <div className="grain absolute inset-0 pointer-events-none" />
-
       <div className="container mx-auto px-4 lg:px-8 relative z-10">
-        {/* Section Header */}
-        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-4 lg:gap-8 mb-8 lg:mb-12">
-          <div>
-            <span className="font-sans text-[10px] lg:text-xs font-semibold uppercase tracking-[0.3em] text-gold mb-2 lg:mb-4 block">
-              Recipes
-            </span>
-            <h2 className="font-serif text-3xl lg:text-5xl xl:text-6xl leading-[1]">
-              Drinks for every <span className="italic text-gold">moment</span>
-            </h2>
-          </div>
-          <p className="font-sans text-sm lg:text-base text-muted-foreground max-w-sm hidden lg:block">
-            From sunrise sips to celebration toasts—find the perfect drink for any occasion.
+        {/* Header */}
+        <div className="text-center max-w-2xl mx-auto mb-8 lg:mb-10">
+          <span className="font-sans text-[10px] lg:text-xs font-bold uppercase tracking-[0.3em] text-gold mb-3 block">
+            Behind the Bar
+          </span>
+          <h2 className="font-serif text-3xl lg:text-5xl xl:text-6xl leading-[1] text-forest">
+            Drinks for every <span className="font-script text-gold text-[1.2em] leading-none">moment</span>
+          </h2>
+          <p className="font-sans text-sm lg:text-lg text-forest/60 mt-4">
+            Real recipes, each built on a zero-proof bottle you can buy right here.
           </p>
         </div>
 
-        {/* Occasion Tabs */}
-        <div className="mb-8 lg:mb-12">
-          <div className="flex gap-2 lg:gap-4 overflow-x-auto pb-2 scrollbar-hide" style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}>
-            {occasions.map((occasion) => (
-              <button
-                key={occasion}
-                onClick={() => setActiveOccasion(occasion)}
-                className={`flex items-center gap-2 px-4 lg:px-6 py-2 lg:py-3 font-sans text-xs lg:text-sm font-semibold uppercase tracking-wider whitespace-nowrap transition-all border-2 ${
-                  activeOccasion === occasion
-                    ? "bg-forest text-cream border-forest"
-                    : "bg-transparent text-forest border-forest/30 hover:border-forest hover:bg-forest/5"
-                }`}
-              >
-                <span>{occasionLabels[occasion].emoji}</span>
-                {occasionLabels[occasion].label}
-              </button>
-            ))}
-          </div>
+        {/* Recipe grid */}
+        <div className="grid grid-cols-2 lg:grid-cols-5 gap-4 lg:gap-5">
+          {featured.map((r) => (
+            <Link
+              key={r.id}
+              to="/recipes"
+              className="group block"
+            >
+              <div className="aspect-[4/5] overflow-hidden border-2 border-forest/20 mb-3 relative bg-cream shadow-card hover:shadow-brutal transition-all duration-300">
+                <img
+                  src={RECIPE_BOTTLE[r.id] || r.image}
+                  alt={r.title}
+                  loading="lazy"
+                  decoding="async"
+                  className="w-full h-full object-contain p-5 transition-transform duration-500 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-forest-deep/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                  <span className="font-sans text-xs uppercase tracking-wider text-cream bg-gold/90 px-4 py-2">
+                    View Recipe
+                  </span>
+                </div>
+              </div>
+              <h3 className="font-serif text-base lg:text-lg text-forest group-hover:text-forest-deep transition-colors text-center leading-tight">
+                {r.title}
+              </h3>
+            </Link>
+          ))}
         </div>
 
-        {featuredRecipe && (
-          <>
-            {/* MOBILE LAYOUT */}
-            <div className="lg:hidden">
-              {/* Featured Recipe Card */}
-              <div className="relative mb-8">
-              <div className="aspect-[4/5] overflow-hidden border-2 border-forest">
-                  <img
-                    loading="lazy"
-                    decoding="async"
-                    src={getRecipeImage(featuredRecipe.id)}
-                    alt={featuredRecipe.title}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                {/* Overlay content */}
-                <div className="absolute inset-0 bg-gradient-to-t from-forest-deep/90 via-forest-deep/40 to-transparent flex flex-col justify-end p-5">
-                  <span className="inline-flex items-center gap-2 font-sans text-[10px] uppercase tracking-[0.3em] text-gold mb-2">
-                    <ChefHat className="h-3 w-3" />
-                    {occasionLabels[activeOccasion].emoji} {occasionLabels[activeOccasion].label}
-                  </span>
-                  <h3 className="font-serif text-2xl font-bold text-cream mb-2">
-                    {featuredRecipe.title}
-                  </h3>
-                  <p className="font-sans text-sm text-cream/80 mb-4 line-clamp-2">
-                    {featuredRecipe.description}
-                  </p>
-                  <div className="flex items-center gap-4 text-cream/70 mb-4">
-                    <span className="flex items-center gap-1 font-sans text-xs">
-                      <Clock className="h-3 w-3" />
-                      {featuredRecipe.prepTime}
-                    </span>
-                    <span className="flex items-center gap-1 font-sans text-xs">
-                      <Users className="h-3 w-3" />
-                      Serves {featuredRecipe.servings}
-                    </span>
-                    <span className="font-sans text-xs px-2 py-0.5 bg-cream/20 rounded">
-                      {featuredRecipe.difficulty}
-                    </span>
-                  </div>
-                  <Link to="/recipes">
-                    <Button
-                      size="sm"
-                      className="w-full bg-gold text-forest-deep font-sans text-xs uppercase tracking-wider hover:bg-gold/90"
-                    >
-                      View Recipe
-                      <ArrowRight className="ml-2 h-3 w-3" />
-                    </Button>
-                  </Link>
-                </div>
-              </div>
-
-              {/* Carousel */}
-              {carouselRecipes.length > 0 && (
-                <div
-                  ref={scrollRef}
-                  className="flex gap-4 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-hide"
-                  style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
-                >
-                  {carouselRecipes.map((recipe) => (
-                    <div
-                      key={recipe.id}
-                      className="flex-shrink-0 w-[70vw] snap-center"
-                    >
-                      <RecipeCard recipe={recipe} />
-                    </div>
-                  ))}
-                </div>
-              )}
-
-              {/* View all button - mobile */}
-              <div className="mt-6">
-                <Link to="/recipes">
-                  <Button
-                    variant="outline"
-                    className="w-full font-sans text-sm font-bold uppercase tracking-widest py-5 border-2 border-forest text-forest hover:bg-forest hover:text-cream"
-                  >
-                    Browse All Recipes
-                    <ArrowRight className="ml-2 h-4 w-4" />
-                  </Button>
-                </Link>
-              </div>
-            </div>
-
-            {/* DESKTOP LAYOUT */}
-            <div className="hidden lg:block">
-              <div className="grid lg:grid-cols-12 gap-8 items-start">
-                {/* Featured Recipe - Takes 7 columns */}
-                <div className="lg:col-span-7 relative group">
-                  <div className="aspect-[4/3] overflow-hidden border-2 border-forest">
-                    <img
-                    loading="lazy"
-                    decoding="async"
-                      src={getRecipeImage(featuredRecipe.id)}
-                      alt={featuredRecipe.title}
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                    />
-                  </div>
-                  {/* Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-forest-deep/90 via-forest-deep/30 to-transparent flex flex-col justify-end p-8">
-                    <span className="inline-flex items-center gap-2 font-sans text-xs uppercase tracking-[0.3em] text-gold mb-3">
-                      <ChefHat className="h-4 w-4" />
-                      {occasionLabels[activeOccasion].emoji} {occasionLabels[activeOccasion].label}
-                    </span>
-                    <h3 className="font-serif text-3xl lg:text-4xl font-bold text-cream mb-3">
-                      {featuredRecipe.title}
-                    </h3>
-                    <p className="font-serif text-lg italic text-cream/80 mb-4">
-                      "{featuredRecipe.tagline}"
-                    </p>
-                    <div className="flex items-center gap-6 text-cream/70 mb-6">
-                      <span className="flex items-center gap-2 font-sans text-sm">
-                        <Clock className="h-4 w-4" />
-                        {featuredRecipe.prepTime}
-                      </span>
-                      <span className="flex items-center gap-2 font-sans text-sm">
-                        <Users className="h-4 w-4" />
-                        Serves {featuredRecipe.servings}
-                      </span>
-                      <span className="font-sans text-sm px-3 py-1 bg-cream/20 rounded">
-                        {featuredRecipe.difficulty}
-                      </span>
-                    </div>
-                    <Link to="/recipes">
-                      <Button
-                        size="lg"
-                        className="w-fit bg-gold text-forest-deep font-sans text-sm uppercase tracking-wider hover:bg-gold/90 px-8"
-                      >
-                        View Full Recipe
-                        <ArrowRight className="ml-2 h-4 w-4" />
-                      </Button>
-                    </Link>
-                  </div>
-                  {/* Offset accent box */}
-                  <div className="absolute -bottom-4 -right-4 w-32 h-32 bg-gold z-[-1]" />
-                </div>
-
-                {/* Recipe Info + Ingredients - Takes 5 columns */}
-                <div className="lg:col-span-5 lg:pl-4">
-                  <div className="mb-8">
-                    <h4 className="font-serif text-2xl font-bold text-forest mb-4">
-                      {featuredRecipe.title}
-                    </h4>
-                    <p className="font-sans text-muted-foreground leading-relaxed mb-6">
-                      {featuredRecipe.description}
-                    </p>
-
-                    <div className="border-t-2 border-forest/20 pt-6">
-                      <h5 className="font-sans text-xs uppercase tracking-[0.2em] text-gold mb-4">
-                        Ingredients
-                      </h5>
-                      <ul className="space-y-2">
-                        {featuredRecipe.ingredients.map((ingredient, index) => (
-                          <li
-                            key={index}
-                            className="font-sans text-sm text-muted-foreground flex items-center gap-2"
-                          >
-                            <span className="w-1.5 h-1.5 rounded-full bg-gold shrink-0" />
-                            {ingredient}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
-
-                  {/* Occasion indicator */}
-                  <div className="flex items-center gap-3 p-4 bg-forest/5 border-2 border-forest/10">
-                    <span className="text-2xl">
-                      {occasionLabels[activeOccasion].emoji}
-                    </span>
-                    <div>
-                        <span className="font-sans text-xs uppercase tracking-wider text-gold">
-                          {occasionLabels[activeOccasion].label}
-                      </span>
-                      <p className="font-sans text-sm text-muted-foreground">
-                        Perfect for your {occasionLabels[activeOccasion].label.toLowerCase()} moments
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Carousel Section */}
-              {carouselRecipes.length > 0 && (
-                <div className="mt-16 lg:mt-24">
-                  <div className="flex items-center justify-between mb-8">
-                    <h3 className="font-serif text-2xl lg:text-3xl text-forest">
-                      More {occasionLabels[activeOccasion].label.toLowerCase()} drinks
-                    </h3>
-                    <div className="flex items-center gap-4">
-                      <button
-                        onClick={scrollLeft}
-                        className="w-10 h-10 border-2 border-forest/30 flex items-center justify-center hover:bg-forest hover:text-cream hover:border-forest transition-all"
-                        aria-label="Scroll left"
-                      >
-                        <ArrowRight className="h-4 w-4 rotate-180" />
-                      </button>
-                      <button
-                        onClick={scrollRight}
-                        className="w-10 h-10 border-2 border-forest/30 flex items-center justify-center hover:bg-forest hover:text-cream hover:border-forest transition-all"
-                        aria-label="Scroll right"
-                      >
-                        <ArrowRight className="h-4 w-4" />
-                      </button>
-                    </div>
-                  </div>
-
-                  <div
-                    ref={scrollRef}
-                    className="flex gap-6 overflow-x-auto pb-4 scrollbar-hide"
-                    style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
-                  >
-                    {carouselRecipes.map((recipe) => (
-                      <div key={recipe.id} className="flex-shrink-0 w-80">
-                        <RecipeCard recipe={recipe} />
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
-
-              {/* View all link */}
-              <div className="mt-8 text-center">
-                <Link to="/recipes">
-                  <Button
-                    variant="ghost"
-                    className="font-sans text-sm font-semibold uppercase tracking-wider group border-2 border-transparent hover:border-forest text-forest px-6 py-3"
-                  >
-                    View All Recipes
-                    <ArrowUpRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
-                  </Button>
-                </Link>
-              </div>
-            </div>
-          </>
-        )}
+        {/* CTA */}
+        <div className="text-center mt-10 lg:mt-14">
+          <Link to="/recipes">
+            <Button
+              size="lg"
+              className="font-sans text-sm font-bold uppercase tracking-widest bg-forest text-cream hover:bg-forest-deep px-8 py-6 group"
+            >
+              Browse all recipes
+              <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+            </Button>
+          </Link>
+        </div>
       </div>
     </section>
-  );
-};
-
-interface RecipeCardProps {
-  recipe: (typeof recipes)[0];
-}
-
-const RecipeCard = ({ recipe }: RecipeCardProps) => {
-  return (
-    <article className="group">
-      <div className="relative aspect-[4/3] overflow-hidden border-2 border-forest mb-4">
-        <img
-                    loading="lazy"
-                    decoding="async"
-          src={getRecipeImage(recipe.id)}
-          alt={recipe.title}
-          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-        />
-        {/* Occasion badge */}
-        <div className="absolute top-3 left-3 z-10">
-          <span className="inline-flex items-center gap-1 font-sans text-[10px] uppercase tracking-wider bg-cream/90 text-forest px-2 py-1 border border-forest/20">
-            🍹 Recipe
-          </span>
-        </div>
-        {/* Hover overlay */}
-        <Link to="/recipes" className="absolute inset-0 bg-forest-deep/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-          <Button
-            size="sm"
-            className="bg-gold text-forest-deep font-sans text-xs uppercase tracking-wider"
-          >
-            View Recipe
-          </Button>
-        </Link>
-      </div>
-      <div>
-        <h4 className="font-serif text-lg font-bold text-forest group-hover:text-gold transition-colors">
-          {recipe.title}
-        </h4>
-        <p className="font-serif text-sm italic text-muted-foreground mt-1">
-          {recipe.tagline}
-        </p>
-        <div className="flex items-center gap-3 mt-2 text-muted-foreground">
-          <span className="flex items-center gap-1 font-sans text-xs">
-            <Clock className="h-3 w-3" />
-            {recipe.prepTime}
-          </span>
-          <span className="font-sans text-xs px-2 py-0.5 bg-forest/10 rounded">
-            {recipe.difficulty}
-          </span>
-        </div>
-      </div>
-    </article>
   );
 };
 

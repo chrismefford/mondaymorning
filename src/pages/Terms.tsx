@@ -4,7 +4,7 @@ import textureCream from "@/assets/texture-cream.webp";
 
 const Terms = () => {
   return (
-    <div className="min-h-screen bg-cream">
+    <div className="min-h-screen bg-cream brand-type">
       <Header />
       
       <main>
@@ -82,7 +82,7 @@ const Terms = () => {
                   <p>
                     For questions about these Terms of Service, please contact us at:<br />
                     <strong className="text-forest">Monday Morning</strong><br />
-                    Email: hello@mondaymorning.com<br />
+                    Email: info@mondaymorning-af.com<br />
                     San Diego, California
                   </p>
                 </div>

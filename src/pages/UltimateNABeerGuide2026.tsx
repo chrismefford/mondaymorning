@@ -398,7 +398,7 @@ const UltimateNABeerGuide2026 = () => {
                         >
                           {b.brand} {b.name}
                         </Link>
-                        <span className="text-foreground/60"> — {b.style}</span>
+                        <span className="text-foreground/60">, {b.style}</span>
                       </li>
                     ))}
                   </ul>

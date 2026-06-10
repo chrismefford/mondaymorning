@@ -4,7 +4,7 @@ import textureCream from "@/assets/texture-cream.webp";
 
 const CCPA = () => {
   return (
-    <div className="min-h-screen bg-cream">
+    <div className="min-h-screen bg-cream brand-type">
       <Header />
 
       <main>
@@ -66,14 +66,14 @@ const CCPA = () => {
                 <div className="space-y-4">
                   <h2 className="font-serif text-2xl text-forest">How to Exercise Your Rights</h2>
                   <p>
-                    Email us at hello@mondaymorning-af.com with the subject line "California Privacy Request" and tell us which right you want to exercise. We will verify your request using information already associated with your account or order history. You may also designate an authorized agent to act on your behalf.
+                    Email us at info@mondaymorning-af.com with the subject line "California Privacy Request" and tell us which right you want to exercise. We will verify your request using information already associated with your account or order history. You may also designate an authorized agent to act on your behalf.
                   </p>
                 </div>
 
                 <div className="space-y-4">
                   <h2 className="font-serif text-2xl text-forest">"Do Not Sell or Share My Personal Information"</h2>
                   <p>
-                    To opt out of sharing for cross-context behavioral advertising, email hello@mondaymorning-af.com with the subject "Do Not Sell or Share." We also honor Global Privacy Control (GPC) signals sent by your browser.
+                    To opt out of sharing for cross-context behavioral advertising, email info@mondaymorning-af.com with the subject "Do Not Sell or Share." We also honor Global Privacy Control (GPC) signals sent by your browser.
                   </p>
                 </div>
 
@@ -89,7 +89,7 @@ const CCPA = () => {
                   <p>
                     <strong className="text-forest">Monday Morning</strong>
                     <br />
-                    Email: hello@mondaymorning-af.com
+                    Email: info@mondaymorning-af.com
                     <br />
                     San Diego, California
                   </p>

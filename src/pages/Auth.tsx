@@ -5,7 +5,7 @@ import { useAuth } from '@/hooks/useAuth';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import logoWhite from '@/assets/logo-primary-white.svg';
+import logoWhite from '@/assets/logo-mm-white.png';
 
 const authSchema = z.object({
   email: z.string().email('Please enter a valid email'),
@@ -66,10 +66,10 @@ const Auth = () => {
   };
 
   return (
-    <div className="min-h-screen bg-forest flex items-center justify-center px-4">
+    <div className="min-h-screen bg-forest flex items-center justify-center px-4 brand-type">
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
-          <img src={logoWhite} alt="Dry" className="h-12 mx-auto mb-6" />
+          <img src={logoWhite} alt="Monday Morning" className="h-12 mx-auto mb-6" />
           <h1 className="font-display text-3xl text-cream mb-2">
             {isLogin ? 'Welcome Back' : 'Create Account'}
           </h1>

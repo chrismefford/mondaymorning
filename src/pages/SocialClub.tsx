@@ -19,9 +19,9 @@ import foundersLogo from "@/assets/founders-club-logo.png";
 
 // Shopify product handles for each tier
 const tierToHandle: Record<string, string> = {
-  founders: "founders-club",    // Founders Chair
-  patron: "founders-circle",     // Founders Circle
-  table: "founders-table",       // Founders Table
+  founders: "founders-club",   // Founders Chair
+  patron: "founders-circle",    // Founders Circle
+  table: "founders-table",      // Founders Table
 };
 
 const tiers = [
@@ -361,7 +361,7 @@ const SocialClub = () => {
       />
       <Header />
 
-      {/* Hero — keeps the dark forest feel */}
+      {/* Hero, keeps the dark forest feel */}
       <section className="relative min-h-[100vh] flex items-center justify-center bg-forest-deep overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_hsl(42_80%_45%_/_0.08)_0%,_transparent_70%)]" />
         <div className="absolute inset-0 grain pointer-events-none opacity-20" />
@@ -413,7 +413,7 @@ const SocialClub = () => {
         </div>
       </section>
 
-      {/* Intro Section — light */}
+      {/* Intro Section, light */}
       <section className="py-24 lg:py-32 bg-background relative">
         <div className="container mx-auto px-4 lg:px-8 max-w-3xl">
           <div className="text-center mb-14">
@@ -439,7 +439,7 @@ const SocialClub = () => {
         </div>
       </section>
 
-      {/* Tier Cards — light background */}
+      {/* Tier Cards, light background */}
       <section id="tiers" className="py-24 lg:py-32 bg-muted/50 relative scroll-mt-20">
         <div className="container mx-auto px-4 lg:px-8 relative z-10">
           <div className="text-center mb-20">
@@ -576,7 +576,7 @@ const SocialClub = () => {
         </div>
       </section>
 
-      {/* Comparison Grid — light */}
+      {/* Comparison Grid, light */}
       <section className="py-24 lg:py-32 bg-background relative">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="text-center mb-16">
@@ -612,7 +612,7 @@ const SocialClub = () => {
                         {val === true ? (
                           <Check className="h-3.5 w-3.5 mx-auto text-primary" />
                         ) : val === false ? (
-                          <span className="text-muted-foreground/30">—</span>
+                          <span className="text-muted-foreground/30">-</span>
                         ) : (
                           <span className="font-sans text-sm font-semibold text-foreground/80">{val}</span>
                         )}
@@ -634,7 +634,7 @@ const SocialClub = () => {
         </div>
       </section>
 
-      {/* FAQ — light with subtle muted bg */}
+      {/* FAQ, light with subtle muted bg */}
       <section className="py-20 lg:py-28 bg-muted/30">
         <div className="container mx-auto px-4 lg:px-8 max-w-3xl">
           <div className="text-center mb-14">
@@ -675,7 +675,7 @@ const SocialClub = () => {
         </div>
       </section>
 
-      {/* Application Form — forest green section for contrast */}
+      {/* Application Form, forest green section for contrast */}
       <section id="apply" className="py-24 lg:py-32 bg-forest-deep relative overflow-hidden scroll-mt-20">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,_hsl(42_80%_45%_/_0.05)_0%,_transparent_60%)]" />
         <div className="absolute inset-0 grain pointer-events-none opacity-15" />

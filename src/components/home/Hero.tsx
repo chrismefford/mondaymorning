@@ -1,12 +1,7 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, ArrowDown } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import stampGold from "@/assets/stamp-gold.svg";
-import logoPrimaryGold from "@/assets/logo-primary-gold.svg";
-import logoPrimaryWhite from "@/assets/logo-primary-white.svg";
-import kavaHaven from "@/assets/products/kava-haven.webp";
-import sentiaGold from "@/assets/products/sentia-gold.webp";
-import bolleRose from "@/assets/products/bolle-rose.webp";
 const heroBeach = "/hero/beach.webp";
 const heroBeachMobile = "/hero/beach-mobile.webp";
 
@@ -29,7 +24,7 @@ const Hero = () => {
             className="w-full h-full object-cover"
             width="900"
             height="1200"
-            fetchPriority="high"
+            fetchpriority="high"
             decoding="async"
           />
 
@@ -39,32 +34,26 @@ const Hero = () => {
 
         {/* Content overlay - positioned at bottom */}
         <div className="relative z-20 mt-auto px-6 pb-8 pt-32 text-cream">
-          {/* Logo above headline - Mobile */}
-          <div className="mb-6 animate-fade-up">
-            <span className="inline-flex items-start">
-              <img 
-                src={logoPrimaryWhite} 
-                alt="Monday Morning" 
-                className="h-24 w-auto mb-4"
-              />
-              <span className="font-sans text-xs leading-none select-none ml-1 mt-1 text-cream">™</span>
-            </span>
-          </div>
+          {/* Brand tagline kicker */}
+          <p className="mb-2 font-sans text-xs font-bold uppercase tracking-[0.3em] text-gold animate-fade-up">Drink Differently · Live Free AF</p>
 
           {/* H1 - SEO primary heading */}
           {/* Visual heading - mirrors the single H1 in desktop for mobile styling */}
-          <p className="mb-2 font-serif text-[2.2rem] leading-[1.05] tracking-tight text-cream animate-fade-up" aria-hidden="true">
-            America's #1<br />Non-Alcoholic<br /><span className="italic text-gold">Bottle Shop</span>
+          <p className="mb-2 font-serif uppercase text-[2.2rem] leading-[1.05] tracking-tight text-cream animate-fade-up" aria-hidden="true">
+            America's #1<br />Non-Alcoholic<br /><span className="font-script text-gold text-[2.9rem] leading-none inline-block">Bottle Shop</span>
           </p>
 
           {/* H2 - SEO secondary heading */}
-          <p className="mb-4 font-serif text-xl leading-tight tracking-tight text-cream/90 animate-fade-up delay-100" aria-hidden="true">
+          <p className="mb-2 font-serif uppercase text-xl leading-tight tracking-tight text-cream/90 animate-fade-up delay-100" aria-hidden="true">
             500+ Zero Proof Wines, Beers & Spirits
+          </p>
+          <p className="mb-4 font-sans text-[10px] font-bold uppercase tracking-[0.25em] text-cream/70 animate-fade-up delay-100">
+            Bottle Shops <span className="text-gold">·</span> Hospitality <span className="text-gold">·</span> Brewing
           </p>
 
           {/* Supporting paragraph */}
           <p className="font-sans text-sm text-cream/80 max-w-[300px] mb-6 animate-fade-up delay-200">
-            Think non-alcoholic drinks can't taste good? We love skeptics. Come in, try something, and we'll make you a believer.
+            People go alcohol-free because they want better, not less. 500+ NA wines, beers, and zero-proof spirits, hand-picked in San Diego. You're welcome here.
           </p>
 
           {/* Stats row */}
@@ -74,7 +63,7 @@ const Hero = () => {
               <span className="font-sans text-[9px] uppercase tracking-wider text-cream/60">Flavors</span>
             </div>
             <div className="text-center">
-              <span className="block font-serif text-2xl font-bold text-gold">2</span>
+              <span className="block font-serif text-2xl font-bold text-gold">3</span>
               <span className="font-sans text-[9px] uppercase tracking-wider text-cream/60">Locations</span>
             </div>
             <div className="text-center">
@@ -106,69 +95,41 @@ const Hero = () => {
           </div>
         </div>
 
-        {/* Floating polaroid cards - Mobile */}
-        <div className="absolute top-20 right-2 z-30 animate-float">
-          <div className="w-16 h-20 bg-cream p-1 pb-4 border-2 border-forest shadow-brutal rotate-6">
-            <img src={kavaHaven} alt="Kava Haven" className="w-full h-full object-contain bg-cream" />
-          </div>
-        </div>
-        <div className="absolute top-32 right-20 z-30 animate-float" style={{ animationDelay: '0.3s' }}>
-          <div className="w-14 h-18 bg-cream p-1 pb-3 border-2 border-forest shadow-brutal -rotate-3">
-            <img src={sentiaGold} alt="Sentia Gold" className="w-full h-full object-contain bg-cream" />
-          </div>
-        </div>
-        <div className="absolute top-16 right-36 z-30 animate-float" style={{ animationDelay: '0.6s' }}>
-          <div className="w-12 h-16 bg-cream p-1 pb-3 border-2 border-forest shadow-brutal rotate-12">
-            <img src={bolleRose} alt="Bolle Rosé" className="w-full h-full object-contain bg-cream" />
-          </div>
-        </div>
-
-        {/* Swipe indicator */}
-        <div className="absolute bottom-28 left-1/2 -translate-x-1/2 z-30 flex flex-col items-center gap-2 animate-bounce-subtle">
-          <div className="w-8 h-1 bg-cream/40 rounded-full" />
-          <span className="font-sans text-[9px] uppercase tracking-[0.3em] text-cream/50">Scroll</span>
-        </div>
       </div>
 
       {/* DESKTOP LAYOUT */}
       <div className="hidden md:flex flex-1 relative">
         {/* Left side - Typography */}
         <div className="w-1/2 flex flex-col justify-center px-16 py-32 relative z-20">
-          {/* Logo above headline - Desktop */}
-          <div className="mb-8 animate-fade-up">
-            <span className="inline-flex items-start">
-              <img 
-                src={logoPrimaryGold} 
-                alt="Monday Morning" 
-                className="h-24 xl:h-28 w-auto mb-6"
-              />
-              <span className="font-sans text-xs leading-none select-none ml-1 mt-1 text-gold">™</span>
-            </span>
-          </div>
+          {/* Brand tagline kicker */}
+          <p className="mb-3 font-sans text-sm font-bold uppercase tracking-[0.35em] text-gold animate-fade-up">Drink Differently · Live Free AF</p>
 
           {/* H1 - SEO primary heading (hidden on mobile where mobile H1 is shown) */}
-          <h1 className="mb-4 font-serif text-5xl xl:text-6xl leading-[0.95] tracking-tight animate-fade-up">
-            America's #1<br />Non-Alcoholic<br /><span className="italic text-gold">Bottle Shop</span>
+          <h1 className="mb-4 -ml-1 font-serif text-6xl xl:text-7xl 2xl:text-8xl leading-[0.92] tracking-tight animate-fade-up">
+            America's #1<br />Non-Alcoholic<br /><span className="font-script text-gold text-7xl xl:text-8xl 2xl:text-9xl leading-none inline-block mt-2">Bottle Shop</span>
           </h1>
 
           {/* H2 - SEO secondary heading */}
-          <h2 className="mb-6 font-serif text-2xl xl:text-3xl leading-tight tracking-tight text-muted-foreground animate-fade-up delay-100">
+          <h2 className="mb-3 font-serif text-3xl xl:text-4xl leading-tight tracking-tight text-muted-foreground animate-fade-up delay-100">
             500+ Zero Proof Wines, Beers & Spirits
           </h2>
+          <p className="mb-6 font-sans text-xs xl:text-sm font-bold uppercase tracking-[0.25em] text-forest/70 animate-fade-up delay-100">
+            Bottle Shops <span className="text-gold">·</span> Hospitality <span className="text-gold">·</span> Brewing
+          </p>
 
           {/* Supporting paragraph */}
-          <p className="font-sans text-lg text-muted-foreground max-w-md mb-8 animate-fade-up delay-200">
-            Think non-alcoholic drinks can't taste good? We love skeptics. Come in, try something, and we'll make you a believer. Shop over 500 alcohol-free wines, craft NA beers, zero-proof spirits, and functional drinks online or in San Diego.
+          <p className="font-sans text-lg xl:text-xl text-muted-foreground max-w-xl mb-8 animate-fade-up delay-200">
+            People aren't going alcohol-free because they want less. They want better. That's what we pour: 500+ non-alcoholic wines, craft NA beers, and zero-proof spirits, hand-picked at our San Diego bottle shops to turn skeptics into regulars. Curious, committed, or just sober-curious, you're welcome here.
           </p>
 
           {/* Stats row */}
-          <div className="flex gap-10 mb-10 py-6 border-y-2 border-forest/20 max-w-md animate-fade-up delay-300">
+          <div className="flex justify-between gap-6 mb-10 py-6 border-y-2 border-forest/20 max-w-lg animate-fade-up delay-300">
             <div>
               <span className="block font-serif text-4xl font-bold text-gold">500+</span>
               <span className="font-sans text-xs uppercase tracking-wider text-muted-foreground">Flavors & Styles</span>
             </div>
             <div>
-              <span className="block font-serif text-4xl font-bold text-gold">2</span>
+              <span className="block font-serif text-4xl font-bold text-gold">3</span>
               <span className="font-sans text-xs uppercase tracking-wider text-muted-foreground">SD Locations</span>
             </div>
             <div>
@@ -212,7 +173,7 @@ const Hero = () => {
               className="w-full h-full object-cover"
               width="1200"
               height="1400"
-              fetchPriority="high"
+              fetchpriority="high"
               decoding="async"
             />
 
@@ -220,32 +181,12 @@ const Hero = () => {
             <div className="absolute inset-0 bg-gradient-to-l from-transparent via-background/30 to-background" />
           </div>
 
-          {/* Floating polaroid cards - Desktop */}
-          <div className="absolute top-1/4 -left-16 z-30 animate-float">
-            <div className="w-40 h-52 bg-cream p-2 pb-8 border-2 border-forest shadow-brutal -rotate-6">
-              <img src={kavaHaven} alt="Kava Haven" className="w-full h-full object-contain bg-cream" />
-              <span className="absolute bottom-2 left-0 right-0 text-center font-serif text-sm italic text-forest">Kava Haven</span>
-            </div>
-          </div>
-          <div className="absolute top-[45%] -left-8 z-40 animate-float" style={{ animationDelay: '0.3s' }}>
-            <div className="w-44 h-56 bg-cream p-2 pb-8 border-2 border-forest shadow-brutal rotate-3">
-              <img src={sentiaGold} alt="Sentia Gold" className="w-full h-full object-contain bg-cream" />
-              <span className="absolute bottom-2 left-0 right-0 text-center font-serif text-sm italic text-forest">Sentia Gold</span>
-            </div>
-          </div>
-          <div className="absolute bottom-1/4 -left-12 z-30 animate-float" style={{ animationDelay: '0.6s' }}>
-            <div className="w-36 h-48 bg-cream p-2 pb-8 border-2 border-forest shadow-brutal rotate-6">
-              <img src={bolleRose} alt="Bolle Rosé" className="w-full h-full object-contain bg-cream" />
-              <span className="absolute bottom-2 left-0 right-0 text-center font-serif text-sm italic text-forest">Bolle Rosé</span>
-            </div>
-          </div>
-
-          {/* Brand stamp - rotating */}
+          {/* Brand stamp - static */}
           <div className="absolute top-24 right-12 z-20">
-            <div className="w-48 h-48 xl:w-56 xl:h-56 rotate-text">
-              <img 
-                src={stampGold} 
-                alt="Monday Morning stamp" 
+            <div className="w-48 h-48 xl:w-56 xl:h-56">
+              <img
+                src={stampGold}
+                alt="Monday Morning stamp"
                 className="w-full h-full"
               />
             </div>
@@ -257,7 +198,7 @@ const Hero = () => {
       <div className="bg-gold-warm text-teal-dark py-3 lg:py-4 overflow-hidden relative z-20">
         <div className="marquee whitespace-nowrap">
           <span className="inline-block font-sans text-xs lg:text-sm uppercase tracking-[0.2em]">
-            <span className="mx-8 lg:mx-12">America's #1 NA Shop</span>
+            <span className="mx-8 lg:mx-12">Drink Differently</span>
             <span className="text-teal-dark/40">✦</span>
             <span className="mx-8 lg:mx-12">500+ Flavors</span>
             <span className="text-teal-dark/40">✦</span>
@@ -267,7 +208,7 @@ const Hero = () => {
             <span className="text-teal-dark/40">✦</span>
             <span className="mx-8 lg:mx-12">Try Before You Buy</span>
             <span className="text-teal-dark/40">✦</span>
-            <span className="mx-8 lg:mx-12">America's #1 NA Shop</span>
+            <span className="mx-8 lg:mx-12">Drink Differently</span>
             <span className="text-teal-dark/40">✦</span>
             <span className="mx-8 lg:mx-12">500+ Flavors</span>
             <span className="text-teal-dark/40">✦</span>
@@ -281,11 +222,6 @@ const Hero = () => {
         </div>
       </div>
 
-      {/* Scroll indicator - Desktop only */}
-      <div className="absolute bottom-24 left-16 z-30 hidden md:flex flex-col items-center gap-2 animate-bounce-subtle">
-        <span className="font-sans text-xs uppercase tracking-[0.2em] [writing-mode:vertical-lr]">Scroll</span>
-        <ArrowDown className="h-4 w-4" />
-      </div>
     </section>
   );
 };

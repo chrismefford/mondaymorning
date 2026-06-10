@@ -11,7 +11,7 @@ const ValentinePopup = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
-    // Event is Feb 12, 2026 — stop showing after that
+    // Event is Feb 12, 2026, stop showing after that
     const expirationDate = new Date("2026-02-13T03:00:00Z");
     const now = new Date();
 
@@ -57,7 +57,7 @@ const ValentinePopup = () => {
           </h2>
 
           <p className="font-sans text-sm text-cream/70 mb-6 max-w-sm mx-auto leading-relaxed">
-            The perfect date night — no hangover required.
+            The perfect date night, no hangover required.
           </p>
 
           {/* Highlights */}

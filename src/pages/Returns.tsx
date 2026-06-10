@@ -4,7 +4,7 @@ import textureCream from "@/assets/texture-cream.webp";
 
 const Returns = () => {
   return (
-    <div className="min-h-screen bg-cream">
+    <div className="min-h-screen bg-cream brand-type">
       <Header />
       
       <main>
@@ -40,7 +40,7 @@ const Returns = () => {
                 <div className="space-y-4">
                   <h2 className="font-serif text-2xl text-forest">How to Initiate a Return</h2>
                   <ol className="list-decimal pl-6 space-y-2">
-                    <li>Contact us at hello@mondaymorning.com with your order number and reason for return</li>
+                    <li>Contact us at info@mondaymorning-af.com with your order number and reason for return</li>
                     <li>We'll provide you with a return authorization and shipping instructions</li>
                     <li>Pack items securely in original packaging if possible</li>
                     <li>Ship the return using the provided label or carrier of your choice</li>
@@ -57,7 +57,7 @@ const Returns = () => {
                 <div className="space-y-4">
                   <h2 className="font-serif text-2xl text-forest">Damaged or Defective Products</h2>
                   <p>
-                    Received something damaged or defective? We're sorry! Please contact us within 48 hours of delivery with photos of the damaged items. We'll send a replacement or issue a full refund—no need to return the damaged products.
+                    Received something damaged or defective? We're sorry! Please contact us within 48 hours of delivery with photos of the damaged items. We'll send a replacement or issue a full refund, no need to return the damaged products.
                   </p>
                 </div>
 
@@ -90,7 +90,7 @@ const Returns = () => {
                   <p>
                     Questions about returns? We're here to help:<br />
                     <strong className="text-forest">Monday Morning</strong><br />
-                    Email: hello@mondaymorning.com<br />
+                    Email: info@mondaymorning-af.com<br />
                     San Diego, California
                   </p>
                 </div>

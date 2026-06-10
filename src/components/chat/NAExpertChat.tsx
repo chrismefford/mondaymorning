@@ -108,7 +108,7 @@ const NAExpertChat = () => {
             isHovered ? "scale-100 opacity-100" : "scale-95 opacity-0 pointer-events-none"
           )}
         >
-          <span className="font-medium">Hey! 👋</span> I'm your NA drink expert—ask me anything!
+          <span className="font-medium">Hey! 👋</span> I'm your NA drink expert, ask me anything!
         </div>
         
         {/* Chat button */}
@@ -165,7 +165,7 @@ const NAExpertChat = () => {
             <div className="h-full flex flex-col items-center justify-center text-center px-4">
               <img src={stampGold} alt="" className="w-16 h-16 opacity-30 mb-4" />
               <p className="text-forest/60 text-sm">
-                Hey there! 👋 I'm your NA beverage expert. Ask me about mocktail recipes, drink recommendations, or anything else about alcohol-free options!
+                Hey there! 👋 I'm your NA beverage expert. Ask me about drink recipes, recommendations, or anything else about alcohol-free options!
               </p>
             </div>
           ) : (
@@ -229,6 +229,7 @@ const NAExpertChat = () => {
             />
             <Button
               type="submit"
+              aria-label="Send message"
               disabled={!inputValue.trim() || isLoading}
               className="bg-forest hover:bg-forest/90 text-cream shrink-0"
             >

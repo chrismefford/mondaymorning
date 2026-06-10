@@ -5,7 +5,7 @@ import { supabase } from '@/integrations/supabase/client';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { toast } from 'sonner';
-import logoWhite from '@/assets/logo-primary-white.svg';
+import logoWhite from '@/assets/logo-mm-white.png';
 import { Check, X, Trash2, LogOut, MessageSquare, ChefHat, Building2, DollarSign, ClipboardList } from 'lucide-react';
 import { RecipeGenerator } from '@/components/admin/RecipeGenerator';
 import WholesaleCustomerManager from '@/components/admin/WholesaleCustomerManager';
@@ -96,7 +96,7 @@ const Admin = () => {
 
   if (authLoading || !isAdmin) {
     return (
-      <div className="min-h-screen bg-forest flex items-center justify-center">
+      <div className="min-h-screen bg-forest flex items-center justify-center brand-type">
         <div className="text-cream">Loading...</div>
       </div>
     );
@@ -106,12 +106,12 @@ const Admin = () => {
   const approvedStories = stories.filter(s => s.is_approved);
 
   return (
-    <div className="min-h-screen bg-forest">
+    <div className="min-h-screen bg-forest brand-type">
       {/* Header */}
       <header className="border-b border-cream/10 px-6 py-4">
         <div className="max-w-6xl mx-auto flex items-center justify-between">
           <div className="flex items-center gap-4">
-            <img src={logoWhite} alt="Dry" className="h-8" />
+            <img src={logoWhite} alt="Monday Morning" className="h-8" />
             <span className="font-sans text-sm text-cream/50">Admin Panel</span>
           </div>
           <div className="flex items-center gap-4">
@@ -282,7 +282,7 @@ const StoryCard = ({ story, onApprove, onReject, onUnapprove, onDelete, isApprov
         <div className="flex-1">
           <p className="font-sans text-cream mb-3 leading-relaxed">"{story.text}"</p>
           <div className="flex items-center gap-4 text-sm text-cream/50 font-sans">
-            <span className="font-bold text-cream/70">— {story.author_name}</span>
+            <span className="font-bold text-cream/70">{story.author_name}</span>
             {story.author_location && <span>{story.author_location}</span>}
             <span>{date}</span>
           </div>

@@ -14,7 +14,7 @@ import { Badge } from "@/components/ui/badge";
 import { ArrowLeft, ShoppingBag, Loader2, ChevronLeft, ChevronRight } from "lucide-react";
 import textureCream from "@/assets/texture-cream.webp";
 import stampGold from "@/assets/stamp-gold.svg";
-import logoSecondaryGold from "@/assets/logo-secondary-gold.svg";
+import logoSecondaryGold from "@/assets/logo-mm-stacked-gold.png";
 import { 
   SITE_NAME, 
   SITE_URL, 
@@ -99,7 +99,7 @@ const ProductPage = () => {
 
   if (error || !product) {
     return (
-      <div className="min-h-screen bg-cream">
+      <div className="min-h-screen bg-cream brand-type">
         <Header />
         <main className="container mx-auto px-4 py-20 text-center">
           <h1 className="font-serif text-3xl text-forest mb-4">Product not found</h1>
@@ -137,7 +137,7 @@ const ProductPage = () => {
 
 
   return (
-    <div className="min-h-screen bg-cream">
+    <div className="min-h-screen bg-cream brand-type">
       <Header />
       
       <main className="relative overflow-hidden">

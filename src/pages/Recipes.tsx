@@ -1,14 +1,14 @@
 import { useState, useMemo } from "react";
 import { Link } from "react-router-dom";
 import { Helmet } from "@/lib/helmet-compat";
-import { recipes, occasionLabels, Occasion, Recipe } from "@/data/recipes";
-import { getRecipeImage } from "@/data/recipeImages";
+import { recipes, Recipe, RECIPE_BOTTLE } from "@/data/recipes";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Clock, Users, ChefHat, ShoppingCart, Plus, ShoppingBag } from "lucide-react";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import stampGold from "@/assets/stamp-gold.svg";
 import textureCream from "@/assets/texture-cream.webp";
+import textureGreen from "@/assets/texture-green.webp";
 import {
   Dialog,
   DialogContent,
@@ -26,10 +26,42 @@ import {
   getCanonicalUrl
 } from "@/lib/seo";
 
-// Helper to get recipe image - uses direct ID-to-image mapping for context-appropriate images
+// Each card shows the recipe's single hero bottle (RECIPE_BOTTLE lives in the data
+// layer so the home recipe section stays consistent with this page).
 function getRecipeImageUrl(recipe: Recipe): string {
-  return getRecipeImage(recipe.id);
+  return RECIPE_BOTTLE[recipe.id] || recipe.image;
 }
+
+// Bottles are contained on the card's cream background — no cropping, no tint.
+function recipeImgClass(extra = ""): string {
+  return `w-full h-full object-contain p-5 ${extra}`.trim();
+}
+
+// Recipes are organized by the featured product/brand each one is built on.
+const RECIPE_BRAND: Record<string, string> = {
+  "sunny-bear": "Drømme",
+  "freckled-soda": "Drømme",
+  "awake-blackberry-basil-press": "Drømme",
+  "cool-cucumber": "Drømme",
+  "aspen-summer": "Drømme",
+  "maple-whiskey-sour": "Three Spirit",
+  "city-that-sleeps": "Three Spirit",
+  "afternoon-delight": "Three Spirit",
+  "agave-margarita": "Almave",
+  "golden-hour-margarita": "Almave",
+  "kava-mule": "Kava Haven",
+  "yuzu-lemon-drop": "Kava Haven",
+  "lavender-gin-tonic": "Monday Gin",
+  "earl-grey-martini": "Monday Gin",
+  "garden-collins": "Aplós",
+  "easy-does-it": "Aplós",
+  "black-manhattan": "Spiritless",
+  "ginger-old-fashioned": "Tenneyson",
+  "na-negroni": "Roots Divino",
+  "hibiscus-sour": "All The Bitter",
+};
+// Display order for the filter buttons (most recipes first).
+const RECIPE_BRANDS = ["Drømme", "Three Spirit", "Almave", "Kava Haven", "Monday Gin", "Aplós", "Spiritless", "Tenneyson", "Roots Divino", "All The Bitter"];
 
 interface RecipeProduct {
   product: ReturnType<typeof shopifyToLocalProduct>;
@@ -106,15 +138,14 @@ function isProductIngredient(ingredient: string, productName: string): boolean {
   return productWords.length > 0 && productWords.every(word => ingredientLower.includes(word));
 }
 
-const occasions: Occasion[] = ["breakfast", "dinner", "relaxing", "beach", "celebration"];
 
 const RecipesPage = () => {
-  // Get occasion from URL query params
+  // Get the brand filter from URL query params (recipes are organized by featured product/brand)
   const searchParams = new URLSearchParams(window.location.search);
-  const occasionFromUrl = searchParams.get('occasion') as Occasion | null;
-  
-  const [activeOccasion, setActiveOccasion] = useState<Occasion | "all">(
-    occasionFromUrl && occasions.includes(occasionFromUrl as Occasion) ? occasionFromUrl : "all"
+  const brandFromUrl = searchParams.get('brand');
+
+  const [activeBrand, setActiveBrand] = useState<string>(
+    brandFromUrl && RECIPE_BRANDS.includes(brandFromUrl) ? brandFromUrl : "all"
   );
   const [selectedRecipe, setSelectedRecipe] = useState<Recipe | null>(null);
   const { addToCart, isLoading: isCartLoading } = useCart();
@@ -144,9 +175,9 @@ const RecipesPage = () => {
     return findRecipeProduct(selectedRecipe, shopifyProducts);
   }, [selectedRecipe, shopifyProducts, featuredProductData]);
 
-  const filteredRecipes = activeOccasion === "all" 
-    ? recipes 
-    : recipes.filter((r) => r.occasion === activeOccasion);
+  const filteredRecipes = activeBrand === "all"
+    ? recipes
+    : recipes.filter((r) => RECIPE_BRAND[r.id] === activeBrand);
 
   const featuredRecipes = recipes.filter((r) => r.featured);
 
@@ -177,7 +208,7 @@ const RecipesPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-cream">
+    <div className="min-h-screen bg-cream brand-type">
       <Helmet>
         <title>{pageTitle}</title>
         <meta name="description" content={pageDescription} />
@@ -222,29 +253,34 @@ const RecipesPage = () => {
           <div className="container mx-auto px-4 lg:px-8 relative z-10">
             <div className="max-w-4xl">
               <span className="font-sans text-[10px] lg:text-xs font-medium uppercase tracking-[0.3em] text-gold mb-4 lg:mb-6 block">
-                Mocktail Recipes
+                Zero-Proof Recipes
               </span>
               <h1 className="font-serif text-4xl lg:text-6xl xl:text-7xl leading-[1.05] mb-6 lg:mb-8">
-                Drinks for every <span className="italic text-gold">moment</span>
+                Drinks for every <span className="font-script text-gold text-[1.2em] leading-none">moment</span>
               </h1>
               <p className="font-sans text-lg lg:text-xl text-muted-foreground leading-relaxed max-w-2xl">
-                From sunrise sips to celebration toasts—discover the perfect mocktail for any occasion. All recipes crafted with love using our favorite NA spirits.
+                From sunrise sips to celebration toasts, discover the perfect pour for any occasion. All recipes crafted with love using our favorite NA spirits.
               </p>
             </div>
           </div>
         </section>
 
         {/* FEATURED RECIPES */}
-        <section className="py-12 lg:py-20 bg-forest text-cream relative overflow-hidden">
-          <div className="grain absolute inset-0 pointer-events-none opacity-50" />
-          
+        <section className="py-12 lg:py-20 bg-gold-warm text-forest relative overflow-hidden">
+          {/* Organic texture, matched to the footer */}
+          <div
+            className="absolute inset-0 opacity-[0.06] pointer-events-none"
+            style={{ backgroundImage: `url(${textureGreen})`, backgroundSize: 'cover', backgroundPosition: 'center' }}
+          />
+          <div className="grain absolute inset-0 pointer-events-none opacity-30" />
+
           <div className="container mx-auto px-4 lg:px-8 relative z-10">
             <div className="mb-8 lg:mb-12">
-              <span className="font-sans text-[10px] lg:text-xs font-medium uppercase tracking-[0.3em] text-gold mb-4 block">
+              <span className="font-sans text-[10px] lg:text-xs font-medium uppercase tracking-[0.3em] text-forest-deep mb-4 block">
                 Staff Picks
               </span>
               <h2 className="font-serif text-2xl lg:text-4xl">
-                Featured <span className="italic text-gold">recipes</span>
+                Featured <span className="font-script text-forest-deep text-[1.2em] leading-none">recipes</span>
               </h2>
             </div>
 
@@ -255,27 +291,21 @@ const RecipesPage = () => {
                   onClick={() => setSelectedRecipe(recipe)}
                   className="group text-left"
                 >
-                <div className="aspect-[4/5] overflow-hidden border-2 border-cream/20 mb-4 relative">
+                <div className="aspect-[4/5] overflow-hidden border-2 border-forest/25 mb-4 relative bg-cream">
                     <img
                       src={getRecipeImageUrl(recipe)}
                       alt={recipe.title}
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      className={recipeImgClass("transition-transform duration-500 group-hover:scale-105")}
                     />
                     <div className="absolute inset-0 bg-forest-deep/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
                       <span className="font-sans text-xs uppercase tracking-wider text-cream bg-gold/90 px-4 py-2">
                         View Recipe
                       </span>
                     </div>
-                    <div className="absolute top-3 left-3">
-                      <span className="text-xl">{occasionLabels[recipe.occasion].emoji}</span>
-                    </div>
                   </div>
-                  <h3 className="font-serif text-lg text-cream group-hover:text-gold transition-colors">
+                  <h3 className="font-serif text-lg text-forest group-hover:text-forest-deep transition-colors">
                     {recipe.title}
                   </h3>
-                  <p className="font-sans text-xs text-cream/60 mt-1 uppercase tracking-wider">
-                    {occasionLabels[recipe.occasion].label}
-                  </p>
                 </button>
               ))}
             </div>
@@ -295,35 +325,34 @@ const RecipesPage = () => {
                 Browse All
               </span>
               <h2 className="font-serif text-2xl lg:text-4xl mb-8">
-                All <span className="italic text-gold">recipes</span>
+                All <span className="font-script text-gold text-[1.2em] leading-none">recipes</span>
               </h2>
 
               {/* Filter Tabs */}
               <div className="flex flex-wrap gap-2 lg:gap-3">
                 <button
-                  onClick={() => setActiveOccasion("all")}
+                  onClick={() => setActiveBrand("all")}
                   className={`px-4 lg:px-6 py-2 lg:py-3 font-sans text-xs lg:text-sm font-semibold uppercase tracking-wider transition-all border-2 ${
-                    activeOccasion === "all"
+                    activeBrand === "all"
                       ? "bg-forest text-cream border-forest"
                       : "bg-transparent text-forest border-forest/30 hover:border-forest hover:bg-forest/5"
                   }`}
                 >
                   All ({recipes.length})
                 </button>
-                {occasions.map((occasion) => {
-                  const count = recipes.filter(r => r.occasion === occasion).length;
+                {RECIPE_BRANDS.map((brand) => {
+                  const count = recipes.filter(r => RECIPE_BRAND[r.id] === brand).length;
                   return (
                     <button
-                      key={occasion}
-                      onClick={() => setActiveOccasion(occasion)}
-                      className={`flex items-center gap-2 px-4 lg:px-6 py-2 lg:py-3 font-sans text-xs lg:text-sm font-semibold uppercase tracking-wider whitespace-nowrap transition-all border-2 ${
-                        activeOccasion === occasion
+                      key={brand}
+                      onClick={() => setActiveBrand(brand)}
+                      className={`px-4 lg:px-6 py-2 lg:py-3 font-sans text-xs lg:text-sm font-semibold uppercase tracking-wider whitespace-nowrap transition-all border-2 ${
+                        activeBrand === brand
                           ? "bg-forest text-cream border-forest"
                           : "bg-transparent text-forest border-forest/30 hover:border-forest hover:bg-forest/5"
                       }`}
                     >
-                      <span>{occasionLabels[occasion].emoji}</span>
-                      {occasionLabels[occasion].label} ({count})
+                      {brand} ({count})
                     </button>
                   );
                 })}
@@ -348,7 +377,7 @@ const RecipesPage = () => {
           <div className="container mx-auto px-4 lg:px-8 relative z-10">
             <div className="max-w-3xl mx-auto text-center">
               <h2 className="font-serif text-3xl lg:text-5xl leading-[1.1] text-forest mb-6">
-                Need the <span className="italic text-gold">ingredients</span>?
+                Need the <span className="font-script text-forest-deep text-[1.2em] leading-none">ingredients</span>?
               </h2>
               <p className="font-sans text-lg text-forest/80 mb-8">
                 Visit our shops in Ocean Beach or Pacific Beach to pick up everything you need. We'll even help you find the perfect bottles.
@@ -374,17 +403,17 @@ const RecipesPage = () => {
         <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto bg-cream border-2 border-forest p-0">
           {selectedRecipe && (
             <>
-              <div className="relative aspect-video">
+              <div className="relative aspect-video bg-cream">
                 <img
                   src={getRecipeImageUrl(selectedRecipe)}
                   alt={selectedRecipe.title}
-                  className="w-full h-full object-cover"
+                  className={recipeImgClass()}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-forest-deep/80 to-transparent" />
                 <div className="absolute bottom-0 left-0 right-0 p-6 lg:p-8">
                   <span className="inline-flex items-center gap-2 font-sans text-xs uppercase tracking-[0.3em] text-gold mb-2">
                     <ChefHat className="h-4 w-4" />
-                    {occasionLabels[selectedRecipe.occasion].emoji} {occasionLabels[selectedRecipe.occasion].label} Mocktail
+                    {RECIPE_BRAND[selectedRecipe.id] ? `${RECIPE_BRAND[selectedRecipe.id]} · Recipe` : "Recipe"}
                   </span>
                   <DialogHeader>
                     <DialogTitle className="font-serif text-3xl lg:text-4xl text-cream">
@@ -490,6 +519,24 @@ const RecipesPage = () => {
                   </ul>
                 </div>
 
+                {selectedRecipe.steps && selectedRecipe.steps.length > 0 && (
+                  <div className="border-t-2 border-forest/20 pt-6 mt-8">
+                    <h3 className="font-sans text-xs uppercase tracking-[0.2em] text-gold mb-4 font-semibold">
+                      How to Make It
+                    </h3>
+                    <ol className="space-y-3">
+                      {selectedRecipe.steps.map((step, index) => (
+                        <li key={index} className="font-sans text-base text-forest flex items-start gap-3">
+                          <span className="shrink-0 w-6 h-6 rounded-full bg-forest text-cream text-xs font-semibold flex items-center justify-center mt-0.5">
+                            {index + 1}
+                          </span>
+                          <span className="flex-1">{step}</span>
+                        </li>
+                      ))}
+                    </ol>
+                  </div>
+                )}
+
                 <div className="mt-8 p-4 bg-forest/5 border-2 border-forest/10">
                   <p className="font-sans text-sm text-muted-foreground">
                     <strong className="text-forest">Pro tip:</strong> Visit our tasting room to try this drink before making it at home. We'll help you find the perfect NA spirits.
@@ -514,18 +561,12 @@ const RecipeCard = ({ recipe, onClick }: RecipeCardProps) => {
   
   return (
     <button onClick={onClick} className="group text-left w-full">
-      <div className="relative aspect-[4/3] overflow-hidden border-2 border-forest mb-4">
+      <div className="relative aspect-[4/3] overflow-hidden border-2 border-forest mb-4 bg-cream">
         <img
           src={imageUrl}
           alt={recipe.title}
-          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+          className={recipeImgClass("transition-transform duration-500 group-hover:scale-105")}
         />
-        {/* Occasion badge */}
-        <div className="absolute top-3 left-3 z-10">
-          <span className="inline-flex items-center gap-1 font-sans text-[10px] uppercase tracking-wider bg-cream/90 text-forest px-2 py-1 border border-forest/20">
-            {occasionLabels[recipe.occasion].emoji} {occasionLabels[recipe.occasion].label}
-          </span>
-        </div>
         {/* Featured badge */}
         {recipe.featured && (
           <div className="absolute top-3 right-3 z-10">

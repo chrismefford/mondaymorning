@@ -4,6 +4,94 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Brand script accent font (hand-painted) */
+@font-face {
+  font-family: 'Mainsail';
+  src: url('/fonts/mainsail.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+/* Brand heading font (condensed) */
+@font-face {
+  font-family: 'Oswald';
+  src: url('/fonts/oswald.woff2') format('woff2');
+  font-weight: 200 700;
+  font-style: normal;
+  font-display: swap;
+}
+/* Brand body serif */
+@font-face {
+  font-family: 'Lora';
+  src: url('/fonts/lora.woff2') format('woff2');
+  font-weight: 400 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* === Brand type system (scoped to homepage via .brand-type) ===
+   Oswald headlines + Lora body + warmer butter-cream background.
+   Unlayered so these win over Tailwind's font utilities. */
+.brand-type {
+  --background: 46 70% 92%;
+  --cream: 46 70% 92%;
+  --cream-warm: 44 60% 90%;
+  --sand: 42 52% 87%;
+  --card: 45 55% 90%;
+}
+/* Slimmer, more refined content width on the homepage (config container is 1400px,
+   nearly edge-to-edge on a laptop). Hero stays full-bleed (it doesn't use .container). */
+.brand-type .container {
+  max-width: 1200px;
+}
+.brand-type h1,
+.brand-type h2,
+.brand-type h3,
+.brand-type h4 {
+  font-family: 'Oswald', sans-serif;
+  font-weight: 600;
+}
+.brand-type h1,
+.brand-type h2 {
+  text-transform: uppercase;
+  letter-spacing: 0.012em;
+}
+/* All display serif (stat numbers, accent words) -> Oswald */
+.brand-type .font-serif {
+  font-family: 'Oswald', sans-serif;
+}
+/* Body copy -> Lora, even when authored as font-sans */
+.brand-type p,
+.brand-type li,
+.brand-type p.font-sans,
+.brand-type li.font-sans,
+.brand-type a[href^="tel:"].font-sans {
+  font-family: 'Lora', serif;
+}
+/* Plain sans (non-uppercase utility text) stays DM Sans */
+.brand-type .font-sans {
+  font-family: 'DM Sans', sans-serif;
+}
+/* Eyebrows, kickers, buttons, sublabels (uppercase tracked) -> Oswald,
+   matching the original brand. Higher specificity so it beats the body rule. */
+.brand-type .font-sans.uppercase,
+.brand-type p.uppercase,
+.brand-type button.uppercase,
+.brand-type a.uppercase {
+  font-family: 'Oswald', sans-serif;
+}
+/* Serif italic pull-quotes (font-serif + italic on a paragraph) -> Lora,
+   while display font-serif (headings, stat numbers) stays Oswald above. */
+.brand-type p.font-serif.italic {
+  font-family: 'Lora', serif;
+}
+/* Keep script accents as hand-painted Mainsail, normal case */
+.brand-type .font-script {
+  font-family: 'Mainsail', cursive;
+  text-transform: none;
+  font-weight: 400;
+}
+
 @layer base {
   :root {
     /* Monday Morning AF Brand Palette */
@@ -28,8 +116,8 @@
     --muted: 38 30% 90%;
     --muted-foreground: 150 20% 40%;
 
-    /* Terracotta accent */
-    --accent: 18 65% 55%;
+    /* Teal accent (styleguide #48A3AA / #255256) */
+    --accent: 184 39% 42%;
     --accent-foreground: 45 30% 96%;
 
     --destructive: 0 72% 51%;
@@ -91,44 +179,8 @@
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
-  .dark {
-    --background: 220 30% 6%;
-    --foreground: 45 25% 95%;
-
-    --card: 220 25% 10%;
-    --card-foreground: 45 25% 95%;
-
-    --popover: 220 30% 6%;
-    --popover-foreground: 45 25% 95%;
-
-    --primary: 12 80% 58%;
-    --primary-foreground: 220 30% 6%;
-
-    --secondary: 195 40% 25%;
-    --secondary-foreground: 195 50% 90%;
-
-    --muted: 220 20% 15%;
-    --muted-foreground: 45 15% 60%;
-
-    --accent: 170 40% 25%;
-    --accent-foreground: 170 40% 85%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 100%;
-
-    --border: 220 20% 18%;
-    --input: 220 20% 18%;
-    --ring: 12 80% 58%;
-
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
-  }
+  /* Dark mode removed: the site runs light-only (no theme toggle in the UI).
+     The previous .dark palette was unused and off-brand (red-orange primary). */
 }
 
 @layer base {
@@ -460,3 +512,53 @@
 .delay-400 { animation-delay: 400ms; }
 .delay-500 { animation-delay: 500ms; }
 .delay-600 { animation-delay: 600ms; }
+
+/* ---------- Accessibility (WCAG 2.1 AA) ---------- */
+
+/* Skip-to-content link: hidden until focused, then pinned to the top-left */
+.skip-link {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 200;
+  transform: translateY(-120%);
+  background: hsl(var(--forest));
+  color: hsl(var(--cream));
+  padding: 0.75rem 1.25rem;
+  font-family: 'Oswald', sans-serif;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  border-radius: 0 0 0.5rem 0;
+  transition: transform 0.15s ease;
+}
+.skip-link:focus {
+  transform: translateY(0);
+  outline: 2px solid hsl(var(--gold));
+  outline-offset: 2px;
+}
+
+/* Visible keyboard focus ring for all interactive elements */
+a:focus-visible,
+button:focus-visible,
+[role="button"]:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid hsl(var(--gold));
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* Respect users who ask for reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}

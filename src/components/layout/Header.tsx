@@ -1,16 +1,10 @@
 import { useState, useEffect } from "react";
-import { Menu, X, ShoppingBag, ArrowUpRight, Sparkles, Beer, Wine, Martini, Star, Leaf, Package, ChevronDown, Sunrise, UtensilsCrossed, Sofa, Umbrella, PartyPopper, Search, BookOpen, User, Building2, Newspaper } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Menu, X, ShoppingBag, ArrowUpRight, Sparkles, Beer, Wine, Martini, Star, Leaf, Package, ChevronDown, Search, BookOpen, Newspaper, Truck, GraduationCap, Store, FlaskConical } from "lucide-react";
 import { useCart } from "@/hooks/useCart";
-import logoGold from "@/assets/logo-primary-gold.svg";
-import logoWhite from "@/assets/logo-primary-white.svg";
+import logoGold from "@/assets/logo-mm-gold.png";
+import logoWhite from "@/assets/logo-mm-white.png";
+import menuBg from "@/assets/brand/ig-shop.jpg";
 import SearchOverlay from "@/components/search/SearchOverlay";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 
 const categoryItems = [
   { name: "Best Sellers", icon: Sparkles, href: "/collections/best-sellers" },
@@ -18,33 +12,83 @@ const categoryItems = [
   { name: "NA Wine", icon: Wine, href: "/collections/wine-alternatives" },
   { name: "NA Spirits", icon: Martini, href: "/collections/spirit-alternatives" },
   { name: "Functionals", icon: Leaf, href: "/collections/functional" },
-  { name: "Beach Vibes", icon: Umbrella, href: "/collections/beach-bonfire" },
-  { name: "Weddings & Events", icon: PartyPopper, href: "/collections/weddings" },
   { name: "Shop All", icon: Search, href: "/shop", isShopAll: true },
 ];
 
 const recipeItems = [
-  { name: "Breakfast", icon: Sunrise, href: "/recipes?occasion=breakfast" },
-  { name: "Dinner", icon: UtensilsCrossed, href: "/recipes?occasion=dinner" },
-  { name: "Relaxing", icon: Sofa, href: "/recipes?occasion=relaxing" },
-  { name: "Beach", icon: Umbrella, href: "/recipes?occasion=beach" },
-  { name: "Celebration", icon: PartyPopper, href: "/recipes?occasion=celebration" },
+  { name: "All Recipes", icon: Martini, href: "/recipes" },
   { name: "Blog", icon: BookOpen, href: "/blog", isBlog: true },
-  { name: "Press", icon: Newspaper, href: "/press", isPress: true },
 ];
 
 const hireUsItems = [
-  { name: "Businesses", icon: Building2, href: "/services" },
-  { name: "Consulting", icon: Sparkles, href: "/consulting" },
-  { name: "Restaurants", icon: UtensilsCrossed, href: "/services" },
-  { name: "Bars", icon: Martini, href: "/services" },
-  { name: "Distribution", icon: Package, href: "/services" },
+  { name: "B2B & Distribution", icon: Truck, href: "/services#b2b" },
+  { name: "Consulting", icon: GraduationCap, href: "/services#consulting" },
+  { name: "Retail Pop-Ups", icon: Store, href: "/services#popups" },
+  { name: "Contract Brewing", icon: FlaskConical, href: "/services#brewing" },
+  { name: "Events & Vibations", icon: Martini, href: "/services#events" },
   { name: "Press", icon: Newspaper, href: "/press", isPress: true },
 ];
 
 interface HeaderProps {
   forceSolid?: boolean;
 }
+
+// Desktop nav item with a hover dropdown: clicking the label navigates to the
+// page, hovering reveals the category shortcuts. (The menu is a child of the
+// hover wrapper, not a portal, so moving onto it keeps it open.)
+const NavDropdown = ({
+  link,
+  items,
+  showLightText,
+}: {
+  link: { name: string; href: string };
+  items: { name: string; href?: string; icon: any; isBlog?: boolean; isShopAll?: boolean }[];
+  showLightText: boolean;
+}) => {
+  const [open, setOpen] = useState(false);
+  return (
+    <div
+      className="relative"
+      onMouseEnter={() => setOpen(true)}
+      onMouseLeave={() => setOpen(false)}
+    >
+      <a
+        href={link.href}
+        className={`font-sans text-xs font-semibold uppercase tracking-[0.15em] px-5 py-2 hover:text-primary transition-colors duration-200 relative group flex items-center gap-1 ${
+          showLightText ? "text-cream" : "text-foreground"
+        }`}
+      >
+        {link.name}
+        <ChevronDown className={`h-3 w-3 transition-transform duration-200 ${open ? "rotate-180" : ""}`} />
+        <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1 h-1 bg-primary scale-0 group-hover:scale-100 transition-transform duration-200" />
+      </a>
+      {open && (
+        <div className="absolute left-1/2 -translate-x-1/2 top-full pt-3 z-[100]">
+          <div className="w-64 bg-cream border-2 border-forest/15 p-2 shadow-xl">
+            {items.map((item) => {
+              const IconComponent = item.icon;
+              const isAccent = !!item.isBlog || !!item.isShopAll;
+              return (
+                <a
+                  key={item.name}
+                  href={item.href}
+                  className={`flex items-center gap-3 px-4 py-3 cursor-pointer transition-colors duration-200 text-forest hover:bg-forest hover:text-cream ${
+                    isAccent
+                      ? "border-t-2 border-forest/15 mt-1 font-semibold"
+                      : "border-b border-forest/10 last:border-b-0"
+                  }`}
+                >
+                  <IconComponent className="h-5 w-5 text-gold shrink-0" />
+                  <span className="font-sans text-sm font-medium tracking-wide">{item.name}</span>
+                </a>
+              );
+            })}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
 
 const Header = ({ forceSolid = false }: HeaderProps) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -76,17 +120,15 @@ const Header = ({ forceSolid = false }: HeaderProps) => {
 
   const navLinks = [
     { name: "Shop", href: "/shop", number: "01", hasDropdown: true, dropdownType: "collections" },
-    { name: "Story", href: "/about", number: "02" },
+    { name: "Visit", href: "/locations", number: "02" },
     { name: "Behind The Bar", href: "/recipes", number: "03", hasDropdown: true, dropdownType: "recipes" },
-    { name: "Find Us", href: "/locations", number: "04" },
-    { name: "Hire Us", href: "/services", number: "05", hasDropdown: true, dropdownType: "hireus" },
+    { name: "Story", href: "/about", number: "04" },
+    { name: "Work With Us", href: "/services", number: "05" },
   ];
 
   // Determine if we're on a dark hero page
-  const isDarkHeroPage = typeof window !== 'undefined' && 
-    (window.location.pathname === '/services' || 
-     window.location.pathname === '/locations' ||
-     window.location.pathname === '/valentines' ||
+  const isDarkHeroPage = typeof window !== 'undefined' &&
+    (window.location.pathname === '/valentines' ||
      window.location.pathname === '/non-alcoholic-drinks-san-diego' ||
      window.location.pathname === '/non-alcoholic-beer-guide' ||
      window.location.pathname === '/best-non-alcoholic-drinks' ||
@@ -98,7 +140,6 @@ const Header = ({ forceSolid = false }: HeaderProps) => {
      window.location.pathname === '/zero-proof-alcohol-nearby' ||
      window.location.pathname === '/alcohol-alternatives' ||
      window.location.pathname === '/social-club' ||
-     window.location.pathname === '/press' ||
      window.location.pathname === '/consulting' ||
      window.location.pathname === '/join' ||
      window.location.pathname.startsWith('/blog/') ||
@@ -112,10 +153,39 @@ const Header = ({ forceSolid = false }: HeaderProps) => {
 
   return (
     <>
-      <header 
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+      {/* Skip to main content (keyboard / screen-reader users) */}
+      <a
+        href="#main"
+        className="skip-link"
+        onClick={(e) => {
+          e.preventDefault();
+          const m = document.querySelector("main");
+          if (m) {
+            m.setAttribute("tabindex", "-1");
+            (m as HTMLElement).focus();
+            m.scrollIntoView();
+          }
+        }}
+      >
+        Skip to main content
+      </a>
+
+      {/* Announcement bar */}
+      <div className="fixed top-0 left-0 right-0 z-[60] bg-teal-dark text-cream">
+        <div className="container mx-auto px-4 h-9 flex items-center justify-center">
+          <p className="font-sans text-[10px] sm:text-xs uppercase tracking-[0.15em] text-center truncate">
+            Drink Differently. Live Free AF.
+            <span className="text-gold mx-2">✦</span>
+            <span className="hidden sm:inline">Pacific Beach · Ocean Beach · La Costa</span>
+            <span className="sm:hidden">Pacific Beach · Ocean Beach</span>
+          </p>
+        </div>
+      </div>
+
+      <header
+        className={`fixed top-9 left-0 right-0 z-50 transition-all duration-500 ${
           isScrolled || isWholesaleCatalog || forceSolid
-            ? "bg-background/95 backdrop-blur-md border-b-2 border-foreground" 
+            ? "bg-background/95 backdrop-blur-md border-b-2 border-foreground"
             : "bg-transparent"
         }`}
       >
@@ -123,14 +193,11 @@ const Header = ({ forceSolid = false }: HeaderProps) => {
           <div className="flex items-center justify-between h-16 lg:h-20">
             {/* Logo */}
             <a href="/" className="group flex items-center relative z-50">
-              <span className="inline-flex items-start">
-                <img 
-                  src={isMenuOpen || showLightText ? logoWhite : logoGold} 
-                  alt="Monday Morning" 
-                  className="h-8 lg:h-10 w-auto transition-all"
-                />
-                <span className={`font-sans text-[8px] leading-none select-none ml-0.5 mt-0.5 ${isMenuOpen || showLightText ? 'text-cream' : 'text-gold'}`}>™</span>
-              </span>
+              <img
+                src={isMenuOpen || showLightText ? logoWhite : logoGold}
+                alt="Monday Morning"
+                className="h-12 lg:h-16 w-auto transition-all"
+              />
             </a>
 
             {/* Desktop Navigation - Center */}
@@ -138,56 +205,12 @@ const Header = ({ forceSolid = false }: HeaderProps) => {
               {navLinks.map((link) => {
                 const dropdownItems = link.dropdownType === "recipes" ? recipeItems : link.dropdownType === "hireus" ? hireUsItems : categoryItems;
                 return link.hasDropdown ? (
-                  <DropdownMenu key={link.name} modal={false}>
-                    <DropdownMenuTrigger asChild>
-                      <button
-                        className={`font-sans text-xs font-semibold uppercase tracking-[0.15em] px-5 py-2 hover:text-primary transition-colors duration-200 relative group flex items-center gap-1 ${
-                          showLightText ? 'text-cream' : 'text-foreground'
-                        }`}
-                      >
-                        {link.name}
-                        <ChevronDown className="h-3 w-3 transition-transform duration-200 group-data-[state=open]:rotate-180" />
-                        <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1 h-1 bg-primary scale-0 group-hover:scale-100 transition-transform duration-200" />
-                      </button>
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent 
-                      className="w-64 !bg-forest border-2 border-gold/30 p-2 mt-2 z-[100] shadow-xl"
-                      sideOffset={8}
-                      align="center"
-                    >
-                      {dropdownItems.map((item) => {
-                        const IconComponent = item.icon;
-                        const itemHref = 'href' in item ? (item as { href: string }).href : undefined;
-                        const isBlog = 'isBlog' in item && item.isBlog;
-                        const isShopAll = 'isShopAll' in item && item.isShopAll;
-                        return (
-                          <DropdownMenuItem 
-                            key={item.name}
-                            className={`flex items-center gap-3 px-4 py-3 cursor-pointer rounded-none border-b border-cream/10 last:border-b-0 transition-all duration-200 ${
-                              isBlog 
-                                ? 'text-ocean hover:text-forest hover:bg-ocean focus:bg-ocean focus:text-forest border-t border-cream/20 mt-1' 
-                                : isShopAll
-                                  ? 'text-gold hover:text-forest hover:bg-gold focus:bg-gold focus:text-forest border-t border-cream/20 mt-1'
-                                  : 'text-cream hover:text-forest hover:bg-gold focus:bg-gold focus:text-forest'
-                            }`}
-                            asChild={!!itemHref}
-                          >
-                            {itemHref ? (
-                              <a href={itemHref}>
-                                <IconComponent className={`h-5 w-5 ${isBlog ? 'text-ocean' : isShopAll ? 'text-cream' : 'text-gold'}`} />
-                                <span className="font-sans text-sm font-medium tracking-wide">{item.name}</span>
-                              </a>
-                            ) : (
-                              <>
-                                <IconComponent className={`h-5 w-5 ${isBlog ? 'text-ocean' : isShopAll ? 'text-cream' : 'text-gold'}`} />
-                                <span className="font-sans text-sm font-medium tracking-wide">{item.name}</span>
-                              </>
-                            )}
-                          </DropdownMenuItem>
-                        );
-                      })}
-                    </DropdownMenuContent>
-                  </DropdownMenu>
+                  <NavDropdown
+                    key={link.name}
+                    link={link}
+                    items={dropdownItems}
+                    showLightText={showLightText}
+                  />
                 ) : (
                   <a
                     key={link.name}
@@ -216,38 +239,9 @@ const Header = ({ forceSolid = false }: HeaderProps) => {
                 <Search className="h-4 w-4" />
                 Search
               </button>
-              <DropdownMenu modal={false}>
-                <DropdownMenuTrigger asChild>
-                  <button
-                    className={`flex items-center gap-2 px-3 py-2 font-sans text-xs font-semibold uppercase tracking-wider transition-colors ${
-                      showLightText 
-                        ? 'text-cream hover:text-gold' 
-                        : 'text-foreground hover:text-primary'
-                    }`}
-                  >
-                    <User className="h-4 w-4" />
-                    Account
-                    <ChevronDown className="h-3 w-3" />
-                  </button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent 
-                  className="w-48 !bg-forest border-2 border-gold/30 p-2 mt-2 z-[100] shadow-xl"
-                  sideOffset={8}
-                  align="end"
-                >
-                  <DropdownMenuItem 
-                    className="flex items-center gap-3 px-4 py-3 cursor-pointer rounded-none text-cream hover:text-forest hover:bg-gold focus:bg-gold focus:text-forest transition-all duration-200"
-                    asChild
-                  >
-                    <a href="/wholesale-login">
-                      <Building2 className="h-5 w-5 text-gold" />
-                      <span className="font-sans text-sm font-medium tracking-wide">B2B / Wholesale</span>
-                    </a>
-                  </DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
-              <button 
+              <button
                 onClick={openCart}
+                aria-label="Open cart"
                 className={`relative w-10 h-10 border-2 flex items-center justify-center transition-colors group ${
                   showLightText 
                     ? 'border-cream/50 text-cream hover:bg-cream hover:text-forest' 
@@ -277,10 +271,11 @@ const Header = ({ forceSolid = false }: HeaderProps) => {
               >
                 <Search className="h-4 w-4" />
               </button>
-              <button 
+              <button
                 onClick={openCart}
+                aria-label="Open cart"
                 className={`relative w-10 h-10 border-2 flex items-center justify-center transition-colors ${
-                  isMenuOpen 
+                  isMenuOpen
                     ? 'border-background/30 text-background' 
                     : showLightText 
                       ? 'border-cream/50 text-cream' 
@@ -325,7 +320,7 @@ const Header = ({ forceSolid = false }: HeaderProps) => {
         {/* Background with beach image */}
         <div className="absolute inset-0">
           <img
-            src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1200&q=80"
+            src={menuBg}
             alt=""
             className={`w-full h-full object-cover transition-transform duration-700 ${isMenuOpen ? 'scale-100' : 'scale-110'}`}
           />
@@ -416,19 +411,6 @@ const Header = ({ forceSolid = false }: HeaderProps) => {
             }`}
             style={{ transitionDelay: '600ms' }}
           >
-            <div className="flex flex-col gap-3">
-              <a href="/wholesale-login" onClick={() => setIsMenuOpen(false)}>
-                <Button 
-                  variant="outline" 
-                  size="lg" 
-                  className="w-full font-sans text-sm font-bold uppercase tracking-widest py-6 border-2 border-primary/50 text-primary bg-transparent hover:bg-primary/10"
-                >
-                  <Building2 className="h-4 w-4 mr-2" />
-                  B2B / Wholesale
-                </Button>
-              </a>
-            </div>
-            
             {/* Social / tagline */}
             <div className="mt-8 text-center">
               <p className="font-sans text-xs uppercase tracking-[0.3em] text-background/40">

@@ -2,6 +2,8 @@ import { useState, useEffect, useRef } from "react";
 import { Search, X, ArrowRight, Loader2 } from "lucide-react";
 import { useShopifyAllProducts, shopifyToLocalProduct } from "@/hooks/useShopifyProducts";
 import { useNavigate } from "react-router-dom";
+import textureCream from "@/assets/texture-cream.webp";
+import stampGold from "@/assets/stamp-gold.svg";
 
 interface SearchOverlayProps {
   isOpen: boolean;
@@ -172,46 +174,69 @@ const SearchOverlay = ({ isOpen, onClose }: SearchOverlayProps) => {
     >
       {/* Backdrop with blur */}
       <div
-        className="absolute inset-0 bg-forest/95 backdrop-blur-xl"
+        className="absolute inset-0 bg-cream/95 backdrop-blur-xl"
         onClick={onClose}
       />
 
+      {/* Decorative brand layers */}
+      <div
+        className="absolute inset-0 opacity-40 pointer-events-none"
+        style={{ backgroundImage: `url(${textureCream})`, backgroundSize: "cover", backgroundPosition: "center" }}
+      />
+      <div className="grain absolute inset-0 pointer-events-none opacity-40" />
+      <div className="absolute -top-24 -right-24 w-72 lg:w-[30rem] opacity-[0.06] pointer-events-none rotate-12">
+        <img src={stampGold} alt="" className="w-full h-full" />
+      </div>
+      <div className="absolute -bottom-28 -left-24 w-72 lg:w-[26rem] opacity-[0.05] pointer-events-none -rotate-12">
+        <img src={stampGold} alt="" className="w-full h-full" />
+      </div>
+
       {/* Content */}
-      <div className="relative z-10 h-full flex flex-col items-center justify-start pt-24 lg:pt-32 px-6 overflow-y-auto pb-24">
+      <div className="brand-type relative z-10 h-full flex flex-col items-center justify-start pt-24 lg:pt-32 px-6 overflow-y-auto pb-24">
         {/* Close button */}
         <button
           onClick={onClose}
-          className="absolute top-6 right-6 w-12 h-12 border-2 border-cream/30 text-cream flex items-center justify-center hover:border-gold hover:text-gold transition-all duration-300"
+          className="absolute top-6 right-6 w-12 h-12 border-2 border-forest/30 text-forest flex items-center justify-center hover:border-gold hover:text-gold transition-all duration-300"
           aria-label="Close search"
         >
           <X className="h-5 w-5" />
         </button>
 
-        {/* Search input with golden glow */}
+        {/* Search input */}
         <div
           className={`w-full max-w-2xl transition-all duration-700 ${
             isOpen ? "translate-y-0 opacity-100" : "-translate-y-8 opacity-0"
           }`}
           style={{ transitionDelay: "100ms" }}
         >
+          {/* Headline moment (only on the empty / browse state) */}
+          {!debouncedQuery && (
+            <div className="text-center mb-6 lg:mb-8">
+              <span className="font-sans text-[11px] lg:text-xs font-bold uppercase tracking-[0.3em] text-gold mb-3 block">
+                500+ zero-proof drinks
+              </span>
+              <h2 className="font-serif text-3xl lg:text-5xl text-forest leading-[1.02]">
+                Find your <span className="font-script text-gold text-[1.2em] leading-none">Vibation.</span>
+              </h2>
+            </div>
+          )}
+
           <div className="relative group">
-            {/* Golden glow effect */}
-            <div className="absolute -inset-1 bg-gradient-to-r from-gold/40 via-gold/60 to-gold/40 rounded-sm blur-md opacity-0 group-focus-within:opacity-100 transition-opacity duration-500" />
-            
-            <div className="relative flex items-center bg-forest border-2 border-cream/20 group-focus-within:border-gold transition-colors duration-300">
-              <Search className="absolute left-4 h-5 w-5 text-cream/50 group-focus-within:text-gold transition-colors duration-300" />
+            <div className="relative flex items-center bg-white border-2 border-forest/15 group-focus-within:border-gold transition-colors duration-300 shadow-sm">
+              <Search className="absolute left-4 h-5 w-5 text-forest/40 group-focus-within:text-gold transition-colors duration-300" />
               <input
                 ref={inputRef}
                 type="text"
+                aria-label="Search products"
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
-                placeholder="Search products..."
-                className="w-full bg-transparent py-5 pl-14 pr-4 font-serif text-xl lg:text-2xl text-cream placeholder:text-cream/40 focus:outline-none"
+                placeholder="Search 500+ drinks..."
+                className="w-full bg-transparent py-5 pl-14 pr-4 font-serif text-xl lg:text-2xl text-forest placeholder:text-forest/40 focus:outline-none"
               />
               {query && (
                 <button
                   onClick={() => setQuery("")}
-                  className="absolute right-4 text-cream/50 hover:text-cream transition-colors"
+                  className="absolute right-4 text-forest/40 hover:text-forest transition-colors"
                 >
                   <X className="h-5 w-5" />
                 </button>
@@ -227,7 +252,7 @@ const SearchOverlay = ({ isOpen, onClose }: SearchOverlayProps) => {
               }`}
               style={{ transitionDelay: "200ms" }}
             >
-              <p className="font-sans text-xs uppercase tracking-[0.2em] text-cream/50 mb-4">
+              <p className="font-sans text-xs uppercase tracking-[0.2em] text-forest/50 mb-4">
                 Popular Searches
               </p>
               <div className="flex flex-wrap gap-2">
@@ -244,7 +269,7 @@ const SearchOverlay = ({ isOpen, onClose }: SearchOverlayProps) => {
                         setDebouncedQuery(item.search);
                       }
                     }}
-                    className="px-4 py-2 border border-cream/20 text-cream/70 font-sans text-sm hover:border-gold hover:text-gold hover:shadow-[0_0_15px_rgba(212,175,55,0.3)] transition-all duration-300"
+                    className="px-4 py-2 border-2 border-forest/20 text-forest/80 font-sans text-sm font-semibold uppercase tracking-wide hover:border-gold hover:text-gold hover:bg-gold/10 transition-all duration-300"
                   >
                     {item.label}
                   </button>
@@ -268,18 +293,18 @@ const SearchOverlay = ({ isOpen, onClose }: SearchOverlayProps) => {
               </div>
             ) : filteredProducts && filteredProducts.length > 0 ? (
               <div className="space-y-2">
-                <p className="font-sans text-xs uppercase tracking-[0.2em] text-cream/50 mb-4">
+                <p className="font-sans text-xs uppercase tracking-[0.2em] text-forest/50 mb-4">
                   {filteredProducts.length} Result{filteredProducts.length !== 1 ? "s" : ""}
                 </p>
                 {filteredProducts.map((product, index) => (
                   <button
                     key={product.id}
                     onClick={() => handleProductClick(product.handle)}
-                    className="w-full group flex items-center gap-4 p-4 border border-cream/10 hover:border-gold hover:shadow-[0_0_20px_rgba(212,175,55,0.2)] bg-cream/5 hover:bg-cream/10 transition-all duration-300"
+                    className="w-full group flex items-center gap-4 p-3 border border-forest/10 hover:border-gold bg-white hover:bg-sand transition-all duration-200"
                     style={{ animationDelay: `${index * 50}ms` }}
                   >
                     {/* Product image with sold out overlay */}
-                    <div className="relative w-16 h-16 bg-sand/10 border border-cream/10 flex-shrink-0 overflow-hidden">
+                    <div className="relative w-16 h-16 bg-white border border-forest/10 flex-shrink-0 overflow-hidden">
                       <img
                         src={product.image}
                         alt={product.name}
@@ -287,33 +312,33 @@ const SearchOverlay = ({ isOpen, onClose }: SearchOverlayProps) => {
                       />
                       {product.soldOut && (
                         <div className="absolute inset-0 flex items-center justify-center">
-                          <span className="bg-cream/90 text-forest text-[8px] font-sans uppercase tracking-wider px-1.5 py-0.5">
+                          <span className="bg-forest/90 text-cream text-[8px] font-sans uppercase tracking-wider px-1.5 py-0.5">
                             Sold Out
                           </span>
                         </div>
                       )}
                     </div>
-                    
+
                     {/* Product info */}
                     <div className="flex-1 text-left">
-                      <h3 className={`font-serif text-lg transition-colors ${product.soldOut ? 'text-cream/50' : 'text-cream group-hover:text-gold'}`}>
+                      <h3 className={`font-serif text-lg transition-colors ${product.soldOut ? 'text-forest/40' : 'text-forest group-hover:text-gold'}`}>
                         {product.name}
                       </h3>
-                      <p className="font-sans text-sm text-cream/50">
+                      <p className="font-sans text-sm text-forest/55">
                         {product.category} • ${product.price.toFixed(2)}
-                        {product.soldOut && <span className="ml-2 text-cream/30">• Sold Out</span>}
+                        {product.soldOut && <span className="ml-2 text-forest/35">• Sold Out</span>}
                       </p>
                     </div>
 
                     {/* Arrow */}
-                    <ArrowRight className={`h-5 w-5 transition-all duration-300 ${product.soldOut ? 'text-cream/20' : 'text-cream/30 group-hover:text-gold group-hover:translate-x-1'}`} />
+                    <ArrowRight className={`h-5 w-5 transition-all duration-300 ${product.soldOut ? 'text-forest/20' : 'text-forest/30 group-hover:text-gold group-hover:translate-x-1'}`} />
                   </button>
                 ))}
               </div>
             ) : (
               <div className="text-center py-12">
-                <p className="font-serif text-xl text-cream/50">No products found</p>
-                <p className="font-sans text-sm text-cream/30 mt-2">
+                <p className="font-serif text-xl text-forest/50">No products found</p>
+                <p className="font-sans text-sm text-forest/40 mt-2">
                   Try searching for "wine", "beer", or "spirits"
                 </p>
               </div>
@@ -328,8 +353,8 @@ const SearchOverlay = ({ isOpen, onClose }: SearchOverlayProps) => {
           }`}
           style={{ transitionDelay: "400ms" }}
         >
-          <p className="font-sans text-xs text-cream/30">
-            Press <kbd className="px-2 py-1 bg-cream/10 text-cream/50 mx-1">ESC</kbd> to close
+          <p className="font-sans text-xs text-forest/40">
+            Press <kbd className="px-2 py-1 bg-forest/10 text-forest/60 mx-1">ESC</kbd> to close
           </p>
         </div>
       </div>

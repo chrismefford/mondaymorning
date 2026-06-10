@@ -8,7 +8,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Loader2, Building2, Lock, Mail, Eye, EyeOff } from "lucide-react";
-import logoSecondaryGold from "@/assets/logo-secondary-gold.svg";
+import logoSecondaryGold from "@/assets/logo-mm-stacked-gold.png";
 import { SITE_NAME, getCanonicalUrl } from "@/lib/seo";
 import { supabase } from "@/integrations/supabase/client";
 import { lovable } from "@/integrations/lovable";
@@ -71,7 +71,7 @@ export default function WholesaleAuth() {
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
       (event, session) => {
         if (event === 'SIGNED_IN' && session?.user) {
-          // Skip wholesale check if user just registered — they won't be a wholesale customer yet
+          // Skip wholesale check if user just registered, they won't be a wholesale customer yet
           if (justSignedUpRef.current) {
             justSignedUpRef.current = false;
             return;
@@ -246,7 +246,7 @@ export default function WholesaleAuth() {
   };
 
   return (
-    <div className="min-h-screen bg-cream flex flex-col">
+    <div className="min-h-screen bg-cream flex flex-col brand-type">
       <Helmet>
         <title>B2B Login | {SITE_NAME}</title>
         <meta name="description" content="Login to your Monday Morning wholesale account to access B2B pricing and ordering." />

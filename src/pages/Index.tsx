@@ -29,7 +29,7 @@ const Index = () => {
   const canonicalUrl = SITE_URL;
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background brand-type">
       <Helmet>
         <title>{pageTitle}</title>
         <meta name="description" content={pageDescription} />

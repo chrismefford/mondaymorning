@@ -91,7 +91,7 @@ const Valentines = () => {
                     size="lg" 
                     className="bg-rose-500 hover:bg-rose-600 text-cream font-sans text-sm font-semibold uppercase tracking-wider px-8 py-6"
                   >
-                    Get Tickets — $60/Couple
+                    Get Tickets, $60/Couple
                     <ArrowRight className="w-4 h-4 ml-2" />
                   </Button>
                 </a>
@@ -184,7 +184,7 @@ const Valentines = () => {
                   Put your bartending skills to the test as you create two of Monday Morning's most loved NA cocktails. Learn about ingredients, functionality, and flavor profiles with our resident bartender DY guiding you every step of the way.
                 </p>
                 <p className="font-sans text-muted-foreground mb-8 leading-relaxed">
-                  Between sips, enjoy artisan chocolate truffles from Maya Moon, share a beautifully curated charcuterie board, and capture the moment with a custom couples portrait. End the evening with a cozy movie screening—the perfect finale to your date night.
+                  Between sips, enjoy artisan chocolate truffles from Maya Moon, share a beautifully curated charcuterie board, and capture the moment with a custom couples portrait. End the evening with a cozy movie screening, the perfect finale to your date night.
                 </p>
 
                 <div className="flex flex-col sm:flex-row gap-4">
@@ -239,7 +239,7 @@ const Valentines = () => {
                 size="lg" 
                 className="bg-rose-500 hover:bg-rose-600 text-cream font-sans text-sm font-semibold uppercase tracking-wider px-10 py-7"
               >
-                Get Tickets — $60/Couple
+                Get Tickets, $60/Couple
                 <ArrowRight className="w-4 h-4 ml-2" />
               </Button>
             </a>

@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import SEO from "@/components/SEO";
-import logoGold from "@/assets/logo-primary-gold.svg";
+import logoGold from "@/assets/logo-mm-gold.png";
 
 const LOCATION_LABELS: Record<string, string> = {
   "ob": "Ocean Beach",

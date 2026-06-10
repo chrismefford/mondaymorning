@@ -10,7 +10,7 @@ import { useShopifyProducts, shopifyToLocalProduct, isActiveProduct } from "@/ho
 
 const FeaturedProducts = () => {
   // Fetch best selling products, sorted by sales
-  const { data: shopifyProducts, isLoading, error } = useShopifyProducts(50, {
+  const { data: shopifyProducts, isLoading, error } = useShopifyProducts(100, {
     sortKey: "BEST_SELLING",
     includeSoldOut: false,
   });
@@ -28,82 +28,77 @@ const FeaturedProducts = () => {
     !p.name?.toLowerCase().includes('subscription')
   );
   
-  // Target categories for diversity: Beer, Wine, Spirit, Functional
-  const targetCategories = [
-    { keywords: ['beer', 'lager', 'ale', 'ipa', 'stout', 'pilsner'], label: 'beer' },
-    { keywords: ['wine', 'sparkling', 'champagne', 'prosecco', 'rosé', 'rose'], label: 'wine' },
-    { keywords: ['spirit', 'whiskey', 'gin', 'rum', 'vodka', 'aperitif', 'vermouth', 'amaro'], label: 'spirit' },
-    { keywords: ['functional', 'adaptogen', 'nootropic', 'wellness', 'elixir', 'kava', 'tonic'], label: 'functional' },
+  // Category helper so the grid stays varied (one product per category).
+  const CATEGORY_KEYWORDS: { label: string; kw: string[] }[] = [
+    { label: 'beer', kw: ['beer', 'lager', 'ale', 'ipa', 'stout', 'pilsner'] },
+    { label: 'wine', kw: ['wine', 'sparkling', 'champagne', 'prosecco', 'rosé', 'rose'] },
+    { label: 'cocktail', kw: ['cocktail', 'rtd', 'margarita', 'negroni', 'spritz', 'mule', 'paloma', 'martini'] },
+    { label: 'spirit', kw: ['spirit', 'whiskey', 'gin', 'rum', 'vodka', 'aperitif', 'vermouth', 'amaro', 'tequila'] },
+    { label: 'functional', kw: ['functional', 'adaptogen', 'nootropic', 'wellness', 'elixir', 'kava', 'tonic'] },
   ];
-  
-  // Featured product is always the #1 best seller (first in the list)
-  const featuredProduct = beverageProducts[0];
-  const featuredVendor = (featuredProduct?.vendor || featuredProduct?.name?.split(' ')[0] || '').toLowerCase();
-  
-  // Build diverse grid products (4 items) from different categories and vendors
-  const gridProducts: typeof beverageProducts = [];
-  const usedVendors = new Set<string>([featuredVendor]);
-  const usedIds = new Set<string>([featuredProduct?.id]);
-  
-  // Determine which category the featured product belongs to, so we can skip it
-  const getFeaturedCategory = () => {
-    if (!featuredProduct) return null;
-    const catLower = featuredProduct.category?.toLowerCase() || '';
-    const nameLower = featuredProduct.name?.toLowerCase() || '';
-    for (const target of targetCategories) {
-      if (target.keywords.some(kw => catLower.includes(kw) || nameLower.includes(kw))) {
-        return target.label;
-      }
-    }
-    return null;
+  const categoryOf = (p?: { category?: string; name?: string }) => {
+    if (!p) return 'other';
+    const s = `${p.category || ''} ${p.name || ''}`.toLowerCase();
+    for (const c of CATEGORY_KEYWORDS) if (c.kw.some(kw => s.includes(kw))) return c.label;
+    return 'other';
   };
-  const featuredCategory = getFeaturedCategory();
-  
-  // Find one best-selling product per category (excluding featured's category), ensuring different vendors
-  for (const target of targetCategories) {
-    // Skip the category that the featured product belongs to
-    if (target.label === featuredCategory) continue;
+  const brandOf = (p?: { vendor?: string; name?: string }) =>
+    (p?.vendor || p?.name?.split(' ')[0] || '').toLowerCase();
+
+  // "Try something new" = discovery picks. Spotlight lesser-known makers (Curious
+  // Elixir first, per owner). The #1 best seller stays the featured hero for sales.
+  const DISCOVERY_BRANDS = ['curious elixir', 'three spirit', 'ceybon', 'bolle', 'below brew', 'aplos', 'amethyst', 'abstinence', 'de soi'];
+  // Headline brands kept OUT of the discovery grid (too well-known), plus brands
+  // whose product photos still have dark/black backgrounds (Goodvines) so the
+  // curated grid stays clean until those images are reshot.
+  const EXCLUDE_BRANDS = ['leilo', 'goodvines'];
+
+  const featuredProduct = beverageProducts[0];
+
+  // Build a 4-item discovery grid: one per brand AND one per category for variety.
+  const gridProducts: typeof beverageProducts = [];
+  const usedBrands = new Set<string>([brandOf(featuredProduct)]);
+  const usedCats = new Set<string>([categoryOf(featuredProduct)]);
+  const usedIds = new Set<string>([featuredProduct?.id]);
+
+  const tryAdd = (p?: (typeof beverageProducts)[number]) => {
+    if (!p || gridProducts.length >= 4 || usedIds.has(p.id)) return;
+    const brand = brandOf(p);
+    if (EXCLUDE_BRANDS.some(b => brand.includes(b))) return;
+    if (usedBrands.has(brand)) return;
+    const cat = categoryOf(p);
+    if (cat !== 'other' && usedCats.has(cat)) return;
+    gridProducts.push(p);
+    usedIds.add(p.id);
+    usedBrands.add(brand);
+    usedCats.add(cat);
+  };
+
+  // Rotate which SKU per brand shows based on the calendar month, so the picks
+  // refresh ~once a month (keeps it fresh without feeling busy).
+  const monthSeed = (() => { const d = new Date(); return d.getFullYear() * 12 + d.getMonth(); })();
+
+  // Pass 1: curated discovery brands, in priority order (SKU rotates monthly).
+  for (const brand of DISCOVERY_BRANDS) {
     if (gridProducts.length >= 4) break;
-    
-    const categoryProducts = beverageProducts.filter(p => {
-      if (usedIds.has(p.id)) return false;
-      const catLower = p.category?.toLowerCase() || '';
-      const nameLower = p.name?.toLowerCase() || '';
-      return target.keywords.some(kw => catLower.includes(kw) || nameLower.includes(kw));
-    });
-    
-    // Find first product in this category from a vendor we haven't used yet
-    const product = categoryProducts.find(p => {
-      const vendor = (p.vendor || p.name?.split(' ')[0] || '').toLowerCase();
-      return !usedVendors.has(vendor);
-    });
-    
-    if (product) {
-      gridProducts.push(product);
-      usedIds.add(product.id);
-      const vendor = (product.vendor || product.name?.split(' ')[0] || '').toLowerCase();
-      usedVendors.add(vendor);
+    const matches = beverageProducts.filter(p => brandOf(p).includes(brand));
+    if (!matches.length) continue;
+    const start = monthSeed % matches.length;
+    for (let i = 0; i < matches.length; i++) {
+      tryAdd(matches[(start + i) % matches.length]);
+      if (gridProducts.length >= 4) break;
     }
   }
-  
-  // If we don't have 4 grid products, fill with remaining best sellers from unused vendors
+  // Pass 2: fill any remaining slots from the mid-tier (skip top sellers), staying diverse.
   if (gridProducts.length < 4) {
-    const remaining = beverageProducts.filter(p => {
-      if (usedIds.has(p.id)) return false;
-      const vendor = (p.vendor || p.name?.split(' ')[0] || '').toLowerCase();
-      return !usedVendors.has(vendor);
-    });
-    for (const p of remaining) {
+    for (const p of beverageProducts.slice(8)) {
       if (gridProducts.length >= 4) break;
-      gridProducts.push(p);
-      usedIds.add(p.id);
-      const vendor = (p.vendor || p.name?.split(' ')[0] || '').toLowerCase();
-      usedVendors.add(vendor);
+      tryAdd(p);
     }
   }
 
   return (
-    <section id="shop" className="py-10 lg:py-24 bg-cream relative overflow-hidden">
+    <section id="shop" className="py-10 lg:py-16 bg-cream relative overflow-hidden">
       {/* Organic texture background */}
       <div 
         className="absolute inset-0 opacity-40 pointer-events-none"
@@ -117,18 +112,18 @@ const FeaturedProducts = () => {
 
       <div className="relative z-10">
         {/* Section Header */}
-        <div className="container mx-auto px-4 lg:px-8 mb-8 lg:mb-24">
+        <div className="container mx-auto px-4 lg:px-8 mb-6 lg:mb-10">
           <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-4 lg:gap-6">
             <div>
               <span className="font-sans text-[10px] lg:text-xs font-semibold uppercase tracking-[0.3em] text-gold mb-2 lg:mb-4 block">
                 ( 500+ to choose from )
               </span>
               <h2 className="font-serif text-3xl lg:text-5xl xl:text-6xl leading-[1]">
-                Try something <span className="italic text-gold">new</span>
+                Try something <span className="font-script text-gold text-[1.2em] leading-none">new</span>
               </h2>
             </div>
             <p className="font-sans text-sm lg:text-base text-muted-foreground max-w-sm hidden lg:block">
-              Don't guess—taste. Every bottle here has been handpicked because it's actually good.
+              Don't guess, taste. Every bottle here has been handpicked because it's actually good.
             </p>
             <Link to="/collections/best-sellers" onClick={() => window.scrollTo(0, 0)}>
               <Button 
@@ -236,18 +231,18 @@ const FeaturedProducts = () => {
             {/* Featured Product */}
             <Link 
               to={featuredProduct.handle ? `/product/${featuredProduct.handle}` : `/product/${featuredProduct.name.toLowerCase().replace(/\s+/g, '-')}`}
-              className="block mb-20 lg:mb-32 group"
+              className="block mb-8 lg:mb-12 group"
             >
               <div className="grid lg:grid-cols-12 gap-8 items-center">
                 {/* Image - Takes 7 columns */}
                 <div className="lg:col-span-7 relative">
-                  <div className="aspect-[4/3] overflow-hidden border-2 border-forest bg-sand">
+                  <div className="aspect-[4/3] lg:aspect-auto lg:h-[380px] overflow-hidden border-2 border-forest bg-sand">
                     <img
                       src={featuredProduct.image}
                       alt={featuredProduct.name}
                       loading="lazy"
                       decoding="async"
-                      className="w-full h-full object-contain p-12 transition-transform duration-700 group-hover:scale-105"
+                      className="w-full h-full object-contain p-10 transition-transform duration-700 group-hover:scale-105"
                     />
                   </div>
                   {/* Offset accent - Gold */}
@@ -284,13 +279,10 @@ const FeaturedProducts = () => {
               </div>
             </Link>
 
-            {/* Product Grid - Staggered */}
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 gap-y-10 lg:gap-8 lg:gap-y-16">
-              {gridProducts.map((product, index) => (
-                <div 
-                  key={product.id} 
-                  className={`${index % 2 === 1 ? 'lg:translate-y-12' : ''}`}
-                >
+            {/* Product Grid - even rows */}
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 gap-y-10 lg:gap-8 items-stretch">
+              {gridProducts.map((product) => (
+                <div key={product.id} className="h-full">
                   <ProductCard product={product} showProductOnly />
                 </div>
               ))}

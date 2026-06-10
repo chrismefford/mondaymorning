@@ -41,7 +41,7 @@ const KavaHavenShopSection = () => {
               Get Yours <span className="italic">Today</span>
             </h2>
             <p className="font-sans text-forest/70 max-w-lg mx-auto">
-              Plant-based relaxation in a can. No alcohol, no hangover — just smooth, social calm.
+              Plant-based relaxation in a can. No alcohol, no hangover, just smooth, social calm.
             </p>
           </div>
 

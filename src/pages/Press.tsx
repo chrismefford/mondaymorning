@@ -2,7 +2,7 @@ import { ExternalLink, Tv, Newspaper, Globe, Podcast, BookOpen, Play } from "luc
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import SEO from "@/components/SEO";
-import pressHero from "@/assets/lifestyle/press-hero.webp";
+import textureCream from "@/assets/texture-cream.webp";
 
 interface PressItem {
   outlet: string;
@@ -200,7 +200,7 @@ const Press = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-cream brand-type">
       <SEO
         title="Press & Media"
         description="Read what CBS 8, FOX 5, the San Diego Union-Tribune, Associated Press, and more are saying about Monday Morning Bottle Shop, San Diego's premier non alcoholic beverage destination."
@@ -211,30 +211,31 @@ const Press = () => {
       <Header />
 
       {/* Hero */}
-      <section className="relative h-[60vh] min-h-[420px] flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0">
-          <img src={pressHero} alt="Press and media coverage" className="w-full h-full object-cover" />
-          <div className="absolute inset-0 bg-forest-deep/75" />
-        </div>
+      <section className="relative pt-32 lg:pt-40 pb-16 lg:pb-20 overflow-hidden bg-cream">
+        <div
+          className="absolute inset-0 opacity-40 pointer-events-none"
+          style={{ backgroundImage: `url(${textureCream})`, backgroundSize: 'cover', backgroundPosition: 'center' }}
+        />
+        <div className="grain absolute inset-0 pointer-events-none opacity-20" />
         <div className="relative z-10 text-center px-4 max-w-3xl mx-auto">
           <p className="font-sans text-xs uppercase tracking-[0.25em] text-gold mb-4">
             In the News
           </p>
-          <h1 className="font-serif text-5xl lg:text-7xl text-cream mb-6">
-            Press & Media
+          <h1 className="font-serif text-5xl lg:text-7xl text-forest mb-6">
+            Press & <span className="font-script text-gold text-[1.1em] leading-none">Media</span>
           </h1>
-          <p className="font-sans text-lg text-cream/80 max-w-xl mx-auto leading-relaxed">
+          <p className="font-sans text-lg text-forest/70 max-w-xl mx-auto leading-relaxed">
             {totalMentions} features across TV, print, podcasts, and digital media covering San Diego's non alcoholic movement.
           </p>
         </div>
       </section>
 
       {/* Featured Logos Bar */}
-      <section className="bg-forest py-6 border-b border-forest-light/20">
+      <section className="bg-sand/60 py-6 border-y border-forest/10">
         <div className="container mx-auto px-4">
           <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-3">
             {["Associated Press", "Inc.", "CBS 8", "FOX 5", "KUSI", "San Diego Union-Tribune", "SD Business Journal"].map((name) => (
-              <span key={name} className="font-serif text-sm lg:text-base text-cream/60 italic whitespace-nowrap">
+              <span key={name} className="font-serif text-sm lg:text-base text-forest/50 italic whitespace-nowrap">
                 {name}
               </span>
             ))}
@@ -358,7 +359,7 @@ const Press = () => {
             We love sharing our story. Reach out for interviews, product samples, or press kits.
           </p>
           <a
-            href="mailto:hello@mondaymorning-af.com?subject=Press Inquiry"
+            href="mailto:info@mondaymorning-af.com?subject=Press Inquiry"
             className="inline-flex items-center gap-2 bg-gold hover:bg-gold-light text-forest font-sans text-sm uppercase tracking-wider px-8 py-4 transition-colors"
           >
             Get in Touch

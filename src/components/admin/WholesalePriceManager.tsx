@@ -199,7 +199,7 @@ export default function WholesalePriceManager() {
   );
 
   const formatPrice = (price: number | null) => {
-    if (price === null) return "—";
+    if (price === null) return "-";
     return `$${price.toFixed(2)}`;
   };
 
@@ -263,7 +263,7 @@ export default function WholesalePriceManager() {
       <div className="bg-forest/5 rounded-lg p-4 text-sm text-forest/70">
         <strong>CSV Format:</strong> product_handle, variant_id (optional), wholesale_price, retail_price (optional)
         <br />
-        <span className="text-xs">Example: athletic-brewing-run-wild-ipa-6pk, , 7.99, 12.99</span>
+        <span className="text-xs">Example: athletic-brewing-run-wild-ipa-6pk, 7.99, 12.99</span>
       </div>
 
       <div className="border rounded-lg overflow-hidden">
@@ -295,7 +295,7 @@ export default function WholesalePriceManager() {
                   <TableRow key={price.id}>
                     <TableCell className="font-mono text-sm">{price.product_handle}</TableCell>
                     <TableCell className="text-sm text-forest/60">
-                      {price.variant_id || "—"}
+                      {price.variant_id || "-"}
                     </TableCell>
                     <TableCell className="text-right font-bold text-forest">
                       {formatPrice(price.wholesale_price)}
@@ -306,7 +306,7 @@ export default function WholesalePriceManager() {
                     <TableCell className="text-right">
                       {discount ? (
                         <span className="text-gold font-medium">{discount}% off</span>
-                      ) : "—"}
+                      ) : "-"}
                     </TableCell>
                     <TableCell className="text-right">
                       <div className="flex items-center justify-end gap-1">

@@ -22,10 +22,10 @@ interface Event {
 const events: Event[] = [
   {
     id: "valentines-2026",
-    title: "Sips & Sweethearts — Valentine's Experience",
+    title: "Sips & Sweethearts, Valentine's Experience",
     date: "February 14, 2026",
     time: "6:00 PM – 9:00 PM",
-    location: "Monday Morning — Pacific Beach",
+    location: "Monday Morning, Pacific Beach",
     description: "An intimate evening of curated NA wine pairings, chocolate tastings, and live acoustic music. The perfect date night without the hangover.",
     ticketUrl: "https://www.eventbrite.com/e/san-diego-valentines-day-experience-sips-sweethearts-tickets-1982235825715?aff=oddtdtcreator",
     image: "https://images.unsplash.com/photo-1470338745628-171cf53de3a8?w=1200&q=80",
@@ -34,10 +34,10 @@ const events: Event[] = [
   },
   {
     id: "tasting-tuesday",
-    title: "Tasting Tuesday — NA Beer Flight Night",
+    title: "Tasting Tuesday, NA Beer Flight Night",
     date: "Every Tuesday",
     time: "5:00 PM – 8:00 PM",
-    location: "Monday Morning — Pacific Beach",
+    location: "Monday Morning, Pacific Beach",
     description: "Sample 4 rotating NA craft beers with guided tasting notes. Free to attend, flights available for purchase.",
     ticketUrl: "#",
     image: "https://images.unsplash.com/photo-1535958636474-b021ee887b13?w=800&q=80",
@@ -48,7 +48,7 @@ const events: Event[] = [
     title: "Mocktail Masterclass",
     date: "February 22, 2026",
     time: "2:00 PM – 4:00 PM",
-    location: "Monday Morning — Pacific Beach",
+    location: "Monday Morning, Pacific Beach",
     description: "Learn to craft 3 signature NA cocktails with our head bartender. All ingredients and recipes included.",
     ticketUrl: "#",
     image: "https://images.unsplash.com/photo-1551024709-8f23befc6f87?w=800&q=80",
@@ -56,10 +56,10 @@ const events: Event[] = [
   },
   {
     id: "sunset-social",
-    title: "Sunset Social — Rooftop Mixer",
+    title: "Sunset Social, Rooftop Mixer",
     date: "March 1, 2026",
     time: "5:00 PM – 8:00 PM",
-    location: "Monday Morning — Ocean Beach",
+    location: "Monday Morning, Ocean Beach",
     description: "Mingle with the sober-curious community over sunset views and complimentary NA sparkling wine. DJ set by local artists.",
     ticketUrl: "#",
     image: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&q=80",
@@ -67,10 +67,10 @@ const events: Event[] = [
   },
   {
     id: "wellness-morning",
-    title: "Wellness Wednesday — Morning Elixirs",
+    title: "Wellness Wednesday, Morning Elixirs",
     date: "Every Wednesday",
     time: "7:00 AM – 9:00 AM",
-    location: "Monday Morning — Pacific Beach",
+    location: "Monday Morning, Pacific Beach",
     description: "Start your day with adaptogenic lattes, functional tonics, and a 30-min guided breathwork session.",
     ticketUrl: "#",
     image: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=800&q=80",
@@ -143,13 +143,13 @@ const Events = () => {
   return (
     <>
       <SEO
-        title="Events — Monday Morning"
+        title="Events, Monday Morning"
         description="Join us for tastings, workshops, and social events at Monday Morning. Discover the alcohol-free lifestyle in San Diego."
         path="/events"
       />
       <Header />
 
-      {/* Hero — Featured Event */}
+      {/* Hero, Featured Event */}
       {featured && (
         <section className="relative min-h-[85vh] flex items-end overflow-hidden">
           <img

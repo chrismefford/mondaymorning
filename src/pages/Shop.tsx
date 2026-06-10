@@ -1,7 +1,10 @@
-import React, { useMemo } from "react";
+import { useMemo } from "react";
 import { Link } from "react-router-dom";
 import { Helmet } from "@/lib/helmet-compat";
-import { Loader2, ArrowRight, ArrowUpRight, Sun, Moon, Users, Palmtree, Sparkles, Wine, Heart } from "lucide-react";
+import {
+  Loader2, ArrowRight, Palmtree, Heart, Sun, Moon, Sparkles,
+  Beer, Wine, Martini, Leaf, GlassWater, Truck, Package, Globe,
+} from "lucide-react";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import ProductCard from "@/components/home/ProductCard";
@@ -9,545 +12,294 @@ import { Button } from "@/components/ui/button";
 import { useShopifyAllProducts, shopifyToLocalProduct } from "@/hooks/useShopifyProducts";
 import textureCream from "@/assets/texture-cream.webp";
 import textureGreen from "@/assets/texture-green.webp";
-import textureBlue from "@/assets/texture-blue.webp";
 import stampGold from "@/assets/stamp-gold.svg";
-import stampBlue from "@/assets/stamp-blue.svg";
-import { 
-  SITE_NAME, 
-  SITE_URL, 
-  DEFAULT_OG_IMAGE,
-  TWITTER_HANDLE,
-  getCanonicalUrl
-} from "@/lib/seo";
+import { SITE_NAME, DEFAULT_OG_IMAGE, TWITTER_HANDLE, getCanonicalUrl } from "@/lib/seo";
 
-// Lifestyle images for vibe sections
-import friendsBeachToast from "@/assets/lifestyle/friends-beach-toast.jpg";
-import rooftopCheers from "@/assets/lifestyle/rooftop-cheers.jpg";
-import dinnerPartyToast from "@/assets/lifestyle/dinner-party-toast.jpg";
-import poolsideFriendsDrinks from "@/assets/lifestyle/poolside-friends-drinks.jpg";
-import beachSunset1 from "@/assets/lifestyle/beach-sunset-1.jpg";
-import sparklingCelebration from "@/assets/lifestyle/sparkling-celebration.jpg";
-import functionalWellnessMorning from "@/assets/lifestyle/functional-wellness-morning.jpg";
-import patioCoupleBeers from "@/assets/lifestyle/patio-couple-beers.jpg";
-
-// Vibe sections configuration with colors
-const vibeSections = [
-  {
-    id: "beach-day",
-    title: "Beach Day",
-    subtitle: "Sun, sand, and good sips",
-    icon: Palmtree,
-    image: friendsBeachToast,
-    bgColor: "bg-ocean",
-    textColor: "text-cream",
-    accentColor: "text-gold",
-    texture: textureBlue,
-    categories: ["Ready to Drink", "RTD", "Beverages", "NA Beer", "Beer"],
-    keywords: ["tropical", "coconut", "citrus", "lime", "mango", "pineapple", "watermelon", "beach"],
-    maxProducts: 4,
-  },
-  {
-    id: "date-night",
-    title: "Date Night",
-    subtitle: "Intimate moments, elevated",
-    icon: Heart,
-    image: dinnerPartyToast,
-    bgColor: "bg-forest",
-    textColor: "text-cream",
-    accentColor: "text-gold",
-    texture: textureGreen,
-    categories: ["Wine Alternative", "Wine", "Sparkling", "Spirit Alternative"],
-    keywords: ["red", "pinot", "cabernet", "rose", "champagne", "elegant", "romantic"],
-    maxProducts: 4,
-  },
-  {
-    id: "golden-hour",
-    title: "Golden Hour",
-    subtitle: "When the light hits just right",
-    icon: Sun,
-    image: rooftopCheers,
-    bgColor: "bg-gold",
-    textColor: "text-forest",
-    accentColor: "text-forest",
-    texture: textureCream,
-    categories: ["Aperitif", "Aperitivo", "Spirit Alternative", "Sparkling"],
-    keywords: ["aperitif", "spritz", "bitter", "orange", "botanical", "herb"],
-    maxProducts: 4,
-  },
-  {
-    id: "cozy-evening",
-    title: "Cozy Evening",
-    subtitle: "Unwind in your own way",
-    icon: Moon,
-    image: patioCoupleBeers,
-    bgColor: "bg-coral",
-    textColor: "text-cream",
-    accentColor: "text-gold",
-    texture: textureCream,
-    categories: ["Wine Alternative", "Wine", "Functional Elixir", "Functional", "Spirit Alternative", "Botanical"],
-    keywords: ["calm", "relax", "lavender", "chamomile", "warm", "spice", "vanilla", "whiskey", "bourbon", "red", "merlot", "cabernet"],
-    // Prefer the Calm version (and never show the Awake / slushy items in this vibe)
-    preferredKeywords: ["dromme", "calm"],
-    excludeKeywords: ["awake", "slush", "slushy"],
-    featuredProductHandles: ["kava-haven-kava-infused-spirit", "amethyst", "lautus-de-airen-red"],
-    maxProducts: 4,
-  },
-  {
-    id: "party-mode",
-    title: "Party Mode",
-    subtitle: "Toast without the hangover",
-    icon: Sparkles,
-    image: sparklingCelebration,
-    bgColor: "bg-forest",
-    textColor: "text-cream",
-    accentColor: "text-gold",
-    texture: textureGreen,
-    categories: ["Sparkling", "Champagne Alternative", "Ready to Drink"],
-    keywords: ["celebration", "toast", "bubbly", "sparkling", "party", "prosecco"],
-    maxProducts: 4,
-  },
-  {
-    id: "morning-ritual",
-    title: "Morning Ritual",
-    subtitle: "Start with intention",
-    icon: Sun,
-    image: functionalWellnessMorning,
-    bgColor: "bg-ocean",
-    textColor: "text-cream",
-    accentColor: "text-gold",
-    texture: textureBlue,
-    categories: ["Functional Elixir", "Functional", "Adaptogens"],
-    keywords: ["morning", "energy", "focus", "clarity", "wellness", "ginger", "turmeric", "lemon"],
-    maxProducts: 4,
-  },
+// Quick-jump categories (the chip row under the trust bar).
+const categoryChips = [
+  { name: "Best Sellers", icon: Sparkles, href: "/collections/best-sellers" },
+  { name: "NA Beer", icon: Beer, href: "/collections/na-beer" },
+  { name: "NA Wine", icon: Wine, href: "/collections/wine-alternatives" },
+  { name: "NA Spirits", icon: Martini, href: "/collections/spirit-alternatives" },
+  { name: "Functionals", icon: Leaf, href: "/collections/functional" },
+  { name: "Shop All", icon: ArrowRight, href: "/collections/all" },
 ];
 
-// Vibe section component with image on top and colorful background
-const VibeSection = ({ 
-  vibe, 
-  products, 
-  index 
-}: { 
-  vibe: typeof vibeSections[0]; 
-  products: any[];
-  index: number;
-}) => {
-  const Icon = vibe.icon;
-  
-  if (products.length === 0) return null;
-  
-  return (
-    <section className={`relative py-12 lg:py-20 ${vibe.bgColor} overflow-hidden`}>
-      {/* Texture background */}
-      <div 
-        className="absolute inset-0 opacity-10 pointer-events-none mix-blend-overlay"
-        style={{ backgroundImage: `url(${vibe.texture})`, backgroundSize: 'cover', backgroundPosition: 'center' }}
-      />
-      
-      {/* Grain overlay */}
-      <div className="grain absolute inset-0 pointer-events-none" />
-      
-      {/* Decorative stamp */}
-      {index % 2 === 0 ? (
-        <div className="absolute -top-16 -right-16 w-48 lg:w-72 opacity-10 pointer-events-none">
-          <img src={stampGold} alt="" className="w-full h-full" />
-        </div>
-      ) : (
-        <div className="absolute -bottom-16 -left-16 w-48 lg:w-72 opacity-[0.08] pointer-events-none">
-          <img src={stampBlue} alt="" className="w-full h-full" />
-        </div>
-      )}
-      
-      {/* Decorative blur */}
-      <div className={`absolute top-1/4 ${index % 2 === 0 ? 'right-0' : 'left-0'} w-64 h-64 ${vibe.bgColor === 'bg-gold' ? 'bg-forest/10' : 'bg-gold/10'} blur-3xl pointer-events-none`} />
-      
-      <div className="container mx-auto px-4 lg:px-8 relative z-10">
-        {/* Section Header with Number */}
-        <div className="flex items-center justify-between mb-6 lg:mb-8">
-          <div className="flex items-center gap-3">
-            <div className={`w-10 h-10 lg:w-12 lg:h-12 rounded-full ${vibe.bgColor === 'bg-gold' ? 'bg-forest' : 'bg-gold/90'} flex items-center justify-center`}>
-              <Icon className={`h-5 w-5 lg:h-6 lg:w-6 ${vibe.bgColor === 'bg-gold' ? 'text-gold' : 'text-forest'}`} />
-            </div>
-            <span className={`font-sans text-xs font-bold uppercase tracking-[0.2em] ${vibe.accentColor}`}>
-              The Vibe
-            </span>
-          </div>
-          <span className={`font-serif text-5xl lg:text-7xl font-bold ${vibe.bgColor === 'bg-gold' ? 'text-forest/10' : 'text-cream/10'}`}>
-            0{index + 1}
-          </span>
-        </div>
-        
-        {/* Lifestyle Image - Full Width on Top */}
-        <Link 
-          to={`/collections/${vibe.id}`}
-          className="block relative w-full aspect-[16/9] lg:aspect-[21/9] rounded-2xl overflow-hidden group mb-8 lg:mb-12 border-2 border-cream/20 hover:border-gold transition-colors duration-300"
-        >
-          <img 
-            src={vibe.image} 
-            alt={vibe.title}
-            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-forest/80 via-forest/20 to-transparent" />
-          <div className="grain absolute inset-0 pointer-events-none opacity-20" />
-          
-          {/* Title overlay on image */}
-          <div className="absolute bottom-0 left-0 right-0 p-6 lg:p-10">
-            <div className="flex items-end justify-between">
-              <div>
-                <h2 className="font-serif text-4xl lg:text-5xl xl:text-7xl text-cream mb-2">
-                  {vibe.title}
-                </h2>
-                <p className="font-sans text-base lg:text-lg text-cream/80 max-w-md">
-                  {vibe.subtitle}
-                </p>
-              </div>
-              <div className="hidden lg:flex w-14 h-14 border-2 border-cream items-center justify-center shrink-0 group-hover:bg-gold group-hover:border-gold transition-all duration-300">
-                <ArrowUpRight className="h-6 w-6 text-cream group-hover:text-forest transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-              </div>
-            </div>
-          </div>
-        </Link>
-        
-        {/* Products Grid */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
-          {products.slice(0, 4).map((product) => (
-            <div key={product.id} className="bg-cream rounded-xl overflow-hidden">
-              <ProductCard 
-                product={product} 
-                showProductOnly 
-              />
-            </div>
-          ))}
-        </div>
-        
-        {/* View more link */}
-        <div className="flex justify-center mt-8 lg:mt-10">
-          <Link 
-            to={`/collections/${vibe.id}`}
-            className={`inline-flex items-center gap-2 font-sans text-sm font-bold uppercase tracking-wider ${vibe.accentColor} hover:opacity-80 transition-colors group border-b-2 border-current pb-1`}
-          >
-            Shop {vibe.title}
-            <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-          </Link>
-        </div>
+// Trust / value props bar.
+const valueProps = [
+  { icon: GlassWater, label: "Taste before you buy", sub: "Free sips at our shops" },
+  { icon: Truck, label: "Fast local delivery", sub: "Across San Diego" },
+  { icon: Package, label: "500+ selection", sub: "Curated by our tasting room" },
+  { icon: Globe, label: "Ships nationwide", sub: "Right to your door" },
+];
+
+// Product rows by type. `match` filters the catalog by category.
+const typeSections = [
+  { key: "beer", eyebrow: "Crack one open", title: "NA", accent: "Beer", href: "/collections/na-beer", match: /beer/i },
+  { key: "wine", eyebrow: "Pour something", title: "NA", accent: "Wine", href: "/collections/wine-alternatives", match: /wine|sparkling|champagne/i },
+  { key: "spirits", eyebrow: "Shake it up", title: "NA", accent: "Spirits", href: "/collections/spirit-alternatives", match: /spirit|aperitif|aperitivo|botanical/i },
+  { key: "functional", eyebrow: "Feel good", title: "Functional", accent: "Drinks", href: "/collections/functional", match: /functional|elixir|adapto|tonic/i },
+];
+
+// Shop-by-vibe is now a compact, photo-free discovery row (consistent + on-brand).
+const vibes = [
+  { id: "beach-day", title: "Beach Day", subtitle: "Sun, sand, good sips", icon: Palmtree },
+  { id: "date-night", title: "Date Night", subtitle: "Intimate, elevated", icon: Heart },
+  { id: "golden-hour", title: "Golden Hour", subtitle: "When the light hits", icon: Sun },
+  { id: "cozy-evening", title: "Cozy Evening", subtitle: "Unwind your way", icon: Moon },
+  { id: "party-mode", title: "Party Mode", subtitle: "Toast, no hangover", icon: Sparkles },
+];
+
+const ProductGrid = ({ products, count = 4 }: { products: any[]; count?: number }) => (
+  <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
+    {products.slice(0, count).map((p) => (
+      <div key={p.id} className="bg-cream rounded-xl overflow-hidden border border-forest/10">
+        <ProductCard product={p} showProductOnly />
       </div>
-    </section>
-  );
-};
+    ))}
+  </div>
+);
+
+const SectionHeader = ({
+  eyebrow, title, accent, href, label = "Shop all",
+}: { eyebrow?: string; title: string; accent?: string; href?: string; label?: string }) => (
+  <div className="flex items-end justify-between gap-4 mb-6 lg:mb-8">
+    <div>
+      {eyebrow && (
+        <span className="font-sans text-[10px] lg:text-xs font-bold uppercase tracking-[0.3em] text-gold mb-2 block">
+          {eyebrow}
+        </span>
+      )}
+      <h2 className="font-serif text-3xl lg:text-4xl text-forest leading-none">
+        {title}
+        {accent ? <> <span className="font-script text-gold text-[1.15em] leading-none">{accent}</span></> : null}
+      </h2>
+    </div>
+    {href && (
+      <Link
+        to={href}
+        className="shrink-0 inline-flex items-center gap-2 font-sans text-xs font-bold uppercase tracking-wider text-forest hover:text-gold transition-colors border-b-2 border-current pb-1"
+      >
+        {label} <ArrowRight className="h-4 w-4" />
+      </Link>
+    )}
+  </div>
+);
 
 const ShopPage = () => {
-  // Fetch all products
-  const { data: products, isLoading, error } = useShopifyAllProducts({
-    sortKey: "BEST_SELLING",
-  });
+  const { data: products, isLoading, error } = useShopifyAllProducts({ sortKey: "BEST_SELLING" });
 
-  // Convert products
   const allProducts = useMemo(() => {
     if (!products) return [];
-    
     return products
       .map(shopifyToLocalProduct)
-      .filter(p => 
+      .filter((p) =>
         !p.name.toLowerCase().includes("gift card") &&
         !p.name.toLowerCase().includes("membership") &&
         !p.name.toLowerCase().includes("subscription")
       );
   }, [products]);
 
-  // Match products to vibe sections
-  const vibeProducts = useMemo(() => {
-    const productsByVibe: Record<string, any[]> = {};
-    const usedProductIds = new Set<string>();
-    
-    vibeSections.forEach((vibe) => {
-      const selected: any[] = [];
-      const excludeKeywords = ((vibe as any).excludeKeywords as string[] | undefined) ?? [];
-      const preferredKeywords = ((vibe as any).preferredKeywords as string[] | undefined) ?? [];
+  const bestSellers = useMemo(() => allProducts.slice(0, 8), [allProducts]);
 
-      const isExcluded = (product: any) => {
-        if (!excludeKeywords.length) return false;
-        const blob = `${product?.name ?? ""} ${product?.handle ?? ""}`.toLowerCase();
-        return excludeKeywords.some((k) => blob.includes(k.toLowerCase()));
-      };
-      
-      // First, check for multiple featured products by handles array
-      const featuredHandles = (vibe as any).featuredProductHandles as string[] | undefined;
-      if (featuredHandles && featuredHandles.length > 0) {
-        featuredHandles.forEach(handle => {
-          // Try exact match first, then partial match
-          let product = allProducts.find(p => 
-            p.handle === handle && !usedProductIds.has(p.id)
-          );
-          if (!product) {
-            product = allProducts.find(p => 
-              p.handle?.includes(handle) && !usedProductIds.has(p.id)
-            );
-          }
-          if (product && !isExcluded(product)) {
-            selected.push(product);
-            usedProductIds.add(product.id);
-          }
-        });
-      }
-      
-      // Legacy: check for single featured product by handle
-      if ((vibe as any).featuredProductHandle && selected.length === 0) {
-        const featuredProduct = allProducts.find(p => 
-          p.handle === (vibe as any).featuredProductHandle && 
-          !usedProductIds.has(p.id)
-        );
-        if (featuredProduct && !isExcluded(featuredProduct)) {
-          selected.push(featuredProduct);
-          usedProductIds.add(featuredProduct.id);
-        }
-      }
-
-      // Prefer specific products by keywords (e.g., "Dromme" + "Calm") before general matching.
-      if (preferredKeywords.length > 0 && selected.length < vibe.maxProducts) {
-        const preferredMatches = allProducts.filter((product) => {
-          if (usedProductIds.has(product.id)) return false;
-          if (isExcluded(product)) return false;
-          const name = (product.name ?? "").toLowerCase();
-          return preferredKeywords.every((k) => name.includes(k.toLowerCase()));
-        });
-
-        const remainingSlots = vibe.maxProducts - selected.length;
-        preferredMatches.slice(0, remainingSlots).forEach((p) => {
-          selected.push(p);
-          usedProductIds.add(p.id);
-        });
-      }
-      
-      const matches = allProducts.filter((product) => {
-        // Don't reuse products
-        if (usedProductIds.has(product.id)) return false;
-
-        // Exclusions per vibe (e.g., block "Awake" from Cozy Evening)
-        if (isExcluded(product)) return false;
-        
-        // Check category match
-        const categoryMatch = vibe.categories.some(cat => 
-          product.category?.toLowerCase().includes(cat.toLowerCase()) ||
-          cat.toLowerCase().includes(product.category?.toLowerCase() || "")
-        );
-        
-        // Check keyword match in name
-        const keywordMatch = vibe.keywords.some(keyword =>
-          product.name.toLowerCase().includes(keyword.toLowerCase())
-        );
-        
-        return categoryMatch || keywordMatch;
-      });
-      
-      // Fill remaining slots
-      const remaining = matches.slice(0, vibe.maxProducts - selected.length);
-      remaining.forEach(p => {
-        selected.push(p);
-        usedProductIds.add(p.id);
-      });
-      
-      productsByVibe[vibe.id] = selected;
+  const byType = useMemo(() => {
+    const out: Record<string, any[]> = {};
+    typeSections.forEach((t) => {
+      out[t.key] = allProducts.filter((p) => t.match.test(p.category || "")).slice(0, 4);
     });
-    
-    return productsByVibe;
-  }, [allProducts]);
-
-  // Get best sellers for the banner
-  const bestSellers = useMemo(() => {
-    return allProducts.slice(0, 4);
+    return out;
   }, [allProducts]);
 
   const pageTitle = "Shop Non Alcoholic Drinks: 500+ NA Beer, Wine & Spirits | Monday Morning";
-  const pageDescription = "Shop the largest curated NA drinks selection in San Diego. 500+ non alcoholic beers, wines, spirits, mocktails and functional drinks. Fast local delivery, nationwide shipping.";
+  const pageDescription = "Shop the largest curated NA drinks selection in San Diego. 500+ non alcoholic beers, wines, spirits, mocktails and functional drinks. Taste before you buy, fast local delivery, nationwide shipping.";
   const canonicalUrl = getCanonicalUrl("/shop");
 
   return (
-    <div className="min-h-screen bg-cream">
+    <div className="min-h-screen bg-cream brand-type">
       <Helmet>
         <title>{pageTitle}</title>
         <meta name="description" content={pageDescription} />
         <link rel="canonical" href={canonicalUrl} />
-        
-        {/* Open Graph */}
         <meta property="og:title" content={pageTitle} />
         <meta property="og:description" content={pageDescription} />
         <meta property="og:type" content="website" />
         <meta property="og:url" content={canonicalUrl} />
         <meta property="og:image" content={DEFAULT_OG_IMAGE} />
         <meta property="og:site_name" content={SITE_NAME} />
-        
-        {/* Twitter */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={pageTitle} />
         <meta name="twitter:description" content={pageDescription} />
         <meta name="twitter:image" content={DEFAULT_OG_IMAGE} />
         <meta name="twitter:site" content={TWITTER_HANDLE} />
       </Helmet>
-      
+
       <Header />
-      
+
       <main className="pt-20">
-        {/* Hero Section */}
-        <section className="relative py-16 lg:py-24 bg-forest text-cream overflow-hidden">
-          {/* Texture */}
-          <div 
-            className="absolute inset-0 opacity-10 pointer-events-none mix-blend-overlay"
-            style={{ backgroundImage: `url(${textureGreen})`, backgroundSize: 'cover' }}
+        {/* Hero */}
+        <section className="relative py-14 lg:py-20 bg-cream text-forest overflow-hidden">
+          <div
+            className="absolute inset-0 opacity-40 pointer-events-none"
+            style={{ backgroundImage: `url(${textureCream})`, backgroundSize: "cover" }}
           />
-          {/* Decorative stamp */}
           <div className="absolute -top-20 -right-20 w-64 lg:w-[28rem] opacity-[0.05] pointer-events-none">
             <img src={stampGold} alt="" className="w-full h-full" />
           </div>
           <div className="grain absolute inset-0 pointer-events-none opacity-30" />
-          
           <div className="container mx-auto px-4 lg:px-8 relative z-10">
             <div className="max-w-4xl mx-auto text-center">
               <span className="font-sans text-xs font-semibold uppercase tracking-[0.3em] text-gold mb-4 block">
-                Shop by Vibe, America's #1 NA Bottle Shop
+                Shop · Find Your Version of AF
               </span>
-              <h1 className="font-serif text-5xl lg:text-7xl xl:text-8xl font-normal mb-6 text-cream">
-                Shop Non Alcoholic <span className="italic text-gold">Drinks</span>
+              <h1 className="font-serif text-5xl lg:text-7xl xl:text-8xl font-normal mb-6 text-forest">
+                Shop Non Alcoholic <span className="font-script text-gold text-[1.15em] leading-none">Drinks</span>
               </h1>
-              <p className="font-sans text-lg lg:text-xl text-cream/80 max-w-2xl mx-auto">
-                500+ non alcoholic beers, wines, spirits, and functional drinks, hand-picked by our San Diego tasting room. Taste before you buy, get fast local delivery, or ship nationwide.
+              <p className="font-sans text-lg lg:text-xl text-forest/70 max-w-2xl mx-auto">
+                500+ non-alcoholic beers, wines, spirits, and functional drinks, hand-picked by our San Diego tasting room. Taste before you buy, get fast local delivery, or ship nationwide.
               </p>
-              
-              {/* Fun stats */}
-              <div className="flex flex-wrap justify-center gap-8 lg:gap-16 mt-12">
-                <div className="text-center">
-                  <span className="block font-serif text-4xl lg:text-5xl text-gold">500+</span>
-                  <span className="font-sans text-xs uppercase tracking-wider text-cream/60">Flavors</span>
+            </div>
+          </div>
+        </section>
+
+        {/* Trust / value bar */}
+        <section className="bg-cream border-y border-forest/15 py-5 lg:py-6">
+          <div className="container mx-auto px-4 lg:px-8">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-5">
+              {valueProps.map((v) => (
+                <div key={v.label} className="flex items-center gap-3">
+                  <v.icon className="h-6 w-6 lg:h-7 lg:w-7 text-gold shrink-0" />
+                  <div className="min-w-0">
+                    <p className="font-sans text-sm font-bold uppercase tracking-wide text-forest leading-tight">{v.label}</p>
+                    <p className="font-sans text-xs text-forest/55">{v.sub}</p>
+                  </div>
                 </div>
-                <div className="text-center">
-                  <span className="block font-serif text-4xl lg:text-5xl text-gold">6</span>
-                  <span className="font-sans text-xs uppercase tracking-wider text-cream/60">Vibes</span>
-                </div>
-                <div className="text-center">
-                  <span className="block font-serif text-4xl lg:text-5xl text-gold">∞</span>
-                  <span className="font-sans text-xs uppercase tracking-wider text-cream/60">Good Times</span>
-                </div>
-              </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Category quick-nav */}
+        <section className="bg-sand border-b border-forest/10 py-5 lg:py-6">
+          <div className="container mx-auto px-4 lg:px-8">
+            <div className="flex flex-wrap items-center justify-center gap-2.5 lg:gap-3">
+              {categoryChips.map((c) => (
+                <Link
+                  key={c.name}
+                  to={c.href}
+                  className="group inline-flex items-center gap-2 border-2 border-forest/20 hover:border-gold hover:bg-gold/10 px-4 py-2 lg:px-5 lg:py-2.5 transition-colors"
+                >
+                  <c.icon className="h-4 w-4 text-gold shrink-0" />
+                  <span className="font-sans text-xs lg:text-sm font-bold uppercase tracking-wider text-forest">{c.name}</span>
+                </Link>
+              ))}
             </div>
           </div>
         </section>
 
         {/* Loading state */}
         {isLoading && (
-          <section className="py-32 bg-sand">
+          <section className="py-32 bg-cream">
             <div className="flex flex-col items-center justify-center">
               <Loader2 className="h-12 w-12 animate-spin text-gold mb-4" />
-              <span className="font-sans text-muted-foreground">Curating the vibes...</span>
+              <span className="font-sans text-forest/60">Stocking the shelves...</span>
             </div>
           </section>
         )}
 
         {/* Error state */}
         {error && !isLoading && (
-          <section className="py-20 bg-sand">
+          <section className="py-20 bg-cream">
             <div className="text-center">
-              <p className="text-muted-foreground mb-4">
-                Unable to load products. Please try again.
-              </p>
-              <Button onClick={() => window.location.reload()}>
-                Refresh Page
-              </Button>
+              <p className="text-forest/60 mb-4">Unable to load products. Please try again.</p>
+              <Button onClick={() => window.location.reload()}>Refresh Page</Button>
             </div>
           </section>
         )}
 
-        {/* Vibe Sections */}
         {!isLoading && !error && (
           <>
-            {vibeSections.map((vibe, index) => (
-              <VibeSection 
-                key={vibe.id}
-                vibe={vibe}
-                products={vibeProducts[vibe.id] || []}
-                index={index}
+            {/* Best Sellers */}
+            {bestSellers.length > 0 && (
+              <section className="py-12 lg:py-16 bg-cream">
+                <div className="container mx-auto px-4 lg:px-8">
+                  <SectionHeader eyebrow="Community favorites" title="Best" accent="Sellers" href="/collections/best-sellers" />
+                  <ProductGrid products={bestSellers} count={8} />
+                </div>
+              </section>
+            )}
+
+            {/* Product rows by type */}
+            {typeSections.map((t, i) =>
+              byType[t.key] && byType[t.key].length > 0 ? (
+                <section key={t.key} className={`py-12 lg:py-16 ${i % 2 === 0 ? "bg-sand" : "bg-cream"}`}>
+                  <div className="container mx-auto px-4 lg:px-8">
+                    <SectionHeader eyebrow={t.eyebrow} title={t.title} accent={t.accent} href={t.href} />
+                    <ProductGrid products={byType[t.key]} count={4} />
+                  </div>
+                </section>
+              ) : null
+            )}
+
+            {/* Shop by Vibe — compact discovery cards (no lifestyle photos) */}
+            <section className="py-12 lg:py-16 bg-sand">
+              <div className="container mx-auto px-4 lg:px-8">
+                <div className="text-center max-w-2xl mx-auto mb-8 lg:mb-10">
+                  <span className="font-sans text-[10px] lg:text-xs font-bold uppercase tracking-[0.3em] text-gold mb-3 block">
+                    Not sure where to start?
+                  </span>
+                  <h2 className="font-serif text-3xl lg:text-4xl text-forest">
+                    Shop by <span className="font-script text-gold text-[1.15em] leading-none">vibe</span>
+                  </h2>
+                  <p className="font-sans text-forest/65 mt-3">
+                    Tell us the moment, we'll point you to the pour.
+                  </p>
+                </div>
+                <div className="grid grid-cols-2 md:grid-cols-5 gap-3 lg:gap-4">
+                  {vibes.map((v) => (
+                    <Link
+                      key={v.id}
+                      to={`/collections/${v.id}`}
+                      className="group bg-cream hover:bg-forest border-2 border-forest/15 hover:border-forest rounded-xl p-5 text-center transition-colors"
+                    >
+                      <div className="w-12 h-12 mx-auto rounded-full bg-forest group-hover:bg-gold flex items-center justify-center mb-3 transition-colors">
+                        <v.icon className="h-6 w-6 text-gold group-hover:text-forest transition-colors" />
+                      </div>
+                      <p className="font-serif text-lg text-forest group-hover:text-cream transition-colors">{v.title}</p>
+                      <p className="font-sans text-xs text-forest/60 group-hover:text-cream/70 mt-1 transition-colors">{v.subtitle}</p>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            </section>
+
+            {/* Final CTA */}
+            <section className="py-16 lg:py-24 bg-forest relative overflow-hidden">
+              <div
+                className="absolute inset-0 opacity-10 pointer-events-none mix-blend-overlay"
+                style={{ backgroundImage: `url(${textureGreen})`, backgroundSize: "cover" }}
               />
-            ))}
+              <div className="grain absolute inset-0 pointer-events-none opacity-20" />
+              <div className="container mx-auto px-4 lg:px-8 text-center relative z-10">
+                <h2 className="font-serif text-3xl lg:text-5xl text-cream mb-4">
+                  Want to see <span className="font-script text-gold text-[1.2em] leading-none">everything</span>?
+                </h2>
+                <p className="font-sans text-cream/70 max-w-md mx-auto mb-8">
+                  Browse our full collection of 500+ non-alcoholic drinks, or come taste them in person.
+                </p>
+                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                  <Button asChild size="lg" className="font-sans text-sm font-bold uppercase tracking-widest bg-gold text-forest hover:bg-gold/90 px-10 py-6">
+                    <Link to="/collections/all">Browse All Products</Link>
+                  </Button>
+                  <Button asChild size="lg" variant="outline" className="font-sans text-sm font-bold uppercase tracking-widest border-2 border-gold text-gold hover:bg-gold hover:text-forest px-10 py-6">
+                    <Link to="/locations">Visit a Shop</Link>
+                  </Button>
+                </div>
+              </div>
+            </section>
           </>
         )}
-
-        {/* Best Sellers Banner */}
-        {!isLoading && !error && bestSellers.length > 0 && (
-          <section className="relative py-16 lg:py-24 bg-sand overflow-hidden">
-            <div 
-              className="absolute inset-0 opacity-30 pointer-events-none"
-              style={{ backgroundImage: `url(${textureCream})`, backgroundSize: 'cover' }}
-            />
-            <div className="grain absolute inset-0 pointer-events-none opacity-10" />
-            
-            <div className="container mx-auto px-4 lg:px-8 text-center relative z-10">
-              <span className="font-sans text-xs font-bold uppercase tracking-[0.3em] text-gold mb-4 block">
-                Community Favorites
-              </span>
-              <h2 className="font-serif text-3xl lg:text-5xl text-forest mb-4">
-                The <span className="italic">Essentials</span>
-              </h2>
-              <p className="font-sans text-forest/70 max-w-md mx-auto mb-10">
-                The drinks everyone's talking about. Start here.
-              </p>
-              
-              {/* Products showcase */}
-              <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6 max-w-5xl mx-auto mb-10">
-                {bestSellers.map((product) => (
-                  <div key={product.id} className="bg-cream rounded-xl overflow-hidden shadow-sm">
-                    <ProductCard product={product} showProductOnly />
-                  </div>
-                ))}
-              </div>
-              
-              <Button 
-                asChild
-                size="lg"
-                className="font-sans text-sm font-bold uppercase tracking-widest bg-forest text-cream hover:bg-forest-deep px-10 py-6"
-              >
-                <Link to="/collections/best-sellers">
-                  Shop Best Sellers
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </Link>
-              </Button>
-            </div>
-          </section>
-        )}
-
-        {/* All Products Link */}
-        <section className="py-16 lg:py-24 bg-forest relative overflow-hidden">
-          <div 
-            className="absolute inset-0 opacity-10 pointer-events-none mix-blend-overlay"
-            style={{ backgroundImage: `url(${textureGreen})`, backgroundSize: 'cover' }}
-          />
-          <div className="grain absolute inset-0 pointer-events-none opacity-20" />
-          
-          <div className="container mx-auto px-4 lg:px-8 text-center relative z-10">
-            <h2 className="font-serif text-3xl lg:text-5xl text-cream mb-4">
-              Want to see <span className="italic text-gold">everything</span>?
-            </h2>
-            <p className="font-sans text-cream/70 max-w-md mx-auto mb-8">
-              Browse our full collection of 425+ non-alcoholic drinks.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button 
-                asChild
-                size="lg"
-                className="font-sans text-sm font-bold uppercase tracking-widest bg-gold text-forest hover:bg-gold/90 px-10 py-6"
-              >
-                <Link to="/collections/all">Browse All Products</Link>
-              </Button>
-              <Button 
-                asChild
-                size="lg"
-                variant="outline"
-                className="font-sans text-sm font-bold uppercase tracking-widest border-2 border-gold text-gold hover:bg-gold hover:text-forest px-10 py-6"
-              >
-                <Link to="/locations">Visit a Shop</Link>
-              </Button>
-            </div>
-          </div>
-        </section>
       </main>
-      
+
       <Footer />
     </div>
   );

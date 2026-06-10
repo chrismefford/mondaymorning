@@ -76,7 +76,7 @@ const ProductCard = ({ product, variant = "default", useLifestyleImage = true, s
               src={productImage}
               alt={product.name}
               loading="lazy"
-              className="absolute inset-0 w-full h-full object-contain p-4 pb-8 z-10"
+              className="absolute inset-0 w-full h-full object-contain p-4 pb-8 z-10 mix-blend-multiply"
             />
           ) : (
             <>
@@ -149,7 +149,7 @@ const ProductCard = ({ product, variant = "default", useLifestyleImage = true, s
               ) : (
                 <>
                   <ShoppingBag className="h-4 w-4" />
-                  Add to Cart — ${product.price}
+                  Add to Cart, ${product.price}
                 </>
               )}
             </Button>
@@ -162,7 +162,7 @@ const ProductCard = ({ product, variant = "default", useLifestyleImage = true, s
             {product.category}
           </span>
           
-          <h3 className={`font-serif font-normal mt-1 leading-tight ${isFeatured ? "text-3xl lg:text-4xl" : "text-base lg:text-lg"}`}>
+          <h3 className={`font-serif font-normal mt-1 leading-tight ${isFeatured ? "text-3xl lg:text-4xl" : "text-base lg:text-lg line-clamp-2 min-h-[2.5rem] lg:min-h-[2.75rem]"}`}>
             {product.name}
           </h3>
           
@@ -225,7 +225,7 @@ const ProductCard = ({ product, variant = "default", useLifestyleImage = true, s
                   ) : (
                     <>
                       <ShoppingBag className="h-4 w-4" />
-                      Add to Cart — ${product.price}
+                      Add to Cart, ${product.price}
                     </>
                   )}
                 </Button>

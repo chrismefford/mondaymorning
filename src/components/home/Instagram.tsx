@@ -17,7 +17,7 @@ const instagramImages = [
 
 const Instagram = () => {
   return (
-    <section className="py-12 lg:py-32 bg-ocean/10">
+    <section className="py-10 lg:py-16 bg-ocean/10">
       <div className="lg:container lg:mx-auto lg:px-8">
         {/* Section Header */}
         <div className="text-center mb-8 lg:mb-12 px-4 lg:px-0">
@@ -37,7 +37,7 @@ const Instagram = () => {
           </a>
           
           <h2 className="font-serif text-3xl lg:text-5xl font-medium mt-3 lg:mt-4">
-            Follow the <span className="italic text-ocean">sunrise</span>
+            Follow the <span className="font-script text-ocean text-[1.2em] leading-none">sunrise</span>
           </h2>
           <p className="font-sans text-sm text-muted-foreground mt-2">
             Tag us for a chance to be featured
