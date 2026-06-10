@@ -7,33 +7,30 @@ const corsHeaders = {
 };
 
 const ROUTING: Record<string, string> = {
-  b2b:        'operations@mondaymorning-af.com',
-  popups:     'operations@mondaymorning-af.com',
+  b2b: 'operations@mondaymorning-af.com',
+  popups: 'operations@mondaymorning-af.com',
   consulting: 'zane@mondaymorning-af.com',
-  brewing:    'brewery@mondaymorning-af.com',
-  events:     'zane@mondaymorning-af.com',
-  tasting:    'zane@mondaymorning-af.com',
-  general:    'zane@mondaymorning-af.com',
+  brewing: 'brewery@mondaymorning-af.com',
+  events: 'zane@mondaymorning-af.com',
+  tasting: 'zane@mondaymorning-af.com',
+  general: 'zane@mondaymorning-af.com',
 };
 
-const LABELS: Record<string, string> = {
-  b2b:        'B2B & Distribution',
-  popups:     'Retail Pop-Up',
+const LABELS: Record = {
+  b2b: 'B2B & Distribution',
+  popups: 'Retail Pop-Up',
   consulting: 'Consulting',
-  brewing:    'Contract Brewing',
-  events:     'Events & Vibations',
-  tasting:    'Tasting',
-  general:    'General Inquiry',
+  brewing: 'Contract Brewing',
+  events: 'Events & Vibations',
+  tasting: 'Tasting',
+  general: 'General Inquiry',
 };
 
 const esc = (s: unknown) =>
-  String(s ?? '').replace(/[<>&]/g, (c) => ({ '<': '&lt;', '>': '&gt;', '&': '&amp;' }[c]!));
+  String(s ?? '').replace(/[<>&]/g, (c) => ({ '<': '<', '>': '>', '&': '&' }[c]!));
 
 serve(async (req) => {
-  if (req.method === 'OPTIONS') {
-    return new Response(null, { headers: corsHeaders });
-  }
-
+  if (req.method === 'OPTIONS') return new Response(null, { headers: corsHeaders });
   try {
     const { inquiryId } = await req.json();
     if (!inquiryId) {
@@ -48,13 +45,8 @@ serve(async (req) => {
     );
 
     const { data: inq, error: fetchError } = await supabase
-      .from('inquiries')
-      .select('*')
-      .eq('id', inquiryId)
-      .single();
-
+      .from('inquiries').select('*').eq('id', inquiryId).single();
     if (fetchError || !inq) {
-      console.error('Failed to fetch inquiry:', fetchError);
       return new Response(JSON.stringify({ error: 'Inquiry not found' }), {
         status: 404, headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       });
@@ -63,41 +55,46 @@ serve(async (req) => {
     const recipient = ROUTING[inq.offering] ?? ROUTING.general;
     const label = LABELS[inq.offering] ?? LABELS.general;
 
-    const row = (k: string, v: string) => `
-      <tr>
-        <td style="padding:8px 12px;font-family:Georgia,serif;color:#6b7280;font-size:13px;text-transform:uppercase;letter-spacing:0.05em;width:140px;vertical-align:top;">${esc(k)}</td>
-        <td style="padding:8px 12px;font-family:Georgia,serif;color:#1f2937;font-size:15px;">${esc(v)}</td>
-      </tr>`;
+    const emailHtml = `
 
-    const emailHtml = `<!doctype html>
-<html>
-  <body style="margin:0;padding:24px;background:#faf7f2;font-family:Georgia,serif;color:#1f2937;">
-    <table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="max-width:600px;margin:0 auto;background:#ffffff;border:1px solid #e5e7eb;">
-      <tr>
-        <td style="padding:24px 28px;background:#1f3a2e;color:#f5e9c8;">
-          <div style="font-family:Georgia,serif;font-size:13px;letter-spacing:0.15em;text-transform:uppercase;opacity:0.8;">Monday Morning</div>
-          <h1 style="margin:6px 0 0;font-family:Georgia,serif;font-size:22px;font-weight:normal;">New ${esc(label)} Inquiry</h1>
-        </td>
-      </tr>
-      <tr>
-        <td style="padding:20px 16px;">
-          <table role="presentation" cellpadding="0" cellspacing="0" width="100%">
-            ${row('Name', inq.name)}
-            ${row('Email', inq.email)}
-            ${inq.company ? row('Company / Venue', inq.company) : ''}
-            ${inq.phone ? row('Phone', inq.phone) : ''}
-            ${inq.message ? row('Message', inq.message) : ''}
-          </table>
-        </td>
-      </tr>
-      <tr>
-        <td style="padding:16px 28px;background:#faf7f2;color:#6b7280;font-size:12px;font-family:Georgia,serif;border-top:1px solid #e5e7eb;">
-          ${esc(label)} · Submitted ${esc(new Date(inq.created_at).toLocaleString('en-US', { timeZone: 'America/Los_Angeles' }))}
-        </td>
-      </tr>
-    </table>
-  </body>
-</html>`;
+  
+
+New ${esc(label)} Inquiry
+
+Monday Morning
+
+
+    
+
+Name: ${esc(inq.name)}
+
+
+    
+
+Email: ${esc(inq.email)}
+
+
+    ${inq.company ? `
+
+Company / Venue: ${esc(inq.company)}
+
+` : ''}
+    ${inq.phone ? `
+
+Phone: ${esc(inq.phone)}
+
+` : ''}
+    ${inq.message ? `
+
+Message:
+${esc(inq.message)}
+
+` : ''}
+    
+
+${esc(label)} · Submitted ${new Date(inq.created_at).toLocaleString('en-US', { timeZone: 'America/Los_Angeles' })}
+
+`;
 
     const { error: queueError } = await supabase.rpc('enqueue_transactional_email', {
       p_to: recipient,
@@ -105,57 +102,44 @@ serve(async (req) => {
       p_html: emailHtml,
       p_template_name: `inquiry-${inq.offering}`,
     });
-
     if (queueError) {
-      console.error('Failed to queue email:', queueError);
       return new Response(JSON.stringify({ error: 'Failed to queue notification email' }), {
         status: 500, headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       });
     }
 
-    // Fire-and-forget forward to external CRM
+    // Forward the lead into the Sales CRM (best-effort; never fails the email).
+    let crmSynced = false, crmStatus: number | null = null, crmError: string | null = null;
     const crmUrl = Deno.env.get('CRM_INQUIRY_URL');
     const crmSecret = Deno.env.get('CRM_INQUIRY_SECRET');
+    const crmConfigured = !!(crmUrl && crmSecret);
     if (crmUrl && crmSecret) {
       try {
-        const crmRes = await fetch(crmUrl, {
+        const res = await fetch(crmUrl, {
           method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'x-inquiry-secret': crmSecret,
-          },
+          headers: { 'Content-Type': 'application/json', 'x-inquiry-secret': crmSecret },
           body: JSON.stringify({
-            inquiry_id: inq.id,
-            offering: inq.offering,
-            name: inq.name,
-            email: inq.email,
-            company: inq.company ?? null,
-            phone: inq.phone ?? null,
-            message: inq.message ?? null,
+            offering: inq.offering, name: inq.name, email: inq.email,
+            company: inq.company, phone: inq.phone, message: inq.message, inquiry_id: inq.id,
           }),
         });
-        if (crmRes.ok) {
-          const { error: updErr } = await supabase
-            .from('inquiries')
-            .update({ crm_synced: true })
-            .eq('id', inq.id);
-          if (updErr) console.error('Failed to mark crm_synced:', updErr);
+        crmStatus = res.status;
+        crmSynced = res.ok;
+        if (res.ok) {
+          await supabase.from('inquiries').update({ crm_synced: true }).eq('id', inq.id);
         } else {
-          const body = await crmRes.text().catch(() => '');
-          console.error('CRM forward non-2xx:', crmRes.status, body);
+          crmError = await res.text();
         }
-      } catch (crmErr) {
-        console.error('CRM forward failed:', crmErr);
+      } catch (e) {
+        crmError = e instanceof Error ? e.message : String(e);
       }
-    } else {
-      console.warn('CRM_INQUIRY_URL or CRM_INQUIRY_SECRET not set; skipping CRM forward');
     }
 
-    return new Response(JSON.stringify({ success: true, routedTo: recipient }), {
-      status: 200, headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-    });
+    return new Response(
+      JSON.stringify({ success: true, routedTo: recipient, crmSynced, crmStatus, crmError, crmConfigured }),
+      { status: 200, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+    );
   } catch (error) {
-    console.error('Error in send-inquiry-notification:', error);
     return new Response(JSON.stringify({ error: 'An unexpected error occurred' }), {
       status: 500, headers: { ...corsHeaders, 'Content-Type': 'application/json' },
     });
