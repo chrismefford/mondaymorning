@@ -5,19 +5,19 @@ import { SITE_URL } from "@/lib/seo";
 const NADrinksForRelaxation = () => (
   <AuthorityPage
     title="NA Drinks for Relaxation: 20+ Calming Bottles That Work | Monday Morning"
-    description="The non alcoholic drinks that actually help you wind down. Kava, adaptogen elixirs, low-dose botanicals, and the brands we stock in San Diego."
+    description="The non-alcoholic drinks that actually help you wind down. Kava, adaptogen elixirs, low-dose botanicals, and the brands we stock in San Diego."
     path="/na-drinks-for-relaxation"
     ogImage={`${SITE_URL}/og-na-drinks-relaxation.jpg`}
     eyebrow="Cluster Hub"
-    h1="Non alcoholic drinks for relaxation that actually work"
+    h1="Non-alcoholic drinks for relaxation that actually work"
     subhead="Alcohol is a sedative, but it taxes your sleep and your morning. These bottles use kava, adaptogens, and functional botanicals to deliver the wind-down without the cost."
-    tldr="The most effective non alcoholic drinks for relaxation use kava (a Pacific Island root that calms the nervous system), adaptogens like ashwagandha and reishi, or low-dose botanical blends. Top picks we stock: Leilo and Kavaly for clean kava, Soul Hum Elixirs and Alice Mushrooms for adaptogenic blends, Sentia for botanical mood drinks, and Curious Elixirs for ready-to-pour cocktails. Drink them like you would a glass of wine: at the end of the day, slowly, with intention. Effects build over 20 to 40 minutes."
+    tldr="The most effective non-alcoholic drinks for relaxation use kava (a Pacific Island root that calms the nervous system), adaptogens like ashwagandha and reishi, or low-dose botanical blends. Top picks we stock: Leilo and Kavaly for clean kava, Soul Hum Elixirs and Alice Mushrooms for adaptogenic blends, Sentia for botanical mood drinks, and Curious Elixirs for ready-to-pour cocktails. Drink them like you would a glass of wine: at the end of the day, slowly, with intention. Effects build over 20 to 40 minutes."
     heroImage={`${SITE_URL}/og-na-drinks-relaxation.jpg`}
     ctaPrimary={{ label: "Shop relaxation drinks", href: "/collections/functional" }}
     ctaSecondary={{ label: "Visit a tasting room", href: "/locations" }}
     breadcrumbs={[
       { name: "Home", url: SITE_URL },
-      { name: "Non Alcoholic Drinks", url: `${SITE_URL}/non-alcoholic-drinks` },
+      { name: "Non-Alcoholic Drinks", url: `${SITE_URL}/non-alcoholic-drinks` },
       { name: "Drinks for Relaxation", url: `${SITE_URL}/na-drinks-for-relaxation` },
     ]}
     sections={[
@@ -29,7 +29,7 @@ const NADrinksForRelaxation = () => (
               Alcohol does help you relax in the short term. It is a central nervous system depressant, so the first drink genuinely lowers tension. The problem is what happens next: disrupted REM sleep, a 3 a.m. cortisol spike, anxiety the next day, and a slow build of tolerance that pushes one drink into three.
             </p>
             <p>
-              Functional non alcoholic drinks aim for the same wind-down feeling without that tax. They use ingredients with real, studied effects on the nervous system, in doses that calm without sedating you into a hangover.
+              Functional non-alcoholic drinks aim for the same wind-down feeling without that tax. They use ingredients with real, studied effects on the nervous system, in doses that calm without sedating you into a hangover.
             </p>
           </>
         ),
@@ -102,7 +102,7 @@ const NADrinksForRelaxation = () => (
       },
     ]}
     faqs={[
-      { question: "What is the best non alcoholic drink for relaxation?", answer: "Kava is the most direct substitute for the calming feeling of alcohol because it acts on the same GABA receptors. Leilo and Kavaly are our top picks. For slower, gentler relaxation, adaptogen blends from Soul Hum Elixirs or Alice Mushrooms are excellent." },
+      { question: "What is the best non-alcoholic drink for relaxation?", answer: "Kava is the most direct substitute for the calming feeling of alcohol because it acts on the same GABA receptors. Leilo and Kavaly are our top picks. For slower, gentler relaxation, adaptogen blends from Soul Hum Elixirs or Alice Mushrooms are excellent." },
       { question: "Is kava safe to drink every night?", answer: "Moderate kava use is considered safe by most research. Avoid combining with alcohol, sedatives, or acetaminophen. If you take prescription medication or have liver issues, talk to your doctor first." },
       { question: "How long do functional drinks take to work?", answer: "Kava effects start in 15 to 30 minutes. Adaptogen blends are subtler and build with consistent use over days or weeks. Botanical mood drinks like Sentia work in 20 to 40 minutes." },
       { question: "Do relaxation drinks make you tired?", answer: "Kava and adaptogen drinks produce calm without heavy sedation. You can still function, drive, and hold a conversation. They are not sleep aids. For sleep specifically, look at chamomile or magnesium-forward formulas." },
@@ -113,9 +113,9 @@ const NADrinksForRelaxation = () => (
     ]}
     relatedLinks={[
       { label: "Functional Mocktails and Adaptogens", href: "/functional-mocktails-adaptogens", description: "Recipes that build kava and adaptogens into cocktails." },
-      { label: "Beginner's Guide to Non Alcoholic Drinks", href: "/beginners-guide-non-alcoholic-drinks", description: "Where to start if you are new to the category." },
-      { label: "Sober Curious Guide", href: "/sober-curious-guide", description: "The bigger picture on cutting back without quitting completely." },
-      { label: "Pillar: Non Alcoholic Drinks", href: "/non-alcoholic-drinks", description: "The full category overview." },
+      { label: "Beginner's Guide to Non-Alcoholic Drinks", href: "/beginners-guide-non-alcoholic-drinks", description: "Where to start if you are new to the category." },
+      { label: "Sober-Curious Guide", href: "/sober-curious-guide", description: "The bigger picture on cutting back without quitting completely." },
+      { label: "Pillar: Non-Alcoholic Drinks", href: "/non-alcoholic-drinks", description: "The full category overview." },
     ]}
   />
 );

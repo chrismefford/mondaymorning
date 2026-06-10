@@ -91,8 +91,8 @@ const NewToNonAlcoholic = () => {
   return (
     <div className="min-h-screen bg-background">
       <SEO
-        title="Beginner's Guide to Non Alcoholic Drinks: Where to Start in 2026 | Monday Morning"
-        description="New to non alcoholic drinks? Start here. The bottles to try first across NA beer, wine, spirits and functional drinks, picked by our San Diego tasting room staff."
+        title="Beginner's Guide to Non-Alcoholic Drinks: Where to Start in 2026 | Monday Morning"
+        description="New to non-alcoholic drinks? Start here. The bottles to try first across NA beer, wine, spirits and functional drinks, picked by our San Diego tasting room staff."
         path="/new-to-non-alcoholic-drinks"
         schema={[faqSchema, websiteSchema]}
       />

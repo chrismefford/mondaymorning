@@ -22,7 +22,7 @@ const tvFeatures: PressItem[] = [
   },
   {
     outlet: "FOX 5 San Diego",
-    title: "Alcohol free bottle shop, lounge welcomes guests in Ocean Beach",
+    title: "Alcohol-free bottle shop, lounge welcomes guests in Ocean Beach",
     date: "Jan 8, 2026",
     url: "https://www.youtube.com/watch?v=ZPQ0O6rEnCI",
     type: "tv",
@@ -195,7 +195,7 @@ const Press = () => {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
     "name": "Press & Media | Monday Morning Bottle Shop",
-    "description": "Media coverage and press mentions for Monday Morning Bottle Shop, San Diego's premier non alcoholic beverage destination.",
+    "description": "Media coverage and press mentions for Monday Morning Bottle Shop, San Diego's premier non-alcoholic beverage destination.",
     "url": "https://mondaymorning-af.com/press",
   };
 
@@ -203,7 +203,7 @@ const Press = () => {
     <div className="min-h-screen bg-cream brand-type">
       <SEO
         title="Press & Media"
-        description="Read what CBS 8, FOX 5, the San Diego Union-Tribune, Associated Press, and more are saying about Monday Morning Bottle Shop, San Diego's premier non alcoholic beverage destination."
+        description="Read what CBS 8, FOX 5, the San Diego Union-Tribune, Associated Press, and more are saying about Monday Morning Bottle Shop, San Diego's premier non-alcoholic beverage destination."
         path="/press"
         schema={schema}
       />
@@ -225,7 +225,7 @@ const Press = () => {
             Press & <span className="font-script text-gold text-[1.1em] leading-none">Media</span>
           </h1>
           <p className="font-sans text-lg text-forest/70 max-w-xl mx-auto leading-relaxed">
-            {totalMentions} features across TV, print, podcasts, and digital media covering San Diego's non alcoholic movement.
+            {totalMentions} features across TV, print, podcasts, and digital media covering San Diego's non-alcoholic movement.
           </p>
         </div>
       </section>
@@ -320,7 +320,7 @@ const Press = () => {
               Why Monday Morning?
             </h2>
             <p className="font-sans text-forest/60 text-center max-w-2xl mx-auto mb-12 leading-relaxed">
-              The ideal consultant for the non alcoholic space in San Diego.
+              The ideal consultant for the non-alcoholic space in San Diego.
             </p>
             <div className="grid md:grid-cols-2 gap-4 lg:gap-5">
               {[
@@ -332,7 +332,7 @@ const Press = () => {
                 "We are not trying to imitate alcohol culture. We are helping define what the next generation of social drinking looks like.",
                 "Every product and concept we recommend has been tested in real retail environments before it reaches your menu.",
                 "We help venues build systems, train staff, and design menus that work during real service.",
-                "Through our distribution network we provide access to some of the best alcohol free beverages in the world.",
+                "Through our distribution network we provide access to some of the best alcohol-free beverages in the world.",
                 "Most importantly, we understand that great NA programs are about experience, energy, and culture, not just ingredients.",
               ].map((point, i) => (
                 <div

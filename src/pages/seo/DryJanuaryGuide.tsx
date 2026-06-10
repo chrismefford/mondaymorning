@@ -8,16 +8,16 @@ const DryJanuaryGuide = () => (
     description="The complete Dry January 2026 playbook. What to drink instead of alcohol, the best NA bottles to stock, and how to make it stick. From Monday Morning Bottle Shop."
     path="/dry-january-guide"
     ogImage={`${SITE_URL}/og-dry-january-guide.jpg`}
-    eyebrow="Sober Curious Cluster"
+    eyebrow="Sober-Curious Cluster"
     h1="Dry January 2026, the playbook"
     subhead="Thirty one days off alcohol. Real benefits, real challenges, and the exact NA drinks that make it doable. Here is how to actually finish the month."
-    tldr="Dry January is a 31 day alcohol free experiment that started in the UK in 2013 and has become a global tradition. Studies show participants sleep better, lose modest weight, and report sharper mood by week three. Success comes from preparation: buy NA alternatives in advance, plan for two specific social events, and track how you feel daily. The single best swap is craft NA beer for regular beer. Most people who finish Dry January end up drinking 30 to 50% less the following year."
+    tldr="Dry January is a 31 day alcohol-free experiment that started in the UK in 2013 and has become a global tradition. Studies show participants sleep better, lose modest weight, and report sharper mood by week three. Success comes from preparation: buy NA alternatives in advance, plan for two specific social events, and track how you feel daily. The single best swap is craft NA beer for regular beer. Most people who finish Dry January end up drinking 30 to 50% less the following year."
     heroImage={`${SITE_URL}/og-dry-january-guide.jpg`}
     ctaPrimary={{ label: "Shop NA drinks", href: "/shop" }}
-    ctaSecondary={{ label: "Read the sober curious guide", href: "/sober-curious-guide" }}
+    ctaSecondary={{ label: "Read the sober-curious guide", href: "/sober-curious-guide" }}
     breadcrumbs={[
       { name: "Home", url: SITE_URL },
-      { name: "Sober Curious Guide", url: `${SITE_URL}/sober-curious-guide` },
+      { name: "Sober-Curious Guide", url: `${SITE_URL}/sober-curious-guide` },
       { name: "Dry January Guide", url: `${SITE_URL}/dry-january-guide` },
     ]}
     sections={[
@@ -75,7 +75,7 @@ const DryJanuaryGuide = () => (
               <li><strong>Nightcap →</strong> Glen Dochus old fashioned with a single big ice cube.</li>
               <li><strong>Weekend beach beer →</strong> Capacity Mexican Lager or Go Brewing Sunshine State.</li>
               <li><strong>Stress unwind →</strong> Kava drink (Kava Haven, Leilo) or Trip CBD blend.</li>
-              <li><strong>Restaurant order →</strong> Ask for a non alcoholic spirit if they have it, or order a club soda with bitters and lime.</li>
+              <li><strong>Restaurant order →</strong> Ask for a non-alcoholic spirit if they have it, or order a club soda with bitters and lime.</li>
               <li><strong>Toast at a celebration →</strong> NA sparkling wine in a flute. Nobody can tell.</li>
             </ol>
           </>
@@ -113,7 +113,7 @@ const DryJanuaryGuide = () => (
               <li>Sleep tracking data from wearables shows the benefit pattern persists if drinking does not return to nightly.</li>
             </ul>
             <p>
-              Many people do not realize they have effectively become <Link to="/sober-curious-guide">sober curious</Link> until February or March, when they notice they have not really wanted to drink the way they used to.
+              Many people do not realize they have effectively become <Link to="/sober-curious-guide">sober-curious</Link> until February or March, when they notice they have not really wanted to drink the way they used to.
             </p>
           </>
         ),
@@ -149,10 +149,10 @@ const DryJanuaryGuide = () => (
       { question: "Will Dry January help me sleep better?", answer: "Almost certainly yes, especially if you were drinking near bedtime. Alcohol disrupts REM sleep even at low doses. Removing it for 31 days produces measurable improvements on most sleep trackers." },
     ]}
     relatedLinks={[
-      { label: "Sober curious guide", href: "/sober-curious-guide", description: "What comes after Dry January." },
-      { label: "Best non alcoholic IPAs 2026", href: "/best-non-alcoholic-ipas", description: "The easiest beer swaps." },
-      { label: "Zero proof home bar", href: "/zero-proof-home-bar", description: "Build a cocktail setup that works." },
-      { label: "Pillar: Non alcoholic drinks", href: "/non-alcoholic-drinks", description: "The complete category." },
+      { label: "Sober-curious guide", href: "/sober-curious-guide", description: "What comes after Dry January." },
+      { label: "Best non-alcoholic IPAs 2026", href: "/best-non-alcoholic-ipas", description: "The easiest beer swaps." },
+      { label: "Zero-proof home bar", href: "/zero-proof-home-bar", description: "Build a cocktail setup that works." },
+      { label: "Pillar: Non-alcoholic drinks", href: "/non-alcoholic-drinks", description: "The complete category." },
     ]}
   />
 );

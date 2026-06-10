@@ -68,8 +68,8 @@ const partners = [
 ];
 
 const Locations = () => {
-  const pageTitle = "Non Alcoholic Bottle Shop San Diego: PB & OB Tasting Rooms | Monday Morning";
-  const pageDescription = "Two San Diego tasting rooms with 500+ non alcoholic drinks. Sample any NA beer, wine or spirit before you buy. Open 7 days in Pacific Beach and Ocean Beach.";
+  const pageTitle = "Non-Alcoholic Bottle Shop San Diego: PB & OB Tasting Rooms | Monday Morning";
+  const pageDescription = "Two San Diego tasting rooms with 500+ non-alcoholic drinks. Sample any NA beer, wine or spirit before you buy. Open 7 days in Pacific Beach and Ocean Beach.";
   const canonicalUrl = getCanonicalUrl("/locations");
 
   return (
@@ -235,7 +235,7 @@ const Locations = () => {
                       </p>
                     </div>
                     <p className="font-sans text-sm text-forest/60 mt-3 max-w-lg">
-                      Our non-alcoholic brewing and innovation facility, and home of Haymaker N/A IPA. Visits by appointment.
+                      Our non-alcoholic brewing and innovation facility, and home of Haymaker NA IPA. Visits by appointment.
                     </p>
                   </div>
                 </div>

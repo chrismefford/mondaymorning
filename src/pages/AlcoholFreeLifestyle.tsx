@@ -73,8 +73,8 @@ const AlcoholFreeLifestyle = () => {
   return (
     <div className="min-h-screen bg-background">
       <SEO
-        title="Alcohol Free Lifestyle: Real Benefits, Better Sleep & Clarity | Monday Morning"
-        description="The honest case for an alcohol free lifestyle. Better sleep, sharper mornings, and the NA drinks that make it easy. From San Diego's biggest non alcoholic bottle shop."
+        title="Alcohol-Free Lifestyle: Real Benefits, Better Sleep & Clarity | Monday Morning"
+        description="The honest case for an alcohol-free lifestyle. Better sleep, sharper mornings, and the NA drinks that make it easy. From San Diego's biggest non-alcoholic bottle shop."
         path="/alcohol-free-lifestyle-benefits"
         schema={[faqSchema, websiteSchema]}
       />
@@ -102,7 +102,7 @@ const AlcoholFreeLifestyle = () => {
               <div className="flex flex-wrap gap-4 mt-8">
                 <Link to="/collections/functional">
                   <Button size="lg" className="font-sans text-sm font-bold uppercase tracking-widest px-8 py-6 bg-gold text-forest-deep hover:bg-gold/90">
-                    Explore Zero Proof Drinks
+                    Explore Zero-Proof Drinks
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </Button>
                 </Link>

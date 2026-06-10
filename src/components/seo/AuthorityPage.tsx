@@ -249,7 +249,7 @@ const AuthorityPage = ({
               Try before you buy
             </h2>
             <p className="font-sans text-cream/85 mb-8 max-w-xl mx-auto">
-              Two San Diego tasting rooms. 500+ non alcoholic drinks on the
+              Two San Diego tasting rooms. 500+ non-alcoholic drinks on the
               shelf. Sample anything before you commit, or shop the full
               catalog online.
             </p>

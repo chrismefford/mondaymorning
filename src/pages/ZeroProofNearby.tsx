@@ -90,44 +90,44 @@ const ProductCard = ({ handle }: { handle: string }) => {
 // FAQs
 const faqs = [
   {
-    question: "Where can I find zero proof alcohol nearby?",
-    answer: "Monday Morning Bottle Shop has two locations in San Diego: Pacific Beach (1854 Garnet Ave) and Ocean Beach (4967 Newport Ave). We carry over 500 zero proof options including NA beer, wine, spirits, and functional drinks. You can also shop online with nationwide shipping at mondaymorning-af.com."
+    question: "Where can I find zero-proof alcohol nearby?",
+    answer: "Monday Morning Bottle Shop has two locations in San Diego: Pacific Beach (1854 Garnet Ave) and Ocean Beach (4967 Newport Ave). We carry over 500 zero-proof options including NA beer, wine, spirits, and functional drinks. You can also shop online with nationwide shipping at mondaymorning-af.com."
   },
   {
-    question: "What is zero proof alcohol?",
-    answer: "Zero proof alcohol refers to beverages with 0.0% ABV that are designed to replicate the flavor, complexity, and ritual of traditional alcoholic drinks. This includes non-alcoholic spirits, NA wine, craft NA beer, and ready-to-drink mocktails. The term 'zero proof' specifically means no measurable alcohol content."
+    question: "What is zero-proof alcohol?",
+    answer: "Zero-proof alcohol refers to beverages with 0.0% ABV that are designed to replicate the flavor, complexity, and ritual of traditional alcoholic drinks. This includes non-alcoholic spirits, NA wine, craft NA beer, and ready-to-drink mocktails. The term 'zero-proof' specifically means no measurable alcohol content."
   },
   {
-    question: "Do liquor stores sell zero proof drinks?",
-    answer: "Some liquor stores carry a limited selection, but dedicated non-alcoholic bottle shops like Monday Morning offer a far wider and more curated range. We specialize exclusively in zero proof and non-alcoholic beverages, with expert staff who can guide your selections and a tasting room where you can try before you buy."
+    question: "Do liquor stores sell zero-proof drinks?",
+    answer: "Some liquor stores carry a limited selection, but dedicated non-alcoholic bottle shops like Monday Morning offer a far wider and more curated range. We specialize exclusively in zero-proof and non-alcoholic beverages, with expert staff who can guide your selections and a tasting room where you can try before you buy."
   },
   {
-    question: "Are zero proof spirits worth buying?",
-    answer: "Yes, the category has improved dramatically. Brands like Abstinence, Almave, Seedlip, and Lyre's produce complex, cocktail-ready spirits that deliver genuine flavor depth. The key is finding the right product for your palate, which is why tasting before buying matters. Our staff can match you with the right zero proof spirit for any cocktail."
+    question: "Are zero-proof spirits worth buying?",
+    answer: "Yes, the category has improved dramatically. Brands like Abstinence, Almave, Seedlip, and Lyre's produce complex, cocktail-ready spirits that deliver genuine flavor depth. The key is finding the right product for your palate, which is why tasting before buying matters. Our staff can match you with the right zero-proof spirit for any cocktail."
   },
   {
-    question: "What are the best zero proof cocktails to order at a bar?",
-    answer: "Ask for a zero proof Negroni, an NA Espresso Martini, a virgin Aperol Spritz, or a zero proof Old Fashioned. Many craft bars now have dedicated mocktail menus. If they do not, asking the bartender to make something with non-alcoholic spirits is becoming increasingly common and accepted."
+    question: "What are the best zero-proof cocktails to order at a bar?",
+    answer: "Ask for a zero-proof Negroni, an NA Espresso Martini, a virgin Aperol Spritz, or a zero-proof Old Fashioned. Many craft bars now have dedicated mocktail menus. If they do not, asking the bartender to make something with non-alcoholic spirits is becoming increasingly common and accepted."
   },
   {
-    question: "Can I buy zero proof alcohol online?",
-    answer: "Yes. Monday Morning Bottle Shop ships nationwide through our online store. We carry the largest curated selection of zero proof drinks in San Diego, and our entire catalog is available online. Many other specialty retailers also ship NA beverages, but we pride ourselves on curation over volume."
+    question: "Can I buy zero-proof alcohol online?",
+    answer: "Yes. Monday Morning Bottle Shop ships nationwide through our online store. We carry the largest curated selection of zero-proof drinks in San Diego, and our entire catalog is available online. Many other specialty retailers also ship NA beverages, but we pride ourselves on curation over volume."
   },
   {
-    question: "What is the difference between zero proof and non-alcoholic?",
-    answer: "Zero proof means 0.0% ABV, containing absolutely no alcohol. Non-alcoholic can legally contain up to 0.5% ABV in the United States, which is a trace amount comparable to ripe bananas or kombucha. Both fall under the alcohol-free umbrella, but zero proof is the stricter standard."
+    question: "What is the difference between zero-proof and non-alcoholic?",
+    answer: "Zero-proof means 0.0% ABV, containing absolutely no alcohol. Non-alcoholic can legally contain up to 0.5% ABV in the United States, which is a trace amount comparable to ripe bananas or kombucha. Both fall under the alcohol-free umbrella, but zero-proof is the stricter standard."
   },
   {
     question: "Are there sober bars near me?",
-    answer: "Sober bars and alcohol-free bars are growing rapidly in major cities. In San Diego, Monday Morning Bottle Shop operates as both a retail store and a tasting room where you can sample zero proof drinks in a bar-like environment. Check local directories and apps like the Zero Proof Nation map for sober bars in your area."
+    answer: "Sober bars and alcohol-free bars are growing rapidly in major cities. In San Diego, Monday Morning Bottle Shop operates as both a retail store and a tasting room where you can sample zero-proof drinks in a bar-like environment. Check local directories and apps like the Zero-Proof Nation map for sober bars in your area."
   },
   {
-    question: "Are zero proof drinks gluten free?",
-    answer: "Many zero proof drinks are naturally gluten free, but not all. Most NA spirits, wines, and functional drinks are gluten free. Some NA beers are brewed with barley or wheat and contain gluten, though gluten-free NA beer options exist. Always check individual product labels if you have celiac disease or gluten sensitivity."
+    question: "Are zero-proof drinks gluten free?",
+    answer: "Many zero-proof drinks are naturally gluten free, but not all. Most NA spirits, wines, and functional drinks are gluten free. Some NA beers are brewed with barley or wheat and contain gluten, though gluten-free NA beer options exist. Always check individual product labels if you have celiac disease or gluten sensitivity."
   },
   {
-    question: "How do zero proof spirits taste compared to regular spirits?",
-    answer: "The best zero proof spirits are designed to replicate the botanical complexity, mouthfeel, and finish of traditional spirits. They will not taste identical, but high-quality options like Abstinence Cape Spice (whiskey-style) or Almave Blanco (agave-based) deliver genuine cocktail-worthy depth. The category has moved far beyond flavored water."
+    question: "How do zero-proof spirits taste compared to regular spirits?",
+    answer: "The best zero-proof spirits are designed to replicate the botanical complexity, mouthfeel, and finish of traditional spirits. They will not taste identical, but high-quality options like Abstinence Cape Spice (whiskey-style) or Almave Blanco (agave-based) deliver genuine cocktail-worthy depth. The category has moved far beyond flavored water."
   },
 ];
 
@@ -136,8 +136,8 @@ const faqSchema = generateFAQSchema(faqs);
 const articleSchema = {
   "@context": "https://schema.org",
   "@type": "Article",
-  "headline": "Discover the Best Places for Zero Proof Alcohol Nearby",
-  "description": "Discover the best places for zero proof alcohol nearby and enjoy refreshing non-alcoholic drinks. Learn more about sober bars and creative mocktails!",
+  "headline": "Discover the Best Places for Zero-Proof Alcohol Nearby",
+  "description": "Discover the best places for zero-proof alcohol nearby and enjoy refreshing non-alcoholic drinks. Learn more about sober bars and creative mocktails!",
   "author": { "@type": "Organization", "name": "Monday Morning Bottle Shop" },
   "publisher": {
     "@type": "Organization",
@@ -152,7 +152,7 @@ const articleSchema = {
 
 const breadcrumbSchema = generateBreadcrumbSchema([
   { name: "Home", url: SITE_URL },
-  { name: "Zero Proof Alcohol Nearby", url: `${SITE_URL}/zero-proof-alcohol-nearby` },
+  { name: "Zero-Proof Alcohol Nearby", url: `${SITE_URL}/zero-proof-alcohol-nearby` },
 ]);
 
 const tocSections = [
@@ -191,8 +191,8 @@ const ZeroProofNearby = () => {
   return (
     <>
       <SEO
-        title="Zero Proof Drinks Near Me: Where to Buy NA Drinks Locally | Monday Morning"
-        description="Looking for zero proof drinks nearby? Two San Diego tasting rooms with 500+ NA beers, wines and spirits, fast local delivery, plus 17 partner bars and restaurants."
+        title="Zero-Proof Drinks Near Me: Where to Buy NA Drinks Locally | Monday Morning"
+        description="Looking for zero-proof drinks nearby? Two San Diego tasting rooms with 500+ NA beers, wines and spirits, fast local delivery, plus 17 partner bars and restaurants."
         path="/zero-proof-alcohol-nearby"
         type="article"
         schema={[articleSchema, faqSchema, breadcrumbSchema, websiteSchema, localBusinessSchema]}
@@ -201,7 +201,7 @@ const ZeroProofNearby = () => {
       {/* Hero */}
       <div className="relative min-h-[65vh] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0">
-          <img src={upscaleBarToast} alt="Friends enjoying zero proof cocktails at a bar" className="w-full h-full object-cover" loading="eager" />
+          <img src={upscaleBarToast} alt="Friends enjoying zero-proof cocktails at a bar" className="w-full h-full object-cover" loading="eager" />
           <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/80" />
         </div>
         <Header />
@@ -210,18 +210,18 @@ const ZeroProofNearby = () => {
             <ol className="flex items-center justify-center gap-2 text-sm text-white/60">
               <li><Link to="/" className="hover:text-white/80 transition-colors">Home</Link></li>
               <li>/</li>
-              <li className="text-white/90">Zero Proof Alcohol Nearby</li>
+              <li className="text-white/90">Zero-Proof Alcohol Nearby</li>
             </ol>
           </nav>
           <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl text-white mb-6 leading-tight">
-            Discover the Best Places for Zero Proof Alcohol Nearby
+            Discover the Best Places for Zero-Proof Alcohol Nearby
           </h1>
           <p className="text-lg md:text-xl text-white/80 max-w-2xl mx-auto mb-8">
-            Your complete guide to finding zero proof spirits, craft NA beer, alcohol-free wine, and sober bars near you, plus how to shop the best selection online.
+            Your complete guide to finding zero-proof spirits, craft NA beer, alcohol-free wine, and sober bars near you, plus how to shop the best selection online.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button asChild size="lg" className="bg-ocean hover:bg-ocean/90 text-white rounded-full px-8">
-              <Link to="/shop">Shop Zero Proof Online <ArrowRight className="ml-2 h-4 w-4" /></Link>
+              <Link to="/shop">Shop Zero-Proof Online <ArrowRight className="ml-2 h-4 w-4" /></Link>
             </Button>
             <Button asChild variant="outline" size="lg" className="border-white/30 text-white hover:bg-white/10 rounded-full px-8">
               <Link to="/locations">Visit Our Tasting Room</Link>
@@ -251,36 +251,36 @@ const ZeroProofNearby = () => {
 
       <main className="bg-background">
 
-        {/* What Is Zero Proof */}
+        {/* What Is Zero-Proof */}
         <section id="what-is-zero-proof" className="py-16 md:py-24">
           <div className="max-w-7xl mx-auto px-6">
             <div className="grid md:grid-cols-2 gap-12 items-center">
               <div>
-                <h2 className="font-serif text-3xl md:text-4xl text-foreground mb-6">What Is Zero Proof Alcohol?</h2>
+                <h2 className="font-serif text-3xl md:text-4xl text-foreground mb-6">What Is Zero-Proof Alcohol?</h2>
                 <p className="text-muted-foreground mb-4">
-                  Zero proof alcohol refers to beverages crafted to deliver the flavor, ritual, and social experience of drinking without any measurable alcohol content. The term "proof" is a historical unit of alcohol measurement, and "zero proof" means exactly that: 0.0% ABV, no ethanol, no buzz, no hangover.
+                  Zero-proof alcohol refers to beverages crafted to deliver the flavor, ritual, and social experience of drinking without any measurable alcohol content. The term "proof" is a historical unit of alcohol measurement, and "zero-proof" means exactly that: 0.0% ABV, no ethanol, no buzz, no hangover.
                 </p>
                 <p className="text-muted-foreground mb-4">
-                  Unlike simply grabbing a soda or sparkling water, zero proof drinks are engineered with the same attention to complexity, mouthfeel, and finish that goes into traditional spirits, wines, and beers. They use distilled botanicals, dealcoholization technology, and functional ingredients to create beverages that stand on their own.
+                  Unlike simply grabbing a soda or sparkling water, zero-proof drinks are engineered with the same attention to complexity, mouthfeel, and finish that goes into traditional spirits, wines, and beers. They use distilled botanicals, dealcoholization technology, and functional ingredients to create beverages that stand on their own.
                 </p>
                 <p className="text-muted-foreground mb-6">
-                  The zero proof category has exploded since 2020, driven by a cultural shift toward mindful drinking. More than half of US adults are actively reducing their alcohol intake, and the market for alcohol alternative drinks is projected to exceed $13 billion globally by 2025.
+                  The zero-proof category has exploded since 2020, driven by a cultural shift toward mindful drinking. More than half of US adults are actively reducing their alcohol intake, and the market for alcohol alternative drinks is projected to exceed $13 billion globally by 2025.
                 </p>
 
                 <div className="bg-muted/50 rounded-xl p-6 border border-border">
                   <div className="flex items-start gap-3">
                     <Info className="h-5 w-5 text-primary mt-0.5 shrink-0" />
                     <div>
-                      <p className="font-medium text-foreground mb-1">Zero Proof vs Non-Alcoholic</p>
+                      <p className="font-medium text-foreground mb-1">Zero-Proof vs Non-Alcoholic</p>
                       <p className="text-sm text-muted-foreground">
-                        "Zero proof" = 0.0% ABV, no alcohol whatsoever. "Non-alcoholic" can contain up to 0.5% ABV (trace amounts found in bananas and bread). Both are part of the alcohol-free movement, but zero proof is the stricter standard.
+                        "Zero-proof" = 0.0% ABV, no alcohol whatsoever. "Non-alcoholic" can contain up to 0.5% ABV (trace amounts found in bananas and bread). Both are part of the alcohol-free movement, but zero-proof is the stricter standard.
                       </p>
                     </div>
                   </div>
                 </div>
               </div>
               <div className="relative rounded-2xl overflow-hidden aspect-[4/5]">
-                <img src={spiritBarCraft} alt="Bartender crafting a zero proof cocktail" className="w-full h-full object-cover" loading="lazy" />
+                <img src={spiritBarCraft} alt="Bartender crafting a zero-proof cocktail" className="w-full h-full object-cover" loading="lazy" />
               </div>
             </div>
 
@@ -301,26 +301,26 @@ const ZeroProofNearby = () => {
           </div>
         </section>
 
-        {/* Types of Zero Proof */}
+        {/* Types of Zero-Proof */}
         <section id="types" className="py-16 md:py-24 bg-muted/30">
           <div className="max-w-7xl mx-auto px-6">
             <div className="text-center mb-16">
-              <h2 className="font-serif text-3xl md:text-4xl text-foreground mb-4">Types of Zero Proof Alcohol</h2>
+              <h2 className="font-serif text-3xl md:text-4xl text-foreground mb-4">Types of Zero-Proof Alcohol</h2>
               <p className="text-muted-foreground max-w-2xl mx-auto">
-                The zero proof world spans every category you would find in a traditional liquor store, plus entirely new categories that did not exist five years ago.
+                The zero-proof world spans every category you would find in a traditional liquor store, plus entirely new categories that did not exist five years ago.
               </p>
             </div>
 
             <div className="grid md:grid-cols-2 gap-8">
-              {/* Zero Proof Spirits */}
+              {/* Zero-Proof Spirits */}
               <div className="bg-card border border-border rounded-2xl p-8">
                 <Martini className="h-8 w-8 text-primary mb-4" />
-                <h3 className="font-serif text-2xl text-foreground mb-3">Zero Proof Spirits</h3>
+                <h3 className="font-serif text-2xl text-foreground mb-3">Zero-Proof Spirits</h3>
                 <p className="text-muted-foreground mb-4">
-                  The backbone of the zero proof cocktail movement. These are distilled or macerated botanical blends designed to replace gin, whiskey, tequila, rum, and vodka in your favorite cocktails. The best zero proof spirits deliver genuine complexity: juniper-forward gin alternatives, smoky whiskey substitutes, and agave-based tequila replicas.
+                  The backbone of the zero-proof cocktail movement. These are distilled or macerated botanical blends designed to replace gin, whiskey, tequila, rum, and vodka in your favorite cocktails. The best zero-proof spirits deliver genuine complexity: juniper-forward gin alternatives, smoky whiskey substitutes, and agave-based tequila replicas.
                 </p>
                 <p className="text-muted-foreground mb-5">
-                  Leading brands include Abstinence Spirits, Almave (from the makers of Clase Azul), Seedlip, Lyre's, and Ritual Zero Proof. Each takes a different approach to flavor construction, and the results vary widely, which is why tasting before buying matters.
+                  Leading brands include Abstinence Spirits, Almave (from the makers of Clase Azul), Seedlip, Lyre's, and Ritual Zero-Proof. Each takes a different approach to flavor construction, and the results vary widely, which is why tasting before buying matters.
                 </p>
                 <div className="space-y-3">
                   <ProductCard handle="abstinence-spirits-cape-spice" />
@@ -348,7 +348,7 @@ const ZeroProofNearby = () => {
                 <Beer className="h-8 w-8 text-primary mb-4" />
                 <h3 className="font-serif text-2xl text-foreground mb-3">Craft Non-Alcoholic Beer</h3>
                 <p className="text-muted-foreground mb-4">
-                  Craft NA beer is the most mature segment of the zero proof market, and it is where most people start their alcohol-free journey. Athletic Brewing, Bravus, Gruvi, and Partake produce IPAs, lagers, stouts, and wheat beers that are nearly indistinguishable from their alcoholic counterparts.
+                  Craft NA beer is the most mature segment of the zero-proof market, and it is where most people start their alcohol-free journey. Athletic Brewing, Bravus, Gruvi, and Partake produce IPAs, lagers, stouts, and wheat beers that are nearly indistinguishable from their alcoholic counterparts.
                 </p>
                 <p className="text-muted-foreground mb-5">
                   The technology behind NA beer has advanced dramatically: vacuum distillation, arrested fermentation, and lazy yeast strains all contribute to better flavor retention at 0.0% to 0.5% ABV.
@@ -381,30 +381,30 @@ const ZeroProofNearby = () => {
           <div className="max-w-7xl mx-auto px-6">
             <div className="grid md:grid-cols-2 gap-12 items-center">
               <div className="relative rounded-2xl overflow-hidden aspect-[4/5]">
-                <img src={naBotanicalDark} alt="Monday Morning Bottle Shop interior with zero proof products" className="w-full h-full object-cover" loading="lazy" />
+                <img src={naBotanicalDark} alt="Monday Morning Bottle Shop interior with zero-proof products" className="w-full h-full object-cover" loading="lazy" />
               </div>
               <div>
-                <h2 className="font-serif text-3xl md:text-4xl text-foreground mb-6">Finding Zero Proof Alcohol Nearby</h2>
+                <h2 className="font-serif text-3xl md:text-4xl text-foreground mb-6">Finding Zero-Proof Alcohol Nearby</h2>
                 <p className="text-muted-foreground mb-4">
-                  If you are searching for "zero proof alcohol nearby," you have a few options depending on where you live. The landscape is changing fast, but dedicated non-alcoholic retail is still concentrated in major metro areas.
+                  If you are searching for "zero-proof alcohol nearby," you have a few options depending on where you live. The landscape is changing fast, but dedicated non-alcoholic retail is still concentrated in major metro areas.
                 </p>
 
                 <div className="space-y-6 mt-6">
                   <div className="border-l-2 border-primary/40 pl-5">
                     <h3 className="font-medium text-foreground mb-1 flex items-center gap-2"><MapPin className="h-4 w-4 text-primary" /> Dedicated NA Bottle Shops</h3>
-                    <p className="text-sm text-muted-foreground">The best option. Shops like Monday Morning Bottle Shop in San Diego specialize exclusively in zero proof beverages, with expert staff and tasting rooms. You get curation, guidance, and the ability to try before you buy.</p>
+                    <p className="text-sm text-muted-foreground">The best option. Shops like Monday Morning Bottle Shop in San Diego specialize exclusively in zero-proof beverages, with expert staff and tasting rooms. You get curation, guidance, and the ability to try before you buy.</p>
                   </div>
                   <div className="border-l-2 border-primary/40 pl-5">
                     <h3 className="font-medium text-foreground mb-1 flex items-center gap-2"><Search className="h-4 w-4 text-primary" /> Major Retailers</h3>
-                    <p className="text-sm text-muted-foreground">Total Wine, BevMo, and some Whole Foods locations carry growing NA sections. Selection varies widely by location, and staff expertise on zero proof products is typically limited.</p>
+                    <p className="text-sm text-muted-foreground">Total Wine, BevMo, and some Whole Foods locations carry growing NA sections. Selection varies widely by location, and staff expertise on zero-proof products is typically limited.</p>
                   </div>
                   <div className="border-l-2 border-primary/40 pl-5">
                     <h3 className="font-medium text-foreground mb-1 flex items-center gap-2"><GlassWater className="h-4 w-4 text-primary" /> Sober Bars and Alcohol-Free Events</h3>
-                    <p className="text-sm text-muted-foreground">A growing number of cities now have sober bars or bars with dedicated zero proof menus. Alcohol-free events, tastings, and pop-ups are becoming more common. Check the Zero Proof Nation map for venues near you.</p>
+                    <p className="text-sm text-muted-foreground">A growing number of cities now have sober bars or bars with dedicated zero-proof menus. Alcohol-free events, tastings, and pop-ups are becoming more common. Check the Zero-Proof Nation map for venues near you.</p>
                   </div>
                   <div className="border-l-2 border-primary/40 pl-5">
                     <h3 className="font-medium text-foreground mb-1 flex items-center gap-2"><ShoppingCart className="h-4 w-4 text-primary" /> Online Retailers</h3>
-                    <p className="text-sm text-muted-foreground">If you cannot find zero proof alcohol nearby, online is your best bet. Monday Morning ships nationwide, and sites like The Zero Proof, Boisson, and Dry Atlas offer extensive online selections.</p>
+                    <p className="text-sm text-muted-foreground">If you cannot find zero-proof alcohol nearby, online is your best bet. Monday Morning ships nationwide, and sites like The Zero-Proof, Boisson, and Dry Atlas offer extensive online selections.</p>
                   </div>
                 </div>
               </div>
@@ -414,10 +414,10 @@ const ZeroProofNearby = () => {
             <div className="mt-16 bg-card border border-border rounded-2xl overflow-hidden">
               <div className="grid md:grid-cols-2">
                 <div className="p-8 md:p-12">
-                  <p className="text-xs uppercase tracking-widest text-primary font-medium mb-3">San Diego's Zero Proof Destination</p>
+                  <p className="text-xs uppercase tracking-widest text-primary font-medium mb-3">San Diego's Zero-Proof Destination</p>
                   <h3 className="font-serif text-2xl md:text-3xl text-foreground mb-4">Monday Morning Bottle Shop</h3>
                   <p className="text-muted-foreground mb-6">
-                    Two tasting rooms in Pacific Beach and Ocean Beach with over 500 zero proof products. Try before you buy, get expert recommendations, and discover your new favorite alcohol-free drink.
+                    Two tasting rooms in Pacific Beach and Ocean Beach with over 500 zero-proof products. Try before you buy, get expert recommendations, and discover your new favorite alcohol-free drink.
                   </p>
                   <div className="space-y-3 mb-6">
                     <div className="flex items-start gap-3">
@@ -465,16 +465,16 @@ const ZeroProofNearby = () => {
               <div>
                 <h2 className="font-serif text-3xl md:text-4xl text-foreground mb-6">Mocktails and Dry Cocktails</h2>
                 <p className="text-muted-foreground mb-4">
-                  The word "mocktail" is being replaced by "zero proof cocktail" or "dry cocktail" in many circles, and for good reason. Today's alcohol-free mixed drinks are not watered-down imitations. They are crafted with the same technique, balance, and presentation as their boozy counterparts.
+                  The word "mocktail" is being replaced by "zero-proof cocktail" or "dry cocktail" in many circles, and for good reason. Today's alcohol-free mixed drinks are not watered-down imitations. They are crafted with the same technique, balance, and presentation as their boozy counterparts.
                 </p>
                 <p className="text-muted-foreground mb-4">
-                  Whether you are ordering at a sober bar, requesting something special at a craft cocktail lounge, or mixing at home, zero proof cocktails have arrived. The key is using quality zero proof spirits as your base instead of relying on juice and soda alone.
+                  Whether you are ordering at a sober bar, requesting something special at a craft cocktail lounge, or mixing at home, zero-proof cocktails have arrived. The key is using quality zero-proof spirits as your base instead of relying on juice and soda alone.
                 </p>
 
-                <h3 className="font-medium text-foreground mt-8 mb-4">Three Zero Proof Cocktails to Make at Home</h3>
+                <h3 className="font-medium text-foreground mt-8 mb-4">Three Zero-Proof Cocktails to Make at Home</h3>
                 <div className="space-y-4">
                   <div className="bg-background rounded-xl p-5 border border-border">
-                    <p className="font-serif text-lg text-foreground mb-2">Zero Proof Old Fashioned</p>
+                    <p className="font-serif text-lg text-foreground mb-2">Zero-Proof Old Fashioned</p>
                     <ul className="space-y-1 text-sm text-muted-foreground">
                       <li className="flex items-start gap-2"><CheckCircle className="h-4 w-4 text-primary shrink-0 mt-0.5" />2.5 oz Almave Ambar</li>
                       <li className="flex items-start gap-2"><CheckCircle className="h-4 w-4 text-primary shrink-0 mt-0.5" />0.25 oz simple syrup</li>
@@ -485,7 +485,7 @@ const ZeroProofNearby = () => {
                   </div>
 
                   <div className="bg-background rounded-xl p-5 border border-border">
-                    <p className="font-serif text-lg text-foreground mb-2">Zero Proof Gin and Tonic</p>
+                    <p className="font-serif text-lg text-foreground mb-2">Zero-Proof Gin and Tonic</p>
                     <ul className="space-y-1 text-sm text-muted-foreground">
                       <li className="flex items-start gap-2"><CheckCircle className="h-4 w-4 text-primary shrink-0 mt-0.5" />2 oz Abstinence Cape Floral</li>
                       <li className="flex items-start gap-2"><CheckCircle className="h-4 w-4 text-primary shrink-0 mt-0.5" />4 oz premium tonic water</li>
@@ -495,7 +495,7 @@ const ZeroProofNearby = () => {
                   </div>
 
                   <div className="bg-background rounded-xl p-5 border border-border">
-                    <p className="font-serif text-lg text-foreground mb-2">Zero Proof Margarita</p>
+                    <p className="font-serif text-lg text-foreground mb-2">Zero-Proof Margarita</p>
                     <ul className="space-y-1 text-sm text-muted-foreground">
                       <li className="flex items-start gap-2"><CheckCircle className="h-4 w-4 text-primary shrink-0 mt-0.5" />2 oz Almave Blanco</li>
                       <li className="flex items-start gap-2"><CheckCircle className="h-4 w-4 text-primary shrink-0 mt-0.5" />1 oz fresh lime juice</li>
@@ -507,7 +507,7 @@ const ZeroProofNearby = () => {
               </div>
 
               <div className="relative rounded-2xl overflow-hidden aspect-[4/5]">
-                <img src={naSpiritCocktail} alt="Zero proof cocktail being crafted at a bar" className="w-full h-full object-cover" loading="lazy" />
+                <img src={naSpiritCocktail} alt="Zero-proof cocktail being crafted at a bar" className="w-full h-full object-cover" loading="lazy" />
               </div>
             </div>
           </div>
@@ -518,31 +518,31 @@ const ZeroProofNearby = () => {
           <div className="max-w-7xl mx-auto px-6">
             <div className="grid md:grid-cols-2 gap-12 items-center">
               <div className="relative rounded-2xl overflow-hidden aspect-[4/5] md:order-1">
-                <img src={functionalWellness} alt="Healthy zero proof functional drinks" className="w-full h-full object-cover" loading="lazy" />
+                <img src={functionalWellness} alt="Healthy zero-proof functional drinks" className="w-full h-full object-cover" loading="lazy" />
               </div>
               <div className="md:order-2">
                 <h2 className="font-serif text-3xl md:text-4xl text-foreground mb-6">Healthy Drink Alternatives</h2>
                 <p className="text-muted-foreground mb-4">
-                  Choosing zero proof is not just about avoiding alcohol. It is about what you gain: better sleep, clearer skin, improved athletic performance, reduced anxiety, and sharper mental clarity. The health benefits of cutting alcohol are well documented, and zero proof drinks make the transition effortless.
+                  Choosing zero-proof is not just about avoiding alcohol. It is about what you gain: better sleep, clearer skin, improved athletic performance, reduced anxiety, and sharper mental clarity. The health benefits of cutting alcohol are well documented, and zero-proof drinks make the transition effortless.
                 </p>
 
                 <div className="space-y-6 mt-8">
                   <div className="bg-muted/50 rounded-xl p-5 border border-border">
                     <h3 className="font-medium text-foreground mb-2">Gluten-Free Beverages</h3>
                     <p className="text-sm text-muted-foreground">
-                      Most zero proof spirits and wines are naturally gluten free. For beer lovers with gluten sensitivity, brands like Gruvi and Ground Breaker produce dedicated gluten-free NA beers. Functional drinks and seltzers are almost universally gluten free. We label gluten-free products clearly in our shop.
+                      Most zero-proof spirits and wines are naturally gluten free. For beer lovers with gluten sensitivity, brands like Gruvi and Ground Breaker produce dedicated gluten-free NA beers. Functional drinks and seltzers are almost universally gluten free. We label gluten-free products clearly in our shop.
                     </p>
                   </div>
                   <div className="bg-muted/50 rounded-xl p-5 border border-border">
                     <h3 className="font-medium text-foreground mb-2">Low-Calorie Options</h3>
                     <p className="text-sm text-muted-foreground">
-                      A standard cocktail contains 200-400 calories. Most zero proof alternatives contain under 100 calories, and many functional drinks clock in at 15-50 calories. If calorie reduction is a priority, switching to zero proof is one of the easiest wins available.
+                      A standard cocktail contains 200-400 calories. Most zero-proof alternatives contain under 100 calories, and many functional drinks clock in at 15-50 calories. If calorie reduction is a priority, switching to zero-proof is one of the easiest wins available.
                     </p>
                   </div>
                   <div className="bg-muted/50 rounded-xl p-5 border border-border">
                     <h3 className="font-medium text-foreground mb-2">Non-Alcoholic Mixers</h3>
                     <p className="text-sm text-muted-foreground">
-                      Premium non-alcoholic mixers from Portland Syrups, All The Bitter, and Fever-Tree elevate any zero proof drink. Quality bitters, syrups, and tonics are the secret to making zero proof cocktails that taste as complex as the originals.
+                      Premium non-alcoholic mixers from Portland Syrups, All The Bitter, and Fever-Tree elevate any zero-proof drink. Quality bitters, syrups, and tonics are the secret to making zero-proof cocktails that taste as complex as the originals.
                     </p>
                   </div>
                 </div>
@@ -562,16 +562,16 @@ const ZeroProofNearby = () => {
             <div className="text-center mb-16">
               <h2 className="font-serif text-3xl md:text-4xl text-foreground mb-4">Zero Alcohol Brands Worth Knowing</h2>
               <p className="text-muted-foreground max-w-2xl mx-auto">
-                Not all zero proof brands are created equal. These are the ones we stock, recommend, and pour at our tasting rooms.
+                Not all zero-proof brands are created equal. These are the ones we stock, recommend, and pour at our tasting rooms.
               </p>
             </div>
 
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {[
-                { name: "Abstinence Spirits", category: "Zero Proof Spirits", description: "South African botanical spirits using indigenous ingredients like African Wormwood and Cape Rose Geranium. Six distinct expressions covering gin, whiskey, and aperitif territory.", link: "/shop?search=abstinence" },
+                { name: "Abstinence Spirits", category: "Zero-Proof Spirits", description: "South African botanical spirits using indigenous ingredients like African Wormwood and Cape Rose Geranium. Six distinct expressions covering gin, whiskey, and aperitif territory.", link: "/shop?search=abstinence" },
                 { name: "Almave", category: "Agave Spirits", description: "Made from true Blue Agave in Jalisco, Mexico. Blanco and Ambar expressions deliver authentic tequila and reposado character without alcohol.", link: "/shop?search=almave" },
                 { name: "Athletic Brewing", category: "Craft NA Beer", description: "The category leader in non-alcoholic craft beer. Their Run Wild IPA and Free Wave Hazy IPA are consistently rated among the best beers, period.", link: "/collections/na-beer" },
-                { name: "All The Bitter", category: "NA Bitters", description: "Organic, functional bitters that work in zero proof cocktails. Their Aromatic, New Orleans, and Cherry Coffee Blast expressions are essential for any home bar.", link: "/shop?search=bitter" },
+                { name: "All The Bitter", category: "NA Bitters", description: "Organic, functional bitters that work in zero-proof cocktails. Their Aromatic, New Orleans, and Cherry Coffee Blast expressions are essential for any home bar.", link: "/shop?search=bitter" },
                 { name: "Portland Syrups", category: "Premium Mixers", description: "Small-batch cocktail syrups made with whole ingredients in Oregon. Lavender, Ginger, Margarita, and more, each one designed for serious mixing.", link: "/shop?search=portland" },
                 { name: "Kin Euphorics", category: "Functional", description: "Adaptogen and nootropic-infused beverages that create a mood shift without alcohol. Their Dream Light and Spritz expressions are designed for evening and social occasions.", link: "/collections/functional" },
               ].map((brand) => (
@@ -589,10 +589,10 @@ const ZeroProofNearby = () => {
         <section className="py-16 md:py-24">
           <div className="max-w-7xl mx-auto px-6">
             <div className="relative rounded-2xl overflow-hidden">
-              <img src={gardenPartyToast} alt="Friends enjoying zero proof drinks at a social gathering" className="w-full h-64 md:h-80 object-cover" loading="lazy" />
+              <img src={gardenPartyToast} alt="Friends enjoying zero-proof drinks at a social gathering" className="w-full h-64 md:h-80 object-cover" loading="lazy" />
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-8">
                 <p className="text-white text-lg md:text-xl font-serif max-w-2xl">
-                  "The zero proof movement is not about giving something up. It is about choosing something better: better mornings, better health, better drinks."
+                  "The zero-proof movement is not about giving something up. It is about choosing something better: better mornings, better health, better drinks."
                 </p>
               </div>
             </div>
@@ -621,13 +621,13 @@ const ZeroProofNearby = () => {
         {/* Final CTA */}
         <section className="py-16 md:py-24">
           <div className="max-w-4xl mx-auto px-6 text-center">
-            <h2 className="font-serif text-3xl md:text-4xl text-foreground mb-4">Ready to Find Zero Proof Near You?</h2>
+            <h2 className="font-serif text-3xl md:text-4xl text-foreground mb-4">Ready to Find Zero-Proof Near You?</h2>
             <p className="text-muted-foreground max-w-2xl mx-auto mb-8">
-              Whether you visit our San Diego tasting rooms or shop our full catalog online, Monday Morning Bottle Shop is your destination for the best zero proof alcohol available. Over 500 products, expert curation, and a try-before-you-buy experience.
+              Whether you visit our San Diego tasting rooms or shop our full catalog online, Monday Morning Bottle Shop is your destination for the best zero-proof alcohol available. Over 500 products, expert curation, and a try-before-you-buy experience.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button asChild size="lg" className="bg-ocean hover:bg-ocean/90 text-white rounded-full px-8">
-                <Link to="/shop">Shop Zero Proof Online <ArrowRight className="ml-2 h-4 w-4" /></Link>
+                <Link to="/shop">Shop Zero-Proof Online <ArrowRight className="ml-2 h-4 w-4" /></Link>
               </Button>
               <Button asChild variant="outline" size="lg" className="rounded-full px-8">
                 <Link to="/locations">Visit Our Tasting Room</Link>

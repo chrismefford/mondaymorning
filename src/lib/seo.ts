@@ -16,9 +16,9 @@ export const DEFAULT_KEYWORDS = [
   "San Diego",
   "Pacific Beach",
   "Ocean Beach",
-  "sober curious",
+  "sober-curious",
   "mindful drinking",
-  "zero proof"
+  "zero-proof"
 ].join(", ");
 
 // Helper to truncate text for SEO (titles should be ~60 chars, descriptions ~155 chars)

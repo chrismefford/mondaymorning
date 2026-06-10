@@ -17,37 +17,37 @@ import sparkling from "@/assets/lifestyle/sparkling-celebration.jpg";
 
 const faqs = [
   {
-    question: "What are the best non alcoholic drinks in 2026?",
+    question: "What are the best non-alcoholic drinks in 2026?",
     answer:
       "The strongest bottles in 2026 span every category. In NA beer, Go Brewing, Mash Gang, Bravus, and Force Majeure lead the pack. For NA spirits, Almave (tequila), Abstinence (gin), and Glen Dochus (whiskey) are the standards. For NA wine, Bolle and Sovi have redefined what dealcoholized wine can be. For functional drinks, Leilo, Kavaly, Sentia, Soul Hum Elixirs, and Curious Elixirs offer real mood and relaxation effects.",
   },
   {
-    question: "What non alcoholic drink tastes most like alcohol?",
+    question: "What non-alcoholic drink tastes most like alcohol?",
     answer:
-      "Non alcoholic spirits come closest to the cocktail experience. Almave for margaritas, Abstinence for gin and tonics, and Glen Dochus for whiskey-style sippers replicate the warmth and botanical complexity of the originals. Used in cocktails, they are nearly indistinguishable from the alcoholic versions.",
+      "Non-alcoholic spirits come closest to the cocktail experience. Almave for margaritas, Abstinence for gin and tonics, and Glen Dochus for whiskey-style sippers replicate the warmth and botanical complexity of the originals. Used in cocktails, they are nearly indistinguishable from the alcoholic versions.",
   },
   {
-    question: "What are the best non alcoholic drinks for parties?",
+    question: "What are the best non-alcoholic drinks for parties?",
     answer:
       "For parties, ready-to-pour bottles like Curious Elixirs and canned options from Trip or FLVR! are the most practical. Sparkling NA wines from Bolle work for toasts. NA beer covers casual gatherings. For a built bar setup, an NA spirit (Almave, Abstinence) plus quality mixers lets you serve cocktails all night.",
   },
   {
-    question: "Are non alcoholic drinks healthy?",
+    question: "Are non-alcoholic drinks healthy?",
     answer:
       "Many offer real benefits. Functional drinks from Leilo, Soul Hum Elixirs, and Alice Mushrooms contain adaptogens, kava, and botanicals that support sleep, focus, and stress balance. NA beer and wine have significantly fewer calories than alcoholic versions. Removing the alcohol removes the negative health impacts of regular drinking.",
   },
   {
-    question: "What is the best non alcoholic drink for someone who doesn't like sweet drinks?",
+    question: "What is the best non-alcoholic drink for someone who doesn't like sweet drinks?",
     answer:
       "If you prefer dry or bitter flavors, NA spirits are ideal. A gin and tonic with Abstinence, a Negroni-style sipper with Curious Elixirs No. 1, or an NA Old Fashioned with Glen Dochus all deliver complexity without sweetness. Dry NA wines from Sovi and bitter botanical seltzers like Sentia are also excellent.",
   },
   {
-    question: "What's the difference between non alcoholic and alcohol-free drinks?",
+    question: "What's the difference between non-alcoholic and alcohol-free drinks?",
     answer:
-      "Legally in the US, both terms refer to beverages under 0.5% ABV. In practice, some brands use 'alcohol-free' to signal 0.0% specifically, while 'non alcoholic' may include traces up to 0.5%. Always check the label if you need zero certainty.",
+      "Legally in the US, both terms refer to beverages under 0.5% ABV. In practice, some brands use 'alcohol-free' to signal 0.0% specifically, while 'non-alcoholic' may include traces up to 0.5%. Always check the label if you need zero certainty.",
   },
   {
-    question: "Can I mix non alcoholic spirits into cocktails?",
+    question: "Can I mix non-alcoholic spirits into cocktails?",
     answer:
       "Yes, and that is exactly what they are built for. Use Almave wherever you'd use tequila, Abstinence wherever you'd use gin, Glen Dochus for whiskey. The flavor profiles stand up to mixers, citrus, and bitters the same way regular spirits do.",
   },
@@ -57,19 +57,19 @@ const faqSchema = generateFAQSchema(faqs);
 
 const categories = [
   {
-    title: "Non Alcoholic Beer",
+    title: "Non-Alcoholic Beer",
     description: "The largest and most developed NA category. IPAs, lagers, stouts, sours, and wheat beers from dedicated craft breweries. Best for anyone who loves beer flavor and wants nothing to change except the ABV.",
     link: "/collections/na-beer",
     cta: "Shop NA Beer",
   },
   {
-    title: "Non Alcoholic Wine",
+    title: "Non-Alcoholic Wine",
     description: "Reds, whites, rosés, and sparkling wines that deliver real complexity. Modern dealcoholization technology has closed the gap with alcoholic wine significantly. The best bottles pair beautifully with food.",
     link: "/collections/wine-alternatives",
     cta: "Shop NA Wine",
   },
   {
-    title: "Non Alcoholic Spirits",
+    title: "Non-Alcoholic Spirits",
     description: "Gin, whiskey, tequila, rum, and aperitif alternatives. Built for cocktails. Use them exactly like the originals in any recipe. The most versatile NA category for home bartenders.",
     link: "/collections/spirit-alternatives",
     cta: "Shop NA Spirits",
@@ -86,9 +86,9 @@ const BestNonAlcoholicDrinks = () => {
   return (
     <div className="min-h-screen bg-background">
       <SEO
-        title="Best Non Alcoholic Drinks of 2026: Top NA Beers, Wines & Spirits | Monday Morning"
-        description="The best non alcoholic drinks of 2026, tasted and ranked. Top NA beers, wines, spirits and functional drinks from the bottle shop that carries 500+ flavors."
-        path="/best-non alcoholic-drinks"
+        title="Best Non-Alcoholic Drinks of 2026: Top NA Beers, Wines & Spirits | Monday Morning"
+        description="The best non-alcoholic drinks of 2026, tasted and ranked. Top NA beers, wines, spirits and functional drinks from the bottle shop that carries 500+ flavors."
+        path="/best-non-alcoholic-drinks"
         schema={[faqSchema, websiteSchema]}
       />
 
@@ -100,17 +100,17 @@ const BestNonAlcoholicDrinks = () => {
           <div className="absolute inset-0">
             <img
               src={rooftopCheers}
-              alt="Friends enjoying the best non alcoholic drinks at a rooftop celebration"
+              alt="Friends enjoying the best non-alcoholic drinks at a rooftop celebration"
               className="w-full h-full object-cover opacity-20"
             />
           </div>
           <div className="container mx-auto px-4 lg:px-8 relative z-10">
             <div className="max-w-3xl">
               <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl text-cream mb-6 leading-tight">
-                The Best <span className="italic text-gold">Non Alcoholic</span> Drinks
+                The Best <span className="italic text-gold">Non-Alcoholic</span> Drinks
               </h1>
               <p className="font-sans text-lg text-cream/80 max-w-2xl mb-4 leading-relaxed">
-                The best non alcoholic drinks have arrived. Across every category, beer, wine, spirits, and functional beverages, the quality in 2026 is extraordinary. This guide covers what to drink, why it matters, and how to find your perfect match.
+                The best non-alcoholic drinks have arrived. Across every category, beer, wine, spirits, and functional beverages, the quality in 2026 is extraordinary. This guide covers what to drink, why it matters, and how to find your perfect match.
               </p>
               <div className="flex flex-wrap gap-4 mt-8">
                 <Link to="/shop">
@@ -134,20 +134,20 @@ const BestNonAlcoholicDrinks = () => {
           <div className="container mx-auto px-4 lg:px-8">
             <div className="max-w-3xl mx-auto">
               <h2 className="font-serif text-3xl md:text-4xl text-forest mb-8">
-                Why Non Alcoholic Drinks Have Changed Everything
+                Why Non-Alcoholic Drinks Have Changed Everything
               </h2>
               <div className="space-y-5 font-sans text-base text-foreground/80 leading-relaxed">
                 <p>
-                  Five years ago, choosing a non alcoholic drink at a bar or restaurant meant sparkling water or a sugary mocktail. That era is over. The non alcoholic beverage industry has undergone a complete transformation, driven by consumer demand, investment in brewing technology, and a cultural shift in how people think about drinking.
+                  Five years ago, choosing a non-alcoholic drink at a bar or restaurant meant sparkling water or a sugary mocktail. That era is over. The non-alcoholic beverage industry has undergone a complete transformation, driven by consumer demand, investment in brewing technology, and a cultural shift in how people think about drinking.
                 </p>
                 <p>
                   The sober-curious movement is not fringe. According to industry data, over 40% of adults now actively reduce their alcohol consumption. The reasons vary: health, fitness, mental clarity, pregnancy, recovery, religion, or simply preference. What unites them is the demand for great-tasting alternatives.
                 </p>
                 <p>
-                  Non alcoholic beer, wine, spirits, and functional beverages have answered that demand. The best options today compete directly with their alcoholic counterparts on flavor, complexity, and experience. The only thing missing is the alcohol.
+                  Non-alcoholic beer, wine, spirits, and functional beverages have answered that demand. The best options today compete directly with their alcoholic counterparts on flavor, complexity, and experience. The only thing missing is the alcohol.
                 </p>
                 <p>
-                  At Monday Morning Bottle Shop, we carry over 500 non alcoholic products across every category. This guide is designed to help you navigate the best of what the category has to offer.
+                  At Monday Morning Bottle Shop, we carry over 500 non-alcoholic products across every category. This guide is designed to help you navigate the best of what the category has to offer.
                 </p>
               </div>
             </div>
@@ -159,10 +159,10 @@ const BestNonAlcoholicDrinks = () => {
           <div className="container mx-auto px-4 lg:px-8">
             <div className="max-w-4xl mx-auto">
               <h2 className="font-serif text-3xl md:text-4xl text-forest mb-4 text-center">
-                Best Non Alcoholic Drinks by Category
+                Best Non-Alcoholic Drinks by Category
               </h2>
               <p className="font-sans text-base text-foreground/70 mb-12 text-center leading-relaxed max-w-2xl mx-auto">
-                Every major drink category now has outstanding non alcoholic options. Here is what to know about each one.
+                Every major drink category now has outstanding non-alcoholic options. Here is what to know about each one.
               </p>
               <div className="grid md:grid-cols-2 gap-6">
                 {categories.map((cat) => (
@@ -188,23 +188,23 @@ const BestNonAlcoholicDrinks = () => {
           <div className="container mx-auto px-4 lg:px-8 relative z-10">
             <div className="max-w-3xl mx-auto">
               <h2 className="font-serif text-3xl md:text-4xl text-cream mb-10">
-                Best Non Alcoholic Drinks for Every Occasion
+                Best Non-Alcoholic Drinks for Every Occasion
               </h2>
               <div className="space-y-6">
                 {[
                   {
                     occasion: "Dinner Parties & Celebrations",
-                    pick: "Non alcoholic sparkling wine or a crafted NA cocktail using zero-proof spirits. Sparkling NA wines in particular create the right visual and sensory experience for toasts and special moments.",
+                    pick: "Non-alcoholic sparkling wine or a crafted NA cocktail using zero-proof spirits. Sparkling NA wines in particular create the right visual and sensory experience for toasts and special moments.",
                     link: "/collections/wine-alternatives",
                   },
                   {
                     occasion: "Beach Days & Outdoor Events",
-                    pick: "Canned non alcoholic beer or ready-to-drink mocktails. Easy to transport, cold and refreshing, and they fit perfectly into any outdoor social setting.",
+                    pick: "Canned non-alcoholic beer or ready-to-drink mocktails. Easy to transport, cold and refreshing, and they fit perfectly into any outdoor social setting.",
                     link: "/collections/beach-bonfire",
                   },
                   {
                     occasion: "Post-Workout Recovery",
-                    pick: "Non alcoholic beer with electrolytes, or functional drinks with adaptogens. Many NA beers from Go Brewing and Bravus now contain added B vitamins and minerals built for the post-workout window.",
+                    pick: "Non-alcoholic beer with electrolytes, or functional drinks with adaptogens. Many NA beers from Go Brewing and Bravus now contain added B vitamins and minerals built for the post-workout window.",
                     link: "/collections/na-beer",
                   },
                   {
@@ -214,7 +214,7 @@ const BestNonAlcoholicDrinks = () => {
                   },
                   {
                     occasion: "Home Cocktail Hour",
-                    pick: "Non alcoholic spirits paired with quality mixers. A zero-proof gin and tonic, NA Negroni, or a mocktail Old Fashioned give you the full cocktail-making experience without the alcohol.",
+                    pick: "Non-alcoholic spirits paired with quality mixers. A zero-proof gin and tonic, NA Negroni, or a mocktail Old Fashioned give you the full cocktail-making experience without the alcohol.",
                     link: "/collections/spirit-alternatives",
                   },
                 ].map((item, i) => (
@@ -236,16 +236,16 @@ const BestNonAlcoholicDrinks = () => {
           <div className="container mx-auto px-4 lg:px-8">
             <div className="max-w-3xl mx-auto">
               <h2 className="font-serif text-3xl md:text-4xl text-forest mb-8">
-                Finding the Best Non Alcoholic Drink for Your Taste
+                Finding the Best Non-Alcoholic Drink for Your Taste
               </h2>
               <div className="grid sm:grid-cols-2 gap-6">
                 {[
-                  { pref: "You like something crisp and refreshing", rec: "Non alcoholic lager, pilsner, or sparkling water with botanicals", link: "/collections/na-beer" },
-                  { pref: "You like something complex and aromatic", rec: "Non alcoholic gin, an amaro alternative, or a botanical spirit", link: "/collections/spirit-alternatives" },
-                  { pref: "You like something rich and satisfying", rec: "Non alcoholic stout, porter, or a bold red wine alternative", link: "/collections/na-beer" },
+                  { pref: "You like something crisp and refreshing", rec: "Non-alcoholic lager, pilsner, or sparkling water with botanicals", link: "/collections/na-beer" },
+                  { pref: "You like something complex and aromatic", rec: "Non-alcoholic gin, an amaro alternative, or a botanical spirit", link: "/collections/spirit-alternatives" },
+                  { pref: "You like something rich and satisfying", rec: "Non-alcoholic stout, porter, or a bold red wine alternative", link: "/collections/na-beer" },
                   { pref: "You like something sweet and fruity", rec: "Ready-to-drink NA cocktails, sparkling rosé, or tropical mocktails", link: "/collections/wine-alternatives" },
                   { pref: "You want something that does something", rec: "Functional drinks with kava, adaptogens, or CBD for real effects", link: "/collections/functional" },
-                  { pref: "You want something easy to bring to a party", rec: "Canned NA beers or RTD non alcoholic cocktails", link: "/shop" },
+                  { pref: "You want something easy to bring to a party", rec: "Canned NA beers or RTD non-alcoholic cocktails", link: "/shop" },
                 ].map((item, i) => (
                   <Link to={item.link} key={i} className="block border-2 border-forest/10 bg-background p-5 hover:border-gold/50 transition-colors">
                     <p className="font-sans text-xs font-bold uppercase tracking-widest text-gold mb-2">If...</p>
@@ -337,7 +337,7 @@ const BestNonAlcoholicDrinks = () => {
         <section className="py-16 lg:py-20 bg-gold">
           <div className="container mx-auto px-4 lg:px-8 text-center">
             <h2 className="font-serif text-3xl md:text-4xl text-forest mb-4">
-              Explore 500+ Non Alcoholic Drinks
+              Explore 500+ Non-Alcoholic Drinks
             </h2>
             <p className="font-sans text-forest/70 mb-8 max-w-lg mx-auto">
               Shop our full catalog online or visit Monday Morning Bottle Shop in San Diego. Every category. Every style. Something for everyone.

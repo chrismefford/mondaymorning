@@ -118,11 +118,11 @@ const faqs = [
   },
   {
     question: "What are the best non-alcoholic spirits brands?",
-    answer: "Leading non-alcoholic spirit brands include Abstinence Spirits (South African botanicals with whiskey and gin alternatives), Almave (agave-based, from the creators of Clase Azul), Seedlip (the original NA spirit pioneer), Lyre's (broad range of spirit replicas), and Ritual Zero Proof (tequila and whiskey alternatives). Each brand takes a unique approach to flavor, so tasting multiple options is recommended."
+    answer: "Leading non-alcoholic spirit brands include Abstinence Spirits (South African botanicals with whiskey and gin alternatives), Almave (agave-based, from the creators of Clase Azul), Seedlip (the original NA spirit pioneer), Lyre's (broad range of spirit replicas), and Ritual Zero-Proof (tequila and whiskey alternatives). Each brand takes a unique approach to flavor, so tasting multiple options is recommended."
   },
   {
     question: "Can you make good cocktails without alcohol?",
-    answer: "Absolutely. Zero proof cocktails use non-alcoholic spirits, bitters, syrups, and fresh ingredients to create drinks with genuine complexity and depth. A well-made NA Negroni, zero proof Old Fashioned, or virgin Espresso Martini can be genuinely impressive. The key is using quality NA spirits rather than simply omitting alcohol from a traditional recipe."
+    answer: "Absolutely. Zero-proof cocktails use non-alcoholic spirits, bitters, syrups, and fresh ingredients to create drinks with genuine complexity and depth. A well-made NA Negroni, zero-proof Old Fashioned, or virgin Espresso Martini can be genuinely impressive. The key is using quality NA spirits rather than simply omitting alcohol from a traditional recipe."
   },
   {
     question: "What are natural relaxation drinks?",
@@ -162,7 +162,7 @@ const tocSections = [
   { id: "understanding", label: "What Are They?" },
   { id: "beer-wine", label: "Beer & Wine" },
   { id: "mocktails", label: "Mocktails" },
-  { id: "zero-proof-cocktails", label: "Zero Proof" },
+  { id: "zero-proof-cocktails", label: "Zero-Proof" },
   { id: "herbal-relaxation", label: "Herbal Drinks" },
   { id: "wellness", label: "Wellness" },
   { id: "celebrating", label: "Celebrating" },
@@ -221,7 +221,7 @@ const AlcoholAlternatives = () => {
             Explore the World of Alcohol Alternatives
           </h1>
           <p className="text-lg md:text-xl text-white/80 max-w-2xl mx-auto mb-8">
-            10 creative choices for every occasion, from zero proof cocktails and craft NA beer to functional wellness drinks and herbal relaxation beverages.
+            10 creative choices for every occasion, from zero-proof cocktails and craft NA beer to functional wellness drinks and herbal relaxation beverages.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button asChild size="lg" className="bg-ocean hover:bg-ocean/90 text-white rounded-full px-8">
@@ -367,7 +367,7 @@ const AlcoholAlternatives = () => {
                 <h3 className="font-serif text-xl text-foreground mb-3 mt-6">Top 5 Mocktail Recipes to Try</h3>
                 <div className="space-y-3 mb-6">
                   {[
-                    { name: "Zero Proof Negroni", desc: "Equal parts NA gin alternative, NA aperitivo, and NA sweet vermouth over ice with an orange peel" },
+                    { name: "Zero-Proof Negroni", desc: "Equal parts NA gin alternative, NA aperitivo, and NA sweet vermouth over ice with an orange peel" },
                     { name: "Virgin Espresso Martini", desc: "NA coffee liqueur, cold brew, simple syrup, shaken hard with ice for a thick crema" },
                     { name: "Botanical Spritz", desc: "NA aperitivo, sparkling water, a splash of fresh grapefruit juice, served in a wine glass" },
                     { name: "Spiced Mule", desc: "NA spirit, fresh lime, ginger beer, and a dash of aromatic bitters in a copper mug" },
@@ -397,14 +397,14 @@ const AlcoholAlternatives = () => {
           </div>
         </section>
 
-        {/* Zero Proof Cocktails */}
+        {/* Zero-Proof Cocktails */}
         <section id="zero-proof-cocktails" className="py-16 md:py-24 bg-muted/30">
           <div className="max-w-7xl mx-auto px-6">
             <div className="grid md:grid-cols-2 gap-12 items-center">
               <div>
-                <h2 className="font-serif text-3xl md:text-4xl text-foreground mb-6">Exploring Zero Proof Cocktails</h2>
+                <h2 className="font-serif text-3xl md:text-4xl text-foreground mb-6">Exploring Zero-Proof Cocktails</h2>
                 <p className="text-muted-foreground mb-4">
-                  Zero proof cocktails are drinks made entirely without alcohol that still deliver the complexity, ritual, and satisfaction of a well-crafted cocktail. Unlike a simple mocktail that might rely on juice and soda, a true zero proof cocktail uses alcohol-free spirits as its backbone.
+                  Zero-proof cocktails are drinks made entirely without alcohol that still deliver the complexity, ritual, and satisfaction of a well-crafted cocktail. Unlike a simple mocktail that might rely on juice and soda, a true zero-proof cocktail uses alcohol-free spirits as its backbone.
                 </p>
 
                 <h3 className="font-serif text-xl text-foreground mb-3 mt-6">Best Alcohol-Free Spirits</h3>
@@ -421,7 +421,7 @@ const AlcoholAlternatives = () => {
                 <h3 className="font-serif text-xl text-foreground mb-3 mt-8">Popular Alcohol-Free Cocktails</h3>
                 <div className="space-y-2">
                   {[
-                    "Zero Proof Old Fashioned: NA whiskey alternative, bitters, orange peel, demerara syrup",
+                    "Zero-Proof Old Fashioned: NA whiskey alternative, bitters, orange peel, demerara syrup",
                     "NA Margarita: Agave-based NA spirit, fresh lime, agave nectar, tajin rim",
                     "Alcohol-Free Aperol Spritz: NA aperitivo, sparkling water, orange slice",
                     "Virgin Paloma: NA tequila alternative, grapefruit soda, lime, salt rim",
@@ -434,7 +434,7 @@ const AlcoholAlternatives = () => {
                 </div>
               </div>
               <div className="relative rounded-2xl overflow-hidden aspect-[4/5]">
-                <img src={naSpiritCocktail} alt="Zero proof cocktail made with alcohol-free spirits" className="w-full h-full object-cover" loading="lazy" />
+                <img src={naSpiritCocktail} alt="Zero-proof cocktail made with alcohol-free spirits" className="w-full h-full object-cover" loading="lazy" />
               </div>
             </div>
           </div>
@@ -580,7 +580,7 @@ const AlcoholAlternatives = () => {
 
                 <h3 className="font-serif text-xl text-foreground mb-3 mt-6">Going Sober at Social Events</h3>
                 <p className="text-muted-foreground mb-4">
-                  Having a drink in your hand eliminates the "why aren't you drinking" conversation before it starts. Bring your own NA beer or pre-made mocktail, ask the bartender for a zero proof cocktail, or simply order a sparkling water with bitters and a lime. The alcohol-free lifestyle does not require announcing it.
+                  Having a drink in your hand eliminates the "why aren't you drinking" conversation before it starts. Bring your own NA beer or pre-made mocktail, ask the bartender for a zero-proof cocktail, or simply order a sparkling water with bitters and a lime. The alcohol-free lifestyle does not require announcing it.
                 </p>
 
                 <div className="space-y-3 mt-6">
@@ -647,7 +647,7 @@ const AlcoholAlternatives = () => {
           <div className="max-w-4xl mx-auto px-6 text-center">
             <h2 className="font-serif text-3xl md:text-4xl text-foreground mb-6">Embracing an Alcohol-Free Lifestyle</h2>
             <p className="text-muted-foreground mb-4">
-              The world of alcohol alternatives is deeper, more creative, and more delicious than most people expect. Whether you are exploring sober curiosity for the first time, building a home bar stocked with zero proof spirits, or looking for natural relaxation drinks to replace your evening glass of wine, the options have never been better.
+              The world of alcohol alternatives is deeper, more creative, and more delicious than most people expect. Whether you are exploring sober curiosity for the first time, building a home bar stocked with zero-proof spirits, or looking for natural relaxation drinks to replace your evening glass of wine, the options have never been better.
             </p>
             <p className="text-muted-foreground mb-8">
               The mindful drinking movement is not a trend. It is a permanent shift in how people think about alcohol, health, and socializing. Your journey with alcohol alternatives starts wherever you are, and every sip in a new direction counts.

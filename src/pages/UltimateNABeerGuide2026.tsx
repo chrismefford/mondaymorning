@@ -211,8 +211,8 @@ const UltimateNABeerGuide2026 = () => {
   return (
     <div className="min-h-screen bg-background">
       <SEO
-        title="The Ultimate Non Alcoholic Beer Guide 2026: 80+ NA Beers Ranked | Monday Morning"
-        description="Every NA beer worth drinking, side by side. 80+ non alcoholic beers across IPA, lager, stout and Belgian styles, ranked by Monday Morning's tasting room staff."
+        title="The Ultimate Non-Alcoholic Beer Guide 2026: 80+ NA Beers Ranked | Monday Morning"
+        description="Every NA beer worth drinking, side by side. 80+ non-alcoholic beers across IPA, lager, stout and Belgian styles, ranked by Monday Morning's tasting room staff."
         path={path}
         type="article"
         image="/og-ultimate-na-beer-guide-2026.jpg"
@@ -242,7 +242,7 @@ const UltimateNABeerGuide2026 = () => {
           <div className="container mx-auto px-4 max-w-3xl">
             <div className="prose prose-lg max-w-none font-sans text-foreground/90 space-y-5">
               <p>
-                The first time someone hands you a non alcoholic beer, you brace
+                The first time someone hands you a non-alcoholic beer, you brace
                 for disappointment. That bracing is a holdover from 2015. The
                 category has changed.
               </p>
@@ -292,8 +292,8 @@ const UltimateNABeerGuide2026 = () => {
                   ABV labeling matters more than you think.
                 </h3>
                 <p>
-                  A non alcoholic beer in the US can legally contain up to 0.5%
-                  alcohol by volume. An alcohol free beer must contain 0.0%. For
+                  A non-alcoholic beer in the US can legally contain up to 0.5%
+                  alcohol by volume. An alcohol-free beer must contain 0.0%. For
                   most drinkers the difference is irrelevant. For people in
                   recovery, pregnant women, observant Muslims, and anyone on
                   medication that interacts with trace alcohol, it's everything.
@@ -306,7 +306,7 @@ const UltimateNABeerGuide2026 = () => {
                 </h3>
                 <p>
                   A session IPA might come in around 50 calories. A full-bodied
-                  pastry stout can clear 150. Both are non alcoholic. If you're
+                  pastry stout can clear 150. Both are non-alcoholic. If you're
                   drinking NA beer for fitness reasons, that gap matters. Check
                   the can.
                 </p>

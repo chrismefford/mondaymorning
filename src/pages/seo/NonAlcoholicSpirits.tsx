@@ -4,29 +4,29 @@ import { SITE_URL } from "@/lib/seo";
 
 const NonAlcoholicSpirits = () => (
   <AuthorityPage
-    title="Non Alcoholic Spirits: Best NA Gin, Whiskey & Tequila 2026 | Monday Morning"
-    description="The 2026 buyer's guide to non alcoholic spirits. Best NA gin, whiskey, tequila, agave and aperitifs, ranked by Monday Morning's San Diego tasting room staff."
+    title="Non-Alcoholic Spirits: Best NA Gin, Whiskey & Tequila 2026 | Monday Morning"
+    description="The 2026 buyer's guide to non-alcoholic spirits. Best NA gin, whiskey, tequila, agave and aperitifs, ranked by Monday Morning's San Diego tasting room staff."
     path="/non-alcoholic-spirits"
     ogImage={`${SITE_URL}/og-non-alcoholic-spirits.jpg`}
     eyebrow="Cluster Hub"
-    h1="Non alcoholic spirits, the complete buyer's guide"
-    subhead="The most exciting corner of the zero proof world. Real botanicals, real complexity, mixed exactly like the alcoholic version. Here is what to buy and how to use it."
-    tldr="Non alcoholic spirits are botanical or distillate based liquids designed to replace gin, whiskey, tequila, agave, and aperitifs in cocktails. The good ones (Sentia, Almave, Glen Dochus, Ceybon, Abstinence) are not trying to clone alcohol, they are building parallel flavor profiles that work in the same recipes. Build your zero proof bar with one base spirit, one aperitif, one citrus, and one tonic. That covers ten cocktails. Expect to pay $25 to $50 per bottle."
+    h1="Non-alcoholic spirits, the complete buyer's guide"
+    subhead="The most exciting corner of the zero-proof world. Real botanicals, real complexity, mixed exactly like the alcoholic version. Here is what to buy and how to use it."
+    tldr="Non-alcoholic spirits are botanical or distillate based liquids designed to replace gin, whiskey, tequila, agave, and aperitifs in cocktails. The good ones (Sentia, Almave, Glen Dochus, Ceybon, Abstinence) are not trying to clone alcohol, they are building parallel flavor profiles that work in the same recipes. Build your zero-proof bar with one base spirit, one aperitif, one citrus, and one tonic. That covers ten cocktails. Expect to pay $25 to $50 per bottle."
     heroImage={`${SITE_URL}/og-non-alcoholic-spirits.jpg`}
     ctaPrimary={{ label: "Shop NA spirits", href: "/collections/spirit-alternatives" }}
     ctaSecondary={{ label: "Visit a tasting room", href: "/locations" }}
     breadcrumbs={[
       { name: "Home", url: SITE_URL },
-      { name: "Non Alcoholic Drinks", url: `${SITE_URL}/non-alcoholic-drinks` },
-      { name: "Non Alcoholic Spirits", url: `${SITE_URL}/non-alcoholic-spirits` },
+      { name: "Non-Alcoholic Drinks", url: `${SITE_URL}/non-alcoholic-drinks` },
+      { name: "Non-Alcoholic Spirits", url: `${SITE_URL}/non-alcoholic-spirits` },
     ]}
     sections={[
       {
-        heading: "What is a non alcoholic spirit, really?",
+        heading: "What is a non-alcoholic spirit, really?",
         body: (
           <>
             <p>
-              A non alcoholic spirit is a concentrated, savory or aromatic liquid built from botanicals, distillates, salts, peppers, and bitter compounds, designed to behave like its alcoholic counterpart in a cocktail. The category includes NA gin, NA whiskey, NA tequila and agave, NA rum, and a growing list of aperitifs and amari.
+              A non-alcoholic spirit is a concentrated, savory or aromatic liquid built from botanicals, distillates, salts, peppers, and bitter compounds, designed to behave like its alcoholic counterpart in a cocktail. The category includes NA gin, NA whiskey, NA tequila and agave, NA rum, and a growing list of aperitifs and amari.
             </p>
             <p>
               The best NA spirits are not trying to taste exactly like the alcoholic version. They are building a parallel flavor profile that performs the same role in a recipe. Think of it like decaf espresso: not identical to caffeinated, but it does the job in a latte.
@@ -38,7 +38,7 @@ const NonAlcoholicSpirits = () => (
         ),
       },
       {
-        heading: "The categories of non alcoholic spirits",
+        heading: "The categories of non-alcoholic spirits",
         body: (
           <>
             <h3>NA gin and botanical spirits</h3>
@@ -83,7 +83,7 @@ const NonAlcoholicSpirits = () => (
         ),
       },
       {
-        heading: "How to build a zero proof bar",
+        heading: "How to build a zero-proof bar",
         body: (
           <>
             <p>
@@ -96,7 +96,7 @@ const NonAlcoholicSpirits = () => (
               <li><strong>One mixer arsenal.</strong> Quality tonic (Fever Tree), soda water, fresh citrus, simple syrup, bitters (most have negligible alcohol but check labels).</li>
             </ul>
             <p>
-              That is the entire bar. With it you can make: a paloma, a margarita, a negroni, an old fashioned, a whiskey sour, a gin and tonic, a Sentia spritz, a highball, and a daiquiri variant. For deeper recipes see our <Link to="/recipes">recipe library</Link> or the dedicated <Link to="/zero-proof-home-bar">zero proof home bar guide</Link>.
+              That is the entire bar. With it you can make: a paloma, a margarita, a negroni, an old fashioned, a whiskey sour, a gin and tonic, a Sentia spritz, a highball, and a daiquiri variant. For deeper recipes see our <Link to="/recipes">recipe library</Link> or the dedicated <Link to="/zero-proof-home-bar">zero-proof home bar guide</Link>.
             </p>
           </>
         ),
@@ -124,14 +124,14 @@ const NonAlcoholicSpirits = () => (
               <li>The complexity of building flavor without alcohol's natural carrier.</li>
             </ul>
             <p>
-              You are not paying a "non alcoholic premium." You are paying for craft. The cheap NA spirits taste cheap. Skip them.
+              You are not paying a "non-alcoholic premium." You are paying for craft. The cheap NA spirits taste cheap. Skip them.
             </p>
           </>
         ),
       },
     ]}
     faqs={[
-      { question: "Do you drink non alcoholic spirits neat?", answer: "Generally no. NA spirits are built to be mixed. Without the warmth alcohol provides, they feel thin neat. Mix them in tonics, sours, stirred cocktails, or highballs." },
+      { question: "Do you drink non-alcoholic spirits neat?", answer: "Generally no. NA spirits are built to be mixed. Without the warmth alcohol provides, they feel thin neat. Mix them in tonics, sours, stirred cocktails, or highballs." },
       { question: "Will an NA spirit get me anywhere close to a buzz?", answer: "Not from alcohol. Some, like Sentia and Ceybon, contain functional botanicals that produce a mild calming or mood lifting effect. It is real but subtle, not equivalent to alcohol." },
       { question: "How long does an open bottle of NA spirit last?", answer: "Most last 4 to 6 months refrigerated after opening. Without alcohol as a preservative, oxidation matters. Keep them in the fridge once opened." },
       { question: "Can I substitute NA spirits 1 to 1 in a recipe?", answer: "Yes for most recipes. The proportions translate directly because you are replacing the spirit's flavor role, not its ABV. Some stirred drinks taste better with slightly less NA spirit than alcoholic, because there is no alcoholic burn to balance." },
@@ -141,11 +141,11 @@ const NonAlcoholicSpirits = () => (
       { question: "Can I order NA spirits online?", answer: "Yes. Monday Morning ships our full catalog of NA spirits across the US. Local San Diego customers can shop in store at our Pacific Beach or Ocean Beach locations." },
     ]}
     relatedLinks={[
-      { label: "Best Non Alcoholic Tequila", href: "/best-non-alcoholic-tequila", description: "Almave Blanco and Ámbar, ranked and explained." },
-      { label: "Best Non Alcoholic Whiskey", href: "/best-non-alcoholic-whiskey", description: "Glen Dochus, old fashioneds, and slow sipping." },
-      { label: "Best Non Alcoholic Gin", href: "/best-non-alcoholic-gin", description: "Abstinence Cape Citrus and Cape Spice for tonics and sours." },
-      { label: "Pillar: Non alcoholic drinks", href: "/non-alcoholic-drinks", description: "The complete category overview." },
-      { label: "Zero proof home bar", href: "/zero-proof-home-bar", description: "Four bottles, ten cocktails, full setup." },
+      { label: "Best Non-Alcoholic Tequila", href: "/best-non-alcoholic-tequila", description: "Almave Blanco and Ámbar, ranked and explained." },
+      { label: "Best Non-Alcoholic Whiskey", href: "/best-non-alcoholic-whiskey", description: "Glen Dochus, old fashioneds, and slow sipping." },
+      { label: "Best Non-Alcoholic Gin", href: "/best-non-alcoholic-gin", description: "Abstinence Cape Citrus and Cape Spice for tonics and sours." },
+      { label: "Pillar: Non-alcoholic drinks", href: "/non-alcoholic-drinks", description: "The complete category overview." },
+      { label: "Zero-proof home bar", href: "/zero-proof-home-bar", description: "Four bottles, ten cocktails, full setup." },
       { label: "Cutwater alcohol content", href: "/cutwater-alcohol-content", description: "What Cutwater actually contains, vs the NA alternatives." },
     ]}
   />

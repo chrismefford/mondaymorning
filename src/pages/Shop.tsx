@@ -110,8 +110,8 @@ const ShopPage = () => {
     return out;
   }, [allProducts]);
 
-  const pageTitle = "Shop Non Alcoholic Drinks: 500+ NA Beer, Wine & Spirits | Monday Morning";
-  const pageDescription = "Shop the largest curated NA drinks selection in San Diego. 500+ non alcoholic beers, wines, spirits, mocktails and functional drinks. Taste before you buy, fast local delivery, nationwide shipping.";
+  const pageTitle = "Shop Non-Alcoholic Drinks: 500+ NA Beer, Wine & Spirits | Monday Morning";
+  const pageDescription = "Shop the largest curated NA drinks selection in San Diego. 500+ non-alcoholic beers, wines, spirits, mocktails and functional drinks. Taste before you buy, fast local delivery, nationwide shipping.";
   const canonicalUrl = getCanonicalUrl("/shop");
 
   return (
@@ -152,7 +152,7 @@ const ShopPage = () => {
                 Shop · Find Your Version of AF
               </span>
               <h1 className="font-serif text-5xl lg:text-7xl xl:text-8xl font-normal mb-6 text-forest">
-                Shop Non Alcoholic <span className="font-script text-gold text-[1.15em] leading-none">Drinks</span>
+                Shop Non-Alcoholic <span className="font-script text-gold text-[1.15em] leading-none">Drinks</span>
               </h1>
               <p className="font-sans text-lg lg:text-xl text-forest/70 max-w-2xl mx-auto">
                 500+ non-alcoholic beers, wines, spirits, and functional drinks, hand-picked by our San Diego tasting room. Taste before you buy, get fast local delivery, or ship nationwide.

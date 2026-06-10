@@ -4,25 +4,25 @@ import { SITE_URL } from "@/lib/seo";
 
 const NonAlcoholicWine = () => (
   <AuthorityPage
-    title="Non Alcoholic Wine: Best NA Reds, Whites & Sparklings 2026 | Monday Morning"
-    description="The 2026 guide to non alcoholic wine. Best dealcoholized reds, whites, rosés and sparklings, plus how to choose. From San Diego's biggest non alcoholic bottle shop."
+    title="Non-Alcoholic Wine: Best NA Reds, Whites & Sparklings 2026 | Monday Morning"
+    description="The 2026 guide to non-alcoholic wine. Best dealcoholized reds, whites, rosés and sparklings, plus how to choose. From San Diego's biggest non-alcoholic bottle shop."
     path="/non-alcoholic-wine"
     ogImage={`${SITE_URL}/og-non-alcoholic-wine.jpg`}
     eyebrow="Cluster Hub"
-    h1="Non alcoholic wine, finally worth drinking"
-    subhead="The fastest improving category in the zero proof world. Real fermentation, then careful dealcoholization. The result keeps tannin, oak, and acidity. Here is what to buy."
-    tldr="Non alcoholic wine is real wine that has been dealcoholized after fermentation, usually via spinning cone or vacuum distillation. The good bottles, especially sparkling and rosé, are now genuinely competitive at dinner. Brands worth knowing: Bolle (sparkling), Sovi (red and white), and the small dealcoholized producers from Spain and Germany. Sparkling NA wine is the easiest entry point because bubbles carry flavor. Expect $18 to $30 per bottle. Serve cold, in the right glass, at dinner, exactly like real wine."
+    h1="Non-alcoholic wine, finally worth drinking"
+    subhead="The fastest improving category in the zero-proof world. Real fermentation, then careful dealcoholization. The result keeps tannin, oak, and acidity. Here is what to buy."
+    tldr="Non-alcoholic wine is real wine that has been dealcoholized after fermentation, usually via spinning cone or vacuum distillation. The good bottles, especially sparkling and rosé, are now genuinely competitive at dinner. Brands worth knowing: Bolle (sparkling), Sovi (red and white), and the small dealcoholized producers from Spain and Germany. Sparkling NA wine is the easiest entry point because bubbles carry flavor. Expect $18 to $30 per bottle. Serve cold, in the right glass, at dinner, exactly like real wine."
     heroImage={`${SITE_URL}/og-non-alcoholic-wine.jpg`}
     ctaPrimary={{ label: "Shop NA wine", href: "/collections/wine-alternatives" }}
     ctaSecondary={{ label: "Visit a tasting room", href: "/locations" }}
     breadcrumbs={[
       { name: "Home", url: SITE_URL },
-      { name: "Non Alcoholic Drinks", url: `${SITE_URL}/non-alcoholic-drinks` },
-      { name: "Non Alcoholic Wine", url: `${SITE_URL}/non-alcoholic-wine` },
+      { name: "Non-Alcoholic Drinks", url: `${SITE_URL}/non-alcoholic-drinks` },
+      { name: "Non-Alcoholic Wine", url: `${SITE_URL}/non-alcoholic-wine` },
     ]}
     sections={[
       {
-        heading: "How non alcoholic wine is made",
+        heading: "How non-alcoholic wine is made",
         body: (
           <>
             <p>
@@ -38,7 +38,7 @@ const NonAlcoholicWine = () => (
               <strong>Vacuum distillation.</strong> Similar principle, slightly different equipment, also low temperature. Both methods can produce excellent wine.
             </p>
             <p>
-              Avoid bottles labeled "non alcoholic" that turn out to be fermented grape juice. They are not the same product. Real dealcoholized wine has tannin, oak influence, and structure. Grape juice has none of that.
+              Avoid bottles labeled "non-alcoholic" that turn out to be fermented grape juice. They are not the same product. Real dealcoholized wine has tannin, oak influence, and structure. Grape juice has none of that.
             </p>
           </>
         ),
@@ -67,7 +67,7 @@ const NonAlcoholicWine = () => (
         ),
       },
       {
-        heading: "How to serve non alcoholic wine",
+        heading: "How to serve non-alcoholic wine",
         body: (
           <>
             <p>
@@ -107,28 +107,28 @@ const NonAlcoholicWine = () => (
               <strong>NA wine works:</strong> at dinner with food, at brunch, at a celebration where everyone toasts, at a beach picnic, when you want the ritual without the next morning.
             </p>
             <p>
-              <strong>NA wine struggles:</strong> as a sipping drink without food, in long pours, against a complex meal where you want a wine with serious tannin or alcohol warmth. For those moments, consider a <Link to="/non-alcoholic-spirits">non alcoholic spirits</Link> based cocktail or a craft <Link to="/non-alcoholic-beer-guide">NA beer</Link> instead.
+              <strong>NA wine struggles:</strong> as a sipping drink without food, in long pours, against a complex meal where you want a wine with serious tannin or alcohol warmth. For those moments, consider a <Link to="/non-alcoholic-spirits">non-alcoholic spirits</Link> based cocktail or a craft <Link to="/non-alcoholic-beer-guide">NA beer</Link> instead.
             </p>
           </>
         ),
       },
     ]}
     faqs={[
-      { question: "Does non alcoholic wine taste like real wine?", answer: "The good ones do, especially sparkling and rosé. Reds are the hardest category because alcohol contributes body. Bolle, Sovi, and small dealcoholized producers consistently deliver real wine experiences." },
-      { question: "Is non alcoholic wine just grape juice?", answer: "No, and this is the most important distinction. Real NA wine is fermented and aged like normal wine, then dealcoholized. Grape juice has no fermentation. The difference in flavor is enormous." },
-      { question: "Can I cook with non alcoholic wine?", answer: "Yes. NA wine works in pan sauces, risottos, and braises. Because there is no alcohol to burn off, you can use it raw in vinaigrettes too." },
+      { question: "Does non-alcoholic wine taste like real wine?", answer: "The good ones do, especially sparkling and rosé. Reds are the hardest category because alcohol contributes body. Bolle, Sovi, and small dealcoholized producers consistently deliver real wine experiences." },
+      { question: "Is non-alcoholic wine just grape juice?", answer: "No, and this is the most important distinction. Real NA wine is fermented and aged like normal wine, then dealcoholized. Grape juice has no fermentation. The difference in flavor is enormous." },
+      { question: "Can I cook with non-alcoholic wine?", answer: "Yes. NA wine works in pan sauces, risottos, and braises. Because there is no alcohol to burn off, you can use it raw in vinaigrettes too." },
       { question: "How long does an open bottle last?", answer: "3 to 5 days refrigerated, less for sparkling. Without alcohol as a preservative, NA wine oxidizes faster than regular wine. Use a wine stopper and a vacuum pump to extend." },
-      { question: "Why is non alcoholic wine sometimes lower in alcohol than 0.0%?", answer: "Most NA wine is dealcoholized to under 0.5% ABV, the legal threshold. A few are processed to 0.0%. Check the label." },
-      { question: "Is non alcoholic wine sweeter than regular wine?", answer: "Sometimes. Removing alcohol can shift the flavor balance toward perceived sweetness. The best producers add back acid or use drier styles to compensate." },
+      { question: "Why is non-alcoholic wine sometimes lower in alcohol than 0.0%?", answer: "Most NA wine is dealcoholized to under 0.5% ABV, the legal threshold. A few are processed to 0.0%. Check the label." },
+      { question: "Is non-alcoholic wine sweeter than regular wine?", answer: "Sometimes. Removing alcohol can shift the flavor balance toward perceived sweetness. The best producers add back acid or use drier styles to compensate." },
       { question: "Can I drink NA wine while pregnant?", answer: "Talk to your doctor. Most NA wine is below 0.5% ABV, similar to fruit juice. Many doctors consider this acceptable. Some recommend zero alcohol entirely." },
-      { question: "Where can I buy non alcoholic wine?", answer: "Monday Morning carries 50+ NA wines, in store at our San Diego locations and online with national shipping. Specialty grocery stores increasingly carry sparkling NA wine, but selection is narrow." },
+      { question: "Where can I buy non-alcoholic wine?", answer: "Monday Morning carries 50+ NA wines, in store at our San Diego locations and online with national shipping. Specialty grocery stores increasingly carry sparkling NA wine, but selection is narrow." },
     ]}
     relatedLinks={[
-      { label: "Best Non Alcoholic Sparkling Wine", href: "/best-non-alcoholic-sparkling-wine", description: "Bolle, Sovi, and the bubbles for weddings and holidays." },
-      { label: "Pillar: Non alcoholic drinks", href: "/non-alcoholic-drinks", description: "The complete category overview." },
-      { label: "Non alcoholic spirits hub", href: "/non-alcoholic-spirits", description: "Real cocktails without alcohol." },
-      { label: "Best Non Alcoholic Gin", href: "/best-non-alcoholic-gin", description: "Botanical bottles for tonics, sours, and martinis." },
-      { label: "Sober curious guide", href: "/sober-curious-guide", description: "Why people are switching." },
+      { label: "Best Non-Alcoholic Sparkling Wine", href: "/best-non-alcoholic-sparkling-wine", description: "Bolle, Sovi, and the bubbles for weddings and holidays." },
+      { label: "Pillar: Non-alcoholic drinks", href: "/non-alcoholic-drinks", description: "The complete category overview." },
+      { label: "Non-alcoholic spirits hub", href: "/non-alcoholic-spirits", description: "Real cocktails without alcohol." },
+      { label: "Best Non-Alcoholic Gin", href: "/best-non-alcoholic-gin", description: "Botanical bottles for tonics, sours, and martinis." },
+      { label: "Sober-curious guide", href: "/sober-curious-guide", description: "Why people are switching." },
     ]}
   />
 );

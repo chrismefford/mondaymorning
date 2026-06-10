@@ -24,8 +24,8 @@ import {
 } from "@/lib/seo";
 
 const Index = () => {
-  const pageTitle = "Non Alcoholic Drinks: 500+ NA Beer, Wine & Spirits | Monday Morning";
-  const pageDescription = "Shop 500+ non alcoholic beers, wines, spirits and mocktails. Fast local delivery in San Diego, taste before you buy at our PB and OB tasting rooms.";
+  const pageTitle = "Non-Alcoholic Drinks: 500+ NA Beer, Wine & Spirits | Monday Morning";
+  const pageDescription = "Shop 500+ non-alcoholic beers, wines, spirits and mocktails. Fast local delivery in San Diego, taste before you buy at our PB and OB tasting rooms.";
   const canonicalUrl = SITE_URL;
 
   return (
@@ -54,7 +54,7 @@ const Index = () => {
         <meta name="twitter:site" content={TWITTER_HANDLE} />
         
         {/* Additional SEO */}
-        <meta name="keywords" content="non-alcoholic drinks, NA beer, NA wine, NA spirits, alcohol-free, San Diego, Pacific Beach, Ocean Beach, sober curious, mindful drinking, mocktails" />
+        <meta name="keywords" content="non-alcoholic drinks, NA beer, NA wine, NA spirits, alcohol-free, San Diego, Pacific Beach, Ocean Beach, sober-curious, mindful drinking, mocktails" />
         <meta name="author" content={SITE_NAME} />
         <meta name="robots" content="index, follow" />
         

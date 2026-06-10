@@ -150,7 +150,7 @@ const recipes = [
   {
     id: 5,
     title: "Non Alc Espresso Martini",
-    description: "Abstinence Epilogue X provides the smoky, oak-aged malt backbone for this espresso martini riff. Shaken with fresh espresso and vanilla syrup, it is the most photogenic zero proof cocktail you will make.",
+    description: "Abstinence Epilogue X provides the smoky, oak-aged malt backbone for this espresso martini riff. Shaken with fresh espresso and vanilla syrup, it is the most photogenic zero-proof cocktail you will make.",
     image: espressoMocktail,
     prepTime: "5 min",
     servings: 1,
@@ -182,7 +182,7 @@ const recipes = [
   },
   {
     id: 8,
-    title: "Dark and Stormy (Zero Proof)",
+    title: "Dark and Stormy (Zero-Proof)",
     description: "Abstinence Epilogue X stands in for dark rum with its smoked, peated malt character. Paired with Portland Syrups Ginger and fresh lime, it delivers a bold, warming cocktail with serious depth.",
     image: darkStormy,
     prepTime: "3 min",
@@ -231,7 +231,7 @@ const categories = [
   },
   {
     icon: Martini,
-    title: "Zero Proof Spirits",
+    title: "Zero-Proof Spirits",
     description: "Non alc gin, tequila, vodka, whiskey, and rum alternatives designed for cocktail making. These are the backbone of the non alc cocktail movement.",
     link: "/collections/spirit-alternatives",
   },
@@ -243,8 +243,8 @@ const categories = [
   },
   {
     icon: GlassWater,
-    title: "Non Alcoholic Seltzers",
-    description: "Crisp, flavored sparkling waters and non alcoholic hard seltzers that deliver refreshment without the buzz. Think White Claw vibes, 0.0% ABV reality.",
+    title: "Non-Alcoholic Seltzers",
+    description: "Crisp, flavored sparkling waters and non-alcoholic hard seltzers that deliver refreshment without the buzz. Think White Claw vibes, 0.0% ABV reality.",
     link: "/shop",
   },
   {
@@ -262,12 +262,12 @@ const faqs = [
     answer: "Non alc is shorthand for non-alcoholic. It refers to any beverage that contains little to no alcohol, typically under 0.5% ABV. Many non alc drinks are brewed, fermented, or distilled using traditional methods and then have the alcohol removed, while others are crafted from scratch without any alcohol production."
   },
   {
-    question: "Is non alc the same as zero proof?",
-    answer: "They overlap but are not identical. Zero proof specifically means 0.0% ABV, containing absolutely no alcohol. Non alc (non-alcoholic) can legally contain up to 0.5% ABV in the US, which is a trace amount comparable to what you find in ripe bananas or kombucha. If complete alcohol absence matters to you, look for the 0.0% label."
+    question: "Is non alc the same as zero-proof?",
+    answer: "They overlap but are not identical. Zero-proof specifically means 0.0% ABV, containing absolutely no alcohol. Non alc (non-alcoholic) can legally contain up to 0.5% ABV in the US, which is a trace amount comparable to what you find in ripe bananas or kombucha. If complete alcohol absence matters to you, look for the 0.0% label."
   },
   {
-    question: "Are non alcoholic seltzers actually alcohol free?",
-    answer: "Most non alcoholic seltzers on the market are 0.0% ABV, making them completely alcohol free. However, some products labeled as 'non-alcoholic hard seltzer' may contain up to 0.5% ABV. Always check the label to confirm."
+    question: "Are non-alcoholic seltzers actually alcohol-free?",
+    answer: "Most non-alcoholic seltzers on the market are 0.0% ABV, making them completely alcohol-free. However, some products labeled as 'non-alcoholic hard seltzer' may contain up to 0.5% ABV. Always check the label to confirm."
   },
   {
     question: "Where can I buy non alc drinks near me?",
@@ -287,11 +287,11 @@ const faqs = [
   },
   {
     question: "What are the best non alc cocktail recipes for beginners?",
-    answer: "Start with recipes that use familiar flavors: a Non Alc Mojito with Abstinence Cape Spice, a Zero Proof Margarita with Almave Blanco, or a Blood Orange Spritz with Abstinence Aperitif. These use simple techniques and products available in our shop. The 10 recipes on this page are all beginner-friendly."
+    answer: "Start with recipes that use familiar flavors: a Non Alc Mojito with Abstinence Cape Spice, a Zero-Proof Margarita with Almave Blanco, or a Blood Orange Spritz with Abstinence Aperitif. These use simple techniques and products available in our shop. The 10 recipes on this page are all beginner-friendly."
   },
   {
-    question: "What is a non alcoholic hard seltzer?",
-    answer: "A non alcoholic hard seltzer is a sparkling flavored water that mimics the taste and experience of hard seltzers like White Claw or Truly, but with 0.0% or near-zero alcohol content. Brands like Hoptea and various craft producers make excellent versions."
+    question: "What is a non-alcoholic hard seltzer?",
+    answer: "A non-alcoholic hard seltzer is a sparkling flavored water that mimics the taste and experience of hard seltzers like White Claw or Truly, but with 0.0% or near-zero alcohol content. Brands like Hoptea and various craft producers make excellent versions."
   },
   {
     question: "Is Pathfinder non alc?",
@@ -367,8 +367,8 @@ const NonAlcDrinks = () => {
   return (
     <>
       <SEO
-        title="10 Best Non Alcoholic Drink Recipes: Easy NA Cocktails | Monday Morning"
-        description="10 non alcoholic drink recipes that actually taste great. Easy zero proof cocktails for parties, dinners and weeknights, built with bottles we stock in San Diego."
+        title="10 Best Non-Alcoholic Drink Recipes: Easy NA Cocktails | Monday Morning"
+        description="10 non-alcoholic drink recipes that actually taste great. Easy zero-proof cocktails for parties, dinners and weeknights, built with bottles we stock in San Diego."
         path="/non-alc-drinks"
         type="article"
         schema={[articleSchema, faqSchema, breadcrumbSchema, websiteSchema]}
@@ -401,7 +401,7 @@ const NonAlcDrinks = () => {
             10 Exciting Non Alc Drink Recipes to Delight Your Taste Buds
           </h1>
           <p className="text-lg md:text-xl text-white/80 max-w-2xl mx-auto mb-8">
-            Everything you need to know about non alc drinks, from craft cocktail recipes to the best non alcoholic seltzers, spirits, and wines on the market.
+            Everything you need to know about non alc drinks, from craft cocktail recipes to the best non-alcoholic seltzers, spirits, and wines on the market.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button asChild size="lg" className="bg-ocean hover:bg-ocean/90 text-white rounded-full px-8">
@@ -445,7 +445,7 @@ const NonAlcDrinks = () => {
                   What Does "Non Alc" Actually Mean?
                 </h2>
                 <p className="text-muted-foreground mb-4">
-                  Non alc is the shorthand that has become the default way people search for, talk about, and order non-alcoholic beverages. It covers the entire spectrum: non alc beer, non alc wine, non alc spirits, non alcoholic seltzers, functional drinks, and everything in between.
+                  Non alc is the shorthand that has become the default way people search for, talk about, and order non-alcoholic beverages. It covers the entire spectrum: non alc beer, non alc wine, non alc spirits, non-alcoholic seltzers, functional drinks, and everything in between.
                 </p>
                 <p className="text-muted-foreground mb-4">
                   In the United States, a beverage labeled "non-alcoholic" can contain up to 0.5% ABV, which is a trace amount found naturally in foods like ripe bananas, fermented bread, and kombucha. Products labeled "alcohol-free" or "0.0% ABV" contain no measurable alcohol whatsoever.
@@ -460,7 +460,7 @@ const NonAlcDrinks = () => {
                     <div>
                       <p className="font-medium text-foreground mb-1">Quick Distinction</p>
                       <p className="text-sm text-muted-foreground">
-                        "Non-alcoholic" = up to 0.5% ABV. "Alcohol-free" or "0.0%" = zero alcohol. "Zero proof" = 0.0% ABV. All fall under the "non alc" umbrella.
+                        "Non-alcoholic" = up to 0.5% ABV. "Alcohol-free" or "0.0%" = zero alcohol. "Zero-proof" = 0.0% ABV. All fall under the "non alc" umbrella.
                       </p>
                     </div>
                   </div>
@@ -567,12 +567,12 @@ const NonAlcDrinks = () => {
           <div className="max-w-7xl mx-auto px-6">
             <div className="grid md:grid-cols-2 gap-12 items-center">
               <div className="relative rounded-2xl overflow-hidden aspect-[4/5]">
-                <img src={beachSunsetCocktails} alt="Friends enjoying non alcoholic seltzers at sunset on the beach" className="w-full h-full object-cover" loading="lazy" />
+                <img src={beachSunsetCocktails} alt="Friends enjoying non-alcoholic seltzers at sunset on the beach" className="w-full h-full object-cover" loading="lazy" />
               </div>
               <div>
-                <h2 className="font-serif text-3xl md:text-4xl text-foreground mb-6">Non Alcoholic Seltzers: The Full Guide</h2>
+                <h2 className="font-serif text-3xl md:text-4xl text-foreground mb-6">Non-Alcoholic Seltzers: The Full Guide</h2>
                 <p className="text-muted-foreground mb-4">
-                  Non alcoholic hard seltzers are one of the fastest-growing segments in the entire non alc category. They deliver the same crisp, flavored, sparkling experience as brands like White Claw and Truly, but with 0.0% alcohol content.
+                  Non-alcoholic hard seltzers are one of the fastest-growing segments in the entire non alc category. They deliver the same crisp, flavored, sparkling experience as brands like White Claw and Truly, but with 0.0% alcohol content.
                 </p>
                 <p className="text-muted-foreground mb-4">
                   Unlike traditional sparkling water, NA seltzers are specifically designed to replicate the drinking experience of hard seltzers. Many use hop extracts, botanicals, or natural flavoring to create that slightly more complex flavor profile that separates a seltzer from a La Croix.
@@ -640,7 +640,7 @@ const NonAlcDrinks = () => {
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
               {[
                 { icon: Heart, title: "Health-Conscious Drinkers", text: "People cutting alcohol for better sleep, fitness, mental clarity, or long-term health. The fastest growing segment." },
-                { icon: Sparkles, title: "Sober Curious", text: "Not necessarily sober, just questioning their relationship with alcohol and exploring what life looks like with less of it." },
+                { icon: Sparkles, title: "Sober-Curious", text: "Not necessarily sober, just questioning their relationship with alcohol and exploring what life looks like with less of it." },
                 { icon: Droplets, title: "Designated Drivers and Parents", text: "People who still want a sophisticated drink at social events but need to stay sharp. Non alc gives them a real option beyond soda." },
                 { icon: Coffee, title: "Professionals and Athletes", text: "Peak performers who treat their bodies like a competitive advantage. Eliminating alcohol is the easiest performance upgrade available." },
               ].map((persona) => (
@@ -678,7 +678,7 @@ const NonAlcDrinks = () => {
                   If you are in San Diego, Monday Morning Bottle Shop is your home base. We carry over 500 non alc options across every category, and our tasting rooms in Pacific Beach and Ocean Beach let you try before you buy. No guessing, no wasted money on products you might not like.
                 </p>
                 <p className="text-muted-foreground mb-6">
-                  For those outside San Diego, we ship nationwide through our online shop. We also stock non alc wine, non alc champagne, non alc beer, non alc spirits, functional drinks, and non alcoholic seltzers from the best brands in the world.
+                  For those outside San Diego, we ship nationwide through our online shop. We also stock non alc wine, non alc champagne, non alc beer, non alc spirits, functional drinks, and non-alcoholic seltzers from the best brands in the world.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4">
                   <Button asChild size="lg" className="bg-ocean hover:bg-ocean/90 text-white rounded-full px-8">
@@ -739,7 +739,7 @@ const NonAlcDrinks = () => {
           <div className="max-w-4xl mx-auto px-6 text-center">
             <h2 className="font-serif text-3xl md:text-4xl text-foreground mb-4">Ready to Explore Non Alc?</h2>
             <p className="text-muted-foreground max-w-2xl mx-auto mb-8">
-              Whether you are mixing your first non alc cocktail at home or building out a full zero proof bar, we have the products, the recipes, and the expertise to help you make the switch.
+              Whether you are mixing your first non alc cocktail at home or building out a full zero-proof bar, we have the products, the recipes, and the expertise to help you make the switch.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button asChild size="lg" className="bg-ocean hover:bg-ocean/90 text-white rounded-full px-8">

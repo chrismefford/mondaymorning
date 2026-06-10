@@ -209,7 +209,7 @@ const Consulting = () => {
               "We are not trying to imitate alcohol culture. We are helping define what the next generation of social drinking looks like.",
               "Every product and concept we recommend has been tested in real retail environments before it reaches your menu.",
               "We help venues build systems, train staff, and design menus that work during real service.",
-              "Through our distribution network we provide access to some of the best alcohol free beverages in the world.",
+              "Through our distribution network we provide access to some of the best alcohol-free beverages in the world.",
               "Most importantly, we understand that great NA programs are about experience, energy, and culture, not just ingredients.",
             ].map((point, i) => (
               <div

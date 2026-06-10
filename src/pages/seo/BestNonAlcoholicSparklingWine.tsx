@@ -4,21 +4,21 @@ import heroImg from "@/assets/lifestyle/sparkling-celebration.jpg";
 
 const BestNonAlcoholicSparklingWine = () => (
   <AuthorityPage
-    title="Best Non Alcoholic Sparkling Wine of 2026: Ranked | Monday Morning"
-    description="The best non alcoholic sparkling wine of 2026. Bolle Rosé, Bolle Bianco and Sovi sparklings for weddings, holidays and everyday celebrations. Ranked by Monday Morning."
+    title="Best Non-Alcoholic Sparkling Wine of 2026: Ranked | Monday Morning"
+    description="The best non-alcoholic sparkling wine of 2026. Bolle Rosé, Bolle Bianco and Sovi sparklings for weddings, holidays and everyday celebrations. Ranked by Monday Morning."
     path="/best-non-alcoholic-sparkling-wine"
     ogImage={`${SITE_URL}/og-best-non-alcoholic-sparkling-wine.jpg`}
     eyebrow="Wine Cluster"
-    h1="The best non alcoholic sparkling wine, ranked"
+    h1="The best non-alcoholic sparkling wine, ranked"
     subhead="The category that nailed it first. Real wine, alcohol removed, with bubbles still intact. Here is what to pour at your next wedding, dinner, or Tuesday night that needs a little something."
-    tldr="Non alcoholic sparkling wine is the most successful category in the dealcoholized wine world. Bolle is the runaway leader: a Lambrusco style Rosé and a sparkling Bianco made from real Italian grapes, dealcoholized with technology that preserves the bubbles and the fruit. Sovi makes a sparkling rosé that drinks like a serious dry rosé. Use a flute or a wine glass, serve at 38 to 42 degrees, and treat it like real sparkling wine. Expect to pay $20 to $35 per bottle."
+    tldr="Non-alcoholic sparkling wine is the most successful category in the dealcoholized wine world. Bolle is the runaway leader: a Lambrusco style Rosé and a sparkling Bianco made from real Italian grapes, dealcoholized with technology that preserves the bubbles and the fruit. Sovi makes a sparkling rosé that drinks like a serious dry rosé. Use a flute or a wine glass, serve at 38 to 42 degrees, and treat it like real sparkling wine. Expect to pay $20 to $35 per bottle."
     heroImage={heroImg}
     ctaPrimary={{ label: "Shop NA sparkling wine", href: "/collections/non-alcoholic-wine" }}
     ctaSecondary={{ label: "Visit a tasting room", href: "/locations" }}
     breadcrumbs={[
       { name: "Home", url: SITE_URL },
-      { name: "Non Alcoholic Drinks", url: `${SITE_URL}/non-alcoholic-drinks` },
-      { name: "Non Alcoholic Wine", url: `${SITE_URL}/non-alcoholic-wine` },
+      { name: "Non-Alcoholic Drinks", url: `${SITE_URL}/non-alcoholic-drinks` },
+      { name: "Non-Alcoholic Wine", url: `${SITE_URL}/non-alcoholic-wine` },
       { name: "Best NA Sparkling Wine", url: `${SITE_URL}/best-non-alcoholic-sparkling-wine` },
     ]}
     sections={[
@@ -108,13 +108,13 @@ const BestNonAlcoholicSparklingWine = () => (
               <strong>Holidays.</strong> Christmas Eve, New Year's Eve, anniversaries. Anywhere a toast belongs. Pull a Bolle out of the ice bucket and the moment lands.
             </p>
             <p>
-              <strong>Tuesday night dinner.</strong> The most underrated use. A glass of NA sparkling wine with takeout pizza is one of the better small joys available to a sober curious person.
+              <strong>Tuesday night dinner.</strong> The most underrated use. A glass of NA sparkling wine with takeout pizza is one of the better small joys available to a sober-curious person.
             </p>
           </>
         ),
       },
       {
-        heading: "Where to buy non alcoholic sparkling wine in San Diego",
+        heading: "Where to buy non-alcoholic sparkling wine in San Diego",
         body: (
           <>
             <p>
@@ -129,43 +129,43 @@ const BestNonAlcoholicSparklingWine = () => (
     ]}
     faqs={[
       {
-        question: "What is the best non alcoholic sparkling wine?",
+        question: "What is the best non-alcoholic sparkling wine?",
         answer:
-          "Bolle Rosé is the best non alcoholic sparkling wine for most occasions, especially weddings and dinner parties. It is a Lambrusco style sparkling rosé from Italy with real fruit character, persistent bubbles, and an off dry but balanced finish. Sovi sparkling rosé is the drier, more Provence style alternative.",
+          "Bolle Rosé is the best non-alcoholic sparkling wine for most occasions, especially weddings and dinner parties. It is a Lambrusco style sparkling rosé from Italy with real fruit character, persistent bubbles, and an off dry but balanced finish. Sovi sparkling rosé is the drier, more Provence style alternative.",
       },
       {
-        question: "Does non alcoholic sparkling wine taste like real sparkling wine?",
+        question: "Does non-alcoholic sparkling wine taste like real sparkling wine?",
         answer:
           "Yes, sparkling NA wines are the most successful category in the dealcoholized wine world. The bubbles add body and lift that mask any thinness from removing the alcohol. Bolle and Sovi both drink like real sparkling wine, with the same flute, the same temperature, and the same context.",
       },
       {
-        question: "Can you serve non alcoholic sparkling wine at a wedding?",
+        question: "Can you serve non-alcoholic sparkling wine at a wedding?",
         answer:
           "Absolutely, and it is becoming the standard at modern weddings. We recommend ordering enough Bolle Rosé to give every guest the option for the toast, and stocking the bar with one NA sparkling wine alongside the alcoholic options. Email us for bulk wedding pricing.",
       },
       {
-        question: "How much does non alcoholic sparkling wine cost?",
+        question: "How much does non-alcoholic sparkling wine cost?",
         answer:
           "Expect to pay $20 to $35 per bottle for a quality NA sparkling wine. Bolle Rosé and Bianco run about $25 retail. Sovi sparkling rosé is in the same range. The price reflects real grape source, careful dealcoholization, and proper bottle aging.",
       },
       {
-        question: "Is non alcoholic sparkling wine truly 0.0% ABV?",
+        question: "Is non-alcoholic sparkling wine truly 0.0% ABV?",
         answer:
           "Most NA sparkling wines, including Bolle, are labeled at less than 0.5% ABV, the standard threshold. Some come in closer to 0.0%. If you need certified 0.0% for medical, religious, or recovery reasons, check the label or ask us at the tasting bar and we will confirm the exact ABV.",
       },
       {
-        question: "Can pregnant women drink non alcoholic sparkling wine?",
+        question: "Can pregnant women drink non-alcoholic sparkling wine?",
         answer:
           "NA sparkling wine at less than 0.5% ABV is generally considered safe for most pregnant women, but consult your doctor first. The amount of alcohol is comparable to fruit juice or kombucha. We carry options closer to 0.0% if you want extra certainty.",
       },
     ]}
     relatedLinks={[
-      { label: "Non Alcoholic Wine Guide", href: "/non-alcoholic-wine", description: "The full NA wine cluster: still, sparkling, and dessert." },
-      { label: "Non Alcoholic Drinks Pillar", href: "/non-alcoholic-drinks", description: "Every category, every use case, all in one place." },
-      { label: "Best Non Alcoholic Tequila", href: "/best-non-alcoholic-tequila", description: "Almave Blanco and Ámbar, ranked and explained." },
-      { label: "Best Non Alcoholic Gin", href: "/best-non-alcoholic-gin", description: "Botanical bottles for tonics, sours, and martinis." },
+      { label: "Non-Alcoholic Wine Guide", href: "/non-alcoholic-wine", description: "The full NA wine cluster: still, sparkling, and dessert." },
+      { label: "Non-Alcoholic Drinks Pillar", href: "/non-alcoholic-drinks", description: "Every category, every use case, all in one place." },
+      { label: "Best Non-Alcoholic Tequila", href: "/best-non-alcoholic-tequila", description: "Almave Blanco and Ámbar, ranked and explained." },
+      { label: "Best Non-Alcoholic Gin", href: "/best-non-alcoholic-gin", description: "Botanical bottles for tonics, sours, and martinis." },
       { label: "Dry January Guide", href: "/dry-january-guide", description: "How to do the month without white-knuckling it." },
-      { label: "Sober Curious Guide", href: "/sober-curious-guide", description: "Why people drink less, without quitting forever." },
+      { label: "Sober-Curious Guide", href: "/sober-curious-guide", description: "Why people drink less, without quitting forever." },
     ]}
   />
 );

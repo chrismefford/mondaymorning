@@ -48,8 +48,8 @@ const NonAlcoholicDrinksSanDiego = () => {
   return (
     <div className="min-h-screen bg-background">
       <SEO
-        title="Non Alcoholic Drinks San Diego: 500+ NA Beer, Wine, Spirits | Monday Morning"
-        description="San Diego's biggest non alcoholic bottle shop. 500+ NA beers, wines, spirits and mocktails. Taste anything before you buy in Pacific Beach or Ocean Beach, fast local delivery."
+        title="Non-Alcoholic Drinks San Diego: 500+ NA Beer, Wine, Spirits | Monday Morning"
+        description="San Diego's biggest non-alcoholic bottle shop. 500+ NA beers, wines, spirits and mocktails. Taste anything before you buy in Pacific Beach or Ocean Beach, fast local delivery."
         path="/non-alcoholic-drinks-san-diego"
         schema={[localBusinessSchema, faqSchema]}
       />

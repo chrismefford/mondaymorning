@@ -52,7 +52,7 @@ const About = () => {
     {
       name: "The Lab",
       tag: "La Costa",
-      blurb: "Our non-alcoholic brewing and innovation space. Home of Haymaker N/A IPA, our first house brew.",
+      blurb: "Our non-alcoholic brewing and innovation space. Home of Haymaker NA IPA, our first house brew.",
       address: "1784 La Costa Meadows Dr, Ste 103, San Marcos, CA 92078",
       hours: "By appointment",
       image: haymakerCan,

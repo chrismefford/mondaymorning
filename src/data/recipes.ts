@@ -75,7 +75,7 @@ export const recipes: Recipe[] = [
     occasion: "breakfast",
     tagline: "Bright, honeyed, calm",
     description:
-      "Drømme Calm shaken with lemon, honey and fresh mint, then lengthened with soda. A gentle, golden way to start the day, zero proof.",
+      "Drømme Calm shaken with lemon, honey and fresh mint, then lengthened with soda. A gentle, golden way to start the day, zero-proof.",
     image: DROMME_CALM,
     imageContain: true,
     prepTime: "5 min",
@@ -160,7 +160,7 @@ export const recipes: Recipe[] = [
     id: "na-negroni",
     title: "The Negroni",
     occasion: "dinner",
-    tagline: "The bittersweet classic, zero proof",
+    tagline: "The bittersweet classic, zero-proof",
     description:
       "All The Bitter's take on the icon, built on Monday Zero Gin, Roots Divino and a double hit of ATB bitters. Stirred, balanced, no compromise.",
     image:
@@ -393,7 +393,7 @@ export const recipes: Recipe[] = [
     occasion: "relaxing",
     tagline: "Crisp & calming",
     description:
-      "Drømme Awake muddled with cucumber and lime over soda. Cooling, energizing and zero proof, courtesy of Drømme.",
+      "Drømme Awake muddled with cucumber and lime over soda. Cooling, energizing and zero-proof, courtesy of Drømme.",
     image: DROMME_AWAKE,
     imageContain: true,
     prepTime: "5 min",
@@ -537,7 +537,7 @@ export const recipes: Recipe[] = [
     occasion: "beach",
     tagline: "Pineapple & lime, unwound",
     description:
-      "Drømme Calm shaken with pineapple, lime and simple syrup. Easy, breezy and zero proof, a poolside staple from Drømme.",
+      "Drømme Calm shaken with pineapple, lime and simple syrup. Easy, breezy and zero-proof, a poolside staple from Drømme.",
     image: DROMME_CALM,
     imageContain: true,
     prepTime: "5 min",

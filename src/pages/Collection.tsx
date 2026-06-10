@@ -26,7 +26,7 @@ const collectionMapping: Record<string, { shopifyHandle: string; title: string; 
   "na-beer": {
     shopifyHandle: "non-alcoholic-beer",
     title: "NA Beer",
-    description: "Craft taste, zero proof. The best non-alcoholic beers from around the world."
+    description: "Craft taste, zero-proof. The best non-alcoholic beers from around the world."
   },
   "wine-alternatives": {
     shopifyHandle: "non-alcoholic-wine",
@@ -267,12 +267,12 @@ const CollectionPage = () => {
   const productCount = displayProducts.length;
   const countPhrase = productCount > 0 ? `${productCount}+ bottles, ` : "";
   const collectionDescription = isBrandFilter
-    ? `Shop every ${brandName} non alcoholic drink at Monday Morning. ${countPhrase}taste before you buy in San Diego, fast US shipping, expert picks from our tasting room staff.`
+    ? `Shop every ${brandName} non-alcoholic drink at Monday Morning. ${countPhrase}taste before you buy in San Diego, fast US shipping, expert picks from our tasting room staff.`
     : vibeInfo?.description || collectionInfo?.description || collectionMeta?.description 
-      || `Shop ${collectionTitle.toLowerCase()} non alcoholic drinks at Monday Morning. ${countPhrase}taste before you buy in San Diego, fast local delivery, nationwide shipping.`;
+      || `Shop ${collectionTitle.toLowerCase()} non-alcoholic drinks at Monday Morning. ${countPhrase}taste before you buy in San Diego, fast local delivery, nationwide shipping.`;
   
   const pageTitle = isBrandFilter
-    ? `${brandName} Non Alcoholic Drinks: Shop Every Bottle | Monday Morning`
+    ? `${brandName} Non-Alcoholic Drinks: Shop Every Bottle | Monday Morning`
     : `${truncateForSEO(collectionTitle, 45)}: Top NA Picks & Reviews | ${SITE_NAME}`;
   const pageDescription = truncateForSEO(collectionDescription, 155);
   const canonicalUrl = getCanonicalUrl(isBrandFilter ? `/collections/brand/${brand}` : `/collections/${slug}`);
@@ -296,17 +296,17 @@ const CollectionPage = () => {
 
   // Keyword-rich intro paragraph for SEO + engagement
   const introParagraph = isBrandFilter
-    ? `Browse every ${brandName} non alcoholic drink we stock at Monday Morning, America's #1 NA bottle shop. Each bottle is hand-picked by our tasting room team in San Diego, so you can taste before you buy at our Pacific Beach and Ocean Beach shops, get fast local delivery, or ship nationwide.`
-    : `Discover the best ${collectionTitle.toLowerCase()} non alcoholic drinks at Monday Morning, ranked America's #1 NA bottle shop. We've curated ${productCount > 0 ? `${productCount} bottles` : "a tasting-room favorite lineup"} you can sip before you buy at our Pacific Beach and Ocean Beach tasting rooms, with fast local delivery and nationwide shipping.`;
+    ? `Browse every ${brandName} non-alcoholic drink we stock at Monday Morning, America's #1 NA bottle shop. Each bottle is hand-picked by our tasting room team in San Diego, so you can taste before you buy at our Pacific Beach and Ocean Beach shops, get fast local delivery, or ship nationwide.`
+    : `Discover the best ${collectionTitle.toLowerCase()} non-alcoholic drinks at Monday Morning, ranked America's #1 NA bottle shop. We've curated ${productCount > 0 ? `${productCount} bottles` : "a tasting-room favorite lineup"} you can sip before you buy at our Pacific Beach and Ocean Beach tasting rooms, with fast local delivery and nationwide shipping.`;
 
   // FAQ schema for "People Also Ask" block
   const faqItems = [
     {
-      q: `What is the best ${collectionTitle.toLowerCase()} non alcoholic drink?`,
+      q: `What is the best ${collectionTitle.toLowerCase()} non-alcoholic drink?`,
       a: `Our top-rated picks in ${collectionTitle.toLowerCase()} are curated by the Monday Morning tasting team based on flavor, ingredient quality, and what our San Diego customers reorder most. Look for the Staff Pick and Best Seller badges above.`,
     },
     {
-      q: `Do these non alcoholic drinks taste like the real thing?`,
+      q: `Do these non-alcoholic drinks taste like the real thing?`,
       a: `Most of our top sellers are blind-tested against their alcoholic counterparts. We only stock bottles our team would pour for friends, so flavor, mouthfeel, and finish are taken seriously.`,
     },
     {
@@ -314,7 +314,7 @@ const CollectionPage = () => {
       a: `Yes. Visit our Pacific Beach or Ocean Beach tasting rooms in San Diego and our team will pour samples so you can taste before you commit to a full bottle.`,
     },
     {
-      q: `Do you ship non alcoholic drinks nationwide?`,
+      q: `Do you ship non-alcoholic drinks nationwide?`,
       a: `Yes, we ship across the United States. San Diego customers can also choose fast local delivery at checkout.`,
     },
   ];
@@ -404,7 +404,7 @@ const CollectionPage = () => {
                 {isBrandFilter ? "Brand" : isVibeCollection ? "The Vibe" : "Collection"}
               </span>
               <h1 className="font-serif text-4xl lg:text-6xl xl:text-7xl font-normal mb-6 capitalize text-forest">
-                {isBrandFilter ? `${brandName} Non Alcoholic Drinks` : `${vibeInfo?.title || collectionInfo?.title || collectionMeta?.name || "Collection"}`}
+                {isBrandFilter ? `${brandName} Non-Alcoholic Drinks` : `${vibeInfo?.title || collectionInfo?.title || collectionMeta?.name || "Collection"}`}
               </h1>
               <p className="font-sans text-lg lg:text-xl text-forest/70 max-w-2xl mb-4">
                 {isBrandFilter 

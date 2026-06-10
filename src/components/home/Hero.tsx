@@ -45,7 +45,7 @@ const Hero = () => {
 
           {/* H2 - SEO secondary heading */}
           <p className="mb-2 font-serif uppercase text-xl leading-tight tracking-tight text-cream/90 animate-fade-up delay-100" aria-hidden="true">
-            500+ Zero Proof Wines, Beers & Spirits
+            500+ Zero-Proof Wines, Beers & Spirits
           </p>
           <p className="mb-4 font-sans text-[10px] font-bold uppercase tracking-[0.25em] text-cream/70 animate-fade-up delay-100">
             Bottle Shops <span className="text-gold">·</span> Hospitality <span className="text-gold">·</span> Brewing
@@ -111,7 +111,7 @@ const Hero = () => {
 
           {/* H2 - SEO secondary heading */}
           <h2 className="mb-3 font-serif text-3xl xl:text-4xl leading-tight tracking-tight text-muted-foreground animate-fade-up delay-100">
-            500+ Zero Proof Wines, Beers & Spirits
+            500+ Zero-Proof Wines, Beers & Spirits
           </h2>
           <p className="mb-6 font-sans text-xs xl:text-sm font-bold uppercase tracking-[0.25em] text-forest/70 animate-fade-up delay-100">
             Bottle Shops <span className="text-gold">·</span> Hospitality <span className="text-gold">·</span> Brewing

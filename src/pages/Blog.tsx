@@ -34,8 +34,8 @@ const Blog = () => {
     },
   });
 
-  const pageTitle = "Non Alcoholic Drinks Blog: Reviews, Recipes & Guides | Monday Morning";
-  const pageDescription = "Honest NA beer reviews, zero proof cocktail recipes, buyer guides and sober curious stories from San Diego's biggest non alcoholic bottle shop.";
+  const pageTitle = "Non-Alcoholic Drinks Blog: Reviews, Recipes & Guides | Monday Morning";
+  const pageDescription = "Honest NA beer reviews, zero-proof cocktail recipes, buyer guides and sober-curious stories from San Diego's biggest non-alcoholic bottle shop.";
   const ogImage = "/og-image.png";
 
   return (
@@ -95,7 +95,7 @@ const Blog = () => {
                 The Curious <span className="italic text-gold">AF</span> Dictionary
               </h2>
               <p className="font-sans text-cream/75 text-base md:text-lg mb-4">
-                The vocabulary of drinking less, defined. From sober curious to zero proof, updated quarterly.
+                The vocabulary of drinking less, defined. From sober-curious to zero-proof, updated quarterly.
               </p>
               <span className="font-sans text-sm uppercase tracking-widest text-gold group-hover:underline">
                 Read the dictionary &rarr;

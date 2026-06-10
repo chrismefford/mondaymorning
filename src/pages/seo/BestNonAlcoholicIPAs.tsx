@@ -4,14 +4,14 @@ import { SITE_URL } from "@/lib/seo";
 
 const BestNonAlcoholicIPAs = () => (
   <AuthorityPage
-    title="Best Non Alcoholic IPAs of 2026: 20+ NA IPAs Ranked | Monday Morning"
-    description="The best non alcoholic IPAs of 2026, tasted and ranked. West Coast, hazy, double and tropical NA IPAs from the San Diego bottle shop that pours every NA IPA on the market."
+    title="Best Non-Alcoholic IPAs of 2026: 20+ NA IPAs Ranked | Monday Morning"
+    description="The best non-alcoholic IPAs of 2026, tasted and ranked. West Coast, hazy, double and tropical NA IPAs from the San Diego bottle shop that pours every NA IPA on the market."
     path="/best-non-alcoholic-ipas"
     ogImage={`${SITE_URL}/og-best-non-alcoholic-ipas.jpg`}
     eyebrow="NA Beer Cluster"
-    h1="The best non alcoholic IPAs of 2026"
+    h1="The best non-alcoholic IPAs of 2026"
     subhead="We pour every NA IPA on the market across our two San Diego tasting rooms. These are the ones that hold up against actual craft IPA, ranked by style."
-    tldr="The best non alcoholic IPAs of 2026 come from craft makers who treat NA brewing as its own discipline. Top picks: Beaglepuss Inverse IPA (West Coast), FLVR! Citra Haze (hazy), Go Brewing Sunshine State (tropical), Below Brew Co. Wild Juice Chase (lower bitterness), and Mash Gang Journey Juice (UK indie hazy). Skip the supermarket NA IPAs from legacy brewers, the craft category is where the flavor is. Expect to pay $4 to $6 per can."
+    tldr="The best non-alcoholic IPAs of 2026 come from craft makers who treat NA brewing as its own discipline. Top picks: Beaglepuss Inverse IPA (West Coast), FLVR! Citra Haze (hazy), Go Brewing Sunshine State (tropical), Below Brew Co. Wild Juice Chase (lower bitterness), and Mash Gang Journey Juice (UK indie hazy). Skip the supermarket NA IPAs from legacy brewers, the craft category is where the flavor is. Expect to pay $4 to $6 per can."
     heroImage={`${SITE_URL}/og-best-non-alcoholic-ipas.jpg`}
     ctaPrimary={{ label: "Shop NA IPAs", href: "/collections/na-beer" }}
     ctaSecondary={{ label: "Read the full beer guide", href: "/blog/ultimate-non-alcoholic-beer-guide-2026" }}
@@ -26,7 +26,7 @@ const BestNonAlcoholicIPAs = () => (
         body: (
           <>
             <p>
-              IPA is the most translatable style for non alcoholic brewing because the dominant flavors, hops, citrus, pine, tropical fruit, do not depend on alcohol to express themselves. A great hop bill is great regardless of ABV. The challenge in NA brewing is body and mouthfeel, which alcohol provides. Modern craft NA brewers solve this with adjuncts (oats, wheat), specialty malts, and careful water chemistry.
+              IPA is the most translatable style for non-alcoholic brewing because the dominant flavors, hops, citrus, pine, tropical fruit, do not depend on alcohol to express themselves. A great hop bill is great regardless of ABV. The challenge in NA brewing is body and mouthfeel, which alcohol provides. Modern craft NA brewers solve this with adjuncts (oats, wheat), specialty malts, and careful water chemistry.
             </p>
             <p>
               The result: NA IPAs from real craft brewers are often genuinely indistinguishable from the alcoholic versions in a blind taste. The supermarket NA IPAs from legacy brewers usually are not. Buy from the craft side of the aisle.
@@ -120,19 +120,19 @@ const BestNonAlcoholicIPAs = () => (
       },
     ]}
     faqs={[
-      { question: "What is the best non alcoholic IPA overall?", answer: "If we had to pick one bottle for someone who has never tried an NA IPA, FLVR! Citra Haze. Approachable, juicy, and immediately convincing. For West Coast purists, Beaglepuss Inverse." },
-      { question: "Do non alcoholic IPAs taste like real IPAs?", answer: "The good ones do. Hops translate well to NA brewing because they do not need alcohol to express. Body and mouthfeel are the harder problem, and craft NA brewers have largely solved it through specialty malts and adjuncts." },
+      { question: "What is the best non-alcoholic IPA overall?", answer: "If we had to pick one bottle for someone who has never tried an NA IPA, FLVR! Citra Haze. Approachable, juicy, and immediately convincing. For West Coast purists, Beaglepuss Inverse." },
+      { question: "Do non-alcoholic IPAs taste like real IPAs?", answer: "The good ones do. Hops translate well to NA brewing because they do not need alcohol to express. Body and mouthfeel are the harder problem, and craft NA brewers have largely solved it through specialty malts and adjuncts." },
       { question: "Why does NA IPA cost as much as regular IPA?", answer: "Because dealcoholization or specialty fermentation is an extra production step, and NA breweries operate at much lower volumes than legacy brewers. You are paying for craft, not the absence of alcohol." },
-      { question: "Are non alcoholic IPAs healthier than regular IPAs?", answer: "Lower in calories, no alcohol, no hangover. Hop content and any health benefits or risks attached to hops are roughly the same." },
-      { question: "How many calories in a non alcoholic IPA?", answer: "Most run 50 to 90 calories per 12oz can, compared to 180 to 250 for a typical alcoholic IPA. Some NA IPAs (especially hazy) run higher because of residual sugars." },
+      { question: "Are non-alcoholic IPAs healthier than regular IPAs?", answer: "Lower in calories, no alcohol, no hangover. Hop content and any health benefits or risks attached to hops are roughly the same." },
+      { question: "How many calories in a non-alcoholic IPA?", answer: "Most run 50 to 90 calories per 12oz can, compared to 180 to 250 for a typical alcoholic IPA. Some NA IPAs (especially hazy) run higher because of residual sugars." },
       { question: "What is the difference between West Coast and hazy NA IPA?", answer: "West Coast is bitter, dry, and pine forward. Hazy is soft, juicy, and tropical fruit forward. The same distinction applies in NA brewing as in regular craft beer." },
       { question: "Can I order NA IPA online?", answer: "Yes. Monday Morning ships our full NA beer catalog across the US. Local San Diego customers can shop in store." },
     ]}
     relatedLinks={[
       { label: "NA Beer Guide", href: "/non-alcoholic-beer-guide", description: "Every NA beer style explained." },
       { label: "Ultimate NA Beer Guide 2026", href: "/blog/ultimate-non-alcoholic-beer-guide-2026", description: "80+ beers, side by side." },
-      { label: "Pillar: Non alcoholic drinks", href: "/non-alcoholic-drinks", description: "The complete category." },
-      { label: "Best non alcoholic drinks 2026", href: "/best-non-alcoholic-drinks", description: "Top picks across all categories." },
+      { label: "Pillar: Non-alcoholic drinks", href: "/non-alcoholic-drinks", description: "The complete category." },
+      { label: "Best non-alcoholic drinks 2026", href: "/best-non-alcoholic-drinks", description: "Top picks across all categories." },
     ]}
   />
 );

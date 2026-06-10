@@ -15,7 +15,7 @@ import illusFunctional from "@/assets/brand/illus-functional.png";
 const VIBE_CATEGORIES = [
   { handle: "non-alcoholic-beer", label: "Beer", blurb: "Crisp IPAs, lagers & stouts", bg: "bg-forest", img: illusBeer },
   { handle: "non-alcoholic-wine", label: "Wine", blurb: "Reds, rosés & sparkling", bg: "bg-teal-dark", img: illusWine },
-  { handle: "non-alcoholic-spirits", label: "Spirits", blurb: "Gin, whiskey & agave, zero proof", bg: "bg-forest-deep", img: illusRocks },
+  { handle: "non-alcoholic-spirits", label: "Spirits", blurb: "Gin, whiskey & agave, zero-proof", bg: "bg-forest-deep", img: illusRocks },
   { handle: "non-alcoholic-canned-cocktails", label: "Cocktails", blurb: "Bar-quality, ready to pour", bg: "bg-teal-dark", img: illusMartini },
   { handle: "non-alcoholic-aperitifs-digestifs-liqueurs", label: "Aperitifs", blurb: "Bittersweet & botanical", bg: "bg-forest", img: illusCitrus },
   { handle: "non-alcoholic-functional-rtds", label: "Functional", blurb: "Adaptogens, kava & calm", bg: "bg-forest-deep", img: illusFunctional },

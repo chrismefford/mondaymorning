@@ -11,13 +11,13 @@ const FunctionalMocktailsAdaptogens = () => (
     eyebrow="Cluster Hub"
     h1="Functional mocktails and adaptogen drinks"
     subhead="Drinks that taste like cocktails and do something more. The science behind adaptogens, the brands worth buying, and five recipes you can make tonight."
-    tldr="A functional mocktail is a non alcoholic cocktail built around an active ingredient: kava for calm, lion's mane for focus, reishi or ashwagandha for stress, magnesium for sleep. The format matters because dose, timing, and ritual all change the effect. Top brands we stock: Leilo and Kavaly (kava), Alice Mushrooms (reishi and lion's mane), Soul Hum Elixirs (adaptogen elixirs), Sentia (botanical mood), Trip (CBD), and Curious Elixirs (full ready-to-pour). Recipes below use these as base spirits. Expect onset in 15 to 40 minutes depending on the active ingredient."
+    tldr="A functional mocktail is a non-alcoholic cocktail built around an active ingredient: kava for calm, lion's mane for focus, reishi or ashwagandha for stress, magnesium for sleep. The format matters because dose, timing, and ritual all change the effect. Top brands we stock: Leilo and Kavaly (kava), Alice Mushrooms (reishi and lion's mane), Soul Hum Elixirs (adaptogen elixirs), Sentia (botanical mood), Trip (CBD), and Curious Elixirs (full ready-to-pour). Recipes below use these as base spirits. Expect onset in 15 to 40 minutes depending on the active ingredient."
     heroImage={`${SITE_URL}/og-functional-mocktails.jpg`}
     ctaPrimary={{ label: "Shop functional drinks", href: "/collections/functional" }}
     ctaSecondary={{ label: "Visit a tasting room", href: "/locations" }}
     breadcrumbs={[
       { name: "Home", url: SITE_URL },
-      { name: "Non Alcoholic Drinks", url: `${SITE_URL}/non-alcoholic-drinks` },
+      { name: "Non-Alcoholic Drinks", url: `${SITE_URL}/non-alcoholic-drinks` },
       { name: "Functional Mocktails", url: `${SITE_URL}/functional-mocktails-adaptogens` },
     ]}
     sections={[
@@ -122,7 +122,7 @@ const FunctionalMocktailsAdaptogens = () => (
       },
     ]}
     faqs={[
-      { question: "What is a functional mocktail?", answer: "A non alcoholic cocktail built around an active ingredient like kava, an adaptogen, or a nootropic that produces a real, measurable effect on mood, focus, or relaxation. The format matters: dose, timing, and ritual all influence the outcome." },
+      { question: "What is a functional mocktail?", answer: "A non-alcoholic cocktail built around an active ingredient like kava, an adaptogen, or a nootropic that produces a real, measurable effect on mood, focus, or relaxation. The format matters: dose, timing, and ritual all influence the outcome." },
       { question: "Do adaptogen drinks actually work?", answer: "Yes, with two caveats. Kava and lion's mane produce noticeable effects from a single dose. Reishi and ashwagandha require consistent use over days or weeks. Real effects come from real ingredients at real doses, check labels and avoid sugar bombs that hide tiny amounts of active." },
       { question: "Can I mix functional drinks with alcohol?", answer: "No. Kava interacts with alcohol and amplifies sedation. Most adaptogens are gentle but mixing with alcohol defeats the purpose. If you want a buzz, choose one or the other." },
       { question: "Is kava legal in California?", answer: "Yes. Kava is legal in all 50 states and is widely sold in functional drinks, supplements, and tea." },
@@ -133,9 +133,9 @@ const FunctionalMocktailsAdaptogens = () => (
     ]}
     relatedLinks={[
       { label: "NA Drinks for Relaxation", href: "/na-drinks-for-relaxation", description: "Deep dive on kava and the bottles that calm you down." },
-      { label: "Beginner's Guide to Non Alcoholic Drinks", href: "/beginners-guide-non-alcoholic-drinks", description: "Where to start across all four NA categories." },
-      { label: "Zero Proof Home Bar", href: "/zero-proof-home-bar", description: "Build a functional home bar from scratch." },
-      { label: "Non Alcoholic Spirits Hub", href: "/non-alcoholic-spirits", description: "The mixable bottles that make every cocktail." },
+      { label: "Beginner's Guide to Non-Alcoholic Drinks", href: "/beginners-guide-non-alcoholic-drinks", description: "Where to start across all four NA categories." },
+      { label: "Zero-Proof Home Bar", href: "/zero-proof-home-bar", description: "Build a functional home bar from scratch." },
+      { label: "Non-Alcoholic Spirits Hub", href: "/non-alcoholic-spirits", description: "The mixable bottles that make every cocktail." },
     ]}
   />
 );

@@ -75,8 +75,8 @@ const tiers = [
     benefits: [
       { category: "All Founder's Chair Benefits, Plus", items: [
         "Two seats at all Founder's Club events",
-        "Private industry tastings with non alcoholic brand founders",
-        "Annual curated package of premium non alcoholic beverages selected by Monday Morning",
+        "Private industry tastings with non-alcoholic brand founders",
+        "Annual curated package of premium non-alcoholic beverages selected by Monday Morning",
         "Recognition as a Founder's Circle supporter within the Monday Morning community",
       ]},
       { category: "Additional Bar Privileges", items: [
@@ -341,7 +341,7 @@ const SocialClub = () => {
       "@context": "https://schema.org",
       "@type": "Product",
       name: "Monday Morning Founders Club",
-      description: "America's premier non alcoholic founders club with three tiers.",
+      description: "America's premier non-alcoholic founders club with three tiers.",
       brand: { "@type": "Brand", name: "Monday Morning" },
       offers: [
         { "@type": "Offer", name: "Founder's Chair", price: "1000", priceCurrency: "USD", availability: "https://schema.org/LimitedAvailability" },
@@ -354,7 +354,7 @@ const SocialClub = () => {
   return (
     <div className="min-h-screen bg-background">
       <SEO
-        title="Founders Club - America's Non Alcoholic Founders Club"
+        title="Founders Club - America's Non-Alcoholic Founders Club"
         description="Join the Monday Morning Founders Club, an exclusive collective for those shaping America's alcohol-free social culture. Three tiers, 130 founding spots."
         path="/social-club"
         schema={schema}

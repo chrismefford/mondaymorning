@@ -199,7 +199,7 @@ export const collections = [
   {
     id: "na-beer",
     name: "NA Beer",
-    description: "Craft taste, zero proof",
+    description: "Craft taste, zero-proof",
     image: beerPatioFriends
   },
   {

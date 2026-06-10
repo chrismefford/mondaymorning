@@ -5,13 +5,13 @@ import { SITE_URL } from "@/lib/seo";
 const WhiteClawAlcoholContent = () => (
   <AuthorityPage
     title="White Claw Alcohol Content: ABV, Calories & NA Alternatives | Monday Morning"
-    description="How much alcohol is in a White Claw? ABV, calories, and the best non alcoholic seltzer alternatives, ranked by Monday Morning Bottle Shop."
+    description="How much alcohol is in a White Claw? ABV, calories, and the best non-alcoholic seltzer alternatives, ranked by Monday Morning Bottle Shop."
     path="/white-claw-alcohol-content"
     ogImage={`${SITE_URL}/og-white-claw-alcohol-content.jpg`}
     eyebrow="Comparison Cluster"
     h1="White Claw alcohol content, explained"
-    subhead="How much alcohol is in a White Claw, how it compares to beer and wine, and the non alcoholic seltzers that deliver the same vibe without the morning regret."
-    tldr="A standard 12oz can of White Claw contains 5% ABV, the same as a typical beer. That equals roughly 0.6 fluid ounces of pure alcohol per can. White Claw Surge contains 8% ABV. The 100 calorie marketing is real but misleading: most calories come from carbs, not from alcohol. For the same beach day vibe without alcohol, the best non alcoholic alternatives are Capacity Mexican Lager, FLVR! Italian Style Pils, and craft NA hop waters or kava based seltzers."
+    subhead="How much alcohol is in a White Claw, how it compares to beer and wine, and the non-alcoholic seltzers that deliver the same vibe without the morning regret."
+    tldr="A standard 12oz can of White Claw contains 5% ABV, the same as a typical beer. That equals roughly 0.6 fluid ounces of pure alcohol per can. White Claw Surge contains 8% ABV. The 100 calorie marketing is real but misleading: most calories come from carbs, not from alcohol. For the same beach day vibe without alcohol, the best non-alcoholic alternatives are Capacity Mexican Lager, FLVR! Italian Style Pils, and craft NA hop waters or kava based seltzers."
     heroImage={`${SITE_URL}/og-white-claw-alcohol-content.jpg`}
     ctaPrimary={{ label: "Shop NA seltzers and lagers", href: "/collections/na-beer" }}
     ctaSecondary={{ label: "Read the pillar guide", href: "/non-alcoholic-drinks" }}
@@ -51,7 +51,7 @@ const WhiteClawAlcoholContent = () => (
               <strong>White Claw Surge:</strong> 8% ABV in a 16oz can. That is roughly 1.3oz pure alcohol, or 2.1 standard drinks per can. One Surge equals about two White Claws.
             </p>
             <p>
-              <strong>White Claw 0% (the brand's NA line):</strong> 0.0% ABV. Real non alcoholic. Came out in 2024.
+              <strong>White Claw 0% (the brand's NA line):</strong> 0.0% ABV. Real non-alcoholic. Came out in 2024.
             </p>
             <p>
               <strong>White Claw Iced Tea:</strong> 5% ABV, same as the original.
@@ -80,16 +80,16 @@ const WhiteClawAlcoholContent = () => (
         body: (
           <>
             <p>
-              The hard seltzer category that exploded between 2018 and 2021 has been declining since 2022. The reasons are consistent with the broader <Link to="/sober-curious-guide">sober curious shift</Link>: wearable data made the cost visible, the WHO statement on alcohol changed the conversation, and the non alcoholic alternatives finally got good.
+              The hard seltzer category that exploded between 2018 and 2021 has been declining since 2022. The reasons are consistent with the broader <Link to="/sober-curious-guide">sober-curious shift</Link>: wearable data made the cost visible, the WHO statement on alcohol changed the conversation, and the non-alcoholic alternatives finally got good.
             </p>
             <p>
-              The replacement is not always non alcoholic. Some drinkers move to lower ABV beer or wine. But a growing share is moving to NA seltzers, NA lagers, and functional kava based drinks for the same beach day, pool day, summer afternoon role.
+              The replacement is not always non-alcoholic. Some drinkers move to lower ABV beer or wine. But a growing share is moving to NA seltzers, NA lagers, and functional kava based drinks for the same beach day, pool day, summer afternoon role.
             </p>
           </>
         ),
       },
       {
-        heading: "Best non alcoholic alternatives to White Claw",
+        heading: "Best non-alcoholic alternatives to White Claw",
         body: (
           <>
             <h3>For the seltzer drinker who wants no alcohol</h3>
@@ -133,15 +133,15 @@ const WhiteClawAlcoholContent = () => (
       { question: "How many White Claws equal a shot?", answer: "Roughly one. A 1.5oz shot of 40% liquor and a 12oz White Claw at 5% both contain about 0.6oz of pure alcohol, which is one standard drink in US guidelines." },
       { question: "How many White Claws to get drunk?", answer: "Depends on body weight, food, and tolerance. A 160lb person typically reaches a 0.08% BAC after 3 to 4 White Claws within an hour, which is the legal limit for driving in most US states." },
       { question: "Is White Claw bad for you?", answer: "It contains the same alcohol as beer or wine, so the same long term health considerations apply. The lower carb content is mildly better for blood sugar than beer. The alcohol itself is the bigger health factor." },
-      { question: "What is White Claw 0% and is it really alcohol free?", answer: "Yes. White Claw 0% is a fully non alcoholic line at 0.0% ABV launched in 2024. It is genuinely alcohol free, distinct from the original White Claw." },
-      { question: "What is the best non alcoholic alternative to White Claw?", answer: "For seltzer style drinkers, Capacity Mexican Lager, FLVR! Italian Style Pils, and Le Petit Beret Latina all deliver the crisp beach day vibe without the alcohol. For relaxation specifically, kava drinks like Kava Haven or Leilo." },
+      { question: "What is White Claw 0% and is it really alcohol-free?", answer: "Yes. White Claw 0% is a fully non-alcoholic line at 0.0% ABV launched in 2024. It is genuinely alcohol-free, distinct from the original White Claw." },
+      { question: "What is the best non-alcoholic alternative to White Claw?", answer: "For seltzer style drinkers, Capacity Mexican Lager, FLVR! Italian Style Pils, and Le Petit Beret Latina all deliver the crisp beach day vibe without the alcohol. For relaxation specifically, kava drinks like Kava Haven or Leilo." },
       { question: "Are NA seltzers as low calorie as White Claw?", answer: "Often lower. Most NA beers run 50 to 90 calories per 12oz can, vs 100 for a standard White Claw. Calorie counters often come out ahead with the NA swap." },
     ]}
     relatedLinks={[
       { label: "Cutwater alcohol content", href: "/cutwater-alcohol-content", description: "What Cutwater contains, by the numbers." },
       { label: "NA Beer Guide", href: "/non-alcoholic-beer-guide", description: "Every NA beer style explained." },
-      { label: "Pillar: Non alcoholic drinks", href: "/non-alcoholic-drinks", description: "The complete category." },
-      { label: "Sober curious guide", href: "/sober-curious-guide", description: "Why people are drinking less." },
+      { label: "Pillar: Non-alcoholic drinks", href: "/non-alcoholic-drinks", description: "The complete category." },
+      { label: "Sober-curious guide", href: "/sober-curious-guide", description: "Why people are drinking less." },
     ]}
   />
 );

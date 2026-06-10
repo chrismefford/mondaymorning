@@ -3,33 +3,33 @@ import { SITE_URL } from "@/lib/seo";
 
 const BestNonAlcoholicGin = () => (
   <AuthorityPage
-    title="Best Non Alcoholic Gin of 2026: NA Gin Brands Ranked | Monday Morning"
-    description="The best non alcoholic gin of 2026, ranked. Abstinence Cape Citrus, Cape Spice and how to use them in tonics, sours and martinis. From San Diego's biggest NA bottle shop."
+    title="Best Non-Alcoholic Gin of 2026: NA Gin Brands Ranked | Monday Morning"
+    description="The best non-alcoholic gin of 2026, ranked. Abstinence Cape Citrus, Cape Spice and how to use them in tonics, sours and martinis. From San Diego's biggest NA bottle shop."
     path="/best-non-alcoholic-gin"
     ogImage={`${SITE_URL}/og-best-non-alcoholic-gin.jpg`}
     eyebrow="Spirits Cluster"
-    h1="The best non alcoholic gin, ranked and explained"
-    subhead="Gin is the most developed category in non alcoholic spirits, and for a good reason. Juniper, citrus, and herbs translate beautifully without alcohol. Here are the bottles worth your money and how to use them."
-    tldr="Gin translates to non alcoholic better than any other spirit because the flavor was never about the alcohol, it was about the botanicals. Abstinence Cape Citrus and Cape Spice are the standard bearers: South African botanical spirits made from buchu, fynbos, and citrus peel. Use 1.5 oz in a gin and tonic with quality Indian tonic water and a citrus garnish, or shake it into a sour with lemon and simple syrup. Expect to pay $30 to $40 per bottle. Mixed only, never neat."
+    h1="The best non-alcoholic gin, ranked and explained"
+    subhead="Gin is the most developed category in non-alcoholic spirits, and for a good reason. Juniper, citrus, and herbs translate beautifully without alcohol. Here are the bottles worth your money and how to use them."
+    tldr="Gin translates to non-alcoholic better than any other spirit because the flavor was never about the alcohol, it was about the botanicals. Abstinence Cape Citrus and Cape Spice are the standard bearers: South African botanical spirits made from buchu, fynbos, and citrus peel. Use 1.5 oz in a gin and tonic with quality Indian tonic water and a citrus garnish, or shake it into a sour with lemon and simple syrup. Expect to pay $30 to $40 per bottle. Mixed only, never neat."
     heroImage={`${SITE_URL}/og-best-non-alcoholic-gin.jpg`}
     ctaPrimary={{ label: "Shop NA gin", href: "/collections/spirit-alternatives" }}
     ctaSecondary={{ label: "Visit a tasting room", href: "/locations" }}
     breadcrumbs={[
       { name: "Home", url: SITE_URL },
-      { name: "Non Alcoholic Drinks", url: `${SITE_URL}/non-alcoholic-drinks` },
-      { name: "Non Alcoholic Spirits", url: `${SITE_URL}/non-alcoholic-spirits` },
+      { name: "Non-Alcoholic Drinks", url: `${SITE_URL}/non-alcoholic-drinks` },
+      { name: "Non-Alcoholic Spirits", url: `${SITE_URL}/non-alcoholic-spirits` },
       { name: "Best NA Gin", url: `${SITE_URL}/best-non-alcoholic-gin` },
     ]}
     sections={[
       {
-        heading: "Why non alcoholic gin works so well",
+        heading: "Why non-alcoholic gin works so well",
         body: (
           <>
             <p>
               Gin is botanical. The defining flavor of gin, juniper, coriander, citrus peel, angelica, orris, and a dozen optional herbs, comes from the plants, not the alcohol. The alcohol is just the carrier. Take it out and the botanical character can stay almost fully intact.
             </p>
             <p>
-              That is why NA gin was the first non alcoholic spirit category to reach genuine quality. Brands have been making credible NA gins since 2018. The technology is mature: macerate the botanicals, distill them in water, and then build a complex, savory, bitter forward liquid that performs in tonics and sours.
+              That is why NA gin was the first non-alcoholic spirit category to reach genuine quality. Brands have been making credible NA gins since 2018. The technology is mature: macerate the botanicals, distill them in water, and then build a complex, savory, bitter forward liquid that performs in tonics and sours.
             </p>
             <p>
               The good ones do not taste like watered down gin. They taste like a parallel botanical experience. Cooler, cleaner, less aggressive, more food friendly.
@@ -97,14 +97,14 @@ const BestNonAlcoholicGin = () => (
         ),
       },
       {
-        heading: "Where to buy non alcoholic gin in San Diego",
+        heading: "Where to buy non-alcoholic gin in San Diego",
         body: (
           <>
             <p>
               Monday Morning carries the Abstinence lineup at both our Pacific Beach and Ocean Beach tasting rooms. Cape Citrus and Cape Spice are on the back bar. We will pour you a half ounce or build you a G&T at the bar before you decide.
             </p>
             <p>
-              We also ship the full Abstinence range and a rotating selection of other NA gins nationally. <a href="/collections/spirit-alternatives">Shop the NA spirits collection</a>, or read our <a href="/non-alcoholic-spirits">non alcoholic spirits buyer's guide</a> for the full picture.
+              We also ship the full Abstinence range and a rotating selection of other NA gins nationally. <a href="/collections/spirit-alternatives">Shop the NA spirits collection</a>, or read our <a href="/non-alcoholic-spirits">non-alcoholic spirits buyer's guide</a> for the full picture.
             </p>
           </>
         ),
@@ -112,42 +112,42 @@ const BestNonAlcoholicGin = () => (
     ]}
     faqs={[
       {
-        question: "What is the best non alcoholic gin?",
+        question: "What is the best non-alcoholic gin?",
         answer:
-          "Abstinence Cape Citrus is the best non alcoholic gin for tonics and sours. Abstinence Cape Spice is the best non alcoholic gin for stirred and warming drinks. Both come from a South African distillery built around Western Cape fynbos and are widely considered the standard bearers of the category.",
+          "Abstinence Cape Citrus is the best non-alcoholic gin for tonics and sours. Abstinence Cape Spice is the best non-alcoholic gin for stirred and warming drinks. Both come from a South African distillery built around Western Cape fynbos and are widely considered the standard bearers of the category.",
       },
       {
-        question: "Does non alcoholic gin taste like real gin?",
+        question: "Does non-alcoholic gin taste like real gin?",
         answer:
-          "Yes, more than any other non alcoholic spirit. The defining flavor of gin is botanical, juniper, citrus peel, herbs, not alcohol. A well made NA gin keeps almost all of that character. The difference is body and warmth, which is why NA gin always works better in a tonic, sour, or highball than poured neat.",
+          "Yes, more than any other non-alcoholic spirit. The defining flavor of gin is botanical, juniper, citrus peel, herbs, not alcohol. A well made NA gin keeps almost all of that character. The difference is body and warmth, which is why NA gin always works better in a tonic, sour, or highball than poured neat.",
       },
       {
-        question: "Can you make a martini with non alcoholic gin?",
+        question: "Can you make a martini with non-alcoholic gin?",
         answer:
           "Honestly, no. A dry martini is the one cocktail that does not translate well to NA. It is essentially neat gin with a whisper of vermouth, and without alcohol carrying the body, it falls flat. Stick to gin and tonics, gin sours, and gin highballs, all of which work beautifully.",
       },
       {
-        question: "How much does non alcoholic gin cost?",
+        question: "How much does non-alcoholic gin cost?",
         answer:
           "Expect to pay $30 to $40 for a 750ml bottle of a high quality NA gin like Abstinence Cape Citrus or Cape Spice. The price reflects the real botanical distillation and the small batch production. A bottle yields roughly sixteen 1.5 oz drinks.",
       },
       {
-        question: "What is the best tonic for non alcoholic gin?",
+        question: "What is the best tonic for non-alcoholic gin?",
         answer:
           "Use a premium Indian tonic water like Fever Tree, Q Tonic, or Three Cents. The quinine bitterness and dry profile complement the botanical character of NA gin. Avoid sweet or flavored tonics, they overpower the gin and leave the drink feeling syrupy.",
       },
       {
-        question: "Is non alcoholic gin truly 0.0% alcohol?",
+        question: "Is non-alcoholic gin truly 0.0% alcohol?",
         answer:
-          "Most NA gin is labeled at less than 0.5% ABV, the standard non alcoholic threshold. Some, including parts of the Abstinence lineup, are closer to 0.0%. If you need certified 0.0% for medical, religious, or recovery reasons, check the label or ask us at the tasting bar and we will confirm the exact ABV.",
+          "Most NA gin is labeled at less than 0.5% ABV, the standard non-alcoholic threshold. Some, including parts of the Abstinence lineup, are closer to 0.0%. If you need certified 0.0% for medical, religious, or recovery reasons, check the label or ask us at the tasting bar and we will confirm the exact ABV.",
       },
     ]}
     relatedLinks={[
-      { label: "Non Alcoholic Spirits Buyer's Guide", href: "/non-alcoholic-spirits", description: "The full spirits cluster: gin, whiskey, tequila, aperitifs." },
-      { label: "Zero Proof Home Bar", href: "/zero-proof-home-bar", description: "The five bottle starter kit and how to use it." },
-      { label: "Best Non Alcoholic Tequila", href: "/best-non-alcoholic-tequila", description: "Almave Blanco and Ámbar, ranked and explained." },
-      { label: "Best Non Alcoholic Whiskey", href: "/best-non-alcoholic-whiskey", description: "Glen Dochus, old fashioneds, and slow sipping." },
-      { label: "Non Alcoholic Drinks Pillar", href: "/non-alcoholic-drinks", description: "Every category, every use case, all in one place." },
+      { label: "Non-Alcoholic Spirits Buyer's Guide", href: "/non-alcoholic-spirits", description: "The full spirits cluster: gin, whiskey, tequila, aperitifs." },
+      { label: "Zero-Proof Home Bar", href: "/zero-proof-home-bar", description: "The five bottle starter kit and how to use it." },
+      { label: "Best Non-Alcoholic Tequila", href: "/best-non-alcoholic-tequila", description: "Almave Blanco and Ámbar, ranked and explained." },
+      { label: "Best Non-Alcoholic Whiskey", href: "/best-non-alcoholic-whiskey", description: "Glen Dochus, old fashioneds, and slow sipping." },
+      { label: "Non-Alcoholic Drinks Pillar", href: "/non-alcoholic-drinks", description: "Every category, every use case, all in one place." },
       { label: "Dry January Guide", href: "/dry-january-guide", description: "How to do the month without white-knuckling it." },
     ]}
   />

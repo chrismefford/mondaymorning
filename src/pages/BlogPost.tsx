@@ -176,7 +176,7 @@ const BlogPost = () => {
               "@type": "WebPage",
               "@id": canonicalUrl
             },
-            "keywords": "non-alcoholic drinks, NA beverages, mocktails, alcohol-free, San Diego, mindful drinking, sober curious"
+            "keywords": "non-alcoholic drinks, NA beverages, mocktails, alcohol-free, San Diego, mindful drinking, sober-curious"
           })}
         </script>
       </Helmet>

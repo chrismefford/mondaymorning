@@ -49,7 +49,7 @@ const faqs = [
   },
   {
     question: "What is a good non-alcoholic alternative to Cutwater?",
-    answer: "Several excellent zero proof canned cocktails replicate the convenience and flavor of Cutwater without the alcohol. Brands like Curious Elixirs, Ghia, and Free Spirits offer ready-to-drink options. Monday Morning Bottle Shop carries a wide selection of NA canned cocktails in our San Diego tasting rooms and online shop."
+    answer: "Several excellent zero-proof canned cocktails replicate the convenience and flavor of Cutwater without the alcohol. Brands like Curious Elixirs, Ghia, and Free Spirits offer ready-to-drink options. Monday Morning Bottle Shop carries a wide selection of NA canned cocktails in our San Diego tasting rooms and online shop."
   },
   {
     question: "Can you buy non-alcoholic canned cocktails that taste like Cutwater?",
@@ -61,7 +61,7 @@ const faqs = [
   },
   {
     question: "Where can I find non-alcoholic alternatives to canned cocktails in San Diego?",
-    answer: "Monday Morning Bottle Shop has the largest curated selection of non-alcoholic drinks in San Diego, including NA canned cocktails, zero proof spirits, NA beer, and more. Visit our tasting rooms in Pacific Beach (1854 Garnet Ave) or Ocean Beach (4967 Newport Ave) to sample before you buy."
+    answer: "Monday Morning Bottle Shop has the largest curated selection of non-alcoholic drinks in San Diego, including NA canned cocktails, zero-proof spirits, NA beer, and more. Visit our tasting rooms in Pacific Beach (1854 Garnet Ave) or Ocean Beach (4967 Newport Ave) to sample before you buy."
   },
   {
     question: "Do non-alcoholic cocktails have any alcohol in them?",
@@ -75,7 +75,7 @@ const articleSchema = {
   "@context": "https://schema.org",
   "@type": "Article",
   "headline": "What Percentage Are Cutwaters? Alcohol Content Guide and Non-Alcoholic Alternatives",
-  "description": "Complete guide to Cutwater alcohol percentages by variety, how they compare to other drinks, and the best zero proof alternatives for every Cutwater cocktail.",
+  "description": "Complete guide to Cutwater alcohol percentages by variety, how they compare to other drinks, and the best zero-proof alternatives for every Cutwater cocktail.",
   "author": {
     "@type": "Organization",
     "name": "Monday Morning Bottle Shop",
@@ -135,7 +135,7 @@ const tocItems = [
   { id: "shots-per-can", label: "Shots per Can" },
   { id: "comparison", label: "Cutwater vs Alternatives" },
   { id: "gluten-free", label: "Gluten Free?" },
-  { id: "why-switch", label: "Why Go Zero Proof" },
+  { id: "why-switch", label: "Why Go Zero-Proof" },
   { id: "na-alternatives", label: "NA Alternatives" },
   { id: "how-to-start", label: "Getting Started" },
   { id: "faq", label: "FAQs" },
@@ -195,7 +195,7 @@ const CutwaterAlcoholContent = () => {
                 What Percentage Are Cutwaters?
               </h1>
               <p className="font-sans text-lg text-cream/80 max-w-2xl mb-4 leading-relaxed">
-                Cutwater canned cocktails range from 5% to over 12% ABV, making some of them stronger than you might expect. Here is a complete breakdown of every variety, plus the best zero proof alternatives if you want the flavor without the alcohol.
+                Cutwater canned cocktails range from 5% to over 12% ABV, making some of them stronger than you might expect. Here is a complete breakdown of every variety, plus the best zero-proof alternatives if you want the flavor without the alcohol.
               </p>
               <div className="flex flex-wrap gap-4 mt-8">
                 <Link to="/shop">
@@ -266,7 +266,7 @@ const CutwaterAlcoholContent = () => {
                   </div>
 
                   <p>
-                    This guide breaks down the alcohol content of every popular Cutwater variety, explains how to calculate what you are actually drinking, and introduces the zero proof alternatives that deliver the same convenience and flavor without any alcohol.
+                    This guide breaks down the alcohol content of every popular Cutwater variety, explains how to calculate what you are actually drinking, and introduces the zero-proof alternatives that deliver the same convenience and flavor without any alcohol.
                   </p>
                 </div>
               </div>
@@ -370,7 +370,7 @@ const CutwaterAlcoholContent = () => {
                     The lime flavor profile makes these drinks dangerously easy to drink quickly. The citrus acidity and sweetness mask the alcohol content, which means you can consume the equivalent of 2.5 beers worth of alcohol without feeling like you are drinking something particularly strong.
                   </p>
                   <p>
-                    This is one of the main reasons non-alcoholic margaritas have become so popular. You get the same bright, lime-forward, salt-rimmed experience without the hidden alcohol load. Several NA brands have specifically developed zero proof margarita recipes that nail the flavor profile.
+                    This is one of the main reasons non-alcoholic margaritas have become so popular. You get the same bright, lime-forward, salt-rimmed experience without the hidden alcohol load. Several NA brands have specifically developed zero-proof margarita recipes that nail the flavor profile.
                   </p>
 
                   <blockquote className="border-l-4 border-gold pl-6 py-2 my-8">
@@ -429,7 +429,7 @@ const CutwaterAlcoholContent = () => {
               <div className="mt-10">
                 <Link to="/shop">
                   <Button className="font-sans text-sm font-bold uppercase tracking-widest bg-gold text-forest-deep hover:bg-gold/90 px-8 py-6">
-                    Shop Zero Proof Alternatives
+                    Shop Zero-Proof Alternatives
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </Button>
                 </Link>
@@ -517,7 +517,7 @@ const CutwaterAlcoholContent = () => {
                     If you have celiac disease or a serious gluten sensitivity, check each specific product's ingredients. Cutwater does not universally label their products as gluten free.
                   </p>
                   <p>
-                    Most non-alcoholic canned cocktails are naturally gluten free because they are not produced from grain-based spirits. This makes them a safer option for anyone with gluten concerns, in addition to being alcohol free.
+                    Most non-alcoholic canned cocktails are naturally gluten free because they are not produced from grain-based spirits. This makes them a safer option for anyone with gluten concerns, in addition to being alcohol-free.
                   </p>
                 </div>
               </div>
@@ -534,13 +534,13 @@ const CutwaterAlcoholContent = () => {
           </div>
         </section>
 
-        {/* Section 7: Why Go Zero Proof */}
+        {/* Section 7: Why Go Zero-Proof */}
         <section id="why-switch" className="py-16 lg:py-24 bg-forest text-cream scroll-mt-28 relative overflow-hidden">
           <div className="grain absolute inset-0 pointer-events-none opacity-20" />
           <div className="container mx-auto px-4 lg:px-8 relative z-10">
             <div className="max-w-4xl mx-auto">
               <h2 className="font-serif text-3xl md:text-4xl text-cream mb-8">
-                Why More People Are Choosing Zero Proof Over Canned Cocktails
+                Why More People Are Choosing Zero-Proof Over Canned Cocktails
               </h2>
 
               <div className="space-y-5 font-sans text-base text-cream/80 leading-relaxed">
@@ -552,8 +552,8 @@ const CutwaterAlcoholContent = () => {
               <div className="grid sm:grid-cols-2 gap-5 my-10">
                 {[
                   { icon: "calories", title: "Fewer Calories", desc: "A Cutwater Margarita has roughly 290 calories. Most NA cocktails sit under 80. Over a weekend, that difference compounds significantly." },
-                  { icon: "sleep", title: "Better Sleep", desc: "Alcohol, even at moderate levels, disrupts REM sleep and reduces sleep quality. Zero proof drinks have no impact on your sleep cycle." },
-                  { icon: "morning", title: "No Hangover", desc: "Two Cutwater Lime Margaritas contain more than 4 standard drinks. That is hangover territory for most people. Zero proof eliminates the risk entirely." },
+                  { icon: "sleep", title: "Better Sleep", desc: "Alcohol, even at moderate levels, disrupts REM sleep and reduces sleep quality. Zero-proof drinks have no impact on your sleep cycle." },
+                  { icon: "morning", title: "No Hangover", desc: "Two Cutwater Lime Margaritas contain more than 4 standard drinks. That is hangover territory for most people. Zero-proof eliminates the risk entirely." },
                   { icon: "clarity", title: "Full Mental Clarity", desc: "Enjoy the social ritual of cocktails at a barbecue, beach day, or party without compromising your ability to drive, think clearly, or be present." },
                 ].map((item) => (
                   <div key={item.title} className="bg-cream/5 border border-cream/10 p-6">
@@ -580,7 +580,7 @@ const CutwaterAlcoholContent = () => {
                 Best Non-Alcoholic Alternatives to Cutwater
               </h2>
               <p className="font-sans text-base text-foreground/70 mb-12 leading-relaxed max-w-3xl">
-                For every Cutwater flavor, there is a zero proof alternative that delivers the same convenience and similar flavor at 0.0% ABV. Here are the categories to explore.
+                For every Cutwater flavor, there is a zero-proof alternative that delivers the same convenience and similar flavor at 0.0% ABV. Here are the categories to explore.
               </p>
 
               <div className="grid md:grid-cols-2 gap-8">
@@ -593,8 +593,8 @@ const CutwaterAlcoholContent = () => {
                     image: poolsideFriends
                   },
                   {
-                    title: "Zero Proof Spirits for DIY Cocktails",
-                    desc: "If you prefer to mix your own, zero proof spirits let you build any cocktail from scratch without alcohol. Keep a bottle of NA tequila, NA gin, or NA whiskey at home, and you can recreate any Cutwater flavor with fresh ingredients and full control over the recipe.",
+                    title: "Zero-Proof Spirits for DIY Cocktails",
+                    desc: "If you prefer to mix your own, zero-proof spirits let you build any cocktail from scratch without alcohol. Keep a bottle of NA tequila, NA gin, or NA whiskey at home, and you can recreate any Cutwater flavor with fresh ingredients and full control over the recipe.",
                     cta: "Shop Non-Alcoholic Spirits",
                     link: "/collections/spirits",
                     image: naSpiritCocktail
@@ -655,7 +655,7 @@ const CutwaterAlcoholContent = () => {
 
               <div className="grid sm:grid-cols-3 gap-5 my-10">
                 {[
-                  { step: "01", action: "Match the flavor", detail: "Love Cutwater Margaritas? Start with an NA margarita. Love the Gin & Tonic? Try a zero proof G&T. Begin with what you already know." },
+                  { step: "01", action: "Match the flavor", detail: "Love Cutwater Margaritas? Start with an NA margarita. Love the Gin & Tonic? Try a zero-proof G&T. Begin with what you already know." },
                   { step: "02", action: "Sample first", detail: "Visit our San Diego tasting rooms to try non-alcoholic cocktails before buying a full pack. Taste is personal, and sampling eliminates guesswork." },
                   { step: "03", action: "Stock your cooler", detail: "Keep NA canned cocktails in your fridge alongside your regular options. Having a choice available makes it easy to alternate or switch entirely." },
                 ].map((s) => (
