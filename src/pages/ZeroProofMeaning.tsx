@@ -87,7 +87,7 @@ const articleSchema = {
     "url": SITE_URL,
     "logo": {
       "@type": "ImageObject",
-      "url": `${SITE_URL}/og-image.png`
+      "url": `${SITE_URL}/logo.png`
     }
   },
   "datePublished": "2026-02-23",

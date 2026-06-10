@@ -36,7 +36,7 @@ const Blog = () => {
 
   const pageTitle = "Non-Alcoholic Drinks Blog: Reviews, Recipes & Guides | Monday Morning";
   const pageDescription = "Honest NA beer reviews, zero-proof cocktail recipes, buyer guides and sober-curious stories from San Diego's biggest non-alcoholic bottle shop.";
-  const ogImage = "/og-image.png";
+  const ogImage = "/og-monday-morning.png";
 
   return (
     <div className="min-h-screen bg-background brand-type">

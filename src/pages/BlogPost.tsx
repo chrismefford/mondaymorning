@@ -68,7 +68,7 @@ const BlogPost = () => {
   const seoTitle = truncateTitle(baseTitle, 50);
   const pageTitle = post ? `${seoTitle} | Monday Morning` : "Blog Post | Monday Morning";
   const pageDescription = cleanExcerpt(post?.excerpt);
-  const ogImage = post?.featured_image || "/og-image.png";
+  const ogImage = post?.featured_image || "/og-monday-morning.png";
   const canonicalUrl = `https://mondaymorning-af.com/blog/${slug}`;
   const publishedDate = post?.published_at || post?.created_at;
 
@@ -169,7 +169,7 @@ const BlogPost = () => {
               "url": "https://mondaymorning-af.com",
               "logo": {
                 "@type": "ImageObject",
-                "url": "https://mondaymorning-af.com/og-image.png"
+                "url": "https://mondaymorning-af.com/logo.png"
               }
             },
             "mainEntityOfPage": {

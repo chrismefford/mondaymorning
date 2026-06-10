@@ -117,7 +117,7 @@ const ProductPage = () => {
   const pageDescription = truncateForSEO(cleanMetaDescription(product.description), 155) || 
     `Shop ${product.name} - premium non-alcoholic ${product.category || 'beverage'} at ${SITE_NAME}. In-store pickup and nationwide shipping available.`;
   const canonicalUrl = getCanonicalUrl(`/product/${handle}`);
-  const ogImage = product.image || `${SITE_URL}/og-image.png`;
+  const ogImage = product.image || `${SITE_URL}/og-monday-morning.png`;
 
   const productSchema = generateProductSchema({
     name: product.name,

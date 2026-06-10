@@ -22,7 +22,7 @@ import { dirname } from "path";
 const DIST = join(process.cwd(), "dist");
 const SITE_NAME = "Monday Morning Bottle Shop";
 const SITE_URL = "https://mondaymorning-af.com";
-const DEFAULT_OG_IMAGE = `${SITE_URL}/og-image.png`;
+const DEFAULT_OG_IMAGE = `${SITE_URL}/og-monday-morning.png`;
 
 // ── Asset Resolver ──────────────────────────────────────────────────
 // Vite hashes filenames during build (e.g., friends-drinking.jpg → friends-drinking-Cg7gA0oM.jpg).
@@ -161,7 +161,7 @@ const organizationSchema = {
   "@type": "Organization",
   name: SITE_NAME,
   url: SITE_URL,
-  logo: `${SITE_URL}/og-image.png`,
+  logo: `${SITE_URL}/logo.png`,
   sameAs: [
     "https://www.instagram.com/mondaymorningsd",
     "https://www.facebook.com/mondaymorningsd",

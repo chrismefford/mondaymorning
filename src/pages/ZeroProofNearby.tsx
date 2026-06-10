@@ -142,12 +142,12 @@ const articleSchema = {
   "publisher": {
     "@type": "Organization",
     "name": "Monday Morning Bottle Shop",
-    "logo": { "@type": "ImageObject", "url": `${SITE_URL}/og-image.png` },
+    "logo": { "@type": "ImageObject", "url": `${SITE_URL}/logo.png` },
   },
   "datePublished": "2025-06-01",
   "dateModified": "2026-02-23",
   "mainEntityOfPage": `${SITE_URL}/zero-proof-alcohol-nearby`,
-  "image": `${SITE_URL}/og-image.png`,
+  "image": `${SITE_URL}/og-monday-morning.png`,
 };
 
 const breadcrumbSchema = generateBreadcrumbSchema([

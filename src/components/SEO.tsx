@@ -27,7 +27,7 @@ const SEO = ({
   title, 
   description, 
   path, 
-  image = "/og-image.png",
+  image = "/og-monday-morning.png",
   type = "website",
   schema,
   noIndex = false
