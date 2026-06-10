@@ -6,15 +6,7 @@ const corsHeaders = {
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
 };
 
-const ROUTING: Record<string, string> = {
-  b2b: 'operations@mondaymorning-af.com',
-  popups: 'operations@mondaymorning-af.com',
-  consulting: 'zane@mondaymorning-af.com',
-  brewing: 'brewery@mondaymorning-af.com',
-  events: 'zane@mondaymorning-af.com',
-  tasting: 'zane@mondaymorning-af.com',
-  general: 'zane@mondaymorning-af.com',
-};
+const NOTIFY_EMAIL = 'zane@mondaymorning-af.com';
 
 const LABELS: Record = {
   b2b: 'B2B & Distribution',
