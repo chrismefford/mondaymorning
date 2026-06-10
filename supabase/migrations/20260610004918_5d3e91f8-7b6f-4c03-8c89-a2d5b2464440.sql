@@ -1,0 +1,1 @@
+ALTER TABLE public.inquiries ADD COLUMN IF NOT EXISTS crm_synced boolean NOT NULL DEFAULT false;
