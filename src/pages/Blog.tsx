@@ -43,13 +43,13 @@ const Blog = () => {
       <Helmet>
         <title>{pageTitle}</title>
         <meta name="description" content={pageDescription} />
-        <link rel="canonical" href="https://mondaymorning.lovable.app/blog" />
+        <link rel="canonical" href="https://mondaymorning-af.com/blog" />
         
         {/* Open Graph */}
         <meta property="og:title" content={pageTitle} />
         <meta property="og:description" content={pageDescription} />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://mondaymorning.lovable.app/blog" />
+        <meta property="og:url" content="https://mondaymorning-af.com/blog" />
         <meta property="og:image" content={ogImage} />
         
         {/* Twitter */}

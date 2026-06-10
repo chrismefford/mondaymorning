@@ -69,7 +69,7 @@ const BlogPost = () => {
   const pageTitle = post ? `${seoTitle} | Monday Morning` : "Blog Post | Monday Morning";
   const pageDescription = cleanExcerpt(post?.excerpt);
   const ogImage = post?.featured_image || "/og-image.png";
-  const canonicalUrl = `https://mondaymorning.lovable.app/blog/${slug}`;
+  const canonicalUrl = `https://mondaymorning-af.com/blog/${slug}`;
   const publishedDate = post?.published_at || post?.created_at;
 
   if (isLoading) {
@@ -161,15 +161,15 @@ const BlogPost = () => {
             "author": {
               "@type": "Organization",
               "name": "Monday Morning Bottle Shop",
-              "url": "https://mondaymorning.lovable.app"
+              "url": "https://mondaymorning-af.com"
             },
             "publisher": {
               "@type": "Organization",
               "name": "Monday Morning Bottle Shop",
-              "url": "https://mondaymorning.lovable.app",
+              "url": "https://mondaymorning-af.com",
               "logo": {
                 "@type": "ImageObject",
-                "url": "https://mondaymorning.lovable.app/og-image.png"
+                "url": "https://mondaymorning-af.com/og-image.png"
               }
             },
             "mainEntityOfPage": {

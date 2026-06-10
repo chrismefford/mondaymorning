@@ -63,7 +63,7 @@ const BlogImport = () => {
   const navigate = useNavigate();
   const { toast } = useToast();
   
-  const [blogUrl, setBlogUrl] = useState("https://www.mondaymorning-af.com/blog");
+  const [blogUrl, setBlogUrl] = useState("https://mondaymorning-af.com/blog");
   const [isLoading, setIsLoading] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
   const [scrapedPosts, setScrapedPosts] = useState<ScrapedPost[]>([]);
