@@ -44,7 +44,7 @@ serve(async (req) => {
       });
     }
 
-    const recipient = ROUTING[inq.offering] ?? ROUTING.general;
+    const recipient = NOTIFY_EMAIL;
     const label = LABELS[inq.offering] ?? LABELS.general;
 
     const emailHtml = `
