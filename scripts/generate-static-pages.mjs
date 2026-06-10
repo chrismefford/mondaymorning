@@ -1341,6 +1341,24 @@ const staticRoutes = [
     schema: [organizationSchema],
   },
   {
+    path: "/accessibility",
+    title: "Accessibility Statement | Monday Morning Bottle Shop",
+    description: "Monday Morning is committed to digital accessibility for people with disabilities and aims to meet WCAG 2.1 AA. Contact info@mondaymorning-af.com with any accessibility feedback.",
+    schema: [organizationSchema],
+  },
+  {
+    path: "/ccpa",
+    title: "California Privacy Rights | Monday Morning Bottle Shop",
+    description: "California residents' privacy rights under the CCPA and CPRA, including how to access, delete, correct, or opt out of the sale or sharing of personal information.",
+    schema: [organizationSchema],
+  },
+  {
+    path: "/press",
+    title: "Press & Media | Monday Morning Bottle Shop",
+    description: "Media coverage of Monday Morning, San Diego's non-alcoholic bottle shop, featured by CBS 8, FOX 5, the San Diego Union-Tribune, Associated Press, Inc., and more.",
+    schema: [organizationSchema],
+  },
+  {
     path: "/non-alcoholic-drinks-san-diego",
     title: "Non-Alcoholic Drinks San Diego | 500+ Zero Proof Options",
     description: "San Diego's largest non-alcoholic bottle shop. 500+ zero-proof beers, wines, spirits and functional drinks. Visit our Pacific Beach and Ocean Beach locations or shop online.",
