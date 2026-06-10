@@ -113,6 +113,44 @@ serve(async (req) => {
       });
     }
 
+    // Fire-and-forget forward to external CRM
+    const crmUrl = Deno.env.get('CRM_INQUIRY_URL');
+    const crmSecret = Deno.env.get('CRM_INQUIRY_SECRET');
+    if (crmUrl && crmSecret) {
+      try {
+        const crmRes = await fetch(crmUrl, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'x-inquiry-secret': crmSecret,
+          },
+          body: JSON.stringify({
+            inquiry_id: inq.id,
+            offering: inq.offering,
+            name: inq.name,
+            email: inq.email,
+            company: inq.company ?? null,
+            phone: inq.phone ?? null,
+            message: inq.message ?? null,
+          }),
+        });
+        if (crmRes.ok) {
+          const { error: updErr } = await supabase
+            .from('inquiries')
+            .update({ crm_synced: true })
+            .eq('id', inq.id);
+          if (updErr) console.error('Failed to mark crm_synced:', updErr);
+        } else {
+          const body = await crmRes.text().catch(() => '');
+          console.error('CRM forward non-2xx:', crmRes.status, body);
+        }
+      } catch (crmErr) {
+        console.error('CRM forward failed:', crmErr);
+      }
+    } else {
+      console.warn('CRM_INQUIRY_URL or CRM_INQUIRY_SECRET not set; skipping CRM forward');
+    }
+
     return new Response(JSON.stringify({ success: true, routedTo: recipient }), {
       status: 200, headers: { ...corsHeaders, 'Content-Type': 'application/json' },
     });
