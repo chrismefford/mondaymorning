@@ -9,6 +9,7 @@ import illusRocks from "@/assets/brand/illus-rocks.png";
 import illusCitrus from "@/assets/brand/illus-citrus.png";
 import illusWine from "@/assets/brand/illus-wine.png";
 import illusFunctional from "@/assets/brand/illus-functional.png";
+import { CannedIllustration, ShopAllIllustration } from "@/components/home/vibeIllustrations";
 
 // Curated "vibe" categories, each wired to a live Shopify collection.
 // All six tiles use the real brand line illustrations (gold line art on dark).
@@ -19,13 +20,15 @@ const VIBE_CATEGORIES = [
   { handle: "non-alcoholic-canned-cocktails", label: "Cocktails", blurb: "Bar-quality, ready to pour", bg: "bg-teal-dark", img: illusMartini },
   { handle: "non-alcoholic-aperitifs-digestifs-liqueurs", label: "Aperitifs", blurb: "Bittersweet & botanical", bg: "bg-forest", img: illusCitrus },
   { handle: "non-alcoholic-functional-rtds", label: "Functional", blurb: "Adaptogens, kava & calm", bg: "bg-forest-deep", img: illusFunctional },
+  { handle: "non-alcoholic-ready-to-drinks", label: "Canned", blurb: "Sparkling, seltzers & RTD cans", bg: "bg-forest", Illustration: CannedIllustration },
+  { to: "/shop", label: "Shop All", blurb: "Browse all 500+ pours", bg: "bg-teal-dark", alwaysShow: true, Illustration: ShopAllIllustration },
 ];
 
 const Collections = () => {
   // Pull live collections so we only show categories that exist in the catalog.
   const { data: liveCollections } = useShopifyCollections(50);
   const liveHandles = new Set((liveCollections || []).map((c) => c.handle));
-  const cats = VIBE_CATEGORIES.filter((c) => liveHandles.size === 0 || liveHandles.has(c.handle));
+  const cats = VIBE_CATEGORIES.filter((c) => c.alwaysShow || liveHandles.size === 0 || liveHandles.has(c.handle));
 
   return (
     <section id="collections" className="py-12 lg:py-16 bg-cream relative overflow-hidden">
@@ -50,13 +53,13 @@ const Collections = () => {
         </div>
 
         {/* Category tiles */}
-        <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
           {cats.map((c) => {
             const Illustration = c.Illustration;
             return (
               <Link
-                key={c.handle}
-                to={`/collections/${c.handle}`}
+                key={c.handle || c.label}
+                to={c.to || `/collections/${c.handle}`}
                 className={`group relative ${c.bg} text-cream border-2 border-forest p-6 lg:p-8 aspect-[4/3] overflow-hidden transition-all duration-300 hover:-translate-y-1 shadow-card hover:shadow-brutal`}
               >
                 {/* Hand-drawn illustration (gold) */}
