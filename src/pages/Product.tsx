@@ -135,9 +135,26 @@ const ProductPage = () => {
     { name: product.name, url: canonicalUrl }
   ]);
 
-
   return (
     <div className="min-h-screen bg-cream brand-type">
+      <Helmet>
+        <title>{pageTitle}</title>
+        <meta name="description" content={pageDescription} />
+        <link rel="canonical" href={canonicalUrl} />
+        <meta property="og:title" content={pageTitle} />
+        <meta property="og:description" content={pageDescription} />
+        <meta property="og:type" content="product" />
+        <meta property="og:url" content={canonicalUrl} />
+        <meta property="og:image" content={ogImage} />
+        <meta property="og:site_name" content={SITE_NAME} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={pageTitle} />
+        <meta name="twitter:description" content={pageDescription} />
+        <meta name="twitter:image" content={ogImage} />
+        <meta name="twitter:site" content={TWITTER_HANDLE} />
+        <script type="application/ld+json">{JSON.stringify(productSchema)}</script>
+        <script type="application/ld+json">{JSON.stringify(breadcrumbSchema)}</script>
+      </Helmet>
       <Header />
       
       <main className="relative overflow-hidden">
