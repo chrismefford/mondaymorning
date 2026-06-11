@@ -69,33 +69,3 @@ export const FunctionalIllustration = ({ className = "" }: IllustrationProps) =>
     </g>
   </svg>
 );
-
-// Canned / RTD — a sketched seltzer can with a pull-tab and fizz.
-export const CannedIllustration = ({ className = "" }: IllustrationProps) => (
-  <svg className={className} {...svgBase}>
-    <defs><Rough id="rgh-can" /></defs>
-    <g filter="url(#rgh-can)">
-      <path d="M31 34 L31 86 Q31 90 35 90 L45 90 Q49 90 49 86 L49 34" />
-      <path d="M31 34 Q40 30 49 34" />
-      <path d="M31 34 Q40 38 49 34" />
-      <path d="M38 33 q2 -3 4 -1" /><circle cx="40" cy="33" r="0.9" />
-      <path d="M31 50 Q40 53 49 50" />
-      <path d="M31 74 Q40 77 49 74" />
-      <circle cx="56" cy="40" r="1.3" /><circle cx="59" cy="48" r="1" /><circle cx="54" cy="53" r="0.9" />
-    </g>
-  </svg>
-);
-
-// Shop All — a sketched tote bag with a bottle peeking out (browse everything).
-export const ShopAllIllustration = ({ className = "" }: IllustrationProps) => (
-  <svg className={className} {...svgBase}>
-    <defs><Rough id="rgh-all" /></defs>
-    <g filter="url(#rgh-all)">
-      <path d="M27 48 L24 85 Q24 88 27 88 L53 88 Q56 88 56 85 L53 48 Z" />
-      <path d="M27 48 L53 48" />
-      <path d="M34 48 Q34 35 40 35 Q46 35 46 48" />
-      <path d="M43 48 L43 40 Q43 37 45 37 L47 37 Q49 37 49 40 L49 48" />
-      <path d="M44 37 L44 34 L48 34 L48 37" />
-    </g>
-  </svg>
-);

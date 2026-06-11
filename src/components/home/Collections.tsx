@@ -9,7 +9,8 @@ import illusRocks from "@/assets/brand/illus-rocks.png";
 import illusCitrus from "@/assets/brand/illus-citrus.png";
 import illusWine from "@/assets/brand/illus-wine.png";
 import illusFunctional from "@/assets/brand/illus-functional.png";
-import { CannedIllustration, ShopAllIllustration } from "@/components/home/vibeIllustrations";
+import illusCan from "@/assets/brand/illus-beer-can.png";
+import illusShopping from "@/assets/brand/illus-shopping-bag.png";
 
 // Curated "vibe" categories, each wired to a live Shopify collection.
 // All six tiles use the real brand line illustrations (gold line art on dark).
@@ -20,8 +21,8 @@ const VIBE_CATEGORIES = [
   { handle: "non-alcoholic-canned-cocktails", label: "Cocktails", blurb: "Bar-quality, ready to pour", bg: "bg-teal-dark", img: illusMartini },
   { handle: "non-alcoholic-aperitifs-digestifs-liqueurs", label: "Aperitifs", blurb: "Bittersweet & botanical", bg: "bg-forest", img: illusCitrus },
   { handle: "non-alcoholic-functional-rtds", label: "Functional", blurb: "Adaptogens, kava & calm", bg: "bg-forest-deep", img: illusFunctional },
-  { handle: "non-alcoholic-ready-to-drinks", label: "Canned", blurb: "Sparkling, seltzers & RTD cans", bg: "bg-forest", Illustration: CannedIllustration },
-  { to: "/shop", label: "Shop All", blurb: "Browse all 500+ pours", bg: "bg-teal-dark", alwaysShow: true, Illustration: ShopAllIllustration },
+  { handle: "non-alcoholic-ready-to-drinks", label: "Canned", blurb: "Sparkling, seltzers & RTD cans", bg: "bg-forest", img: illusCan },
+  { to: "/shop", label: "Shop All", blurb: "Browse all 500+ pours", bg: "bg-teal-dark", alwaysShow: true, img: illusShopping },
 ];
 
 const Collections = () => {
