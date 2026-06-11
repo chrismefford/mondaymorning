@@ -1838,15 +1838,24 @@ function generateHTML(route, templateHTML, allProducts, allBlogPosts) {
   const canonicalUrl = `${SITE_URL}${route.path === "/" ? "" : route.path}`;
   const ogImage = route.ogImage || DEFAULT_OG_IMAGE;
 
+  // The root index.html doubles as the SPA fallback shell the host serves for
+  // EVERY route, so a hardcoded canonical/og:url here would make every page
+  // report the homepage URL (conflicting with the per-page one Helmet sets on
+  // render). Omit them on the root shell only; keep them on the dedicated
+  // per-route static pages.
+  const isRootShell = route.path === "/";
+  const canonicalTag = isRootShell ? "" : `<link rel="canonical" href="${canonicalUrl}" />`;
+  const ogUrlTag = isRootShell ? "" : `<meta property="og:url" content="${canonicalUrl}" />`;
+
   const metaTags = `
     <title>${escapeHTML(route.title)}</title>
     <meta name="description" content="${escapeHTML(route.description)}" />
-    <link rel="canonical" href="${canonicalUrl}" />
+    ${canonicalTag}
     ${route.noIndex ? '<meta name="robots" content="noindex, nofollow" />' : ""}
-    
+
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="${canonicalUrl}" />
+    ${ogUrlTag}
     <meta property="og:title" content="${escapeHTML(route.title)}" />
     <meta property="og:description" content="${escapeHTML(route.description)}" />
     <meta property="og:image" content="${ogImage}" />
