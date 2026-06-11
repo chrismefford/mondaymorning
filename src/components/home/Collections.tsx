@@ -17,13 +17,17 @@ import illusCan from "@/assets/brand/illus-beer-can.png";
 // `slug` = the friendly route (mapped to a titled page in Collection.tsx);
 // `handle` = the live Shopify collection handle used to confirm the tile exists.
 const VIBE_CATEGORIES = [
-  { slug: "functional", handle: "non-alcoholic-functional-spirits", label: "Functional", blurb: "Adaptogens, nootropics & calm", bg: "bg-forest", img: illusFunctional },
-  { slug: "na-beer", handle: "non-alcoholic-beer", label: "Beer", blurb: "Crisp IPAs, lagers & stouts", bg: "bg-forest", img: illusBeer },
-  { slug: "wine-alternatives", handle: "non-alcoholic-wine", label: "Wine", blurb: "Reds, rosés & sparkling", bg: "bg-forest", img: illusWine },
-  { slug: "spirit-alternatives", handle: "non-alcoholic-spirits", label: "Spirits", blurb: "Gin, whiskey & agave, zero-proof", bg: "bg-forest", img: illusRocks },
-  { slug: "aperitifs", handle: "non-alcoholic-aperitifs-digestifs-liqueurs", label: "Aperitifs", blurb: "Bittersweet & botanical", bg: "bg-forest", img: illusCitrus },
-  { slug: "canned", handle: "non-alcoholic-ready-to-drinks", label: "Canned", blurb: "Sparkling, seltzers & RTD cans", bg: "bg-forest", img: illusCan },
+  { slug: "functional", handle: "non-alcoholic-functional-spirits", label: "Functional", blurb: "Adaptogens, nootropics & calm", img: illusFunctional },
+  { slug: "na-beer", handle: "non-alcoholic-beer", label: "Beer", blurb: "Crisp IPAs, lagers & stouts", img: illusBeer },
+  { slug: "wine-alternatives", handle: "non-alcoholic-wine", label: "Wine", blurb: "Reds, rosés & sparkling", img: illusWine },
+  { slug: "spirit-alternatives", handle: "non-alcoholic-spirits", label: "Spirits", blurb: "Gin, whiskey & agave, zero-proof", img: illusRocks },
+  { slug: "aperitifs", handle: "non-alcoholic-aperitifs-digestifs-liqueurs", label: "Aperitifs", blurb: "Bittersweet & botanical", img: illusCitrus },
+  { slug: "canned", handle: "non-alcoholic-ready-to-drinks", label: "Canned", blurb: "Sparkling, seltzers & RTD cans", img: illusCan },
 ];
+
+// Colors run DOWN the columns (3-up on desktop) so each column is a single
+// shade, lined up top-to-bottom instead of a patchwork.
+const COLUMN_COLORS = ["bg-forest", "bg-teal-dark", "bg-forest-deep"];
 
 const Collections = () => {
   // Pull live collections so we only show categories that exist in the catalog.
@@ -55,12 +59,12 @@ const Collections = () => {
 
         {/* Category tiles */}
         <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
-          {cats.map((c) => {
+          {cats.map((c, i) => {
             return (
               <Link
                 key={c.slug}
                 to={`/collections/${c.slug}`}
-                className={`group relative ${c.bg} text-cream border-2 border-forest p-6 lg:p-8 aspect-[4/3] overflow-hidden transition-all duration-300 hover:-translate-y-1 shadow-card hover:shadow-brutal`}
+                className={`group relative ${COLUMN_COLORS[i % 3]} text-cream border-2 border-forest p-6 lg:p-8 aspect-[4/3] overflow-hidden transition-all duration-300 hover:-translate-y-1 shadow-card hover:shadow-brutal`}
               >
                 {/* Hand-drawn illustration (gold) */}
                 <img
