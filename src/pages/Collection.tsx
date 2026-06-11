@@ -43,6 +43,11 @@ const collectionMapping: Record<string, { shopifyHandle: string; title: string; 
     title: "Functional Drinks",
     description: "Beverages with benefits. Adaptogens, nootropics, and feel-good ingredients."
   },
+  "canned": {
+    shopifyHandle: "non-alcoholic-ready-to-drinks",
+    title: "Canned Drinks",
+    description: "Crack, pour, enjoy. Ready-to-drink NA cocktails, functional cans, and sparkling sips."
+  },
   "beach-bonfire": {
     shopifyHandle: "non-alcoholic-ready-to-drinks",
     title: "Beach Bonfire Vibes",

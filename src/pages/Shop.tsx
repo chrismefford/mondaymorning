@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { Helmet } from "@/lib/helmet-compat";
 import {
   Loader2, ArrowRight, Palmtree, Heart, Sun, Moon, Sparkles,
-  Beer, Wine, Martini, Leaf, GlassWater, Truck, Package, Globe,
+  Beer, Wine, Martini, Leaf, GlassWater, Truck, Package, Globe, CupSoda,
 } from "lucide-react";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
@@ -22,6 +22,7 @@ const categoryChips = [
   { name: "NA Wine", icon: Wine, href: "/collections/wine-alternatives" },
   { name: "NA Spirits", icon: Martini, href: "/collections/spirit-alternatives" },
   { name: "Functionals", icon: Leaf, href: "/collections/functional" },
+  { name: "Canned", icon: CupSoda, href: "/collections/canned" },
   { name: "Shop All", icon: ArrowRight, href: "/collections/all" },
 ];
 
@@ -39,6 +40,7 @@ const typeSections = [
   { key: "wine", eyebrow: "Pour something", title: "NA", accent: "Wine", href: "/collections/wine-alternatives", match: /wine|sparkling|champagne/i },
   { key: "spirits", eyebrow: "Shake it up", title: "NA", accent: "Spirits", href: "/collections/spirit-alternatives", match: /spirit|aperitif|aperitivo|botanical/i },
   { key: "functional", eyebrow: "Feel good", title: "Functional", accent: "Drinks", href: "/collections/functional", match: /functional|elixir|adapto|tonic/i },
+  { key: "canned", eyebrow: "Grab & go", title: "Canned", accent: "Drinks", href: "/collections/canned", match: /rtd/i },
 ];
 
 // Shop-by-vibe is now a compact, photo-free discovery row (consistent + on-brand).
