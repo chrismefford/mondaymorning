@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import { Helmet } from "@/lib/helmet-compat";
 import { useShopifyProduct } from "@/hooks/useShopifyProduct";
@@ -9,6 +9,7 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import ProductCard from "@/components/home/ProductCard";
 import ProductRecipes from "@/components/product/ProductRecipes";
+import { ProductReviews, ProductReviewBadge } from "@/components/product/ProductReviews";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ArrowLeft, ShoppingBag, Loader2, ChevronLeft, ChevronRight } from "lucide-react";
@@ -50,6 +51,30 @@ const ProductPage = () => {
       nameLC.includes(brand) || vendorLC.includes(brand)
     );
   }, [product]);
+
+  // Judge.me reviews: external_id is the numeric Shopify product id.
+  const externalId = product?.id ? String(product.id).split("/").pop() || "" : "";
+
+  // Read the live rating Judge.me writes onto the rendered badge so we can fold
+  // it into OUR Product schema (single source of truth for the star snippet).
+  // Stays null until there are real reviews — no fake aggregateRating.
+  const [jmRating, setJmRating] = useState<{ average: number; count: number } | null>(null);
+  useEffect(() => {
+    setJmRating(null);
+    if (!externalId) return;
+    let tries = 0;
+    const timer = window.setInterval(() => {
+      tries += 1;
+      const el = document.querySelector(".jdgm-prev-badge[data-number-of-reviews]");
+      if (el) {
+        const count = parseInt(el.getAttribute("data-number-of-reviews") || "0", 10);
+        const average = parseFloat(el.getAttribute("data-average-rating") || "0");
+        setJmRating(count > 0 ? { average, count } : null);
+      }
+      if (tries > 40) window.clearInterval(timer);
+    }, 400);
+    return () => window.clearInterval(timer);
+  }, [externalId]);
 
   // Fetch more products for "More to Explore" section
   const { data: allProducts } = useShopifyProducts(PRODUCTS_PER_PAGE * TOTAL_PAGES);
@@ -119,15 +144,28 @@ const ProductPage = () => {
   const canonicalUrl = getCanonicalUrl(`/product/${handle}`);
   const ogImage = product.image || `${SITE_URL}/og-monday-morning.png`;
 
-  const productSchema = generateProductSchema({
-    name: product.name,
-    description: product.description,
-    image: product.image,
-    price: product.price,
-    category: product.category,
-    handle: handle || "",
-    available: true
-  });
+  const productSchema = {
+    ...generateProductSchema({
+      name: product.name,
+      description: product.description,
+      image: product.image,
+      price: product.price,
+      category: product.category,
+      handle: handle || "",
+      available: true
+    }),
+    // Real review data from Judge.me → Google star snippet. Omitted until
+    // there is at least one review so we never emit an empty rating.
+    ...(jmRating
+      ? {
+          aggregateRating: {
+            "@type": "AggregateRating",
+            ratingValue: jmRating.average,
+            reviewCount: jmRating.count,
+          },
+        }
+      : {}),
+  };
 
   const breadcrumbSchema = generateBreadcrumbSchema([
     { name: "Home", url: SITE_URL },
@@ -220,7 +258,9 @@ const ProductPage = () => {
               <h1 className="font-serif text-3xl lg:text-4xl xl:text-5xl font-bold text-forest mb-4 leading-tight">
                 {product.name}
               </h1>
-              
+
+              <ProductReviewBadge externalId={externalId} />
+
               {product.tagline && (
                 <p className="font-serif text-lg lg:text-xl italic text-forest/60 mb-6 leading-snug">
                   "{product.tagline}"
@@ -288,8 +328,11 @@ const ProductPage = () => {
             </div>
           </div>
 
+          {/* Customer Reviews (Judge.me) */}
+          <ProductReviews externalId={externalId} productTitle={product.name} />
+
           {/* AI-Generated Recipes Section */}
-          <ProductRecipes 
+          <ProductRecipes
             productHandle={handle || ""} 
             productName={product.name}
             productImage={product.image}

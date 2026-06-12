@@ -78,6 +78,30 @@
       })();
     </script>
     <!-- End Google Tag Manager -->
+
+    <!-- Judge.me reviews (client-side widgets; deferred to protect LCP).
+         Only the PUBLIC token is exposed here — it is read-only by design. -->
+    <script>
+      window.jdgm = window.jdgm || {};
+      jdgm.SHOP_DOMAIN = '1c3fe3-3b.myshopify.com';
+      jdgm.PLATFORM = 'shopify';
+      jdgm.PUBLIC_TOKEN = '5JKNqkDhzdv7RAoQLpcCQRYZYXY';
+      (function () {
+        function loadJdgm() {
+          var s = document.createElement('script');
+          s.async = true;
+          s.setAttribute('data-cfasync', 'false');
+          s.src = 'https://cdn.judge.me/widget_preloader.js';
+          document.head.appendChild(s);
+        }
+        if (document.readyState === 'complete') {
+          setTimeout(loadJdgm, 1500);
+        } else {
+          window.addEventListener('load', function () { setTimeout(loadJdgm, 1500); });
+        }
+      })();
+    </script>
+    <!-- End Judge.me -->
   </head>
   <body>
     <!-- Google Tag Manager (noscript) -->
