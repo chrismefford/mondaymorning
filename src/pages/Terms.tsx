@@ -1,10 +1,12 @@
 import Header from "@/components/layout/Header";
+import SEO from "@/components/SEO";
 import Footer from "@/components/layout/Footer";
 import textureCream from "@/assets/texture-cream.webp";
 
 const Terms = () => {
   return (
     <div className="min-h-screen bg-cream brand-type">
+      <SEO title="Terms of Service" description="The terms and conditions for using the Monday Morning website and buying our non-alcoholic drinks." path="/terms" />
       <Header />
       
       <main>

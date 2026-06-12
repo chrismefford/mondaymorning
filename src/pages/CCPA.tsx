@@ -1,10 +1,12 @@
 import Header from "@/components/layout/Header";
+import SEO from "@/components/SEO";
 import Footer from "@/components/layout/Footer";
 import textureCream from "@/assets/texture-cream.webp";
 
 const CCPA = () => {
   return (
     <div className="min-h-screen bg-cream brand-type">
+      <SEO title="California Privacy Rights" description="California resident privacy rights under the CCPA and CPRA: access, deletion, correction, and opt-out of the sale or sharing of personal information." path="/ccpa" />
       <Header />
 
       <main>

@@ -1,10 +1,12 @@
 import Header from "@/components/layout/Header";
+import SEO from "@/components/SEO";
 import Footer from "@/components/layout/Footer";
 import textureCream from "@/assets/texture-cream.webp";
 
 const Returns = () => {
   return (
     <div className="min-h-screen bg-cream brand-type">
+      <SEO title="Returns and Refunds" description="Monday Morning return and refund policy for non-alcoholic beverages, plus our satisfaction guarantee." path="/returns" />
       <Header />
       
       <main>

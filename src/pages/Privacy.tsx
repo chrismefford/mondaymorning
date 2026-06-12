@@ -1,10 +1,12 @@
 import Header from "@/components/layout/Header";
+import SEO from "@/components/SEO";
 import Footer from "@/components/layout/Footer";
 import textureCream from "@/assets/texture-cream.webp";
 
 const Privacy = () => {
   return (
     <div className="min-h-screen bg-cream brand-type">
+      <SEO title="Privacy Policy" description="How Monday Morning collects, uses, and protects your personal information, plus your choices about your data." path="/privacy" />
       <Header />
       
       <main>

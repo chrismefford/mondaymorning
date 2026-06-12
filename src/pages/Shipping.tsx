@@ -1,10 +1,12 @@
 import Header from "@/components/layout/Header";
+import SEO from "@/components/SEO";
 import Footer from "@/components/layout/Footer";
 import textureCream from "@/assets/texture-cream.webp";
 
 const Shipping = () => {
   return (
     <div className="min-h-screen bg-cream brand-type">
+      <SEO title="Shipping Policy" description="Shipping options, timelines, and rates for Monday Morning non-alcoholic beverage orders, local San Diego delivery and nationwide." path="/shipping" />
       <Header />
       
       <main>
