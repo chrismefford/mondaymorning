@@ -192,7 +192,7 @@ export const recipes: Recipe[] = [
     occasion: "dinner",
     tagline: "Spiced & spirit-forward",
     description:
-      "Spiritless Kentucky 74 and Tenneyson Black Ginger over a big cube, with ginger syrup and ATB Aromatic Bitters. A whiskey ritual without the booze.",
+      "Spiritless Kentucky 74 and Tennyson Black Ginger over a big cube, with ginger syrup and ATB Aromatic Bitters. A whiskey ritual without the booze.",
     image:
       "https://images.getrecipekit.com/20251201203537-non-20alcoholic-20ginger-20old-20fashioned-20mocktail.jpg?aspect_ratio=16:9&quality=90",
     prepTime: "3 min",
@@ -200,7 +200,7 @@ export const recipes: Recipe[] = [
     difficulty: "Easy",
     ingredients: [
       "1½ oz Spiritless Kentucky 74",
-      "1 oz Tenneyson Black Ginger",
+      "1 oz Tennyson Black Ginger",
       "¼ oz ginger syrup",
       "5 dashes ATB Aromatic Bitters",
       "Lemon twist, to garnish",

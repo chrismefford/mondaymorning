@@ -56,12 +56,12 @@ const RECIPE_BRAND: Record<string, string> = {
   "garden-collins": "Aplós",
   "easy-does-it": "Aplós",
   "black-manhattan": "Spiritless",
-  "ginger-old-fashioned": "Tenneyson",
+  "ginger-old-fashioned": "Tennyson",
   "na-negroni": "Roots Divino",
   "hibiscus-sour": "All The Bitter",
 };
 // Display order for the filter buttons (most recipes first).
-const RECIPE_BRANDS = ["Drømme", "Three Spirit", "Almave", "Kava Haven", "Monday Gin", "Aplós", "Spiritless", "Tenneyson", "Roots Divino", "All The Bitter"];
+const RECIPE_BRANDS = ["Drømme", "Three Spirit", "Almave", "Kava Haven", "Monday Gin", "Aplós", "Spiritless", "Tennyson", "Roots Divino", "All The Bitter"];
 
 interface RecipeProduct {
   product: ReturnType<typeof shopifyToLocalProduct>;

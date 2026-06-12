@@ -199,13 +199,13 @@ const Wholesale = () => {
           <div className="container mx-auto px-4 lg:px-8 relative z-10">
             <div className="max-w-4xl">
               <span className="font-sans text-[10px] lg:text-xs font-bold uppercase tracking-[0.3em] text-gold mb-5 block">
-                Work With Us
+                Partner With Us
               </span>
               <h1 className="font-serif text-5xl lg:text-7xl xl:text-8xl leading-[0.95] mb-6">
                 Let's build the alcohol-free shift <span className="font-script text-gold text-[1.15em] leading-none whitespace-nowrap">together.</span>
               </h1>
               <p className="font-sans text-lg lg:text-2xl text-muted-foreground leading-relaxed max-w-3xl">
-                We help bars, restaurants, retailers, and brands win the fastest-growing category in beverage. Five ways to work with us, all run by people who do this for a living.
+                We help bars, restaurants, retailers, and brands win the fastest-growing category in beverage. Five ways to partner with us, all run by people who do this for a living.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 mt-8">
                 <InquiryDialog

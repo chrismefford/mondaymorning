@@ -1359,6 +1359,12 @@ const staticRoutes = [
     schema: [organizationSchema],
   },
   {
+    path: "/stockists",
+    title: "Where to Find Our Drinks in San Diego | Monday Morning",
+    description: "San Diego bars, restaurants, and shops that carry the non-alcoholic brands Monday Morning distributes — tap a venue to see what it stocks.",
+    schema: [organizationSchema],
+  },
+  {
     path: "/non-alcoholic-drinks-san-diego",
     title: "Non-Alcoholic Drinks San Diego | 500+ Zero Proof Options",
     description: "San Diego's largest non-alcoholic bottle shop. 500+ zero-proof beers, wines, spirits and functional drinks. Visit our Pacific Beach and Ocean Beach locations or shop online.",

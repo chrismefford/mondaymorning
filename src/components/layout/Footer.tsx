@@ -176,7 +176,8 @@ const Footer = () => {
               { label: "Returns", path: "/returns" },
               { label: "California Privacy", path: "/ccpa" },
               { label: "Accessibility", path: "/accessibility" },
-              { label: "Work With Us", path: "/services" },
+              { label: "Partner With Us", path: "/services" },
+              { label: "Stockists", path: "/stockists" },
               { label: "Press", path: "/press" },
             ].map((item) => (
               <Link 

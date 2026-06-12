@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Menu, X, ShoppingBag, ArrowUpRight, Sparkles, Beer, Wine, Martini, Star, Leaf, Package, ChevronDown, Search, BookOpen, Newspaper, Truck, GraduationCap, Store, FlaskConical } from "lucide-react";
+import { Menu, X, ShoppingBag, ArrowUpRight, Sparkles, Beer, Wine, Martini, Star, Leaf, Package, ChevronDown, Search, BookOpen, Newspaper, Truck, GraduationCap, Store, FlaskConical, MapPin } from "lucide-react";
 import { useCart } from "@/hooks/useCart";
 import logoGold from "@/assets/logo-mm-gold.png";
 import logoWhite from "@/assets/logo-mm-white.png";
@@ -18,6 +18,11 @@ const categoryItems = [
 const recipeItems = [
   { name: "All Recipes", icon: Martini, href: "/recipes" },
   { name: "Blog", icon: BookOpen, href: "/blog", isBlog: true },
+];
+
+const visitItems = [
+  { name: "Our Shops", icon: Store, href: "/locations" },
+  { name: "Stockists", icon: MapPin, href: "/stockists" },
 ];
 
 const hireUsItems = [
@@ -95,6 +100,7 @@ const Header = ({ forceSolid = false }: HeaderProps) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isCollectionsOpen, setIsCollectionsOpen] = useState(false);
   const [isRecipesOpen, setIsRecipesOpen] = useState(false);
+  const [isVisitOpen, setIsVisitOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const { cartCount, openCart } = useCart();
 
@@ -120,10 +126,10 @@ const Header = ({ forceSolid = false }: HeaderProps) => {
 
   const navLinks = [
     { name: "Shop", href: "/shop", number: "01", hasDropdown: true, dropdownType: "collections" },
-    { name: "Visit", href: "/locations", number: "02" },
+    { name: "Visit", href: "/locations", number: "02", hasDropdown: true, dropdownType: "visit" },
     { name: "Behind The Bar", href: "/recipes", number: "03", hasDropdown: true, dropdownType: "recipes" },
     { name: "Story", href: "/about", number: "04" },
-    { name: "Work With Us", href: "/services", number: "05" },
+    { name: "Partner With Us", href: "/services", number: "05" },
   ];
 
   // Determine if we're on a dark hero page
@@ -203,7 +209,7 @@ const Header = ({ forceSolid = false }: HeaderProps) => {
             {/* Desktop Navigation - Center */}
             <nav className="hidden md:flex items-center gap-1">
               {navLinks.map((link) => {
-                const dropdownItems = link.dropdownType === "recipes" ? recipeItems : link.dropdownType === "hireus" ? hireUsItems : categoryItems;
+                const dropdownItems = link.dropdownType === "recipes" ? recipeItems : link.dropdownType === "visit" ? visitItems : link.dropdownType === "hireus" ? hireUsItems : categoryItems;
                 return link.hasDropdown ? (
                   <NavDropdown
                     key={link.name}
@@ -332,9 +338,9 @@ const Header = ({ forceSolid = false }: HeaderProps) => {
           {/* Navigation links */}
           <div className="space-y-2">
             {navLinks.map((link, index) => {
-              const isOpen = link.dropdownType === "collections" ? isCollectionsOpen : isRecipesOpen;
-              const setIsOpen = link.dropdownType === "collections" ? setIsCollectionsOpen : setIsRecipesOpen;
-              const dropdownItems = link.dropdownType === "recipes" ? recipeItems : link.dropdownType === "hireus" ? hireUsItems : categoryItems;
+              const isOpen = link.dropdownType === "collections" ? isCollectionsOpen : link.dropdownType === "visit" ? isVisitOpen : isRecipesOpen;
+              const setIsOpen = link.dropdownType === "collections" ? setIsCollectionsOpen : link.dropdownType === "visit" ? setIsVisitOpen : setIsRecipesOpen;
+              const dropdownItems = link.dropdownType === "recipes" ? recipeItems : link.dropdownType === "visit" ? visitItems : link.dropdownType === "hireus" ? hireUsItems : categoryItems;
               
               return link.hasDropdown ? (
                 <div key={link.name}>
