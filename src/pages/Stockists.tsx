@@ -84,6 +84,36 @@ const Stockists = () => {
     "Bars, restaurants, and shops across San Diego that carry the non-alcoholic brands Monday Morning distributes — tap any spot to see what it stocks. Find an alcohol-free pour near you.";
   const canonicalUrl = getCanonicalUrl("/stockists");
 
+  // Structured data: a directory of the venues that stock our brands, so
+  // Google reads this as a local "where to buy" list (names + addresses).
+  const stockistSchema = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: "Monday Morning Stockists — San Diego",
+    description:
+      "San Diego bars, restaurants, and shops that carry the non-alcoholic brands Monday Morning distributes.",
+    itemListElement: STOCKISTS.map((s, i) => {
+      const parts = s.address.split(",").map((p) => p.trim());
+      const [region = "CA", postalCode = ""] = (parts[2] || "").split(" ").filter(Boolean);
+      return {
+        "@type": "ListItem",
+        position: i + 1,
+        item: {
+          "@type": "Place",
+          name: s.name,
+          address: {
+            "@type": "PostalAddress",
+            streetAddress: parts[0],
+            addressLocality: parts[1] || "San Diego",
+            addressRegion: region,
+            postalCode,
+            addressCountry: "US",
+          },
+        },
+      };
+    }),
+  };
+
   return (
     <div className="min-h-screen bg-cream brand-type">
       <Helmet>
@@ -101,6 +131,7 @@ const Stockists = () => {
         <meta name="twitter:description" content={pageDescription} />
         <meta name="twitter:image" content={DEFAULT_OG_IMAGE} />
         <meta name="twitter:site" content={TWITTER_HANDLE} />
+        <script type="application/ld+json">{JSON.stringify(stockistSchema)}</script>
       </Helmet>
 
       <Header />
