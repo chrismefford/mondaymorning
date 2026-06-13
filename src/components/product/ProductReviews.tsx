@@ -34,24 +34,30 @@ function useJudgeMeRefresh(externalId: string) {
   useEffect(() => {
     if (!externalId) return;
     let tries = 0;
-    let reinjected = false;
+    let refreshed = 0;
     const timer = window.setInterval(() => {
       tries += 1;
-      // Fast path: once the core bundle is loaded, re-render for this product.
+      // Once the interactive bundle is loaded, re-render the widgets for this
+      // product. Nudge a few times in case a widget div mounted a beat after the
+      // bundle finished loading, then stop.
       if (window.jdgm && typeof window.jdgm.batchRefresh === "function") {
         window.jdgm.batchRefresh();
-        window.clearInterval(timer);
+        refreshed += 1;
+        if (refreshed >= 3) {
+          window.clearInterval(timer);
+        }
         return;
       }
-      // Fallback: the index.html preloader runs a one-shot DOM scan that can
-      // fire before these SPA widgets mount, so it never loads the interactive
-      // bundle. Re-inject it once (~2s) to scan the now-present widgets.
-      if (tries === 6 && !reinjected) {
-        reinjected = true;
+      // The index.html preloader runs a one-shot DOM scan that usually fires
+      // before these SPA widgets mount, so the interactive bundle never loads
+      // and batchRefresh never appears. Re-inject the preloader periodically
+      // until it finds the now-present widgets and hydrates them (instead of a
+      // single ~2s retry, which loses the race intermittently).
+      if (tries % 5 === 0 && tries <= 30) {
         injectPreloader();
       }
-      if (tries > 40) window.clearInterval(timer); // ~14s: give up quietly
-    }, 350);
+      if (tries > 60) window.clearInterval(timer); // ~18s: give up quietly
+    }, 300);
     return () => window.clearInterval(timer);
   }, [externalId]);
 }
