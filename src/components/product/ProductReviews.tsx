@@ -1,78 +1,107 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 /**
- * Judge.me reviews — client-side widgets.
+ * Judge.me reviews — fetched directly from the public widget API and rendered
+ * in React.
  *
- * The preloader is injected in index.html (jdgm.SHOP_DOMAIN / PUBLIC_TOKEN).
- * Judge.me scans the DOM for `.jdgm-widget` elements and replaces their
- * contents. Because this is a React SPA, navigating between products does NOT
- * reload the page, so we call `jdgm.batchRefresh()` whenever the product
- * (externalId) changes to re-render the widgets for the new product.
- *
- * We render the widget <div>s with no React children so React only manages
- * their attributes — Judge.me owns the injected content and React leaves it
- * alone on re-render (the attributes are stable per product).
+ * We previously relied on Judge.me's client-side `widget_preloader.js` to inject
+ * reviews into `.jdgm-widget` divs. On this SPA the preloader's one-shot DOM scan
+ * fired before the React widgets mounted, so the interactive bundle never loaded
+ * and published reviews never displayed (and the star-snippet rating that
+ * Product.tsx scraped off the badge was always empty). Fetching the data
+ * ourselves makes review display and the SEO aggregateRating deterministic.
  *
  * externalId = the numeric Shopify product id (Judge.me's external_id).
  */
 
-declare global {
-  interface Window {
-    jdgm?: { batchRefresh?: () => void };
-  }
+const SHOP_DOMAIN = "1c3fe3-3b.myshopify.com";
+
+interface JmReview {
+  uuid: string;
+  rating: number;
+  title?: string;
+  body_html?: string;
+  reviewer_name?: string;
+  created_at?: string;
+  verified_buyer?: boolean;
+}
+export interface JmData {
+  count: number;
+  avg: number;
+  reviews: JmReview[];
 }
 
-function injectPreloader() {
-  const s = document.createElement("script");
-  s.async = true;
-  s.setAttribute("data-cfasync", "false");
-  s.src = "https://cdn.judge.me/widget_preloader.js";
-  document.head.appendChild(s);
+// One in-flight fetch per product id, shared by the badge, the list, and the
+// Product page's schema so we never hit the endpoint more than once per product.
+const cache: Record<string, Promise<JmData | null>> = {};
+
+function loadReviews(externalId: string): Promise<JmData | null> {
+  if (cache[externalId]) return cache[externalId];
+  const url =
+    `https://judge.me/reviews/reviews_for_widget?url=${SHOP_DOMAIN}` +
+    `&shop_domain=${SHOP_DOMAIN}&platform=shopify&page=1&per_page=20` +
+    `&product_id=${externalId}`;
+  cache[externalId] = fetch(url)
+    .then((r) => r.json())
+    .then((d) => ({
+      count: Number(d?.number_of_reviews) || 0,
+      avg: parseFloat(d?.average_rating) || 0,
+      reviews: Array.isArray(d?.reviews) ? (d.reviews as JmReview[]) : [],
+    }))
+    .catch(() => null);
+  return cache[externalId];
 }
 
-function useJudgeMeRefresh(externalId: string) {
+/** Shared hook: returns the product's Judge.me reviews (null while loading). */
+export function useJudgeMeReviews(externalId: string): JmData | null {
+  const [data, setData] = useState<JmData | null>(null);
   useEffect(() => {
     if (!externalId) return;
-    let tries = 0;
-    let refreshed = 0;
-    const timer = window.setInterval(() => {
-      tries += 1;
-      // Once the interactive bundle is loaded, re-render the widgets for this
-      // product. Nudge a few times in case a widget div mounted a beat after the
-      // bundle finished loading, then stop.
-      if (window.jdgm && typeof window.jdgm.batchRefresh === "function") {
-        window.jdgm.batchRefresh();
-        refreshed += 1;
-        if (refreshed >= 3) {
-          window.clearInterval(timer);
-        }
-        return;
-      }
-      // The index.html preloader runs a one-shot DOM scan that usually fires
-      // before these SPA widgets mount, so the interactive bundle never loads
-      // and batchRefresh never appears. Re-inject the preloader periodically
-      // until it finds the now-present widgets and hydrates them (instead of a
-      // single ~2s retry, which loses the race intermittently).
-      if (tries % 5 === 0 && tries <= 30) {
-        injectPreloader();
-      }
-      if (tries > 60) window.clearInterval(timer); // ~18s: give up quietly
-    }, 300);
-    return () => window.clearInterval(timer);
+    let alive = true;
+    loadReviews(externalId).then((d) => {
+      if (alive) setData(d);
+    });
+    return () => {
+      alive = false;
+    };
   }, [externalId]);
+  return data;
 }
+
+const Stars = ({ rating }: { rating: number }) => {
+  const full = Math.max(0, Math.min(5, Math.round(rating)));
+  return (
+    <span aria-label={`${rating} out of 5 stars`} className="whitespace-nowrap text-base leading-none">
+      <span className="text-gold">{"★".repeat(full)}</span>
+      <span className="text-forest/20">{"★".repeat(5 - full)}</span>
+    </span>
+  );
+};
+
+const fmtDate = (s?: string) => {
+  if (!s) return "";
+  try {
+    return new Date(s).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
+  } catch {
+    return "";
+  }
+};
 
 /** Compact star rating shown under the product title. Links down to #reviews. */
 export const ProductReviewBadge = ({ externalId }: { externalId: string }) => {
-  if (!externalId) return null;
+  const data = useJudgeMeReviews(externalId);
+  if (!externalId || !data || data.count === 0) return null;
   return (
-    <a href="#reviews" className="block mb-3" aria-label="See customer reviews">
-      <div className="jdgm-widget jdgm-preview-badge" data-id={externalId} />
+    <a href="#reviews" className="inline-flex items-center gap-2 mb-3" aria-label="See customer reviews">
+      <Stars rating={data.avg} />
+      <span className="font-sans text-sm text-forest/70 underline underline-offset-2">
+        {data.count} review{data.count === 1 ? "" : "s"}
+      </span>
     </a>
   );
 };
 
-/** Full reviews list + "write a review" form. Owns the SPA re-init. */
+/** Full reviews list, fetched from Judge.me and rendered on-brand. */
 export const ProductReviews = ({
   externalId,
   productTitle,
@@ -80,22 +109,63 @@ export const ProductReviews = ({
   externalId: string;
   productTitle?: string;
 }) => {
-  useJudgeMeRefresh(externalId);
+  const data = useJudgeMeReviews(externalId);
   if (!externalId) return null;
   return (
-    <section id="reviews" className="border-t-2 border-forest/10 pt-12 lg:pt-20 mb-16 lg:mb-24 scroll-mt-24">
+    <section
+      id="reviews"
+      aria-label={productTitle ? `Reviews for ${productTitle}` : "Reviews"}
+      className="border-t-2 border-forest/10 pt-12 lg:pt-20 mb-16 lg:mb-24 scroll-mt-24"
+    >
       <div className="max-w-3xl mx-auto">
         <div className="text-center mb-8 lg:mb-10">
           <span className="font-sans text-[10px] lg:text-xs font-bold uppercase tracking-[0.3em] text-gold mb-3 block">
             From our community
           </span>
           <h2 className="font-serif text-3xl lg:text-4xl text-forest">Reviews</h2>
+          {data && data.count > 0 && (
+            <div className="mt-3 flex items-center justify-center gap-2">
+              <Stars rating={data.avg} />
+              <span className="font-sans text-sm text-forest/70">
+                {data.avg.toFixed(1)} · {data.count} review{data.count === 1 ? "" : "s"}
+              </span>
+            </div>
+          )}
         </div>
-        <div
-          className="jdgm-widget jdgm-review-widget"
-          data-id={externalId}
-          data-product-title={productTitle}
-        />
+
+        {!data || data.count === 0 ? (
+          <p className="text-center font-sans text-forest/50">
+            {data ? "No reviews yet. Be the first to share your thoughts." : "Loading reviews…"}
+          </p>
+        ) : (
+          <div className="space-y-8">
+            {data.reviews.map((r) => (
+              <article key={r.uuid} className="border-b border-forest/10 pb-8 last:border-0">
+                <div className="flex items-center justify-between gap-3 mb-2">
+                  <div className="flex items-center gap-3">
+                    <Stars rating={r.rating} />
+                    {r.verified_buyer && (
+                      <span className="font-sans text-[11px] uppercase tracking-wide text-gold">
+                        Verified buyer
+                      </span>
+                    )}
+                  </div>
+                  <time className="font-sans text-xs text-forest/50 flex-shrink-0">{fmtDate(r.created_at)}</time>
+                </div>
+                <p className="font-sans text-sm font-semibold text-forest mb-1">
+                  {r.reviewer_name || "Anonymous"}
+                </p>
+                {r.title && <h3 className="font-serif text-lg text-forest mb-1">{r.title}</h3>}
+                {r.body_html && (
+                  <div
+                    className="font-sans text-foreground/80 leading-relaxed text-[15px]"
+                    dangerouslySetInnerHTML={{ __html: r.body_html }}
+                  />
+                )}
+              </article>
+            ))}
+          </div>
+        )}
       </div>
     </section>
   );

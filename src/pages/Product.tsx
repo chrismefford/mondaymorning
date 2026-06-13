@@ -9,7 +9,7 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import ProductCard from "@/components/home/ProductCard";
 import ProductRecipes from "@/components/product/ProductRecipes";
-import { ProductReviews, ProductReviewBadge } from "@/components/product/ProductReviews";
+import { ProductReviews, ProductReviewBadge, useJudgeMeReviews } from "@/components/product/ProductReviews";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ArrowLeft, ShoppingBag, Loader2, ChevronLeft, ChevronRight } from "lucide-react";
@@ -55,26 +55,13 @@ const ProductPage = () => {
   // Judge.me reviews: external_id is the numeric Shopify product id.
   const externalId = product?.id ? String(product.id).split("/").pop() || "" : "";
 
-  // Read the live rating Judge.me writes onto the rendered badge so we can fold
-  // it into OUR Product schema (single source of truth for the star snippet).
-  // Stays null until there are real reviews — no fake aggregateRating.
-  const [jmRating, setJmRating] = useState<{ average: number; count: number } | null>(null);
-  useEffect(() => {
-    setJmRating(null);
-    if (!externalId) return;
-    let tries = 0;
-    const timer = window.setInterval(() => {
-      tries += 1;
-      const el = document.querySelector(".jdgm-prev-badge[data-number-of-reviews]");
-      if (el) {
-        const count = parseInt(el.getAttribute("data-number-of-reviews") || "0", 10);
-        const average = parseFloat(el.getAttribute("data-average-rating") || "0");
-        setJmRating(count > 0 ? { average, count } : null);
-      }
-      if (tries > 40) window.clearInterval(timer);
-    }, 400);
-    return () => window.clearInterval(timer);
-  }, [externalId]);
+  // Review rating from Judge.me (fetched via the shared hook) folded into our
+  // Product schema — single source of truth for the star snippet. Null until
+  // there are real reviews, so no fake aggregateRating.
+  const jmReviews = useJudgeMeReviews(externalId);
+  const jmRating = jmReviews && jmReviews.count > 0
+    ? { average: jmReviews.avg, count: jmReviews.count }
+    : null;
 
   // Fetch more products for "More to Explore" section
   const { data: allProducts } = useShopifyProducts(PRODUCTS_PER_PAGE * TOTAL_PAGES);
