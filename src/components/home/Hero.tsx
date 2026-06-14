@@ -24,7 +24,7 @@ const Hero = () => {
             className="w-full h-full object-cover"
             width="900"
             height="1200"
-            fetchpriority="high"
+            fetchPriority="high"
             decoding="async"
           />
 
