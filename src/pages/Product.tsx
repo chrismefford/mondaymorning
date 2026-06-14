@@ -1,5 +1,5 @@
 import { useState, useMemo, useEffect } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate, useLocation } from "react-router-dom";
 import { Helmet } from "@/lib/helmet-compat";
 import { useShopifyProduct } from "@/hooks/useShopifyProduct";
 import { useShopifyProducts, shopifyToLocalProduct } from "@/hooks/useShopifyProducts";
@@ -35,6 +35,8 @@ const STAFF_PICK_BRANDS = [
 
 const ProductPage = () => {
   const { handle } = useParams<{ handle: string }>();
+  const navigate = useNavigate();
+  const location = useLocation();
   const { data: product, isLoading, error } = useShopifyProduct(handle || "");
   const { data: wholesalePrice, isWholesale } = useWholesaleProductPrice(handle || "");
   const { addToCart, isLoading: isAddingToCart } = useCart();
@@ -199,8 +201,17 @@ const ProductPage = () => {
 
         <div className="container mx-auto px-4 lg:px-8 xl:px-12 pt-24 lg:pt-32 pb-6 lg:pb-12 relative z-10">
           {/* Breadcrumb */}
-          <Link 
+          <Link
             to={isWholesale ? "/wholesale-catalog" : "/shop"}
+            onClick={(e) => {
+              // If they came from within the site (e.g. the Wine collection),
+              // go back to that exact page instead of the generic shop. The
+              // href stays as a real fallback for direct visits / new tabs.
+              if (!isWholesale && location.key !== "default") {
+                e.preventDefault();
+                navigate(-1);
+              }
+            }}
             className="inline-flex items-center gap-2 text-forest/70 hover:text-forest transition-colors mb-8 lg:mb-10 font-sans text-sm"
           >
             <ArrowLeft className="h-4 w-4" />
