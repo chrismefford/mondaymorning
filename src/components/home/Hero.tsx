@@ -173,7 +173,7 @@ const Hero = () => {
               className="w-full h-full object-cover"
               width="1200"
               height="1400"
-              fetchpriority="high"
+              fetchPriority="high"
               decoding="async"
             />
 
