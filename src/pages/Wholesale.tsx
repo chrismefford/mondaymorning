@@ -4,7 +4,6 @@ import Footer from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
 import InquiryDialog from "@/components/InquiryDialog";
 import TastingFormDialog from "@/components/TastingFormDialog";
-import WholesaleApplicationForm from "@/components/wholesale/WholesaleApplicationForm";
 import {
   Truck,
   GraduationCap,
@@ -142,20 +141,16 @@ const comparison = [
   { feature: "Margins worth building a program on", them: false, us: true },
 ];
 
-const OfferingCTA = ({ type, offering, label }: { type: string; offering: string; label: string }) => {
+const OfferingCTA = ({ offering, label }: { offering: string; label: string }) => {
   const btn = (
     <Button className="font-sans text-sm font-bold uppercase tracking-widest bg-forest text-cream hover:bg-forest-deep px-7 py-5 group">
       {label}
       <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
     </Button>
   );
-  // B2B still routes through the wholesale form (Shopify-aware). Everything
-  // else captures into the unified inquiries table, tagged by offering.
-  return type === "wholesale" ? (
-    <WholesaleApplicationForm trigger={btn} />
-  ) : (
-    <InquiryDialog offering={offering as never} trigger={btn} />
-  );
+  // Every offering (incl. B2B) captures into the unified inquiries table, tagged
+  // by offering, and syncs to the CRM for vetting + Shopify B2B setup on approval.
+  return <InquiryDialog offering={offering as never} trigger={btn} />;
 };
 
 const Wholesale = () => {
@@ -309,7 +304,7 @@ const Wholesale = () => {
                   <p className="font-sans text-sm font-semibold uppercase tracking-wider text-forest/60 mb-6">
                     {o.who}
                   </p>
-                  <OfferingCTA type={o.cta} offering={o.id} label={o.ctaLabel} />
+                  <OfferingCTA offering={o.id} label={o.ctaLabel} />
                 </div>
 
                 {/* Right: detail */}
