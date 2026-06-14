@@ -29,6 +29,14 @@ const testimonials = [
 const Testimonials = () => {
   const [activeIndex, setActiveIndex] = useState(0);
 
+  // Shop's Google rating. Snapshot (4.9★ as of 2026-06, confirmed by Zane) —
+  // TODO: make live via the Google Places API once the Places key is set up.
+  const stats = [
+    { value: "10K+", label: "Happy customers" },
+    { value: "4.9★", label: "Google rating" },
+    { value: "50+", label: "SoCal retailers" },
+  ];
+
   const nextTestimonial = () => {
     setActiveIndex((prev) => (prev + 1) % testimonials.length);
   };
@@ -191,11 +199,7 @@ const Testimonials = () => {
         {/* Social Proof Bar */}
         <div className="border-t-2 border-ocean/30 pt-8 lg:pt-12 mt-8 lg:mt-0">
           <div className="grid grid-cols-3 gap-4 lg:gap-16">
-            {[
-              { value: "10K+", label: "Happy customers" },
-              { value: "4.9", label: "Average rating" },
-              { value: "50+", label: "SoCal retailers" },
-            ].map((stat) => (
+            {stats.map((stat) => (
               <div key={stat.label} className="text-center group">
                 <div className="font-serif text-2xl lg:text-6xl font-bold text-forest group-hover:text-ocean transition-colors">
                   {stat.value}
