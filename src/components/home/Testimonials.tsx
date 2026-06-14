@@ -1,8 +1,10 @@
 import { Star, ArrowRight, ArrowLeft } from "lucide-react";
 import { useState } from "react";
 import stampGreen from "@/assets/stamp-green.svg";
+import googleReviews from "@/data/google-reviews.json";
 
-const testimonials = [
+// Used only if the live Google reviews JSON is ever empty.
+const FALLBACK_TESTIMONIALS = [
   {
     quote: "This place is great and the owner is super friendly and helpful. He helped me get very acquainted with non-alcoholic spirits, which I have never tried before.",
     author: "Marcin M.",
@@ -29,11 +31,22 @@ const testimonials = [
 const Testimonials = () => {
   const [activeIndex, setActiveIndex] = useState(0);
 
-  // Shop's Google rating. Snapshot (4.9★ as of 2026-06, confirmed by Zane) —
-  // TODO: make live via the Google Places API once the Places key is set up.
+  // Real Google reviews + rating, baked from the Places API by
+  // scripts/fetch-google-reviews.mjs (refreshable). Falls back to the prior
+  // hand-picked quotes only if the file is ever empty.
+  const testimonials = googleReviews.reviews?.length
+    ? googleReviews.reviews.map((r) => ({
+        quote: r.text,
+        author: r.author,
+        location: "Google Review",
+        rating: r.rating,
+        initials: r.initials,
+      }))
+    : FALLBACK_TESTIMONIALS;
+
   const stats = [
     { value: "10K+", label: "Happy customers" },
-    { value: "4.9★", label: "Google rating" },
+    { value: `${googleReviews.rating}★`, label: `${googleReviews.count} Google reviews` },
     { value: "50+", label: "SoCal retailers" },
   ];
 
