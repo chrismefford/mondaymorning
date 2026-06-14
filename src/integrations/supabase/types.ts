@@ -205,6 +205,8 @@ export type Database = {
       }
       inquiries: {
         Row: {
+          address: string | null
+          city: string | null
           company: string | null
           created_at: string
           crm_synced: boolean
@@ -216,9 +218,13 @@ export type Database = {
           offering: string
           phone: string | null
           source: string
+          state: string | null
           status: string
+          zip: string | null
         }
         Insert: {
+          address?: string | null
+          city?: string | null
           company?: string | null
           created_at?: string
           crm_synced?: boolean
@@ -230,9 +236,13 @@ export type Database = {
           offering: string
           phone?: string | null
           source?: string
+          state?: string | null
           status?: string
+          zip?: string | null
         }
         Update: {
+          address?: string | null
+          city?: string | null
           company?: string | null
           created_at?: string
           crm_synced?: boolean
@@ -244,7 +254,9 @@ export type Database = {
           offering?: string
           phone?: string | null
           source?: string
+          state?: string | null
           status?: string
+          zip?: string | null
         }
         Relationships: []
       }

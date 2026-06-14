@@ -148,7 +148,7 @@ export default function InquiryDialog({ offering, trigger }: InquiryDialogProps)
       // read-back. (Anon has no SELECT policy on inquiries, so .select() after
       // insert would trip RLS — admins only can read them.)
       const id = crypto.randomUUID();
-      const row: Record<string, unknown> = {
+      const row = {
         id,
         offering,
         name: formData.name,
@@ -156,15 +156,11 @@ export default function InquiryDialog({ offering, trigger }: InquiryDialogProps)
         company: formData.company || null,
         phone: formData.phone || null,
         message: formData.message,
+        address: isB2B ? (formData.address || null) : null,
+        city: isB2B ? (formData.city || null) : null,
+        state: isB2B ? (formData.state || null) : null,
+        zip: isB2B ? (formData.zip || null) : null,
       };
-      // Address columns only exist for / matter to B2B. Including them only for
-      // B2B keeps the other forms working even before the columns migration runs.
-      if (isB2B) {
-        row.address = formData.address || null;
-        row.city = formData.city || null;
-        row.state = formData.state || null;
-        row.zip = formData.zip || null;
-      }
       const { error: insertError } = await supabase.from("inquiries").insert(row);
 
       if (insertError) {
