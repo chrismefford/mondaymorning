@@ -55,6 +55,9 @@ const ProductPage = () => {
   // Judge.me reviews: external_id is the numeric Shopify product id.
   const externalId = product?.id ? String(product.id).split("/").pop() || "" : "";
 
+  // Brand (Shopify vendor) → links to the brand collection (/collections/brand/:brand).
+  const brand = (product?.raw?.vendor || "").trim();
+
   // Review rating from Judge.me (fetched via the shared hook) folded into our
   // Product schema — single source of truth for the star snippet. Null until
   // there are real reviews, so no fake aggregateRating.
@@ -254,6 +257,19 @@ const ProductPage = () => {
                 </p>
               )}
               
+              {brand && (
+                <Link
+                  to={`/collections/brand/${encodeURIComponent(brand.replace(/\s+/g, "-"))}`}
+                  className="group mb-6 inline-flex w-fit items-center gap-1.5 font-sans text-sm text-forest/70 transition-colors hover:text-gold"
+                >
+                  Shop all{" "}
+                  <span className="font-semibold text-forest transition-colors group-hover:text-gold">
+                    {brand}
+                  </span>
+                  <ChevronRight className="h-4 w-4 opacity-50 transition-all group-hover:translate-x-0.5 group-hover:opacity-100" />
+                </Link>
+              )}
+
               <p className="font-sans text-base text-muted-foreground leading-relaxed mb-8 max-w-xl">
                 {product.description}
               </p>
