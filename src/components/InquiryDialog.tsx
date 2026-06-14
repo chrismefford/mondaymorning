@@ -75,13 +75,31 @@ const COPY: Record<
   },
 };
 
-const schema = z.object({
-  name: z.string().trim().min(1, "Name is required").max(100),
-  email: z.string().trim().email("Please enter a valid email").max(255),
-  company: z.string().trim().max(150).optional(),
-  phone: z.string().trim().max(40).optional(),
-  message: z.string().trim().min(1, "Tell us a bit more").max(2000),
-});
+// B2B applications become Shopify B2B companies, so they require a business
+// name + shipping address (street/city/state/zip) for shipping and the CA tax
+// exemption. The other offerings keep the short form.
+const schemaFor = (isB2B: boolean) =>
+  z.object({
+    name: z.string().trim().min(1, "Name is required").max(100),
+    email: z.string().trim().email("Please enter a valid email").max(255),
+    phone: z.string().trim().max(40).optional(),
+    message: z.string().trim().min(1, "Tell us a bit more").max(2000),
+    company: isB2B
+      ? z.string().trim().min(1, "Business name is required").max(150)
+      : z.string().trim().max(150).optional(),
+    address: isB2B
+      ? z.string().trim().min(1, "Street address is required").max(200)
+      : z.string().trim().max(200).optional(),
+    city: isB2B
+      ? z.string().trim().min(1, "City is required").max(100)
+      : z.string().trim().max(100).optional(),
+    state: isB2B
+      ? z.string().trim().min(2, "State is required").max(50)
+      : z.string().trim().max(50).optional(),
+    zip: isB2B
+      ? z.string().trim().min(3, "ZIP is required").max(20)
+      : z.string().trim().max(20).optional(),
+  });
 
 interface InquiryDialogProps {
   offering: Offering;
@@ -90,6 +108,7 @@ interface InquiryDialogProps {
 
 export default function InquiryDialog({ offering, trigger }: InquiryDialogProps) {
   const copy = COPY[offering] ?? COPY.general;
+  const isB2B = offering === "b2b";
   const [open, setOpen] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
@@ -99,6 +118,10 @@ export default function InquiryDialog({ offering, trigger }: InquiryDialogProps)
     company: "",
     phone: "",
     message: "",
+    address: "",
+    city: "",
+    state: "",
+    zip: "",
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
 
@@ -109,7 +132,7 @@ export default function InquiryDialog({ offering, trigger }: InquiryDialogProps)
     e.preventDefault();
     setErrors({});
 
-    const result = schema.safeParse(formData);
+    const result = schemaFor(isB2B).safeParse(formData);
     if (!result.success) {
       const fieldErrors: Record<string, string> = {};
       result.error.errors.forEach((err) => {
@@ -125,17 +148,24 @@ export default function InquiryDialog({ offering, trigger }: InquiryDialogProps)
       // read-back. (Anon has no SELECT policy on inquiries, so .select() after
       // insert would trip RLS — admins only can read them.)
       const id = crypto.randomUUID();
-      const { error: insertError } = await supabase
-        .from("inquiries")
-        .insert({
-          id,
-          offering,
-          name: formData.name,
-          email: formData.email,
-          company: formData.company || null,
-          phone: formData.phone || null,
-          message: formData.message,
-        });
+      const row: Record<string, unknown> = {
+        id,
+        offering,
+        name: formData.name,
+        email: formData.email,
+        company: formData.company || null,
+        phone: formData.phone || null,
+        message: formData.message,
+      };
+      // Address columns only exist for / matter to B2B. Including them only for
+      // B2B keeps the other forms working even before the columns migration runs.
+      if (isB2B) {
+        row.address = formData.address || null;
+        row.city = formData.city || null;
+        row.state = formData.state || null;
+        row.zip = formData.zip || null;
+      }
+      const { error: insertError } = await supabase.from("inquiries").insert(row);
 
       if (insertError) {
         console.error("Insert error:", insertError);
@@ -151,7 +181,7 @@ export default function InquiryDialog({ offering, trigger }: InquiryDialogProps)
       toast.success("Thanks! We'll be in touch shortly.");
 
       setTimeout(() => {
-        setFormData({ name: "", email: "", company: "", phone: "", message: "" });
+        setFormData({ name: "", email: "", company: "", phone: "", message: "", address: "", city: "", state: "", zip: "" });
         setIsSuccess(false);
         setOpen(false);
       }, 2500);
@@ -224,7 +254,7 @@ export default function InquiryDialog({ offering, trigger }: InquiryDialogProps)
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="space-y-2">
-                <Label htmlFor="iq-company" className="text-forest font-semibold">{copy.companyLabel}</Label>
+                <Label htmlFor="iq-company" className="text-forest font-semibold">{copy.companyLabel}{isB2B ? " *" : ""}</Label>
                 <Input
                   id="iq-company"
                   value={formData.company}
@@ -233,6 +263,7 @@ export default function InquiryDialog({ offering, trigger }: InquiryDialogProps)
                   className="border-forest/20 focus:border-gold"
                   disabled={isSubmitting}
                 />
+                {errors.company && <p className="text-sm text-red-600">{errors.company}</p>}
               </div>
               <div className="space-y-2">
                 <Label htmlFor="iq-phone" className="text-forest font-semibold">Phone (optional)</Label>
@@ -247,6 +278,61 @@ export default function InquiryDialog({ offering, trigger }: InquiryDialogProps)
                 />
               </div>
             </div>
+
+            {isB2B && (
+              <>
+                <div className="space-y-2">
+                  <Label htmlFor="iq-address" className="text-forest font-semibold">Street address *</Label>
+                  <Input
+                    id="iq-address"
+                    value={formData.address}
+                    onChange={(e) => set("address", e.target.value)}
+                    placeholder="1450 Market Street"
+                    className="border-forest/20 focus:border-gold"
+                    disabled={isSubmitting}
+                  />
+                  {errors.address && <p className="text-sm text-red-600">{errors.address}</p>}
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                  <div className="space-y-2">
+                    <Label htmlFor="iq-city" className="text-forest font-semibold">City *</Label>
+                    <Input
+                      id="iq-city"
+                      value={formData.city}
+                      onChange={(e) => set("city", e.target.value)}
+                      placeholder="San Diego"
+                      className="border-forest/20 focus:border-gold"
+                      disabled={isSubmitting}
+                    />
+                    {errors.city && <p className="text-sm text-red-600">{errors.city}</p>}
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="iq-state" className="text-forest font-semibold">State *</Label>
+                    <Input
+                      id="iq-state"
+                      value={formData.state}
+                      onChange={(e) => set("state", e.target.value)}
+                      placeholder="CA"
+                      className="border-forest/20 focus:border-gold"
+                      disabled={isSubmitting}
+                    />
+                    {errors.state && <p className="text-sm text-red-600">{errors.state}</p>}
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="iq-zip" className="text-forest font-semibold">ZIP *</Label>
+                    <Input
+                      id="iq-zip"
+                      value={formData.zip}
+                      onChange={(e) => set("zip", e.target.value)}
+                      placeholder="92101"
+                      className="border-forest/20 focus:border-gold"
+                      disabled={isSubmitting}
+                    />
+                    {errors.zip && <p className="text-sm text-red-600">{errors.zip}</p>}
+                  </div>
+                </div>
+              </>
+            )}
 
             <div className="space-y-2">
               <Label htmlFor="iq-message" className="text-forest font-semibold">Tell us a bit more *</Label>

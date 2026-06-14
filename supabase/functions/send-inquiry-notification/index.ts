@@ -100,12 +100,17 @@ ${esc(label)} · Submitted ${new Date(inq.created_at).toLocaleString('en-US', { 
       });
     }
 
-    // Forward the lead into the Sales CRM (best-effort; never fails the email).
+    // Forward to the Sales CRM (best-effort; never fails the email).
+    // ONLY B2B inquiries become CRM leads (they can become Shopify wholesale
+    // accounts). The other offerings (consulting, pop-ups, brewing, events) are
+    // partnership requests — they email the team only, and are NOT pushed into
+    // the B2B sales pipeline.
     let crmSynced = false, crmStatus: number | null = null, crmError: string | null = null;
     const crmUrl = Deno.env.get('CRM_INQUIRY_URL');
     const crmSecret = Deno.env.get('CRM_INQUIRY_SECRET');
+    const isB2B = inq.offering === 'b2b';
     const crmConfigured = !!(crmUrl && crmSecret);
-    if (crmUrl && crmSecret) {
+    if (isB2B && crmUrl && crmSecret) {
       try {
         const res = await fetch(crmUrl, {
           method: 'POST',
@@ -113,6 +118,7 @@ ${esc(label)} · Submitted ${new Date(inq.created_at).toLocaleString('en-US', { 
           body: JSON.stringify({
             offering: inq.offering, name: inq.name, email: inq.email,
             company: inq.company, phone: inq.phone, message: inq.message, inquiry_id: inq.id,
+            address: inq.address, city: inq.city, state: inq.state, zip: inq.zip,
           }),
         });
         crmStatus = res.status;
