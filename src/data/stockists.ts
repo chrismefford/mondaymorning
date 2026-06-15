@@ -104,7 +104,7 @@ export const STOCKISTS: Stockist[] = [
     name: "Queenstown in Del Mar",
     area: "Del Mar",
     address: "1435 Camino Del Mar, Del Mar, CA 92014",
-    brands: [],
+    brands: ["Amethyst", "Below Brew", "Drømme", "Go Brewing", "To Be Honest"],
   },
   {
     name: "PRK101",
