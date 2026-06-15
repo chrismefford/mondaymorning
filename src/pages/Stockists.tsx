@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Helmet } from "@/lib/helmet-compat";
 import { MapPin, ArrowUpRight, ChevronDown } from "lucide-react";
 import Header from "@/components/layout/Header";
@@ -8,6 +8,12 @@ import { SITE_NAME, DEFAULT_OG_IMAGE, TWITTER_HANDLE, getCanonicalUrl } from "@/
 
 const mapHref = (name: string, address: string) =>
   `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${name}, ${address}`)}`;
+
+// Live "what they carry" comes from the CRM, which computes each venue's brands
+// from real Shopify wholesale orders (so it updates itself when an order lands).
+// We overlay it onto the curated venue list below; if it's ever unreachable we
+// keep the static brands, so the page never breaks.
+const STOCKISTS_FEED = "https://crm.mondaymorning.info/api/stockists";
 
 const StockistCard = ({ s }: { s: Stockist }) => {
   const [open, setOpen] = useState(false);
@@ -79,6 +85,35 @@ const StockistCard = ({ s }: { s: Stockist }) => {
 };
 
 const Stockists = () => {
+  // Start from the curated list (instant render + SEO), then overlay the live
+  // brands from the CRM once they load. A venue keeps its curated brands unless
+  // the CRM has a non-empty live list for it.
+  const [stockists, setStockists] = useState<Stockist[]>(STOCKISTS);
+
+  useEffect(() => {
+    let active = true;
+    fetch(STOCKISTS_FEED)
+      .then((r) => (r.ok ? r.json() : Promise.reject(new Error(`HTTP ${r.status}`))))
+      .then((data: { venues?: { name: string; brands: string[] }[] }) => {
+        if (!active || !Array.isArray(data?.venues)) return;
+        const live = new Map(
+          data.venues.map((v) => [v.name, Array.isArray(v.brands) ? v.brands : []])
+        );
+        setStockists(
+          STOCKISTS.map((s) => {
+            const b = live.get(s.name);
+            return b && b.length ? { ...s, brands: b } : s;
+          })
+        );
+      })
+      .catch(() => {
+        /* keep the static fallback already in state */
+      });
+    return () => {
+      active = false;
+    };
+  }, []);
+
   const pageTitle = "Where to Find Our Drinks in San Diego | Monday Morning";
   const pageDescription =
     "Bars, restaurants, and shops across San Diego that carry the non-alcoholic brands Monday Morning distributes — tap any spot to see what it stocks. Find an alcohol-free pour near you.";
@@ -156,7 +191,7 @@ const Stockists = () => {
         <section className="pb-16 lg:pb-24 bg-cream">
           <div className="container mx-auto px-4 lg:px-8">
             <div className="grid md:grid-cols-2 gap-5 lg:gap-6 max-w-5xl mx-auto">
-              {STOCKISTS.map((s) => (
+              {stockists.map((s) => (
                 <StockistCard key={s.name} s={s} />
               ))}
             </div>
