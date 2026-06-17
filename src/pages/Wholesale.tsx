@@ -85,9 +85,9 @@ const offerings = [
     title: "Brew it at",
     accent: "The Lab.",
     who: "For emerging and established alcohol-free brands.",
-    body: "Our San Marcos facility is one of the only NA-focused production partners in Southern California. We brew, can, and white-label non-alcoholic beer, functional drinks, and ready-to-drink products.",
+    body: "Our San Marcos facility is one of the only NA-focused production partners in Southern California. We brew, can, and white-label non-alcoholic beer, tea, coffee, sparkling water, and ready-to-drink (RTD) beverages.",
     points: [
-      "Non-alcoholic brewing and co-packing",
+      "Beer, tea, coffee, water, and RTD, all alcohol-free.",
       "Recipe development and small-batch trials",
       "White-label and private-label production",
       "Scale from first run to full distribution",
@@ -305,7 +305,34 @@ const Wholesale = () => {
                   <p className="font-sans text-sm font-semibold uppercase tracking-wider text-forest/60 mb-6">
                     {o.who}
                   </p>
-                  <OfferingCTA offering={o.id} label={o.ctaLabel} />
+                  {o.id === "brewing" ? (
+                    <div className="flex flex-col sm:flex-row gap-4">
+                      <a
+                        href="https://lab.mondaymorning-af.com"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex"
+                      >
+                        <Button className="font-sans text-sm font-bold uppercase tracking-widest bg-forest text-cream hover:bg-forest-deep px-7 py-5 group">
+                          Get an instant quote
+                          <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                        </Button>
+                      </a>
+                      <InquiryDialog
+                        offering="brewing"
+                        trigger={
+                          <Button
+                            variant="outline"
+                            className="font-sans text-sm font-bold uppercase tracking-widest border-2 border-forest text-forest hover:bg-forest hover:text-cream px-7 py-5"
+                          >
+                            Talk brewing
+                          </Button>
+                        }
+                      />
+                    </div>
+                  ) : (
+                    <OfferingCTA offering={o.id} label={o.ctaLabel} />
+                  )}
                 </div>
 
                 {/* Right: detail */}
