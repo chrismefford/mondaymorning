@@ -85,9 +85,9 @@ const offerings = [
     title: "Brew it at",
     accent: "The Lab.",
     who: "For emerging and established alcohol-free brands.",
-    body: "Our San Marcos facility is one of the only NA-focused production partners in Southern California. We brew, can, and white-label non-alcoholic beer, functional drinks, and ready-to-drink products.",
+    body: "Our San Marcos facility is one of the only NA-focused production partners in Southern California. We brew, can, and white-label non-alcoholic beer, tea, coffee, sparkling water, and ready-to-drink (RTD) beverages.",
     points: [
-      "Non-alcoholic brewing and co-packing",
+      "Beer, tea, coffee, water, and RTD, all alcohol-free.",
       "Recipe development and small-batch trials",
       "White-label and private-label production",
       "Scale from first run to full distribution",
