@@ -133,8 +133,32 @@ ${esc(label)} · Submitted ${new Date(inq.created_at).toLocaleString('en-US', { 
       }
     }
 
+    // Forward brewing inquiries to the Monday Morning Lab (best-effort).
+    let labSynced = false, labStatus: number | null = null, labError: string | null = null;
+    const labUrl = Deno.env.get('LAB_INQUIRY_URL');
+    const labSecret = Deno.env.get('LAB_INQUIRY_SECRET');
+    const isBrewing = inq.offering === 'brewing';
+    const labConfigured = !!(labUrl && labSecret);
+    if (isBrewing && labUrl && labSecret) {
+      try {
+        const res = await fetch(labUrl, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'x-brew-secret': labSecret },
+          body: JSON.stringify({
+            name: inq.name, email: inq.email, company: inq.company,
+            phone: inq.phone, message: inq.message, source: 'website',
+          }),
+        });
+        labStatus = res.status;
+        labSynced = res.ok;
+        if (!res.ok) labError = await res.text();
+      } catch (e) {
+        labError = e instanceof Error ? e.message : String(e);
+      }
+    }
+
     return new Response(
-      JSON.stringify({ success: true, routedTo: recipient, crmSynced, crmStatus, crmError, crmConfigured }),
+      JSON.stringify({ success: true, routedTo: recipient, crmSynced, crmStatus, crmError, crmConfigured, labSynced, labStatus, labError, labConfigured }),
       { status: 200, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
     );
   } catch (error) {
