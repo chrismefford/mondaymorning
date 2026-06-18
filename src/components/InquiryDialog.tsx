@@ -217,10 +217,21 @@ export default function InquiryDialog({ offering, trigger }: InquiryDialogProps)
             <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-4">
               <CheckCircle2 className="w-8 h-8 text-green-600" />
             </div>
-            <h3 className="font-serif text-2xl text-forest mb-2">Got it!</h3>
-            <p className="text-forest/70 max-w-sm">
-              Thanks for reaching out. We'll get back to you within 1-2 business days.
-            </p>
+            {offering === "brewing" ? (
+              <>
+                <h3 className="font-serif text-2xl text-forest mb-2">Brew intake received</h3>
+                <p className="text-forest/70 max-w-sm">
+                  One of our brewers will reach out shortly to send you a quick intake form so we can build your quote. We review every project and confirm the details with you before anything is brewed, usually within 1-2 business days.
+                </p>
+              </>
+            ) : (
+              <>
+                <h3 className="font-serif text-2xl text-forest mb-2">Got it!</h3>
+                <p className="text-forest/70 max-w-sm">
+                  Thanks for reaching out. We'll get back to you within 1-2 business days.
+                </p>
+              </>
+            )}
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="space-y-4 mt-2">
