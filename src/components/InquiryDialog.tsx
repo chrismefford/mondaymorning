@@ -146,7 +146,7 @@ export default function InquiryDialog({ offering, trigger }: InquiryDialogProps)
     try {
       // Generate the id client-side so we can fire the notification without a
       // read-back. (Anon has no SELECT policy on inquiries, so .select() after
-      // insert would trip RLS — admins only can read them.)
+      // insert would trip RLS; admins only can read them.)
       const id = crypto.randomUUID();
       const row = {
         id,
@@ -180,11 +180,6 @@ export default function InquiryDialog({ offering, trigger }: InquiryDialogProps)
           : "Thanks! We'll be in touch shortly."
       );
 
-      setTimeout(() => {
-        setFormData({ name: "", email: "", company: "", phone: "", message: "", address: "", city: "", state: "", zip: "" });
-        setIsSuccess(false);
-        setOpen(false);
-      }, 2500);
     } catch (error) {
       console.error("Submission error:", error);
       toast.error("Something went wrong. Please try again.");
@@ -194,7 +189,26 @@ export default function InquiryDialog({ offering, trigger }: InquiryDialogProps)
   };
 
   return (
-    <Dialog open={open} onOpenChange={setOpen}>
+    <Dialog
+      open={open}
+      onOpenChange={(next) => {
+        setOpen(next);
+        if (!next) {
+          setFormData({
+            name: "",
+            email: "",
+            company: "",
+            phone: "",
+            message: "",
+            address: "",
+            city: "",
+            state: "",
+            zip: "",
+          });
+          setIsSuccess(false);
+        }
+      }}
+    >
       <DialogTrigger asChild>
         {trigger || (
           <Button className="bg-gold hover:bg-gold/90 text-forest-deep font-semibold">
@@ -232,6 +246,12 @@ export default function InquiryDialog({ offering, trigger }: InquiryDialogProps)
                 </p>
               </>
             )}
+            <Button
+              onClick={() => setOpen(false)}
+              className="mt-6 w-full bg-forest text-cream hover:bg-forest-light font-semibold uppercase tracking-wider"
+            >
+              Close
+            </Button>
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="space-y-4 mt-2">
