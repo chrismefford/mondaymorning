@@ -92,8 +92,8 @@ const offerings = [
       "White-label and private-label production",
       "Scale from first run to full distribution",
     ],
-    cta: "contact",
-    ctaLabel: "Talk brewing",
+    cta: "brewing",
+    ctaLabel: "Start your brew intake",
   },
   {
     id: "events",
