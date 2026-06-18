@@ -57,7 +57,7 @@ const emailHtml = `
 
       <table role="presentation" width="560" cellpadding="0" cellspacing="0" style="width:560px;max-width:92%;background:#ffffff;border-radius:12px;overflow:hidden;border:1px solid #e6dfce;">
 
-        <tr><td style="background:#2A543F;padding:22px 28px;">
+        <tr><td style="background:#255256;padding:22px 28px;">
 
           <div style="color:#E2A325;font-size:11px;letter-spacing:2px;text-transform:uppercase;font-weight:700;">New ${esc(label)} Inquiry</div>
 
@@ -67,7 +67,7 @@ const emailHtml = `
 
         <tr><td style="padding:24px 28px;">
 
-          <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="font-size:15px;color:#2A543F;">
+          <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="font-size:15px;color:#255256;">
 
             <tr><td style="padding:6px 0;opacity:.6;width:110px;">Name</td><td style="padding:6px 0;font-weight:600;">${esc(inq.name)}</td></tr>
 
@@ -75,15 +75,15 @@ const emailHtml = `
 
             ${inq.company ? `<tr><td style="padding:6px 0;opacity:.6;">Company</td><td style="padding:6px 0;">${esc(inq.company)}</td></tr>` : ''}
 
-            ${inq.phone ? `<tr><td style="padding:6px 0;opacity:.6;">Phone</td><td style="padding:6px 0;"><a href="tel:${esc(inq.phone)}" style="color:#2A543F;">${esc(inq.phone)}</a></td></tr>` : ''}
+            ${inq.phone ? `<tr><td style="padding:6px 0;opacity:.6;">Phone</td><td style="padding:6px 0;"><a href="tel:${esc(inq.phone)}" style="color:#255256;">${esc(inq.phone)}</a></td></tr>` : ''}
 
           </table>
 
-          ${inq.message ? `<div style="margin-top:16px;padding:14px 16px;background:#F1F5F0;border-radius:8px;border-left:3px solid #E2A325;font-size:14px;line-height:1.5;color:#2A543F;white-space:pre-wrap;">${esc(inq.message)}</div>` : ''}
+          ${inq.message ? `<div style="margin-top:16px;padding:14px 16px;background:#F1F5F0;border-radius:8px;border-left:3px solid #E2A325;font-size:14px;line-height:1.5;color:#255256;white-space:pre-wrap;">${esc(inq.message)}</div>` : ''}
 
         </td></tr>
 
-        <tr><td style="padding:14px 28px;border-top:1px solid #eee;opacity:.55;font-size:12px;color:#2A543F;">${esc(label)} · Submitted ${new Date(inq.created_at).toLocaleString('en-US', { timeZone: 'America/Los_Angeles' })}</td></tr>
+        <tr><td style="padding:14px 28px;border-top:1px solid #eee;opacity:.55;font-size:12px;color:#255256;">${esc(label)} · Submitted ${new Date(inq.created_at).toLocaleString('en-US', { timeZone: 'America/Los_Angeles' })}</td></tr>
 
       </table>
 
