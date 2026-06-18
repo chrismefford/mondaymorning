@@ -47,44 +47,51 @@ serve(async (req) => {
     const recipient = NOTIFY_EMAIL;
     const label = LABELS[inq.offering] ?? LABELS.general;
 
-    const emailHtml = `
+const emailHtml = `
 
-  
+<div style="margin:0;padding:0;background:#F8F5ED;font-family:Helvetica,Arial,sans-serif;">
 
-New ${esc(label)} Inquiry
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#F8F5ED;padding:24px 0;">
 
-Monday Morning
+    <tr><td align="center">
 
+      <table role="presentation" width="560" cellpadding="0" cellspacing="0" style="width:560px;max-width:92%;background:#ffffff;border-radius:12px;overflow:hidden;border:1px solid #e6dfce;">
 
-    
+        <tr><td style="background:#2A543F;padding:22px 28px;">
 
-Name: ${esc(inq.name)}
+          <div style="color:#E2A325;font-size:11px;letter-spacing:2px;text-transform:uppercase;font-weight:700;">New ${esc(label)} Inquiry</div>
 
+          <div style="color:#F8F5ED;font-size:22px;font-weight:700;margin-top:4px;">Monday Morning Lab</div>
 
-    
+        </td></tr>
 
-Email: ${esc(inq.email)}
+        <tr><td style="padding:24px 28px;">
 
+          <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="font-size:15px;color:#2A543F;">
 
-    ${inq.company ? `
+            <tr><td style="padding:6px 0;opacity:.6;width:110px;">Name</td><td style="padding:6px 0;font-weight:600;">${esc(inq.name)}</td></tr>
 
-Company / Venue: ${esc(inq.company)}
+            <tr><td style="padding:6px 0;opacity:.6;">Email</td><td style="padding:6px 0;"><a href="mailto:${esc(inq.email)}" style="color:#1d7a5f;">${esc(inq.email)}</a></td></tr>
 
-` : ''}
-    ${inq.phone ? `
+            ${inq.company ? `<tr><td style="padding:6px 0;opacity:.6;">Company</td><td style="padding:6px 0;">${esc(inq.company)}</td></tr>` : ''}
 
-Phone: ${esc(inq.phone)}
+            ${inq.phone ? `<tr><td style="padding:6px 0;opacity:.6;">Phone</td><td style="padding:6px 0;"><a href="tel:${esc(inq.phone)}" style="color:#2A543F;">${esc(inq.phone)}</a></td></tr>` : ''}
 
-` : ''}
-    ${inq.message ? `
+          </table>
 
-Message:
-${esc(inq.message)}
+          ${inq.message ? `<div style="margin-top:16px;padding:14px 16px;background:#F1F5F0;border-radius:8px;border-left:3px solid #E2A325;font-size:14px;line-height:1.5;color:#2A543F;white-space:pre-wrap;">${esc(inq.message)}</div>` : ''}
 
-` : ''}
-    
+        </td></tr>
 
-${esc(label)} · Submitted ${new Date(inq.created_at).toLocaleString('en-US', { timeZone: 'America/Los_Angeles' })}
+        <tr><td style="padding:14px 28px;border-top:1px solid #eee;opacity:.55;font-size:12px;color:#2A543F;">${esc(label)} · Submitted ${new Date(inq.created_at).toLocaleString('en-US', { timeZone: 'America/Los_Angeles' })}</td></tr>
+
+      </table>
+
+    </td></tr>
+
+  </table>
+
+</div>
 
 `;
 
