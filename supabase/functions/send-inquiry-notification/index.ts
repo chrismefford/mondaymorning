@@ -49,9 +49,9 @@ serve(async (req) => {
 
 const emailHtml = `
 
-<div style="margin:0;padding:0;background:#F8F5ED;font-family:Helvetica,Arial,sans-serif;">
+<div style="margin:0;padding:0;background:#FFF6E5;font-family:Helvetica,Arial,sans-serif;">
 
-  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#F8F5ED;padding:24px 0;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#FFF6E5;padding:24px 0;">
 
     <tr><td align="center">
 
@@ -61,7 +61,7 @@ const emailHtml = `
 
           <div style="color:#E2A325;font-size:11px;letter-spacing:2px;text-transform:uppercase;font-weight:700;">New ${esc(label)} Inquiry</div>
 
-          <div style="color:#F8F5ED;font-size:22px;font-weight:700;margin-top:4px;">Monday Morning Lab</div>
+          <div style="color:#FFF6E5;font-size:22px;font-weight:700;margin-top:4px;">Monday Morning Lab</div>
 
         </td></tr>
 
@@ -71,7 +71,7 @@ const emailHtml = `
 
             <tr><td style="padding:6px 0;opacity:.6;width:110px;">Name</td><td style="padding:6px 0;font-weight:600;">${esc(inq.name)}</td></tr>
 
-            <tr><td style="padding:6px 0;opacity:.6;">Email</td><td style="padding:6px 0;"><a href="mailto:${esc(inq.email)}" style="color:#1d7a5f;">${esc(inq.email)}</a></td></tr>
+            <tr><td style="padding:6px 0;opacity:.6;">Email</td><td style="padding:6px 0;"><a href="mailto:${esc(inq.email)}" style="color:#48A3AA;">${esc(inq.email)}</a></td></tr>
 
             ${inq.company ? `<tr><td style="padding:6px 0;opacity:.6;">Company</td><td style="padding:6px 0;">${esc(inq.company)}</td></tr>` : ''}
 
@@ -79,7 +79,7 @@ const emailHtml = `
 
           </table>
 
-          ${inq.message ? `<div style="margin-top:16px;padding:14px 16px;background:#F1F5F0;border-radius:8px;border-left:3px solid #E2A325;font-size:14px;line-height:1.5;color:#255256;white-space:pre-wrap;">${esc(inq.message)}</div>` : ''}
+          ${inq.message ? `<div style="margin-top:16px;padding:14px 16px;background:#E2F1F3;border-radius:8px;border-left:3px solid #E2A325;font-size:14px;line-height:1.5;color:#255256;white-space:pre-wrap;">${esc(inq.message)}</div>` : ''}
 
         </td></tr>
 
