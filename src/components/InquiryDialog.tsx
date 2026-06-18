@@ -174,7 +174,11 @@ export default function InquiryDialog({ offering, trigger }: InquiryDialogProps)
         .catch((err) => console.error("Notification error:", err));
 
       setIsSuccess(true);
-      toast.success("Thanks! We'll be in touch shortly.");
+      toast.success(
+        offering === "brewing"
+          ? "Thanks! Our brewers will be in touch shortly."
+          : "Thanks! We'll be in touch shortly."
+      );
 
       setTimeout(() => {
         setFormData({ name: "", email: "", company: "", phone: "", message: "", address: "", city: "", state: "", zip: "" });
