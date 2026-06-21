@@ -130,6 +130,25 @@ async function fetchAllProducts() {
   }
 }
 
+// Brand-clean blog text in the prerendered SEO output, mirroring
+// src/lib/blogText.ts so the static <title>/OG/JSON-LD match the React render
+// (no em dashes anywhere; doubled excerpts collapsed).
+const BLOG_DASH = /[ \t]*[–—―][ \t]*/g;
+const cleanBlogTitle = (s) =>
+  (s || "").replace(BLOG_DASH, ": ").replace(/ ,/g, ",").replace(/[ \t]{2,}/g, " ").trim();
+const cleanBlogExcerpt = (raw) => {
+  if (!raw) return "";
+  let s = raw
+    .replace(/\[\d*\]\([^)]*\)/g, "")
+    .replace(/\[\]\([^)]*\)/g, "")
+    .replace(/\s+/g, " ")
+    .trim();
+  const probe = s.slice(0, 50);
+  const dup = probe.length >= 30 ? s.indexOf(probe, 40) : -1;
+  if (dup > 40) s = s.slice(0, dup).replace(/[,;.\s]+$/, "") + ".";
+  return s.replace(/\s*[–—―]\s*/g, ", ").replace(/ ,/g, ",").replace(/,\s*,/g, ", ").trim();
+};
+
 async function fetchAllBlogPosts() {
   if (!supabaseUrl || !supabaseKey) {
     console.warn("⚠️  Supabase env vars not found – skipping dynamic blog pages.");
@@ -147,7 +166,13 @@ async function fetchAllBlogPosts() {
     if (!res.ok) throw new Error(`Supabase API ${res.status}`);
     const posts = await res.json();
     console.log(`  📝 Fetched ${posts.length} published blog posts from Supabase`);
-    return posts;
+    // Sanitize at the source so every downstream use (schema, meta, body, index)
+    // gets brand-clean title + excerpt.
+    return posts.map((p) => ({
+      ...p,
+      title: cleanBlogTitle(p.title),
+      excerpt: cleanBlogExcerpt(p.excerpt),
+    }));
   } catch (err) {
     console.warn(`⚠️  Failed to fetch blog posts: ${err.message}`);
     return [];
