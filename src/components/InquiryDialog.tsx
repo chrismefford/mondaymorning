@@ -272,7 +272,7 @@ export default function InquiryDialog({ offering, trigger }: InquiryDialogProps)
                 <CheckCircle2 className="w-8 h-8 text-green-600" />
               </div>
               <h3 className="font-serif text-2xl text-forest mb-2">
-                {offering === "brewing" ? "Brew intake received" : "Got it!"}
+                {offering === "brewing" ? "Brew intake received" : copy.next ? "Request received" : "Got it!"}
               </h3>
               <p className="text-forest/70 max-w-sm">
                 {copy.next
