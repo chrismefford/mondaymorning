@@ -115,9 +115,9 @@ const emailHtml = `
     let crmSynced = false, crmStatus: number | null = null, crmError: string | null = null;
     const crmUrl = Deno.env.get('CRM_INQUIRY_URL');
     const crmSecret = Deno.env.get('CRM_INQUIRY_SECRET');
-    const isB2B = inq.offering === 'b2b';
+    const forwardToCrm = inq.offering !== 'brewing';
     const crmConfigured = !!(crmUrl && crmSecret);
-    if (isB2B && crmUrl && crmSecret) {
+    if (forwardToCrm && crmUrl && crmSecret) {
       try {
         const res = await fetch(crmUrl, {
           method: 'POST',
