@@ -212,6 +212,7 @@ export type Database = {
           crm_synced: boolean
           detail: Json | null
           email: string
+          event_kind: string | null
           id: string
           message: string | null
           name: string
@@ -230,6 +231,7 @@ export type Database = {
           crm_synced?: boolean
           detail?: Json | null
           email: string
+          event_kind?: string | null
           id?: string
           message?: string | null
           name: string
@@ -248,6 +250,7 @@ export type Database = {
           crm_synced?: boolean
           detail?: Json | null
           email?: string
+          event_kind?: string | null
           id?: string
           message?: string | null
           name?: string
