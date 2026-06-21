@@ -15,10 +15,18 @@ export const cleanTitle = (s: string | null | undefined): string =>
     .replace(/[ \t]{2,}/g, " ")
     .trim();
 
-// Markdown body: only swap the dash, never touch newlines or double-spaces
-// (markdown uses a trailing double-space as a hard line break).
+// Markdown body: normalize every author byline to Monday Morning (the imported
+// posts credit several individuals via a "Written By [Name](/blog?author=id)"
+// line), then swap the dash. Never touch newlines or double-spaces (markdown
+// uses a trailing double-space as a hard line break).
 export const cleanBody = (s: string | null | undefined): string =>
-  (s || "").replace(DASH, ", ").replace(/ ,/g, ",").replace(/,[ \t]*,/g, ", ");
+  (s || "")
+    .replace(/\[[^\]]*\]\(\/blog\?author=[^)]*\)/g, "Monday Morning")
+    .replace(/Written [Bb]y\s+(?:Chris Mefford|Zane Curtis|Guest User)\b/g, "Written by Monday Morning")
+    .replace(/Written By Monday Morning/g, "Written by Monday Morning")
+    .replace(DASH, ", ")
+    .replace(/ ,/g, ",")
+    .replace(/,[ \t]*,/g, ", ");
 
 // Excerpt / meta description: strip any legacy import-link artifacts, collapse a
 // doubled excerpt down to one copy, then swap dashes for commas.
