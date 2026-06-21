@@ -117,7 +117,7 @@ const emailHtml = `
     const crmSecret = Deno.env.get('CRM_INQUIRY_SECRET');
     const forwardToCrm = inq.offering !== 'brewing';
     const crmConfigured = !!(crmUrl && crmSecret);
-    if (isB2B && crmUrl && crmSecret) {
+    if (forwardToCrm && crmUrl && crmSecret) {
       try {
         const res = await fetch(crmUrl, {
           method: 'POST',
