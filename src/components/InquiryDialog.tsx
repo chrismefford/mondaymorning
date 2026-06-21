@@ -122,6 +122,7 @@ export default function InquiryDialog({ offering, trigger }: InquiryDialogProps)
     city: "",
     state: "",
     zip: "",
+    eventKind: "general",
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
 
@@ -160,6 +161,7 @@ export default function InquiryDialog({ offering, trigger }: InquiryDialogProps)
         city: isB2B ? (formData.city || null) : null,
         state: isB2B ? (formData.state || null) : null,
         zip: isB2B ? (formData.zip || null) : null,
+        event_kind: offering === "events" ? formData.eventKind : null,
       };
       const { error: insertError } = await supabase.from("inquiries").insert(row);
 
@@ -204,6 +206,7 @@ export default function InquiryDialog({ offering, trigger }: InquiryDialogProps)
             city: "",
             state: "",
             zip: "",
+            eventKind: "general",
           });
           setIsSuccess(false);
         }
@@ -309,6 +312,23 @@ export default function InquiryDialog({ offering, trigger }: InquiryDialogProps)
                 />
               </div>
             </div>
+
+            {offering === "events" && (
+              <div className="space-y-2">
+                <Label htmlFor="iq-eventkind" className="text-forest font-semibold">What kind of event?</Label>
+                <select
+                  id="iq-eventkind"
+                  value={formData.eventKind}
+                  onChange={(e) => set("eventKind", e.target.value)}
+                  disabled={isSubmitting}
+                  className="w-full h-10 rounded-md border border-forest/20 bg-background px-3 py-2 text-sm focus:border-gold focus:outline-none"
+                >
+                  <option value="general">General event / party / corporate</option>
+                  <option value="wedding">Wedding</option>
+                  <option value="space">Rent the Monday Morning space</option>
+                </select>
+              </div>
+            )}
 
             {isB2B && (
               <>

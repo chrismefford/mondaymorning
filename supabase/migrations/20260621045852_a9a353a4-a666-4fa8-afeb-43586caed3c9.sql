@@ -1,0 +1,1 @@
+ALTER TABLE public.inquiries ADD COLUMN event_kind text;

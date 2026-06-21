@@ -126,6 +126,7 @@ const emailHtml = `
             offering: inq.offering, name: inq.name, email: inq.email,
             company: inq.company, phone: inq.phone, message: inq.message, inquiry_id: inq.id,
             address: inq.address, city: inq.city, state: inq.state, zip: inq.zip,
+            event_kind: inq.event_kind,
           }),
         });
         crmStatus = res.status;
