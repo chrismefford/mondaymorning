@@ -29,43 +29,79 @@ export type Offering =
 // visitor to give us the detail that actually qualifies the lead.
 const COPY: Record<
   Offering,
-  { title: string; blurb: string; placeholder: string; companyLabel: string }
+  { title: string; blurb: string; placeholder: string; companyLabel: string; next?: string[] }
 > = {
   b2b: {
     title: "B2B & Distribution",
     blurb: "Tell us about your venue and we'll get you set up with wholesale.",
     placeholder: "What kind of venue, and what are you looking to stock?",
     companyLabel: "Business / Venue",
+    next: [
+      "We review your venue and reach out, usually within 1 to 2 business days.",
+      "We set up your wholesale account and approve you for B2B pricing.",
+      "You log in and order by the case at your wholesale pricing.",
+      "We ship or deliver, and reorders are a few clicks away.",
+    ],
   },
   consulting: {
     title: "Consulting",
     blurb: "Building something alcohol-free? Let's talk through it.",
     placeholder: "What are you building, and where are you stuck?",
     companyLabel: "Company",
+    next: [
+      "We review your goals and reach out, usually within 1 to 2 business days.",
+      "We set up an intro call to understand what you are building.",
+      "We send a simple proposal and agreement scoped to your project.",
+      "Once it is signed, we get to work.",
+    ],
   },
   popups: {
     title: "Retail Pop-Up",
     blurb: "Let's bring a Monday Morning pop-up to your space.",
     placeholder: "Location, dates, and the foot traffic you have in mind.",
     companyLabel: "Company / Venue",
+    next: [
+      "We review your space and reach out, usually within 1 to 2 business days.",
+      "We plan the details together: location, dates, and what we bring.",
+      "We send a simple agreement to lock it in.",
+      "We show up and run the pop-up.",
+    ],
   },
   brewing: {
     title: "Contract Brewing",
     blurb: "Make your own alcohol-free brew at The Lab.",
     placeholder: "What do you want to make, target volume, and timeline?",
     companyLabel: "Company / Brand",
+    next: [
+      "We review your request and reach out, usually within 1 to 2 business days.",
+      "We send you a quick agreement to e-sign. It sets the terms and keeps your recipe confidential.",
+      "As soon as it is signed, you build your order and see your live quote, right in your browser.",
+      "We confirm the details together and schedule your brew.",
+      "You follow it from grain to can on a private link, no login needed.",
+    ],
   },
   events: {
     title: "Events & Vibations",
     blurb: "Vibations for your event, done right.",
     placeholder: "Date, guest count, location, and the vibe you're after.",
     companyLabel: "Company / Host",
+    next: [
+      "We review your event and reach out, usually within 1 to 2 business days.",
+      "We plan the details: date, guest count, and the vibe.",
+      "We send the agreement to lock in your date.",
+      "We bring the Vibations and handle the rest.",
+    ],
   },
   tasting: {
     title: "Book a Tasting",
     blurb: "Come taste before you commit.",
     placeholder: "When works for you, and how many people?",
     companyLabel: "Company (optional)",
+    next: [
+      "We confirm a time that works for you, usually within 1 to 2 business days.",
+      "Come in and taste across our alcohol-free lineup.",
+      "We help you find what fits, no pressure.",
+    ],
   },
   general: {
     title: "Get in Touch",
@@ -227,30 +263,39 @@ export default function InquiryDialog({ offering, trigger }: InquiryDialogProps)
         </DialogHeader>
 
         {isSuccess ? (
-          <div className="flex flex-col items-center justify-center py-12 text-center">
-            <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-4">
-              <CheckCircle2 className="w-8 h-8 text-green-600" />
+          <div className="py-6">
+            <div className="flex flex-col items-center text-center">
+              <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-4">
+                <CheckCircle2 className="w-8 h-8 text-green-600" />
+              </div>
+              <h3 className="font-serif text-2xl text-forest mb-2">
+                {offering === "brewing" ? "Brew intake received" : "Got it!"}
+              </h3>
+              <p className="text-forest/70 max-w-sm">
+                {copy.next
+                  ? "Thanks for reaching out. Here is exactly what happens next:"
+                  : "Thanks for reaching out. We'll get back to you within 1 to 2 business days."}
+              </p>
             </div>
-            {offering === "brewing" ? (
-              <>
-                <h3 className="font-serif text-2xl text-forest mb-2">Brew intake received</h3>
-                <p className="text-forest/70 max-w-sm">
-                  One of our brewers will reach out shortly to send you a quick intake form so we can build your quote. We review every project and confirm the details with you before anything is brewed, usually within 1 to 2 business days.
-                </p>
-              </>
-            ) : (
-              <>
-                <h3 className="font-serif text-2xl text-forest mb-2">Got it!</h3>
-                <p className="text-forest/70 max-w-sm">
-                  Thanks for reaching out. We'll get back to you within 1 to 2 business days.
-                </p>
-              </>
+
+            {copy.next && (
+              <ol className="mt-6 space-y-3 text-left">
+                {copy.next.map((step, i) => (
+                  <li key={i} className="flex gap-3">
+                    <span className="flex-shrink-0 w-7 h-7 rounded-full bg-gold/20 text-forest font-semibold text-sm flex items-center justify-center">
+                      {i + 1}
+                    </span>
+                    <span className="text-forest/80 text-sm leading-relaxed pt-0.5">{step}</span>
+                  </li>
+                ))}
+              </ol>
             )}
+
             <Button
               onClick={() => setOpen(false)}
-              className="mt-6 w-full bg-forest text-cream hover:bg-forest-light font-semibold uppercase tracking-wider"
+              className="mt-7 w-full bg-forest text-cream hover:bg-forest-light font-semibold uppercase tracking-wider"
             >
-              Close
+              Got it
             </Button>
           </div>
         ) : (
