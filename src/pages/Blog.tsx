@@ -7,6 +7,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { Calendar } from "lucide-react";
 import { format } from "date-fns";
 import textureCream from "@/assets/texture-cream.webp";
+import { cleanTitle, cleanExcerpt } from "@/lib/blogText";
 
 interface BlogPost {
   id: string;
@@ -152,7 +153,7 @@ const Blog = () => {
                         <div className="aspect-[16/10] rounded-lg overflow-hidden mb-4 bg-muted">
                           <img
                             src={post.featured_image}
-                            alt={post.title}
+                            alt={cleanTitle(post.title)}
                             loading="lazy"
                             className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                             onError={(e) => {
@@ -180,11 +181,11 @@ const Blog = () => {
                         </time>
                       </div>
                       <h2 className="font-serif text-xl md:text-2xl text-foreground group-hover:text-gold transition-colors mb-2">
-                        {post.title}
+                        {cleanTitle(post.title)}
                       </h2>
                       {post.excerpt && (
                         <p className="text-muted-foreground line-clamp-3">
-                          {post.excerpt}
+                          {cleanExcerpt(post.excerpt)}
                         </p>
                       )}
                     </article>

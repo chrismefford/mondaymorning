@@ -11,6 +11,7 @@ import remarkGfm from "remark-gfm";
 import BlogProductCard from "@/components/blog/BlogProductCard";
 import AdaptogenChart from "@/components/blog/AdaptogenChart";
 import NABeerCalorieChart from "@/components/blog/NABeerCalorieChart";
+import { cleanTitle, cleanExcerpt, cleanBody } from "@/lib/blogText";
 
 interface BlogPost {
   id: string;
@@ -48,26 +49,20 @@ const BlogPost = () => {
     return title.substring(0, maxLen - 3).trim() + "...";
   };
   
-  // Description: Ideal 120-160 chars, clean up any import artifacts
-  const cleanExcerpt = (excerpt: string | null): string => {
-    if (!excerpt) return "Discover alcohol-free drinks, mocktail recipes, and mindful drinking tips from Monday Morning Bottle Shop in San Diego.";
-    // Remove any leftover import artifacts
-    let cleaned = excerpt
-      .replace(/\[\d*\]\([^)]+\)/g, '') // Remove [0](url) patterns
-      .replace(/\[\]\([^)]+\)/g, '')     // Remove [](url) patterns
-      .replace(/\n+/g, ' ')              // Replace newlines with spaces
-      .trim();
-    // Truncate to ~155 chars at word boundary
-    if (cleaned.length > 155) {
-      cleaned = cleaned.substring(0, 155).replace(/\s+\S*$/, '') + "...";
-    }
-    return cleaned || "Discover alcohol-free drinks, mocktail recipes, and mindful drinking tips from Monday Morning Bottle Shop in San Diego.";
+  // Description: ideal 120-160 chars, brand-cleaned (dashes, doubled excerpts).
+  const DEFAULT_DESC = "Discover alcohol-free drinks, mocktail recipes, and mindful drinking tips from Monday Morning Bottle Shop in San Diego.";
+  const metaDescription = (excerpt: string | null | undefined): string => {
+    let cleaned = cleanExcerpt(excerpt);
+    if (!cleaned) return DEFAULT_DESC;
+    if (cleaned.length > 155) cleaned = cleaned.substring(0, 155).replace(/\s+\S*$/, "") + "...";
+    return cleaned;
   };
-  
-  const baseTitle = post?.title || "Blog Post";
+
+  const baseTitle = post ? cleanTitle(post.title) : "Blog Post";
   const seoTitle = truncateTitle(baseTitle, 50);
   const pageTitle = post ? `${seoTitle} | Monday Morning` : "Blog Post | Monday Morning";
-  const pageDescription = cleanExcerpt(post?.excerpt);
+  const pageDescription = metaDescription(post?.excerpt);
+  const heroExcerpt = cleanExcerpt(post?.excerpt);
   const ogImage = post?.featured_image || "/og-monday-morning.png";
   const canonicalUrl = `https://mondaymorning-af.com/blog/${slug}`;
   const publishedDate = post?.published_at || post?.created_at;
@@ -152,7 +147,7 @@ const BlogPost = () => {
           {JSON.stringify({
             "@context": "https://schema.org",
             "@type": "BlogPosting",
-            "headline": post.title,
+            "headline": baseTitle,
             "alternativeHeadline": seoTitle,
             "description": pageDescription,
             "image": ogImage,
@@ -188,7 +183,7 @@ const BlogPost = () => {
           <div className="relative h-[65vh] min-h-[520px] overflow-hidden">
             <img
               src={post.featured_image || "/images/blog/na-red-wines-guide.jpg"}
-              alt={post.title}
+              alt={baseTitle}
               className="w-full h-full object-cover"
               loading="eager"
               fetchPriority="high"
@@ -205,11 +200,11 @@ const BlogPost = () => {
                   Back to Blog
                 </Link>
                 <h1 className="font-serif text-3xl md:text-5xl lg:text-6xl text-white leading-tight mb-3">
-                  {post.title}
+                  {baseTitle}
                 </h1>
-                {post.excerpt && (
+                {heroExcerpt && (
                   <p className="text-white/80 text-lg md:text-xl font-sans leading-relaxed mb-4 max-w-2xl">
-                    {post.excerpt}
+                    {heroExcerpt}
                   </p>
                 )}
                 <div className="flex items-center gap-3 text-white/70 text-sm">
@@ -230,8 +225,9 @@ const BlogPost = () => {
             <div className="container mx-auto px-4 py-12 md:py-20">
               <div className="max-w-3xl mx-auto">
                 {(() => {
-                  // Strip the first H1 since it's in the hero
-                  const contentWithoutH1 = post.content.replace(/^#\s+[^\n]+\n+/, '');
+                  // Brand-clean the body (em dashes -> commas), then strip the
+                  // first H1 since it's in the hero.
+                  const contentWithoutH1 = cleanBody(post.content).replace(/^#\s+[^\n]+\n+/, '');
                   // Also strip the bold subtitle line right after
                   const cleanContent = contentWithoutH1.replace(/^\*\*[^*]+\*\*\n+/, '');
                   // Split on both PRODUCT and special chart placeholders
