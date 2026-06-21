@@ -358,6 +358,7 @@ export default function InquiryDialog({ offering, trigger }: InquiryDialogProps)
               </div>
             </div>
 
+            {/* Events sub-type select: drives which agreement the CRM sends */}
             {offering === "events" && (
               <div className="space-y-2">
                 <Label htmlFor="iq-eventkind" className="text-forest font-semibold">What kind of event?</Label>
