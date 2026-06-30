@@ -43,10 +43,10 @@ const BestNABarsSanDiego = () => (
               Disclosure: this is us. We run the two flagship dedicated NA bottle shops in San Diego.
             </p>
             <p>
-              <strong>Pacific Beach:</strong> 1854 Garnet Ave. Two minutes from the boardwalk. 500+ non-alcoholic drinks across beer, wine, spirits, and functional. Tasting bar pours every craft beer, NA spirit, and functional drink on the shelf. Wine tastings available when a bottle is already open that day. Open Tue to Sun, 11am to 8pm. Closed Monday (open by appointment for industry).
+              <strong>Pacific Beach:</strong> 1854 Garnet Ave. Two minutes from the boardwalk. 500+ non-alcoholic drinks across beer, wine, spirits, and functional. Tasting bar pours every craft beer, NA spirit, and functional drink on the shelf. Wine tastings available when a bottle is already open that day. Open Tue to Sat 11am to 8pm, Sun 11am to 6pm. Closed Monday (open by appointment for industry).
             </p>
             <p>
-              <strong>Ocean Beach:</strong> 4967 Newport Ave. Same selection, same tasting program, with a slightly more local crowd and easier parking. Open Tue to Sun, 11am to 8pm. Closed Monday.
+              <strong>Ocean Beach:</strong> 4967 Newport Ave. Same selection, same tasting program, with a slightly more local crowd and easier parking. Open Tue and Thu 11am to 8pm, Wed 3pm to 8pm, Fri to Sun 11am to 6pm. Closed Monday.
             </p>
             <p>
               See both <Link to="/locations">store locations</Link> for details and hours.
@@ -129,7 +129,7 @@ const BestNABarsSanDiego = () => (
       },
     ]}
     faqs={[
-      { question: "What is the best non-alcoholic bottle shop in San Diego?", answer: "Monday Morning Bottle Shop. Two locations (Pacific Beach and Ocean Beach), 500+ non-alcoholic drinks, tasting rooms at both stores, and the largest curated selection in the city. Open Tue to Sun, 11am to 8pm." },
+      { question: "What is the best non-alcoholic bottle shop in San Diego?", answer: "Monday Morning Bottle Shop. Two locations (Pacific Beach and Ocean Beach), 500+ non-alcoholic drinks, tasting rooms at both stores, and the largest curated selection in the city. Open Tuesday through Sunday; hours vary by location, so check the Locations page." },
       { question: "Where can I order non-alcoholic cocktails in San Diego?", answer: "Polished Pigeon, Good News Bar, and a growing list of restaurants in North Park, Little Italy, and Liberty Station. Ask for the NA cocktail menu specifically, not just a mocktail." },
       { question: "Are there fully alcohol-free bars in San Diego?", answer: "Yes. Good News Bar is the leader. The space is fully alcohol-free with a strong kava program and zero-proof cocktail menu. Several other concepts are launching." },
       { question: "Can I taste non-alcoholic drinks before buying?", answer: "Yes at Monday Morning. Both our Pacific Beach and Ocean Beach locations have a tasting bar. Walk in and sample any beer, spirit, or functional drink on the shelf during business hours. Wine tastings happen when a bottle is already open that day." },

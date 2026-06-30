@@ -218,8 +218,9 @@ const NonAlcoholicDrinksSanDiego = () => {
                   <div className="flex items-start gap-3">
                     <Clock className="h-4 w-4 text-gold mt-0.5 flex-shrink-0" />
                     <div>
-                      <p>Mon–Sat: 11 AM – 8 PM</p>
-                      <p>Sun: 11 AM – 4 PM</p>
+                      <p>Tue - Sat: 11 AM - 8 PM</p>
+                      <p>Sun: 11 AM - 6 PM</p>
+                      <p>Mon: Closed</p>
                     </div>
                   </div>
                 </div>
@@ -236,8 +237,10 @@ const NonAlcoholicDrinksSanDiego = () => {
                   <div className="flex items-start gap-3">
                     <Clock className="h-4 w-4 text-gold mt-0.5 flex-shrink-0" />
                     <div>
-                      <p>Mon–Sun: 9 AM – 6 PM</p>
-                      <p>Wed: Open until 8 PM</p>
+                      <p>Tue &amp; Thu: 11 AM - 8 PM</p>
+                      <p>Wed: 3 PM - 8 PM</p>
+                      <p>Fri - Sun: 11 AM - 6 PM</p>
+                      <p>Mon: Closed</p>
                     </div>
                   </div>
                 </div>

@@ -248,7 +248,7 @@ const localBusinessSchema = {
   openingHoursSpecification: [
     {
       "@type": "OpeningHoursSpecification",
-      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+      dayOfWeek: ["Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
       opens: "11:00",
       closes: "20:00",
     },
@@ -256,7 +256,7 @@ const localBusinessSchema = {
       "@type": "OpeningHoursSpecification",
       dayOfWeek: "Sunday",
       opens: "11:00",
-      closes: "16:00",
+      closes: "18:00",
     },
   ],
 };
@@ -553,13 +553,13 @@ function generateLocationsBody() {
       <h2>Pacific Beach Location</h2>
       ${img("ig-shop-interior", "Inside Monday Morning Pacific Beach — non-alcoholic bottle shop and tasting room", 'width="600" height="400" ')}
       <p><strong>Address:</strong> 1854 Garnet Ave, San Diego, CA 92109</p>
-      <p><strong>Hours:</strong> Monday–Saturday 11 AM – 8 PM, Sunday 11 AM – 4 PM</p>
+      <p><strong>Hours:</strong> Tuesday to Saturday 11 AM to 8 PM, Sunday 11 AM to 6 PM. Closed Monday.</p>
       <a href="https://maps.google.com/?q=1854+Garnet+Ave+San+Diego+CA+92109">Get Directions</a>
     </section>
     <section>
       <h2>Ocean Beach Location</h2>
       <p><strong>Address:</strong> 4967 Newport Ave, San Diego, CA 92107</p>
-      <p><strong>Hours:</strong> Monday–Sunday 9 AM – 6 PM, Wednesday open until 8 PM</p>
+      <p><strong>Hours:</strong> Tuesday and Thursday 11 AM to 8 PM, Wednesday 3 PM to 8 PM, Friday to Sunday 11 AM to 6 PM. Closed Monday.</p>
       <a href="https://maps.google.com/?q=4967+Newport+Ave+San+Diego+CA+92107">Get Directions</a>
     </section>
     <section>
@@ -743,10 +743,10 @@ function generateNADrinksSanDiegoBody() {
       <h2>Visit Our San Diego Bottle Shop</h2>
       <h3>Pacific Beach</h3>
       <p><strong>Address:</strong> 1854 Garnet Ave, San Diego, CA 92109</p>
-      <p><strong>Hours:</strong> Mon\u2013Sat: 11 AM \u2013 8 PM, Sun: 11 AM \u2013 4 PM</p>
+      <p><strong>Hours:</strong> Tue to Sat: 11 AM to 8 PM, Sun: 11 AM to 6 PM. Closed Monday.</p>
       <h3>Ocean Beach</h3>
       <p><strong>Address:</strong> 4967 Newport Ave, San Diego, CA 92107</p>
-      <p><strong>Hours:</strong> Mon\u2013Sun: 9 AM \u2013 6 PM, Wed: Open until 8 PM</p>
+      <p><strong>Hours:</strong> Tue and Thu: 11 AM to 8 PM, Wed: 3 PM to 8 PM, Fri to Sun: 11 AM to 6 PM. Closed Monday.</p>
       <p>Both locations feature a full tasting bar. Walk in and sample anything before you commit. Our staff knows every product on the shelf and will match you with something you love.</p>
       <p>We built these shops for anyone who wants better options. Athletes looking for post-workout drinks. Parents who want something special after bedtime. Professionals who refuse to sacrifice their mornings. And anyone who is simply curious about what non-alcoholic drinks can taste like in 2026.</p>
       <p>No judgment. No pressure. Just great drinks and people who care about what they are drinking.</p>

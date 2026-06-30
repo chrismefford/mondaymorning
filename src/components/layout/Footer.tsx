@@ -95,7 +95,10 @@ const Footer = () => {
               </p>
               <div className="space-y-1">
                 <p className="font-sans text-sm text-forest uppercase tracking-wide">
-                  Tue - Sun  11 AM - 8 PM
+                  Tue - Sat  11 AM - 8 PM
+                </p>
+                <p className="font-sans text-sm text-forest uppercase tracking-wide">
+                  Sun  11 AM - 6 PM
                 </p>
                 <p className="font-sans text-sm text-forest-deep font-bold uppercase tracking-wide">
                   *Monday Closed
@@ -114,7 +117,13 @@ const Footer = () => {
               </p>
               <div className="space-y-1">
                 <p className="font-sans text-sm text-forest uppercase tracking-wide">
-                  Tue - Sun  11 AM - 8 PM
+                  Tue &amp; Thu  11 AM - 8 PM
+                </p>
+                <p className="font-sans text-sm text-forest uppercase tracking-wide">
+                  Wed  3 PM - 8 PM
+                </p>
+                <p className="font-sans text-sm text-forest uppercase tracking-wide">
+                  Fri - Sun  11 AM - 6 PM
                 </p>
                 <p className="font-sans text-sm text-forest-deep font-bold uppercase tracking-wide">
                   *Monday Closed

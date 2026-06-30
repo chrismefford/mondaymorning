@@ -621,7 +621,9 @@ const AlcoholAlternatives = () => {
                     <div className="flex items-start gap-3">
                       <Clock className="h-5 w-5 text-primary shrink-0 mt-0.5" />
                       <div>
-                        <p className="text-sm text-muted-foreground">Mon-Sat 11am-8pm, Sun 11am-4pm</p>
+                        <p className="text-sm text-muted-foreground">Pacific Beach: Tue-Sat 11am-8pm, Sun 11am-6pm</p>
+                        <p className="text-sm text-muted-foreground">Ocean Beach: Tue &amp; Thu 11am-8pm, Wed 3pm-8pm, Fri-Sun 11am-6pm</p>
+                        <p className="text-sm text-muted-foreground">Closed Mondays</p>
                       </div>
                     </div>
                   </div>

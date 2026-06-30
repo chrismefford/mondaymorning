@@ -118,7 +118,7 @@ export const localBusinessSchema = {
   "openingHoursSpecification": [
     {
       "@type": "OpeningHoursSpecification",
-      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+      "dayOfWeek": ["Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
       "opens": "11:00",
       "closes": "20:00"
     },
@@ -126,7 +126,7 @@ export const localBusinessSchema = {
       "@type": "OpeningHoursSpecification",
       "dayOfWeek": "Sunday",
       "opens": "11:00",
-      "closes": "16:00"
+      "closes": "18:00"
     }
   ],
   "hasOfferCatalog": {

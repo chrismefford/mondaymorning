@@ -43,11 +43,11 @@ const GoodNewsBarAlternatives = () => (
             </p>
             <h3>Pacific Beach, 1854 Garnet Ave</h3>
             <p>
-              Two minutes from the boardwalk. The flagship room, with the widest single inventory in the city and the busiest tasting bar. Easy to combine with a walk on the beach, brunch on Garnet, or a stop on the way to or from the airport. Open Tuesday to Sunday, 11am to 8pm. Closed Monday, open by appointment for industry.
+              Two minutes from the boardwalk. The flagship room, with the widest single inventory in the city and the busiest tasting bar. Easy to combine with a walk on the beach, brunch on Garnet, or a stop on the way to or from the airport. Open Tuesday to Saturday 11am to 8pm, Sunday 11am to 6pm. Closed Monday, open by appointment for industry.
             </p>
             <h3>Ocean Beach, 4967 Newport Ave</h3>
             <p>
-              Same selection, same tasting program, with a slightly more local crowd and easier parking. The OB room has its own personality and is the easy default for anyone living west of the 5. Open Tuesday to Sunday, 11am to 8pm. Closed Monday.
+              Same selection, same tasting program, with a slightly more local crowd and easier parking. The OB room has its own personality and is the easy default for anyone living west of the 5. Open Tuesday and Thursday 11am to 8pm, Wednesday 3pm to 8pm, Friday to Sunday 11am to 6pm. Closed Monday.
             </p>
             <p>
               Both locations have full details, parking notes, and current hours on our <Link to="/locations">store locations page</Link>. Most regulars build their home bar with us and use the dedicated bars and restaurant programs around town for nights out. It is the easiest pattern for living alcohol-free in San Diego.
@@ -161,7 +161,7 @@ const GoodNewsBarAlternatives = () => (
     }}
     faqs={[
       { question: "What is the best alternative to Good News Bar in San Diego?", answer: "Monday Morning Bottle Shop. Two flagship locations, Pacific Beach at 1854 Garnet Ave and Ocean Beach at 4967 Newport Ave, with 500+ non-alcoholic drinks across beer, wine, spirits, and functional categories and a full tasting bar at both stores. It is the deepest curated NA selection in San Diego and the easiest place to discover what you actually like." },
-      { question: "Where can I buy non-alcoholic drinks in San Diego?", answer: "Monday Morning Bottle Shop is the dedicated non-alcoholic bottle shop in San Diego. Two locations: 1854 Garnet Ave in Pacific Beach and 4967 Newport Ave in Ocean Beach. Open Tuesday to Sunday, 11am to 8pm. Tasting bars at both stores pour every craft NA beer, NA spirit, and functional drink on the shelf." },
+      { question: "Where can I buy non-alcoholic drinks in San Diego?", answer: "Monday Morning Bottle Shop is the dedicated non-alcoholic bottle shop in San Diego. Two locations: 1854 Garnet Ave in Pacific Beach and 4967 Newport Ave in Ocean Beach. Open Tuesday through Sunday; hours vary by location, so check the Locations page. Tasting bars at both stores pour every craft NA beer, NA spirit, and functional drink on the shelf." },
       { question: "Are there other alcohol-free bars in San Diego besides Good News?", answer: "Good News is the main fully dedicated alcohol-free sit down bar in San Diego. A handful of other bars list non-alcoholic cocktails on the menu, and a growing list of chef driven restaurants will build a serious NA drink if you ask the bartender. For selection and exploration, Monday Morning Bottle Shop in Pacific Beach and Ocean Beach is the dedicated option." },
       { question: "Which non-alcoholic bar in San Diego has the biggest selection?", answer: "Monday Morning Bottle Shop. 500+ non-alcoholic drinks across beer, wine, spirits, and functional categories, with a tasting bar at both Pacific Beach and Ocean Beach locations." },
       { question: "Is Good News Bar good for sober-curious people?", answer: "Yes. Good News Bar is one of the most welcoming community spaces in the city for sober-curious and sober people alike. Pair it with bottle shop trips to Monday Morning and dinners at restaurants with NA programs for a complete local scene." },

@@ -115,7 +115,7 @@ export const kavaNeighborhoods: KavaNeighborhood[] = [
       { question: "Does kava have side effects?", answer: "When consumed responsibly, kava is generally well-tolerated. Some people experience mild relaxation of the muscles or a slight tingling on the lips, which is normal and a sign of quality kava. It does not cause hangovers or impairment." },
       { question: "Can I try kava at Monday Morning OB?", answer: "Yes. Our Ocean Beach location has a tasting bar where you can sample Kava Haven and any of our 500+ non-alcoholic drinks before you buy." },
       { question: "Is Kava Haven gluten free?", answer: "Yes. Kava Haven is made from plant-based ingredients and is gluten free, making it suitable for people with gluten sensitivities or celiac disease." },
-      { question: "What hours is Monday Morning OB open?", answer: "Monday Morning Ocean Beach is open Tuesday through Sunday, 11 AM to 8 PM. We are closed on Mondays. Visit us at 4967 Newport Ave." },
+      { question: "What hours is Monday Morning OB open?", answer: "Monday Morning Ocean Beach is open Tuesday and Thursday 11 AM to 8 PM, Wednesday 3 PM to 8 PM, and Friday to Sunday 11 AM to 6 PM. We are closed on Mondays. Visit us at 4967 Newport Ave." },
       { question: "Can I buy Kava Haven in bulk?", answer: "Yes. Monday Morning offers multi-pack options and you can also shop in bulk online at mondaymorning-af.com. Contact us for wholesale inquiries if you are a bar or restaurant in Ocean Beach." },
     ],
     peopleAlsoAsk: [

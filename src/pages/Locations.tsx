@@ -22,7 +22,8 @@ const stores = [
     address: "1854 Garnet Ave.",
     city: "San Diego, CA 92109",
     hours: [
-      { days: "Tue - Sun", time: "11 AM - 8 PM" },
+      { days: "Tue - Sat", time: "11 AM - 8 PM" },
+      { days: "Sun", time: "11 AM - 6 PM" },
       { days: "Monday", time: "Closed (Open by appointment for industry leaders)", special: true },
     ],
     phone: "(858) 412-3253",
@@ -34,7 +35,9 @@ const stores = [
     address: "4967 Newport Ave",
     city: "San Diego, CA 92107",
     hours: [
-      { days: "Tue - Sun", time: "11 AM - 8 PM" },
+      { days: "Tue & Thu", time: "11 AM - 8 PM" },
+      { days: "Wed", time: "3 PM - 8 PM" },
+      { days: "Fri - Sun", time: "11 AM - 6 PM" },
       { days: "Monday", time: "Closed", special: true },
     ],
     phone: "(858) 412-3253",
