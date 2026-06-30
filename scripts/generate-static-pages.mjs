@@ -70,7 +70,7 @@ const { supabaseUrl, supabaseKey } = loadEnv();
 
 async function fetchAllProducts() {
   if (!supabaseUrl || !supabaseKey) {
-    console.warn("⚠️  Supabase env vars not found – skipping dynamic product pages.");
+    console.warn("⚠️  Supabase env vars not found, skipping dynamic product pages.");
     return [];
   }
 
@@ -133,7 +133,7 @@ async function fetchAllProducts() {
 // Brand-clean blog text in the prerendered SEO output, mirroring
 // src/lib/blogText.ts so the static <title>/OG/JSON-LD match the React render
 // (no em dashes anywhere; doubled excerpts collapsed).
-const BLOG_DASH = /[ \t]*[–—―][ \t]*/g;
+const BLOG_DASH = /[ \t]*[\u2013\u2014\u2015][ \t]*/g;
 const cleanBlogTitle = (s) =>
   (s || "").replace(BLOG_DASH, ": ").replace(/ ,/g, ",").replace(/[ \t]{2,}/g, " ").trim();
 const cleanBlogExcerpt = (raw) => {
@@ -146,12 +146,12 @@ const cleanBlogExcerpt = (raw) => {
   const probe = s.slice(0, 50);
   const dup = probe.length >= 30 ? s.indexOf(probe, 40) : -1;
   if (dup > 40) s = s.slice(0, dup).replace(/[,;.\s]+$/, "") + ".";
-  return s.replace(/\s*[–—―]\s*/g, ", ").replace(/ ,/g, ",").replace(/,\s*,/g, ", ").trim();
+  return s.replace(/\s*[\u2013\u2014\u2015]\s*/g, ", ").replace(/ ,/g, ",").replace(/,\s*,/g, ", ").trim();
 };
 
 async function fetchAllBlogPosts() {
   if (!supabaseUrl || !supabaseKey) {
-    console.warn("⚠️  Supabase env vars not found – skipping dynamic blog pages.");
+    console.warn("⚠️  Supabase env vars not found, skipping dynamic blog pages.");
     return [];
   }
 
@@ -348,7 +348,7 @@ function generateFooterHTML() {
       <a href="/locations">Store Locations</a>
       <a href="/about">About Us</a>
     </nav>
-    <p>Monday Morning Bottle Shop — 1854 Garnet Ave, San Diego, CA 92109 | 4967 Newport Ave, San Diego, CA 92107</p>
+    <p>Monday Morning Bottle Shop, 1854 Garnet Ave, San Diego, CA 92109 | 4967 Newport Ave, San Diego, CA 92107</p>
   </footer>`;
 }
 
@@ -366,7 +366,7 @@ function generateHomepageBody() {
       ${img("bolle-rose", "Bollé Rosé non-alcoholic sparkling wine", 'width="300" height="400" ')}
       <ul>
         <li>500+ Flavors &amp; Styles</li>
-        <li>2 San Diego Locations — Pacific Beach &amp; Ocean Beach</li>
+        <li>2 San Diego Locations, Pacific Beach &amp; Ocean Beach</li>
         <li>#1 NA Bottle Shop in America</li>
       </ul>
       <a href="/locations">Come Try Something</a>
@@ -378,8 +378,8 @@ function generateHomepageBody() {
     </section>
     <section>
       <h2>Shop by Vibe</h2>
-      <p>Whether it's a beach day, date night, golden hour, or cozy evening — we have the perfect alcohol-free drink for every moment.</p>
-      ${img("aperitif-golden-hour", "Best-selling non-alcoholic aperitifs at golden hour — Monday Morning Bottle Shop", 'width="600" height="400" ')}
+      <p>Whether it's a beach day, date night, golden hour, or cozy evening, we have the perfect alcohol-free drink for every moment.</p>
+      ${img("aperitif-golden-hour", "Best-selling non-alcoholic aperitifs at golden hour, Monday Morning Bottle Shop", 'width="600" height="400" ')}
       <a href="/collections/best-sellers">Best Sellers</a>
       ${img("beach-sunset-1", "Beach bonfire vibes with non-alcoholic drinks at sunset in San Diego", 'width="600" height="400" ')}
       <a href="/collections/beach-bonfire">Beach Bonfire Vibes</a>
@@ -397,7 +397,7 @@ function generateHomepageBody() {
     <section>
       <h2>Our Story</h2>
       ${img("friends-drinking", "Friends enjoying non-alcoholic drinks together at Monday Morning Bottle Shop San Diego", 'width="600" height="400" ')}
-      <p>Monday Morning was born from a simple realization: the best mornings start without a hangover. Founded by Zane in San Diego, we curate the world's finest non-alcoholic beverages so you can drink differently — without sacrificing taste or social experiences.</p>
+      <p>Monday Morning was born from a simple realization: the best mornings start without a hangover. Founded by Zane in San Diego, we curate the world's finest non-alcoholic beverages so you can drink differently, without sacrificing taste or social experiences.</p>
       <a href="/about">Read Our Story</a>
     </section>
     <section>
@@ -406,21 +406,21 @@ function generateHomepageBody() {
     </section>
     <section>
       <h2>NA Mocktail Recipes</h2>
-      <p>Discover delicious non-alcoholic cocktail recipes. Easy mocktails for breakfast, dinner, beach days, and celebrations — made with premium NA spirits, wine, and beer.</p>
+      <p>Discover delicious non-alcoholic cocktail recipes. Easy mocktails for breakfast, dinner, beach days, and celebrations, made with premium NA spirits, wine, and beer.</p>
       ${img("botanical-mocktail", "Botanical non-alcoholic mocktail recipe from Monday Morning", 'width="400" height="300" ')}
       ${img("aperitif-spritz", "Non-alcoholic aperitif spritz recipe for golden hour", 'width="400" height="300" ')}
       <a href="/recipes">View All Recipes</a>
     </section>
     <section>
       <h2>What Our Customers Say</h2>
-      <p>"Zane's knowledge of alcohol-free beverages is unmatched. He helped me find drinks I actually enjoy." — Jeff L., San Diego</p>
-      <p>"This place changed my relationship with drinking. I never thought I'd look forward to a night out sober." — Michael S., Pacific Beach</p>
-      <p>"Finally, a place that gets it. No judgment, incredible selection, and staff who actually care." — Sarah M., Ocean Beach</p>
+      <p>"Zane's knowledge of alcohol-free beverages is unmatched. He helped me find drinks I actually enjoy.", Jeff L., San Diego</p>
+      <p>"This place changed my relationship with drinking. I never thought I'd look forward to a night out sober.", Michael S., Pacific Beach</p>
+      <p>"Finally, a place that gets it. No judgment, incredible selection, and staff who actually care.", Sarah M., Ocean Beach</p>
     </section>
     <section>
       <h2>Follow Us on Instagram</h2>
       ${img("ig-storefront", "Monday Morning Bottle Shop storefront in Pacific Beach San Diego", 'width="300" height="300" ')}
-      ${img("ig-shop-interior", "Inside Monday Morning Bottle Shop — 500+ non-alcoholic drinks on display", 'width="300" height="300" ')}
+      ${img("ig-shop-interior", "Inside Monday Morning Bottle Shop, 500+ non-alcoholic drinks on display", 'width="300" height="300" ')}
       ${img("ig-friends-cheers", "Friends cheering with non-alcoholic drinks at Monday Morning", 'width="300" height="300" ')}
       ${img("ig-beer-shelf", "Non-alcoholic craft beer selection at Monday Morning Bottle Shop", 'width="300" height="300" ')}
       ${img("ig-amethyst", "Amethyst non-alcoholic drink at Monday Morning Bottle Shop", 'width="300" height="300" ')}
@@ -428,7 +428,7 @@ function generateHomepageBody() {
     </section>
     <section>
       <h2>Stay Connected</h2>
-      ${img("friends-cocktails", "Friends making non-alcoholic cocktails together — join the Monday Morning community", 'width="600" height="400" ')}
+      ${img("friends-cocktails", "Friends making non-alcoholic cocktails together, join the Monday Morning community", 'width="600" height="400" ')}
       <p>Join our newsletter for exclusive deals, new product drops, and NA drink recipes delivered to your inbox.</p>
     </section>
   </main>
@@ -439,7 +439,7 @@ function generateShopBody() {
   return `<header>${generateNavHTML()}</header>
   <main>
     <section>
-      <h1>Shop by Vibe — Non-Alcoholic Drinks for Every Moment</h1>
+      <h1>Shop by Vibe, Non-Alcoholic Drinks for Every Moment</h1>
       <p>Explore 500+ non-alcoholic drinks organized by vibe. Beach Day, Date Night, Golden Hour, and more. Find the perfect NA beer, wine, or spirit for any moment at Monday Morning Bottle Shop.</p>
     </section>
     <section>
@@ -486,7 +486,7 @@ function generateAboutBody() {
   return `<header>${generateNavHTML()}</header>
   <main>
     <section>
-      <h1>Where You Can Drink Differently — Without Judgment or Sacrificing Taste</h1>
+      <h1>Where You Can Drink Differently, Without Judgment or Sacrificing Taste</h1>
       <p>About Monday Morning Bottle Shop &amp; Tasting Room</p>
       ${img("cheers-drinks", "Friends cheering with non-alcoholic drinks at Monday Morning Bottle Shop", 'width="800" height="500" ')}
     </section>
@@ -495,7 +495,7 @@ function generateAboutBody() {
       ${img("zane-founder", "Zane, founder of Monday Morning Bottle Shop, San Diego's premier non-alcoholic bottle shop", 'width="400" height="500" ')}
       <p>"I loved Monday mornings again." That's what our founder, Zane, realized after choosing to go alcohol-free. No more foggy Sundays. No more dreading the week ahead. Just clarity, energy, and a weird sense of excitement for Monday.</p>
       <p>But there was a problem. Finding AF drinks that actually tasted good? Nearly impossible. Everything was either watery, packed with sugar, or tasted like an afterthought.</p>
-      <p>So Zane went on a mission. He traveled the world — tasting, testing, and curating the best alcohol-free beverages on the planet. The result? Monday Morning.</p>
+      <p>So Zane went on a mission. He traveled the world, tasting, testing, and curating the best alcohol-free beverages on the planet. The result? Monday Morning.</p>
       <p>We opened our doors in San Diego to share what we discovered: that you don't have to sacrifice taste to live differently. That "alcohol-free" can mean sophisticated, complex, and genuinely delicious.</p>
     </section>
     <section>
@@ -508,8 +508,8 @@ function generateAboutBody() {
     </section>
     <section>
       <h2>Sip, Sit, Shop</h2>
-      ${img("ig-shop-interior", "Inside Monday Morning Bottle Shop — browse and sample 500+ non-alcoholic drinks", 'width="600" height="400" ')}
-      <p><strong>Sip:</strong> Sample AF options until you find your favorite. Every bottle is available to try — no purchase necessary.</p>
+      ${img("ig-shop-interior", "Inside Monday Morning Bottle Shop, browse and sample 500+ non-alcoholic drinks", 'width="600" height="400" ')}
+      <p><strong>Sip:</strong> Sample AF options until you find your favorite. Every bottle is available to try, no purchase necessary.</p>
       <p><strong>Sit:</strong> Grab a seat at our tasting bar. Enjoy craft NA cocktails in a space built for connection.</p>
       <p><strong>Shop:</strong> Take your favorites home. We ship nationwide or pick up in-store at OB or PB.</p>
     </section>
@@ -521,7 +521,7 @@ function generateRecipesBody() {
   return `<header>${generateNavHTML()}</header>
   <main>
     <section>
-      <h1>NA Mocktail Recipes — Non-Alcoholic Cocktail Ideas</h1>
+      <h1>NA Mocktail Recipes, Non-Alcoholic Cocktail Ideas</h1>
       <p>Discover delicious non-alcoholic cocktail recipes. Easy mocktails for breakfast, dinner, beach days, and celebrations. Made with premium NA spirits, wine, and beer from Monday Morning Bottle Shop.</p>
       ${img("tropical-mocktail", "Tropical non-alcoholic mocktail recipe with fresh fruit garnish", 'width="600" height="400" ')}
     </section>
@@ -545,13 +545,13 @@ function generateLocationsBody() {
   return `<header>${generateNavHTML()}</header>
   <main>
     <section>
-      <h1>Monday Morning Store Locations — San Diego NA Bottle Shop</h1>
+      <h1>Monday Morning Store Locations, San Diego NA Bottle Shop</h1>
       <p>Visit our two San Diego locations to try before you buy. Sample from 500+ non-alcoholic beverages at our Pacific Beach and Ocean Beach tasting rooms.</p>
       ${img("ig-storefront", "Monday Morning Bottle Shop storefront in Pacific Beach, San Diego", 'width="600" height="400" ')}
     </section>
     <section>
       <h2>Pacific Beach Location</h2>
-      ${img("ig-shop-interior", "Inside Monday Morning Pacific Beach — non-alcoholic bottle shop and tasting room", 'width="600" height="400" ')}
+      ${img("ig-shop-interior", "Inside Monday Morning Pacific Beach, non-alcoholic bottle shop and tasting room", 'width="600" height="400" ')}
       <p><strong>Address:</strong> 1854 Garnet Ave, San Diego, CA 92109</p>
       <p><strong>Hours:</strong> Tuesday to Saturday 11 AM to 8 PM, Sunday 11 AM to 6 PM. Closed Monday.</p>
       <a href="https://maps.google.com/?q=1854+Garnet+Ave+San+Diego+CA+92109">Get Directions</a>
@@ -586,7 +586,7 @@ function generateBlogIndexBody(blogPosts) {
   return `<header>${generateNavHTML()}</header>
   <main>
     <section>
-      <h1>Monday Morning Blog — Stories from the Alcohol-Free Lifestyle</h1>
+      <h1>Monday Morning Blog, Stories from the Alcohol-Free Lifestyle</h1>
       <p>Stories, recipes, and insights from the alcohol-free lifestyle movement. Discover the joy of mindful drinking with Monday Morning.</p>
     </section>
     <section>
@@ -600,9 +600,9 @@ function generateServicesBody() {
   return `<header>${generateNavHTML()}</header>
   <main>
     <section>
-      <h1>Wholesale &amp; B2B Services — Non-Alcoholic Beverages for Bars &amp; Restaurants</h1>
+      <h1>Wholesale &amp; B2B Services, Non-Alcoholic Beverages for Bars &amp; Restaurants</h1>
       <p>Partner with Monday Morning for wholesale non-alcoholic beverages. Premium NA beer, wine, spirits, and mocktails for bars, restaurants, hotels, and retailers in San Diego and beyond.</p>
-      ${img("ig-beer-shelf", "Non-alcoholic beverage selection for wholesale — 500+ products available at Monday Morning", 'width="600" height="400" ')}
+      ${img("ig-beer-shelf", "Non-alcoholic beverage selection for wholesale, 500+ products available at Monday Morning", 'width="600" height="400" ')}
     </section>
     <section>
       <h2>Why Partner with Monday Morning?</h2>
@@ -630,17 +630,17 @@ function generateValentinesBody() {
   return `<header>${generateNavHTML()}</header>
   <main>
     <section>
-      <h1>Sips &amp; Sweethearts — Valentine's Date Night at Monday Morning</h1>
+      <h1>Sips &amp; Sweethearts, Valentine's Date Night at Monday Morning</h1>
       <p>Join us February 12th for an unforgettable Valentine's date night featuring handcrafted NA cocktails, chocolate pairings, charcuterie, and a cozy movie screening at Monday Morning Pacific Beach.</p>
     </section>
     <section>
       <h2>What's Included</h2>
       <ul>
-        <li>NA Cocktail Experience — Create two of our most loved cocktails with bartender DY</li>
-        <li>Chocolate Truffle Pairing — Artisan chocolates by Maya Moon paired with your drinks</li>
-        <li>Couples Love Portraits — Take home a custom couples caricature keepsake</li>
-        <li>Charcuterie for Two — A beautifully curated board to share</li>
-        <li>Cozy Movie Screening — End the night with a romantic film together</li>
+        <li>NA Cocktail Experience, Create two of our most loved cocktails with bartender DY</li>
+        <li>Chocolate Truffle Pairing, Artisan chocolates by Maya Moon paired with your drinks</li>
+        <li>Couples Love Portraits, Take home a custom couples caricature keepsake</li>
+        <li>Charcuterie for Two, A beautifully curated board to share</li>
+        <li>Cozy Movie Screening, End the night with a romantic film together</li>
       </ul>
     </section>
   </main>
@@ -651,7 +651,7 @@ function generatePrivacyBody() {
   return `<header>${generateNavHTML()}</header>
   <main>
     <section>
-      <h1>Privacy Policy — Monday Morning Bottle Shop</h1>
+      <h1>Privacy Policy, Monday Morning Bottle Shop</h1>
       <p>Last updated: January 2026</p>
       <h2>Information We Collect</h2>
       <p>We collect information you provide directly to us, such as when you create an account, make a purchase, sign up for our newsletter, or contact us for support. This may include your name, email address, shipping address, phone number, and payment information.</p>
@@ -666,7 +666,7 @@ function generateTermsBody() {
   return `<header>${generateNavHTML()}</header>
   <main>
     <section>
-      <h1>Terms of Service — Monday Morning Bottle Shop</h1>
+      <h1>Terms of Service, Monday Morning Bottle Shop</h1>
       <p>Last updated: January 2026</p>
       <h2>Acceptance of Terms</h2>
       <p>By accessing and using the Monday Morning website and services, you accept and agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use our services.</p>
@@ -681,14 +681,14 @@ function generateShippingBody() {
   return `<header>${generateNavHTML()}</header>
   <main>
     <section>
-      <h1>Shipping Policy — Monday Morning Bottle Shop</h1>
+      <h1>Shipping Policy, Monday Morning Bottle Shop</h1>
       <h2>Shipping Locations</h2>
       <p>We currently ship to all 50 U.S. states. For local customers in San Diego, in-store pickup is available at both our Ocean Beach and Pacific Beach locations.</p>
       <h2>Shipping Methods &amp; Timing</h2>
       <ul>
-        <li>Standard Shipping: 5–7 business days — $8.99</li>
-        <li>Expedited Shipping: 2–3 business days — $14.99</li>
-        <li>Overnight Shipping: 1 business day — $24.99</li>
+        <li>Standard Shipping: 5-7 business days, $8.99</li>
+        <li>Expedited Shipping: 2-3 business days, $14.99</li>
+        <li>Overnight Shipping: 1 business day, $24.99</li>
         <li>Free Shipping: Orders over $75 qualify for free standard shipping</li>
       </ul>
     </section>
@@ -700,7 +700,7 @@ function generateReturnsBody() {
   return `<header>${generateNavHTML()}</header>
   <main>
     <section>
-      <h1>Returns &amp; Refunds — Monday Morning Bottle Shop</h1>
+      <h1>Returns &amp; Refunds, Monday Morning Bottle Shop</h1>
       <p><strong>Our Promise:</strong> We want you to love what you drink. If you're not satisfied with your purchase, we'll make it right.</p>
       <h2>Return Policy</h2>
       <p>We accept returns within 30 days of purchase for unopened products in their original packaging. Due to the nature of consumable products, we cannot accept returns on opened items unless they are defective.</p>
@@ -731,11 +731,11 @@ function generateNADrinksSanDiegoBody() {
       ${img("na-wine-cheers", "Non-alcoholic wine tasting in San Diego at Monday Morning Bottle Shop", 'width="600" height="500" ')}
       <p>No other store in San Diego comes close to our range. Over 500 products across every category. Here is what you will find:</p>
       <ul>
-        <li><strong>Non-Alcoholic Beer</strong> — IPAs, lagers, stouts, sours, and wheat beers from Athletic Brewing, Bravus, Partake, and dozens more.</li>
-        <li><strong>Non-Alcoholic Wine</strong> — Reds, whites, ros\u00e9s, and sparkling wines that deliver real complexity. No compromise on taste.</li>
-        <li><strong>Non-Alcoholic Spirits</strong> — Gin, whiskey, tequila, and rum alternatives built for cocktails. Mix them exactly like the originals.</li>
-        <li><strong>Ready-to-Drink Mocktails</strong> — Grab-and-go options for picnics, parties, and weeknight dinners. Open and enjoy.</li>
-        <li><strong>Functional Beverages</strong> — Adaptogens, nootropics, CBD, and botanical blends. Drinks that do more than taste good.</li>
+        <li><strong>Non-Alcoholic Beer</strong>, IPAs, lagers, stouts, sours, and wheat beers from Athletic Brewing, Bravus, Partake, and dozens more.</li>
+        <li><strong>Non-Alcoholic Wine</strong>, Reds, whites, ros\u00e9s, and sparkling wines that deliver real complexity. No compromise on taste.</li>
+        <li><strong>Non-Alcoholic Spirits</strong>, Gin, whiskey, tequila, and rum alternatives built for cocktails. Mix them exactly like the originals.</li>
+        <li><strong>Ready-to-Drink Mocktails</strong>, Grab-and-go options for picnics, parties, and weeknight dinners. Open and enjoy.</li>
+        <li><strong>Functional Beverages</strong>, Adaptogens, nootropics, CBD, and botanical blends. Drinks that do more than taste good.</li>
       </ul>
       <a href="/collections/all">Browse All 500+ Products</a>
     </section>
@@ -780,7 +780,7 @@ function generateNABeerGuideBody() {
   <main>
     <section>
       <h1>The Complete Guide to Non-Alcoholic Beer</h1>
-      ${img("beach-bonfire-beers", "Non-alcoholic beer guide — friends enjoying craft NA beers at a San Diego beach bonfire", 'width="1200" height="600" ')}
+      ${img("beach-bonfire-beers", "Non-alcoholic beer guide, friends enjoying craft NA beers at a San Diego beach bonfire", 'width="1200" height="600" ')}
       <p>Non-alcoholic beer has undergone a revolution. The best non-alcoholic beers in 2026 are full-bodied, complex, and crafted with the same care as their alcoholic counterparts. This guide covers every style, the top brands, how to choose the right one, and where to find the best selection in San Diego.</p>
       <a href="/collections/na-beer">Shop Non-Alcoholic Beer</a>
       <a href="/locations">Visit Our Tasting Bar</a>
@@ -815,12 +815,12 @@ function generateNABeerGuideBody() {
       <h2>Who Non-Alcoholic Beer Is Perfect For</h2>
       ${img("beach-bonfire", "Friends enjoying non-alcoholic beer at a beach bonfire in San Diego", 'width="600" height="480" ')}
       <ul>
-        <li><strong>Athletes &amp; Active People</strong> — Hydration and recovery without alcohol's performance penalties.</li>
-        <li><strong>Sober-Curious Drinkers</strong> — Explore the flavor experience of beer without the commitment to alcohol.</li>
-        <li><strong>Pregnant Individuals</strong> — Enjoy a cold beer without worrying about alcohol content.</li>
-        <li><strong>Designated Drivers</strong> — Never feel left out. Hold a great beer and enjoy the evening.</li>
-        <li><strong>Anyone In Recovery</strong> — The ritual and flavor of beer without any risk of relapse.</li>
-        <li><strong>Health-Conscious Drinkers</strong> — Fewer calories, no hangover, and real flavor. All upside.</li>
+        <li><strong>Athletes &amp; Active People</strong>, Hydration and recovery without alcohol's performance penalties.</li>
+        <li><strong>Sober-Curious Drinkers</strong>, Explore the flavor experience of beer without the commitment to alcohol.</li>
+        <li><strong>Pregnant Individuals</strong>, Enjoy a cold beer without worrying about alcohol content.</li>
+        <li><strong>Designated Drivers</strong>, Never feel left out. Hold a great beer and enjoy the evening.</li>
+        <li><strong>Anyone In Recovery</strong>, The ritual and flavor of beer without any risk of relapse.</li>
+        <li><strong>Health-Conscious Drinkers</strong>, Fewer calories, no hangover, and real flavor. All upside.</li>
       </ul>
     </section>
     <section>
@@ -870,7 +870,7 @@ function generateBestNADrinksBody() {
     <section>
       <h1>The Best Non-Alcoholic Drinks</h1>
       ${img("rooftop-cheers", "Friends enjoying the best non-alcoholic drinks at a rooftop celebration", 'width="1200" height="600" ')}
-      <p>The best non-alcoholic drinks have arrived. Across every category — beer, wine, spirits, and functional beverages — the quality in 2026 is extraordinary. This guide covers what to drink, why it matters, and how to find your perfect match.</p>
+      <p>The best non-alcoholic drinks have arrived. Across every category, beer, wine, spirits, and functional beverages, the quality in 2026 is extraordinary. This guide covers what to drink, why it matters, and how to find your perfect match.</p>
       <a href="/shop">Shop All Drinks</a>
       <a href="/collections/best-sellers">See Best Sellers</a>
     </section>
@@ -914,12 +914,12 @@ function generateBestNADrinksBody() {
     <section>
       <h2>Finding the Best Non-Alcoholic Drink for Your Taste</h2>
       <ul>
-        <li><strong>You like something crisp and refreshing</strong> — Non-alcoholic lager, pilsner, or sparkling water with botanicals.</li>
-        <li><strong>You like something complex and aromatic</strong> — Non-alcoholic gin, an amaro alternative, or a botanical spirit.</li>
-        <li><strong>You like something rich and satisfying</strong> — Non-alcoholic stout, porter, or a bold red wine alternative.</li>
-        <li><strong>You like something sweet and fruity</strong> — Ready-to-drink NA cocktails, sparkling ros\u00e9, or tropical mocktails.</li>
-        <li><strong>You want something that does something</strong> — Functional drinks with kava, adaptogens, or CBD for real effects.</li>
-        <li><strong>You want something easy to bring to a party</strong> — Canned NA beers or RTD non-alcoholic cocktails.</li>
+        <li><strong>You like something crisp and refreshing</strong>, Non-alcoholic lager, pilsner, or sparkling water with botanicals.</li>
+        <li><strong>You like something complex and aromatic</strong>, Non-alcoholic gin, an amaro alternative, or a botanical spirit.</li>
+        <li><strong>You like something rich and satisfying</strong>, Non-alcoholic stout, porter, or a bold red wine alternative.</li>
+        <li><strong>You like something sweet and fruity</strong>, Ready-to-drink NA cocktails, sparkling ros\u00e9, or tropical mocktails.</li>
+        <li><strong>You want something that does something</strong>, Functional drinks with kava, adaptogens, or CBD for real effects.</li>
+        <li><strong>You want something easy to bring to a party</strong>, Canned NA beers or RTD non-alcoholic cocktails.</li>
       </ul>
     </section>
     <section>
@@ -1001,10 +1001,10 @@ function generateNewToNABody() {
     <section>
       <h2>Types of Non-Alcoholic Drinks Explained</h2>
       <ul>
-        <li><strong>Non-Alcoholic Beer</strong> — Brewed like regular beer, then dealcoholized. Every style exists: lagers, IPAs, stouts, sours, wheat beers. The most approachable and widely available category.</li>
-        <li><strong>Non-Alcoholic Wine</strong> — Produced from real grapes, then dealcoholized through vacuum distillation. Reds, whites, ros\u00e9s, and sparkling wines.</li>
-        <li><strong>Non-Alcoholic Spirits</strong> — Botanical distillates designed to replicate gin, whiskey, rum, tequila, and more. Built for cocktails.</li>
-        <li><strong>Functional Beverages</strong> — Drinks that go beyond hydration. Adaptogens for stress, nootropics for focus, kava for relaxation, CBD for calm. The most innovative and fastest-growing segment.</li>
+        <li><strong>Non-Alcoholic Beer</strong>, Brewed like regular beer, then dealcoholized. Every style exists: lagers, IPAs, stouts, sours, wheat beers. The most approachable and widely available category.</li>
+        <li><strong>Non-Alcoholic Wine</strong>, Produced from real grapes, then dealcoholized through vacuum distillation. Reds, whites, ros\u00e9s, and sparkling wines.</li>
+        <li><strong>Non-Alcoholic Spirits</strong>, Botanical distillates designed to replicate gin, whiskey, rum, tequila, and more. Built for cocktails.</li>
+        <li><strong>Functional Beverages</strong>, Drinks that go beyond hydration. Adaptogens for stress, nootropics for focus, kava for relaxation, CBD for calm. The most innovative and fastest-growing segment.</li>
       </ul>
     </section>
     <section>
@@ -1050,15 +1050,15 @@ function generateAlcoholFreeLifestyleBody() {
     <section>
       <h1>Alcohol-Free Lifestyle Benefits</h1>
       ${img("wellness-retreat-drinks", "Wellness-focused alcohol-free lifestyle with botanical drinks", 'width="1200" height="600" ')}
-      <p>The alcohol-free lifestyle is one of the most impactful changes a person can make. Better sleep, sharper focus, improved physical performance, and a richer social life — all without giving up the ritual of a great drink. This is what the sober-curious movement has unlocked.</p>
+      <p>The alcohol-free lifestyle is one of the most impactful changes a person can make. Better sleep, sharper focus, improved physical performance, and a richer social life, all without giving up the ritual of a great drink. This is what the sober-curious movement has unlocked.</p>
       <a href="/collections/functional">Explore Zero Proof Drinks</a>
       <a href="/shop">Shop All Categories</a>
     </section>
     <section>
       <h2>The Sober-Curious Movement in 2026</h2>
-      <p>The sober-curious movement is not about abstinence ideology. It is about intentionality. It is about questioning whether alcohol is serving you — your health, your mornings, your relationships, your performance — and having the freedom to choose differently.</p>
+      <p>The sober-curious movement is not about abstinence ideology. It is about intentionality. It is about questioning whether alcohol is serving you, your health, your mornings, your relationships, your performance, and having the freedom to choose differently.</p>
       <p>In 2026, the culture around alcohol has shifted. Major research has surfaced showing there is no safe level of alcohol consumption. Athletes at the highest levels are publicly alcohol-free. Social circles that once built everything around drinking are adapting to include everyone. The stigma around not drinking has largely evaporated.</p>
-      <p>What has replaced it is a genuine appreciation for the alcohol-free lifestyle — not as a compromise, but as an upgrade. The people living it are not giving something up. They are getting more back than they expected.</p>
+      <p>What has replaced it is a genuine appreciation for the alcohol-free lifestyle, not as a compromise, but as an upgrade. The people living it are not giving something up. They are getting more back than they expected.</p>
       <p>Non-alcoholic drinks are the bridge. They preserve the ritual, the flavor, and the social experience of drinking while eliminating the downsides entirely. At Monday Morning, we exist to make that bridge as good as possible.</p>
     </section>
     <section>
@@ -1079,7 +1079,7 @@ function generateAlcoholFreeLifestyleBody() {
     </section>
     <section>
       <h2>The Social Benefits of the Alcohol-Free Lifestyle</h2>
-      <p>The most common concern about going alcohol-free is social. What do you do at parties? At dinners? At celebrations? The answer is the same thing everyone else is doing — just without the impairment.</p>
+      <p>The most common concern about going alcohol-free is social. What do you do at parties? At dinners? At celebrations? The answer is the same thing everyone else is doing, just without the impairment.</p>
       <p>Non-alcoholic drinks have eliminated the visual distinction. A great non-alcoholic beer in your hand looks identical to a regular beer. A sparkling NA wine in a glass is indistinguishable at a toast. The social ritual is preserved completely.</p>
       <p>What changes is how you feel the next morning. And how you feel at 10 PM when the conversation is still good. And how you perform at 6 AM when you have not disrupted your sleep. The social experience stays. The downsides disappear.</p>
     </section>
@@ -1087,12 +1087,12 @@ function generateAlcoholFreeLifestyleBody() {
       <h2>Who the Alcohol-Free Lifestyle Is Perfect For</h2>
       ${img("functional-wellness-morning", "Functional wellness drinks as part of an alcohol-free morning routine", 'width="600" height="500" ')}
       <ul>
-        <li><strong>Athletes &amp; Performance-Focused People</strong> — Alcohol impairs recovery, sleep, and performance. Going alcohol-free is one of the highest-leverage health decisions an active person can make.</li>
-        <li><strong>Anyone Prioritizing Mental Health</strong> — Alcohol is a depressant. Many people with anxiety, depression, or mood issues find significant improvement when alcohol is removed.</li>
-        <li><strong>The Sober-Curious</strong> — You do not need a reason beyond curiosity. Exploring life without alcohol is always worthwhile.</li>
-        <li><strong>Parents &amp; Caregivers</strong> — Clarity, presence, and consistent energy are invaluable when you are responsible for others.</li>
-        <li><strong>Professionals Who Need to Perform</strong> — Alcohol costs you mornings. Removing it gives them back, along with sharper thinking and better decision-making.</li>
-        <li><strong>Anyone in Recovery</strong> — High-quality non-alcoholic drinks make social situations entirely manageable without compromise.</li>
+        <li><strong>Athletes &amp; Performance-Focused People</strong>, Alcohol impairs recovery, sleep, and performance. Going alcohol-free is one of the highest-leverage health decisions an active person can make.</li>
+        <li><strong>Anyone Prioritizing Mental Health</strong>, Alcohol is a depressant. Many people with anxiety, depression, or mood issues find significant improvement when alcohol is removed.</li>
+        <li><strong>The Sober-Curious</strong>, You do not need a reason beyond curiosity. Exploring life without alcohol is always worthwhile.</li>
+        <li><strong>Parents &amp; Caregivers</strong>, Clarity, presence, and consistent energy are invaluable when you are responsible for others.</li>
+        <li><strong>Professionals Who Need to Perform</strong>, Alcohol costs you mornings. Removing it gives them back, along with sharper thinking and better decision-making.</li>
+        <li><strong>Anyone in Recovery</strong>, High-quality non-alcoholic drinks make social situations entirely manageable without compromise.</li>
       </ul>
     </section>
     <section>
@@ -1113,7 +1113,7 @@ function generateAlcoholFreeLifestyleBody() {
       <h3>What are the health benefits of an alcohol-free lifestyle?</h3>
       <p>Eliminating or significantly reducing alcohol leads to measurable improvements across multiple areas: better sleep quality, improved liver function, clearer skin, reduced anxiety and depression, sharper mental focus, better physical performance, and lower risk of multiple cancers.</p>
       <h3>Is the sober-curious movement the same as sobriety?</h3>
-      <p>No. Sober-curious describes a deliberate, investigative approach to alcohol — questioning your relationship with it without committing to complete abstinence. Many sober-curious people still drink occasionally but have significantly reduced their consumption.</p>
+      <p>No. Sober-curious describes a deliberate, investigative approach to alcohol, questioning your relationship with it without committing to complete abstinence. Many sober-curious people still drink occasionally but have significantly reduced their consumption.</p>
       <h3>How quickly will I see benefits from reducing alcohol?</h3>
       <p>Many people notice improved sleep within the first week. Skin changes are often visible within two to four weeks. Mental clarity and energy improvements typically appear within the first month.</p>
       <h3>Will I miss alcohol at social events?</h3>
@@ -1121,7 +1121,7 @@ function generateAlcoholFreeLifestyleBody() {
       <h3>What do I drink instead of alcohol?</h3>
       <p>The best alcohol-free alternatives depend on what you love about drinking. If you love the flavor of beer, non-alcoholic craft beer is the answer. If you prefer cocktails, non-alcoholic spirits mixed the same way deliver a nearly identical experience.</p>
       <h3>Can I maintain an alcohol-free lifestyle and still have a social life?</h3>
-      <p>Absolutely. The social dimension of drinking is about presence, ritual, and shared experience — none of which require alcohol.</p>
+      <p>Absolutely. The social dimension of drinking is about presence, ritual, and shared experience, none of which require alcohol.</p>
       <h3>What are the best functional drinks for replacing alcohol's relaxing effect?</h3>
       <p>Kava-based drinks, ashwagandha formulations, and drinks containing L-theanine or calming adaptogens are the closest functional replacements for alcohol's relaxing effect. Brands like Kin Euphorics, Apl\u00f3s, and Daytrip are specifically designed for this use case.</p>
       <h3>Is it realistic to go alcohol-free long-term?</h3>
@@ -1145,7 +1145,7 @@ function generateCollectionBody(route) {
   const collectionImages = {
     "best-sellers": ["aperitif-golden-hour", "Best-selling non-alcoholic drinks at Monday Morning Bottle Shop"],
     "na-beer": ["beer-patio-friends", "Non-alcoholic craft beer collection at Monday Morning"],
-    "wine-alternatives": ["wine-dinner-toast", "Non-alcoholic wine alternatives — red, white, rosé and sparkling"],
+    "wine-alternatives": ["wine-dinner-toast", "Non-alcoholic wine alternatives, red, white, rosé and sparkling"],
     "spirit-alternatives": ["na-botanical-dark", "Non-alcoholic spirit alternatives for craft cocktails"],
     "functional": ["functional-wellness-morning", "Functional wellness drinks with adaptogens and nootropics"],
     "beach-bonfire": ["beach-sunset-1", "Beach bonfire vibes with non-alcoholic drinks at sunset"],
@@ -1166,7 +1166,7 @@ function generateCollectionBody(route) {
   return `<header>${generateNavHTML()}</header>
   <main>
     <section>
-      <h1>${escapeHTML(collectionName)} — ${SITE_NAME}</h1>
+      <h1>${escapeHTML(collectionName)}, ${SITE_NAME}</h1>
       <p>${escapeHTML(route.description)}</p>
       ${collectionImg}
     </section>
@@ -1194,12 +1194,12 @@ function generateProductBody(product) {
     </nav>
     <article>
       <h1>${escapeHTML(product.title)}</h1>
-      ${image ? `<img src="${escapeHTML(image)}" alt="${escapeHTML(product.title)} — non-alcoholic ${escapeHTML(category.toLowerCase())} at ${SITE_NAME}" width="600" height="600" loading="lazy" />` : ""}
+      ${image ? `<img src="${escapeHTML(image)}" alt="${escapeHTML(product.title)}, non-alcoholic ${escapeHTML(category.toLowerCase())} at ${SITE_NAME}" width="600" height="600" loading="lazy" />` : ""}
       <p><strong>Category:</strong> ${escapeHTML(category)}</p>
       ${vendor ? `<p><strong>Brand:</strong> ${escapeHTML(vendor)}</p>` : ""}
       <p><strong>Price:</strong> $${parseFloat(price).toFixed(2)}</p>
       <p>${escapeHTML(desc)}</p>
-      <p>Shop ${escapeHTML(product.title)} — premium non-alcoholic ${escapeHTML(category.toLowerCase())} at ${SITE_NAME}. ${vendor ? `By ${escapeHTML(vendor)}. ` : ""}Free shipping on orders over $75.</p>
+      <p>Shop ${escapeHTML(product.title)}, premium non-alcoholic ${escapeHTML(category.toLowerCase())} at ${SITE_NAME}. ${vendor ? `By ${escapeHTML(vendor)}. ` : ""}Free shipping on orders over $75.</p>
     </article>
     <section>
       <h2>More Non-Alcoholic Drinks to Explore</h2>
@@ -1320,7 +1320,7 @@ const staticRoutes = [
   {
     path: "/locations",
     title: "Store Locations | Monday Morning Bottle Shop",
-    description: "Visit Monday Morning's two San Diego locations. Pacific Beach (1854 Garnet Ave) and Ocean Beach (4967 Newport Ave). Try before you buy — sample 500+ NA drinks.",
+    description: "Visit Monday Morning's two San Diego locations. Pacific Beach (1854 Garnet Ave) and Ocean Beach (4967 Newport Ave). Try before you buy, sample 500+ NA drinks.",
     schema: [organizationSchema, localBusinessSchema],
   },
   {
@@ -1386,7 +1386,7 @@ const staticRoutes = [
   {
     path: "/stockists",
     title: "Where to Find Our Drinks in San Diego | Monday Morning",
-    description: "San Diego bars, restaurants, and shops that carry the non-alcoholic brands Monday Morning distributes — tap a venue to see what it stocks.",
+    description: "San Diego bars, restaurants, and shops that carry the non-alcoholic brands Monday Morning distributes, tap a venue to see what it stocks.",
     schema: [organizationSchema],
   },
   {
@@ -1470,7 +1470,7 @@ const staticRoutes = [
   {
     path: "/best-non-alcoholic-drinks",
     title: "Best Non-Alcoholic Drinks in 2026 | Complete Category Guide",
-    description: "Discover the best non-alcoholic drinks across every category — beer, wine, spirits, and functional beverages. Expert picks, occasion guides, and 500+ options at Monday Morning.",
+    description: "Discover the best non-alcoholic drinks across every category, beer, wine, spirits, and functional beverages. Expert picks, occasion guides, and 500+ options at Monday Morning.",
     schema: [
       organizationSchema,
       {
@@ -1521,11 +1521,11 @@ const staticRoutes = [
         "@type": "FAQPage",
         mainEntity: [
           { "@type": "Question", name: "What are the health benefits of an alcohol-free lifestyle?", acceptedAnswer: { "@type": "Answer", text: "Eliminating or significantly reducing alcohol leads to better sleep quality, improved liver function, clearer skin, reduced anxiety, sharper mental focus, better physical performance, and lower risk of multiple cancers." } },
-          { "@type": "Question", name: "Is the sober-curious movement the same as sobriety?", acceptedAnswer: { "@type": "Answer", text: "No. Sober-curious describes a deliberate, investigative approach to alcohol — questioning your relationship with it without committing to complete abstinence." } },
+          { "@type": "Question", name: "Is the sober-curious movement the same as sobriety?", acceptedAnswer: { "@type": "Answer", text: "No. Sober-curious describes a deliberate, investigative approach to alcohol, questioning your relationship with it without committing to complete abstinence." } },
           { "@type": "Question", name: "How quickly will I see benefits from reducing alcohol?", acceptedAnswer: { "@type": "Answer", text: "Many people notice improved sleep within the first week. Skin changes are often visible within two to four weeks. Mental clarity and energy improvements typically appear within the first month." } },
           { "@type": "Question", name: "Will I miss alcohol at social events?", acceptedAnswer: { "@type": "Answer", text: "Most people are surprised by how little they miss alcohol when they have great alternatives in hand. The ritual of holding a drink and participating in a toast is entirely preserved with non-alcoholic options." } },
           { "@type": "Question", name: "What do I drink instead of alcohol?", acceptedAnswer: { "@type": "Answer", text: "The best alcohol-free alternatives depend on what you love about drinking. Non-alcoholic craft beer, wine, spirits mixed the same way, and functional beverages all deliver excellent experiences." } },
-          { "@type": "Question", name: "Can I maintain an alcohol-free lifestyle and still have a social life?", acceptedAnswer: { "@type": "Answer", text: "Absolutely. The social dimension of drinking is about presence, ritual, and shared experience — none of which require alcohol." } },
+          { "@type": "Question", name: "Can I maintain an alcohol-free lifestyle and still have a social life?", acceptedAnswer: { "@type": "Answer", text: "Absolutely. The social dimension of drinking is about presence, ritual, and shared experience, none of which require alcohol." } },
           { "@type": "Question", name: "What are the best functional drinks for replacing alcohol's relaxing effect?", acceptedAnswer: { "@type": "Answer", text: "Kava-based drinks, ashwagandha formulations, and drinks containing L-theanine or calming adaptogens are the closest functional replacements. Brands like Kin Euphorics, Aplos, and Daytrip are specifically designed for this use case." } },
           { "@type": "Question", name: "Is it realistic to go alcohol-free long-term?", acceptedAnswer: { "@type": "Answer", text: "Yes. The availability of high-quality non-alcoholic alternatives has made long-term alcohol-free living genuinely enjoyable rather than a sacrifice." } },
         ],
@@ -1929,6 +1929,14 @@ function generateHTML(route, templateHTML, allProducts, allBlogPosts) {
     '<div id="root"></div>',
     `<div id="root">${bodyContent}</div>`
   );
+
+  // Brand rule: NO em/en dashes anywhere in the output. Runs on the final HTML
+  // string only (source comments/regex untouched). Numeric ranges become a
+  // hyphen ("50-75%"); every other dash becomes a comma.
+  html = html
+    .replace(/(\d)\s*[\u2013\u2014\u2015]\s*(\d)/g, "$1-$2")
+    .replace(/\s*[\u2014\u2015]\s*/g, ", ")
+    .replace(/\s*\u2013\s*/g, ", ");
 
   return html;
 }

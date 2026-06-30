@@ -115,7 +115,7 @@ const AppContent = () => {
           <Route path="/california-privacy" element={<Navigate to="/ccpa" replace />} />
           <Route path="/services" element={<Wholesale />} />
           <Route path="/wholesale" element={<Navigate to="/services" replace />} />
-          {/* B2B portal retired (duplicated the CRM/Shopify B2B flow) — redirect to Work With Us */}
+          {/* B2B portal retired (duplicated the CRM/Shopify B2B flow), redirect to Work With Us */}
           <Route path="/wholesale-login" element={<Navigate to="/services" replace />} />
           <Route path="/wholesale-catalog" element={<Navigate to="/services" replace />} />
           <Route path="/valentines" element={<Valentines />} />

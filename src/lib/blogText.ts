@@ -5,7 +5,7 @@
 // dash back on the live site. Em dash = U+2014 (also catches the horizontal-bar
 // lookalikes U+2013 en dash used as a separator, and U+2015).
 
-const DASH = /[ \t]*[–—―][ \t]*/g; // dash + surrounding spaces/tabs (never newlines)
+const DASH = /[ \t]*[\u2013\u2014\u2015][ \t]*/g; // en/em/bar dash + surrounding spaces/tabs (never newlines)
 
 // Titles read best as "hook: payoff"; body prose reads best with a comma.
 export const cleanTitle = (s: string | null | undefined): string =>
@@ -41,7 +41,7 @@ export const cleanExcerpt = (raw: string | null | undefined): string => {
   const dup = probe.length >= 30 ? s.indexOf(probe, 40) : -1;
   if (dup > 40) s = s.slice(0, dup).replace(/[,;.\s]+$/, "") + ".";
   return s
-    .replace(/\s*[–—―]\s*/g, ", ")
+    .replace(/\s*[\u2013\u2014\u2015]\s*/g, ", ")
     .replace(/ ,/g, ",")
     .replace(/,\s*,/g, ", ")
     .trim();

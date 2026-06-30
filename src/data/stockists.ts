@@ -1,4 +1,4 @@
-// Where to find the non-alcoholic brands Monday Morning distributes — by venue.
+// Where to find the non-alcoholic brands Monday Morning distributes, by venue.
 // One entry per real location (multi-venue groups are split out). `brands` is
 // what that venue carries, from its wholesale order history. An empty `brands`
 // array means the venue is an account but orders through its group, so we show

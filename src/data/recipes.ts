@@ -39,7 +39,7 @@ const KAVA_HAVEN = "https://cdn.shopify.com/s/files/1/0902/1377/7708/files/KavaH
 const ATB_NEW_ORLEANS = "https://cdn.shopify.com/s/files/1/0902/1377/7708/files/NewOrleansBitters-NonAlcoholicBitters.png";
 const CDN = "https://cdn.shopify.com/s/files/1/0902/1377/7708/files";
 
-// The single "hero" bottle shown for each recipe — used on the Behind the Bar page
+// The single "hero" bottle shown for each recipe, used on the Behind the Bar page
 // and the home recipe section so they stay consistent.
 export const RECIPE_BOTTLE: Record<string, string> = {
   "sunny-bear": DROMME_CALM,
@@ -493,7 +493,7 @@ export const recipes: Recipe[] = [
       "½ oz lime juice",
       "½ oz pineapple syrup",
       "7 dashes ATB Aromatic Bitters",
-      "4–5 oz ginger beer",
+      "4-5 oz ginger beer",
     ],
     steps: [
       "Shake everything except ginger beer with ice for 6 to 8 seconds.",
@@ -636,7 +636,7 @@ export const recipes: Recipe[] = [
       "½ oz yuzu juice",
       "½ oz Meyer lemon syrup",
       "5 dashes ATB Orange Bitters",
-      "3–4 oz sparkling water",
+      "3-4 oz sparkling water",
     ],
     steps: [
       "Shake spirits, juice, syrup and bitters with ice briefly.",

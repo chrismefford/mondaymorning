@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 /**
- * Judge.me reviews — fetched directly from the public widget API and rendered
+ * Judge.me reviews, fetched directly from the public widget API and rendered
  * in React.
  *
  * We previously relied on Judge.me's client-side `widget_preloader.js` to inject

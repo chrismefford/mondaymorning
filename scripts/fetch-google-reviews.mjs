@@ -4,17 +4,17 @@
 //
 //   GOOGLE_PLACES_API_KEY=... node scripts/fetch-google-reviews.mjs
 //
-// The API key is NEVER committed — only the resulting JSON is. Re-run this
+// The API key is NEVER committed, only the resulting JSON is. Re-run this
 // (manually or on a schedule) to refresh; commit + publish to push it live.
 import { writeFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
 
 const KEY = process.env.GOOGLE_PLACES_API_KEY;
-const PLACE_ID = "ChIJG-eShv4B3IARyUdY1QTXgi4"; // Monday Morning Bottle Shop — 1854 Garnet Ave, PB
+const PLACE_ID = "ChIJG-eShv4B3IARyUdY1QTXgi4"; // Monday Morning Bottle Shop, 1854 Garnet Ave, PB
 
 if (!KEY) {
-  console.error("GOOGLE_PLACES_API_KEY not set — skipping Google reviews refresh (keeping existing JSON).");
+  console.error("GOOGLE_PLACES_API_KEY not set, skipping Google reviews refresh (keeping existing JSON).");
   process.exit(0);
 }
 
@@ -25,7 +25,7 @@ const res = await fetch(`https://places.googleapis.com/v1/places/${PLACE_ID}`, {
   },
 });
 if (!res.ok) {
-  console.error("Places API error", res.status, await res.text(), "— keeping existing JSON.");
+  console.error("Places API error", res.status, await res.text(), ", keeping existing JSON.");
   process.exit(0); // never fail the build; just keep the last good JSON
 }
 const d = await res.json();

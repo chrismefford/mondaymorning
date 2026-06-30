@@ -242,7 +242,7 @@ const ShopPage = () => {
               ) : null
             )}
 
-            {/* Shop by Vibe — compact discovery cards (no lifestyle photos) */}
+            {/* Shop by Vibe, compact discovery cards (no lifestyle photos) */}
             <section className="py-12 lg:py-16 bg-sand">
               <div className="container mx-auto px-4 lg:px-8">
                 <div className="text-center max-w-2xl mx-auto mb-8 lg:mb-10">

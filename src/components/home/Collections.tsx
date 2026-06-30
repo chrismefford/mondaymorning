@@ -12,7 +12,7 @@ import illusCan from "@/assets/brand/illus-beer-can.png";
 
 // Category tiles, each wired to a live, distinct Shopify collection.
 // Uniform forest background so the grid reads as one consistent set.
-// (Cocktails and Functional-RTDs were dropped — both are cans already
+// (Cocktails and Functional-RTDs were dropped, both are cans already
 // covered by the Canned / Ready-to-Drinks tile.)
 // `slug` = the friendly route (mapped to a titled page in Collection.tsx);
 // `handle` = the live Shopify collection handle used to confirm the tile exists.

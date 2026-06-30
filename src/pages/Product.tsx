@@ -61,7 +61,7 @@ const ProductPage = () => {
   const brand = (product?.raw?.vendor || "").trim();
 
   // Review rating from Judge.me (fetched via the shared hook) folded into our
-  // Product schema — single source of truth for the star snippet. Null until
+  // Product schema, single source of truth for the star snippet. Null until
   // there are real reviews, so no fake aggregateRating.
   const jmReviews = useJudgeMeReviews(externalId);
   const jmRating = jmReviews && jmReviews.count > 0

@@ -116,7 +116,7 @@ const Stockists = () => {
 
   const pageTitle = "Where to Find Our Drinks in San Diego | Monday Morning";
   const pageDescription =
-    "Bars, restaurants, and shops across San Diego that carry the non-alcoholic brands Monday Morning distributes — tap any spot to see what it stocks. Find an alcohol-free pour near you.";
+    "Bars, restaurants, and shops across San Diego that carry the non-alcoholic brands Monday Morning distributes. Tap any spot to see what it stocks, and find an alcohol-free pour near you.";
   const canonicalUrl = getCanonicalUrl("/stockists");
 
   // Structured data: a directory of the venues that stock our brands, so
@@ -124,7 +124,7 @@ const Stockists = () => {
   const stockistSchema = {
     "@context": "https://schema.org",
     "@type": "ItemList",
-    name: "Monday Morning Stockists — San Diego",
+    name: "Monday Morning Stockists, San Diego",
     description:
       "San Diego bars, restaurants, and shops that carry the non-alcoholic brands Monday Morning distributes.",
     itemListElement: STOCKISTS.map((s, i) => {

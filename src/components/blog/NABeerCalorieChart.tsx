@@ -46,7 +46,7 @@ const NABeerCalorieChart = () => {
         Calories: Regular Beer vs. NA Beer
       </h3>
       <p className="text-center text-foreground/60 text-sm mb-6">
-        Per 12 oz serving, NA options consistently deliver 50–75% fewer calories
+        Per 12 oz serving, NA options consistently deliver 50-75% fewer calories
       </p>
 
       <ResponsiveContainer width="100%" height={320}>

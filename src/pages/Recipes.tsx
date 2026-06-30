@@ -32,7 +32,7 @@ function getRecipeImageUrl(recipe: Recipe): string {
   return RECIPE_BOTTLE[recipe.id] || recipe.image;
 }
 
-// Bottles are contained on the card's cream background — no cropping, no tint.
+// Bottles are contained on the card's cream background, no cropping, no tint.
 function recipeImgClass(extra = ""): string {
   return `w-full h-full object-contain p-5 ${extra}`.trim();
 }
