@@ -1614,6 +1614,13 @@ const staticRoutes = [
     schema: [organizationSchema],
   },
   {
+    path: "/non-alcoholic-breweries-san-diego",
+    title: "Non-Alcoholic Breweries in San Diego (2026): The Lab & Where to Find NA Beer | Monday Morning",
+    description: "Does San Diego have a non-alcoholic brewery? Yes. Meet The Lab, San Diego's dedicated NA-focused brewery, plus the local breweries making alcohol-free beer and where to buy 500+ NA brews.",
+    ogImage: `${SITE_URL}/og-the-lab-opening-san-marcos.jpg`,
+    schema: [organizationSchema],
+  },
+  {
     path: "/non-alcoholic-beer-pregnancy",
     title: "Non Alcoholic Beer and Pregnancy: What's Safe in 2026 | Monday Morning",
     description: "A clear, evidence based look at non alcoholic beer during pregnancy. ABV thresholds, what doctors say, and 0.0% brands to know.",

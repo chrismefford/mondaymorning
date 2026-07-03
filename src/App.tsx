@@ -75,6 +75,7 @@ const BeginnersGuideNA = lazy(() => import("./pages/seo/BeginnersGuideNA"));
 const FunctionalMocktailsAdaptogens = lazy(() => import("./pages/seo/FunctionalMocktailsAdaptogens"));
 const NonAlcoholicBarHillcrest = lazy(() => import("./pages/seo/NonAlcoholicBarHillcrest"));
 const GoodNewsBarAlternatives = lazy(() => import("./pages/seo/GoodNewsBarAlternatives"));
+const NonAlcoholicBreweriesSanDiego = lazy(() => import("./pages/seo/NonAlcoholicBreweriesSanDiego"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 const queryClient = new QueryClient();
@@ -157,6 +158,7 @@ const AppContent = () => {
           <Route path="/functional-mocktails-adaptogens" element={<FunctionalMocktailsAdaptogens />} />
           <Route path="/non-alcoholic-bar-hillcrest" element={<NonAlcoholicBarHillcrest />} />
           <Route path="/good-news-bar-alternatives-san-diego" element={<GoodNewsBarAlternatives />} />
+          <Route path="/non-alcoholic-breweries-san-diego" element={<NonAlcoholicBreweriesSanDiego />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
