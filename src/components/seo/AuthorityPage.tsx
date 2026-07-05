@@ -167,7 +167,7 @@ const AuthorityPage = ({
           <div className="container mx-auto px-4 lg:px-8 max-w-3xl">
             <div className="border-l-4 border-gold-warm pl-5">
               <p className="font-sans uppercase tracking-[0.2em] text-xs text-forest/60 mb-2">
-                TL;DR
+                The short version
               </p>
               <p className="font-sans text-base md:text-lg text-forest leading-relaxed">
                 {tldr}
