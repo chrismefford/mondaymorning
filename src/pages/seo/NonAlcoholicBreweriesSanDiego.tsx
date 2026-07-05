@@ -72,6 +72,9 @@ const NonAlcoholicBreweriesSanDiego = () => (
               <strong>The Lab</strong> is our non-alcoholic brewing and innovation space in San Marcos, one of the only NA-focused production partners in Southern California. It is where we brew, can, and white-label alcohol-free beer, functional drinks, and ready-to-drink products, including our first house brew, <strong>Haymaker NA IPA</strong>.
             </p>
             <p>
+              In July 2026, the <strong>San Diego Union-Tribune</strong> put The Lab on the front page of its Business section, picturing founder Zane Curtis at the San Marcos production facility as San Diego bets big on alcohol-free beer. See the <Link to="/press">press coverage</Link>.
+            </p>
+            <p>
               The Lab is a production and contract-brewing facility, not a walk-in taproom, so it is not the spot for a casual pint. What it is: proof that real, craft-quality NA beer is being made in San Diego, and a place other brands can build with. If you are a brand that wants to make an alcohol-free product, that is exactly what The Lab is for. See <Link to="/services">contract brewing at The Lab</Link>.
             </p>
           </>
