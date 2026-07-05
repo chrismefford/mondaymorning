@@ -3,6 +3,7 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import SEO from "@/components/SEO";
 import textureCream from "@/assets/texture-cream.webp";
+import utCover from "@/assets/press-ut-cover-2026.jpg";
 
 interface PressItem {
   outlet: string;
@@ -37,13 +38,6 @@ const tvFeatures: PressItem[] = [
 ];
 
 const newspaperFeatures: PressItem[] = [
-  {
-    outlet: "San Diego Union-Tribune",
-    title: "Brewers Betting on Nonalcoholic Beers: S.D. companies are cashing in (Business cover feature)",
-    date: "Jul 5, 2026",
-    url: "https://edition.pagesuite.com/popovers/dynamic_article_popover.aspx?guid=25d8ba21-2dc3-45ef-915a-70a7cb5b191f&v=sdk",
-    type: "newspaper",
-  },
   {
     outlet: "San Diego Union-Tribune",
     title: "On the Menu: Monday Morning Bottle Shop offers spirits, without the alcohol, in Pacific Beach",
@@ -246,6 +240,43 @@ const Press = () => {
                 {name}
               </span>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Featured cover story */}
+      <section className="container mx-auto px-4 lg:px-8 pt-14 lg:pt-20">
+        <div className="grid lg:grid-cols-[minmax(0,0.8fr)_1fr] gap-8 lg:gap-14 items-center bg-forest text-cream p-6 sm:p-8 lg:p-14">
+          <div className="order-2 lg:order-1">
+            <img
+              src={utCover}
+              alt="Monday Morning founder Zane Curtis featured on the front page of the San Diego Union-Tribune Business section, July 5, 2026"
+              width={1050}
+              height={1400}
+              loading="lazy"
+              className="w-full max-w-xs sm:max-w-sm mx-auto lg:max-w-none border-[6px] border-cream shadow-2xl"
+            />
+          </div>
+          <div className="order-1 lg:order-2">
+            <p className="font-sans text-[11px] uppercase tracking-[0.28em] text-gold mb-4">On the Cover</p>
+            <p className="font-sans text-xs uppercase tracking-[0.15em] text-cream/60 mb-3">
+              San Diego Union-Tribune · Business · Sunday, July 5, 2026
+            </p>
+            <h2 className="font-serif text-3xl lg:text-4xl xl:text-5xl leading-[1.08] mb-5">
+              Brewers Betting on Nonalcoholic Beers
+            </h2>
+            <p className="font-sans text-cream/75 leading-relaxed mb-8 max-w-md">
+              The front page of the Union-Tribune Business section features Monday Morning founder Zane Curtis and The Lab, our San Marcos non-alcoholic production facility, as San Diego bets big on alcohol-free beer.
+            </p>
+            <a
+              href="https://edition.pagesuite.com/popovers/dynamic_article_popover.aspx?guid=25d8ba21-2dc3-45ef-915a-70a7cb5b191f&v=sdk"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 bg-gold hover:bg-gold-light text-forest font-sans text-sm uppercase tracking-wider px-7 py-4 transition-colors"
+            >
+              Read the feature
+              <ExternalLink className="w-4 h-4" />
+            </a>
           </div>
         </div>
       </section>
