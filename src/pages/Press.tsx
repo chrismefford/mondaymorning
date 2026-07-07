@@ -39,6 +39,13 @@ const tvFeatures: PressItem[] = [
 
 const newspaperFeatures: PressItem[] = [
   {
+    outlet: "San Diego Beer News",
+    title: "San Diego's First N/A Brewery Taproom En Route",
+    date: "Jul 7, 2026",
+    url: "https://sandiegobeer.news/sneak-peek-monday-morning-lab/",
+    type: "newspaper",
+  },
+  {
     outlet: "San Diego Union-Tribune",
     title: "On the Menu: Monday Morning Bottle Shop offers spirits, without the alcohol, in Pacific Beach",
     date: "Aug 5, 2025",
