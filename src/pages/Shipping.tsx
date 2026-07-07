@@ -29,20 +29,35 @@ const Shipping = () => {
                 <div className="space-y-4">
                   <h2 className="font-serif text-2xl text-forest">Shipping Locations</h2>
                   <p>
-                    We ship to most U.S. states. Due to state regulations, some states restrict the shipment of non-alcoholic beverages. If your state is affected, we'll notify you at checkout. Unfortunately, we do not ship internationally at this time. For local customers in San Diego, in-store pickup is available at both our Ocean Beach and Pacific Beach locations.
+                    We ship across the United States. Some non-alcoholic products carry state-level shipping restrictions; if your state or an item is affected, you'll see that at checkout before you pay. We do not ship internationally at this time. In San Diego, you can also choose local delivery or free in-store pickup, both covered below.
                   </p>
                 </div>
 
                 <div className="space-y-4">
-                  <h2 className="font-serif text-2xl text-forest">Shipping Methods & Timing</h2>
-                   <ul className="list-disc pl-6 space-y-2">
-                    <li><strong className="text-forest">Standard Shipping:</strong> 5-7 business days - $8.99</li>
-                    <li><strong className="text-forest">Expedited Shipping:</strong> 2-3 business days - $14.99</li>
-                    <li><strong className="text-forest">Overnight Shipping:</strong> 1 business day - $24.99</li>
-                    <li><strong className="text-forest">Free Shipping:</strong> Orders over $75 qualify for free standard shipping</li>
+                  <h2 className="font-serif text-2xl text-forest">Shipping Rates & Timing</h2>
+                  <p>
+                    Shipping is calculated at checkout by the carrier (UPS), based on your delivery address and order size, so you always see the exact cost before you pay.
+                  </p>
+                  <ul className="list-disc pl-6 space-y-2">
+                    <li><strong className="text-forest">Standard (UPS Ground):</strong> typically 3 to 7 business days, depending on distance</li>
+                    <li><strong className="text-forest">Faster options:</strong> UPS 2-Day and Next Day are available at checkout</li>
                   </ul>
                   <p className="text-sm italic text-muted-foreground mt-3">
-                    *Shipping rates are estimated and determined by the carrier. Actual rates may vary and are subject to change without notice.
+                    Rates are set by the carrier and shown at checkout, so they vary by destination and order size.
+                  </p>
+                </div>
+
+                <div className="space-y-4">
+                  <h2 className="font-serif text-2xl text-forest">Local Delivery (San Diego)</h2>
+                  <p>
+                    For eligible San Diego addresses, choose <strong className="text-forest">Local Delivery</strong> at checkout.
+                  </p>
+                  <ul className="list-disc pl-6 space-y-2">
+                    <li><strong className="text-forest">Free</strong> on orders over $100</li>
+                    <li><strong className="text-forest">$12 flat</strong> on orders under $100</li>
+                  </ul>
+                  <p>
+                    Availability depends on your delivery address. If you qualify, the local delivery option appears at checkout. Local delivery is separate from nationwide shipping, so the free-over-$100 perk applies to delivery, not to UPS shipping.
                   </p>
                 </div>
 
