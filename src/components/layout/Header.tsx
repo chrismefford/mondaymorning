@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Menu, X, ShoppingBag, ArrowUpRight, Sparkles, Beer, Wine, Martini, Star, Leaf, Package, ChevronDown, Search, BookOpen, Newspaper, Truck, GraduationCap, Store, FlaskConical, MapPin } from "lucide-react";
+import { Menu, X, ShoppingBag, ArrowUpRight, Sparkles, Beer, Wine, Martini, Star, Leaf, Package, ChevronDown, Search, BookOpen, Newspaper, Truck, GraduationCap, Store, FlaskConical, MapPin, Gift } from "lucide-react";
 import { useCart } from "@/hooks/useCart";
 import logoGold from "@/assets/logo-mm-gold.png";
 import logoWhite from "@/assets/logo-mm-white.png";
@@ -12,6 +12,7 @@ const categoryItems = [
   { name: "NA Wine", icon: Wine, href: "/collections/wine-alternatives" },
   { name: "NA Spirits", icon: Martini, href: "/collections/spirit-alternatives" },
   { name: "Functionals", icon: Leaf, href: "/collections/functional" },
+  { name: "Gift Cards", icon: Gift, href: "/gift-cards" },
   { name: "Shop All", icon: Search, href: "/shop", isShopAll: true },
 ];
 

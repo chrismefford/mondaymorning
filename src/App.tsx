@@ -52,6 +52,7 @@ const SocialClub = lazy(() => import("./pages/SocialClub"));
 const FoundersWelcome = lazy(() => import("./pages/FoundersWelcome"));
 const Press = lazy(() => import("./pages/Press"));
 const Consulting = lazy(() => import("./pages/Consulting"));
+const GiftCards = lazy(() => import("./pages/GiftCards"));
 const KavaHavenNeighborhood = lazy(() => import("./pages/KavaHavenNeighborhood"));
 const Join = lazy(() => import("./pages/Join"));
 const NonAlcoholicDrinks = lazy(() => import("./pages/seo/NonAlcoholicDrinks"));
@@ -159,6 +160,7 @@ const AppContent = () => {
           <Route path="/non-alcoholic-bar-hillcrest" element={<NonAlcoholicBarHillcrest />} />
           <Route path="/good-news-bar-alternatives-san-diego" element={<GoodNewsBarAlternatives />} />
           <Route path="/non-alcoholic-breweries-san-diego" element={<NonAlcoholicBreweriesSanDiego />} />
+          <Route path="/gift-cards" element={<GiftCards />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

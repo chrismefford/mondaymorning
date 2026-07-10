@@ -1306,6 +1306,12 @@ const staticRoutes = [
     schema: [organizationSchema, websiteSchema],
   },
   {
+    path: "/gift-cards",
+    title: "Gift Cards | Monday Morning Bottle Shop",
+    description: "Give the gift of drinking differently. A Monday Morning gift card unlocks 500+ non-alcoholic beers, wines, and spirits, redeemable online and at both San Diego tasting rooms. Amounts from $25 to $500.",
+    schema: [organizationSchema],
+  },
+  {
     path: "/about",
     title: "About Us | Monday Morning Bottle Shop",
     description: "Meet Zane, the founder of Monday Morning. Discover why we created San Diego's premier non-alcoholic bottle shop with 500+ flavors to help you drink differently.",
