@@ -3,6 +3,15 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Fast vanity redirect: fires while the head parses, before the app bundle loads, so shared links jump straight to tickets. -->
+    <script>
+      (function () {
+        var p = location.pathname.replace(/\/+$/, "");
+        if (p === "/grandopening" || p === "/grand-opening") {
+          location.replace("https://www.eventbrite.com/e/craft-na-brewery-opening-monday-morning-tickets-1993155984203?aff=oddtdtcreator");
+        }
+      })();
+    </script>
     <title>Monday Morning | America's #1 NA Bottle Shop & Tasting Room</title>
     <meta name="description" content="San Diego's premier non-alcoholic bottle shop with 500+ flavors. NA beer, wine, spirits & cocktails. Try before you buy at our Pacific Beach & Ocean Beach locations." />
     <!-- No static canonical here: each page sets its own via Helmet. A hardcoded one would conflict and make every page canonicalize to the homepage. -->
