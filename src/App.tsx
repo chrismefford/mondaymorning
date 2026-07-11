@@ -1,4 +1,4 @@
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, useEffect } from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -81,6 +81,25 @@ const NotFound = lazy(() => import("./pages/NotFound"));
 
 const queryClient = new QueryClient();
 
+// Redirects a short vanity path to an external URL (e.g. an Eventbrite page).
+// Client-side since the site is a SPA served for every route.
+const ExternalRedirect = ({ to }: { to: string }) => {
+  useEffect(() => {
+    window.location.replace(to);
+  }, [to]);
+  return (
+    <div style={{ minHeight: "60vh", display: "flex", alignItems: "center", justifyContent: "center", padding: "2rem", textAlign: "center", fontFamily: "system-ui, sans-serif" }}>
+      <p>
+        Taking you to tickets. If nothing happens,{" "}
+        <a href={to} style={{ color: "#2A543F", fontWeight: 600 }}>tap here</a>.
+      </p>
+    </div>
+  );
+};
+
+const GRAND_OPENING_TICKETS =
+  "https://www.eventbrite.com/e/craft-na-brewery-opening-monday-morning-tickets-1993155984203?aff=oddtdtcreator";
+
 const AppContent = () => {
   return (
     <>
@@ -162,6 +181,8 @@ const AppContent = () => {
           <Route path="/non-alcoholic-breweries-san-diego" element={<NonAlcoholicBreweriesSanDiego />} />
           <Route path="/gift-cards" element={<GiftCards />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+          <Route path="/grandopening" element={<ExternalRedirect to={GRAND_OPENING_TICKETS} />} />
+          <Route path="/grand-opening" element={<ExternalRedirect to={GRAND_OPENING_TICKETS} />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Suspense>
