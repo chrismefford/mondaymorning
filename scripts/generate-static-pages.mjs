@@ -1621,8 +1621,8 @@ const staticRoutes = [
   },
   {
     path: "/non-alcoholic-breweries-san-diego",
-    title: "Non-Alcoholic Breweries in San Diego (2026): The Lab & Where to Find NA Beer | Monday Morning",
-    description: "Does San Diego have a non-alcoholic brewery? Yes. Meet The Lab, San Diego's dedicated NA-focused brewery, plus the local breweries making alcohol-free beer and where to buy 500+ NA brews.",
+    title: "Non-Alcoholic Breweries in San Diego (2026): The Lab Taproom & NA Beer | Monday Morning",
+    description: "Does San Diego have a non-alcoholic brewery? Yes. The Lab by Monday Morning is San Diego County's first NA brewery, and its taproom opens July 18, 2026. Plus where to buy 500+ alcohol-free brews.",
     ogImage: `${SITE_URL}/og-the-lab-opening-san-marcos.jpg`,
     schema: [organizationSchema],
   },

@@ -85,7 +85,7 @@ const offerings = [
     title: "Brew it at",
     accent: "The Lab.",
     who: "For emerging and established alcohol-free brands.",
-    body: "Our San Marcos facility is one of the only NA-focused production partners in Southern California. We brew, can, and white-label non-alcoholic beer, tea, coffee, sparkling water, and ready-to-drink (RTD) beverages.",
+    body: "Our San Marcos facility is one of the only NA-focused production partners in Southern California, and home to San Diego County's first non-alcoholic brewery taproom, opening July 2026. We brew, can, and white-label non-alcoholic beer, tea, coffee, sparkling water, and ready-to-drink (RTD) beverages.",
     points: [
       "Beer, tea, coffee, water, and RTD, all alcohol-free.",
       "Recipe development and small-batch trials",
