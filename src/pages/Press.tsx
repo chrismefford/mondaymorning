@@ -39,6 +39,13 @@ const tvFeatures: PressItem[] = [
 
 const newspaperFeatures: PressItem[] = [
   {
+    outlet: "Prism News",
+    title: "Monday Morning Lab Opens San Diego County's First Non-Alcoholic Taproom",
+    date: "Jul 10, 2026",
+    url: "https://www.prismnews.com/hobbies/homebrewing/monday-morning-lab-opens-san-diego-countys-first-non",
+    type: "newspaper",
+  },
+  {
     outlet: "San Diego Beer News",
     title: "San Diego's First N/A Brewery Taproom En Route",
     date: "Jul 7, 2026",
