@@ -10,6 +10,7 @@ import { CartProvider } from "@/hooks/useCart";
 import CartDrawer from "@/components/cart/CartDrawer";
 import LoadingScreen from "@/components/LoadingScreen";
 import ScrollToTop from "@/components/ScrollToTop";
+import GrandOpeningPopup from "@/components/GrandOpeningPopup";
 import Index from "./pages/Index";
 
 // Lazy-load non-critical chat widget
@@ -105,6 +106,7 @@ const AppContent = () => {
     <>
       <ScrollToTop />
       <CartDrawer />
+      <GrandOpeningPopup />
       <Suspense fallback={null}>
         <NAExpertChat />
       </Suspense>
