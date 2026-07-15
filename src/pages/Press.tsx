@@ -15,6 +15,13 @@ interface PressItem {
 
 const tvFeatures: PressItem[] = [
   {
+    outlet: "FOX 5 San Diego",
+    title: "San Diego Beer and Beverage News (Monday Morning feature)",
+    date: "Jul 14, 2026",
+    url: "https://youtu.be/WeeE8QSNQ-A",
+    type: "tv",
+  },
+  {
     outlet: "CBS 8",
     title: "Non-Alcoholic Bottle Shop Aids 'Dry January' Participants in San Diego",
     date: "Jan 5, 2025",
