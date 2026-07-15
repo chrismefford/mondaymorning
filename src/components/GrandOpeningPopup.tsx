@@ -1,11 +1,10 @@
 import { useState, useEffect } from "react";
 import { ArrowRight, Calendar, Clock, MapPin } from "lucide-react";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
+import haymaker from "@/assets/brand/haymaker-can.webp";
 
 // Launch promo for The Lab grand opening. Appears once per browser session after
 // a short delay, and stops showing on its own after the event day.
-const TICKETS_URL =
-  "https://www.eventbrite.com/e/craft-na-brewery-opening-monday-morning-tickets-1993155984203?aff=oddtdtcreator";
 const EXPIRES = new Date("2026-07-19T07:00:00Z"); // approx midnight PT after July 18
 
 const GrandOpeningPopup = () => {
@@ -27,30 +26,25 @@ const GrandOpeningPopup = () => {
 
   return (
     <Dialog open={isOpen} onOpenChange={(o) => !o && close()}>
-      <DialogContent className="brand-type p-0 gap-0 border-2 border-gold/50 bg-cream max-w-md overflow-hidden rounded-none shadow-2xl [&>button]:z-20 [&>button]:bg-cream/90 [&>button]:text-forest [&>button]:rounded-full [&>button]:p-1.5 [&>button]:opacity-100 [&>button>svg]:h-4 [&>button>svg]:w-4">
+      <DialogContent className="brand-type p-0 gap-0 border-2 border-gold/50 bg-cream max-w-md max-h-[92vh] overflow-y-auto rounded-none shadow-2xl [&>button]:z-20 [&>button]:bg-cream/90 [&>button]:text-forest [&>button]:rounded-full [&>button]:p-1.5 [&>button]:opacity-100 [&>button>svg]:h-4 [&>button>svg]:w-4">
         <DialogTitle className="sr-only">Grand opening, Saturday July 18</DialogTitle>
 
-        {/* Banner */}
-        <div className="relative h-40 sm:h-44 overflow-hidden">
-          <img
-            src="/og-the-lab-opening-san-marcos.jpg"
-            alt="The Lab, San Diego County's first non-alcoholic brewery, in San Marcos"
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-forest/60" />
-          <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6">
-            <span className="font-sans text-[10px] font-bold uppercase tracking-[0.3em] text-gold mb-2">
-              Grand Opening
-            </span>
-            <h2 className="font-serif text-2xl sm:text-3xl text-cream leading-[1.1]">
-              San Diego's first{" "}
-              <span className="font-script text-gold text-[1.25em] leading-none">NA brewery</span> taproom
-            </h2>
-          </div>
-        </div>
+        {/* Haymaker NA IPA artwork, shown clean as the hero */}
+        <img
+          src={haymaker}
+          alt="Haymaker NA IPA, the flagship brew from The Lab by Monday Morning"
+          className="w-full h-auto block"
+        />
 
-        {/* Details */}
+        {/* Event details */}
         <div className="bg-cream text-forest px-6 py-7 text-center">
+          <span className="font-sans text-[10px] font-bold uppercase tracking-[0.3em] text-gold block mb-2">
+            Grand Opening
+          </span>
+          <h2 className="font-serif text-2xl sm:text-3xl leading-[1.1] mb-5">
+            San Diego's first{" "}
+            <span className="font-script text-gold text-[1.25em] leading-none">NA brewery</span> taproom
+          </h2>
           <div className="space-y-2.5 mb-5">
             <p className="font-sans text-sm font-semibold flex items-center justify-center gap-2">
               <Calendar className="h-4 w-4 text-gold shrink-0" /> Saturday, July 18, 2026
@@ -66,7 +60,7 @@ const GrandOpeningPopup = () => {
             Live music, games, food, and a bounce house from 12 to 3 PM. Come see where the NA beer gets made.
           </p>
           <a
-            href={TICKETS_URL}
+            href="/grandopening"
             target="_blank"
             rel="noopener noreferrer"
             onClick={close}
