@@ -46,6 +46,13 @@ const tvFeatures: PressItem[] = [
 
 const newspaperFeatures: PressItem[] = [
   {
+    outlet: "Life of Beer",
+    title: "Monday Morning Lab Opens: San Diego's First Non-Alcoholic Brewery & Taproom",
+    date: "Jul 15, 2026",
+    url: "https://lifeofbeer.com/monday-morning-lab-opens-first-non-alcoholic-brewery-taproom/",
+    type: "newspaper",
+  },
+  {
     outlet: "Prism News",
     title: "Monday Morning Lab Opens San Diego County's First Non-Alcoholic Taproom",
     date: "Jul 10, 2026",
