@@ -471,9 +471,9 @@ const CuriousAFDictionary = () => {
               </p>
               <p>
                 Spot a term we missed?{" "}
-                <Link to="/contact" className="text-brand-green underline hover:text-gold">
+                <a href="mailto:info@mondaymorning-af.com?subject=Curious%20AF%20Dictionary%20term%20suggestion" className="text-brand-green underline hover:text-gold">
                   Send it to us
-                </Link>{" "}
+                </a>{" "}
                 and we will add it.
               </p>
               <p>

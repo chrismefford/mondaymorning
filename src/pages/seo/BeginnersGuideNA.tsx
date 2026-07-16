@@ -96,7 +96,7 @@ const BeginnersGuideNA = () => (
               The single biggest difference between buying NA online and buying at a tasting room is taste. Every bottle on this page is open for sampling at <Link to="/locations">our North Park and Ocean Beach tasting rooms</Link>. Walk in, tell us what you usually drink, taste four or five things in 20 minutes. You will know exactly what to take home.
             </p>
             <p>
-              If you cannot make it in, the team can build a custom starter bundle and ship it. Email <Link to="/contact">hello at Monday Morning</Link> with your usual drink (IPA fan? Negroni person? Pinot drinker?) and we will pull six bottles for you.
+              If you cannot make it in, the team can build a custom starter bundle and ship it. Email <a href="mailto:info@mondaymorning-af.com" className="text-forest underline hover:text-gold">hello at Monday Morning</a> with your usual drink (IPA fan? Negroni person? Pinot drinker?) and we will pull six bottles for you.
             </p>
           </>
         ),
