@@ -116,7 +116,7 @@ const offerings = [
 
 // Category / industry figures (not Monday Morning guarantees).
 const marketStats = [
-  { value: "30%+", label: "annual growth in NA beverage sales" },
+  { value: "$25B+", label: "global non-alcoholic beer market" },
   { value: "1 in 3", label: "adults are drinking less, across every generation" },
   { value: "80%+", label: "typical gross margin on a craft NA drink" },
   { value: "$0", label: "alcohol tax or liquor license needed" },
