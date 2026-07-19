@@ -23,6 +23,7 @@ const ProductPage = lazy(() => import("./pages/Product"));
 const CollectionPage = lazy(() => import("./pages/Collection"));
 const ShopPage = lazy(() => import("./pages/Shop"));
 const Locations = lazy(() => import("./pages/Locations"));
+const LocationDetail = lazy(() => import("./pages/LocationDetail"));
 const Stockists = lazy(() => import("./pages/Stockists"));
 const Auth = lazy(() => import("./pages/Auth"));
 const Admin = lazy(() => import("./pages/Admin"));
@@ -121,6 +122,7 @@ const AppContent = () => {
           <Route path="/collections/:slug" element={<CollectionPage />} />
           <Route path="/collections/brand/:brand" element={<CollectionPage />} />
           <Route path="/locations" element={<Locations />} />
+          <Route path="/locations/:slug" element={<LocationDetail />} />
           <Route path="/stockists" element={<Stockists />} />
           <Route path="/auth" element={<Auth />} />
           <Route path="/admin" element={<Admin />} />

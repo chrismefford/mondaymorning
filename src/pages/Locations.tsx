@@ -2,49 +2,20 @@ import { Helmet } from "@/lib/helmet-compat";
 import { Link } from "react-router-dom";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
-import { MapPin, Clock, Phone, ExternalLink, Wine, Beer, UtensilsCrossed, Sparkles, Store } from "lucide-react";
+import { MapPin, ExternalLink, Wine, Beer, UtensilsCrossed, Store, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import stampGold from "@/assets/stamp-gold.svg";
 import textureBlue from "@/assets/texture-blue.webp";
 import textureCream from "@/assets/texture-cream.webp";
-import { 
-  SITE_NAME, 
-  SITE_URL, 
+import {
+  SITE_NAME,
+  SITE_URL,
   DEFAULT_OG_IMAGE,
   TWITTER_HANDLE,
   getCanonicalUrl,
   localBusinessSchema
 } from "@/lib/seo";
-
-const stores = [
-  {
-    name: "Pacific Beach",
-    address: "1854 Garnet Ave.",
-    city: "San Diego, CA 92109",
-    hours: [
-      { days: "Tue - Sat", time: "11 AM - 8 PM" },
-      { days: "Sun", time: "11 AM - 6 PM" },
-      { days: "Monday", time: "Closed (Open by appointment for industry leaders)", special: true },
-    ],
-    phone: "(858) 412-3253",
-    mapUrl: "https://maps.google.com/?q=1854+Garnet+Ave+San+Diego+CA+92109",
-    image: "/images/pacific-beach-location.jpg",
-  },
-  {
-    name: "Ocean Beach",
-    address: "4967 Newport Ave",
-    city: "San Diego, CA 92107",
-    hours: [
-      { days: "Tue & Thu", time: "11 AM - 8 PM" },
-      { days: "Wed", time: "3 PM - 8 PM" },
-      { days: "Fri - Sun", time: "11 AM - 6 PM" },
-      { days: "Monday", time: "Closed", special: true },
-    ],
-    phone: "(858) 412-3253",
-    mapUrl: "https://maps.google.com/?q=4967+Newport+Ave+San+Diego+CA+92107",
-    image: "/images/ocean-beach-location.jpg",
-  },
-];
+import { OWNED_LOCATIONS } from "@/data/locations";
 
 // Partner venues that carry Monday Morning, pulled from our Shopify B2B
 // company accounts (holding companies flattened to their actual venues).
@@ -71,8 +42,8 @@ const partners = [
 ];
 
 const Locations = () => {
-  const pageTitle = "Non-Alcoholic Bottle Shop San Diego: PB & OB Tasting Rooms | Monday Morning";
-  const pageDescription = "Two San Diego tasting rooms with 500+ non-alcoholic drinks. Sample any NA beer, wine or spirit before you buy. Open 7 days in Pacific Beach and Ocean Beach.";
+  const pageTitle = "Visit Monday Morning: NA Bottle Shops & Brewery in San Diego | Locations";
+  const pageDescription = "Find Monday Morning across San Diego: our Pacific Beach and Ocean Beach non-alcoholic bottle shops, plus The Lab, San Diego County's first NA brewery and taproom in San Marcos.";
   const canonicalUrl = getCanonicalUrl("/locations");
 
   return (
@@ -139,110 +110,39 @@ const Locations = () => {
           />
 
           <div className="container mx-auto px-4 lg:px-8 relative z-10">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
-              {stores.map((store) => (
-                <div 
-                  key={store.name}
-                  className="bg-background border-2 border-forest/10 overflow-hidden group"
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+              {OWNED_LOCATIONS.map((loc) => (
+                <Link
+                  key={loc.slug}
+                  to={`/locations/${loc.slug}`}
+                  className="group block bg-background border-2 border-forest/10 overflow-hidden hover:border-gold/40 transition-colors"
                 >
-                  {/* Store Image */}
-                  <div className="relative h-64 overflow-hidden">
-                    <img 
-                      src={store.image} 
-                      alt={store.name}
+                  <div className="relative h-56 overflow-hidden">
+                    <img
+                      src={loc.image}
+                      alt={loc.name}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-forest/60 to-transparent" />
-                    <h3 className="absolute bottom-5 left-6 font-script text-4xl text-cream">
-                      {store.name}
-                    </h3>
-                  </div>
-
-                  {/* Store Details */}
-                  <div className="p-6 lg:p-8 space-y-6">
-                    <div className="flex items-start gap-4">
-                      <MapPin className="h-5 w-5 text-gold mt-0.5 flex-shrink-0" />
-                      <div>
-                        <p className="font-sans text-sm font-semibold uppercase tracking-wide text-forest">
-                          {store.address}
-                        </p>
-                        <p className="font-sans text-sm text-forest/70">
-                          {store.city}
-                        </p>
-                      </div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-forest/70 to-transparent" />
+                    <div className="absolute bottom-4 left-5 right-5">
+                      <span className="font-sans text-[10px] font-bold uppercase tracking-[0.22em] text-gold block mb-1">
+                        {loc.area}
+                      </span>
+                      <h3 className="font-script text-3xl text-cream leading-none">{loc.name}</h3>
                     </div>
-
-                    <div className="flex items-start gap-4">
-                      <Clock className="h-5 w-5 text-gold mt-0.5 flex-shrink-0" />
-                      <div className="space-y-1">
-                        {store.hours.map((h, i) => (
-                          <p 
-                            key={i}
-                            className={`font-sans text-sm ${h.special ? 'text-gold font-semibold' : 'text-forest/70'}`}
-                          >
-                            {h.days}: {h.time}
-                          </p>
-                        ))}
-                      </div>
-                    </div>
-
-                    <div className="flex items-start gap-4 mb-8">
-                      <Phone className="h-5 w-5 text-gold mt-0.5 flex-shrink-0" />
-                      <a 
-                        href={`tel:${store.phone}`}
-                        className="font-sans text-sm text-forest/70 hover:text-gold transition-colors"
-                      >
-                        {store.phone}
-                      </a>
-                    </div>
-
-                    <a 
-                      className="block mt-6"
-                      href={store.mapUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <Button 
-                        className="w-full font-sans text-xs font-bold uppercase tracking-widest bg-forest text-cream hover:bg-forest-deep py-6 group/btn"
-                      >
-                        Get Directions
-                        <ExternalLink className="ml-2 h-4 w-4 transition-transform group-hover/btn:translate-x-1" />
-                      </Button>
-                    </a>
                   </div>
-                </div>
-              ))}
-            </div>
-
-            {/* Coming Soon Location */}
-            <div className="mt-8 lg:mt-12">
-              <div className="relative bg-gradient-to-br from-gold/10 to-gold/5 border-2 border-gold/40 overflow-hidden group">
-                <div className="absolute inset-0 opacity-[0.03] pointer-events-none">
-                  <img src={stampGold} alt="" className="absolute -bottom-16 -right-16 w-64 opacity-50" />
-                </div>
-                <div className="p-8 lg:p-12 flex flex-col lg:flex-row items-center gap-8 relative z-10">
-                  <div className="flex-shrink-0 w-16 h-16 bg-gold/20 border-2 border-gold/40 flex items-center justify-center">
-                    <Sparkles className="h-8 w-8 text-gold" />
-                  </div>
-                  <div className="text-center lg:text-left flex-1">
-                    <span className="font-sans text-xs font-bold uppercase tracking-[0.3em] text-gold mb-2 block">
-                      Now Brewing · By Appointment
+                  <div className="p-6">
+                    <p className="font-sans text-sm text-forest/75 leading-relaxed mb-4">{loc.tagline}</p>
+                    <div className="flex items-start gap-2 mb-5">
+                      <MapPin className="h-4 w-4 text-gold mt-0.5 flex-shrink-0" />
+                      <p className="font-sans text-xs text-forest/70">{loc.streetAddress}, {loc.locality}</p>
+                    </div>
+                    <span className="inline-flex items-center gap-1 font-sans text-xs font-bold uppercase tracking-widest text-forest group-hover:gap-2 transition-all">
+                      View this location <ArrowRight className="h-3.5 w-3.5" />
                     </span>
-                    <h3 className="font-script text-3xl md:text-4xl text-forest mb-2">
-                      The Lab
-                    </h3>
-                    <div className="flex items-center gap-2 justify-center lg:justify-start">
-                      <MapPin className="h-4 w-4 text-gold flex-shrink-0" />
-                      <p className="font-sans text-sm font-semibold uppercase tracking-wide text-forest">
-                        1784 La Costa Meadows Dr, Ste 103, San Marcos, CA 92078
-                      </p>
-                    </div>
-                    <p className="font-sans text-sm text-forest/60 mt-3 max-w-lg">
-                      Our non-alcoholic brewing and innovation facility, and home of Haymaker NA IPA. Visits by appointment.
-                    </p>
                   </div>
-                </div>
-              </div>
+                </Link>
+              ))}
             </div>
           </div>
         </section>
