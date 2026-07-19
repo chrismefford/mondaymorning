@@ -39,6 +39,9 @@ export interface OwnedLocation {
   image: string;
   metaTitle: string;
   metaDescription: string;
+  // Direct "write a Google review" link for this store's Google listing.
+  // Format: https://search.google.com/local/writereview?placeid=<PlaceID>
+  googleReviewUrl?: string;
   // Optional highlighted callout on the location page (e.g. a local event tie-in)
   // that also links out to a dedicated SEO page.
   spotlight?: {
@@ -96,6 +99,7 @@ export const OWNED_LOCATIONS: OwnedLocation[] = [
     metaTitle: "Non-Alcoholic Bottle Shop in Pacific Beach | Monday Morning",
     metaDescription:
       "Monday Morning's flagship non-alcoholic bottle shop and lounge in Pacific Beach. 500+ NA beers, wines, spirits and functional drinks, a tasting bar, free wifi, seating for 25, and easy parking. 1854 Garnet Ave.",
+    googleReviewUrl: "https://search.google.com/local/writereview?placeid=ChIJG-eShv4B3IARyUdY1QTXgi4",
   },
   {
     slug: "ocean-beach",

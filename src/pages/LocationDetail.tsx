@@ -1,7 +1,7 @@
 import { useMemo } from "react";
 import { useParams, Navigate, Link } from "react-router-dom";
 import { Helmet } from "@/lib/helmet-compat";
-import { MapPin, Clock, Phone, ExternalLink, Check, ArrowRight, ArrowLeft } from "lucide-react";
+import { MapPin, Clock, Phone, ExternalLink, Check, ArrowRight, ArrowLeft, Star } from "lucide-react";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
@@ -258,6 +258,18 @@ const LocationDetail = () => {
                       <ExternalLink className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
                     </Button>
                   </a>
+
+                  {loc.googleReviewUrl && (
+                    <a href={loc.googleReviewUrl} target="_blank" rel="noopener noreferrer">
+                      <Button
+                        variant="outline"
+                        className="w-full mt-3 font-sans text-xs font-bold uppercase tracking-widest border-2 border-forest/20 text-forest bg-transparent hover:bg-forest hover:text-cream py-6 group"
+                      >
+                        Leave us a Google review
+                        <Star className="ml-2 h-4 w-4 transition-transform group-hover:scale-110" />
+                      </Button>
+                    </a>
+                  )}
                 </div>
               </div>
             </div>
