@@ -3,6 +3,9 @@ project_id = "mtjqlqyasgleiwnmnfvd"
 [functions.shopify-storefront]
 verify_jwt = false
 
+[functions.location-products]
+verify_jwt = false
+
 [functions.remove-background]
 verify_jwt = false
 

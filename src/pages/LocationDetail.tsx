@@ -1,11 +1,79 @@
+import { useMemo } from "react";
 import { useParams, Navigate, Link } from "react-router-dom";
 import { Helmet } from "@/lib/helmet-compat";
 import { MapPin, Clock, Phone, ExternalLink, Check, ArrowRight, ArrowLeft } from "lucide-react";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
+import ProductCard from "@/components/home/ProductCard";
+import { useLocationProducts, shopifyToLocalProduct } from "@/hooks/useShopifyProducts";
 import { SITE_NAME, SITE_URL, TWITTER_HANDLE, getCanonicalUrl } from "@/lib/seo";
 import { getLocation, locationSchema, OWNED_LOCATIONS } from "@/data/locations";
+
+// Live "shop what's in stock at this store" grid. Reads per-location Shopify
+// inventory via the location-products edge function. Self-hides on error or
+// empty so the page stays clean; checkout is unchanged (the normal cart/shop).
+const LocationShop = ({ slug, name }: { slug: string; name: string }) => {
+  const { data, isLoading, error } = useLocationProducts(slug);
+  const products = useMemo(() => (data ?? []).map(shopifyToLocalProduct), [data]);
+
+  if (error) return null;
+  if (!isLoading && products.length === 0) return null;
+
+  return (
+    <section className="py-14 lg:py-20 bg-white border-t border-forest/10">
+      <div className="container mx-auto px-4 lg:px-8 max-w-6xl">
+        <div className="flex items-end justify-between gap-4 mb-8">
+          <div>
+            <span className="font-sans text-[10px] lg:text-xs font-bold uppercase tracking-[0.3em] text-gold mb-2 block">
+              On the shelf now
+            </span>
+            <h2 className="font-serif text-3xl lg:text-4xl text-forest leading-none">
+              Shop <span className="font-script text-gold text-[1.15em] leading-none">{name}</span>
+            </h2>
+            {!isLoading && (
+              <p className="font-sans text-sm text-forest/60 mt-2">
+                {products.length} non-alcoholic drinks in stock at this store right now
+              </p>
+            )}
+          </div>
+          <Link
+            to="/shop"
+            className="shrink-0 inline-flex items-center gap-2 font-sans text-xs font-bold uppercase tracking-wider text-forest hover:text-gold transition-colors border-b-2 border-current pb-1"
+          >
+            Shop all <ArrowRight className="h-4 w-4" />
+          </Link>
+        </div>
+
+        {isLoading ? (
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
+            {Array.from({ length: 8 }).map((_, i) => (
+              <div key={i} className="aspect-[3/4] rounded-xl bg-sand animate-pulse border border-forest/10" />
+            ))}
+          </div>
+        ) : (
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
+            {products.slice(0, 12).map((p) => (
+              <div key={p.id} className="bg-cream rounded-xl overflow-hidden border border-forest/10">
+                <ProductCard product={p} showProductOnly />
+              </div>
+            ))}
+          </div>
+        )}
+
+        {!isLoading && products.length > 12 && (
+          <div className="text-center mt-10">
+            <Link to="/shop">
+              <Button className="font-sans text-sm font-bold uppercase tracking-widest bg-forest text-cream hover:bg-forest-deep px-8 py-6">
+                Shop the full catalog online
+              </Button>
+            </Link>
+          </div>
+        )}
+      </div>
+    </section>
+  );
+};
 
 const LocationDetail = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -165,6 +233,9 @@ const LocationDetail = () => {
             </div>
           </div>
         </section>
+
+        {/* Shop this store (live per-location inventory) */}
+        <LocationShop slug={loc.slug} name={loc.name} />
 
         {/* Other locations */}
         <section className="py-12 lg:py-16 bg-sand">

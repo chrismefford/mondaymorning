@@ -241,6 +241,42 @@ export function useShopifyCatalogProducts(options?: {
   });
 }
 
+/**
+ * Fetches the products currently in stock at one physical store
+ * (pacific-beach | ocean-beach | the-lab) via the location-products edge
+ * function, which reads Shopify's per-location inventory (Admin API). Returned
+ * items match ShopifyProduct, so shopifyToLocalProduct + ProductCard just work.
+ */
+export function useLocationProducts(slug?: string, enabled = true) {
+  return useQuery({
+    queryKey: ["location-products", slug],
+    enabled: !!slug && enabled,
+    staleTime: 5 * 60 * 1000,
+    queryFn: async () => {
+      const publishableKey = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY as string;
+      const { data: authData } = await supabase.auth.getSession();
+      const accessToken = authData.session?.access_token;
+
+      const response = await fetch(
+        `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/location-products?location=${encodeURIComponent(slug ?? "")}`,
+        {
+          headers: {
+            apikey: publishableKey,
+            Authorization: `Bearer ${accessToken ?? publishableKey}`,
+          },
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error(`Failed to fetch location products: ${response.status}`);
+      }
+
+      const json = (await response.json()) as { products?: ShopifyProduct[] };
+      return json.products ?? [];
+    },
+  });
+}
+
 export function useShopifyCollections(first = 20) {
   return useQuery({
     queryKey: ["shopify-collections", first],
