@@ -167,6 +167,22 @@ const LocationDetail = () => {
                   ))}
                 </div>
 
+                {loc.spotlight && (
+                  <Link
+                    to={loc.spotlight.href}
+                    className="group block bg-forest text-cream rounded-lg p-6 mb-10 hover:bg-forest-deep transition-colors"
+                  >
+                    <span className="font-sans text-[10px] font-bold uppercase tracking-[0.28em] text-gold mb-2 block">
+                      {loc.spotlight.eyebrow}
+                    </span>
+                    <h3 className="font-serif text-xl lg:text-2xl mb-2">{loc.spotlight.title}</h3>
+                    <p className="font-sans text-sm text-cream/80 leading-relaxed mb-3">{loc.spotlight.body}</p>
+                    <span className="inline-flex items-center gap-1 font-sans text-xs font-bold uppercase tracking-wider text-gold group-hover:gap-2 transition-all">
+                      {loc.spotlight.linkLabel} <ArrowRight className="h-3.5 w-3.5" />
+                    </span>
+                  </Link>
+                )}
+
                 <h2 className="font-serif text-2xl lg:text-3xl text-forest mb-5">What you'll find</h2>
                 <ul className="space-y-3 mb-10">
                   {loc.highlights.map((h) => (

@@ -39,6 +39,15 @@ export interface OwnedLocation {
   image: string;
   metaTitle: string;
   metaDescription: string;
+  // Optional highlighted callout on the location page (e.g. a local event tie-in)
+  // that also links out to a dedicated SEO page.
+  spotlight?: {
+    eyebrow: string;
+    title: string;
+    body: string;
+    linkLabel: string;
+    href: string;
+  };
 }
 
 export const OWNED_LOCATIONS: OwnedLocation[] = [
@@ -106,6 +115,7 @@ export const OWNED_LOCATIONS: OwnedLocation[] = [
     amenities: [
       "One block from the beach",
       "Sunset kava slushies",
+      "On the Wednesday OB Farmers Market strip",
       "In-store sampling",
       "Beach-day cans to go",
     ],
@@ -132,6 +142,13 @@ export const OWNED_LOCATIONS: OwnedLocation[] = [
     metaTitle: "Non-Alcoholic Bottle Shop in Ocean Beach | Monday Morning",
     metaDescription:
       "Monday Morning's beachside non-alcoholic bottle shop in Ocean Beach, one block from the sand. NA beer, wine, spirits, sunset kava slushies, and a tasting bar. 4967 Newport Ave.",
+    spotlight: {
+      eyebrow: "Every Wednesday",
+      title: "We're open during the OB Farmers Market",
+      body: "Newport Ave goes car-free for the market and we are right in the middle of it, open every Wednesday for kava slushies and NA drinks while you stroll the stalls.",
+      linkLabel: "OB Farmers Market guide",
+      href: "/ocean-beach-farmers-market",
+    },
   },
   {
     slug: "the-lab",

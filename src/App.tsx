@@ -79,6 +79,7 @@ const FunctionalMocktailsAdaptogens = lazy(() => import("./pages/seo/FunctionalM
 const NonAlcoholicBarHillcrest = lazy(() => import("./pages/seo/NonAlcoholicBarHillcrest"));
 const GoodNewsBarAlternatives = lazy(() => import("./pages/seo/GoodNewsBarAlternatives"));
 const NonAlcoholicBreweriesSanDiego = lazy(() => import("./pages/seo/NonAlcoholicBreweriesSanDiego"));
+const OceanBeachFarmersMarket = lazy(() => import("./pages/seo/OceanBeachFarmersMarket"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 const queryClient = new QueryClient();
@@ -183,6 +184,7 @@ const AppContent = () => {
           <Route path="/non-alcoholic-bar-hillcrest" element={<NonAlcoholicBarHillcrest />} />
           <Route path="/good-news-bar-alternatives-san-diego" element={<GoodNewsBarAlternatives />} />
           <Route path="/non-alcoholic-breweries-san-diego" element={<NonAlcoholicBreweriesSanDiego />} />
+          <Route path="/ocean-beach-farmers-market" element={<OceanBeachFarmersMarket />} />
           <Route path="/gift-cards" element={<GiftCards />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="/grandopening" element={<ExternalRedirect to={GRAND_OPENING_TICKETS} />} />

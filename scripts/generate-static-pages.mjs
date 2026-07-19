@@ -1687,6 +1687,13 @@ const staticRoutes = [
     schema: [organizationSchema],
   },
   {
+    path: "/ocean-beach-farmers-market",
+    title: "Ocean Beach Farmers Market: Wednesday Guide + NA Drinks on Newport Ave | Monday Morning",
+    description: "The Ocean Beach Farmers Market runs every Wednesday on Newport Ave. Monday Morning's non-alcoholic bottle shop is right there and open Wednesdays, grab a kava slushie or NA drink while you stroll.",
+    ogImage: `${SITE_URL}/images/ocean-beach-location.jpg`,
+    schema: [organizationSchema],
+  },
+  {
     path: "/non-alcoholic-beer-pregnancy",
     title: "Non Alcoholic Beer and Pregnancy: What's Safe in 2026 | Monday Morning",
     description: "A clear, evidence based look at non alcoholic beer during pregnancy. ABV thresholds, what doctors say, and 0.0% brands to know.",
