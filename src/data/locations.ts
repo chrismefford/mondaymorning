@@ -166,7 +166,7 @@ export const OWNED_LOCATIONS: OwnedLocation[] = [
     phone: "(858) 412-3253",
     mapUrl: "https://maps.google.com/?q=1784+La+Costa+Meadows+Dr+San+Marcos+CA+92078",
     hours: null,
-    hoursNote: "Regular taproom hours are being finalized, so check ahead for current days and times before you visit.",
+    hoursNote: "See our Google listing for current taproom hours before you visit.",
     schemaHours: null,
     schemaType: "Brewery",
     image: "/og-the-lab-opening-san-marcos.jpg",

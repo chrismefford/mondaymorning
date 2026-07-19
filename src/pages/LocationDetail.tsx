@@ -7,6 +7,7 @@ import Footer from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
 import ProductCard from "@/components/home/ProductCard";
 import { useLocationProducts, shopifyToLocalProduct } from "@/hooks/useShopifyProducts";
+import { useLocationHours } from "@/hooks/useLocationHours";
 import { SITE_NAME, SITE_URL, TWITTER_HANDLE, getCanonicalUrl } from "@/lib/seo";
 import { getLocation, locationSchema, OWNED_LOCATIONS } from "@/data/locations";
 
@@ -78,6 +79,7 @@ const LocationShop = ({ slug, name }: { slug: string; name: string }) => {
 const LocationDetail = () => {
   const { slug } = useParams<{ slug: string }>();
   const loc = getLocation(slug);
+  const { data: liveHours } = useLocationHours();
 
   if (!loc) return <Navigate to="/locations" replace />;
 
@@ -85,6 +87,11 @@ const LocationDetail = () => {
   const ogImage = loc.image.startsWith("http") ? loc.image : `${SITE_URL}${loc.image}`;
   const others = OWNED_LOCATIONS.filter((l) => l.slug !== loc.slug);
   const isBrewery = loc.kind === "brewery";
+
+  // Prefer live Google hours (refreshed weekly server-side); fall back to the
+  // built-in hours in locations.ts if Google is unavailable.
+  const live = liveHours?.[loc.slug];
+  const hasLiveHours = !!live && live.weekdayText.length > 0;
 
   return (
     <div className="min-h-screen bg-cream brand-type">
@@ -203,7 +210,14 @@ const LocationDetail = () => {
                   <div className="flex items-start gap-3 mb-5">
                     <Clock className="h-5 w-5 text-gold mt-0.5 shrink-0" />
                     <div className="font-sans text-sm space-y-1">
-                      {loc.hours ? (
+                      {hasLiveHours ? (
+                        <>
+                          {live!.weekdayText.map((line, i) => (
+                            <p key={i} className="text-forest/75">{line}</p>
+                          ))}
+                          <p className="text-forest/40 text-xs pt-1">Hours from Google, checked weekly</p>
+                        </>
+                      ) : loc.hours ? (
                         loc.hours.map((h, i) => (
                           <p key={i} className={h.special ? "text-gold font-semibold" : "text-forest/75"}>
                             {h.days}: {h.time}

@@ -6,6 +6,9 @@ verify_jwt = false
 [functions.location-products]
 verify_jwt = false
 
+[functions.location-hours]
+verify_jwt = false
+
 [functions.remove-background]
 verify_jwt = false
 
