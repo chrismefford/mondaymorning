@@ -9,7 +9,7 @@ const labBrewerySchema = {
   "@type": "Brewery",
   name: "The Lab by Monday Morning",
   description:
-    "San Diego County's first non-alcoholic brewery, opening a taproom July 18, 2026 in San Marcos. Contract brewing, canning, and white-label alcohol-free beer and functional drinks.",
+    "San Diego County's first non-alcoholic brewery, now open with a taproom in San Marcos. Contract brewing, canning, and white-label alcohol-free beer and functional drinks.",
   url: `${SITE_URL}/services`,
   image: `${SITE_URL}/og-the-lab-opening-san-marcos.jpg`,
   parentOrganization: { "@type": "Organization", name: "Monday Morning Bottle Shop", url: SITE_URL },
@@ -34,13 +34,13 @@ const labBrewerySchema = {
 const NonAlcoholicBreweriesSanDiego = () => (
   <AuthorityPage
     title="Non-Alcoholic Breweries in San Diego (2026): The Lab Taproom & NA Beer | Monday Morning"
-    description="Does San Diego have a non-alcoholic brewery? Yes. The Lab by Monday Morning is San Diego County's first NA brewery, and its taproom opens July 18, 2026. Plus where to buy 500+ alcohol-free brews."
+    description="Does San Diego have a non-alcoholic brewery? Yes. The Lab by Monday Morning is San Diego County's first NA brewery, now open with a taproom in San Marcos. Plus where to buy 500+ alcohol-free brews."
     path="/non-alcoholic-breweries-san-diego"
     ogImage={`${SITE_URL}/og-the-lab-opening-san-marcos.jpg`}
     eyebrow="San Diego Local"
     h1="Non-alcoholic breweries in San Diego"
-    subhead="San Diego is a craft beer capital, so the alcohol-free question comes up a lot: is anyone actually brewing NA beer here? Yes, and the county's first non-alcoholic brewery taproom opens this July. Here is the honest landscape and where to find it."
-    tldr="San Diego has one dedicated non-alcoholic brewery: The Lab by Monday Morning in San Marcos, an NA-focused space that brews, cans, and white-labels alcohol-free beer (home of Haymaker NA IPA). On July 18, 2026 it opens San Diego County's first non-alcoholic brewery taproom. A few big local breweries, like Pure Project and AleSmith, also make their own NA lines alongside their regular beer. For the widest selection, Monday Morning's two bottle shops (Pacific Beach and Ocean Beach) carry 500+ non-alcoholic beers with tasting bars at both."
+    subhead="San Diego is a craft beer capital, so the alcohol-free question comes up a lot: is anyone actually brewing NA beer here? Yes, and the county's first non-alcoholic brewery taproom is now open. Here is the honest landscape and where to find it."
+    tldr="San Diego has one dedicated non-alcoholic brewery: The Lab by Monday Morning in San Marcos, an NA-focused space that brews, cans, and white-labels alcohol-free beer (home of Haymaker NA IPA). It is now home to San Diego County's first non-alcoholic brewery taproom (hours are being finalized, so check ahead before visiting). A few big local breweries, like Pure Project and AleSmith, also make their own NA lines alongside their regular beer. For the widest selection, Monday Morning's two bottle shops (Pacific Beach and Ocean Beach) carry 500+ non-alcoholic beers with tasting bars at both."
     heroImage={`${SITE_URL}/og-the-lab-opening-san-marcos.jpg`}
     ctaPrimary={{ label: "Brew with The Lab", href: "/services" }}
     ctaSecondary={{ label: "Shop 500+ NA beers", href: "/shop" }}
@@ -59,7 +59,7 @@ const NonAlcoholicBreweriesSanDiego = () => (
               Short answer: yes, one dedicated to it. Most of San Diego's famous breweries make full-strength beer and treat non-alcoholic as an occasional side project, if they touch it at all. The exception is <strong>The Lab by Monday Morning</strong> in San Marcos, which is built specifically around alcohol-free brewing and production.
             </p>
             <p>
-              Searches used to say San Diego had "no dedicated alcohol-free brewery," meaning no NA-only taproom you could walk into for a pint. That changes on <strong>July 18, 2026</strong>, when The Lab opens San Diego County's first non-alcoholic brewery taproom in San Marcos.
+              Searches used to say San Diego had "no dedicated alcohol-free brewery," meaning no NA-only taproom you could walk into for a pint. Not anymore: <strong>The Lab is now open</strong> as San Diego County's first non-alcoholic brewery taproom in San Marcos.
             </p>
           </>
         ),
@@ -75,7 +75,7 @@ const NonAlcoholicBreweriesSanDiego = () => (
               In July 2026, the <strong>San Diego Union-Tribune</strong> put The Lab on the front page of its Business section, picturing founder Zane Curtis at the San Marcos production facility as San Diego bets big on alcohol-free beer. See the <Link to="/press">press coverage</Link>.
             </p>
             <p>
-              On <strong>July 18, 2026</strong>, The Lab opens San Diego County's first non-alcoholic brewery taproom, right at the San Marcos facility (1784 La Costa Meadows Dr, Ste 103). The grand opening runs <strong>11am to 6pm</strong> with live music, games, and food, plus a bounce house from 12pm to 3pm. Regular taproom hours will be announced after opening.
+              The Lab is <strong>now open</strong> as San Diego County's first non-alcoholic brewery taproom, right at the San Marcos facility (1784 La Costa Meadows Dr, Ste 103), with <strong>Haymaker NA IPA</strong> on tap. Regular taproom hours are being finalized, so check ahead for current days and times before you visit.
             </p>
             <p>
               The Lab is also a contract-brewing and co-packing partner. If you are a brand that wants to make an alcohol-free product of your own, that is exactly what it is for. See <Link to="/services">contract brewing at The Lab</Link>.
@@ -146,14 +146,14 @@ const NonAlcoholicBreweriesSanDiego = () => (
           "Yes. The Lab by Monday Morning in San Marcos is San Diego's dedicated non-alcoholic focused brewery, brewing, canning, and white-labeling alcohol-free beer and functional drinks (home of Haymaker NA IPA). A few large local breweries such as Pure Project and AleSmith also make their own NA lines alongside their regular beer.",
       },
       {
-        question: "When does The Lab taproom open?",
+        question: "Is The Lab taproom open?",
         answer:
-          "The Lab opens San Diego County's first non-alcoholic brewery taproom on July 18, 2026 at its San Marcos facility (1784 La Costa Meadows Dr, Ste 103). The grand opening runs 11am to 6pm with live music, games, and food, plus a bounce house from 12pm to 3pm. Regular taproom hours will be posted after opening.",
+          "Yes. The Lab is open as San Diego County's first non-alcoholic brewery taproom, at its San Marcos facility (1784 La Costa Meadows Dr, Ste 103), with Haymaker NA IPA on tap. Regular taproom hours are being finalized, so check ahead for current days and times before you visit.",
       },
       {
         question: "Can you visit The Lab?",
         answer:
-          "Yes, starting July 18, 2026, when The Lab opens San Diego County's first non-alcoholic brewery taproom in San Marcos. Until then, and for the widest selection, Monday Morning's Pacific Beach and Ocean Beach bottle shops have tasting bars and carry 500+ NA drinks.",
+          "Yes. The Lab is open as San Diego County's first non-alcoholic brewery taproom in San Marcos (hours being finalized, so check ahead). For the widest selection, Monday Morning's Pacific Beach and Ocean Beach bottle shops also have tasting bars and carry 500+ NA drinks.",
       },
       {
         question: "Where can I buy non-alcoholic beer in San Diego?",
