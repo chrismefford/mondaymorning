@@ -18,8 +18,8 @@ const corsHeaders = {
 // for precision if desired.
 const LOCATIONS: Array<{ slug: string; placeId?: string; textQuery?: string }> = [
   { slug: "pacific-beach", placeId: "ChIJG-eShv4B3IARyUdY1QTXgi4" },
-  { slug: "ocean-beach", textQuery: "Monday Morning Non-Alcoholic Bottle Shop, 4967 Newport Ave, San Diego, CA 92107" },
-  { slug: "the-lab", textQuery: "Monday Morning The Lab, 1784 La Costa Meadows Dr, San Marcos, CA 92078" },
+  { slug: "ocean-beach", placeId: "ChIJLVKLXgCr3oAR_wnfKka_ZWA" },
+  { slug: "the-lab", placeId: "ChIJL6UPFgQL3IARwLAFQoTxDeU" },
 ];
 
 const WEEK_MS = 7 * 24 * 60 * 60 * 1000;

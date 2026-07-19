@@ -146,6 +146,7 @@ export const OWNED_LOCATIONS: OwnedLocation[] = [
     metaTitle: "Non-Alcoholic Bottle Shop in Ocean Beach | Monday Morning",
     metaDescription:
       "Monday Morning's beachside non-alcoholic bottle shop in Ocean Beach, one block from the sand. NA beer, wine, spirits, sunset kava slushies, and a tasting bar. 4967 Newport Ave.",
+    googleReviewUrl: "https://search.google.com/local/writereview?placeid=ChIJLVKLXgCr3oAR_wnfKka_ZWA",
     spotlight: {
       eyebrow: "Every Wednesday",
       title: "We're open during the OB Farmers Market",
@@ -194,6 +195,7 @@ export const OWNED_LOCATIONS: OwnedLocation[] = [
     metaTitle: "The Lab: California's First Non-Alcoholic Brewery & Taproom, San Marcos | Monday Morning",
     metaDescription:
       "The Lab is California's first non-alcoholic brewery and tasting room, born in San Diego and now open in San Marcos. NA beer on tap (home of Haymaker NA IPA), crowlers, a 200+ bottle shop, pool table, and weekend events.",
+    googleReviewUrl: "https://search.google.com/local/writereview?placeid=ChIJL6UPFgQL3IARwLAFQoTxDeU",
   },
 ];
 
