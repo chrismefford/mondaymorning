@@ -15,6 +15,13 @@ interface PressItem {
 
 const tvFeatures: PressItem[] = [
   {
+    outlet: "ABC 10News",
+    title: "San Marcos Opens San Diego County's First Non-Alcoholic Brewery and Tasting Room",
+    date: "Jul 18, 2026",
+    url: "https://www.10news.com/news/local-news/north-county-news/san-marcos-opens-san-diego-countys-first-non-alcoholic-brewery-and-tasting-room",
+    type: "tv",
+  },
+  {
     outlet: "FOX 5 San Diego",
     title: "San Diego Beer and Beverage News (Monday Morning feature)",
     date: "Jul 14, 2026",
