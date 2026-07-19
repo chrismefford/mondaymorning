@@ -43,7 +43,7 @@ const partners = [
 
 const Locations = () => {
   const pageTitle = "Visit Monday Morning: NA Bottle Shops & Brewery in San Diego | Locations";
-  const pageDescription = "Find Monday Morning across San Diego: our Pacific Beach and Ocean Beach non-alcoholic bottle shops, plus The Lab, San Diego County's first NA brewery and taproom in San Marcos.";
+  const pageDescription = "Find Monday Morning across San Diego: our Pacific Beach and Ocean Beach non-alcoholic bottle shops, plus The Lab, California's first NA brewery and tasting room, born in San Diego, now in San Marcos.";
   const canonicalUrl = getCanonicalUrl("/locations");
 
   return (

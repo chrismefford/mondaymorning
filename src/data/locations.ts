@@ -55,7 +55,7 @@ export const OWNED_LOCATIONS: OwnedLocation[] = [
     highlights: [
       "500+ non-alcoholic beers, wines, spirits, and functional drinks",
       "Tasting bar, sample anything before you buy",
-      "Vibations, our craft alcohol-free cocktails",
+      "Kava Haven slushies and Vibations, our craft alcohol-free cocktails",
     ],
     amenities: [
       "200+ parking spaces",
@@ -138,16 +138,18 @@ export const OWNED_LOCATIONS: OwnedLocation[] = [
     name: "The Lab",
     area: "San Marcos",
     kind: "brewery",
-    tagline: "San Diego County's first non-alcoholic brewery and taproom",
+    tagline: "California's first non-alcoholic brewery and tasting room, born in San Diego",
     intro: [
-      "We didn't want to call it just a brewery, because it is more than that. The Lab is our non-alcoholic brewery, taproom, and bottle shop in San Marcos, San Diego County's first NA brewery you can actually walk into.",
+      "We didn't want to call it just a brewery, because it is more than that. The Lab is our non-alcoholic brewery, tasting room, and bottle shop in San Marcos, California's first non-alcoholic brewery and tasting room, born right here in San Diego.",
       "It is a working non-alcoholic brewery (home of Haymaker NA IPA) with a taproom out front: rotational NA beers on tap, crowlers to take home, a pool table, weekend events, and a bottle shop. Real brewery, real taproom, zero alcohol.",
+      "Want something we do not stock at the taproom? Order it online and we will bring it to The Lab for free, local delivery from our Pacific Beach shop, ready for you to pick up.",
     ],
     highlights: [
       "Rotational non-alcoholic beers on draft",
       "Haymaker NA IPA, our house West Coast IPA",
       "Crowlers to go",
-      "Bottle shop with alcohol-free beer, wine, and spirits",
+      "Bottle shop with 200+ alcohol-free beers, wines, and spirits",
+      "Free local delivery to The Lab for pickup, ordered online from our PB shop",
     ],
     amenities: [
       "Taproom and brewery",
@@ -168,9 +170,9 @@ export const OWNED_LOCATIONS: OwnedLocation[] = [
     schemaHours: null,
     schemaType: "Brewery",
     image: "/og-the-lab-opening-san-marcos.jpg",
-    metaTitle: "The Lab: Non-Alcoholic Brewery & Taproom in San Marcos | Monday Morning",
+    metaTitle: "The Lab: California's First Non-Alcoholic Brewery & Taproom, San Marcos | Monday Morning",
     metaDescription:
-      "The Lab is San Diego County's first non-alcoholic brewery and taproom, in San Marcos. NA beer on tap (home of Haymaker NA IPA), crowlers, a bottle shop, pool table, and weekend events. By Monday Morning.",
+      "The Lab is California's first non-alcoholic brewery and tasting room, born in San Diego and now open in San Marcos. NA beer on tap (home of Haymaker NA IPA), crowlers, a 200+ bottle shop, pool table, and weekend events.",
   },
 ];
 
