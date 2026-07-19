@@ -263,6 +263,27 @@ export type Database = {
         }
         Relationships: []
       }
+      location_hours: {
+        Row: {
+          fetched_at: string
+          maps_uri: string | null
+          slug: string
+          weekday_text: Json
+        }
+        Insert: {
+          fetched_at?: string
+          maps_uri?: string | null
+          slug: string
+          weekday_text?: Json
+        }
+        Update: {
+          fetched_at?: string
+          maps_uri?: string | null
+          slug?: string
+          weekday_text?: Json
+        }
+        Relationships: []
+      }
       processed_image_cache: {
         Row: {
           created_at: string
