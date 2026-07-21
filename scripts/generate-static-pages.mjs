@@ -7,6 +7,8 @@
  * Dynamically fetches all products from Shopify and blog posts from
  * Supabase so every page gets proper SEO tags AND visible content.
  *
+ * Last content sync: 2026-07-20 (new blog posts + retitled craft beer post).
+ *
  * The pre-rendered content inside <div id="root"> is replaced by React
  * when the JavaScript bundle loads, providing full interactivity.
  *
