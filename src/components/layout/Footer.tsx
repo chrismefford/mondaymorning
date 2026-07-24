@@ -4,11 +4,62 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useNewsletterSubscribe } from "@/hooks/useNewsletterSubscribe";
+import { useLocationHours } from "@/hooks/useLocationHours";
+import { getLocation, compactHours } from "@/data/locations";
 import ContactFormDialog from "@/components/ContactFormDialog";
 import logoSecondaryGreen from "@/assets/logo-mm-stacked-green.png";
 import daybreakerIcon from "@/assets/brand/daybreaker-app-icon.png";
 import stampWhite from "@/assets/stamp-white.svg";
 import textureGreen from "@/assets/texture-green.webp";
+
+// Hours for one shop, live from Google (refreshed weekly server-side) and
+// folded into compact grouped lines. Falls back to the built-in hours in
+// locations.ts if Google is unreachable, so the footer is never blank.
+const FooterHours = ({ slug }: { slug: string }) => {
+  const { data: liveHours } = useLocationHours();
+  const loc = getLocation(slug);
+  const live = liveHours?.[slug];
+
+  if (live && live.weekdayText.length > 0) {
+    return (
+      <div className="space-y-1">
+        {compactHours(live.weekdayText).map((h, i) => (
+          <p
+            key={i}
+            className={`font-sans text-sm uppercase tracking-wide ${
+              h.closed ? "text-forest-deep font-bold" : "text-forest"
+            }`}
+          >
+            {h.days}&nbsp;&nbsp;{h.time}
+          </p>
+        ))}
+      </div>
+    );
+  }
+
+  if (loc?.hours) {
+    return (
+      <div className="space-y-1">
+        {loc.hours.map((h, i) => (
+          <p
+            key={i}
+            className={`font-sans text-sm uppercase tracking-wide ${
+              h.special ? "text-forest-deep font-bold" : "text-forest"
+            }`}
+          >
+            {h.days}&nbsp;&nbsp;{h.time}
+          </p>
+        ))}
+      </div>
+    );
+  }
+
+  return (
+    <p className="font-sans text-sm text-forest uppercase tracking-wide">
+      See our Google listing for hours
+    </p>
+  );
+};
 
 const Footer = () => {
   const [email, setEmail] = useState("");
@@ -93,17 +144,7 @@ const Footer = () => {
                 1854 Garnet Ave.<br />
                 San Diego, CA 92109
               </p>
-              <div className="space-y-1">
-                <p className="font-sans text-sm text-forest uppercase tracking-wide">
-                  Tue - Sat  11 AM - 8 PM
-                </p>
-                <p className="font-sans text-sm text-forest uppercase tracking-wide">
-                  Sun  11 AM - 6 PM
-                </p>
-                <p className="font-sans text-sm text-forest-deep font-bold uppercase tracking-wide">
-                  *Monday Closed
-                </p>
-              </div>
+              <FooterHours slug="pacific-beach" />
             </div>
           </div>
 
@@ -115,20 +156,7 @@ const Footer = () => {
                 4967 Newport Ave<br />
                 San Diego, CA 92107
               </p>
-              <div className="space-y-1">
-                <p className="font-sans text-sm text-forest uppercase tracking-wide">
-                  Tue &amp; Thu  11 AM - 8 PM
-                </p>
-                <p className="font-sans text-sm text-forest uppercase tracking-wide">
-                  Wed  3 PM - 8 PM
-                </p>
-                <p className="font-sans text-sm text-forest uppercase tracking-wide">
-                  Fri - Sun  11 AM - 6 PM
-                </p>
-                <p className="font-sans text-sm text-forest-deep font-bold uppercase tracking-wide">
-                  *Monday Closed
-                </p>
-              </div>
+              <FooterHours slug="ocean-beach" />
             </div>
           </div>
 
@@ -140,9 +168,7 @@ const Footer = () => {
                 1784 La Costa Meadows Dr, Ste 103<br />
                 San Marcos, CA 92078
               </p>
-              <p className="font-sans text-sm text-forest uppercase tracking-wide">
-                By appointment
-              </p>
+              <FooterHours slug="the-lab" />
             </div>
           </div>
 

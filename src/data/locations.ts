@@ -202,6 +202,41 @@ export const OWNED_LOCATIONS: OwnedLocation[] = [
 export const getLocation = (slug?: string): OwnedLocation | undefined =>
   OWNED_LOCATIONS.find((l) => l.slug === slug);
 
+export interface CompactHours {
+  days: string; // "Tue - Sat" or "Mon"
+  time: string; // "11 AM - 8 PM" or "Closed"
+  closed: boolean;
+}
+
+// Google returns hours one line per day ("Tuesday: 11:00 AM - 8:00 PM"). Tight
+// spots like the footer need them grouped ("Tue - Sat  11 AM - 8 PM"), so fold
+// consecutive days that share the same hours into a single line.
+export function compactHours(weekdayText: string[]): CompactHours[] {
+  const parsed = weekdayText
+    .map((line) => {
+      const i = line.indexOf(":"); // first colon splits day from time
+      if (i < 0) return null;
+      return { day: line.slice(0, i).trim(), time: line.slice(i + 1).trim() };
+    })
+    .filter((v): v is { day: string; time: string } => v !== null);
+
+  const groups: { days: string[]; time: string }[] = [];
+  for (const { day, time } of parsed) {
+    const last = groups[groups.length - 1];
+    if (last && last.time === time) last.days.push(day);
+    else groups.push({ days: [day], time });
+  }
+
+  return groups.map(({ days, time }) => {
+    const abbr = (d: string) => d.slice(0, 3);
+    return {
+      days: days.length === 1 ? abbr(days[0]) : `${abbr(days[0])} - ${abbr(days[days.length - 1])}`,
+      time: time.replace(/:00/g, ""), // 11:00 AM -> 11 AM
+      closed: /closed/i.test(time),
+    };
+  });
+}
+
 export function locationSchema(loc: OwnedLocation) {
   const schema: Record<string, unknown> = {
     "@context": "https://schema.org",
