@@ -14,6 +14,12 @@ export interface Stockist {
 export const STOCKISTS: Stockist[] = [
   // ── Venues with their own assortment ──────────────────────────────
   {
+    name: "Three Three Seven",
+    area: "East Village, San Diego",
+    address: "629 J St, San Diego, CA 92101",
+    brands: ["Bolle", "Buzzkill Wines", "Dr. Zenzen", "Gnista", "Go Brewing", "Goodvines", "Jøyus", "Kolonne Null", "Le Petit Beret", "Namari", "NullNummer", "Oceano Zero", "Pentire", "Proxies", "Sovi", "Spiritless", "Zeronimo"],
+  },
+  {
     name: "Good News Bar",
     area: "University Heights, San Diego",
     address: "3821 Park Blvd, San Diego, CA 92103",
@@ -30,12 +36,6 @@ export const STOCKISTS: Stockist[] = [
     area: "Kearny Mesa, San Diego",
     address: "7889 Ostrow St, San Diego, CA 92111",
     brands: ["Beaglepuss", "Below Brew"],
-  },
-  {
-    name: "Collins & Coupe",
-    area: "North Park, San Diego",
-    address: "2876 El Cajon Blvd #100, San Diego, CA 92104",
-    brands: ["Drømme", "Kava Haven", "St. Agrestis"],
   },
   {
     name: "Miss B's Coconut Club",
