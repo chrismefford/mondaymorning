@@ -4,6 +4,8 @@ import { ArrowRight, MapPin } from "lucide-react";
 import { Link } from "react-router-dom";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import { useLocationHours } from "@/hooks/useLocationHours";
+import { compactHours } from "@/data/locations";
 import stampGold from "@/assets/stamp-gold.svg";
 import stampGreen from "@/assets/stamp-green.svg";
 import textureCream from "@/assets/texture-cream.webp";
@@ -21,6 +23,17 @@ import {
 } from "@/lib/seo";
 
 const About = () => {
+  // Live opening hours from Google (weekly sync), folded into a one-line
+  // string per shop. Falls back to the built-in string below if unavailable.
+  const { data: liveHours } = useLocationHours();
+  const liveHoursLine = (slug: string): string | null => {
+    const live = liveHours?.[slug];
+    if (!live || !live.weekdayText.length) return null;
+    const open = compactHours(live.weekdayText).filter((h) => !h.closed);
+    if (!open.length) return null;
+    return open.map((h) => `${h.days} ${h.time}`).join(", ");
+  };
+
   // What we believe (brand manifesto)
   const beliefs = [
     "Alcohol-free should taste like something, not like an apology.",
@@ -34,6 +47,7 @@ const About = () => {
     {
       name: "Pacific Beach",
       tag: "The Flagship",
+      slug: "pacific-beach",
       blurb: "Our first bottle shop and tasting room. The full 500+ wall, plus a bar to actually try things.",
       address: "1854 Garnet Ave, San Diego, CA 92109",
       hours: "Tue to Sat 11am to 8pm, Sun 11am to 6pm",
@@ -43,6 +57,7 @@ const About = () => {
     {
       name: "Ocean Beach",
       tag: "Beachside",
+      slug: "ocean-beach",
       blurb: "A laid-back bottle shop one block from the beach. Grab your Vibations for a beach day and a little more salt air.",
       address: "4967 Newport Ave, San Diego, CA 92107",
       hours: "Tue & Thu 11am to 8pm, Wed 3pm to 8pm, Fri to Sun 11am to 6pm",
@@ -51,10 +66,11 @@ const About = () => {
     },
     {
       name: "The Lab",
-      tag: "La Costa",
+      tag: "San Marcos",
+      slug: "the-lab",
       blurb: "Our non-alcoholic brewing and innovation space. Home of Haymaker NA IPA, our first house brew.",
       address: "1784 La Costa Meadows Dr, Ste 103, San Marcos, CA 92078",
-      hours: "Tue to Fri 10am to 4pm, Sat 9am to 4pm",
+      hours: "See our Google listing for current hours",
       image: haymakerCan,
       href: "/services",
     },
@@ -270,7 +286,7 @@ const About = () => {
                       <MapPin className="h-4 w-4 shrink-0 mt-0.5 text-gold" />
                       <div className="font-sans text-xs leading-relaxed">
                         <p>{place.address}</p>
-                        <p className="text-forest/50">{place.hours}</p>
+                        <p className="text-forest/50">{liveHoursLine(place.slug) || place.hours}</p>
                       </div>
                     </div>
                   </div>
