@@ -143,7 +143,7 @@ const NonAlcoholicDrinksSanDiego = () => {
                   {[
                     {
                       title: "Non-Alcoholic Beer",
-                      desc: "IPAs, lagers, stouts, sours, and wheat beers from Athletic Brewing, Bravus, Partake, and dozens more.",
+                      desc: "IPAs, lagers, stouts, sours, and wheat beers from Mash Gang, Beaglepuss, Go Brewing, and dozens more.",
                     },
                     {
                       title: "Non-Alcoholic Wine",
