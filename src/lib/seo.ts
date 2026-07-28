@@ -77,7 +77,7 @@ export const organizationSchema = {
   },
   "contactPoint": {
     "@type": "ContactPoint",
-    "telephone": "+1-619-555-0101",
+    "telephone": "+1-858-412-3253",
     "contactType": "customer service"
   }
 };
@@ -89,7 +89,7 @@ export const localBusinessSchema = {
   "name": SITE_NAME,
   "description": "San Diego's premier non-alcoholic bottle shop with 500+ flavors. Try before you buy at our Pacific Beach and Ocean Beach locations.",
   "url": SITE_URL,
-  "telephone": "+1-619-555-0101",
+  "telephone": "+1-858-412-3253",
   "priceRange": "$$",
   "image": DEFAULT_OG_IMAGE,
   "address": [
@@ -115,20 +115,11 @@ export const localBusinessSchema = {
     "latitude": 32.7833,
     "longitude": -117.2500
   },
-  "openingHoursSpecification": [
-    {
-      "@type": "OpeningHoursSpecification",
-      "dayOfWeek": ["Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-      "opens": "11:00",
-      "closes": "20:00"
-    },
-    {
-      "@type": "OpeningHoursSpecification",
-      "dayOfWeek": "Sunday",
-      "opens": "11:00",
-      "closes": "18:00"
-    }
-  ],
+  // Hours are intentionally NOT set on this combined store schema: it lists both
+  // the Pacific Beach and Ocean Beach addresses, and those stores keep different
+  // hours (OB is Wed 3-8, Fri-Sun 11-6). A single block here would publish the
+  // wrong hours for one store. Correct, per-store hours are emitted separately by
+  // locationSchema() in data/locations.ts (one Store entity per location).
   "hasOfferCatalog": {
     "@type": "OfferCatalog",
     "name": "Non-Alcoholic Beverages",
