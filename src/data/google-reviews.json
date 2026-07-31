@@ -1,16 +1,9 @@
 {
   "rating": 4.9,
-  "count": 140,
+  "count": 141,
   "mapsUri": "https://maps.google.com/?cid=3351477488476243913&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYBCAA",
-  "updatedAt": "2026-06-14",
+  "updatedAt": "2026-07-31",
   "reviews": [
-    {
-      "rating": 5,
-      "author": "Spencer P.",
-      "initials": "SP",
-      "when": "a year ago",
-      "text": "This beautiful non-alcoholic bottle shop (!) has an awesome selection of over 200 non-alcoholic beers, spirits and wines, including 92 different craft beers. Not to mention a great vibe and welcoming owner in Zane, who let me sample some of the shop's incredible offerings from around the world.…"
-    },
     {
       "rating": 5,
       "author": "Mahla H.",
@@ -24,6 +17,13 @@
       "initials": "KW",
       "when": "a year ago",
       "text": "this might be my new favorite work spot. the most beautiful aesthetic, Mekenzi and Zane were so helpful & gave me a tour of all the different drink options. everything is non-alcoholic which I LOVE! highly recommended if you want a quiet place to work and good non-alcoholic drinks to enjoy"
+    },
+    {
+      "rating": 5,
+      "author": "Sarah G.",
+      "initials": "SG",
+      "when": "a year ago",
+      "text": "HIGHLY recommend. My friend and I went in after a friend suggested we check it out. We didn’t know what to expect but were met by Zane who was incredibly friendly and knowledgeable. He educated us on “drinking different” and we left with some bottles of kava. I am absolutely loving the…"
     }
   ]
 }
