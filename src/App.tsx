@@ -57,6 +57,7 @@ const Consulting = lazy(() => import("./pages/Consulting"));
 const GiftCards = lazy(() => import("./pages/GiftCards"));
 const KavaHavenNeighborhood = lazy(() => import("./pages/KavaHavenNeighborhood"));
 const Join = lazy(() => import("./pages/Join"));
+const Events = lazy(() => import("./pages/Events"));
 const NonAlcoholicDrinks = lazy(() => import("./pages/seo/NonAlcoholicDrinks"));
 const NonAlcoholicSpirits = lazy(() => import("./pages/seo/NonAlcoholicSpirits"));
 const NonAlcoholicWine = lazy(() => import("./pages/seo/NonAlcoholicWine"));
@@ -161,6 +162,7 @@ const AppContent = () => {
           <Route path="/consulting" element={<Consulting />} />
           <Route path="/kava-haven/:neighborhood" element={<KavaHavenNeighborhood />} />
           <Route path="/join" element={<Join />} />
+          <Route path="/events" element={<Events />} />
           {/* SEO cluster pages */}
           <Route path="/non-alcoholic-drinks" element={<NonAlcoholicDrinks />} />
           <Route path="/non-alcoholic-spirits" element={<NonAlcoholicSpirits />} />

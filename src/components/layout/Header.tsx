@@ -129,8 +129,9 @@ const Header = ({ forceSolid = false }: HeaderProps) => {
     { name: "Shop", href: "/shop", number: "01", hasDropdown: true, dropdownType: "collections" },
     { name: "Visit", href: "/locations", number: "02", hasDropdown: true, dropdownType: "visit" },
     { name: "Behind The Bar", href: "/recipes", number: "03", hasDropdown: true, dropdownType: "recipes" },
-    { name: "Story", href: "/about", number: "04" },
-    { name: "Partner With Us", href: "/services", number: "05" },
+    { name: "Events", href: "/events", number: "04" },
+    { name: "Story", href: "/about", number: "05" },
+    { name: "Partner With Us", href: "/services", number: "06" },
   ];
 
   // Determine if we're on a dark hero page
