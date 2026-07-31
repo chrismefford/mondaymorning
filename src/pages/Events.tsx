@@ -275,10 +275,12 @@ const Events = () => {
                             className="rounded-md px-1.5 py-0.5 font-sans text-[10px] md:text-[11px] leading-tight truncate"
                             style={{ backgroundColor: `${color}26`, color: "hsl(var(--foreground))" }}
                           >
-                            <span className="mr-1">{meta.icon}</span>
-                            {!e.all_day && formatTime(e.start_time) ? (
-                              <span className="font-semibold">{formatTime(e.start_time)} </span>
+                            {e.all_day ? (
+                              <span className="font-semibold">All day </span>
+                            ) : formatTimeRange(e.start_time, e.end_time) ? (
+                              <span className="font-semibold">{formatTimeRange(e.start_time, e.end_time)} </span>
                             ) : null}
+                            <span className="mr-1">{meta.icon}</span>
                             {e.title}
                           </div>
                         );
