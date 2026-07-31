@@ -35,20 +35,10 @@ const typeMeta = (t: string | null) =>
   (t && TYPE_META[t.toLowerCase().trim()]) || { icon: "✦", label: "Event" };
 
 const LOCATIONS = [
-  { key: "lab", label: "The Lab", color: "#48A3AA", match: (l: string) => l.includes("lab") },
-  {
-    key: "pb",
-    label: "PB Tasting Room",
-    color: "#E2A325",
-    match: (l: string) => l.includes("pb") || l.includes("pacific beach"),
-  },
-  {
-    key: "ob",
-    label: "OB Tasting Room",
-    color: "#4E7A52",
-    match: (l: string) => l.includes("ob") || l.includes("ocean beach"),
-  },
-  { key: "offsite", label: "Offsite", color: "#7C6BA0", match: (l: string) => l.includes("offsite") },
+  { key: "lab", label: "The Lab", color: "#48A3AA", match: (l: string) => l.trim().toLowerCase() === "the lab" },
+  { key: "pb", label: "PB", color: "#E2A325", match: (l: string) => l.trim().toLowerCase() === "pb" },
+  { key: "ob", label: "OB", color: "#4E7A52", match: (l: string) => l.trim().toLowerCase() === "ob" },
+  { key: "offsite", label: "Offsite", color: "#7C6BA0", match: (l: string) => l.trim().toLowerCase() === "offsite" },
 ];
 
 const NEUTRAL = "#8A857B";
