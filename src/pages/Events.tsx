@@ -45,8 +45,7 @@ const NEUTRAL = "#8A857B";
 
 const locationColor = (loc: string | null) => {
   if (!loc) return NEUTRAL;
-  const l = loc.toLowerCase();
-  return LOCATIONS.find((x) => x.match(l))?.color ?? NEUTRAL;
+  return LOCATIONS.find((x) => x.match(loc))?.color ?? NEUTRAL;
 };
 
 // "17:00" -> "5pm", "17:30" -> "5:30pm"
@@ -61,12 +60,31 @@ const formatTime = (t: string | null) => {
   return m ? `${hour12}:${String(m).padStart(2, "0")}${suffix}` : `${hour12}${suffix}`;
 };
 
+const formatTimeRange = (start: string | null, end: string | null) => {
+  if (!start) return "";
+  const startText = formatTime(start);
+  if (!end) return startText;
+
+  const [startH, startM] = start.split(":").map(Number);
+  const [endH, endM] = end.split(":").map(Number);
+  if (Number.isNaN(startH) || Number.isNaN(endH)) return startText;
+
+  const startPeriod = startH >= 12 ? "pm" : "am";
+  const endPeriod = endH >= 12 ? "pm" : "am";
+  const startHour = startH % 12 === 0 ? 12 : startH % 12;
+  const endHour = endH % 12 === 0 ? 12 : endH % 12;
+  const startMin = startM ? `:${String(startM).padStart(2, "0")}` : "";
+  const endMin = endM ? `:${String(endM).padStart(2, "0")}` : "";
+
+  if (startPeriod === endPeriod) {
+    return `${startHour}${startMin}–${endHour}${endMin}${endPeriod}`;
+  }
+  return `${startHour}${startMin}${startPeriod}–${endHour}${endMin}${endPeriod}`;
+};
+
 const timeLabel = (e: CrmEvent) => {
   if (e.all_day) return "All day";
-  const start = formatTime(e.start_time);
-  if (!start) return "";
-  const end = formatTime(e.end_time);
-  return end ? `${start}–${end}` : start;
+  return formatTimeRange(e.start_time, e.end_time);
 };
 
 const parseDate = (d: string) => {
