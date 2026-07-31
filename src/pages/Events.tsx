@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import { CalendarDays, MapPin, Clock, ChevronLeft, ChevronRight, CalendarPlus } from "lucide-react";
+import { ChevronLeft, ChevronRight, CalendarPlus } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
@@ -19,18 +19,45 @@ interface CrmEvent {
   all_day: boolean | null;
 }
 
-const TYPE_LABELS: Record<string, string> = {
-  private: "Private event",
-  tasting: "Tasting",
-  popup: "Pop-up",
-  release: "Release",
-  tour: "Tour",
-  market: "Market",
-  class: "Class",
-  meeting: "Meeting",
+const TYPE_META: Record<string, { icon: string; label: string }> = {
+  live_music: { icon: "🎵", label: "Live music" },
+  tasting: { icon: "🥂", label: "Tasting" },
+  private: { icon: "🎉", label: "Private event" },
+  popup: { icon: "🛍️", label: "Pop-up" },
+  release: { icon: "🍾", label: "Release" },
+  tour: { icon: "🚶", label: "Tour" },
+  market: { icon: "🎪", label: "Market" },
+  class: { icon: "📖", label: "Class" },
+  meeting: { icon: "📅", label: "Meeting" },
 };
 
-const typeLabel = (t: string | null) => (t ? TYPE_LABELS[t] || t : "");
+const typeMeta = (t: string | null) =>
+  (t && TYPE_META[t.toLowerCase().trim()]) || { icon: "✦", label: "Event" };
+
+const LOCATIONS = [
+  { key: "lab", label: "The Lab", color: "#48A3AA", match: (l: string) => l.includes("lab") },
+  {
+    key: "pb",
+    label: "PB Tasting Room",
+    color: "#E2A325",
+    match: (l: string) => l.includes("pb") || l.includes("pacific beach"),
+  },
+  {
+    key: "ob",
+    label: "OB Tasting Room",
+    color: "#4E7A52",
+    match: (l: string) => l.includes("ob") || l.includes("ocean beach"),
+  },
+  { key: "offsite", label: "Offsite", color: "#7C6BA0", match: (l: string) => l.includes("offsite") },
+];
+
+const NEUTRAL = "#8A857B";
+
+const locationColor = (loc: string | null) => {
+  if (!loc) return NEUTRAL;
+  const l = loc.toLowerCase();
+  return LOCATIONS.find((x) => x.match(l))?.color ?? NEUTRAL;
+};
 
 // "17:00" -> "5pm", "17:30" -> "5:30pm"
 const formatTime = (t: string | null) => {
@@ -49,10 +76,9 @@ const timeLabel = (e: CrmEvent) => {
   const start = formatTime(e.start_time);
   if (!start) return "";
   const end = formatTime(e.end_time);
-  return end ? `${start} to ${end}` : start;
+  return end ? `${start}–${end}` : start;
 };
 
-// Parse "YYYY-MM-DD" as a local date so the grid never shifts a day.
 const parseDate = (d: string) => {
   const [y, m, day] = d.split("-").map(Number);
   return new Date(y, (m || 1) - 1, day || 1);
@@ -114,7 +140,6 @@ const Events = () => {
       );
   }, [events, today]);
 
-  // Build the month grid (leading blanks + days).
   const cells = useMemo(() => {
     const first = new Date(cursor.getFullYear(), cursor.getMonth(), 1);
     const daysInMonth = new Date(cursor.getFullYear(), cursor.getMonth() + 1, 0).getDate();
@@ -127,113 +152,130 @@ const Events = () => {
   const shiftMonth = (delta: number) =>
     setCursor((c) => new Date(c.getFullYear(), c.getMonth() + delta, 1));
 
+  const pill =
+    "inline-flex items-center justify-center rounded-full border border-[#E7E1D5] bg-background px-3 py-1.5 font-sans text-xs font-semibold text-foreground transition-colors hover:bg-[#F7F1E4]";
+
   return (
     <>
       <SEO
         title="Events"
-        description="Tastings, pop-ups, releases, and gatherings across Monday Morning in Pacific Beach, Ocean Beach, and The Lab."
+        description="Tastings, pop-ups, live music, releases, and gatherings across Monday Morning in Pacific Beach, Ocean Beach, and The Lab."
         path="/events"
       />
       <Header forceSolid />
 
       <main id="main" className="bg-background pt-28 lg:pt-32">
         {/* Page header */}
-        <section className="container mx-auto px-4 lg:px-8 pb-8">
+        <section className="container mx-auto px-4 lg:px-8 pb-10">
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
             <div className="space-y-3">
               <p className="font-sans text-xs font-bold uppercase tracking-[0.2em] text-primary">
                 What's Happening
               </p>
-              <h1 className="font-serif text-4xl md:text-6xl text-foreground leading-[0.95]">Events</h1>
+              <h1 className="font-serif text-4xl md:text-6xl text-foreground leading-[1.05]">Events</h1>
               <p className="font-sans text-sm md:text-base text-muted-foreground max-w-xl">
                 What's happening across Monday Morning, Pacific Beach, Ocean Beach, and The Lab.
               </p>
             </div>
-            <a href={EVENTS_ICS} target="_blank" rel="noopener noreferrer" className="shrink-0">
-              <Button className="bg-gold text-forest hover:bg-forest hover:text-cream border-2 border-forest font-sans text-xs font-bold uppercase tracking-wider px-6 py-5">
-                <CalendarPlus className="h-4 w-4 mr-2" />
-                Subscribe
-              </Button>
-            </a>
+            <div className="shrink-0 space-y-2">
+              <a href={EVENTS_ICS} target="_blank" rel="noopener noreferrer">
+                <Button className="rounded-full bg-gold text-forest hover:bg-forest hover:text-cream font-sans text-xs font-bold uppercase tracking-wider px-6 py-5">
+                  <CalendarPlus className="h-4 w-4 mr-2" />
+                  Subscribe
+                </Button>
+              </a>
+              <p className="font-sans text-xs text-muted-foreground">
+                Add to Google, Apple, or Outlook calendar.
+              </p>
+            </div>
           </div>
-          <p className="font-sans text-xs text-muted-foreground mt-3">
-            Add to Google, Apple, or Outlook calendar.
-          </p>
         </section>
 
         {/* Calendar */}
-        <section className="container mx-auto px-4 lg:px-8 pb-12">
-          <div className="border-2 border-foreground bg-card">
-            <div className="flex items-center justify-between border-b-2 border-foreground px-4 py-3">
-              <button
-                type="button"
-                aria-label="Previous month"
-                onClick={() => shiftMonth(-1)}
-                className="p-2 border-2 border-foreground hover:bg-forest hover:text-cream transition-colors"
-              >
+        <section className="container mx-auto px-4 lg:px-8 pb-16">
+          <div className="rounded-2xl border border-[#E7E1D5] bg-card p-4 md:p-7">
+            <div className="flex items-center justify-between gap-3">
+              <button type="button" aria-label="Previous month" onClick={() => shiftMonth(-1)} className={`${pill} h-8 w-8 px-0`}>
                 <ChevronLeft className="h-4 w-4" />
               </button>
-              <h2 className="font-serif text-xl md:text-2xl text-foreground">
-                {MONTHS[cursor.getMonth()]} {cursor.getFullYear()}
-              </h2>
-              <button
-                type="button"
-                aria-label="Next month"
-                onClick={() => shiftMonth(1)}
-                className="p-2 border-2 border-foreground hover:bg-forest hover:text-cream transition-colors"
-              >
-                <ChevronRight className="h-4 w-4" />
-              </button>
+              <div className="text-center">
+                <h2 className="font-serif text-xl md:text-3xl text-foreground">
+                  {MONTHS[cursor.getMonth()]} {cursor.getFullYear()}
+                </h2>
+              </div>
+              <div className="flex items-center gap-2">
+                <button
+                  type="button"
+                  onClick={() => setCursor(new Date(today.getFullYear(), today.getMonth(), 1))}
+                  className={pill}
+                >
+                  Today
+                </button>
+                <button type="button" aria-label="Next month" onClick={() => shiftMonth(1)} className={`${pill} h-8 w-8 px-0`}>
+                  <ChevronRight className="h-4 w-4" />
+                </button>
+              </div>
             </div>
 
-            <div className="grid grid-cols-7 border-b-2 border-foreground/20">
+            {/* Legend */}
+            <div className="mt-4 flex flex-wrap justify-center gap-x-5 gap-y-2">
+              {LOCATIONS.map((l) => (
+                <span key={l.key} className="inline-flex items-center gap-2 font-sans text-[11px] text-muted-foreground">
+                  <span className="h-2 w-2 rounded-full" style={{ backgroundColor: l.color }} />
+                  {l.label}
+                </span>
+              ))}
+            </div>
+
+            <div className="mt-6 grid grid-cols-7 gap-1.5 md:gap-2">
               {WEEKDAYS.map((d) => (
                 <div
                   key={d}
-                  className="py-2 text-center font-sans text-[10px] md:text-xs font-bold uppercase tracking-wider text-muted-foreground"
+                  className="pb-2 text-center font-sans text-[10px] md:text-xs font-semibold uppercase tracking-wider text-muted-foreground"
                 >
                   {d}
                 </div>
               ))}
-            </div>
 
-            <div className="grid grid-cols-7">
               {cells.map((date, i) => {
                 const key = date ? toKey(date) : `blank-${i}`;
                 const dayEvents = date ? byDate[toKey(date)] || [] : [];
                 const isToday = date && toKey(date) === toKey(today);
+                if (!date) return <div key={key} className="min-h-[80px] md:min-h-[118px]" />;
                 return (
                   <div
                     key={key}
-                    className={`min-h-[74px] md:min-h-[110px] border-r border-b border-foreground/15 p-1.5 ${
-                      date ? "" : "bg-muted/30"
+                    className={`min-h-[80px] md:min-h-[118px] rounded-[10px] p-1.5 md:p-2 transition-colors ${
+                      isToday ? "bg-gold/10 ring-1 ring-gold/40" : "hover:bg-[#FAF5EA]"
                     }`}
                   >
-                    {date && (
-                      <>
-                        <span
-                          className={`inline-flex items-center justify-center font-sans text-[11px] md:text-xs font-bold w-6 h-6 mb-1 ${
-                            isToday ? "bg-forest text-cream" : "text-foreground"
-                          }`}
-                        >
-                          {date.getDate()}
-                        </span>
-                        <div className="space-y-1">
-                          {dayEvents.map((e) => (
-                            <div
-                              key={e.id}
-                              title={e.title}
-                              className="bg-gold/25 border-l-2 border-gold px-1 py-0.5 font-sans text-[10px] md:text-[11px] leading-tight text-foreground truncate"
-                            >
-                              {!e.all_day && formatTime(e.start_time) ? (
-                                <span className="font-bold">{formatTime(e.start_time)} </span>
-                              ) : null}
-                              {e.title}
-                            </div>
-                          ))}
-                        </div>
-                      </>
-                    )}
+                    <span
+                      className={`inline-flex items-center justify-center font-sans text-[11px] md:text-xs font-semibold w-6 h-6 mb-1 rounded-full ${
+                        isToday ? "bg-gold text-forest" : "text-muted-foreground"
+                      }`}
+                    >
+                      {date.getDate()}
+                    </span>
+                    <div className="space-y-1">
+                      {dayEvents.map((e) => {
+                        const color = locationColor(e.location);
+                        const meta = typeMeta(e.event_type);
+                        return (
+                          <div
+                            key={e.id}
+                            title={`${meta.label}: ${e.title}${e.location ? ` at ${e.location}` : ""}`}
+                            className="rounded-md px-1.5 py-0.5 font-sans text-[10px] md:text-[11px] leading-tight truncate"
+                            style={{ backgroundColor: `${color}26`, color: "hsl(var(--foreground))" }}
+                          >
+                            <span className="mr-1">{meta.icon}</span>
+                            {!e.all_day && formatTime(e.start_time) ? (
+                              <span className="font-semibold">{formatTime(e.start_time)} </span>
+                            ) : null}
+                            {e.title}
+                          </div>
+                        );
+                      })}
+                    </div>
                   </div>
                 );
               })}
@@ -243,58 +285,51 @@ const Events = () => {
 
         {/* Upcoming list */}
         <section className="container mx-auto px-4 lg:px-8 pb-20 lg:pb-28">
-          <h2 className="font-serif text-2xl md:text-4xl text-foreground mb-6">Upcoming</h2>
+          <h2 className="font-serif text-2xl md:text-4xl text-foreground mb-8">Upcoming</h2>
 
           {loading ? (
             <p className="font-sans text-sm text-muted-foreground">Loading events...</p>
           ) : upcoming.length === 0 ? (
-            <div className="border-2 border-dashed border-foreground/30 p-10 text-center">
+            <div className="rounded-2xl border border-[#E7E1D5] p-12 text-center">
               <p className="font-sans text-sm text-muted-foreground">
                 No upcoming events right now, check back soon.
               </p>
             </div>
           ) : (
-            <ul className="divide-y-2 divide-foreground/10 border-y-2 border-foreground/10">
-              {upcoming.map((e) => (
-                <li key={e.id} className="py-5 flex flex-col md:flex-row md:items-center gap-3 md:gap-6">
-                  <div className="md:w-40 shrink-0">
-                    <span className="font-sans text-xs font-bold uppercase tracking-wider text-primary">
-                      {e.event_date ? formatDay(e.event_date) : "Date TBA"}
-                    </span>
-                  </div>
-                  <div className="flex-1 space-y-1">
-                    <h3 className="font-serif text-lg md:text-xl text-foreground leading-tight">{e.title}</h3>
-                    <div className="flex flex-wrap items-center gap-x-5 gap-y-1 text-muted-foreground">
-                      {timeLabel(e) && (
-                        <span className="inline-flex items-center gap-1.5 font-sans text-sm">
-                          <Clock className="h-3.5 w-3.5 text-gold" />
-                          {timeLabel(e)}
-                        </span>
-                      )}
-                      {e.location && (
-                        <span className="inline-flex items-center gap-1.5 font-sans text-sm">
-                          <MapPin className="h-3.5 w-3.5 text-gold" />
-                          {e.location}
-                        </span>
-                      )}
+            <ul className="space-y-3">
+              {upcoming.map((e) => {
+                const color = locationColor(e.location);
+                const meta = typeMeta(e.event_type);
+                const bits = [
+                  e.event_date ? formatDay(e.event_date) : "Date TBA",
+                  timeLabel(e),
+                  meta.label,
+                  e.location || "",
+                ].filter(Boolean);
+                return (
+                  <li
+                    key={e.id}
+                    className="rounded-2xl border border-[#E7E1D5] bg-card px-5 py-4 flex items-start gap-4 transition-colors hover:bg-[#FAF5EA]"
+                  >
+                    <span className="mt-2 h-2.5 w-2.5 shrink-0 rounded-full" style={{ backgroundColor: color }} />
+                    <div className="min-w-0 space-y-1">
+                      <h3 className="font-serif text-lg md:text-xl text-foreground leading-tight">
+                        <span className="mr-2">{meta.icon}</span>
+                        {e.title}
+                      </h3>
+                      <p className="font-sans text-sm text-muted-foreground">{bits.join(" · ")}</p>
                     </div>
-                  </div>
-                  {typeLabel(e.event_type) && (
-                    <span className="self-start md:self-center px-3 py-1 bg-forest text-cream font-sans text-[10px] font-bold uppercase tracking-wider">
-                      {typeLabel(e.event_type)}
-                    </span>
-                  )}
-                </li>
-              ))}
+                  </li>
+                );
+              })}
             </ul>
           )}
 
-          <div className="mt-10 flex items-center gap-3">
-            <CalendarDays className="h-5 w-5 text-primary/40" />
+          <div className="mt-10">
             <a href={EVENTS_ICS} target="_blank" rel="noopener noreferrer">
               <Button
                 variant="outline"
-                className="border-2 border-foreground text-foreground hover:bg-foreground hover:text-background font-sans text-xs font-bold uppercase tracking-wider"
+                className="rounded-full border-forest text-forest hover:bg-forest hover:text-cream font-sans text-xs font-bold uppercase tracking-wider px-6"
               >
                 Subscribe to the calendar
               </Button>
