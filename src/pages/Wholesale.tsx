@@ -17,14 +17,15 @@ import {
   Store,
   Building2,
   Beer,
+  PackageOpen,
 } from "lucide-react";
 import stampGold from "@/assets/stamp-gold.svg";
 import textureCream from "@/assets/texture-cream.webp";
 import textureGreen from "@/assets/texture-green.webp";
 import { SITE_NAME, DEFAULT_OG_IMAGE, TWITTER_HANDLE, getCanonicalUrl } from "@/lib/seo";
 
-// The five ways we work with businesses. Each maps to a real agreement
-// (B2B Supply / Consulting / Retail Curation / Lab Brewing / Vibations).
+// The ways we work with businesses. Each maps to a real agreement or product line
+// (B2B Supply / Kegs & Draft / Consulting / Retail Curation / Lab Brewing / Vibations / Brand Submissions).
 const offerings = [
   {
     id: "b2b",
@@ -43,6 +44,23 @@ const offerings = [
     ],
     cta: "wholesale",
     ctaLabel: "Apply for wholesale",
+  },
+  {
+    id: "kegs",
+    icon: Beer,
+    eyebrow: "Kegs & Draft",
+    title: "Put our NA beer",
+    accent: "on tap.",
+    who: "For bars, restaurants, and taprooms.",
+    body: "We brew our own non-alcoholic beer at The Lab, including our Haymaker NA IPA, and we keg it for draft. Give your guests a real alcohol-free pour on tap: no liquor license needed, poured like the real thing. We deliver kegs across San Diego and keep your line rotating.",
+    points: [
+      "Our own NA beer, brewed at The Lab in San Marcos",
+      "Haymaker NA IPA plus rotating seasonals, on draft",
+      "Kegs delivered across San Diego",
+      "No liquor license required to pour it",
+    ],
+    cta: "kegs",
+    ctaLabel: "Get our beer on tap",
   },
   {
     id: "consulting",
@@ -111,6 +129,23 @@ const offerings = [
     ],
     cta: "contact",
     ctaLabel: "Inquire about events",
+  },
+  {
+    id: "samples",
+    icon: PackageOpen,
+    eyebrow: "Brand Submissions",
+    title: "Get your brand",
+    accent: "on our shelves.",
+    who: "For non-alcoholic brands who want in.",
+    body: "We're always tasting for what's next. If you make a non-alcoholic beer, wine, spirit, or functional drink, submit it for review. Tell us about it, and if it's a fit, we'll tell you where to send samples. Everything gets tasted by our buyers and the floor teams who actually sell it.",
+    points: [
+      "Submit your brand and lineup for buyer review",
+      "We reply with where to ship samples if it's a fit",
+      "Tasted by our buyers and floor staff, the people who sell it",
+      "A shot at our shelves across Pacific Beach, Ocean Beach, and The Lab, plus our online shop",
+    ],
+    cta: "samples",
+    ctaLabel: "Submit your brand",
   },
 ];
 
@@ -201,7 +236,7 @@ const Wholesale = () => {
                 Let's build the alcohol-free shift <span className="font-script text-gold text-[1.15em] leading-none whitespace-nowrap">together.</span>
               </h1>
               <p className="font-sans text-lg lg:text-2xl text-muted-foreground leading-relaxed max-w-3xl">
-                We help bars, restaurants, retailers, and brands win the fastest-growing category in beverage. Five ways to partner with us, all run by people who do this for a living.
+                We help bars, restaurants, retailers, and brands win the fastest-growing category in beverage. Seven ways to partner with us, all run by people who do this for a living.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 mt-8">
                 <InquiryDialog
@@ -265,7 +300,7 @@ const Wholesale = () => {
         <section className="py-10 lg:py-12 bg-cream relative overflow-hidden border-b border-forest/10">
           <div className="container mx-auto px-4 lg:px-8 relative z-10">
             <p className="text-center font-sans text-[10px] lg:text-xs font-bold uppercase tracking-[0.3em] text-gold mb-6">
-              Five Ways We Help
+              Seven Ways We Help
             </p>
             <div className="flex flex-wrap justify-center gap-3 lg:gap-4">
               {offerings.map((o) => (
@@ -422,7 +457,7 @@ const Wholesale = () => {
                 Tell us what you're <span className="font-script text-forest-deep text-[1.15em] leading-none">building.</span>
               </h2>
               <p className="font-sans text-lg text-forest/80 mb-8">
-                One conversation and we'll point you to the right fit, whether that's a wholesale account, a consult, a pop-up, a brew run, or an event. Or just come taste first.
+                One conversation and we'll point you to the right fit, whether that's a wholesale account, our beer on tap, a consult, a pop-up, a brew run, an event, or a spot on our shelves. Or just come taste first.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <InquiryDialog

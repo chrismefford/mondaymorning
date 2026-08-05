@@ -18,11 +18,13 @@ import { toast } from "sonner";
 
 export type Offering =
   | "b2b"
+  | "kegs"
   | "consulting"
   | "popups"
   | "brewing"
   | "events"
   | "tasting"
+  | "samples"
   | "general";
 
 // Per-offering copy. Keeps the form to one short step while nudging the
@@ -41,6 +43,18 @@ const COPY: Record<
       "We set up your wholesale account and approve you for B2B pricing.",
       "You log in and order by the case at your wholesale pricing.",
       "We ship or deliver, and reorders are a few clicks away.",
+    ],
+  },
+  kegs: {
+    title: "Kegs & Draft",
+    blurb: "Put our non-alcoholic beer on tap at your venue.",
+    placeholder: "Your venue, how many taps, and which beers you're after.",
+    companyLabel: "Business / Venue",
+    next: [
+      "We review your venue and reach out, usually within 1 to 2 business days.",
+      "We set you up with keg pricing and delivery.",
+      "You pick your pours: Haymaker and rotating non-alcoholic seasonals.",
+      "We deliver, and keep your line rotating.",
     ],
   },
   consulting: {
@@ -101,6 +115,18 @@ const COPY: Record<
       "We confirm a time that works for you, usually within 1 to 2 business days.",
       "Come in and taste across our alcohol-free lineup.",
       "We help you find what fits, no pressure.",
+    ],
+  },
+  samples: {
+    title: "Submit Your Brand",
+    blurb: "Make something non-alcoholic and want us to carry it? Tell us about it.",
+    placeholder: "What do you make, what's the story, and where can we learn more (site or links)?",
+    companyLabel: "Brand",
+    next: [
+      "We review your submission, usually within a few business days.",
+      "If it's a fit, we reply with where to ship samples.",
+      "Our buyers and floor team taste it together.",
+      "If it earns a spot, we get you on the shelf and online.",
     ],
   },
   general: {

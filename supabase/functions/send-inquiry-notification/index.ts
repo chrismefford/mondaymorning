@@ -10,11 +10,13 @@ const NOTIFY_EMAIL = 'zane@mondaymorning-af.com';
 
 const LABELS: Record = {
   b2b: 'B2B & Distribution',
+  kegs: 'Kegs & Draft',
   popups: 'Retail Pop-Up',
   consulting: 'Consulting',
   brewing: 'Contract Brewing',
   events: 'Events & Vibations',
   tasting: 'Tasting',
+  samples: 'Brand Submission',
   general: 'General Inquiry',
 };
 
@@ -108,14 +110,13 @@ const emailHtml = `
     }
 
     // Forward to the Sales CRM (best-effort; never fails the email).
-    // ONLY B2B inquiries become CRM leads (they can become Shopify wholesale
-    // accounts). The other offerings (consulting, pop-ups, brewing, events) are
-    // partnership requests — they email the team only, and are NOT pushed into
-    // the B2B sales pipeline.
+    // Venue/partner inquiries become CRM leads. Two offerings are excluded:
+    // brewing (routed to the Lab instead) and samples (inbound brand pitches
+    // for review, which belong in Zane's inbox, not the B2B sales pipeline).
     let crmSynced = false, crmStatus: number | null = null, crmError: string | null = null;
     const crmUrl = Deno.env.get('CRM_INQUIRY_URL');
     const crmSecret = Deno.env.get('CRM_INQUIRY_SECRET');
-    const forwardToCrm = inq.offering !== 'brewing';
+    const forwardToCrm = inq.offering !== 'brewing' && inq.offering !== 'samples';
     const crmConfigured = !!(crmUrl && crmSecret);
     if (forwardToCrm && crmUrl && crmSecret) {
       try {
