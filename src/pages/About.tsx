@@ -85,6 +85,17 @@ const About = () => {
     { name: "San Diego Union-Tribune", href: "https://www.sandiegouniontribune.com/2025/08/05/on-the-menu-monday-morning-bottle-shop-offers-spirits-without-the-alcohol-in-pacific-beach/" },
   ];
 
+  // Leadership / core team. `image` is optional: when a member has a real photo
+  // it renders in the medallion, otherwise we show their initials in brand gold.
+  const team = [
+    { name: "Zane Curtis", title: "Founder & CEO", image: undefined as string | undefined },
+    { name: "Brian Andersen", title: "Chief Revenue Officer", image: undefined as string | undefined },
+    { name: "Jen Unger", title: "Operations Manager", image: undefined as string | undefined },
+    { name: "Dy Lorenzana", title: "Vibe Alchemist", image: undefined as string | undefined },
+  ];
+  const initials = (name: string) =>
+    name.split(" ").map((w) => w[0]).slice(0, 2).join("").toUpperCase();
+
   const pageTitle = "Our Story | Monday Morning Bottle Shop";
   const pageDescription = "The story behind Monday Morning, San Diego's first non-alcoholic bottle shop. Why we built it, what we believe, and where to find us in Pacific Beach and Ocean Beach.";
   const canonicalUrl = getCanonicalUrl("/about");
@@ -360,25 +371,50 @@ const About = () => {
           </div>
         </section>
 
-        {/* MEET THE CREW (photos + bios coming) */}
+        {/* MEET THE TEAM */}
         <section className="py-10 lg:py-16 relative overflow-hidden">
           <div
             className="absolute inset-0 opacity-20 pointer-events-none"
             style={{ backgroundImage: `url(${textureCream})`, backgroundSize: 'cover' }}
           />
-          <div className="container mx-auto px-4 lg:px-8 relative z-10 text-center max-w-2xl">
-            <span className="font-sans text-[10px] lg:text-xs font-bold uppercase tracking-[0.3em] text-gold mb-4 block">
-              The Crew
-            </span>
-            <h2 className="font-serif text-3xl lg:text-5xl leading-[1.1] mb-5">
-              The people behind the <span className="font-script text-gold text-[1.2em] leading-none">bar.</span>
-            </h2>
-            <p className="font-sans text-base lg:text-lg text-muted-foreground leading-relaxed">
-              We're not all alcohol-free. Some of us are sober, some are damp, all of us are here to help you find something good. We'd rather hand you three things to taste than ring you up and rush you out. Come in with a question. Leave with a new favorite.
-            </p>
-            <p className="font-sans text-xs uppercase tracking-[0.2em] text-forest/40 mt-6">
-              Team photos &amp; bios coming soon
-            </p>
+          <div className="container mx-auto px-4 lg:px-8 relative z-10">
+            <div className="text-center max-w-2xl mx-auto">
+              <span className="font-sans text-[10px] lg:text-xs font-bold uppercase tracking-[0.3em] text-gold mb-4 block">
+                The Team
+              </span>
+              <h2 className="font-serif text-3xl lg:text-5xl leading-[1.1] mb-5">
+                The people helping you drink <span className="font-script text-gold text-[1.2em] leading-none">differently.</span>
+              </h2>
+              <p className="font-sans text-base lg:text-lg text-muted-foreground leading-relaxed">
+                We're not all alcohol-free. Some of us are sober, some are damp, all of us are here to help you drink differently and actually love it. From the shop floor to the brewhouse, this is the crew making sure the alcohol-free option is the best one in the room.
+              </p>
+            </div>
+
+            <div className="flex flex-wrap justify-center gap-x-8 gap-y-10 lg:gap-x-14 mt-12 lg:mt-16">
+              {team.map((member) => (
+                <div key={member.name} className="w-40 lg:w-48 text-center">
+                  <div className="mx-auto mb-4 w-24 h-24 lg:w-28 lg:h-28 rounded-full bg-gold border-2 border-forest overflow-hidden flex items-center justify-center shadow-card">
+                    {member.image ? (
+                      <img
+                        src={member.image}
+                        alt={`${member.name}, ${member.title} at Monday Morning`}
+                        loading="lazy"
+                        decoding="async"
+                        className="w-full h-full object-cover object-top"
+                      />
+                    ) : (
+                      <span className="font-serif text-3xl lg:text-4xl text-forest leading-none">
+                        {initials(member.name)}
+                      </span>
+                    )}
+                  </div>
+                  <h3 className="font-serif text-xl lg:text-2xl text-forest leading-tight">{member.name}</h3>
+                  <p className="font-sans text-[11px] lg:text-xs font-bold uppercase tracking-[0.15em] text-gold mt-1.5">
+                    {member.title}
+                  </p>
+                </div>
+              ))}
+            </div>
           </div>
         </section>
 
