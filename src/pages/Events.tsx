@@ -42,10 +42,13 @@ const LOCATIONS = [
 ];
 
 const NEUTRAL = "#8A857B";
+const OFFSITE_COLOR = LOCATIONS.find((l) => l.key === "offsite")!.color;
 
+// Our three shops get their brand color; any other named venue (festivals,
+// tastings elsewhere) is treated as Offsite (purple) so it reads consistently.
 const locationColor = (loc: string | null) => {
   if (!loc) return NEUTRAL;
-  return LOCATIONS.find((x) => x.match(loc))?.color ?? NEUTRAL;
+  return LOCATIONS.find((x) => x.match(loc))?.color ?? OFFSITE_COLOR;
 };
 
 // "17:00" -> "5pm", "17:30" -> "5:30pm"
@@ -77,9 +80,9 @@ const formatTimeRange = (start: string | null, end: string | null) => {
   const endMin = endM ? `:${String(endM).padStart(2, "0")}` : "";
 
   if (startPeriod === endPeriod) {
-    return `${startHour}${startMin}–${endHour}${endMin}${endPeriod}`;
+    return `${startHour}${startMin}-${endHour}${endMin}${endPeriod}`;
   }
-  return `${startHour}${startMin}${startPeriod}–${endHour}${endMin}${endPeriod}`;
+  return `${startHour}${startMin}${startPeriod}-${endHour}${endMin}${endPeriod}`;
 };
 
 const timeLabel = (e: CrmEvent) => {
