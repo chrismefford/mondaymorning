@@ -15,6 +15,13 @@ interface PressItem {
 
 const tvFeatures: PressItem[] = [
   {
+    outlet: "KUSI News",
+    title: "Monday Morning featured on KUSI's Good Business San Diego",
+    date: "Aug 17, 2026",
+    url: "https://youtu.be/4KPk1VUg-y0",
+    type: "tv",
+  },
+  {
     outlet: "ABC 10News",
     title: "San Marcos Opens San Diego County's First Non-Alcoholic Brewery and Tasting Room",
     date: "Jul 18, 2026",
