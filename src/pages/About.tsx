@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { useLocationHours } from "@/hooks/useLocationHours";
-import { compactHours } from "@/data/locations";
+import { compactHours, getLocation } from "@/data/locations";
 import stampGold from "@/assets/stamp-gold.svg";
 import stampGreen from "@/assets/stamp-green.svg";
 import textureCream from "@/assets/texture-cream.webp";
@@ -297,7 +297,11 @@ const About = () => {
                       <MapPin className="h-4 w-4 shrink-0 mt-0.5 text-gold" />
                       <div className="font-sans text-xs leading-relaxed">
                         <p>{place.address}</p>
-                        <p className="text-forest/50">{liveHoursLine(place.slug) || place.hours}</p>
+                        <p className={getLocation(place.slug)?.temporarilyClosed ? "text-gold font-semibold" : "text-forest/50"}>
+                          {getLocation(place.slug)?.temporarilyClosed
+                            ? "Temporarily closed"
+                            : liveHoursLine(place.slug) || place.hours}
+                        </p>
                       </div>
                     </div>
                   </div>

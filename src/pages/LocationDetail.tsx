@@ -1,7 +1,7 @@
 import { useMemo } from "react";
 import { useParams, Navigate, Link } from "react-router-dom";
 import { Helmet } from "@/lib/helmet-compat";
-import { MapPin, Clock, Phone, ExternalLink, Check, ArrowRight, ArrowLeft, Star } from "lucide-react";
+import { MapPin, Clock, Phone, ExternalLink, Check, ArrowRight, ArrowLeft, Star, AlertTriangle } from "lucide-react";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
@@ -131,6 +131,11 @@ const LocationDetail = () => {
             </span>
             <h1 className="font-serif text-4xl md:text-6xl leading-[1.02] mb-4">{loc.name}</h1>
             <p className="font-sans text-lg lg:text-2xl text-cream/85 leading-relaxed max-w-2xl">{loc.tagline}</p>
+            {loc.temporarilyClosed && (
+              <span className="inline-block mt-5 bg-gold text-forest font-sans text-xs font-bold uppercase tracking-[0.2em] px-4 py-2">
+                Temporarily Closed
+              </span>
+            )}
             <div className="flex flex-col sm:flex-row gap-4 mt-8">
               <a href={loc.mapUrl} target="_blank" rel="noopener noreferrer">
                 <Button className="font-sans text-sm font-bold uppercase tracking-widest bg-gold text-forest hover:bg-gold-light px-8 py-6 group">
@@ -154,6 +159,21 @@ const LocationDetail = () => {
             </div>
           </div>
         </section>
+
+        {/* Temporary closure notice */}
+        {loc.temporarilyClosed && loc.closureNotice && (
+          <section className="bg-gold">
+            <div className="container mx-auto px-4 lg:px-8 py-5 max-w-5xl flex items-start gap-4">
+              <AlertTriangle className="h-6 w-6 text-forest shrink-0 mt-0.5" />
+              <div>
+                <p className="font-sans text-sm font-bold uppercase tracking-[0.2em] text-forest mb-1">
+                  Temporarily Closed
+                </p>
+                <p className="font-sans text-base text-forest/90 leading-relaxed">{loc.closureNotice}</p>
+              </div>
+            </div>
+          </section>
+        )}
 
         {/* Intro + details */}
         <section className="py-14 lg:py-20 bg-cream">
@@ -226,7 +246,9 @@ const LocationDetail = () => {
                   <div className="flex items-start gap-3 mb-5">
                     <Clock className="h-5 w-5 text-gold mt-0.5 shrink-0" />
                     <div className="font-sans text-sm space-y-1">
-                      {hasLiveHours ? (
+                      {loc.temporarilyClosed ? (
+                        <p className="text-forest font-semibold">Temporarily closed until further notice</p>
+                      ) : hasLiveHours ? (
                         <>
                           {live!.weekdayText.map((line, i) => (
                             <p key={i} className="text-forest/75">{line}</p>
@@ -276,8 +298,8 @@ const LocationDetail = () => {
           </div>
         </section>
 
-        {/* Shop this store (live per-location inventory) */}
-        <LocationShop slug={loc.slug} name={loc.name} />
+        {/* Shop this store (live per-location inventory) - hidden while closed */}
+        {!loc.temporarilyClosed && <LocationShop slug={loc.slug} name={loc.name} />}
 
         {/* Other locations */}
         <section className="py-12 lg:py-16 bg-sand">

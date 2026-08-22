@@ -124,6 +124,11 @@ const Locations = () => {
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-forest/70 to-transparent" />
+                    {loc.temporarilyClosed && (
+                      <span className="absolute top-3 right-3 bg-gold text-forest font-sans text-[10px] font-bold uppercase tracking-[0.18em] px-3 py-1.5">
+                        Temporarily Closed
+                      </span>
+                    )}
                     <div className="absolute bottom-4 left-5 right-5">
                       <span className="font-sans text-[10px] font-bold uppercase tracking-[0.22em] text-gold block mb-1">
                         {loc.area}

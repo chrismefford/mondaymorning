@@ -42,6 +42,10 @@ export interface OwnedLocation {
   // Direct "write a Google review" link for this store's Google listing.
   // Format: https://search.google.com/local/writereview?placeid=<PlaceID>
   googleReviewUrl?: string;
+  // When a location is temporarily closed, show a closure notice on its page and
+  // "Temporarily closed" in place of hours everywhere (footer, About, cards).
+  temporarilyClosed?: boolean;
+  closureNotice?: string;
   // Optional highlighted callout on the location page (e.g. a local event tie-in)
   // that also links out to a dedicated SEO page.
   spotlight?: {
@@ -196,6 +200,9 @@ export const OWNED_LOCATIONS: OwnedLocation[] = [
     metaDescription:
       "The Lab is California's first non-alcoholic brewery and tasting room, born in San Diego and now open in San Marcos. NA beer on tap (home of Haymaker NA IPA), crowlers, a 200+ bottle shop, pool table, and weekend events.",
     googleReviewUrl: "https://search.google.com/local/writereview?placeid=ChIJL6UPFgQL3IARwLAFQoTxDeU",
+    temporarilyClosed: true,
+    closureNotice:
+      "Due to circumstances outside our control, The Lab is temporarily closed until further notice. Our Pacific Beach and Ocean Beach shops are open as usual, and you can shop our full selection online anytime. Thank you for your patience, we can't wait to welcome you back.",
   },
 ];
 

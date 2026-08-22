@@ -20,6 +20,14 @@ const FooterHours = ({ slug }: { slug: string }) => {
   const loc = getLocation(slug);
   const live = liveHours?.[slug];
 
+  if (loc?.temporarilyClosed) {
+    return (
+      <p className="font-sans text-sm uppercase tracking-wide text-forest-deep font-bold">
+        Temporarily closed
+      </p>
+    );
+  }
+
   if (live && live.weekdayText.length > 0) {
     return (
       <div className="space-y-1">
