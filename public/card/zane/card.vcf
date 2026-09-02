@@ -1,0 +1,11 @@
+BEGIN:VCARD
+VERSION:3.0
+N:Curtis;Zane;;;
+FN:Zane Curtis
+ORG:Monday Morning
+TITLE:Founder & CEO
+TEL;TYPE=CELL,VOICE:+16198218779
+TEL;TYPE=WORK,VOICE:+18584123253
+EMAIL;TYPE=INTERNET,WORK:zane@mondaymorning-af.com
+URL:https://mondaymorning-af.com
+END:VCARD

@@ -1,0 +1,10 @@
+BEGIN:VCARD
+VERSION:3.0
+N:Brown;Matt;;;
+FN:Matt Brown
+ORG:Monday Morning
+TITLE:Sales Manager
+TEL;TYPE=WORK,VOICE:+18584123253
+EMAIL;TYPE=INTERNET,WORK:sales@mondaymorning-af.com
+URL:https://mondaymorning-af.com
+END:VCARD
