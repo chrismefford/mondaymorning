@@ -91,6 +91,12 @@ export const STOCKISTS: Stockist[] = [
     address: "3355 Adams Ave, San Diego, CA 92116",
     brands: ["Kava Haven"],
   },
+  {
+    name: "Leilani's Cafe",
+    area: "Pacific Beach, San Diego",
+    address: "5109 Cass St, San Diego, CA 92109",
+    brands: ["Amethyst", "Kava Coco", "Kava Haven", "NA Beverage Co", "Sentia"],
+  },
 
   // ── Venues set up, but stock is ordered through their group ───────
   // (No per-venue order history yet → "ask in store".)
