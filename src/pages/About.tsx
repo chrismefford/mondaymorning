@@ -89,8 +89,6 @@ const About = () => {
   // it renders in the medallion, otherwise we show their initials in brand gold.
   const team = [
     { name: "Zane Curtis", title: "Founder & CEO", image: undefined as string | undefined },
-    { name: "Brian Andersen", title: "Chief Revenue Officer", image: undefined as string | undefined },
-    { name: "Jen Unger", title: "Operations Manager", image: undefined as string | undefined },
     { name: "Dy Lorenzana", title: "Vibe Alchemist", image: undefined as string | undefined },
   ];
   const initials = (name: string) =>
