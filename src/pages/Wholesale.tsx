@@ -142,12 +142,17 @@ const offerings = [
       "Submit your brand and lineup for buyer review",
       "We reply with where to ship samples if it's a fit",
       "Tasted by our buyers and floor staff, the people who sell it",
-      "A shot at our shelves across Pacific Beach, Ocean Beach, and The Lab, plus our online shop",
+      "A shot at our shelves across Pacific Beach and Ocean Beach, plus our online shop",
     ],
     cta: "samples",
     ctaLabel: "Submit your brand",
   },
 ];
+
+// Offerings that depend on brewing at The Lab, hidden for now while the brewery
+// is down (Kegs & Draft + Contract Brewing). To bring them back, empty this list.
+const HIDDEN_OFFERINGS = ["kegs", "brewing"];
+const visibleOfferings = offerings.filter((o) => !HIDDEN_OFFERINGS.includes(o.id));
 
 // Category / industry figures (not Monday Morning guarantees).
 const marketStats = [
@@ -192,7 +197,7 @@ const OfferingCTA = ({ offering, label }: { offering: string; label: string }) =
 const Wholesale = () => {
   const pageTitle = "How We Can Help | Monday Morning Bottle Shop";
   const pageDescription =
-    "Work with Monday Morning: non-alcoholic wholesale and distribution, consulting, retail pop-ups, contract brewing at The Lab, and Vibations event service. Operators, not just consultants.";
+    "Work with Monday Morning: non-alcoholic wholesale and distribution, consulting, retail pop-ups, and Vibations event service. Operators, not just consultants.";
   const canonicalUrl = getCanonicalUrl("/services");
 
   return (
@@ -236,7 +241,7 @@ const Wholesale = () => {
                 Let's build the alcohol-free shift <span className="font-script text-gold text-[1.15em] leading-none whitespace-nowrap">together.</span>
               </h1>
               <p className="font-sans text-lg lg:text-2xl text-muted-foreground leading-relaxed max-w-3xl">
-                We help bars, restaurants, retailers, and brands win the fastest-growing category in beverage. Seven ways to partner with us, all run by people who do this for a living.
+                We help bars, restaurants, retailers, and brands win the fastest-growing category in beverage. Five ways to partner with us, all run by people who do this for a living.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 mt-8">
                 <InquiryDialog
@@ -276,13 +281,13 @@ const Wholesale = () => {
                 Not just consultants, <span className="font-script text-forest-deep text-[1.2em] leading-none">operators.</span>
               </h2>
               <p className="font-sans text-base lg:text-lg text-forest/70 leading-relaxed mt-4">
-                We don't theorize about the alcohol-free category. We run it: two bottle shops, a tasting bar, a brewery, and a wholesale program supplying San Diego's best venues. Everything we'd advise, we've already done ourselves.
+                We don't theorize about the alcohol-free category. We run it: two bottle shops, a tasting bar, and a wholesale program supplying San Diego's best venues. Everything we'd advise, we've already done ourselves.
               </p>
             </div>
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
               {[
                 { icon: Store, value: "2 shops", label: "Pacific Beach & Ocean Beach" },
-                { icon: Beer, value: "The Lab", label: "Our NA brewery in San Marcos" },
+                { icon: Truck, value: "Delivery", label: "Wholesale delivery across San Diego" },
                 { icon: Building2, value: "50+ accounts", label: "Bars, restaurants & markets served" },
                 { icon: Sparkles, value: "Inc · AP · Fox", label: "Featured nationally" },
               ].map((s) => (
@@ -300,10 +305,10 @@ const Wholesale = () => {
         <section className="py-10 lg:py-12 bg-cream relative overflow-hidden border-b border-forest/10">
           <div className="container mx-auto px-4 lg:px-8 relative z-10">
             <p className="text-center font-sans text-[10px] lg:text-xs font-bold uppercase tracking-[0.3em] text-gold mb-6">
-              Seven Ways We Help
+              Five Ways We Help
             </p>
             <div className="flex flex-wrap justify-center gap-3 lg:gap-4">
-              {offerings.map((o) => (
+              {visibleOfferings.map((o) => (
                 <a
                   key={o.id}
                   href={`#${o.id}`}
@@ -318,7 +323,7 @@ const Wholesale = () => {
         </section>
 
         {/* OFFERING BLOCKS */}
-        {offerings.map((o, i) => (
+        {visibleOfferings.map((o, i) => (
           <section
             key={o.id}
             id={o.id}
@@ -457,7 +462,7 @@ const Wholesale = () => {
                 Tell us what you're <span className="font-script text-forest-deep text-[1.15em] leading-none">building.</span>
               </h2>
               <p className="font-sans text-lg text-forest/80 mb-8">
-                One conversation and we'll point you to the right fit, whether that's a wholesale account, our beer on tap, a consult, a pop-up, a brew run, an event, or a spot on our shelves. Or just come taste first.
+                One conversation and we'll point you to the right fit, whether that's a wholesale account, a consult, a pop-up, an event, or a spot on our shelves. Or just come taste first.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <InquiryDialog
