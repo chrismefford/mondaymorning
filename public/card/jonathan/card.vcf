@@ -1,0 +1,10 @@
+BEGIN:VCARD
+VERSION:3.0
+N:Wadley;Jonathan;;;
+FN:Jonathan Wadley
+ORG:Monday Morning
+TITLE:Operations
+TEL;TYPE=WORK,VOICE:+18584123253
+EMAIL;TYPE=INTERNET,WORK:operations@mondaymorning-af.com
+URL:https://mondaymorning-af.com
+END:VCARD

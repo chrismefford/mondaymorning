@@ -35,6 +35,11 @@ CARDS = [
         "email": "sales@mondaymorning-af.com", "mobile": None,
         "shop": "+18584123253", "web": "mondaymorning-af.com",
     },
+    {
+        "slug": "jonathan", "name": "Jonathan Wadley", "title": "Operations",
+        "email": "operations@mondaymorning-af.com", "mobile": None,
+        "shop": "+18584123253", "web": "mondaymorning-af.com",
+    },
 ]
 
 def pretty(tel: str) -> str:
