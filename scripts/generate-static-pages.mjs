@@ -170,7 +170,12 @@ async function fetchAllBlogPosts() {
     console.log(`  📝 Fetched ${posts.length} published blog posts from Supabase`);
     // Sanitize at the source so every downstream use (schema, meta, body, index)
     // gets brand-clean title + excerpt.
-    return posts.map((p) => ({
+    // Retired posts (see src/data/retiredBlogPosts.ts) stay out of the sitemap + prerender.
+    const RETIRED = new Set([
+      "the-lab-opening-non-alcoholic-contract-brewing-san-marcos",
+      "non-alcoholic-brewery-taproom-san-marcos",
+    ]);
+    return posts.filter((p) => !RETIRED.has(p.slug)).map((p) => ({
       ...p,
       title: cleanBlogTitle(p.title),
       excerpt: cleanBlogExcerpt(p.excerpt),

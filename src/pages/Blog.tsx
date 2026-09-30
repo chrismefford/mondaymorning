@@ -1,4 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
+import { isRetiredBlogPost } from "@/data/retiredBlogPosts";
 import { Link } from "react-router-dom";
 import { Helmet } from "@/lib/helmet-compat";
 import Header from "@/components/layout/Header";
@@ -31,7 +32,7 @@ const Blog = () => {
         .order("published_at", { ascending: false, nullsFirst: false });
 
       if (error) throw error;
-      return data as BlogPost[];
+      return (data as BlogPost[]).filter((p) => !isRetiredBlogPost(p.slug));
     },
   });
 

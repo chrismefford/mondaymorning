@@ -1,4 +1,5 @@
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, Navigate } from "react-router-dom";
+import { RETIRED_BLOG_POSTS, isRetiredBlogPost } from "@/data/retiredBlogPosts";
 import { useQuery } from "@tanstack/react-query";
 import { Helmet } from "@/lib/helmet-compat";
 import Header from "@/components/layout/Header";
@@ -66,6 +67,10 @@ const BlogPost = () => {
   const ogImage = post?.featured_image || "/og-monday-morning.png";
   const canonicalUrl = `https://mondaymorning-af.com/blog/${slug}`;
   const publishedDate = post?.published_at || post?.created_at;
+
+  if (isRetiredBlogPost(slug)) {
+    return <Navigate to={RETIRED_BLOG_POSTS[slug as string]} replace />;
+  }
 
   if (isLoading) {
     return (
