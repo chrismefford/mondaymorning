@@ -35,7 +35,6 @@ const typeMeta = (t: string | null) =>
   (t && TYPE_META[t.toLowerCase().trim()]) || { icon: "✦", label: "Event" };
 
 const LOCATIONS = [
-  { key: "lab", label: "The Lab", color: "#48A3AA", match: (l: string) => l.trim().toLowerCase() === "the lab" },
   { key: "pb", label: "PB", color: "#E2A325", match: (l: string) => l.trim().toLowerCase() === "pb" },
   { key: "ob", label: "OB", color: "#4E7A52", match: (l: string) => l.trim().toLowerCase() === "ob" },
   { key: "offsite", label: "Offsite", color: "#7C6BA0", match: (l: string) => l.trim().toLowerCase() === "offsite" },
@@ -170,7 +169,7 @@ const Events = () => {
     <>
       <SEO
         title="Events"
-        description="Tastings, pop-ups, live music, releases, and gatherings across Monday Morning in Pacific Beach, Ocean Beach, and The Lab."
+        description="Tastings, pop-ups, live music, releases, and gatherings across Monday Morning in Pacific Beach and Ocean Beach."
         path="/events"
       />
       <Header forceSolid />
@@ -185,7 +184,7 @@ const Events = () => {
               </p>
               <h1 className="font-serif text-4xl md:text-6xl text-foreground leading-[1.05]">Events</h1>
               <p className="font-sans text-sm md:text-base text-muted-foreground max-w-xl">
-                What's happening across Monday Morning, Pacific Beach, Ocean Beach, and The Lab.
+                What's happening across Monday Morning, Pacific Beach and Ocean Beach.
               </p>
             </div>
             <div className="shrink-0 space-y-2">

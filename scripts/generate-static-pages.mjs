@@ -1327,8 +1327,8 @@ const staticRoutes = [
   },
   {
     path: "/locations",
-    title: "Visit Monday Morning: NA Bottle Shops & Brewery in San Diego | Locations",
-    description: "Find Monday Morning across San Diego: our Pacific Beach and Ocean Beach non-alcoholic bottle shops, plus The Lab, California's first NA brewery and tasting room, born in San Diego, now in San Marcos.",
+    title: "Visit Monday Morning: NA Bottle Shops in San Diego | Locations",
+    description: "Find Monday Morning across San Diego: our Pacific Beach and Ocean Beach non-alcoholic bottle shops, each with a tasting bar and 500+ alcohol-free drinks.",
     schema: [organizationSchema, localBusinessSchema],
   },
   {
@@ -1372,23 +1372,6 @@ const staticRoutes = [
         { "@type": "OpeningHoursSpecification", dayOfWeek: ["Wednesday"], opens: "15:00", closes: "20:00" },
         { "@type": "OpeningHoursSpecification", dayOfWeek: ["Friday", "Saturday", "Sunday"], opens: "11:00", closes: "18:00" },
       ],
-    }],
-  },
-  {
-    path: "/locations/the-lab",
-    title: "The Lab: Non-Alcoholic Brewery & Taproom in San Marcos | Monday Morning",
-    description: "The Lab is California's first non-alcoholic brewery and tasting room, born in San Diego and now open in San Marcos. NA beer on tap (home of Haymaker NA IPA), crowlers, a 200+ bottle shop, pool table, and weekend events. By Monday Morning.",
-    ogImage: `${SITE_URL}/og-the-lab-opening-san-marcos.jpg`,
-    schema: [{
-      "@context": "https://schema.org",
-      "@type": "Brewery",
-      name: "The Lab by Monday Morning",
-      description: "California's first non-alcoholic brewery and tasting room, born in San Diego, now in San Marcos.",
-      url: `${SITE_URL}/locations/the-lab`,
-      image: `${SITE_URL}/og-the-lab-opening-san-marcos.jpg`,
-      telephone: "(858) 412-3253",
-      address: { "@type": "PostalAddress", streetAddress: "1784 La Costa Meadows Dr, Ste 103", addressLocality: "San Marcos", addressRegion: "CA", postalCode: "92078", addressCountry: "US" },
-      parentOrganization: { "@type": "Organization", name: "Monday Morning Bottle Shop", url: SITE_URL },
     }],
   },
   {
@@ -1683,9 +1666,8 @@ const staticRoutes = [
   },
   {
     path: "/non-alcoholic-breweries-san-diego",
-    title: "Non-Alcoholic Breweries in San Diego (2026): The Lab Taproom & NA Beer | Monday Morning",
-    description: "Does San Diego have a non-alcoholic brewery? Yes. The Lab by Monday Morning is California's first NA brewery and tasting room, born in San Diego and now open with a taproom in San Marcos. Plus where to buy 500+ alcohol-free brews.",
-    ogImage: `${SITE_URL}/og-the-lab-opening-san-marcos.jpg`,
+    title: "Non-Alcoholic Breweries in San Diego (2026): Where to Find Local NA Beer | Monday Morning",
+    description: "Which San Diego breweries make non-alcoholic beer, and where can you taste and buy it? The honest local landscape, plus 500+ alcohol-free beers at Monday Morning in Pacific Beach and Ocean Beach.",
     schema: [organizationSchema],
   },
   {

@@ -18,7 +18,7 @@ export interface LocationSchemaHours {
 
 export interface OwnedLocation {
   slug: string;
-  name: string; // "Pacific Beach" / "Ocean Beach" / "The Lab"
+  name: string; // "Pacific Beach" / "Ocean Beach"
   area: string; // neighborhood / city label
   kind: "bottleshop" | "brewery";
   tagline: string;
@@ -159,51 +159,6 @@ export const OWNED_LOCATIONS: OwnedLocation[] = [
       href: "/ocean-beach-farmers-market",
     },
   },
-  {
-    slug: "the-lab",
-    name: "The Lab",
-    area: "San Marcos",
-    kind: "brewery",
-    tagline: "California's first non-alcoholic brewery and tasting room, born in San Diego",
-    intro: [
-      "We didn't want to call it just a brewery, because it is more than that. The Lab is our non-alcoholic brewery, tasting room, and bottle shop in San Marcos, California's first non-alcoholic brewery and tasting room, born right here in San Diego.",
-      "It is a working non-alcoholic brewery (home of Haymaker NA IPA) with a taproom out front: rotational NA beers on tap, crowlers to take home, a pool table, weekend events, and a bottle shop. Real brewery, real taproom, zero alcohol.",
-      "Want something we do not stock at the taproom? Order it online and we will bring it to The Lab for free, local delivery from our Pacific Beach shop, ready for you to pick up.",
-    ],
-    highlights: [
-      "Rotational non-alcoholic beers on draft",
-      "Haymaker NA IPA, our house West Coast IPA",
-      "Crowlers to go",
-      "Bottle shop with 200+ alcohol-free beers, wines, and spirits",
-      "Free local delivery to The Lab for pickup, ordered online from our PB shop",
-    ],
-    amenities: [
-      "Taproom and brewery",
-      "Pool table",
-      "Weekend events (check the schedule)",
-      "See the production floor",
-      "Crowler fills to go",
-    ],
-    comingSoon: ["Flights"],
-    streetAddress: "1784 La Costa Meadows Dr, Ste 103",
-    locality: "San Marcos",
-    region: "CA",
-    postalCode: "92078",
-    phone: "(858) 412-3253",
-    mapUrl: "https://maps.google.com/?q=1784+La+Costa+Meadows+Dr+San+Marcos+CA+92078",
-    hours: null,
-    hoursNote: "See our Google listing for current taproom hours before you visit.",
-    schemaHours: null,
-    schemaType: "Brewery",
-    image: "/og-the-lab-opening-san-marcos.jpg",
-    metaTitle: "The Lab: California's First Non-Alcoholic Brewery & Taproom, San Marcos | Monday Morning",
-    metaDescription:
-      "The Lab is California's first non-alcoholic brewery and tasting room, born in San Diego and now open in San Marcos. NA beer on tap (home of Haymaker NA IPA), crowlers, a 200+ bottle shop, pool table, and weekend events.",
-    googleReviewUrl: "https://search.google.com/local/writereview?placeid=ChIJL6UPFgQL3IARwLAFQoTxDeU",
-    temporarilyClosed: true,
-    closureNotice:
-      "Due to circumstances outside our control, The Lab is temporarily closed until further notice. Our Pacific Beach and Ocean Beach shops are open as usual, and you can shop our full selection online anytime. Thank you for your patience, we can't wait to welcome you back.",
-  },
 ];
 
 export const getLocation = (slug?: string): OwnedLocation | undefined =>
@@ -248,7 +203,7 @@ export function locationSchema(loc: OwnedLocation) {
   const schema: Record<string, unknown> = {
     "@context": "https://schema.org",
     "@type": loc.schemaType,
-    name: loc.name === "The Lab" ? "The Lab by Monday Morning" : `Monday Morning Bottle Shop, ${loc.name}`,
+    name: `Monday Morning Bottle Shop, ${loc.name}`,
     description: loc.metaDescription,
     url: `${SITE_URL}/locations/${loc.slug}`,
     image: loc.image.startsWith("http") ? loc.image : `${SITE_URL}${loc.image}`,

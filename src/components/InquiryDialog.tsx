@@ -18,10 +18,8 @@ import { toast } from "sonner";
 
 export type Offering =
   | "b2b"
-  | "kegs"
   | "consulting"
   | "popups"
-  | "brewing"
   | "events"
   | "tasting"
   | "samples"
@@ -43,18 +41,6 @@ const COPY: Record<
       "We set up your wholesale account and approve you for B2B pricing.",
       "You log in and order by the case at your wholesale pricing.",
       "We ship or deliver, and reorders are a few clicks away.",
-    ],
-  },
-  kegs: {
-    title: "Kegs & Draft",
-    blurb: "Put our non-alcoholic beer on tap at your venue.",
-    placeholder: "Your venue, how many taps, and which beers you're after.",
-    companyLabel: "Business / Venue",
-    next: [
-      "We review your venue and reach out, usually within 1 to 2 business days.",
-      "We set you up with keg pricing and delivery.",
-      "You pick your pours: Haymaker and rotating non-alcoholic seasonals.",
-      "We deliver, and keep your line rotating.",
     ],
   },
   consulting: {
@@ -79,19 +65,6 @@ const COPY: Record<
       "We plan the details together: location, dates, and what we bring.",
       "We send a simple agreement to lock it in.",
       "We show up and run the pop-up.",
-    ],
-  },
-  brewing: {
-    title: "Contract Brewing",
-    blurb: "Make your own alcohol-free brew at The Lab.",
-    placeholder: "What do you want to make, target volume, and timeline?",
-    companyLabel: "Company / Brand",
-    next: [
-      "We review your request and reach out, usually within 1 to 2 business days.",
-      "We send you a quick agreement to e-sign. It sets the terms and keeps your recipe confidential.",
-      "As soon as it is signed, you build your order and see your live quote, right in your browser.",
-      "We confirm the details together and schedule your brew.",
-      "You follow it from grain to can on a private link, no login needed.",
     ],
   },
   events: {
@@ -238,11 +211,7 @@ export default function InquiryDialog({ offering, trigger }: InquiryDialogProps)
         .catch((err) => console.error("Notification error:", err));
 
       setIsSuccess(true);
-      toast.success(
-        offering === "brewing"
-          ? "Thanks! Our brewers will be in touch shortly."
-          : "Thanks! We'll be in touch shortly."
-      );
+      toast.success("Thanks! We'll be in touch shortly.");
 
     } catch (error) {
       console.error("Submission error:", error);
@@ -298,7 +267,7 @@ export default function InquiryDialog({ offering, trigger }: InquiryDialogProps)
                 <CheckCircle2 className="w-8 h-8 text-green-600" />
               </div>
               <h3 className="font-serif text-2xl text-forest mb-2">
-                {offering === "brewing" ? "Brew intake received" : copy.next ? "Request received" : "Got it!"}
+                {copy.next ? "Request received" : "Got it!"}
               </h3>
               <p className="text-forest/70 max-w-sm">
                 {copy.next

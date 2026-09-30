@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Menu, X, ShoppingBag, ArrowUpRight, Sparkles, Beer, Wine, Martini, Star, Leaf, Package, ChevronDown, Search, BookOpen, Newspaper, Truck, GraduationCap, Store, FlaskConical, MapPin, Gift } from "lucide-react";
+import { Menu, X, ShoppingBag, ArrowUpRight, Sparkles, Beer, Wine, Martini, Star, Leaf, Package, ChevronDown, Search, BookOpen, Newspaper, Truck, GraduationCap, Store, MapPin, Gift } from "lucide-react";
 import { useCart } from "@/hooks/useCart";
 import logoGold from "@/assets/logo-mm-gold.png";
 import logoWhite from "@/assets/logo-mm-white.png";
@@ -30,7 +30,6 @@ const hireUsItems = [
   { name: "B2B & Distribution", icon: Truck, href: "/services#b2b" },
   { name: "Consulting", icon: GraduationCap, href: "/services#consulting" },
   { name: "Retail Pop-Ups", icon: Store, href: "/services#popups" },
-  { name: "Contract Brewing", icon: FlaskConical, href: "/services#brewing" },
   { name: "Events & Vibations", icon: Martini, href: "/services#events" },
   { name: "Press", icon: Newspaper, href: "/press", isPress: true },
 ];
@@ -184,7 +183,7 @@ const Header = ({ forceSolid = false }: HeaderProps) => {
           <p className="font-sans text-[10px] sm:text-xs uppercase tracking-[0.15em] text-center truncate">
             Drink Differently. Live Free AF.
             <span className="text-gold mx-2">✦</span>
-            <span className="hidden sm:inline">Pacific Beach · Ocean Beach · La Costa</span>
+            <span className="hidden sm:inline">Pacific Beach · Ocean Beach</span>
             <span className="sm:hidden">Pacific Beach · Ocean Beach</span>
           </p>
         </div>

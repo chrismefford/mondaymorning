@@ -10,7 +10,6 @@ import { CartProvider } from "@/hooks/useCart";
 import CartDrawer from "@/components/cart/CartDrawer";
 import LoadingScreen from "@/components/LoadingScreen";
 import ScrollToTop from "@/components/ScrollToTop";
-import GrandOpeningPopup from "@/components/GrandOpeningPopup";
 import Index from "./pages/Index";
 
 // Lazy-load non-critical chat widget
@@ -85,31 +84,11 @@ const NotFound = lazy(() => import("./pages/NotFound"));
 
 const queryClient = new QueryClient();
 
-// Redirects a short vanity path to an external URL (e.g. an Eventbrite page).
-// Client-side since the site is a SPA served for every route.
-const ExternalRedirect = ({ to }: { to: string }) => {
-  useEffect(() => {
-    window.location.replace(to);
-  }, [to]);
-  return (
-    <div style={{ minHeight: "60vh", display: "flex", alignItems: "center", justifyContent: "center", padding: "2rem", textAlign: "center", fontFamily: "system-ui, sans-serif" }}>
-      <p>
-        Taking you to tickets. If nothing happens,{" "}
-        <a href={to} style={{ color: "#2A543F", fontWeight: 600 }}>tap here</a>.
-      </p>
-    </div>
-  );
-};
-
-const GRAND_OPENING_TICKETS =
-  "https://www.eventbrite.com/e/craft-na-brewery-opening-monday-morning-tickets-1993155984203?aff=oddtdtcreator";
-
 const AppContent = () => {
   return (
     <>
       <ScrollToTop />
       <CartDrawer />
-      <GrandOpeningPopup />
       <Suspense fallback={null}>
         <NAExpertChat />
       </Suspense>
@@ -124,6 +103,8 @@ const AppContent = () => {
           <Route path="/collections/:slug" element={<CollectionPage />} />
           <Route path="/collections/brand/:brand" element={<CollectionPage />} />
           <Route path="/locations" element={<Locations />} />
+          {/* The Lab (San Marcos) closed 2026-09: old links land on the locations hub. */}
+          <Route path="/locations/the-lab" element={<Navigate to="/locations" replace />} />
           <Route path="/locations/:slug" element={<LocationDetail />} />
           <Route path="/stockists" element={<Stockists />} />
           <Route path="/auth" element={<Auth />} />
@@ -189,8 +170,8 @@ const AppContent = () => {
           <Route path="/ocean-beach-farmers-market" element={<OceanBeachFarmersMarket />} />
           <Route path="/gift-cards" element={<GiftCards />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="/grandopening" element={<ExternalRedirect to={GRAND_OPENING_TICKETS} />} />
-          <Route path="/grand-opening" element={<ExternalRedirect to={GRAND_OPENING_TICKETS} />} />
+          <Route path="/grandopening" element={<Navigate to="/locations" replace />} />
+          <Route path="/grand-opening" element={<Navigate to="/locations" replace />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Suspense>

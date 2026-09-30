@@ -42,8 +42,8 @@ const partners = [
 ];
 
 const Locations = () => {
-  const pageTitle = "Visit Monday Morning: NA Bottle Shops & Brewery in San Diego | Locations";
-  const pageDescription = "Find Monday Morning across San Diego: our Pacific Beach and Ocean Beach non-alcoholic bottle shops, plus The Lab, California's first NA brewery and tasting room, born in San Diego, now in San Marcos.";
+  const pageTitle = "Visit Monday Morning: NA Bottle Shops in San Diego | Locations";
+  const pageDescription = "Find Monday Morning across San Diego: our Pacific Beach and Ocean Beach non-alcoholic bottle shops, each with a tasting bar and 500+ alcohol-free drinks.";
   const canonicalUrl = getCanonicalUrl("/locations");
 
   return (
@@ -110,7 +110,7 @@ const Locations = () => {
           />
 
           <div className="container mx-auto px-4 lg:px-8 relative z-10">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 max-w-5xl mx-auto">
               {OWNED_LOCATIONS.map((loc) => (
                 <Link
                   key={loc.slug}

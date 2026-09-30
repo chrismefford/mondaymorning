@@ -99,7 +99,7 @@ const Footer = () => {
       <div className="mx-auto max-w-[1700px] px-6 lg:px-16 relative z-10">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-10">
           {/* Brand Column */}
-          <div className="lg:col-span-3">
+          <div className="lg:col-span-4">
             <img
               src={logoSecondaryGreen}
               alt="Monday Morning"
@@ -168,20 +168,8 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* The Lab Location */}
-          <div className="lg:col-span-2">
-            <h4 className="font-script text-2xl text-forest-deep mb-1">The Lab</h4>
-            <div className="mt-3 space-y-1.5">
-              <p className="font-sans text-sm text-forest/90 uppercase tracking-wide">
-                1784 La Costa Meadows Dr, Ste 103<br />
-                San Marcos, CA 92078
-              </p>
-              <FooterHours slug="the-lab" />
-            </div>
-          </div>
-
           {/* Newsletter Column */}
-          <div className="lg:col-span-3">
+          <div className="lg:col-span-4">
             <h4 className="font-sans text-xs font-semibold uppercase tracking-wider mb-4 text-forest-deep">
               Stay Connected
             </h4>

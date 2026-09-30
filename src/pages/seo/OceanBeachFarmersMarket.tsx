@@ -125,7 +125,7 @@ const OceanBeachFarmersMarket = () => (
     ]}
     relatedLinks={[
       { label: "Monday Morning Ocean Beach", href: "/locations/ocean-beach", description: "Hours, directions, what's in stock" },
-      { label: "All our locations", href: "/locations", description: "PB, OB, and The Lab" },
+      { label: "All our locations", href: "/locations", description: "PB and OB tasting rooms" },
       { label: "Shop non-alcoholic drinks", href: "/shop", description: "300+ NA beers, wines, and spirits" },
       { label: "Non-alcoholic beer guide", href: "/non-alcoholic-beer-guide", description: "Every NA beer worth drinking" },
     ]}

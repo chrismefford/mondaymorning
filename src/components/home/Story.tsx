@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Store, Building2, FlaskConical, MapPin } from "lucide-react";
+import { ArrowRight, Store, Building2, Martini, MapPin } from "lucide-react";
 import { Link } from "react-router-dom";
 import zaneFounder from "@/assets/zane-founder.webp";
 import stampGreen from "@/assets/stamp-green.svg";
@@ -22,11 +22,11 @@ const Story = () => {
       href: "/services",
     },
     {
-      icon: FlaskConical,
-      title: "Brewing",
-      subtitle: "The Lab",
-      description: "The Lab is our non-alcoholic brewing and innovation facility, building what's next in AF, from contract brewing to white-label partnerships.",
-      href: "/services",
+      icon: Martini,
+      title: "Events",
+      subtitle: "Vibations Bar Service",
+      description: "Our Vibations team brings a full alcohol-free bar to weddings, parties, and corporate events, so everyone has something good in hand.",
+      href: "/services#events",
     },
   ];
 
@@ -103,7 +103,7 @@ const Story = () => {
               <div className="mt-8 flex items-start gap-3 text-forest">
                 <MapPin className="h-5 w-5 shrink-0 mt-0.5 text-gold" />
                 <p className="font-sans text-sm lg:text-base">
-                  Two bottle shops in <strong>Pacific Beach</strong> &amp; <strong>Ocean Beach</strong>, plus <strong>The Lab</strong>, our NA brewing &amp; innovation facility in La Costa.
+                  Two bottle shops in <strong>Pacific Beach</strong> &amp; <strong>Ocean Beach</strong>, each with a tasting bar so you can try before you buy.
                 </p>
               </div>
 

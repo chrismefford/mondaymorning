@@ -243,7 +243,7 @@ export function useShopifyCatalogProducts(options?: {
 
 /**
  * Fetches the products currently in stock at one physical store
- * (pacific-beach | ocean-beach | the-lab) via the location-products edge
+ * (pacific-beach | ocean-beach) via the location-products edge
  * function, which reads Shopify's per-location inventory (Admin API). Returned
  * items match ShopifyProduct, so shopifyToLocalProduct + ProductCard just work.
  */

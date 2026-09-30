@@ -22,13 +22,6 @@ const tvFeatures: PressItem[] = [
     type: "tv",
   },
   {
-    outlet: "ABC 10News",
-    title: "San Marcos Opens San Diego County's First Non-Alcoholic Brewery and Tasting Room",
-    date: "Jul 18, 2026",
-    url: "https://www.10news.com/news/local-news/north-county-news/san-marcos-opens-san-diego-countys-first-non-alcoholic-brewery-and-tasting-room",
-    type: "tv",
-  },
-  {
     outlet: "FOX 5 San Diego",
     title: "San Diego Beer and Beverage News (Monday Morning feature)",
     date: "Jul 14, 2026",
@@ -59,27 +52,6 @@ const tvFeatures: PressItem[] = [
 ];
 
 const newspaperFeatures: PressItem[] = [
-  {
-    outlet: "Life of Beer",
-    title: "Monday Morning Lab Opens: San Diego's First Non-Alcoholic Brewery & Taproom",
-    date: "Jul 15, 2026",
-    url: "https://lifeofbeer.com/monday-morning-lab-opens-first-non-alcoholic-brewery-taproom/",
-    type: "newspaper",
-  },
-  {
-    outlet: "Prism News",
-    title: "Monday Morning Lab Opens San Diego County's First Non-Alcoholic Taproom",
-    date: "Jul 10, 2026",
-    url: "https://www.prismnews.com/hobbies/homebrewing/monday-morning-lab-opens-san-diego-countys-first-non",
-    type: "newspaper",
-  },
-  {
-    outlet: "San Diego Beer News",
-    title: "San Diego's First N/A Brewery Taproom En Route",
-    date: "Jul 7, 2026",
-    url: "https://sandiegobeer.news/sneak-peek-monday-morning-lab/",
-    type: "newspaper",
-  },
   {
     outlet: "San Diego Union-Tribune",
     title: "On the Menu: Monday Morning Bottle Shop offers spirits, without the alcohol, in Pacific Beach",
@@ -308,7 +280,7 @@ const Press = () => {
               Brewers Betting on Nonalcoholic Beers
             </h2>
             <p className="font-sans text-cream/75 leading-relaxed mb-8 max-w-md">
-              The front page of the Union-Tribune Business section features Monday Morning founder Zane Curtis and The Lab, our San Marcos non-alcoholic production facility, as San Diego bets big on alcohol-free beer.
+              The front page of the Union-Tribune Business section features Monday Morning founder Zane Curtis as San Diego bets big on alcohol-free beer.
             </p>
             <a
               href="https://edition.pagesuite.com/popovers/dynamic_article_popover.aspx?guid=25d8ba21-2dc3-45ef-915a-70a7cb5b191f&v=sdk"

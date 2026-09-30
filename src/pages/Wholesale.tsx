@@ -8,7 +8,6 @@ import {
   Truck,
   GraduationCap,
   Sparkles,
-  FlaskConical,
   Martini,
   Wine,
   CheckCircle2,
@@ -16,7 +15,6 @@ import {
   ArrowRight,
   Store,
   Building2,
-  Beer,
   PackageOpen,
 } from "lucide-react";
 import stampGold from "@/assets/stamp-gold.svg";
@@ -44,23 +42,6 @@ const offerings = [
     ],
     cta: "wholesale",
     ctaLabel: "Apply for wholesale",
-  },
-  {
-    id: "kegs",
-    icon: Beer,
-    eyebrow: "Kegs & Draft",
-    title: "Put our NA beer",
-    accent: "on tap.",
-    who: "For bars, restaurants, and taprooms.",
-    body: "We brew our own non-alcoholic beer at The Lab, including our Haymaker NA IPA, and we keg it for draft. Give your guests a real alcohol-free pour on tap: no liquor license needed, poured like the real thing. We deliver kegs across San Diego and keep your line rotating.",
-    points: [
-      "Our own NA beer, brewed at The Lab in San Marcos",
-      "Haymaker NA IPA plus rotating seasonals, on draft",
-      "Kegs delivered across San Diego",
-      "No liquor license required to pour it",
-    ],
-    cta: "kegs",
-    ctaLabel: "Get our beer on tap",
   },
   {
     id: "consulting",
@@ -95,23 +76,6 @@ const offerings = [
     ],
     cta: "contact",
     ctaLabel: "Plan a pop-up",
-  },
-  {
-    id: "brewing",
-    icon: FlaskConical,
-    eyebrow: "Contract Brewing",
-    title: "Brew it at",
-    accent: "The Lab.",
-    who: "For emerging and established alcohol-free brands.",
-    body: "Our San Marcos facility is one of the only NA-focused production partners in Southern California, and home to California's first non-alcoholic brewery and taproom, born in San Diego and now open. We brew, can, and white-label non-alcoholic beer, tea, coffee, sparkling water, and ready-to-drink (RTD) beverages.",
-    points: [
-      "Beer, tea, coffee, water, and RTD, all alcohol-free.",
-      "Recipe development and small-batch trials",
-      "White-label and private-label production",
-      "Scale from first run to full distribution",
-    ],
-    cta: "brewing",
-    ctaLabel: "Start your brew intake",
   },
   {
     id: "events",
@@ -149,10 +113,7 @@ const offerings = [
   },
 ];
 
-// Offerings that depend on brewing at The Lab, hidden for now while the brewery
-// is down (Kegs & Draft + Contract Brewing). To bring them back, empty this list.
-const HIDDEN_OFFERINGS = ["kegs", "brewing"];
-const visibleOfferings = offerings.filter((o) => !HIDDEN_OFFERINGS.includes(o.id));
+const visibleOfferings = offerings;
 
 // Category / industry figures (not Monday Morning guarantees).
 const marketStats = [

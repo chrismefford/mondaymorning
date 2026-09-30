@@ -12,7 +12,6 @@ import textureCream from "@/assets/texture-cream.webp";
 import textureGreen from "@/assets/texture-green.webp";
 import zaneFounder from "@/assets/zane-founder.webp";
 import friendsLounge from "@/assets/brand/friends.jpg";
-import haymakerCan from "@/assets/brand/haymaker-can.webp";
 import {
   SITE_NAME,
   SITE_URL,
@@ -63,16 +62,6 @@ const About = () => {
       hours: "Tue & Thu 11am to 8pm, Wed 3pm to 8pm, Fri to Sun 11am to 6pm",
       image: "/hero/beach.webp",
       href: "/locations",
-    },
-    {
-      name: "The Lab",
-      tag: "San Marcos",
-      slug: "the-lab",
-      blurb: "Our non-alcoholic brewing and innovation space. Home of Haymaker NA IPA, our first house brew.",
-      address: "1784 La Costa Meadows Dr, Ste 103, San Marcos, CA 92078",
-      hours: "See our Google listing for current hours",
-      image: haymakerCan,
-      href: "/services",
     },
   ];
 
@@ -255,14 +244,14 @@ const About = () => {
                 Come See Us
               </span>
               <h2 className="font-serif text-3xl lg:text-5xl leading-[1.1] mb-4">
-                Three rooms, <span className="font-script text-gold text-[1.2em] leading-none">one idea.</span>
+                Two rooms, <span className="font-script text-gold text-[1.2em] leading-none">one idea.</span>
               </h2>
               <p className="font-sans text-base lg:text-lg text-muted-foreground">
                 Every bottle is open to taste before you buy. No guessing, no pressure.
               </p>
             </div>
 
-            <div className="grid md:grid-cols-3 gap-6 lg:gap-8 max-w-6xl mx-auto">
+            <div className="grid md:grid-cols-2 gap-6 lg:gap-8 max-w-4xl mx-auto">
               {places.map((place) => (
                 <Link
                   to={place.href}
