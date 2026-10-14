@@ -25,6 +25,60 @@ interface BlogPost {
   created_at: string;
 }
 
+// Strip markdown so FAQ answers read as clean plain text in structured data.
+const stripMd = (s: string): string =>
+  (s || "")
+    .replace(/!\[[^\]]*\]\([^)]*\)/g, "")
+    .replace(/\[([^\]]+)\]\([^)]*\)/g, "$1")
+    .replace(/[*_`#>]/g, "")
+    .replace(/\s+/g, " ")
+    .trim();
+
+// Parse a post's "Frequently asked questions" section (## heading, then ### Q
+// + answer paragraphs) into FAQPage structured data. Returns null if the post
+// has no FAQ section with at least 2 questions. Mirrored in
+// scripts/generate-static-pages.mjs so the static SEO output matches the render.
+const buildFaqSchema = (content: string | null | undefined) => {
+  if (!content) return null;
+  const faqs: { q: string; a: string }[] = [];
+  let inFaq = false;
+  let q: string | null = null;
+  let ans: string[] = [];
+  const flush = () => {
+    if (q && ans.length) faqs.push({ q, a: stripMd(ans.join(" ")) });
+    q = null;
+    ans = [];
+  };
+  for (const raw of content.split(/\r?\n/)) {
+    const line = raw.replace(/\s+$/, "");
+    const h2 = /^##\s+(.+)$/.exec(line);
+    const h3 = /^###\s+(.+)$/.exec(line);
+    if (h2) {
+      flush();
+      inFaq = /frequently asked questions|^faqs?$/i.test(h2[1].trim());
+      continue;
+    }
+    if (!inFaq) continue;
+    if (h3) {
+      flush();
+      q = stripMd(h3[1]);
+      continue;
+    }
+    if (line.trim()) ans.push(line.trim());
+  }
+  flush();
+  if (faqs.length < 2) return null;
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map(({ q, a }) => ({
+      "@type": "Question",
+      name: q,
+      acceptedAnswer: { "@type": "Answer", text: a },
+    })),
+  };
+};
+
 const BlogPost = () => {
   const { slug } = useParams<{ slug: string }>();
 
@@ -121,6 +175,8 @@ const BlogPost = () => {
     );
   }
 
+  const faqSchema = buildFaqSchema(post.content);
+
   return (
     <div className="min-h-screen bg-background brand-type">
       <Helmet>
@@ -179,6 +235,11 @@ const BlogPost = () => {
             "keywords": "non-alcoholic drinks, NA beverages, mocktails, alcohol-free, San Diego, mindful drinking, sober-curious"
           })}
         </script>
+
+        {/* FAQPage structured data, parsed from the post's FAQ section (targets People Also Ask) */}
+        {faqSchema && (
+          <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
+        )}
       </Helmet>
 
       <Header />

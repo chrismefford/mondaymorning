@@ -158,7 +158,7 @@ async function fetchAllBlogPosts() {
   }
 
   try {
-    const url = `${supabaseUrl}/rest/v1/blog_posts?select=id,title,slug,excerpt,featured_image,published_at,created_at&order=published_at.desc.nullslast,created_at.desc`;
+    const url = `${supabaseUrl}/rest/v1/blog_posts?select=id,title,slug,excerpt,featured_image,published_at,created_at,content&order=published_at.desc.nullslast,created_at.desc`;
     const res = await fetch(url, {
       headers: {
         apikey: supabaseKey,
@@ -319,6 +319,61 @@ function blogPostSchema(post) {
       name: SITE_NAME,
       logo: { "@type": "ImageObject", url: DEFAULT_OG_IMAGE },
     },
+  };
+}
+
+// Strip markdown so FAQ answers read as clean plain text in structured data.
+function stripMd(s) {
+  return (s || "")
+    .replace(/!\[[^\]]*\]\([^)]*\)/g, "")
+    .replace(/\[([^\]]+)\]\([^)]*\)/g, "$1")
+    .replace(/[*_`#>]/g, "")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+// Parse a post's "Frequently asked questions" section into FAQPage structured
+// data. Returns null if there is no FAQ section with at least 2 questions.
+// Mirrors buildFaqSchema in src/pages/BlogPost.tsx so static SEO matches render.
+function faqSchema(post) {
+  const content = post && post.content;
+  if (!content) return null;
+  const faqs = [];
+  let inFaq = false;
+  let q = null;
+  let ans = [];
+  const flush = () => {
+    if (q && ans.length) faqs.push({ q, a: stripMd(ans.join(" ")) });
+    q = null;
+    ans = [];
+  };
+  for (const raw of content.split(/\r?\n/)) {
+    const line = raw.replace(/\s+$/, "");
+    const h2 = /^##\s+(.+)$/.exec(line);
+    const h3 = /^###\s+(.+)$/.exec(line);
+    if (h2) {
+      flush();
+      inFaq = /frequently asked questions|^faqs?$/i.test(h2[1].trim());
+      continue;
+    }
+    if (!inFaq) continue;
+    if (h3) {
+      flush();
+      q = stripMd(h3[1]);
+      continue;
+    }
+    if (line.trim()) ans.push(line.trim());
+  }
+  flush();
+  if (faqs.length < 2) return null;
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map(({ q, a }) => ({
+      "@type": "Question",
+      name: q,
+      acceptedAnswer: { "@type": "Answer", text: a },
+    })),
   };
 }
 
@@ -1899,12 +1954,14 @@ function buildBlogRoutes(posts) {
     );
     const ogImage = post.featured_image || DEFAULT_OG_IMAGE;
 
+    const faq = faqSchema(post);
+
     return {
       path: `/blog/${post.slug}`,
       title,
       description,
       ogImage,
-      schema: [organizationSchema, blogPostSchema(post)],
+      schema: [organizationSchema, blogPostSchema(post), ...(faq ? [faq] : [])],
     };
   });
 }
