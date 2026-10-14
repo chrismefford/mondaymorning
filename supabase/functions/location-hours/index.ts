@@ -13,13 +13,14 @@ const corsHeaders = {
   "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
 };
 
-// PB has a known Place ID (same one the reviews use). OB + The Lab are resolved
-// by address text search, so no Place ID is needed up front; add placeId later
-// for precision if desired.
+// PB has a known Place ID (same one the reviews use). OB is resolved by address
+// text search, so no Place ID is needed up front; add placeId later for precision
+// if desired. The Lab (San Marcos) closed and was removed 2026-10-13: Google Places
+// keeps returning opening hours for a permanently-closed listing, so leaving it here
+// republished stale weekday hours for a site we no longer operate.
 const LOCATIONS: Array<{ slug: string; placeId?: string; textQuery?: string }> = [
   { slug: "pacific-beach", placeId: "ChIJG-eShv4B3IARyUdY1QTXgi4" },
   { slug: "ocean-beach", placeId: "ChIJLVKLXgCr3oAR_wnfKka_ZWA" },
-  { slug: "the-lab", placeId: "ChIJL6UPFgQL3IARwLAFQoTxDeU" },
 ];
 
 const WEEK_MS = 7 * 24 * 60 * 60 * 1000;
