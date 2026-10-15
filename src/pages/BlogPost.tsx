@@ -64,6 +64,14 @@ const buildFaqSchema = (content: string | null | undefined) => {
       q = stripMd(h3[1]);
       continue;
     }
+    // Also accept a standalone bold line as a question (e.g. **Question?**),
+    // so FAQ sections work whether they use ### headings or bold questions.
+    const boldQ = /^\*\*(.+?)\*\*$/.exec(line.trim());
+    if (boldQ) {
+      flush();
+      q = stripMd(boldQ[1]);
+      continue;
+    }
     if (line.trim()) ans.push(line.trim());
   }
   flush();
