@@ -191,20 +191,33 @@ const RecipesPage = () => {
     "name": "Non-Alcoholic Mocktail Recipes",
     "description": pageDescription,
     "numberOfItems": recipes.length,
-    "itemListElement": recipes.slice(0, 10).map((recipe, index) => ({
-      "@type": "ListItem",
-      "position": index + 1,
-      "item": {
+    "itemListElement": recipes.slice(0, 10).map((recipe, index) => {
+      const prepIso = `PT${recipe.prepTime.replace(/\s?mins?/i, '')}M`;
+      const recipeItem: Record<string, unknown> = {
         "@type": "Recipe",
         "name": recipe.title,
         "description": recipe.description,
+        "image": recipe.image.startsWith("http") ? recipe.image : `${SITE_URL}${recipe.image}`,
+        "author": { "@type": "Organization", "name": SITE_NAME },
         "recipeCategory": "Mocktail",
         "recipeCuisine": "American",
-        "prepTime": `PT${recipe.prepTime.replace(/\s?mins?/i, '')}M`,
+        "prepTime": prepIso,
+        "totalTime": prepIso,
         "recipeYield": `${recipe.servings} serving(s)`,
-        "recipeIngredient": recipe.ingredients
+        "recipeIngredient": recipe.ingredients,
+      };
+      if (recipe.steps && recipe.steps.length > 0) {
+        recipeItem.recipeInstructions = recipe.steps.map((step) => ({
+          "@type": "HowToStep",
+          "text": step,
+        }));
       }
-    }))
+      return {
+        "@type": "ListItem",
+        "position": index + 1,
+        "item": recipeItem,
+      };
+    })
   };
 
   return (
