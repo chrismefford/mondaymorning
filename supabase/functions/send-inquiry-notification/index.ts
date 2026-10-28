@@ -48,6 +48,8 @@ serve(async (req) => {
 
     const recipient = NOTIFY_EMAIL;
     const label = LABELS[inq.offering] ?? LABELS.general;
+    // Some labels already end in "Inquiry" (e.g. "General Inquiry"); don't double it up.
+    const heading = `New ${label}${/inquiry\s*$/i.test(label) ? '' : ' Inquiry'}`;
 
 const emailHtml = `
 
@@ -61,9 +63,9 @@ const emailHtml = `
 
         <tr><td style="background:#255256;padding:22px 28px;">
 
-          <div style="color:#E2A325;font-size:11px;letter-spacing:2px;text-transform:uppercase;font-weight:700;">New ${esc(label)} Inquiry</div>
+          <div style="color:#E2A325;font-size:11px;letter-spacing:2px;text-transform:uppercase;font-weight:700;">${esc(heading)}</div>
 
-          <div style="color:#FFF6E5;font-size:22px;font-weight:700;margin-top:4px;">Monday Morning Lab</div>
+          <div style="color:#FFF6E5;font-size:22px;font-weight:700;margin-top:4px;">Monday Morning</div>
 
         </td></tr>
 
@@ -99,7 +101,7 @@ const emailHtml = `
 
     const { error: queueError } = await supabase.rpc('enqueue_transactional_email', {
       p_to: recipient,
-      p_subject: `New ${label} Inquiry: ${inq.name}${inq.company ? ` (${inq.company})` : ''}`,
+      p_subject: `${heading}: ${inq.name}${inq.company ? ` (${inq.company})` : ''}`,
       p_html: emailHtml,
       p_template_name: `inquiry-${inq.offering}`,
     });
