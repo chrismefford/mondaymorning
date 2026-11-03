@@ -48,7 +48,7 @@ const Hero = () => {
             500+ Zero-Proof Wines, Beers & Spirits
           </p>
           <p className="mb-4 font-sans text-[10px] font-bold uppercase tracking-[0.25em] text-cream/70 animate-fade-up delay-100">
-            Bottle Shops <span className="text-gold">·</span> Hospitality <span className="text-gold">·</span> Brewing
+            Bottle Shops <span className="text-gold">·</span> Hospitality
           </p>
 
           {/* Supporting paragraph */}
@@ -114,7 +114,7 @@ const Hero = () => {
             500+ Zero-Proof Wines, Beers & Spirits
           </h2>
           <p className="mb-6 font-sans text-xs xl:text-sm font-bold uppercase tracking-[0.25em] text-forest/70 animate-fade-up delay-100">
-            Bottle Shops <span className="text-gold">·</span> Hospitality <span className="text-gold">·</span> Brewing
+            Bottle Shops <span className="text-gold">·</span> Hospitality
           </p>
 
           {/* Supporting paragraph */}
