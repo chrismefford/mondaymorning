@@ -159,7 +159,7 @@ const Footer = () => {
                   Get the app
                 </span>
                 <span className="block font-sans text-sm font-bold text-forest group-hover:text-forest-deep transition-colors">
-                  Monday Morning
+                  Drink Differently
                 </span>
               </span>
             </a>
