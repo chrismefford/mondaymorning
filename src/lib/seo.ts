@@ -64,7 +64,7 @@ export const organizationSchema = {
     "url": `${SITE_URL}/logo.png`
   },
   "sameAs": [
-    "https://www.instagram.com/mondaymorningsd",
+    "https://www.instagram.com/mondaymorning.af",
     "https://www.facebook.com/mondaymorningsd"
   ],
   "address": {
