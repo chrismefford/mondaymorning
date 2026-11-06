@@ -11,7 +11,6 @@ import {
   SITE_NAME,
   SITE_URL,
   DEFAULT_OG_IMAGE,
-  TWITTER_HANDLE,
   getCanonicalUrl,
   localBusinessSchema
 } from "@/lib/seo";
@@ -66,7 +65,6 @@ const Locations = () => {
         <meta name="twitter:title" content={pageTitle} />
         <meta name="twitter:description" content={pageDescription} />
         <meta name="twitter:image" content={DEFAULT_OG_IMAGE} />
-        <meta name="twitter:site" content={TWITTER_HANDLE} />
         
         {/* JSON-LD - Local Business Schema */}
         <script type="application/ld+json">

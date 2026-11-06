@@ -3,7 +3,6 @@
 export const SITE_NAME = "Monday Morning Bottle Shop";
 export const SITE_URL = "https://mondaymorning-af.com";
 export const DEFAULT_OG_IMAGE = `${SITE_URL}/og-monday-morning.png`;
-export const TWITTER_HANDLE = "@mondaymorningsd";
 
 // Default SEO keywords for the site
 export const DEFAULT_KEYWORDS = [
@@ -65,7 +64,7 @@ export const organizationSchema = {
   },
   "sameAs": [
     "https://www.instagram.com/mondaymorning.af",
-    "https://www.facebook.com/mondaymorningsd"
+    "https://www.facebook.com/mondaymorningaf"
   ],
   "address": {
     "@type": "PostalAddress",

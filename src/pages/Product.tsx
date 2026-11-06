@@ -19,7 +19,6 @@ import logoSecondaryGold from "@/assets/logo-mm-stacked-gold.png";
 import { 
   SITE_NAME, 
   SITE_URL, 
-  TWITTER_HANDLE,
   truncateForSEO,
   cleanMetaDescription,
   getCanonicalUrl,
@@ -181,7 +180,6 @@ const ProductPage = () => {
         <meta name="twitter:title" content={pageTitle} />
         <meta name="twitter:description" content={pageDescription} />
         <meta name="twitter:image" content={ogImage} />
-        <meta name="twitter:site" content={TWITTER_HANDLE} />
         <script type="application/ld+json">{JSON.stringify(productSchema)}</script>
         <script type="application/ld+json">{JSON.stringify(breadcrumbSchema)}</script>
       </Helmet>

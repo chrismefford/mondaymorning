@@ -209,7 +209,6 @@ const BlogPost = () => {
         <meta name="twitter:title" content={seoTitle} />
         <meta name="twitter:description" content={pageDescription} />
         <meta name="twitter:image" content={ogImage} />
-        <meta name="twitter:site" content="@mondaymorningsd" />
         
         {/* JSON-LD Structured Data */}
         <script type="application/ld+json">

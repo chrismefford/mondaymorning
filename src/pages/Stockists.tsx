@@ -4,7 +4,7 @@ import { MapPin, ArrowUpRight, ChevronDown } from "lucide-react";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { STOCKISTS, type Stockist } from "@/data/stockists";
-import { SITE_NAME, DEFAULT_OG_IMAGE, TWITTER_HANDLE, getCanonicalUrl } from "@/lib/seo";
+import { SITE_NAME, DEFAULT_OG_IMAGE, getCanonicalUrl } from "@/lib/seo";
 
 const mapHref = (name: string, address: string) =>
   `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${name}, ${address}`)}`;
@@ -165,7 +165,6 @@ const Stockists = () => {
         <meta name="twitter:title" content={pageTitle} />
         <meta name="twitter:description" content={pageDescription} />
         <meta name="twitter:image" content={DEFAULT_OG_IMAGE} />
-        <meta name="twitter:site" content={TWITTER_HANDLE} />
         <script type="application/ld+json">{JSON.stringify(stockistSchema)}</script>
       </Helmet>
 

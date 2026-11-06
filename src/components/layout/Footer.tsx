@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Instagram, Settings } from "lucide-react";
+import { Facebook, Instagram, Settings } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -8,7 +8,7 @@ import { useLocationHours } from "@/hooks/useLocationHours";
 import { getLocation, compactHours } from "@/data/locations";
 import ContactFormDialog from "@/components/ContactFormDialog";
 import logoSecondaryGreen from "@/assets/logo-mm-stacked-green.png";
-import daybreakerIcon from "@/assets/brand/daybreaker-app-icon.png";
+import appIcon from "@/assets/brand/drink-differently-app-icon.png";
 import stampWhite from "@/assets/stamp-white.svg";
 import textureGreen from "@/assets/texture-green.webp";
 
@@ -118,19 +118,28 @@ const Footer = () => {
               >
                 <Instagram className="h-5 w-5" />
               </a>
+              <a
+                href="https://www.facebook.com/mondaymorningaf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 border-2 border-forest/50 flex items-center justify-center text-forest hover:text-forest-deep hover:border-forest-deep hover:bg-forest/10 transition-colors"
+                aria-label="Facebook"
+              >
+                <Facebook className="h-5 w-5" />
+              </a>
               <ContactFormDialog />
             </div>
 
-            {/* Get the Daybreaker app (PWA) */}
+            {/* Get the Drink Differently app (PWA) */}
             <a
-              href="https://daybreaker.life"
+              href="https://drink-differently.com"
               target="_blank"
               rel="noopener noreferrer"
               className="mt-5 inline-flex items-center gap-3 group"
             >
               <img
-                src={daybreakerIcon}
-                alt="Daybreaker app icon"
+                src={appIcon}
+                alt="Drink Differently app icon"
                 className="w-11 h-11 rounded-xl border border-forest/15 shadow-sm"
               />
               <span className="leading-tight">

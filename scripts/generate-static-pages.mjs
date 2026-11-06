@@ -196,7 +196,7 @@ const organizationSchema = {
   logo: `${SITE_URL}/logo.png`,
   sameAs: [
     "https://www.instagram.com/mondaymorning.af",
-    "https://www.facebook.com/mondaymorningsd",
+    "https://www.facebook.com/mondaymorningaf",
   ],
   address: {
     "@type": "PostalAddress",

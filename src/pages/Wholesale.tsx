@@ -20,7 +20,7 @@ import {
 import stampGold from "@/assets/stamp-gold.svg";
 import textureCream from "@/assets/texture-cream.webp";
 import textureGreen from "@/assets/texture-green.webp";
-import { SITE_NAME, DEFAULT_OG_IMAGE, TWITTER_HANDLE, getCanonicalUrl } from "@/lib/seo";
+import { SITE_NAME, DEFAULT_OG_IMAGE, getCanonicalUrl } from "@/lib/seo";
 
 // The ways we work with businesses. Each maps to a real agreement or product line
 // (B2B Supply / Kegs & Draft / Consulting / Retail Curation / Lab Brewing / Vibations / Brand Submissions).
@@ -177,7 +177,6 @@ const Wholesale = () => {
         <meta name="twitter:title" content={pageTitle} />
         <meta name="twitter:description" content={pageDescription} />
         <meta name="twitter:image" content={DEFAULT_OG_IMAGE} />
-        <meta name="twitter:site" content={TWITTER_HANDLE} />
       </Helmet>
 
       <Header />

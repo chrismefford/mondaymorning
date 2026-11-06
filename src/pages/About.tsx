@@ -16,7 +16,6 @@ import {
   SITE_NAME,
   SITE_URL,
   DEFAULT_OG_IMAGE,
-  TWITTER_HANDLE,
   getCanonicalUrl,
   organizationSchema
 } from "@/lib/seo";
@@ -112,7 +111,6 @@ const About = () => {
         <meta name="twitter:title" content={pageTitle} />
         <meta name="twitter:description" content={pageDescription} />
         <meta name="twitter:image" content={DEFAULT_OG_IMAGE} />
-        <meta name="twitter:site" content={TWITTER_HANDLE} />
         <script type="application/ld+json">
           {JSON.stringify(aboutSchema)}
         </script>

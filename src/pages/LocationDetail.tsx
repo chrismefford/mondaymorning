@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 import ProductCard from "@/components/home/ProductCard";
 import { useLocationProducts, shopifyToLocalProduct } from "@/hooks/useShopifyProducts";
 import { useLocationHours } from "@/hooks/useLocationHours";
-import { SITE_NAME, SITE_URL, TWITTER_HANDLE, getCanonicalUrl } from "@/lib/seo";
+import { SITE_NAME, SITE_URL, getCanonicalUrl } from "@/lib/seo";
 import { getLocation, locationSchema, OWNED_LOCATIONS } from "@/data/locations";
 
 // Live "shop what's in stock at this store" grid. Reads per-location Shopify
@@ -109,7 +109,6 @@ const LocationDetail = () => {
         <meta name="twitter:title" content={loc.metaTitle} />
         <meta name="twitter:description" content={loc.metaDescription} />
         <meta name="twitter:image" content={ogImage} />
-        <meta name="twitter:site" content={TWITTER_HANDLE} />
         <script type="application/ld+json">{JSON.stringify(locationSchema(loc))}</script>
       </Helmet>
 

@@ -18,7 +18,6 @@ import {
   SITE_NAME, 
   SITE_URL, 
   DEFAULT_OG_IMAGE, 
-  TWITTER_HANDLE,
   localBusinessSchema,
   websiteSchema 
 } from "@/lib/seo";
@@ -51,7 +50,6 @@ const Index = () => {
         <meta name="twitter:title" content={pageTitle} />
         <meta name="twitter:description" content={pageDescription} />
         <meta name="twitter:image" content={DEFAULT_OG_IMAGE} />
-        <meta name="twitter:site" content={TWITTER_HANDLE} />
         
         {/* Additional SEO */}
         <meta name="keywords" content="non-alcoholic drinks, NA beer, NA wine, NA spirits, alcohol-free, San Diego, Pacific Beach, Ocean Beach, sober-curious, mindful drinking, mocktails" />

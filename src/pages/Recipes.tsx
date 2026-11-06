@@ -22,7 +22,6 @@ import {
   SITE_NAME, 
   SITE_URL, 
   DEFAULT_OG_IMAGE,
-  TWITTER_HANDLE,
   getCanonicalUrl
 } from "@/lib/seo";
 
@@ -240,7 +239,6 @@ const RecipesPage = () => {
         <meta name="twitter:title" content={pageTitle} />
         <meta name="twitter:description" content={pageDescription} />
         <meta name="twitter:image" content={DEFAULT_OG_IMAGE} />
-        <meta name="twitter:site" content={TWITTER_HANDLE} />
         
         {/* JSON-LD */}
         <script type="application/ld+json">

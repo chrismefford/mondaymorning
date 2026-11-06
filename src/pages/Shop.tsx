@@ -13,7 +13,7 @@ import { useShopifyAllProducts, shopifyToLocalProduct } from "@/hooks/useShopify
 import textureCream from "@/assets/texture-cream.webp";
 import textureGreen from "@/assets/texture-green.webp";
 import stampGold from "@/assets/stamp-gold.svg";
-import { SITE_NAME, DEFAULT_OG_IMAGE, TWITTER_HANDLE, getCanonicalUrl } from "@/lib/seo";
+import { SITE_NAME, DEFAULT_OG_IMAGE, getCanonicalUrl } from "@/lib/seo";
 
 // Quick-jump categories (the chip row under the trust bar).
 const categoryChips = [
@@ -132,7 +132,6 @@ const ShopPage = () => {
         <meta name="twitter:title" content={pageTitle} />
         <meta name="twitter:description" content={pageDescription} />
         <meta name="twitter:image" content={DEFAULT_OG_IMAGE} />
-        <meta name="twitter:site" content={TWITTER_HANDLE} />
       </Helmet>
 
       <Header />
