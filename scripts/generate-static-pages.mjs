@@ -197,6 +197,7 @@ const organizationSchema = {
   sameAs: [
     "https://www.instagram.com/mondaymorning.af",
     "https://www.facebook.com/mondaymorningaf",
+    "https://www.tiktok.com/@mondaymorning.af",
   ],
   address: {
     "@type": "PostalAddress",
