@@ -59,7 +59,7 @@ const About = () => {
       slug: "ocean-beach",
       blurb: "A laid-back bottle shop one block from the beach. Grab your Vibations for a beach day and a little more salt air.",
       address: "4967 Newport Ave, San Diego, CA 92107",
-      hours: "Tue & Thu 11am to 8pm, Wed 4pm to 8pm, Fri to Sun 11am to 6pm",
+      hours: "Wed 4pm to 8pm, Thu to Sun 12pm to 6pm",
       image: "/hero/beach.webp",
       href: "/locations",
     },

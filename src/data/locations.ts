@@ -135,15 +135,13 @@ export const OWNED_LOCATIONS: OwnedLocation[] = [
     phone: "(858) 412-3253",
     mapUrl: "https://maps.google.com/?q=4967+Newport+Ave+San+Diego+CA+92107",
     hours: [
-      { days: "Tue & Thu", time: "11 AM - 8 PM" },
       { days: "Wed", time: "4 PM - 8 PM" },
-      { days: "Fri - Sun", time: "11 AM - 6 PM" },
-      { days: "Monday", time: "Closed", special: true },
+      { days: "Thu - Sun", time: "12 PM - 6 PM" },
+      { days: "Mon - Tue", time: "Closed", special: true },
     ],
     schemaHours: [
-      { days: ["Tuesday", "Thursday"], opens: "11:00", closes: "20:00" },
       { days: ["Wednesday"], opens: "16:00", closes: "20:00" },
-      { days: ["Friday", "Saturday", "Sunday"], opens: "11:00", closes: "18:00" },
+      { days: ["Thursday", "Friday", "Saturday", "Sunday"], opens: "12:00", closes: "18:00" },
     ],
     schemaType: "Store",
     image: "/images/ocean-beach-location.jpg",

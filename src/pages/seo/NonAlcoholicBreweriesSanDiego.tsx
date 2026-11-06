@@ -66,7 +66,7 @@ const NonAlcoholicBreweriesSanDiego = () => (
                 <strong>Pacific Beach:</strong> 1854 Garnet Ave. Tue to Sat 11am to 8pm, Sun 11am to 6pm. Closed Monday.
               </li>
               <li>
-                <strong>Ocean Beach:</strong> 4967 Newport Ave. Tue and Thu 11am to 8pm, Wed 4pm to 8pm, Fri to Sun 11am to 6pm. Closed Monday.
+                <strong>Ocean Beach:</strong> 4967 Newport Ave. Wed 4pm to 8pm, Thu to Sun 12pm to 6pm. Closed Monday and Tuesday.
               </li>
             </ul>
             <p>

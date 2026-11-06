@@ -629,7 +629,7 @@ function generateLocationsBody() {
     <section>
       <h2>Ocean Beach Location</h2>
       <p><strong>Address:</strong> 4967 Newport Ave, San Diego, CA 92107</p>
-      <p><strong>Hours:</strong> Tuesday and Thursday 11 AM to 8 PM, Wednesday 4 PM to 8 PM, Friday to Sunday 11 AM to 6 PM. Closed Monday.</p>
+      <p><strong>Hours:</strong> Wednesday 4 PM to 8 PM, Thursday to Sunday 12 PM to 6 PM. Closed Monday and Tuesday.</p>
       <a href="https://maps.google.com/?q=4967+Newport+Ave+San+Diego+CA+92107">Get Directions</a>
     </section>
     <section>
@@ -816,7 +816,7 @@ function generateNADrinksSanDiegoBody() {
       <p><strong>Hours:</strong> Tue to Sat: 11 AM to 8 PM, Sun: 11 AM to 6 PM. Closed Monday.</p>
       <h3>Ocean Beach</h3>
       <p><strong>Address:</strong> 4967 Newport Ave, San Diego, CA 92107</p>
-      <p><strong>Hours:</strong> Tue and Thu: 11 AM to 8 PM, Wed: 4 PM to 8 PM, Fri to Sun: 11 AM to 6 PM. Closed Monday.</p>
+      <p><strong>Hours:</strong> Wed: 4 PM to 8 PM, Thu to Sun: 12 PM to 6 PM. Closed Monday and Tuesday.</p>
       <p>Both locations feature a full tasting bar. Walk in and sample anything before you commit. Our staff knows every product on the shelf and will match you with something you love.</p>
       <p>We built these shops for anyone who wants better options. Athletes looking for post-workout drinks. Parents who want something special after bedtime. Professionals who refuse to sacrifice their mornings. And anyone who is simply curious about what non-alcoholic drinks can taste like in 2026.</p>
       <p>No judgment. No pressure. Just great drinks and people who care about what they are drinking.</p>
@@ -1436,9 +1436,8 @@ const staticRoutes = [
       address: { "@type": "PostalAddress", streetAddress: "4967 Newport Ave", addressLocality: "San Diego", addressRegion: "CA", postalCode: "92107", addressCountry: "US" },
       parentOrganization: { "@type": "Organization", name: "Monday Morning Bottle Shop", url: SITE_URL },
       openingHoursSpecification: [
-        { "@type": "OpeningHoursSpecification", dayOfWeek: ["Tuesday", "Thursday"], opens: "11:00", closes: "20:00" },
         { "@type": "OpeningHoursSpecification", dayOfWeek: ["Wednesday"], opens: "16:00", closes: "20:00" },
-        { "@type": "OpeningHoursSpecification", dayOfWeek: ["Friday", "Saturday", "Sunday"], opens: "11:00", closes: "18:00" },
+        { "@type": "OpeningHoursSpecification", dayOfWeek: ["Thursday", "Friday", "Saturday", "Sunday"], opens: "12:00", closes: "18:00" },
       ],
     }],
   },

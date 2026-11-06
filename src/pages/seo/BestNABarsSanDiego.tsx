@@ -46,7 +46,7 @@ const BestNABarsSanDiego = () => (
               <strong>Pacific Beach:</strong> 1854 Garnet Ave. Two minutes from the boardwalk. 500+ non-alcoholic drinks across beer, wine, spirits, and functional. Tasting bar pours every craft beer, NA spirit, and functional drink on the shelf. Wine tastings available when a bottle is already open that day. Open Tue to Sat 11am to 8pm, Sun 11am to 6pm. Closed Monday (open by appointment for industry).
             </p>
             <p>
-              <strong>Ocean Beach:</strong> 4967 Newport Ave. Same selection, same tasting program, with a slightly more local crowd and easier parking. Open Tue and Thu 11am to 8pm, Wed 4pm to 8pm, Fri to Sun 11am to 6pm. Closed Monday.
+              <strong>Ocean Beach:</strong> 4967 Newport Ave. Same selection, same tasting program, with a slightly more local crowd and easier parking. Open Wed 4pm to 8pm, Thu to Sun 12pm to 6pm. Closed Monday and Tuesday.
             </p>
             <p>
               See both <Link to="/locations">store locations</Link> for details and hours.
