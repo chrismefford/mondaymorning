@@ -63,7 +63,7 @@ const Hero = () => {
               <span className="font-sans text-[9px] uppercase tracking-wider text-cream/60">Flavors</span>
             </div>
             <div className="text-center">
-              <span className="block font-serif text-2xl font-bold text-gold">3</span>
+              <span className="block font-serif text-2xl font-bold text-gold">2</span>
               <span className="font-sans text-[9px] uppercase tracking-wider text-cream/60">Locations</span>
             </div>
             <div className="text-center">
@@ -129,7 +129,7 @@ const Hero = () => {
               <span className="font-sans text-xs uppercase tracking-wider text-muted-foreground">Flavors & Styles</span>
             </div>
             <div>
-              <span className="block font-serif text-4xl font-bold text-gold">3</span>
+              <span className="block font-serif text-4xl font-bold text-gold">2</span>
               <span className="font-sans text-xs uppercase tracking-wider text-muted-foreground">SD Locations</span>
             </div>
             <div>

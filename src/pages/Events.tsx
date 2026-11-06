@@ -43,7 +43,7 @@ const LOCATIONS = [
 const NEUTRAL = "#8A857B";
 const OFFSITE_COLOR = LOCATIONS.find((l) => l.key === "offsite")!.color;
 
-// Our three shops get their brand color; any other named venue (festivals,
+// Our shops get their brand color; any other named venue (festivals,
 // tastings elsewhere) is treated as Offsite (purple) so it reads consistently.
 const locationColor = (loc: string | null) => {
   if (!loc) return NEUTRAL;
