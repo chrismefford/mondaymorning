@@ -117,7 +117,7 @@ export const localBusinessSchema = {
   },
   // Hours are intentionally NOT set on this combined store schema: it lists both
   // the Pacific Beach and Ocean Beach addresses, and those stores keep different
-  // hours (OB is Wed 3-8, Fri-Sun 11-6). A single block here would publish the
+  // hours (OB is Wed 4-8, Fri-Sun 11-6). A single block here would publish the
   // wrong hours for one store. Correct, per-store hours are emitted separately by
   // locationSchema() in data/locations.ts (one Store entity per location).
   "hasOfferCatalog": {

@@ -22,7 +22,7 @@ const OceanBeachFarmersMarket = () => (
     eyebrow="Ocean Beach Local"
     h1="The Ocean Beach Farmers Market"
     subhead="Every Wednesday, Newport Ave becomes the Ocean Beach Farmers Market. Monday Morning's non-alcoholic bottle shop is right on that block and open through it, so there is an easy, sober-friendly stop built into your stroll."
-    tldr="The Ocean Beach Farmers Market takes over Newport Ave every Wednesday, afternoon into the evening. Monday Morning's Ocean Beach bottle shop sits right on Newport Ave (4967) and is open every Wednesday (currently 3pm to 8pm), so it is a natural stop: kava slushies, Vibations, and 300+ non-alcoholic beers, wines, and spirits, with a tasting bar. Even when Newport closes to cars for the market, we are a quick walk in."
+    tldr="The Ocean Beach Farmers Market takes over Newport Ave every Wednesday, afternoon into the evening. Monday Morning's Ocean Beach bottle shop sits right on Newport Ave (4967) and is open every Wednesday (currently 4pm to 8pm), so it is a natural stop: kava slushies, Vibations, and 300+ non-alcoholic beers, wines, and spirits, with a tasting bar. Even when Newport closes to cars for the market, we are a quick walk in."
     ctaPrimary={{ label: "Visit our OB shop", href: "/locations/ocean-beach" }}
     ctaSecondary={{ label: "Shop non-alcoholic drinks", href: "/shop" }}
     breadcrumbs={[
@@ -50,7 +50,7 @@ const OceanBeachFarmersMarket = () => (
         body: (
           <>
             <p>
-              Our <strong>Ocean Beach</strong> shop is at <strong>4967 Newport Ave</strong>, right in the middle of the market, and we are open <strong>every Wednesday</strong> (currently 3pm to 8pm) so you can post up before, during, or after your walk through the stalls.
+              Our <strong>Ocean Beach</strong> shop is at <strong>4967 Newport Ave</strong>, right in the middle of the market, and we are open <strong>every Wednesday</strong> (currently 4pm to 8pm) so you can post up before, during, or after your walk through the stalls.
             </p>
             <p>
               It is the alcohol-free corner of the market: a place to grab something genuinely good to sip while you browse, with none of the next-morning cost. Kids, drivers, sober folks, pregnant friends, anyone can drink along.
@@ -105,7 +105,7 @@ const OceanBeachFarmersMarket = () => (
       {
         question: "Is Monday Morning open during the OB Farmers Market?",
         answer:
-          "Yes. Monday Morning's Ocean Beach non-alcoholic bottle shop is at 4967 Newport Ave, right in the market, and is open every Wednesday (currently 3pm to 8pm). Even with Newport closed to cars, the shop is a short walk in.",
+          "Yes. Monday Morning's Ocean Beach non-alcoholic bottle shop is at 4967 Newport Ave, right in the market, and is open every Wednesday (currently 4pm to 8pm). Even with Newport closed to cars, the shop is a short walk in.",
       },
       {
         question: "Where is Monday Morning in Ocean Beach?",

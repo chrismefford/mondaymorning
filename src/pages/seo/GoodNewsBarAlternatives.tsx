@@ -47,7 +47,7 @@ const GoodNewsBarAlternatives = () => (
             </p>
             <h3>Ocean Beach, 4967 Newport Ave</h3>
             <p>
-              Same selection, same tasting program, with a slightly more local crowd and easier parking. The OB room has its own personality and is the easy default for anyone living west of the 5. Open Tuesday and Thursday 11am to 8pm, Wednesday 3pm to 8pm, Friday to Sunday 11am to 6pm. Closed Monday.
+              Same selection, same tasting program, with a slightly more local crowd and easier parking. The OB room has its own personality and is the easy default for anyone living west of the 5. Open Tuesday and Thursday 11am to 8pm, Wednesday 4pm to 8pm, Friday to Sunday 11am to 6pm. Closed Monday.
             </p>
             <p>
               Both locations have full details, parking notes, and current hours on our <Link to="/locations">store locations page</Link>. Most regulars build their home bar with us and use the dedicated bars and restaurant programs around town for nights out. It is the easiest pattern for living alcohol-free in San Diego.

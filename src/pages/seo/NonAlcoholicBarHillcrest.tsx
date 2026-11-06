@@ -60,7 +60,7 @@ const NonAlcoholicBarHillcrest = () => (
             </p>
             <h3>Ocean Beach, 4967 Newport Ave</h3>
             <p>
-              Same selection, same tasting program, more local crowd, easier parking. The OB room has its own personality and is worth the slightly longer drive when you want a quieter visit. Open Tuesday and Thursday 11am to 8pm, Wednesday 3pm to 8pm, Friday to Sunday 11am to 6pm. Closed Monday.
+              Same selection, same tasting program, more local crowd, easier parking. The OB room has its own personality and is worth the slightly longer drive when you want a quieter visit. Open Tuesday and Thursday 11am to 8pm, Wednesday 4pm to 8pm, Friday to Sunday 11am to 6pm. Closed Monday.
             </p>
             <p>
               Both stores are the only places in San Diego where you can sample brands like Almave, Sentia, Glen Dochus, Abstinence, and Ceybon side by side in one room, then take home whatever you fall in love with. Most Hillcrest locals build their home bar with us, then use Good News and the Hillcrest restaurant programs for nights out.

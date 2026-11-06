@@ -238,7 +238,7 @@ const NonAlcoholicDrinksSanDiego = () => {
                     <Clock className="h-4 w-4 text-gold mt-0.5 flex-shrink-0" />
                     <div>
                       <p>Tue &amp; Thu: 11 AM - 8 PM</p>
-                      <p>Wed: 3 PM - 8 PM</p>
+                      <p>Wed: 4 PM - 8 PM</p>
                       <p>Fri - Sun: 11 AM - 6 PM</p>
                       <p>Mon: Closed</p>
                     </div>
