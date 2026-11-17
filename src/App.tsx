@@ -39,6 +39,7 @@ const Returns = lazy(() => import("./pages/Returns"));
 const CCPA = lazy(() => import("./pages/CCPA"));
 const Wholesale = lazy(() => import("./pages/Wholesale"));
 const Valentines = lazy(() => import("./pages/Valentines"));
+const Thanksgiving = lazy(() => import("./pages/Thanksgiving"));
 const NonAlcoholicDrinksSanDiego = lazy(() => import("./pages/NonAlcoholicDrinksSanDiego"));
 const NonAlcoholicBeerGuide = lazy(() => import("./pages/NonAlcoholicBeerGuide"));
 const BestNonAlcoholicDrinks = lazy(() => import("./pages/BestNonAlcoholicDrinks"));
@@ -127,6 +128,7 @@ const AppContent = () => {
           <Route path="/wholesale-login" element={<Navigate to="/services" replace />} />
           <Route path="/wholesale-catalog" element={<Navigate to="/services" replace />} />
           <Route path="/valentines" element={<Valentines />} />
+          <Route path="/thanksgiving" element={<Thanksgiving />} />
           <Route path="/non-alcoholic-drinks-san-diego" element={<NonAlcoholicDrinksSanDiego />} />
           <Route path="/non-alcoholic-beer-guide" element={<NonAlcoholicBeerGuide />} />
           <Route path="/best-non-alcoholic-drinks" element={<BestNonAlcoholicDrinks />} />

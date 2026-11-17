@@ -136,6 +136,7 @@ const Header = ({ forceSolid = false }: HeaderProps) => {
   // Determine if we're on a dark hero page
   const isDarkHeroPage = typeof window !== 'undefined' &&
     (window.location.pathname === '/valentines' ||
+     window.location.pathname === '/thanksgiving' ||
      window.location.pathname === '/non-alcoholic-drinks-san-diego' ||
      window.location.pathname === '/non-alcoholic-beer-guide' ||
      window.location.pathname === '/best-non-alcoholic-drinks' ||

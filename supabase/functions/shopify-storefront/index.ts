@@ -1351,6 +1351,26 @@ serve(async (req) => {
         );
       }
 
+      // Live count of our own bottles left for the Thanksgiving pre-order page.
+      // Allowlisted to the two bottle variants so this never exposes other inventory.
+      case "bottle-stock": {
+        const BOTTLE_VARIANTS: Record<string, string> = {
+          "16 oz": "gid://shopify/ProductVariant/67884603244844",
+          "32 oz": "gid://shopify/ProductVariant/67884603277612",
+        };
+        const stockData = await shopifyAdminFetch(
+          `query BottleStock($ids: [ID!]!) { nodes(ids: $ids) { ... on ProductVariant { id inventoryQuantity } } }`,
+          { ids: Object.values(BOTTLE_VARIANTS) },
+        ) as { nodes: Array<{ id: string; inventoryQuantity: number } | null> };
+        const byId = new Map(stockData.nodes.filter(Boolean).map((n) => [n!.id, Math.max(0, n!.inventoryQuantity ?? 0)]));
+        const stock = Object.fromEntries(
+          Object.entries(BOTTLE_VARIANTS).map(([size, id]) => [size, byId.get(id) ?? 0]),
+        );
+        return new Response(JSON.stringify({ stock }), {
+          headers: { ...corsHeaders, "Content-Type": "application/json", "Cache-Control": "public, max-age=30" },
+        });
+      }
+
       default:
         throw new Error("Invalid action");
     }

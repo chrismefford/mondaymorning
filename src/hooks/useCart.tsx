@@ -48,6 +48,8 @@ interface CartContextType {
   openCart: () => void;
   closeCart: () => void;
   addToCart: (variantId: string, quantity?: number) => Promise<void>;
+  /** Add several lines in one request (e.g. a Thanksgiving batch plus one of our bottles). Resolves true on success. */
+  addLines: (lines: Array<{ merchandiseId: string; quantity: number }>) => Promise<boolean>;
   updateQuantity: (lineId: string, quantity: number) => Promise<void>;
   removeFromCart: (lineId: string) => Promise<void>;
   cartItems: CartLine[];
@@ -151,6 +153,29 @@ export function CartProvider({ children }: { children: ReactNode }) {
     }
   }, [cart]);
 
+  const addLines = useCallback(async (lines: Array<{ merchandiseId: string; quantity: number }>) => {
+    setIsLoading(true);
+    try {
+      let data: { cart: Cart };
+      if (!cart) {
+        data = await cartFetch("cart-create", { lines });
+        localStorage.setItem(CART_ID_KEY, data.cart.id);
+      } else {
+        data = await cartFetch("cart-add", { cartId: cart.id, lines });
+      }
+      setCart(data.cart);
+      setIsOpen(true);
+      toast.success("Added to cart!");
+      return true;
+    } catch (error) {
+      console.error("Failed to add to cart:", error);
+      toast.error("Couldn't add that to your cart. Please try again.");
+      return false;
+    } finally {
+      setIsLoading(false);
+    }
+  }, [cart]);
+
   const updateQuantity = useCallback(async (lineId: string, quantity: number) => {
     if (!cart) return;
     
@@ -209,6 +234,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
         openCart,
         closeCart,
         addToCart,
+        addLines,
         updateQuantity,
         removeFromCart,
         cartItems,
