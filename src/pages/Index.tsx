@@ -4,6 +4,7 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import Hero from "@/components/home/Hero";
 import FeaturedProducts from "@/components/home/FeaturedProducts";
+import ThanksgivingBanner from "@/components/home/ThanksgivingBanner";
 
 // Below-the-fold sections lazy load to keep initial paint fast
 const Collections = lazy(() => import("@/components/home/Collections"));
@@ -69,6 +70,7 @@ const Index = () => {
       
       <main>
         <Hero />
+        <ThanksgivingBanner />
         <FeaturedProducts />
         <Suspense fallback={<div className="min-h-[200px]" />}>
           <Collections />

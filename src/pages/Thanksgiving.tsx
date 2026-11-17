@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { useCart } from "@/hooks/useCart";
+import { THANKSGIVING_2026 } from "@/data/promos";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import SEO from "@/components/SEO";
@@ -24,10 +25,11 @@ import stampGold from "@/assets/stamp-gold.svg";
 // Pickup is Pacific Beach only. `handle` is the Shopify product handle; until
 // the products exist the order buttons render as "opening soon".
 
-const ORDER_CUTOFF = new Date("2026-11-24T07:59:00Z"); // Mon Nov 23, 11:59 PM Pacific
-const PICKUP_DAY = "Wednesday, November 25";
-const PICKUP_HOURS = "11 AM to 8 PM";
-const ORDER_BY = "Monday, November 23";
+// Dates live in src/data/promos.ts so the banner, nav link, and this page close together.
+const ORDER_CUTOFF = THANKSGIVING_2026.orderCutoff;
+const PICKUP_DAY = THANKSGIVING_2026.pickupDay;
+const PICKUP_HOURS = THANKSGIVING_2026.pickupHours;
+const ORDER_BY = THANKSGIVING_2026.orderBy;
 
 type Bottle = {
   name: string;

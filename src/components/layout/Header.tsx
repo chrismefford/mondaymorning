@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { THANKSGIVING_2026, isThanksgivingOpen } from "@/data/promos";
 import { Menu, X, ShoppingBag, ArrowUpRight, Sparkles, Beer, Wine, Martini, Star, Leaf, Package, ChevronDown, Search, BookOpen, Newspaper, Truck, GraduationCap, Store, MapPin, Gift } from "lucide-react";
 import { useCart } from "@/hooks/useCart";
 import logoGold from "@/assets/logo-mm-gold.png";
@@ -124,7 +125,10 @@ const Header = ({ forceSolid = false }: HeaderProps) => {
     };
   }, [isMenuOpen]);
 
-  const navLinks = [
+  const promoOpen = isThanksgivingOpen();
+  const navLinks: Array<{ name: string; href: string; number: string; hasDropdown?: boolean; dropdownType?: string; promo?: boolean }> = [
+    // Time-boxed promo link; disappears automatically at the order cutoff (src/data/promos.ts).
+    ...(promoOpen ? [{ name: "Thanksgiving", href: THANKSGIVING_2026.path, number: "✦", promo: true }] : []),
     { name: "Shop", href: "/shop", number: "01", hasDropdown: true, dropdownType: "collections" },
     { name: "Visit", href: "/locations", number: "02", hasDropdown: true, dropdownType: "visit" },
     { name: "Behind The Bar", href: "/recipes", number: "03", hasDropdown: true, dropdownType: "recipes" },
@@ -181,12 +185,25 @@ const Header = ({ forceSolid = false }: HeaderProps) => {
       {/* Announcement bar */}
       <div className="fixed top-0 left-0 right-0 z-[60] bg-teal-dark text-cream">
         <div className="container mx-auto px-4 h-9 flex items-center justify-center">
-          <p className="font-sans text-[10px] sm:text-xs uppercase tracking-[0.15em] text-center truncate">
-            Drink Differently. Live Free AF.
-            <span className="text-gold mx-2">✦</span>
-            <span className="hidden sm:inline">Pacific Beach · Ocean Beach</span>
-            <span className="sm:hidden">Pacific Beach · Ocean Beach</span>
-          </p>
+          {promoOpen ? (
+            <a
+              href={THANKSGIVING_2026.path}
+              className="font-sans text-[10px] sm:text-xs uppercase tracking-[0.15em] text-center truncate hover:text-gold transition-colors"
+            >
+              <span className="hidden sm:inline">Thanksgiving Vibations by the bottle</span>
+              <span className="sm:hidden">Thanksgiving pre-orders open</span>
+              <span className="text-gold mx-2">✦</span>
+              Order by {THANKSGIVING_2026.orderByShort}
+              <span className="text-gold ml-2">&rarr;</span>
+            </a>
+          ) : (
+            <p className="font-sans text-[10px] sm:text-xs uppercase tracking-[0.15em] text-center truncate">
+              Drink Differently. Live Free AF.
+              <span className="text-gold mx-2">✦</span>
+              <span className="hidden sm:inline">Pacific Beach · Ocean Beach</span>
+              <span className="sm:hidden">Pacific Beach · Ocean Beach</span>
+            </p>
+          )}
         </div>
       </div>
 
@@ -224,7 +241,7 @@ const Header = ({ forceSolid = false }: HeaderProps) => {
                     key={link.name}
                     href={link.href}
                     className={`font-sans text-xs font-semibold uppercase tracking-[0.15em] px-5 py-2 hover:text-primary transition-colors duration-200 relative group ${
-                      showLightText ? 'text-cream' : 'text-foreground'
+                      link.promo ? 'hidden xl:inline-block text-gold' : showLightText ? 'text-cream' : 'text-foreground'
                     }`}
                   >
                     {link.name}
@@ -402,7 +419,7 @@ const Header = ({ forceSolid = false }: HeaderProps) => {
                 >
                   <div className="flex items-baseline gap-4">
                     <span className="font-sans text-xs text-primary tracking-widest">{link.number}</span>
-                    <span className="font-serif text-4xl text-background group-hover:text-primary transition-colors">
+                    <span className={`font-serif text-4xl group-hover:text-primary transition-colors ${link.promo ? 'text-gold' : 'text-background'}`}>
                       {link.name}
                     </span>
                   </div>
