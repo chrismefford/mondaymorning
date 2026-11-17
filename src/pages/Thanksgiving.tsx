@@ -280,7 +280,7 @@ const BottleCard = ({ b, ordersOpen, stock }: { b: Bottle; ordersOpen: boolean; 
             ? `Our ${o.size} bottles are all spoken for. Bring your own and you're set.`
             : useOurs
               ? left !== null
-                ? `${left} of our ${BOTTLE_LIMIT} ${o.size} bottles left`
+                ? `Our ${o.size} bottles: ${left} of ${BOTTLE_LIMIT} left`
                 : `Limited: only ${BOTTLE_LIMIT} of our ${o.size} bottles`
               : `Bring a clean ${o.size} bottle to pickup. Need one? Ours are $${BYOB_OFF}.`}
         </p>
